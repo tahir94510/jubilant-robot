@@ -1,0 +1,60 @@
+name: quotecrack
+description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram puzzle game."
+publish_to: 'none'
+
+# versionName+versionCode for Android. Bump +N for every Play Store upload.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.5
+  shared_preferences: ^2.5.3
+  google_mobile_ads: ^9.0.0
+  in_app_purchase: ^3.3.0
+  flutter_local_notifications: ^22.0.0
+  timezone: ^0.11.0
+  flutter_timezone: ^5.0.1
+  share_plus: ^13.1.0
+  in_app_review: ^2.0.10
+  url_launcher: ^6.3.2
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/data/quotes/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+    - family: Lora
+      fonts:
+        - asset: assets/fonts/Lora-Variable.ttf
+        - asset: assets/fonts/Lora-Italic-Variable.ttf
+          style: italic
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "#1C2541"
+  adaptive_icon_foreground: "assets/icon/icon_foreground.png"
+  adaptive_icon_monochrome: "assets/icon/icon_monochrome.png"
+  min_sdk_android: 24
