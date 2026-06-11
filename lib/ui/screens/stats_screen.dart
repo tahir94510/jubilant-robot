@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../state/progress_controller.dart';
 import '../widgets/heatmap_calendar.dart';
+import '../widgets/scale_safe.dart';
 
 class StatsScreen extends StatelessWidget {
   const StatsScreen({super.key});
@@ -54,66 +55,75 @@ class StatsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Statistics')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Row(
-            children: [
-              statCard(
-                '${stats.totalSolved}',
-                'Puzzles solved',
-                Icons.extension_outlined,
-              ),
-              const SizedBox(width: 10),
-              statCard(
-                '${progress.displayStreak}',
-                'Current streak',
-                Icons.local_fire_department_outlined,
-              ),
-              const SizedBox(width: 10),
-              statCard(
-                '${stats.bestStreak}',
-                'Best streak',
-                Icons.star_outline,
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              statCard(
-                _fmtTime(stats.bestTimeSeconds),
-                'Fastest solve',
-                Icons.bolt_outlined,
-              ),
-              const SizedBox(width: 10),
-              statCard(
-                '${stats.noHintSolves}',
-                'No-hint solves',
-                Icons.do_not_touch_outlined,
-              ),
-              const SizedBox(width: 10),
-              statCard('$dailySolved', 'Dailies solved', Icons.today_outlined),
-            ],
-          ),
-          const SizedBox(height: 18),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Daily activity',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                  ),
-                  const SizedBox(height: 14),
-                  HeatmapCalendar(dailyHistory: stats.dailyHistory),
-                ],
+      body: ScaleSafe(
+        child: ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            Row(
+              children: [
+                statCard(
+                  '${stats.totalSolved}',
+                  'Puzzles solved',
+                  Icons.extension_outlined,
+                ),
+                const SizedBox(width: 10),
+                statCard(
+                  '${progress.displayStreak}',
+                  'Current streak',
+                  Icons.local_fire_department_outlined,
+                ),
+                const SizedBox(width: 10),
+                statCard(
+                  '${stats.bestStreak}',
+                  'Best streak',
+                  Icons.star_outline,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                statCard(
+                  _fmtTime(stats.bestTimeSeconds),
+                  'Fastest solve',
+                  Icons.bolt_outlined,
+                ),
+                const SizedBox(width: 10),
+                statCard(
+                  '${stats.noHintSolves}',
+                  'No-hint solves',
+                  Icons.do_not_touch_outlined,
+                ),
+                const SizedBox(width: 10),
+                statCard(
+                  '$dailySolved',
+                  'Dailies solved',
+                  Icons.today_outlined,
+                ),
+              ],
+            ),
+            const SizedBox(height: 18),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Daily activity',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 14),
+                    HeatmapCalendar(dailyHistory: stats.dailyHistory),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

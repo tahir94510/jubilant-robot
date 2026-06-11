@@ -89,6 +89,9 @@ class GameController extends ChangeNotifier {
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!_completed) {
         _elapsed += const Duration(seconds: 1);
+        // Autosave the clock so neither leaving the screen nor an app kill
+        // rewinds it to the moment of the last letter entry.
+        if (_elapsed.inSeconds % 10 == 0) _persistState();
         notifyListeners();
       }
     });
@@ -97,6 +100,9 @@ class GameController extends ChangeNotifier {
   void stopTimer() {
     _ticker?.cancel();
     _ticker = null;
+    // Leaving the puzzle (back button, backgrounding) must checkpoint the
+    // elapsed time, not just the last guess.
+    if (_session != null && !_completed) _persistState();
   }
 
   /// Restarts the ticker after a lifecycle pause (app backgrounded, ad

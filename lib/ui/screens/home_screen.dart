@@ -16,6 +16,7 @@ import 'paywall_screen.dart';
 import 'puzzle_screen.dart';
 import 'settings_screen.dart';
 import 'stats_screen.dart';
+import '../widgets/scale_safe.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,172 +38,175 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Quotecrack',
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: -0.5,
-                          color: scheme.onSurface,
+              child: ScaleSafe(
+                child: ListView(
+                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Quotecrack',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: -0.5,
+                            color: scheme.onSurface,
+                          ),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          StreakBadge(streak: progress.displayStreak),
-                          IconButton(
-                            tooltip: 'Settings',
-                            onPressed: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const SettingsScreen(),
-                              ),
-                            ),
-                            icon: const Icon(Icons.settings_outlined),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-
-                  // --- Daily puzzle card ---
-                  Card(
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(16),
-                      onTap: () {
-                        context.read<GameController>().start(
-                          daily.quote,
-                          daily: true,
-                        );
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const PuzzleScreen(),
-                          ),
-                        );
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.today_outlined,
-                                  size: 18,
-                                  color: scheme.primary,
+                            StreakBadge(streak: progress.displayStreak),
+                            IconButton(
+                              tooltip: 'Settings',
+                              onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const SettingsScreen(),
                                 ),
-                                const SizedBox(width: 6),
-                                Text(
-                                  'DAILY PUZZLE',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w700,
-                                    letterSpacing: 1.2,
-                                    color: scheme.primary,
-                                  ),
-                                ),
-                                const Spacer(),
-                                if (dailyDone)
-                                  Icon(
-                                    Icons.check_circle,
-                                    size: 20,
-                                    color: palette.success,
-                                  ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              '#${daily.number} · ${DateFormat.MMMMEEEEd().format(today)}',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                color: scheme.onSurface,
                               ),
-                            ),
-                            const SizedBox(height: 6),
-                            Text(
-                              dailyDone
-                                  ? 'Solved! Come back tomorrow for a new one.'
-                                  : 'A ${daily.quote.difficulty.name} cipher by ${daily.quote.author} awaits.',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: scheme.onSurface.withValues(alpha: .6),
-                              ),
-                            ),
-                            const SizedBox(height: 14),
-                            FilledButton(
-                              onPressed: () {
-                                context.read<GameController>().start(
-                                  daily.quote,
-                                  daily: true,
-                                );
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) => const PuzzleScreen(),
-                                  ),
-                                );
-                              },
-                              child: Text(dailyDone ? 'Replay' : 'Play now'),
+                              icon: const Icon(Icons.settings_outlined),
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 12),
+                    const SizedBox(height: 16),
 
-                  // --- Menu tiles ---
-                  _MenuTile(
-                    icon: Icons.grid_view_rounded,
-                    title: 'Puzzle packs',
-                    subtitle:
-                        '${progress.stats.solvedIds.length} of ${repo.all.length} solved',
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const PacksScreen()),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  _MenuTile(
-                    icon: Icons.insights_outlined,
-                    title: 'Statistics',
-                    subtitle: 'Streaks, times, and your heatmap',
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const StatsScreen()),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  _MenuTile(
-                    icon: Icons.emoji_events_outlined,
-                    title: 'Achievements',
-                    subtitle:
-                        '${progress.unlockedAchievementIds.length} unlocked',
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => const AchievementsScreen(),
-                      ),
-                    ),
-                  ),
-                  if (!economy.premium) ...[
-                    const SizedBox(height: 10),
-                    _MenuTile(
-                      icon: Icons.workspace_premium_outlined,
-                      title: 'Go Premium',
-                      subtitle: 'Remove ads · unlimited hints · 2 bonus packs',
-                      accent: true,
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const PaywallScreen(),
+                    // --- Daily puzzle card ---
+                    Card(
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {
+                          context.read<GameController>().start(
+                            daily.quote,
+                            daily: true,
+                          );
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const PuzzleScreen(),
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.today_outlined,
+                                    size: 18,
+                                    color: scheme.primary,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    'DAILY PUZZLE',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      letterSpacing: 1.2,
+                                      color: scheme.primary,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  if (dailyDone)
+                                    Icon(
+                                      Icons.check_circle,
+                                      size: 20,
+                                      color: palette.success,
+                                    ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                '#${daily.number} · ${DateFormat.MMMMEEEEd().format(today)}',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700,
+                                  color: scheme.onSurface,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                dailyDone
+                                    ? 'Solved! Come back tomorrow for a new one.'
+                                    : 'A ${daily.quote.difficulty.name} cipher by ${daily.quote.author} awaits.',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: scheme.onSurface.withValues(alpha: .6),
+                                ),
+                              ),
+                              const SizedBox(height: 14),
+                              FilledButton(
+                                onPressed: () {
+                                  context.read<GameController>().start(
+                                    daily.quote,
+                                    daily: true,
+                                  );
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const PuzzleScreen(),
+                                    ),
+                                  );
+                                },
+                                child: Text(dailyDone ? 'Replay' : 'Play now'),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
+                    const SizedBox(height: 12),
+
+                    // --- Menu tiles ---
+                    _MenuTile(
+                      icon: Icons.grid_view_rounded,
+                      title: 'Puzzle packs',
+                      subtitle:
+                          '${progress.stats.solvedIds.length} of ${repo.all.length} solved',
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const PacksScreen()),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    _MenuTile(
+                      icon: Icons.insights_outlined,
+                      title: 'Statistics',
+                      subtitle: 'Streaks, times, and your heatmap',
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const StatsScreen()),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    _MenuTile(
+                      icon: Icons.emoji_events_outlined,
+                      title: 'Achievements',
+                      subtitle:
+                          '${progress.unlockedAchievementIds.length} unlocked',
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => const AchievementsScreen(),
+                        ),
+                      ),
+                    ),
+                    if (!economy.premium) ...[
+                      const SizedBox(height: 10),
+                      _MenuTile(
+                        icon: Icons.workspace_premium_outlined,
+                        title: 'Go Premium',
+                        subtitle:
+                            'Remove ads · unlimited hints · 2 bonus packs',
+                        accent: true,
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const PaywallScreen(),
+                          ),
+                        ),
+                      ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
             const BannerAdSlot(slotName: 'home'),

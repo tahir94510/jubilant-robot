@@ -72,8 +72,10 @@ def icon_artwork(size, *, transparent_bg=False, monochrome=False, scale=1.0):
         img = vertical_gradient(size, BG_TOP, BG_BOTTOM).convert("RGBA")
     draw = ImageDraw.Draw(img)
 
-    tile_w = s * 0.34 * scale
-    tile_h = s * 0.52 * scale
+    # Generous glyph: launcher icons read tiny on home screens, so the
+    # artwork fills most of the canvas instead of floating in padding.
+    tile_w = s * 0.40 * scale
+    tile_h = s * 0.62 * scale
     gap = s * 0.045 * scale
     total_w = tile_w * 2 + gap
     x0 = (s - total_w) / 2
@@ -108,9 +110,10 @@ def make_icon():
 
 
 def make_adaptive_foreground():
-    # Adaptive icons crop to a centered circle ~66% of the canvas: keep all
-    # artwork inside that safe zone.
-    img = icon_artwork((1024, 1024), transparent_bg=True, scale=0.62)
+    # Adaptive icons crop to a centered circle ~66% of the canvas; 0.72 of
+    # the (larger) artwork still fits the safe zone while reading much
+    # bigger on launchers than the previous timid sizing.
+    img = icon_artwork((1024, 1024), transparent_bg=True, scale=0.72)
     out = ROOT / "assets/icon/icon_foreground.png"
     img.save(out)
     print(f"wrote {out}")
@@ -118,7 +121,7 @@ def make_adaptive_foreground():
 
 def make_monochrome():
     img = icon_artwork((1024, 1024), transparent_bg=True,
-                       monochrome=True, scale=0.62)
+                       monochrome=True, scale=0.72)
     out = ROOT / "assets/icon/icon_monochrome.png"
     img.save(out)
     print(f"wrote {out}")

@@ -54,12 +54,15 @@ class PackDetailScreen extends StatelessWidget {
               child: Center(
                 child: solved
                     ? Icon(Icons.check, color: palette.success, size: 26)
-                    : Text(
-                        '${i + 1}',
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
-                          color: scheme.onSurface.withValues(alpha: .75),
+                    : FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          '${i + 1}',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                            color: scheme.onSurface.withValues(alpha: .75),
+                          ),
                         ),
                       ),
               ),

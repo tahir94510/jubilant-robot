@@ -106,10 +106,18 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
                 children: [
-                  Icon(
-                    Icons.check_circle_outline,
-                    size: 56,
-                    color: palette.success,
+                  // A small celebratory pop on entrance.
+                  TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.4, end: 1),
+                    duration: const Duration(milliseconds: 420),
+                    curve: Curves.elasticOut,
+                    builder: (context, scale, child) =>
+                        Transform.scale(scale: scale, child: child),
+                    child: Icon(
+                      Icons.check_circle_outline,
+                      size: 56,
+                      color: palette.success,
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -142,40 +150,46 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  // Wrap, not Row: with three chips (daily) on a narrow
+                  // phone the row overflowed; now extras flow to a new line.
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 10,
+                    runSpacing: 8,
                     children: [
                       _StatChip(
                         icon: Icons.timer_outlined,
                         label: '$minutes:$seconds',
                       ),
-                      const SizedBox(width: 10),
                       _StatChip(
                         icon: Icons.lightbulb_outline,
                         label: game.hintsUsed == 0
                             ? 'No hints'
                             : '${game.hintsUsed} hint${game.hintsUsed == 1 ? '' : 's'}',
                       ),
-                      if (game.isDaily) ...[
-                        const SizedBox(width: 10),
+                      if (game.isDaily)
                         _StatChip(
                           icon: Icons.local_fire_department_outlined,
                           label: '${progress.displayStreak} day streak',
                         ),
-                      ],
                     ],
                   ),
                   if (_newAchievements.isNotEmpty) ...[
                     const SizedBox(height: 20),
                     for (final a in _newAchievements)
-                      Card(
-                        child: ListTile(
-                          leading: Icon(a.icon, color: scheme.primary),
-                          title: Text(
-                            'Achievement: ${a.title}',
-                            style: const TextStyle(fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: Card(
+                          child: ListTile(
+                            leading: Icon(a.icon, color: scheme.primary),
+                            title: Text(
+                              'Achievement: ${a.title}',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            subtitle: Text(a.description),
                           ),
-                          subtitle: Text(a.description),
                         ),
                       ),
                   ],
@@ -263,16 +277,21 @@ class _StatChip extends StatelessWidget {
         color: scheme.onSurface.withValues(alpha: .05),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(icon, size: 16, color: scheme.onSurface.withValues(alpha: .6)),
-          const SizedBox(width: 5),
-          Text(
-            label,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-          ),
-        ],
+      // The chip shrinks gracefully instead of overflowing when huge system
+      // text meets a narrow phone (the on-device "26 px" stripe).
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(icon, size: 16, color: scheme.onSurface.withValues(alpha: .6)),
+            const SizedBox(width: 5),
+            Text(
+              label,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+            ),
+          ],
+        ),
       ),
     );
   }

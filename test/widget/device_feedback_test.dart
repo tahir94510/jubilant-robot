@@ -35,6 +35,87 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('solve clock checkpoints on exit, not at the last guess', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    // Enter one letter at second ~0, then idle for 7 ticking seconds.
+    h.game.enterGuess('Q');
+    await tester.pump(const Duration(seconds: 7));
+    expect(h.game.elapsed.inSeconds, greaterThanOrEqualTo(7));
+
+    // Leaving the screen must persist the CURRENT clock, not the clock at
+    // the moment of the last guess (the on-device bug).
+    h.game.stopTimer();
+    final saved = h.storage.readJson(
+      StorageService.puzzleStateKey(shortQuote.id),
+    );
+    expect(saved?['elapsedSeconds'], greaterThanOrEqualTo(7));
+
+    // Resuming restores from the checkpoint.
+    h.game.start(shortQuote, daily: false);
+    expect(h.game.elapsed.inSeconds, greaterThanOrEqualTo(7));
+    h.game.stopTimer();
+  });
+
+  testWidgets('ticking clock autosaves periodically while idle', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 11)); // crosses the 10s mark
+
+    final saved = h.storage.readJson(
+      StorageService.puzzleStateKey(shortQuote.id),
+    );
+    expect(saved?['elapsedSeconds'], greaterThanOrEqualTo(10));
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('daily completion screen fits a narrow phone with huge text '
+      '(three stat chips wrap instead of overflowing)', (tester) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: true);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen(), textScale: 1.6));
+    await tester.pump();
+    await solveByTapping(tester, h);
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('day streak'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('settings and packs survive narrow screens with huge text', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    final h = await Harness.create();
+
+    await tester.pumpWidget(h.app(const SettingsScreen(), textScale: 1.6));
+    await tester.pump();
+    await tester.scrollUntilVisible(find.text('Version'), 200);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('theme selector shows Auto by default and switches honestly', (
     tester,
   ) async {

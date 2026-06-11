@@ -196,12 +196,16 @@ void main() {
     expect(settings.haptics, isFalse);
 
     await tester.scrollUntilVisible(find.text('Sound effects'), 150);
+    await tester.ensureVisible(find.text('Sound effects'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Sound effects'));
     await tester.pump();
     expect(settings.soundEffects, isFalse);
 
     // Daily reminder: enabling schedules a notification via the service.
     await tester.scrollUntilVisible(find.text('Remind me daily'), 200);
+    await tester.ensureVisible(find.text('Remind me daily'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Remind me daily'));
     await tester.pumpAndSettle();
     expect(settings.reminderEnabled, isTrue);
@@ -216,6 +220,8 @@ void main() {
 
     // Restore purchases row delegates to the store service.
     await tester.scrollUntilVisible(find.text('Restore purchases'), 200);
+    await tester.ensureVisible(find.text('Restore purchases'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Restore purchases'));
     await tester.pump();
     expect(h.purchases.restoreCalls, 1);

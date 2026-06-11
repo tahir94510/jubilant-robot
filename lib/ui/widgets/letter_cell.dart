@@ -6,6 +6,10 @@ enum CellState { normal, selected, related, conflict, revealed, error }
 
 /// One letter slot: player's guess on top, the cipher letter below an
 /// underline — the classic newspaper cryptogram layout.
+///
+/// The selected state uses a light fill + accent border + thick underline
+/// (an opaque slab looked heavy and hid the cipher letter on dark themes),
+/// and state changes ease over 120ms so selection feels alive.
 class LetterCell extends StatelessWidget {
   const LetterCell({
     super.key,
@@ -25,12 +29,8 @@ class LetterCell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final selected = state == CellState.selected;
 
-    final bg = switch (state) {
-      CellState.selected => palette.boardCellSelectedBg,
-      CellState.related => palette.boardCellRelatedBg,
-      _ => palette.boardCellBg,
-    };
     final guessColor = switch (state) {
       CellState.conflict => palette.conflict,
       CellState.error => palette.error,
@@ -41,13 +41,19 @@ class LetterCell extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
-      child: Container(
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 120),
+        curve: Curves.easeOut,
         width: width,
         margin: const EdgeInsets.symmetric(horizontal: 1),
         padding: const EdgeInsets.only(top: 2),
         decoration: BoxDecoration(
-          color: bg,
+          color: selected ? palette.boardCellSelectedBg : palette.boardCellBg,
           borderRadius: BorderRadius.circular(6),
+          border: Border.all(
+            color: selected ? palette.revealed : Colors.transparent,
+            width: 1.4,
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -55,23 +61,30 @@ class LetterCell extends StatelessWidget {
             SizedBox(
               height: width * 0.96,
               child: Center(
-                child: Text(
-                  guess ?? '',
-                  style: TextStyle(
-                    fontSize: width * 0.62,
-                    fontWeight: FontWeight.w700,
-                    color: guessColor,
-                    height: 1,
+                // New guesses pop in with a quick scale for tactile feel.
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 140),
+                  switchInCurve: Curves.easeOutBack,
+                  transitionBuilder: (child, animation) =>
+                      ScaleTransition(scale: animation, child: child),
+                  child: Text(
+                    guess ?? '',
+                    key: ValueKey(guess),
+                    style: TextStyle(
+                      fontSize: width * 0.62,
+                      fontWeight: FontWeight.w700,
+                      color: guessColor,
+                      height: 1,
+                    ),
                   ),
                 ),
               ),
             ),
-            Container(
-              height: 1.6,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 120),
+              height: selected ? 2.4 : 1.6,
               margin: const EdgeInsets.symmetric(horizontal: 2),
-              color: state == CellState.selected
-                  ? palette.revealed
-                  : palette.boardUnderline,
+              color: selected ? palette.revealed : palette.boardUnderline,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 3, bottom: 2),
@@ -80,7 +93,7 @@ class LetterCell extends StatelessWidget {
                 style: TextStyle(
                   fontSize: width * 0.40,
                   fontWeight: FontWeight.w600,
-                  color: palette.cipherText,
+                  color: selected ? palette.revealed : palette.cipherText,
                   height: 1,
                 ),
               ),

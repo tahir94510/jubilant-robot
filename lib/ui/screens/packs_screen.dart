@@ -7,6 +7,7 @@ import '../../state/economy_controller.dart';
 import '../../state/progress_controller.dart';
 import 'pack_detail_screen.dart';
 import 'paywall_screen.dart';
+import '../widgets/scale_safe.dart';
 
 class PacksScreen extends StatelessWidget {
   const PacksScreen({super.key});
@@ -46,16 +47,18 @@ class PacksScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Puzzle packs')),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-        children: [
-          section('By difficulty'),
-          ...tiles(PackKind.difficulty),
-          section('Themed'),
-          ...tiles(PackKind.themed),
-          section('Premium'),
-          ...tiles(PackKind.premium),
-        ],
+      body: ScaleSafe(
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+          children: [
+            section('By difficulty'),
+            ...tiles(PackKind.difficulty),
+            section('Themed'),
+            ...tiles(PackKind.themed),
+            section('Premium'),
+            ...tiles(PackKind.premium),
+          ],
+        ),
       ),
     );
   }
