@@ -18,8 +18,33 @@ class PuzzleScreen extends StatefulWidget {
   State<PuzzleScreen> createState() => _PuzzleScreenState();
 }
 
-class _PuzzleScreenState extends State<PuzzleScreen> {
+class _PuzzleScreenState extends State<PuzzleScreen>
+    with WidgetsBindingObserver {
   bool _navigatedToComplete = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  // The solve clock only runs while the puzzle is actually on screen:
+  // backgrounding, calls, and full-screen overlays pause it.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final game = context.read<GameController>();
+    if (state == AppLifecycleState.resumed) {
+      game.resumeTimer();
+    } else {
+      game.stopTimer();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

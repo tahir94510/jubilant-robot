@@ -27,10 +27,12 @@ abstract final class MonetizationConfig {
       'ca-app-pub-3940256099942544/1033173712';
   static const String _rewardedTest = 'ca-app-pub-3940256099942544/5224354917';
 
-  // ---- KENDI reklam birimlerinizle DEGISTIRIN (docs/MONETIZASYON.md) ----
-  static const String _bannerProd = _bannerTest; // TODO(owner): degistir
-  static const String _interstitialProd = _interstitialTest; // TODO(owner)
-  static const String _rewardedProd = _rewardedTest; // TODO(owner)
+  // ---- Gercek reklam birimleri (AdMob: home_banner, between_puzzles,
+  //      hint_reward). Release derlemede otomatik bunlar kullanilir. ----
+  static const String _bannerProd = 'ca-app-pub-6486621084238367/1733752636';
+  static const String _interstitialProd =
+      'ca-app-pub-6486621084238367/5724968533';
+  static const String _rewardedProd = 'ca-app-pub-6486621084238367/4048385788';
 
   static String get bannerAdUnitId => useTestAds ? _bannerTest : _bannerProd;
   static String get interstitialAdUnitId =>

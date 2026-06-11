@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/ui/screens/puzzle_complete_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
@@ -64,6 +65,71 @@ void main() {
     expect(h.progress.stats.currentStreak, 1);
     expect(h.progress.dailySolvedToday, isTrue);
     expect(find.text('Share result'), findsOneWidget);
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('replaying a solved puzzle farms no tokens or interstitials', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+
+    // First solve: earns a token, advances the cadence counter.
+    h.game.start(shortQuote, daily: false);
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    await solveByTapping(tester, h);
+    await tester.pumpAndSettle();
+    final tokensAfterFirst = h.economy.tokens;
+    expect(h.economy.completedCount, 1);
+    expect(h.ads.interstitialRequests, hasLength(1));
+
+    // Replay the same puzzle: stats, tokens, and ads must not move.
+    // (Reset the widget tree first — otherwise the Navigator keeps showing
+    // the previous completion route.)
+    await tester.pumpWidget(const SizedBox());
+    h.game.start(shortQuote, daily: false);
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    await solveByTapping(tester, h);
+    await tester.pumpAndSettle();
+
+    expect(h.progress.stats.totalSolved, 1);
+    expect(h.economy.tokens, tokensAfterFirst);
+    expect(h.economy.completedCount, 1);
+    expect(h.ads.interstitialRequests, hasLength(1));
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('solve clock pauses while the app is backgrounded', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    await tester.pump(const Duration(seconds: 2));
+    final beforeBackground = h.game.elapsed;
+    expect(beforeBackground.inSeconds, greaterThanOrEqualTo(2));
+
+    // Background the app: the ticker must stop counting.
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    await tester.pump(const Duration(seconds: 30));
+    expect(h.game.elapsed, beforeBackground);
+
+    // Foreground again: counting resumes from where it left off.
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    await tester.pump(const Duration(seconds: 2));
+    expect(
+      h.game.elapsed.inSeconds,
+      inInclusiveRange(
+        beforeBackground.inSeconds + 1,
+        beforeBackground.inSeconds + 3,
+      ),
+    );
 
     h.game.stopTimer();
   });

@@ -76,18 +76,30 @@ class GameController extends ChangeNotifier {
     _selectedCipherLetter = _firstEmptyCipherLetter();
     _undoStack.clear();
 
+    _startTicker();
+    notifyListeners();
+  }
+
+  void _startTicker() {
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!_completed) {
         _elapsed += const Duration(seconds: 1);
         notifyListeners();
       }
     });
-    notifyListeners();
   }
 
   void stopTimer() {
     _ticker?.cancel();
     _ticker = null;
+  }
+
+  /// Restarts the ticker after a lifecycle pause (app backgrounded, ad
+  /// overlay, phone call) so off-screen time never counts as solve time.
+  void resumeTimer() {
+    if (_session != null && !_completed && _ticker == null) {
+      _startTicker();
+    }
   }
 
   String? _firstEmptyCipherLetter() {

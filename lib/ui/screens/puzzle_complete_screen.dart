@@ -47,24 +47,31 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final session = game.session;
     if (session == null) return;
 
+    // Replays of an already-solved puzzle never earn tokens, advance the
+    // interstitial cadence, or trigger prompts — otherwise the shortest
+    // puzzle would become a free hint-token farm.
+    final firstSolve = !progress.isSolved(session.quote.id);
+
     final fresh = await progress.recordSolve(
       quoteId: session.quote.id,
       solveTime: game.elapsed,
       hintsUsed: game.hintsUsed,
       isDaily: game.isDaily,
     );
-    economy.onPuzzleCompleted();
 
     if (mounted && fresh.isNotEmpty) {
       setState(() => _newAchievements = fresh);
     }
 
-    // Gentle monetization: interstitial only every Nth solve + cooldown,
-    // and the review prompt exactly once after the Nth lifetime solve.
-    await ads.maybeShowInterstitial(completedCount: economy.completedCount);
-    await ReviewService().maybeRequestReview(
-      totalSolved: progress.stats.totalSolved,
-    );
+    if (firstSolve) {
+      economy.onPuzzleCompleted();
+      // Gentle monetization: interstitial only every Nth solve + cooldown,
+      // and the review prompt exactly once after the Nth lifetime solve.
+      await ads.maybeShowInterstitial(completedCount: economy.completedCount);
+      await ReviewService().maybeRequestReview(
+        totalSolved: progress.stats.totalSolved,
+      );
+    }
   }
 
   @override

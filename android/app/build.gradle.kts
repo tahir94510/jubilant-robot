@@ -34,13 +34,10 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
 
-        // AdMob UYGULAMA kimligi (reklam birimi degil!).
-        // Varsayilan deger Google'in resmi TEST app ID'sidir; uygulama bununla calisir
-        // ama gercek gelir icin yayindan once kendi ID'nizle DEGISTIRIN:
-        //   AdMob > Uygulamalar > Uygulama ayarlari > Uygulama kimligi
-        // Ikinci ve son duzenleme yeri: lib/config/monetization_config.dart
-        // Detay: docs/MONETIZASYON.md
-        manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+        // AdMob UYGULAMA kimligi (gercek deger yerlestirildi).
+        // Reklam birimi kimlikleri: lib/config/monetization_config.dart
+        // Not: debug derlemeler her zaman Google TEST reklami gosterir.
+        manifestPlaceholders["admobAppId"] = "ca-app-pub-6486621084238367~2935153669"
     }
 
     signingConfigs {
