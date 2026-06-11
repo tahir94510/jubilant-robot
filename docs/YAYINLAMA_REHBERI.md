@@ -40,6 +40,11 @@ Bilgisayarınıza hiçbir şey kurmadan üretin:
 4. `upload-keystore.jks` + parolaları kalıcı güvenli bir yere kaydedin
    (parola yöneticisi önerilir), sonra GitHub'daki artefaktı silin
    (çalışma sayfasında artefaktın yanındaki çöp kutusu).
+
+   > **Sorun giderme:** AAB işi "Failed to read key ... not properly
+   > padded" hatası verirse `KEY_PASSWORD` secret'ını `KEYSTORE_PASSWORD`
+   > ile AYNI değere güncelleyin (PKCS12 formatında iki parola tektir),
+   > sonra Actions'taki son çalışmada "Re-run failed jobs" deyin.
 5. Herhangi bir commit push'layın (veya Actions → CI → Re-run all jobs):
    artık her çalışmada **quotecrack-release-aab** artefaktı da üretilir.
 

@@ -72,10 +72,14 @@ sonra 5 dakikalık iyileştirme olarak yapın:
 
 1. GitHub → sağ üst **+** → **New repository** → ad alanına TAM OLARAK
    `tahir94510.github.io` yazın → Public → **Create repository**.
-2. **creating a new file** → dosya adı `app-ads.txt` → içerik TEK satır:
-   `google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0`
-   (pub-… kısmı AdMob **yayıncı kimliğiniz**; AdMob → Ayarlar → Hesap
-   bilgilerinde yazar) → **Commit changes**.
+2. **creating a new file** → dosya adı `app-ads.txt` → içerik TEK satır
+   (yayıncı kimliğiniz yerleştirilmiş, kopyala-yapıştır hazır):
+
+   ```
+   google.com, pub-6486621084238367, DIRECT, f08c47fec0942fa0
+   ```
+
+   → **Commit changes**.
 3. Play Console mağaza kaydındaki **Website** alanına
    `https://tahir94510.github.io` yazın.
 4. 1+ gün sonra AdMob → Apps → app-ads.txt durumunu kontrol edin.
