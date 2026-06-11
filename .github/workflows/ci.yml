@@ -63,7 +63,7 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: flutter build apk --debug
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: quotecrack-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
@@ -100,7 +100,7 @@ jobs:
             echo "keyPassword=$KEY_PASSWORD"
           } > android/key.properties
       - run: flutter build appbundle --release
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: quotecrack-release-aab
           path: build/app/outputs/bundle/release/app-release.aab
@@ -109,7 +109,7 @@ jobs:
       # dogrulamak icin. DIKKAT: gercek reklam kimlikleri aktiftir; kendi
       # reklamlariniza TIKLAMAYIN (docs/YAYINLAMA_REHBERI.md).
       - run: flutter build apk --release
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: quotecrack-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
@@ -148,10 +148,10 @@ jobs:
           cp -r build/web/* _site/app/
           cp -r pages/* _site/
       - id: cfg
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         continue-on-error: true
       - if: steps.cfg.outcome == 'success'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
       - if: steps.cfg.outcome != 'success'
@@ -173,4 +173,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
