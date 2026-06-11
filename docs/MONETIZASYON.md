@@ -56,30 +56,29 @@ ederken gerçek ID'lere tıklamanız diye bir risk yoktur.
 > Yayın sonrası ilk saatlerde "Ad serving limited" görmek normaldir;
 > AdMob uygulamayı doğruladıkça açılır (günler-haftalar).
 
-### Kullanıcı sitesi: privacy.html + app-ads.txt (5 dakika, ZORUNLU)
+### app-ads.txt (OPSİYONEL — yayından sonra, geliri %5-15 artırabilir)
 
-Gizlilik politikası Play Console için zorunludur ve KALICI bir adreste
-durmalıdır; app-ads.txt ise reklam gelirini korur. İkisini de uygulama
-reposundan bağımsız, `tahir94510.github.io` adlı küçük bir "kullanıcı
-sitesi" reposunda barındırıyoruz (ana repo private olsa bile yaşar):
+Gizlilik politikası için ek bir şey yapmanıza gerek YOK — o, bu reponun
+Pages sitesinde otomatik yayında:
+`https://tahir94510.github.io/jubilant-robot/privacy.html`
 
-1. GitHub → sağ üst **+** → **New repository** → Repository name alanına
-   TAM OLARAK `tahir94510.github.io` yazın → Public → **Create repository**.
-2. Açılan sayfada **creating a new file** linkine tıklayın; dosya adı:
-   `privacy.html`. İçerik: ana repodaki `pages/privacy.html` dosyasını
-   açın → **Raw** düğmesi → tümünü kopyalayıp buraya yapıştırın →
-   **Commit changes**.
-3. Aynı şekilde ikinci dosya: `app-ads.txt` — içeriği TEK satır:
+`app-ads.txt` ise bazı programatik reklam alıcılarının aradığı bir
+doğrulama dosyasıdır ve spec gereği alan adının KÖKÜNDE durmak zorundadır
+(`tahir94510.github.io/app-ads.txt`). Proje sayfası alt dizin olduğu için
+bunun tek yolu, `tahir94510.github.io` adlı ayrı bir "kullanıcı sitesi"
+reposudur. Bu dosya OLMADAN da AdMob'un kendi talebi reklam göstermeye
+devam eder — yani uygulamayı yayınlamak için gerekmez; gelir oturduktan
+sonra 5 dakikalık iyileştirme olarak yapın:
+
+1. GitHub → sağ üst **+** → **New repository** → ad alanına TAM OLARAK
+   `tahir94510.github.io` yazın → Public → **Create repository**.
+2. **creating a new file** → dosya adı `app-ads.txt` → içerik TEK satır:
    `google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0`
    (pub-… kısmı AdMob **yayıncı kimliğiniz**; AdMob → Ayarlar → Hesap
-   bilgilerinde yazar. AdMob hesabınız yoksa bu dosyayı ID'yi alınca
-   ekleyin.)
-4. 1-2 dakika içinde şu adresler canlı olur (kontrol edin):
-   - `https://tahir94510.github.io/privacy.html`  ← Play Console'a bu girilir
-   - `https://tahir94510.github.io/app-ads.txt`
-5. Play Console mağaza kaydındaki **Website** alanına
+   bilgilerinde yazar) → **Commit changes**.
+3. Play Console mağaza kaydındaki **Website** alanına
    `https://tahir94510.github.io` yazın.
-6. Yayından 1+ gün sonra AdMob → Apps → app-ads.txt durumunu kontrol edin.
+4. 1+ gün sonra AdMob → Apps → app-ads.txt durumunu kontrol edin.
 
 ## B) Premium IAP kurulumu (~10 dakika)
 

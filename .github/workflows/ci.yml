@@ -16,6 +16,11 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+# Node 20 kullanim-disi uyarilarini susturur; tum action'lar Node 24 ile
+# kosar (16 Haziran 2026'da zaten varsayilan oluyor).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 jobs:
   analyze-test:
     name: Analyze & test

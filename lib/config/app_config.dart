@@ -38,10 +38,10 @@ abstract final class AppConfig {
   // --- Links (replace listingUrl after the app is live on Google Play) ---
   static const String listingUrl =
       'https://play.google.com/store/apps/details?id=io.github.tahir94510.quotecrack';
-  // Kalici adres: tahir94510.github.io KULLANICI sitesinde durur, bu
-  // repo private olsa bile yasamaya devam eder (Play Console sarti).
+  // Kalici adres (Play Console'a da bu girilir). Bu reponun Pages sitesi
+  // uzerinde yasar; repo kalici olarak public tutulur (karar: tek repo).
   static const String privacyPolicyUrl =
-      'https://tahir94510.github.io/privacy.html';
+      'https://tahir94510.github.io/jubilant-robot/privacy.html';
 
   static const String appName = 'Quotecrack';
 }

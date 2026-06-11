@@ -70,12 +70,11 @@ metinlerle doldurun (kopyala-yapıştır):
 
 Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
 
-1. **Privacy policy:** `https://tahir94510.github.io/privacy.html`
-   > Bu adres, uygulama reposundan BAĞIMSIZ küçük bir "kullanıcı sitesi"
-   > reposunda durur — ana repoyu sonradan private yapsanız bile yaşar.
-   > Kurulumu 5 dakikadır, adımlar: docs/MONETIZASYON.md → "Kullanıcı
-   > sitesi (privacy + app-ads.txt)" bölümü. Linki forma yapıştırmadan
-   > önce tarayıcıda açıldığını kontrol edin.
+1. **Privacy policy:** `https://tahir94510.github.io/jubilant-robot/privacy.html`
+   > Bu sayfa, bu reponun GitHub Pages sitesinde otomatik yayınlanır ve
+   > repo public + Pages açık olduğu sürece yaşar (karar: repo kalıcı
+   > public). Linki forma yapıştırmadan önce tarayıcıda açıldığını
+   > kontrol edin.
 2. **Ads:** *Yes, my app contains ads.* (AdMob kullanıyoruz.)
 3. **App access:** *All functionality is available without special access*
    (giriş/hesap yok).
@@ -156,10 +155,8 @@ Onay gelince:
 
 - [ ] MONETIZASYON.md'deki **gerçek AdMob ID'leri** yayın AAB'sine girdi mi?
 - [ ] `premium_unlock` ürünü **Active** mi? Fiyat doğru mu?
-- [ ] Mağaza sayfasındaki "developer website" alanına
-      `https://tahir94510.github.io` yazıldı mı (app-ads.txt için)?
-- [ ] `pages/app-ads.txt` içindeki satır gerçek pub-ID ile dolduruldu mu
-      ve kullanıcı sitesi reposuna kondu mu? (MONETIZASYON.md §app-ads.txt)
+- [ ] (Opsiyonel, gelir iyileştirmesi) app-ads.txt kuruldu mu?
+      Adımlar: MONETIZASYON.md → "app-ads.txt" bölümü.
 - [ ] Uygulamayı Play'den kendiniz indirip: reklamların geldiğini, premium
       satın almanın çalıştığını (lisans testçisiyle ücretsiz test
       edebilirsiniz), bildirimin geldiğini doğrulayın.
