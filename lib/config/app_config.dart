@@ -44,4 +44,8 @@ abstract final class AppConfig {
       'https://tahir94510.github.io/jubilant-robot/privacy.html';
 
   static const String appName = 'Quotecrack';
+
+  /// Shown in Settings. Bump together with `version:` in pubspec.yaml on
+  /// every release.
+  static const String appVersion = '1.0.0';
 }

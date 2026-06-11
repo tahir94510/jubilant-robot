@@ -34,9 +34,17 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
    ("Bilinmeyen kaynaklara izin ver" sorusuna onay vermeniz gerekir.
    Debug APK'da Google'ın TEST reklamları görünür — bu normaldir.)
 
-3. **Play Store paketi (yayın için):**
-   İmza secret'larını ekledikten sonra (aşağıda) aynı Artifacts listesinde
-   `quotecrack-release-aab` oluşur; Play Console'a bu dosya yüklenir.
+3. **Play Store paketleri (yayın için):**
+   İmza secret'ları eklendiğinden aynı Artifacts listesinde şunlar da
+   oluşur:
+   - `quotecrack-release-aab` → Play Console'a yüklenen dosya
+   - `quotecrack-release-apk` → mağazaya gidecek paketin birebir aynısını
+     telefonda son kez doğrulamak için (⚠️ gerçek reklamlar aktif —
+     görüntüleyin ama TIKLAMAYIN)
+
+> Sürüm öncesi/sonrası tüm kontroller tek yerde:
+> [docs/KALITE_KONTROL.md](docs/KALITE_KONTROL.md) — her push'ta CI'ın
+> otomatik kanıtladıkları + 12 maddelik cihaz turu + yayın rutini.
 
 ## Yayınlamak için yapmanız gerekenler (sırasıyla)
 

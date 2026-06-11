@@ -46,7 +46,15 @@ Bilgisayarınıza hiçbir şey kurmadan üretin:
    > ile AYNI değere güncelleyin (PKCS12 formatında iki parola tektir),
    > sonra Actions'taki son çalışmada "Re-run failed jobs" deyin.
 5. Herhangi bir commit push'layın (veya Actions → CI → Re-run all jobs):
-   artık her çalışmada **quotecrack-release-aab** artefaktı da üretilir.
+   artık her çalışmada **quotecrack-release-aab** (Play'e yüklenecek dosya)
+   ve **quotecrack-release-apk** artefaktları da üretilir.
+
+   > `quotecrack-release-apk` mağazaya gidecek paketin birebir aynısıdır;
+   > yüklemeden önce telefonda son doğrulama için kurun
+   > (docs/KALITE_KONTROL.md → B turu). ⚠️ Bu pakette GERÇEK reklamlar
+   > çalışır: göründüklerini kontrol edin ama asla tıklamayın; reklamla
+   > etkileşmeniz gerekiyorsa AdMob → Ayarlar → Test cihazları'na
+   > cihazınızı ekleyin.
 
 ## §3 — Play Console'da uygulamayı oluşturma
 

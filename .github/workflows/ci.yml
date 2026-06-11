@@ -63,7 +63,7 @@ jobs:
           cache: true
       - run: flutter pub get
       - run: flutter build apk --debug
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: quotecrack-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
@@ -100,10 +100,19 @@ jobs:
             echo "keyPassword=$KEY_PASSWORD"
           } > android/key.properties
       - run: flutter build appbundle --release
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: quotecrack-release-aab
           path: build/app/outputs/bundle/release/app-release.aab
+          retention-days: 30
+      # Ayni imzayla release APK: magazaya gidecek paketi telefonda birebir
+      # dogrulamak icin. DIKKAT: gercek reklam kimlikleri aktiftir; kendi
+      # reklamlariniza TIKLAMAYIN (docs/YAYINLAMA_REHBERI.md).
+      - run: flutter build apk --release
+      - uses: actions/upload-artifact@v5
+        with:
+          name: quotecrack-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
           retention-days: 30
 
   # Web onizleme, GitHub Pages ACIKSA yayinlanir. Pages'i acmak tek tik:
