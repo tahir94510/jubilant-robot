@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../config/app_config.dart';
 import '../../services/ads/ads_service.dart';
+import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 
@@ -15,15 +16,24 @@ class HintBar extends StatelessWidget {
     final economy = context.watch<EconomyController>();
     final game = context.read<GameController>();
     final ads = context.read<AdsService>();
+    final sounds = context.read<SoundService>();
     final scheme = Theme.of(context).colorScheme;
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    // Wrap, not Row: on narrow screens / large system text the two buttons
+    // stack instead of overflowing (seen as "overflow by N px" on device).
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 10,
+      runSpacing: 6,
       children: [
         OutlinedButton.icon(
           onPressed: economy.canUseHint
               ? () {
-                  if (economy.spendHintToken()) game.revealSelected();
+                  if (economy.spendHintToken()) {
+                    game.revealSelected();
+                    sounds.hint();
+                  }
                 }
               : null,
           icon: const Icon(Icons.lightbulb_outline, size: 20),
@@ -33,8 +43,7 @@ class HintBar extends StatelessWidget {
                 : 'Reveal letter (${economy.tokens})',
           ),
         ),
-        if (!economy.premium && ads.supported) ...[
-          const SizedBox(width: 10),
+        if (!economy.premium && ads.supported)
           ValueListenableBuilder<bool>(
             valueListenable: ads.canRequestAds,
             builder: (context, canAds, _) {
@@ -64,7 +73,6 @@ class HintBar extends StatelessWidget {
               );
             },
           ),
-        ],
       ],
     );
   }

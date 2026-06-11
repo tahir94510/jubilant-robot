@@ -44,7 +44,9 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 
 > Sürüm öncesi/sonrası tüm kontroller tek yerde:
 > [docs/KALITE_KONTROL.md](docs/KALITE_KONTROL.md) — her push'ta CI'ın
-> otomatik kanıtladıkları + 12 maddelik cihaz turu + yayın rutini.
+> otomatik kanıtladıkları + 14 maddelik cihaz turu + yayın rutini.
+> Düzenli yeni bulmaca ekleme sistemi:
+> [docs/ICERIK_EKLEME.md](docs/ICERIK_EKLEME.md).
 
 ## Yayınlamak için yapmanız gerekenler (sırasıyla)
 

@@ -11,6 +11,7 @@ class AppSettings {
     this.errorChecking = true,
     this.showTimer = true,
     this.haptics = true,
+    this.soundEffects = true,
     this.reminderEnabled = false,
     this.reminderHour = 9,
     this.reminderMinute = 0,
@@ -26,6 +27,7 @@ class AppSettings {
     errorChecking: json['errorChecking'] as bool? ?? true,
     showTimer: json['showTimer'] as bool? ?? true,
     haptics: json['haptics'] as bool? ?? true,
+    soundEffects: json['soundEffects'] as bool? ?? true,
     reminderEnabled: json['reminderEnabled'] as bool? ?? false,
     reminderHour: json['reminderHour'] as int? ?? 9,
     reminderMinute: json['reminderMinute'] as int? ?? 0,
@@ -43,6 +45,7 @@ class AppSettings {
   bool errorChecking;
   bool showTimer;
   bool haptics;
+  bool soundEffects;
   bool reminderEnabled;
   int reminderHour;
   int reminderMinute;
@@ -58,6 +61,7 @@ class AppSettings {
     'errorChecking': errorChecking,
     'showTimer': showTimer,
     'haptics': haptics,
+    'soundEffects': soundEffects,
     'reminderEnabled': reminderEnabled,
     'reminderHour': reminderHour,
     'reminderMinute': reminderMinute,

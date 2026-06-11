@@ -4,6 +4,7 @@ import 'package:quotecrack/services/ads/ads_service.dart';
 import 'package:quotecrack/services/clock.dart';
 import 'package:quotecrack/services/notifications/notification_service.dart';
 import 'package:quotecrack/services/purchases/purchase_service.dart';
+import 'package:quotecrack/services/sound_service.dart';
 
 /// Records monetization calls instead of talking to plugins.
 class FakeAdsService extends AdsService {
@@ -118,6 +119,34 @@ class FakeNotificationService extends NotificationService {
     cancelCalls += 1;
     scheduledAt = null;
   }
+}
+
+/// Records which effects were requested instead of touching the plugin.
+/// (Never call initialize(); recording honors the same isEnabled gate the
+/// real service uses, so settings toggles are testable.)
+class FakeSoundService extends SoundService {
+  FakeSoundService({required super.isEnabled});
+
+  final List<String> played = [];
+
+  void _record(String name) {
+    if (isEnabled()) played.add(name);
+  }
+
+  @override
+  void tap() => _record('tap');
+
+  @override
+  void hint() => _record('hint');
+
+  @override
+  void conflict() => _record('conflict');
+
+  @override
+  void success() => _record('success');
+
+  @override
+  void achievement() => _record('achievement');
 }
 
 /// A clock whose `now` the test controls.

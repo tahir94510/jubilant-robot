@@ -35,6 +35,19 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  /// Live slider preview: updates the UI every drag tick WITHOUT touching
+  /// disk (persisting per tick caused visible jank). Call [setTextScale]
+  /// once on drag end to commit.
+  void previewTextScale(double scale) {
+    settings.textScale = scale.clamp(0.85, 1.4);
+    notifyListeners();
+  }
+
+  Future<void> setSoundEffects(bool value) {
+    settings.soundEffects = value;
+    return _save();
+  }
+
   Future<void> setColorblindMode(bool value) {
     settings.colorblindMode = value;
     return _save();

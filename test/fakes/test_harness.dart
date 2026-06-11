@@ -7,6 +7,7 @@ import 'package:quotecrack/services/ads/ads_service.dart';
 import 'package:quotecrack/services/haptics_service.dart';
 import 'package:quotecrack/services/notifications/notification_service.dart';
 import 'package:quotecrack/services/purchases/purchase_service.dart';
+import 'package:quotecrack/services/sound_service.dart';
 import 'package:quotecrack/services/storage_service.dart';
 import 'package:quotecrack/state/economy_controller.dart';
 import 'package:quotecrack/state/game_controller.dart';
@@ -25,6 +26,7 @@ class Harness {
     required this.ads,
     required this.purchases,
     required this.notifications,
+    required this.sounds,
     required this.settings,
     required this.progress,
     required this.economy,
@@ -36,6 +38,7 @@ class Harness {
   final FakeAdsService ads;
   final FakePurchaseService purchases;
   final FakeNotificationService notifications;
+  final FakeSoundService sounds;
   final SettingsController settings;
   final ProgressController progress;
   final EconomyController economy;
@@ -55,6 +58,9 @@ class Harness {
       storage: storage,
       notifications: notifications,
     );
+    final sounds = FakeSoundService(
+      isEnabled: () => settings.settings.soundEffects,
+    );
     final progress = ProgressController(storage: storage);
     final economy = EconomyController(
       storage: storage,
@@ -71,6 +77,7 @@ class Harness {
       ads: ads,
       purchases: purchases,
       notifications: notifications,
+      sounds: sounds,
       settings: settings,
       progress: progress,
       economy: economy,
@@ -79,7 +86,8 @@ class Harness {
   }
 
   /// Wraps [child] in the full provider tree inside a MaterialApp.
-  Widget app(Widget child) {
+  /// [textScale] simulates a device-level large-type setting.
+  Widget app(Widget child, {double textScale = 1.0}) {
     return MultiProvider(
       providers: [
         Provider.value(value: storage),
@@ -90,6 +98,7 @@ class Harness {
         Provider.value(
           value: HapticsService(isEnabled: () => settings.settings.haptics),
         ),
+        Provider<SoundService>.value(value: sounds),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: economy),
@@ -97,6 +106,12 @@ class Harness {
       ],
       child: MaterialApp(
         theme: AppThemes.light(colorblind: false),
+        builder: (context, c) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(textScale)),
+          child: c!,
+        ),
         home: child,
       ),
     );

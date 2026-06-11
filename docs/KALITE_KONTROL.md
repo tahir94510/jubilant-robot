@@ -78,6 +78,11 @@ kurup şu listeyi işaretleyin:
 11. [ ] Yarım bıraktığın bulmaca: uygulamayı tamamen kapatıp açınca aynı
         yerden devam ediyor (girilen harfler + süre).
 12. [ ] Çözülmüş bulmacayı tekrar çöz → jeton ARTMIYOR (ekonomi koruması).
+13. [ ] Ses efektleri: tuş tıkları + çözüm melodisi duyuluyor; Ayarlar →
+        "Sound effects" kapatınca tam sessiz; telefon sessiz moddayken de
+        çalmıyor (tasarım gereği).
+14. [ ] Tema seçici: varsayılan "Auto" seçili ve cihaz temasını izliyor;
+        dört seçenek de anında uygulanıyor.
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
@@ -85,6 +90,10 @@ kurup şu listeyi işaretleyin:
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
 Play Console'a yükle.
+
+**İçerik güncellemeleri:** yeni söz/paket ekleme tarifi ve otomatik uyum
+garantileri ayrı dokümanda: [ICERIK_EKLEME.md](ICERIK_EKLEME.md)
+(önerilen kadans: çeyrekte +50 söz, Aralık'ta sezonluk paket).
 
 **Yayın sonrası (haftalık 10 dakika):**
 - Play Console → **Vitals**: çökme/ANR oranı (%1'in altı sağlıklı).

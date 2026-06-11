@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/haptics_service.dart';
+import '../../services/sound_service.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
 import '../widgets/cipher_board.dart';
@@ -51,6 +52,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final game = context.watch<GameController>();
     final settings = context.watch<SettingsController>().settings;
     final haptics = context.read<HapticsService>();
+    final sounds = context.read<SoundService>();
     final session = game.session;
     final scheme = Theme.of(context).colorScheme;
 
@@ -62,6 +64,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     if (game.completed && !_navigatedToComplete) {
       _navigatedToComplete = true;
       haptics.success();
+      sounds.success();
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           Navigator.of(context).pushReplacement(
@@ -138,25 +141,42 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 ),
               ),
             ),
-            const HintBar(),
-            const SizedBox(height: 4),
-            PuzzleKeyboard(
-              usedLetters: session.usedPlainLetters,
-              canUndo: game.canUndo,
-              onUndo: () {
-                haptics.tap();
-                game.undo();
-              },
-              onLetter: (ch) {
-                haptics.tap();
-                game.enterGuess(ch);
-              },
-              onBackspace: () {
-                haptics.tap();
-                game.clearGuess();
-              },
+            // Controls keep a bounded text scale: the quote board above
+            // honors the user's large-type preference fully, but buttons
+            // and keys must never overflow on narrow screens.
+            MediaQuery.withClampedTextScaling(
+              maxScaleFactor: 1.2,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const HintBar(),
+                  const SizedBox(height: 4),
+                  PuzzleKeyboard(
+                    usedLetters: session.usedPlainLetters,
+                    canUndo: game.canUndo,
+                    onUndo: () {
+                      haptics.tap();
+                      game.undo();
+                    },
+                    onLetter: (ch) {
+                      game.enterGuess(ch);
+                      if (game.lastInputCreatedConflict) {
+                        haptics.error();
+                        sounds.conflict();
+                      } else {
+                        haptics.tap();
+                        sounds.tap();
+                      }
+                    },
+                    onBackspace: () {
+                      haptics.tap();
+                      game.clearGuess();
+                    },
+                  ),
+                  const SizedBox(height: 4),
+                ],
+              ),
             ),
-            const SizedBox(height: 4),
           ],
         ),
       ),

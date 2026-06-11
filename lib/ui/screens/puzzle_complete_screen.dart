@@ -9,6 +9,7 @@ import '../../models/quote.dart';
 import '../../services/ads/ads_service.dart';
 import '../../services/review_service.dart';
 import '../../services/share_service.dart';
+import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
@@ -61,6 +62,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
 
     if (mounted && fresh.isNotEmpty) {
       setState(() => _newAchievements = fresh);
+      context.read<SoundService>().achievement();
     }
 
     if (firstSolve) {

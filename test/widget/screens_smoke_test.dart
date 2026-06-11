@@ -195,6 +195,11 @@ void main() {
     await tester.pump();
     expect(settings.haptics, isFalse);
 
+    await tester.scrollUntilVisible(find.text('Sound effects'), 150);
+    await tester.tap(find.text('Sound effects'));
+    await tester.pump();
+    expect(settings.soundEffects, isFalse);
+
     // Daily reminder: enabling schedules a notification via the service.
     await tester.scrollUntilVisible(find.text('Remind me daily'), 200);
     await tester.tap(find.text('Remind me daily'));

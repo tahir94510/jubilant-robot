@@ -39,6 +39,11 @@ class GameController extends ChangeNotifier {
   final List<_Move> _undoStack = [];
   bool get canUndo => _undoStack.isNotEmpty;
 
+  /// True when the most recent [enterGuess] introduced a new conflict —
+  /// lets the UI give distinct feedback for that one input.
+  bool _lastInputCreatedConflict = false;
+  bool get lastInputCreatedConflict => _lastInputCreatedConflict;
+
   Timer? _ticker;
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
@@ -127,7 +132,9 @@ class GameController extends ChangeNotifier {
     if (s.revealed.contains(target)) return;
 
     _undoStack.add(_Move(target, s.guesses[target]));
+    final conflictsBefore = s.conflicts.length;
     s.guesses[target] = plainLetter;
+    _lastInputCreatedConflict = s.conflicts.length > conflictsBefore;
     _afterChange();
   }
 

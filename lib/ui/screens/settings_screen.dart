@@ -59,10 +59,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: const EdgeInsets.only(bottom: 32),
         children: [
           section('Appearance'),
+          // "Auto" follows the device's light/dark setting and is the
+          // default — it gets its own segment so the selection never lies
+          // about what is on screen.
           ListTile(
             title: const Text('Theme'),
+            subtitle: settings.themeMode == AppThemeMode.system
+                ? const Text('Auto — follows your device')
+                : null,
             trailing: SegmentedButton<AppThemeMode>(
               segments: const [
+                ButtonSegment(
+                  value: AppThemeMode.system,
+                  icon: Icon(Icons.brightness_auto_outlined, size: 18),
+                ),
                 ButtonSegment(
                   value: AppThemeMode.light,
                   icon: Icon(Icons.light_mode_outlined, size: 18),
@@ -76,11 +86,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   icon: Icon(Icons.menu_book_outlined, size: 18),
                 ),
               ],
-              selected: {
-                settings.themeMode == AppThemeMode.system
-                    ? AppThemeMode.light
-                    : settings.themeMode,
-              },
+              selected: {settings.themeMode},
               onSelectionChanged: (s) => controller.setThemeMode(s.first),
               showSelectedIcon: false,
             ),
@@ -93,7 +99,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               max: 1.4,
               divisions: 11,
               label: '${(settings.textScale * 100).round()}%',
-              onChanged: controller.setTextScale,
+              // Preview every tick in memory only; persist once on release
+              // (writing prefs per tick made the slider stutter).
+              onChanged: controller.previewTextScale,
+              onChangeEnd: controller.setTextScale,
             ),
           ),
           SwitchListTile(
@@ -119,6 +128,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text('Haptic feedback'),
             value: settings.haptics,
             onChanged: controller.setHaptics,
+          ),
+          SwitchListTile(
+            title: const Text('Sound effects'),
+            subtitle: const Text('Soft key taps and gentle chimes'),
+            value: settings.soundEffects,
+            onChanged: controller.setSoundEffects,
           ),
           if (notificationsSupported) ...[
             section('Daily reminder'),

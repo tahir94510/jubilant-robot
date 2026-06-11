@@ -7,6 +7,7 @@ import 'services/ads/ads_service.dart';
 import 'services/haptics_service.dart';
 import 'services/notifications/notification_service.dart';
 import 'services/purchases/purchase_service.dart';
+import 'services/sound_service.dart';
 import 'services/storage_service.dart';
 import 'state/economy_controller.dart';
 import 'state/game_controller.dart';
@@ -36,6 +37,8 @@ Future<void> main() async {
   );
   final game = GameController(storage: storage);
   final haptics = HapticsService(isEnabled: () => settings.settings.haptics);
+  final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
+  await sounds.initialize();
 
   // Store layer first (cached premium flag), then ads (skipped entirely for
   // premium). Both run post-launch and never block the first frame.
@@ -53,6 +56,7 @@ Future<void> main() async {
         Provider<PurchaseService>.value(value: purchases),
         Provider<NotificationService>.value(value: notifications),
         Provider.value(value: haptics),
+        Provider.value(value: sounds),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: economy),
