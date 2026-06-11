@@ -15,8 +15,18 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 
 1. **Tarayıcıda oyna (en kolay):**
    `https://tahir94510.github.io/jubilant-robot/app/`
-   (İlk push'tan birkaç dakika sonra aktif olur. Reklam/satın alma web'de
-   bilerek kapalıdır — oyunun kendisini test edersiniz.)
+
+   > ⚠️ **Tek seferlik açma adımı (2 tık):** Ücretsiz GitHub hesaplarında
+   > Pages yalnızca public repolarda çalışır. Şunu yapın:
+   > 1) Repo → **Settings → General → Danger Zone → Change visibility →
+   >    Public** (kodda gizli hiçbir şey yok; imza anahtarları secret'larda).
+   > 2) Repo → **Settings → Pages → Source: "GitHub Actions"** seçin.
+   > Sonraki push'ta hem oyun önizlemesi hem de Play Console için zorunlu
+   > **gizlilik politikası sayfası** otomatik yayınlanır. Pages kapalıyken
+   > CI yine yeşildir; yalnızca önizleme adımı atlanır.
+
+   (Reklam/satın alma web'de bilerek kapalıdır — oyunun kendisini test
+   edersiniz.)
 
 2. **Telefonunuzda dene (gerçek deneyim):**
    GitHub → **Actions** → en üstteki yeşil çalışma → **Artifacts** →
