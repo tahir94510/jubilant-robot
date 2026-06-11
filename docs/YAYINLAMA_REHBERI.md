@@ -70,11 +70,12 @@ metinlerle doldurun (kopyala-yapıştır):
 
 Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
 
-1. **Privacy policy:** `https://tahir94510.github.io/jubilant-robot/privacy.html`
-   > Bu adresin canlı olması için GitHub Pages'in açık olması gerekir
-   > (tek seferlik: repoyu Public yapın + Settings → Pages → Source:
-   > "GitHub Actions" — ayrıntı README'de). Linki forma yapıştırmadan önce
-   > tarayıcıda açılıp açılmadığını kontrol edin.
+1. **Privacy policy:** `https://tahir94510.github.io/privacy.html`
+   > Bu adres, uygulama reposundan BAĞIMSIZ küçük bir "kullanıcı sitesi"
+   > reposunda durur — ana repoyu sonradan private yapsanız bile yaşar.
+   > Kurulumu 5 dakikadır, adımlar: docs/MONETIZASYON.md → "Kullanıcı
+   > sitesi (privacy + app-ads.txt)" bölümü. Linki forma yapıştırmadan
+   > önce tarayıcıda açıldığını kontrol edin.
 2. **Ads:** *Yes, my app contains ads.* (AdMob kullanıyoruz.)
 3. **App access:** *All functionality is available without special access*
    (giriş/hesap yok).

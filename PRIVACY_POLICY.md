@@ -3,7 +3,9 @@
 _Last updated: June 11, 2026_
 
 > The live, linkable version of this policy (use THIS url in Play Console):
-> **https://tahir94510.github.io/jubilant-robot/privacy.html**
+> **https://tahir94510.github.io/privacy.html**
+> (hosted on the standalone user site so it stays up even if this
+> repository is made private — setup steps in docs/MONETIZASYON.md)
 
 Quotecrack ("the app") is a cryptogram word-puzzle game published by an
 independent developer ("we", "us"). This policy explains what data the app
