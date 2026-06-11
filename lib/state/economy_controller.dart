@@ -24,6 +24,9 @@ class EconomyController extends ChangeNotifier {
     _completedCount = saved?['completedCount'] as int? ?? 0;
 
     _purchases.premiumOwned.addListener(_onPremiumChanged);
+    // Pick up a purchase that was already owned before we attached (e.g.
+    // the store responded before this controller was constructed).
+    _onPremiumChanged();
   }
 
   final StorageService _storage;

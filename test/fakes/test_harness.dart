@@ -62,11 +62,9 @@ class Harness {
       ads: ads,
     );
     final game = GameController(storage: storage);
-    if (premium) {
-      // Mirror production: the purchase stream listener flips the flag.
-      purchases.owned.value = true;
-      await Future<void>.delayed(Duration.zero);
-    }
+    // No async settling needed: FakePurchaseService set `owned` before the
+    // EconomyController constructor ran, and the controller reads the
+    // current value synchronously when it attaches its listener.
     return Harness._(
       storage: storage,
       repo: repo,
