@@ -105,6 +105,9 @@ jobs:
     name: Web preview build
     runs-on: ubuntu-latest
     needs: analyze-test
+    permissions:
+      pages: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
@@ -124,6 +127,9 @@ jobs:
           cp -r build/web/* _site/app/
           cp -r pages/* _site/
       - uses: actions/configure-pages@v5
+        with:
+          # Pages daha once acilmamissa ilk calismada otomatik acar.
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
