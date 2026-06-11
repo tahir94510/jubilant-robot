@@ -54,14 +54,16 @@ class GameController extends ChangeNotifier {
 
     Map<String, String>? savedGuesses;
     if (saved != null && saved['solved'] != true) {
-      savedGuesses = (saved['guesses'] as Map<String, dynamic>?)
-          ?.map((k, v) => MapEntry(k, v as String));
+      savedGuesses = (saved['guesses'] as Map<String, dynamic>?)?.map(
+        (k, v) => MapEntry(k, v as String),
+      );
     }
 
     _session = PuzzleSession(quote: quote, guesses: savedGuesses);
     if (saved != null && saved['solved'] != true) {
       _session!.revealed.addAll(
-          ((saved['revealed'] as List<dynamic>?) ?? const []).cast<String>());
+        ((saved['revealed'] as List<dynamic>?) ?? const []).cast<String>(),
+      );
       _hintsUsed = saved['hintsUsed'] as int? ?? 0;
       _elapsed = Duration(seconds: saved['elapsedSeconds'] as int? ?? 0);
     } else {
@@ -154,7 +156,10 @@ class GameController extends ChangeNotifier {
     if (target == null || s.isGuessCorrect(target)) {
       target = s.cipherLetters
           .where((c) => !s.isGuessCorrect(c))
-          .fold<String?>(null, (min, c) => min == null || c.compareTo(min) < 0 ? c : min);
+          .fold<String?>(
+            null,
+            (min, c) => min == null || c.compareTo(min) < 0 ? c : min,
+          );
     }
     if (target == null) return;
 
@@ -170,11 +175,13 @@ class GameController extends ChangeNotifier {
     if (s.isSolved) {
       _completed = true;
       stopTimer();
-      _storage.writeJson(
-          StorageService.puzzleStateKey(s.quote.id), {'solved': true});
+      _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
+        'solved': true,
+      });
     } else {
       if (advance) {
-        _selectedCipherLetter = _firstEmptyCipherLetter() ?? _selectedCipherLetter;
+        _selectedCipherLetter =
+            _firstEmptyCipherLetter() ?? _selectedCipherLetter;
       }
       _persistState();
     }

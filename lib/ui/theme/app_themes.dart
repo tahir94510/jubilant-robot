@@ -135,22 +135,24 @@ abstract final class AppThemes {
       ),
       snackBarTheme: SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }
 
-  static ThemeData resolve(AppThemeMode mode,
-      {required bool colorblind, required Brightness platformBrightness}) {
+  static ThemeData resolve(
+    AppThemeMode mode, {
+    required bool colorblind,
+    required Brightness platformBrightness,
+  }) {
     return switch (mode) {
       AppThemeMode.light => light(colorblind: colorblind),
       AppThemeMode.dark => dark(colorblind: colorblind),
       AppThemeMode.sepia => sepia(colorblind: colorblind),
-      AppThemeMode.system => platformBrightness == Brightness.dark
-          ? dark(colorblind: colorblind)
-          : light(colorblind: colorblind),
+      AppThemeMode.system =>
+        platformBrightness == Brightness.dark
+            ? dark(colorblind: colorblind)
+            : light(colorblind: colorblind),
     };
   }
 }

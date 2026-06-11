@@ -21,8 +21,7 @@ class StubAdsService extends AdsService {
   Future<void> initialize({required bool premium}) async {}
 
   @override
-  Widget? buildAdaptiveBanner(BuildContext context, {required Key key}) =>
-      null;
+  Widget? buildAdaptiveBanner(BuildContext context, {required Key key}) => null;
 
   @override
   Future<void> maybeShowInterstitial({required int completedCount}) async {}

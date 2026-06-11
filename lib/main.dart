@@ -24,11 +24,16 @@ Future<void> main() async {
   final notifications = NotificationService();
   await notifications.initialize();
 
-  final settings =
-      SettingsController(storage: storage, notifications: notifications);
+  final settings = SettingsController(
+    storage: storage,
+    notifications: notifications,
+  );
   final progress = ProgressController(storage: storage);
-  final economy =
-      EconomyController(storage: storage, purchases: purchases, ads: ads);
+  final economy = EconomyController(
+    storage: storage,
+    purchases: purchases,
+    ads: ads,
+  );
   final game = GameController(storage: storage);
   final haptics = HapticsService(isEnabled: () => settings.settings.haptics);
 

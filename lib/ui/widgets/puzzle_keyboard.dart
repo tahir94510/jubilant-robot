@@ -64,11 +64,11 @@ class PuzzleKeyboard extends StatelessWidget {
               children: [
                 if (i == 2)
                   key(
-                    child: Icon(Icons.undo,
-                        size: 22,
-                        color: canUndo
-                            ? palette.keyText
-                            : palette.keyUsedText),
+                    child: Icon(
+                      Icons.undo,
+                      size: 22,
+                      color: canUndo ? palette.keyText : palette.keyUsedText,
+                    ),
                     onTap: canUndo ? onUndo : null,
                     widthFactor: 1.4,
                   ),
@@ -91,8 +91,11 @@ class PuzzleKeyboard extends StatelessWidget {
                   ),
                 if (i == 2)
                   key(
-                    child: Icon(Icons.backspace_outlined,
-                        size: 22, color: palette.keyText),
+                    child: Icon(
+                      Icons.backspace_outlined,
+                      size: 22,
+                      color: palette.keyText,
+                    ),
                     onTap: onBackspace,
                     widthFactor: 1.4,
                   ),

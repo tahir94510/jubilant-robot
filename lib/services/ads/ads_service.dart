@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-import 'ads_service_stub.dart'
-    if (dart.library.io) 'ads_service_mobile.dart';
+import 'ads_service_stub.dart' if (dart.library.io) 'ads_service_mobile.dart';
 
 /// Facade for ads + UMP consent. The rest of the app imports ONLY this file.
 ///

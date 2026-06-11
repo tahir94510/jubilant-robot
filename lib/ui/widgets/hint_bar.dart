@@ -48,14 +48,18 @@ class HintBar extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                              '+${AppConfig.tokensPerRewardedAd} hints added'),
+                            '+${AppConfig.tokensPerRewardedAd} hints added',
+                          ),
                         ),
                       );
                     }
                   }
                 },
-                icon: Icon(Icons.play_circle_outline,
-                    size: 20, color: scheme.primary),
+                icon: Icon(
+                  Icons.play_circle_outline,
+                  size: 20,
+                  color: scheme.primary,
+                ),
                 label: Text('+${AppConfig.tokensPerRewardedAd}'),
               );
             },

@@ -109,16 +109,14 @@ class Achievement {
       title: 'Lightning Fast',
       description: 'Solve a puzzle in under 60 seconds',
       icon: Icons.bolt_outlined,
-      isUnlocked: (s) =>
-          s.bestTimeSeconds != null && s.bestTimeSeconds! < 60,
+      isUnlocked: (s) => s.bestTimeSeconds != null && s.bestTimeSeconds! < 60,
     ),
     Achievement(
       id: 'speed_120',
       title: 'Quick Thinker',
       description: 'Solve a puzzle in under 2 minutes',
       icon: Icons.timer_outlined,
-      isUnlocked: (s) =>
-          s.bestTimeSeconds != null && s.bestTimeSeconds! < 120,
+      isUnlocked: (s) => s.bestTimeSeconds != null && s.bestTimeSeconds! < 120,
     ),
     Achievement(
       id: 'daily_10',

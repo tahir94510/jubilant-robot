@@ -8,13 +8,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../fakes/fake_services.dart';
 
 Future<(EconomyController, FakePurchaseService, FakeAdsService)>
-    _setup() async {
+_setup() async {
   SharedPreferences.setMockInitialValues({});
   final storage = await StorageService.init();
   final purchases = FakePurchaseService();
   final ads = FakeAdsService();
-  final economy =
-      EconomyController(storage: storage, purchases: purchases, ads: ads);
+  final economy = EconomyController(
+    storage: storage,
+    purchases: purchases,
+    ads: ads,
+  );
   return (economy, purchases, ads);
 }
 
@@ -68,13 +71,19 @@ void main() {
       final purchases = FakePurchaseService();
       final ads = FakeAdsService();
       final e1 = EconomyController(
-          storage: storage, purchases: purchases, ads: ads);
+        storage: storage,
+        purchases: purchases,
+        ads: ads,
+      );
       purchases.owned.value = true;
       await Future<void>.delayed(Duration.zero);
       expect(e1.premium, isTrue);
 
       final e2 = EconomyController(
-          storage: storage, purchases: FakePurchaseService(), ads: ads);
+        storage: storage,
+        purchases: FakePurchaseService(),
+        ads: ads,
+      );
       expect(e2.premium, isTrue, reason: 'cached flag must persist');
     });
 
@@ -82,17 +91,19 @@ void main() {
       SharedPreferences.setMockInitialValues({});
       final storage = await StorageService.init();
       final e1 = EconomyController(
-          storage: storage,
-          purchases: FakePurchaseService(),
-          ads: FakeAdsService());
+        storage: storage,
+        purchases: FakePurchaseService(),
+        ads: FakeAdsService(),
+      );
       e1.spendHintToken();
       e1.spendHintToken();
       final remaining = e1.tokens;
 
       final e2 = EconomyController(
-          storage: storage,
-          purchases: FakePurchaseService(),
-          ads: FakeAdsService());
+        storage: storage,
+        purchases: FakePurchaseService(),
+        ads: FakeAdsService(),
+      );
       expect(e2.tokens, remaining);
     });
   });
@@ -106,8 +117,7 @@ void main() {
       for (var count = 1; count <= n * 3; count++) {
         final expected = count % n == 0;
         expect(
-          policy.shouldShow(
-              completedCount: count, lastShownAt: null, now: now),
+          policy.shouldShow(completedCount: count, lastShownAt: null, now: now),
           expected,
           reason: 'count=$count',
         );
@@ -122,7 +132,8 @@ void main() {
         isFalse,
       );
       final longAgo = now.subtract(
-          AppConfig.interstitialCooldown + const Duration(seconds: 1));
+        AppConfig.interstitialCooldown + const Duration(seconds: 1),
+      );
       expect(
         policy.shouldShow(completedCount: n, lastShownAt: longAgo, now: now),
         isTrue,
@@ -130,8 +141,10 @@ void main() {
     });
 
     test('never fires for zero or negative counts', () {
-      expect(policy.shouldShow(completedCount: 0, lastShownAt: null, now: now),
-          isFalse);
+      expect(
+        policy.shouldShow(completedCount: 0, lastShownAt: null, now: now),
+        isFalse,
+      );
     });
   });
 }

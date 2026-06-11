@@ -35,22 +35,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final settings = controller.settings;
     final economy = context.watch<EconomyController>();
     final purchases = context.read<PurchaseService>();
-    final notificationsSupported =
-        context.read<NotificationService>().supported;
+    final notificationsSupported = context
+        .read<NotificationService>()
+        .supported;
     final scheme = Theme.of(context).colorScheme;
 
     Widget section(String title) => Padding(
-          padding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
-          child: Text(
-            title.toUpperCase(),
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.2,
-              color: scheme.onSurface.withValues(alpha: .45),
-            ),
-          ),
-        );
+      padding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
+      child: Text(
+        title.toUpperCase(),
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.2,
+          color: scheme.onSurface.withValues(alpha: .45),
+        ),
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(title: const Text('Settings')),
@@ -63,19 +64,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
             trailing: SegmentedButton<AppThemeMode>(
               segments: const [
                 ButtonSegment(
-                    value: AppThemeMode.light,
-                    icon: Icon(Icons.light_mode_outlined, size: 18)),
+                  value: AppThemeMode.light,
+                  icon: Icon(Icons.light_mode_outlined, size: 18),
+                ),
                 ButtonSegment(
-                    value: AppThemeMode.dark,
-                    icon: Icon(Icons.dark_mode_outlined, size: 18)),
+                  value: AppThemeMode.dark,
+                  icon: Icon(Icons.dark_mode_outlined, size: 18),
+                ),
                 ButtonSegment(
-                    value: AppThemeMode.sepia,
-                    icon: Icon(Icons.menu_book_outlined, size: 18)),
+                  value: AppThemeMode.sepia,
+                  icon: Icon(Icons.menu_book_outlined, size: 18),
+                ),
               ],
               selected: {
                 settings.themeMode == AppThemeMode.system
                     ? AppThemeMode.light
-                    : settings.themeMode
+                    : settings.themeMode,
               },
               onSelectionChanged: (s) => controller.setThemeMode(s.first),
               showSelectedIcon: false,
@@ -101,8 +105,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           section('Gameplay'),
           SwitchListTile(
             title: const Text('Error checking'),
-            subtitle:
-                const Text('Mark wrong letters once the board is full'),
+            subtitle: const Text('Mark wrong letters once the board is full'),
             value: settings.errorChecking,
             onChanged: controller.setErrorChecking,
           ),
@@ -121,17 +124,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
             section('Daily reminder'),
             SwitchListTile(
               title: const Text('Remind me daily'),
-              subtitle: Text(settings.reminderEnabled
-                  ? 'At ${settings.reminderTime.format(context)}'
-                  : 'Never miss your streak'),
+              subtitle: Text(
+                settings.reminderEnabled
+                    ? 'At ${settings.reminderTime.format(context)}'
+                    : 'Never miss your streak',
+              ),
               value: settings.reminderEnabled,
               onChanged: (enabled) async {
                 final ok = await controller.setReminder(enabled: enabled);
                 if (!ok && context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                        content: Text(
-                            'Notification permission was denied in system settings.')),
+                      content: Text(
+                        'Notification permission was denied in system settings.',
+                      ),
+                    ),
                   );
                 }
               },
@@ -139,9 +146,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             if (settings.reminderEnabled)
               ListTile(
                 title: const Text('Reminder time'),
-                trailing: Text(settings.reminderTime.format(context),
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600)),
+                trailing: Text(
+                  settings.reminderTime.format(context),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 onTap: () async {
                   final picked = await showTimePicker(
                     context: context,
@@ -164,11 +175,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ListTile(
               leading: const Icon(Icons.workspace_premium_outlined),
               title: const Text('Go Premium'),
-              subtitle:
-                  const Text('Remove ads, unlimited hints, bonus packs'),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const PaywallScreen()),
-              ),
+              subtitle: const Text('Remove ads, unlimited hints, bonus packs'),
+              onTap: () => Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => const PaywallScreen())),
             ),
             ListTile(
               leading: const Icon(Icons.restore),
@@ -178,7 +188,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if (context.mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                        content: Text('Checking previous purchases...')),
+                      content: Text('Checking previous purchases...'),
+                    ),
                   );
                 }
               },
@@ -190,14 +201,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               leading: const Icon(Icons.privacy_tip_outlined),
               title: const Text('Privacy options'),
               subtitle: const Text('Manage your ad consent choices'),
-              onTap: () =>
-                  context.read<AdsService>().showPrivacyOptionsForm(),
+              onTap: () => context.read<AdsService>().showPrivacyOptionsForm(),
             ),
           ListTile(
             leading: const Icon(Icons.policy_outlined),
             title: const Text('Privacy policy'),
-            onTap: () => launchUrl(Uri.parse(AppConfig.privacyPolicyUrl),
-                mode: LaunchMode.externalApplication),
+            onTap: () => launchUrl(
+              Uri.parse(AppConfig.privacyPolicyUrl),
+              mode: LaunchMode.externalApplication,
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.description_outlined),

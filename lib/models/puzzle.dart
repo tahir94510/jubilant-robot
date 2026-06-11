@@ -8,8 +8,8 @@ import 'quote.dart';
 /// so "auto-fill" is inherent to the data model.
 class PuzzleSession {
   PuzzleSession({required this.quote, Map<String, String>? guesses})
-      : cipher = CipherMap.forQuoteId(quote.id),
-        guesses = Map.of(guesses ?? const {}) {
+    : cipher = CipherMap.forQuoteId(quote.id),
+      guesses = Map.of(guesses ?? const {}) {
     cipherText = cipher.encrypt(quote.normalizedText);
   }
 
@@ -24,8 +24,7 @@ class PuzzleSession {
   final Set<String> revealed = {};
 
   /// Distinct cipher letters present on the board.
-  Set<String> get cipherLetters =>
-      lettersOnly(cipherText).split('').toSet();
+  Set<String> get cipherLetters => lettersOnly(cipherText).split('').toSet();
 
   /// Plain letters already used as guesses (for keyboard dimming).
   Set<String> get usedPlainLetters => guesses.values.toSet();
@@ -63,8 +62,8 @@ class PuzzleSession {
 
   /// For persistence.
   Map<String, dynamic> toJson() => {
-        'quoteId': quote.id,
-        'guesses': guesses,
-        'revealed': revealed.toList(),
-      };
+    'quoteId': quote.id,
+    'guesses': guesses,
+    'revealed': revealed.toList(),
+  };
 }

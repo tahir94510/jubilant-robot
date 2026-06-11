@@ -26,7 +26,8 @@ class DailyPuzzle {
 }
 
 /// Seed that uniquely identifies a calendar date.
-int dailySeed(DateTime date) => fmix32(date.year * 10000 + date.month * 100 + date.day);
+int dailySeed(DateTime date) =>
+    fmix32(date.year * 10000 + date.month * 100 + date.day);
 
 int puzzleNumberFor(DateTime date) {
   final epoch = AppConfig.puzzleEpoch;
@@ -35,9 +36,11 @@ int puzzleNumberFor(DateTime date) {
 }
 
 int _dayOfYear(DateTime date) =>
-    DateTime(date.year, date.month, date.day)
-        .difference(DateTime(date.year, 1, 1))
-        .inDays +
+    DateTime(
+      date.year,
+      date.month,
+      date.day,
+    ).difference(DateTime(date.year, 1, 1)).inDays +
     1;
 
 /// Picks the daily quote from [pool] (must be sorted/stable and >= 366 long).

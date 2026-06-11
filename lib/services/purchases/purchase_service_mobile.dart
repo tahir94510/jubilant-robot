@@ -39,8 +39,9 @@ class MobilePurchaseService extends PurchaseService {
 
     if (!await _iap.isAvailable()) return;
 
-    final response = await _iap
-        .queryProductDetails({MonetizationConfig.premiumProductId});
+    final response = await _iap.queryProductDetails({
+      MonetizationConfig.premiumProductId,
+    });
     if (response.productDetails.isNotEmpty) {
       _product = response.productDetails.first;
       _price.value = _product!.price;

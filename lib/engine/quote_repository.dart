@@ -33,9 +33,7 @@ class QuoteRepository {
     for (final name in _categoryFiles) {
       final raw = await b.loadString('assets/data/quotes/$name.json');
       final list = jsonDecode(raw) as List<dynamic>;
-      all.addAll(
-        list.map((e) => Quote.fromJson(e as Map<String, dynamic>)),
-      );
+      all.addAll(list.map((e) => Quote.fromJson(e as Map<String, dynamic>)));
     }
     return QuoteRepository._(all);
   }
@@ -60,10 +58,9 @@ class QuoteRepository {
   /// Pool for the daily puzzle: free categories only, sorted by id for
   /// platform-stable ordering (asset iteration order must not matter).
   List<Quote> get dailyPool {
-    final pool = _quotes
-        .where((q) => !premiumCategories.contains(q.category))
-        .toList()
-      ..sort((a, b) => a.id.compareTo(b.id));
+    final pool =
+        _quotes.where((q) => !premiumCategories.contains(q.category)).toList()
+          ..sort((a, b) => a.id.compareTo(b.id));
     return pool;
   }
 

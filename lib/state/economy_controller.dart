@@ -15,9 +15,9 @@ class EconomyController extends ChangeNotifier {
     required StorageService storage,
     required PurchaseService purchases,
     required AdsService ads,
-  })  : _storage = storage,
-        _purchases = purchases,
-        _ads = ads {
+  }) : _storage = storage,
+       _purchases = purchases,
+       _ads = ads {
     final saved = storage.readJson(StorageService.economyKey);
     _tokens = saved?['tokens'] as int? ?? AppConfig.startingHintTokens;
     _premium = saved?['premium'] as bool? ?? false;
@@ -78,10 +78,10 @@ class EconomyController extends ChangeNotifier {
   }
 
   Future<void> _persist() => _storage.writeJson(StorageService.economyKey, {
-        'tokens': _tokens,
-        'premium': _premium,
-        'completedCount': _completedCount,
-      });
+    'tokens': _tokens,
+    'premium': _premium,
+    'completedCount': _completedCount,
+  });
 
   @override
   void dispose() {

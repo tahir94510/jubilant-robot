@@ -7,15 +7,19 @@ import '../services/storage_service.dart';
 
 /// Owns [GameStats]: solve recording, daily streaks, achievements.
 class ProgressController extends ChangeNotifier {
-  ProgressController({required StorageService storage, Clock clock = const Clock()})
-      : _storage = storage,
-        _clock = clock,
-        stats = GameStats.fromJson(
-            storage.readJson(StorageService.statsKey) ?? const {}) {
+  ProgressController({
+    required StorageService storage,
+    Clock clock = const Clock(),
+  }) : _storage = storage,
+       _clock = clock,
+       stats = GameStats.fromJson(
+         storage.readJson(StorageService.statsKey) ?? const {},
+       ) {
     final unlocked =
         storage.readJson(StorageService.achievementsKey) ?? const {};
     _unlockedIds.addAll(
-        (unlocked['ids'] as List<dynamic>? ?? const []).cast<String>());
+      (unlocked['ids'] as List<dynamic>? ?? const []).cast<String>(),
+    );
   }
 
   final StorageService _storage;
@@ -63,8 +67,7 @@ class ProgressController extends ChangeNotifier {
 
     stats.dailyHistory[today] = true;
 
-    final yesterday =
-        dateKey(_clock.now().subtract(const Duration(days: 1)));
+    final yesterday = dateKey(_clock.now().subtract(const Duration(days: 1)));
     if (stats.lastDailyDate == yesterday) {
       stats.currentStreak += 1;
     } else if (stats.lastDailyDate != today) {
@@ -82,8 +85,7 @@ class ProgressController extends ChangeNotifier {
     final last = stats.lastDailyDate;
     if (last == null) return 0;
     final today = dateKey(_clock.now());
-    final yesterday =
-        dateKey(_clock.now().subtract(const Duration(days: 1)));
+    final yesterday = dateKey(_clock.now().subtract(const Duration(days: 1)));
     if (last == today || last == yesterday) return stats.currentStreak;
     return 0;
   }
@@ -104,7 +106,8 @@ class ProgressController extends ChangeNotifier {
 
   Future<void> _persist() async {
     await _storage.writeJson(StorageService.statsKey, stats.toJson());
-    await _storage.writeJson(
-        StorageService.achievementsKey, {'ids': _unlockedIds.toList()});
+    await _storage.writeJson(StorageService.achievementsKey, {
+      'ids': _unlockedIds.toList(),
+    });
   }
 }

@@ -9,10 +9,11 @@ class SettingsController extends ChangeNotifier {
   SettingsController({
     required StorageService storage,
     required NotificationService notifications,
-  })  : _storage = storage,
-        _notifications = notifications,
-        settings = AppSettings.fromJson(
-            storage.readJson(StorageService.settingsKey) ?? const {});
+  }) : _storage = storage,
+       _notifications = notifications,
+       settings = AppSettings.fromJson(
+         storage.readJson(StorageService.settingsKey) ?? const {},
+       );
 
   final StorageService _storage;
   final NotificationService _notifications;

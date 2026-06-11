@@ -226,7 +226,9 @@ class _AdaptiveBannerState extends State<_AdaptiveBanner> {
     final orientation = MediaQuery.orientationOf(context);
     final size =
         await AdSize.getLargeAnchoredAdaptiveBannerAdSizeWithOrientation(
-            orientation, widget.width);
+          orientation,
+          widget.width,
+        );
     if (size == null || !mounted) return;
     final banner = BannerAd(
       adUnitId: MonetizationConfig.bannerAdUnitId,

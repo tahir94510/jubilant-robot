@@ -16,16 +16,17 @@ class BannerAdSlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ads = context.read<AdsService>();
-    final premium =
-        context.select<EconomyController, bool>((e) => e.premium);
+    final premium = context.select<EconomyController, bool>((e) => e.premium);
     if (!ads.supported || premium) return const SizedBox.shrink();
 
     return ValueListenableBuilder<bool>(
       valueListenable: ads.canRequestAds,
       builder: (context, canAds, _) {
         if (!canAds) return const SizedBox.shrink();
-        return ads.buildAdaptiveBanner(context,
-                key: ValueKey('banner-$slotName')) ??
+        return ads.buildAdaptiveBanner(
+              context,
+              key: ValueKey('banner-$slotName'),
+            ) ??
             const SizedBox.shrink();
       },
     );

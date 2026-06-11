@@ -51,11 +51,16 @@ class Harness {
     final ads = FakeAdsService();
     final purchases = FakePurchaseService(initiallyOwned: premium);
     final notifications = FakeNotificationService();
-    final settings =
-        SettingsController(storage: storage, notifications: notifications);
+    final settings = SettingsController(
+      storage: storage,
+      notifications: notifications,
+    );
     final progress = ProgressController(storage: storage);
-    final economy =
-        EconomyController(storage: storage, purchases: purchases, ads: ads);
+    final economy = EconomyController(
+      storage: storage,
+      purchases: purchases,
+      ads: ads,
+    );
     final game = GameController(storage: storage);
     if (premium) {
       // Mirror production: the purchase stream listener flips the flag.
@@ -85,7 +90,8 @@ class Harness {
         Provider<PurchaseService>.value(value: purchases),
         Provider<NotificationService>.value(value: notifications),
         Provider.value(
-            value: HapticsService(isEnabled: () => settings.settings.haptics)),
+          value: HapticsService(isEnabled: () => settings.settings.haptics),
+        ),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: economy),

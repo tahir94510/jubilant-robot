@@ -62,8 +62,9 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     // Gentle monetization: interstitial only every Nth solve + cooldown,
     // and the review prompt exactly once after the Nth lifetime solve.
     await ads.maybeShowInterstitial(completedCount: economy.completedCount);
-    await ReviewService()
-        .maybeRequestReview(totalSolved: progress.stats.totalSolved);
+    await ReviewService().maybeRequestReview(
+      totalSolved: progress.stats.totalSolved,
+    );
   }
 
   @override
@@ -85,8 +86,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.close),
-          onPressed: () =>
-              Navigator.of(context).popUntil((r) => r.isFirst),
+          onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
         ),
         title: Text(game.isDaily ? 'Daily solved!' : 'Solved!'),
       ),
@@ -97,11 +97,14 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
                 children: [
-                  Icon(Icons.check_circle_outline,
-                      size: 56, color: palette.success),
+                  Icon(
+                    Icons.check_circle_outline,
+                    size: 56,
+                    color: palette.success,
+                  ),
                   const SizedBox(height: 20),
                   Text(
-                    '\u{201C}${quote.normalizedText[0]}${quote.normalizedText.substring(1).toLowerCase()}\u{201D}',
+                    '\u{201C}${quote.text}\u{201D}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Lora',
@@ -134,19 +137,22 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       _StatChip(
-                          icon: Icons.timer_outlined,
-                          label: '$minutes:$seconds'),
+                        icon: Icons.timer_outlined,
+                        label: '$minutes:$seconds',
+                      ),
                       const SizedBox(width: 10),
                       _StatChip(
-                          icon: Icons.lightbulb_outline,
-                          label: game.hintsUsed == 0
-                              ? 'No hints'
-                              : '${game.hintsUsed} hint${game.hintsUsed == 1 ? '' : 's'}'),
+                        icon: Icons.lightbulb_outline,
+                        label: game.hintsUsed == 0
+                            ? 'No hints'
+                            : '${game.hintsUsed} hint${game.hintsUsed == 1 ? '' : 's'}',
+                      ),
                       if (game.isDaily) ...[
                         const SizedBox(width: 10),
                         _StatChip(
-                            icon: Icons.local_fire_department_outlined,
-                            label: '${progress.displayStreak} day streak'),
+                          icon: Icons.local_fire_department_outlined,
+                          label: '${progress.displayStreak} day streak',
+                        ),
                       ],
                     ],
                   ),
@@ -156,9 +162,10 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                       Card(
                         child: ListTile(
                           leading: Icon(a.icon, color: scheme.primary),
-                          title: Text('Achievement: ${a.title}',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w600)),
+                          title: Text(
+                            'Achievement: ${a.title}',
+                            style: const TextStyle(fontWeight: FontWeight.w600),
+                          ),
                           subtitle: Text(a.description),
                         ),
                       ),
@@ -174,11 +181,15 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                     FilledButton.icon(
                       onPressed: () {
                         final next = _nextInPack(repo, game)!;
-                        game.start(next,
-                            daily: false, packId: game.originPackId);
+                        game.start(
+                          next,
+                          daily: false,
+                          packId: game.originPackId,
+                        );
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                              builder: (_) => const PuzzleScreen()),
+                            builder: (_) => const PuzzleScreen(),
+                          ),
                         );
                       },
                       icon: const Icon(Icons.arrow_forward),
@@ -248,9 +259,10 @@ class _StatChip extends StatelessWidget {
         children: [
           Icon(icon, size: 16, color: scheme.onSurface.withValues(alpha: .6)),
           const SizedBox(width: 5),
-          Text(label,
-              style:
-                  const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+          Text(
+            label,
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );

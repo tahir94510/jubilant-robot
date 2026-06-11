@@ -42,12 +42,14 @@ class PackDetailScreen extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(14),
               onTap: () {
-                context
-                    .read<GameController>()
-                    .start(quote, daily: false, packId: pack.id);
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const PuzzleScreen()),
+                context.read<GameController>().start(
+                  quote,
+                  daily: false,
+                  packId: pack.id,
                 );
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
               },
               child: Center(
                 child: solved

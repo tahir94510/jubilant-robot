@@ -17,8 +17,11 @@ class HeatmapCalendar extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final today = DateTime.now();
     // Last day of the grid = today; grid starts weeks back on a Monday.
-    final start = DateTime(today.year, today.month, today.day)
-        .subtract(Duration(days: 7 * (_weeks - 1) + (today.weekday - 1)));
+    final start = DateTime(
+      today.year,
+      today.month,
+      today.day,
+    ).subtract(Duration(days: 7 * (_weeks - 1) + (today.weekday - 1)));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,14 +61,18 @@ class HeatmapCalendar extends StatelessWidget {
   }
 
   Widget _cell(
-      BuildContext context, DateTime day, DateTime today, ColorScheme scheme) {
+    BuildContext context,
+    DateTime day,
+    DateTime today,
+    ColorScheme scheme,
+  ) {
     final isFuture = day.isAfter(today);
     final solved = dailyHistory[dateKey(day)] == true;
     final color = isFuture
         ? Colors.transparent
         : solved
-            ? scheme.primary
-            : scheme.onSurface.withValues(alpha: .07);
+        ? scheme.primary
+        : scheme.onSurface.withValues(alpha: .07);
     return AspectRatio(
       aspectRatio: 1,
       child: Container(

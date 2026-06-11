@@ -6,8 +6,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import 'notification_service.dart';
 
-NotificationService createNotificationService() =>
-    MobileNotificationService();
+NotificationService createNotificationService() => MobileNotificationService();
 
 /// flutter_local_notifications implementation (Android).
 class MobileNotificationService extends NotificationService {
@@ -44,8 +43,10 @@ class MobileNotificationService extends NotificationService {
 
   @override
   Future<bool> requestPermission() async {
-    final android = _plugin.resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>();
+    final android = _plugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >();
     final granted = await android?.requestNotificationsPermission();
     return granted ?? false;
   }
@@ -57,7 +58,13 @@ class MobileNotificationService extends NotificationService {
 
     final now = tz.TZDateTime.now(tz.local);
     var next = tz.TZDateTime(
-        tz.local, now.year, now.month, now.day, time.hour, time.minute);
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      time.hour,
+      time.minute,
+    );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
     await _plugin.zonedSchedule(
@@ -69,8 +76,7 @@ class MobileNotificationService extends NotificationService {
         android: AndroidNotificationDetails(
           'daily_reminder',
           'Daily puzzle reminder',
-          channelDescription:
-              'One reminder per day for the daily cryptogram.',
+          channelDescription: 'One reminder per day for the daily cryptogram.',
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
         ),

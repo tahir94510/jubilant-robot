@@ -19,10 +19,12 @@ void main() {
     h.game.selectCipherLetter(cipherS);
     await tester.pump();
 
-    await tester.tap(find.descendant(
-      of: find.byType(PuzzleKeyboard),
-      matching: find.text('S'),
-    ));
+    await tester.tap(
+      find.descendant(
+        of: find.byType(PuzzleKeyboard),
+        matching: find.text('S'),
+      ),
+    );
     await tester.pump();
 
     // All three S-cells show the same guess simultaneously.
@@ -38,8 +40,7 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('using one plain letter twice flags a conflict',
-      (tester) async {
+  testWidgets('using one plain letter twice flags a conflict', (tester) async {
     final h = await Harness.create();
     h.game.start(shortQuote, daily: false);
 
@@ -65,8 +66,9 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('keyboard dims letters already used on the board',
-      (tester) async {
+  testWidgets('keyboard dims letters already used on the board', (
+    tester,
+  ) async {
     final h = await Harness.create();
     h.game.start(shortQuote, daily: false);
 
@@ -76,8 +78,7 @@ void main() {
     h.game.enterGuess('Q');
     await tester.pump();
 
-    final keyboard =
-        tester.widget<PuzzleKeyboard>(find.byType(PuzzleKeyboard));
+    final keyboard = tester.widget<PuzzleKeyboard>(find.byType(PuzzleKeyboard));
     expect(keyboard.usedLetters, contains('Q'));
 
     h.game.stopTimer();

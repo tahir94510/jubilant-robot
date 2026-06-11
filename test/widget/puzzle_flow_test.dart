@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/ui/screens/puzzle_complete_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
@@ -51,8 +50,9 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('daily solve records streak and shows share button',
-      (tester) async {
+  testWidgets('daily solve records streak and shows share button', (
+    tester,
+  ) async {
     final h = await Harness.create();
     h.game.start(shortQuote, daily: true);
 
@@ -68,8 +68,9 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('hint reveals a correct letter and spends a token',
-      (tester) async {
+  testWidgets('hint reveals a correct letter and spends a token', (
+    tester,
+  ) async {
     final h = await Harness.create();
     h.game.start(shortQuote, daily: false);
 

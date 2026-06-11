@@ -59,7 +59,8 @@ class HomeScreen extends StatelessWidget {
                             tooltip: 'Settings',
                             onPressed: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                  builder: (_) => const SettingsScreen()),
+                                builder: (_) => const SettingsScreen(),
+                              ),
                             ),
                             icon: const Icon(Icons.settings_outlined),
                           ),
@@ -74,12 +75,14 @@ class HomeScreen extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(16),
                       onTap: () {
-                        context
-                            .read<GameController>()
-                            .start(daily.quote, daily: true);
+                        context.read<GameController>().start(
+                          daily.quote,
+                          daily: true,
+                        );
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (_) => const PuzzleScreen()),
+                            builder: (_) => const PuzzleScreen(),
+                          ),
                         );
                       },
                       child: Padding(
@@ -89,9 +92,11 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.today_outlined,
-                                    size: 18,
-                                    color: scheme.primary),
+                                Icon(
+                                  Icons.today_outlined,
+                                  size: 18,
+                                  color: scheme.primary,
+                                ),
                                 const SizedBox(width: 6),
                                 Text(
                                   'DAILY PUZZLE',
@@ -104,8 +109,11 @@ class HomeScreen extends StatelessWidget {
                                 ),
                                 const Spacer(),
                                 if (dailyDone)
-                                  Icon(Icons.check_circle,
-                                      size: 20, color: palette.success),
+                                  Icon(
+                                    Icons.check_circle,
+                                    size: 20,
+                                    color: palette.success,
+                                  ),
                               ],
                             ),
                             const SizedBox(height: 10),
@@ -130,12 +138,14 @@ class HomeScreen extends StatelessWidget {
                             const SizedBox(height: 14),
                             FilledButton(
                               onPressed: () {
-                                context
-                                    .read<GameController>()
-                                    .start(daily.quote, daily: true);
+                                context.read<GameController>().start(
+                                  daily.quote,
+                                  daily: true,
+                                );
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (_) => const PuzzleScreen()),
+                                    builder: (_) => const PuzzleScreen(),
+                                  ),
                                 );
                               },
                               child: Text(dailyDone ? 'Replay' : 'Play now'),
@@ -174,7 +184,8 @@ class HomeScreen extends StatelessWidget {
                         '${progress.unlockedAchievementIds.length} unlocked',
                     onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(
-                          builder: (_) => const AchievementsScreen()),
+                        builder: (_) => const AchievementsScreen(),
+                      ),
                     ),
                   ),
                   if (!economy.premium) ...[
@@ -182,12 +193,12 @@ class HomeScreen extends StatelessWidget {
                     _MenuTile(
                       icon: Icons.workspace_premium_outlined,
                       title: 'Go Premium',
-                      subtitle:
-                          'Remove ads · unlimited hints · 2 bonus packs',
+                      subtitle: 'Remove ads · unlimited hints · 2 bonus packs',
                       accent: true,
                       onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(
-                            builder: (_) => const PaywallScreen()),
+                          builder: (_) => const PaywallScreen(),
+                        ),
                       ),
                     ),
                   ],
@@ -224,28 +235,37 @@ class _MenuTile extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
         leading: Container(
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: (accent ? scheme.tertiary : scheme.primary)
-                .withValues(alpha: .12),
+            color: (accent ? scheme.tertiary : scheme.primary).withValues(
+              alpha: .12,
+            ),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(icon,
-              color: accent ? scheme.tertiary : scheme.primary, size: 24),
+          child: Icon(
+            icon,
+            color: accent ? scheme.tertiary : scheme.primary,
+            size: 24,
+          ),
         ),
-        title: Text(title,
-            style:
-                const TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
-        subtitle: Text(subtitle,
-            style: TextStyle(
-                fontSize: 13,
-                color: scheme.onSurface.withValues(alpha: .55))),
-        trailing: Icon(Icons.chevron_right,
-            color: scheme.onSurface.withValues(alpha: .3)),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            fontSize: 13,
+            color: scheme.onSurface.withValues(alpha: .55),
+          ),
+        ),
+        trailing: Icon(
+          Icons.chevron_right,
+          color: scheme.onSurface.withValues(alpha: .3),
+        ),
       ),
     );
   }

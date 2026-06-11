@@ -8,20 +8,29 @@ void main() {
       // fails, daily puzzles and ciphers would change for every player —
       // never "fix" the expectation, fix the regression.
       final rng1 = DeterministicRng(1);
-      expect(
-        List.generate(5, (_) => rng1.nextUint32()),
-        [270369, 67634689, 2647435461, 307599695, 2398689233],
-      );
+      expect(List.generate(5, (_) => rng1.nextUint32()), [
+        270369,
+        67634689,
+        2647435461,
+        307599695,
+        2398689233,
+      ]);
       final rng2 = DeterministicRng(123456789);
-      expect(
-        List.generate(5, (_) => rng2.nextUint32()),
-        [2714967881, 2238813396, 1250077441, 3820100336, 3177519686],
-      );
+      expect(List.generate(5, (_) => rng2.nextUint32()), [
+        2714967881,
+        2238813396,
+        1250077441,
+        3820100336,
+        3177519686,
+      ]);
       final rng3 = DeterministicRng(0xDEADBEEF);
-      expect(
-        List.generate(5, (_) => rng3.nextUint32()),
-        [1199382711, 2384302402, 3129746520, 4276113467, 1745748808],
-      );
+      expect(List.generate(5, (_) => rng3.nextUint32()), [
+        1199382711,
+        2384302402,
+        3129746520,
+        4276113467,
+        1745748808,
+      ]);
     });
 
     test('same seed, same sequence', () {

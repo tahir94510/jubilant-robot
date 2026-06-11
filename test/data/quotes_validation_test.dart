@@ -18,19 +18,22 @@ void main() {
     quotes = [
       for (final file in dir.listSync().whereType<File>())
         if (file.path.endsWith('.json'))
-          ...(jsonDecode(file.readAsStringSync()) as List<dynamic>)
-              .map((e) => Quote.fromJson(e as Map<String, dynamic>)),
+          ...(jsonDecode(file.readAsStringSync()) as List<dynamic>).map(
+            (e) => Quote.fromJson(e as Map<String, dynamic>),
+          ),
     ];
   });
 
   test('dataset is large enough for a full year of dailies', () {
     expect(quotes.length, greaterThanOrEqualTo(450));
     final dailyEligible = quotes
-        .where(
-            (q) => !QuoteRepository.premiumCategories.contains(q.category))
+        .where((q) => !QuoteRepository.premiumCategories.contains(q.category))
         .length;
-    expect(dailyEligible, greaterThanOrEqualTo(366),
-        reason: 'daily pool must cover a leap year');
+    expect(
+      dailyEligible,
+      greaterThanOrEqualTo(366),
+      reason: 'daily pool must cover a leap year',
+    );
   });
 
   test('ids are unique', () {
@@ -48,11 +51,17 @@ void main() {
 
   test('texts are ASCII and within playable length bounds', () {
     for (final q in quotes) {
-      expect(q.text.runes.every((r) => r < 128), isTrue,
-          reason: '${q.id} contains non-ASCII characters');
+      expect(
+        q.text.runes.every((r) => r < 128),
+        isTrue,
+        reason: '${q.id} contains non-ASCII characters',
+      );
       final letters = lettersOnly(q.normalizedText).length;
-      expect(letters, inInclusiveRange(20, 180),
-          reason: '${q.id} has $letters letters');
+      expect(
+        letters,
+        inInclusiveRange(20, 180),
+        reason: '${q.id} has $letters letters',
+      );
     }
   });
 
@@ -70,8 +79,11 @@ void main() {
       final size = repo.forPack(pack).length;
       expect(size, greaterThan(0), reason: 'pack ${pack.id} is empty');
       if (pack.premiumOnly) {
-        expect(size, greaterThanOrEqualTo(20),
-            reason: 'premium pack ${pack.id} too small');
+        expect(
+          size,
+          greaterThanOrEqualTo(20),
+          reason: 'premium pack ${pack.id} too small',
+        );
       }
     }
   });
@@ -83,8 +95,11 @@ void main() {
       byBucket[q.difficulty] = (byBucket[q.difficulty] ?? 0) + 1;
     }
     for (final bucket in Difficulty.values) {
-      expect(byBucket[bucket] ?? 0, greaterThanOrEqualTo(40),
-          reason: 'bucket $bucket has ${byBucket[bucket] ?? 0} quotes');
+      expect(
+        byBucket[bucket] ?? 0,
+        greaterThanOrEqualTo(40),
+        reason: 'bucket $bucket has ${byBucket[bucket] ?? 0} quotes',
+      );
     }
   });
 }

@@ -27,8 +27,9 @@ class QuotecrackApp extends StatelessWidget {
         // Combine the user's in-app text-size choice with the OS setting,
         // clamped so the board always stays playable.
         final mq = MediaQuery.of(context);
-        final combined =
-            mq.textScaler.scale(settings.textScale).clamp(0.85, 1.6);
+        final combined = mq.textScaler
+            .scale(settings.textScale)
+            .clamp(0.85, 1.6);
         return MediaQuery(
           data: mq.copyWith(textScaler: TextScaler.linear(combined)),
           child: child!,

@@ -20,8 +20,9 @@ void main() {
     expect(find.byKey(const ValueKey('banner-test')), findsNothing);
   });
 
-  testWidgets('free users get a banner from the (fake) ads service',
-      (tester) async {
+  testWidgets('free users get a banner from the (fake) ads service', (
+    tester,
+  ) async {
     final h = await Harness.create();
 
     await tester.pumpWidget(h.app(const BannerAdSlot(slotName: 'test')));
@@ -30,8 +31,9 @@ void main() {
     expect(find.byKey(const ValueKey('banner-test')), findsOneWidget);
   });
 
-  testWidgets('premium hint bar shows no token count and no rewarded button',
-      (tester) async {
+  testWidgets('premium hint bar shows no token count and no rewarded button', (
+    tester,
+  ) async {
     final h = await Harness.create(premium: true);
     h.game.start(shortQuote, daily: false);
 
@@ -50,8 +52,9 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('free hint bar shows rewarded button that grants tokens',
-      (tester) async {
+  testWidgets('free hint bar shows rewarded button that grants tokens', (
+    tester,
+  ) async {
     final h = await Harness.create();
     h.game.start(shortQuote, daily: false);
 
@@ -59,10 +62,12 @@ void main() {
     await tester.pump();
 
     final before = h.economy.tokens;
-    await tester.tap(find.descendant(
-      of: find.byType(HintBar),
-      matching: find.textContaining('+3'),
-    ));
+    await tester.tap(
+      find.descendant(
+        of: find.byType(HintBar),
+        matching: find.textContaining('+3'),
+      ),
+    );
     await tester.pump();
 
     expect(h.ads.rewardedShown, 1);
@@ -71,8 +76,9 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('paywall buys premium through the purchase service',
-      (tester) async {
+  testWidgets('paywall buys premium through the purchase service', (
+    tester,
+  ) async {
     final h = await Harness.create();
 
     await tester.pumpWidget(h.app(const PaywallScreen()));
@@ -87,8 +93,10 @@ void main() {
   });
 
   test('premium packs are flagged in the catalog', () {
-    final premiumPacks =
-        Pack.catalog.where((p) => p.premiumOnly).map((p) => p.id).toSet();
+    final premiumPacks = Pack.catalog
+        .where((p) => p.premiumOnly)
+        .map((p) => p.id)
+        .toSet();
     expect(premiumPacks, {'shakespeare', 'stoic'});
   });
 }

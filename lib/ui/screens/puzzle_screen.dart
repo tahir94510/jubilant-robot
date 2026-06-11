@@ -58,10 +58,12 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
             Navigator.of(context).pop();
           },
         ),
-        title: Text(game.isDaily
-            ? 'Daily Puzzle'
-            : session.quote.difficulty.name[0].toUpperCase() +
-                session.quote.difficulty.name.substring(1)),
+        title: Text(
+          game.isDaily
+              ? 'Daily Puzzle'
+              : session.quote.difficulty.name[0].toUpperCase() +
+                    session.quote.difficulty.name.substring(1),
+        ),
         actions: [
           if (settings.showTimer)
             Center(

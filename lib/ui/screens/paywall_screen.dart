@@ -15,36 +15,43 @@ class PaywallScreen extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
 
     Widget benefit(IconData icon, String title, String subtitle) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: scheme.primary.withValues(alpha: .12),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(icon, color: scheme.primary),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 16)),
-                    Text(subtitle,
-                        style: TextStyle(
-                            fontSize: 13,
-                            color: scheme.onSurface.withValues(alpha: .55))),
-                  ],
-                ),
-              ),
-            ],
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: scheme.primary.withValues(alpha: .12),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: scheme.primary),
           ),
-        );
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: scheme.onSurface.withValues(alpha: .55),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(title: const Text('Quotecrack Premium')),
@@ -57,8 +64,11 @@ class PaywallScreen extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    Icon(Icons.workspace_premium,
-                        size: 64, color: scheme.primary),
+                    Icon(
+                      Icons.workspace_premium,
+                      size: 64,
+                      color: scheme.primary,
+                    ),
                     const SizedBox(height: 12),
                     Text(
                       'Solve without limits',
@@ -74,18 +84,31 @@ class PaywallScreen extends StatelessWidget {
                       'One purchase. Yours forever. No subscription.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          fontSize: 14,
-                          color: scheme.onSurface.withValues(alpha: .55)),
+                        fontSize: 14,
+                        color: scheme.onSurface.withValues(alpha: .55),
+                      ),
                     ),
                     const SizedBox(height: 20),
-                    benefit(Icons.block, 'No ads, ever',
-                        'All banners and interstitials removed'),
-                    benefit(Icons.lightbulb, 'Unlimited hints',
-                        'Reveal letters whenever you are stuck'),
-                    benefit(Icons.theater_comedy, 'Shakespeare pack',
-                        '36 ciphers from the Bard himself'),
-                    benefit(Icons.account_balance, 'Stoic Wisdom pack',
-                        'Marcus Aurelius, Seneca, Epictetus'),
+                    benefit(
+                      Icons.block,
+                      'No ads, ever',
+                      'All banners and interstitials removed',
+                    ),
+                    benefit(
+                      Icons.lightbulb,
+                      'Unlimited hints',
+                      'Reveal letters whenever you are stuck',
+                    ),
+                    benefit(
+                      Icons.theater_comedy,
+                      'Shakespeare pack',
+                      '36 ciphers from the Bard himself',
+                    ),
+                    benefit(
+                      Icons.account_balance,
+                      'Stoic Wisdom pack',
+                      'Marcus Aurelius, Seneca, Epictetus',
+                    ),
                   ],
                 ),
               ),
@@ -101,18 +124,22 @@ class PaywallScreen extends StatelessWidget {
                     'Purchases are available in the Android app.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 13,
-                        color: scheme.onSurface.withValues(alpha: .5)),
+                      fontSize: 13,
+                      color: scheme.onSurface.withValues(alpha: .5),
+                    ),
                   )
                 else ...[
                   ValueListenableBuilder<String?>(
                     valueListenable: purchases.premiumPrice,
                     builder: (context, price, _) => FilledButton(
-                      onPressed:
-                          price == null ? null : () => purchases.buyPremium(),
-                      child: Text(price == null
-                          ? 'Loading price...'
-                          : 'Unlock Premium · $price'),
+                      onPressed: price == null
+                          ? null
+                          : () => purchases.buyPremium(),
+                      child: Text(
+                        price == null
+                            ? 'Loading price...'
+                            : 'Unlock Premium · $price',
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),

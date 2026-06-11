@@ -58,11 +58,13 @@ class CipherBoard extends StatelessWidget {
     );
   }
 
-  bool _isLetter(String ch) =>
-      ch.codeUnitAt(0) >= 65 && ch.codeUnitAt(0) <= 90;
+  bool _isLetter(String ch) => ch.codeUnitAt(0) >= 65 && ch.codeUnitAt(0) <= 90;
 
   CellState _stateFor(
-      String cipherLetter, Set<String> conflicts, bool boardFull) {
+    String cipherLetter,
+    Set<String> conflicts,
+    bool boardFull,
+  ) {
     if (session.revealed.contains(cipherLetter)) return CellState.revealed;
     // Every instance of the selected cipher letter lights up together —
     // that's the "aha, these are all the same letter" cue.

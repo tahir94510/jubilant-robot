@@ -18,18 +18,19 @@ class AppSettings {
   });
 
   factory AppSettings.fromJson(Map<String, dynamic> json) => AppSettings(
-        themeMode: AppThemeMode.values.asNameMap()[json['themeMode']] ??
-            AppThemeMode.system,
-        textScale: (json['textScale'] as num?)?.toDouble() ?? 1.0,
-        colorblindMode: json['colorblindMode'] as bool? ?? false,
-        errorChecking: json['errorChecking'] as bool? ?? true,
-        showTimer: json['showTimer'] as bool? ?? true,
-        haptics: json['haptics'] as bool? ?? true,
-        reminderEnabled: json['reminderEnabled'] as bool? ?? false,
-        reminderHour: json['reminderHour'] as int? ?? 9,
-        reminderMinute: json['reminderMinute'] as int? ?? 0,
-        onboardingDone: json['onboardingDone'] as bool? ?? false,
-      );
+    themeMode:
+        AppThemeMode.values.asNameMap()[json['themeMode']] ??
+        AppThemeMode.system,
+    textScale: (json['textScale'] as num?)?.toDouble() ?? 1.0,
+    colorblindMode: json['colorblindMode'] as bool? ?? false,
+    errorChecking: json['errorChecking'] as bool? ?? true,
+    showTimer: json['showTimer'] as bool? ?? true,
+    haptics: json['haptics'] as bool? ?? true,
+    reminderEnabled: json['reminderEnabled'] as bool? ?? false,
+    reminderHour: json['reminderHour'] as int? ?? 9,
+    reminderMinute: json['reminderMinute'] as int? ?? 0,
+    onboardingDone: json['onboardingDone'] as bool? ?? false,
+  );
 
   AppThemeMode themeMode;
 
@@ -51,15 +52,15 @@ class AppSettings {
       TimeOfDay(hour: reminderHour, minute: reminderMinute);
 
   Map<String, dynamic> toJson() => {
-        'themeMode': themeMode.name,
-        'textScale': textScale,
-        'colorblindMode': colorblindMode,
-        'errorChecking': errorChecking,
-        'showTimer': showTimer,
-        'haptics': haptics,
-        'reminderEnabled': reminderEnabled,
-        'reminderHour': reminderHour,
-        'reminderMinute': reminderMinute,
-        'onboardingDone': onboardingDone,
-      };
+    'themeMode': themeMode.name,
+    'textScale': textScale,
+    'colorblindMode': colorblindMode,
+    'errorChecking': errorChecking,
+    'showTimer': showTimer,
+    'haptics': haptics,
+    'reminderEnabled': reminderEnabled,
+    'reminderHour': reminderHour,
+    'reminderMinute': reminderMinute,
+    'onboardingDone': onboardingDone,
+  };
 }

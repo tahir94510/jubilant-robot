@@ -15,8 +15,10 @@ class AchievementsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-              'Achievements (${unlocked.length}/${Achievement.catalog.length})')),
+        title: Text(
+          'Achievements (${unlocked.length}/${Achievement.catalog.length})',
+        ),
+      ),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
         itemCount: Achievement.catalog.length,
@@ -27,7 +29,8 @@ class AchievementsScreen extends StatelessWidget {
           return Card(
             child: ListTile(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
+                borderRadius: BorderRadius.circular(16),
+              ),
               leading: Container(
                 width: 44,
                 height: 44,

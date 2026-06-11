@@ -22,7 +22,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();
     final p = ProgressController(
-        storage: storage, clock: FakeClock(DateTime(2026, 6, 10, 9)));
+      storage: storage,
+      clock: FakeClock(DateTime(2026, 6, 10, 9)),
+    );
 
     final fresh = await p.recordSolve(
       quoteId: 'a',
@@ -50,7 +52,9 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();
     final p = ProgressController(
-        storage: storage, clock: FakeClock(DateTime(2026, 6, 10, 9)));
+      storage: storage,
+      clock: FakeClock(DateTime(2026, 6, 10, 9)),
+    );
 
     for (var i = 1; i <= 10; i++) {
       final fresh = await p.recordSolve(

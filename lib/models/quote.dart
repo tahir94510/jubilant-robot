@@ -9,18 +9,18 @@ class Quote {
     required this.author,
     required this.source,
     required this.category,
-  })  : normalizedText = normalizeQuoteText(text),
-        score = difficultyScore(text) {
+  }) : normalizedText = normalizeQuoteText(text),
+       score = difficultyScore(text) {
     difficulty = difficultyBucket(score);
   }
 
   factory Quote.fromJson(Map<String, dynamic> json) => Quote(
-        id: json['id'] as String,
-        text: json['text'] as String,
-        author: json['author'] as String,
-        source: json['source'] as String,
-        category: json['category'] as String,
-      );
+    id: json['id'] as String,
+    text: json['text'] as String,
+    author: json['author'] as String,
+    source: json['source'] as String,
+    category: json['category'] as String,
+  );
 
   final String id;
   final String text;

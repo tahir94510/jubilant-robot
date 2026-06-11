@@ -33,17 +33,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     (
       Icons.swap_horiz,
       'Every letter is swapped',
-      'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A — but the swap is consistent everywhere.'
+      'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A — but the swap is consistent everywhere.',
     ),
     (
       Icons.psychology_outlined,
       'Crack it with patterns',
-      'Short words are footholds: a single letter is usually A or I, and THE is everywhere. Letter frequency is your friend.'
+      'Short words are footholds: a single letter is usually A or I, and THE is everywhere. Letter frequency is your friend.',
     ),
     (
       Icons.touch_app_outlined,
       'Tap, then type',
-      'Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.'
+      'Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.',
     ),
   ];
 
@@ -56,15 +56,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Future<void> _startTutorialPuzzle() async {
     await context.read<SettingsController>().markOnboardingDone();
     if (!mounted) return;
-    context
-        .read<GameController>()
-        .start(OnboardingScreen.tutorialQuote, daily: false);
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const HomeScreen()),
+    context.read<GameController>().start(
+      OnboardingScreen.tutorialQuote,
+      daily: false,
     );
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => const PuzzleScreen()),
-    );
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
   }
 
   @override
@@ -93,15 +94,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             color: scheme.primary.withValues(alpha: .12),
                             borderRadius: BorderRadius.circular(28),
                           ),
-                          child:
-                              Icon(icon, size: 48, color: scheme.primary),
+                          child: Icon(icon, size: 48, color: scheme.primary),
                         ),
                         const SizedBox(height: 28),
                         Text(
                           title,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w700),
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                         const SizedBox(height: 14),
                         Text(
@@ -144,13 +146,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   FilledButton(
                     onPressed: _page < _steps.length - 1
                         ? () => _pages.nextPage(
-                              duration: const Duration(milliseconds: 250),
-                              curve: Curves.easeOut,
-                            )
+                            duration: const Duration(milliseconds: 250),
+                            curve: Curves.easeOut,
+                          )
                         : _startTutorialPuzzle,
-                    child: Text(_page < _steps.length - 1
-                        ? 'Next'
-                        : 'Try one — 30 seconds'),
+                    child: Text(
+                      _page < _steps.length - 1
+                          ? 'Next'
+                          : 'Try one — 30 seconds',
+                    ),
                   ),
                   TextButton(
                     onPressed: () async {
@@ -159,8 +163,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           .markOnboardingDone();
                       if (context.mounted) {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (_) => const HomeScreen()),
+                          MaterialPageRoute(builder: (_) => const HomeScreen()),
                         );
                       }
                     },

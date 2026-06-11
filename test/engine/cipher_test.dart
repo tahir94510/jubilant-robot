@@ -9,8 +9,11 @@ void main() {
         final outputs = <String>{};
         for (final plain in alphabet.split('')) {
           final cipher = map.encryptLetter(plain);
-          expect(cipher, isNot(plain),
-              reason: 'seed $seed: $plain maps to itself');
+          expect(
+            cipher,
+            isNot(plain),
+            reason: 'seed $seed: $plain maps to itself',
+          );
           expect(alphabet.contains(cipher), isTrue);
           outputs.add(cipher);
           expect(map.decryptLetter(cipher), plain);
@@ -57,8 +60,10 @@ void main() {
 
   group('normalizeQuoteText', () {
     test('uppercases and folds typographic punctuation', () {
-      expect(normalizeQuoteText('Hello\u{2019}s \u{201C}world\u{201D}'),
-          'HELLO\'S "WORLD"');
+      expect(
+        normalizeQuoteText('Hello\u{2019}s \u{201C}world\u{201D}'),
+        'HELLO\'S "WORLD"',
+      );
       expect(normalizeQuoteText('em\u{2014}dash'), 'EM-DASH');
     });
 

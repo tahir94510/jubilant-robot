@@ -15,35 +15,34 @@ class PacksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final repo = context.read<QuoteRepository>();
     final progress = context.watch<ProgressController>();
-    final premium =
-        context.select<EconomyController, bool>((e) => e.premium);
+    final premium = context.select<EconomyController, bool>((e) => e.premium);
     final scheme = Theme.of(context).colorScheme;
 
     Widget section(String title) => Padding(
-          padding: const EdgeInsets.fromLTRB(4, 18, 4, 8),
-          child: Text(
-            title.toUpperCase(),
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.2,
-              color: scheme.onSurface.withValues(alpha: .45),
-            ),
-          ),
-        );
+      padding: const EdgeInsets.fromLTRB(4, 18, 4, 8),
+      child: Text(
+        title.toUpperCase(),
+        style: TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+          letterSpacing: 1.2,
+          color: scheme.onSurface.withValues(alpha: .45),
+        ),
+      ),
+    );
 
     List<Widget> tiles(PackKind kind) => [
-          for (final pack in Pack.catalog.where((p) => p.kind == kind))
-            _PackTile(
-              pack: pack,
-              total: repo.forPack(pack).length,
-              solved: repo
-                  .forPack(pack)
-                  .where((q) => progress.isSolved(q.id))
-                  .length,
-              locked: pack.premiumOnly && !premium,
-            ),
-        ];
+      for (final pack in Pack.catalog.where((p) => p.kind == kind))
+        _PackTile(
+          pack: pack,
+          total: repo.forPack(pack).length,
+          solved: repo
+              .forPack(pack)
+              .where((q) => progress.isSolved(q.id))
+              .length,
+          locked: pack.premiumOnly && !premium,
+        ),
+    ];
 
     return Scaffold(
       appBar: AppBar(title: const Text('Puzzle packs')),
@@ -86,20 +85,22 @@ class _PackTile extends StatelessWidget {
         child: ListTile(
           onTap: () {
             if (locked) {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const PaywallScreen()),
-              );
+              Navigator.of(
+                context,
+              ).push(MaterialPageRoute(builder: (_) => const PaywallScreen()));
             } else {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (_) => PackDetailScreen(pack: pack)),
+                MaterialPageRoute(builder: (_) => PackDetailScreen(pack: pack)),
               );
             }
           },
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 18,
+            vertical: 8,
+          ),
           leading: Container(
             width: 44,
             height: 44,
@@ -107,19 +108,25 @@ class _PackTile extends StatelessWidget {
               color: scheme.primary.withValues(alpha: .12),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(locked ? Icons.lock_outline : pack.icon,
-                color: scheme.primary),
+            child: Icon(
+              locked ? Icons.lock_outline : pack.icon,
+              color: scheme.primary,
+            ),
           ),
-          title: Text(pack.title,
-              style:
-                  const TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+          title: Text(
+            pack.title,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+          ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(pack.tagline,
-                  style: TextStyle(
-                      fontSize: 13,
-                      color: scheme.onSurface.withValues(alpha: .55))),
+              Text(
+                pack.tagline,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: scheme.onSurface.withValues(alpha: .55),
+                ),
+              ),
               const SizedBox(height: 6),
               ClipRRect(
                 borderRadius: BorderRadius.circular(4),

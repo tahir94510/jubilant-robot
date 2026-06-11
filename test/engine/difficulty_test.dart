@@ -21,8 +21,7 @@ void main() {
     test('few short foothold words scores harder', () {
       const footholds = 'IT IS A DAY TO GO ON AND ON';
       const dense = 'TWILIGHT GATHERS QUIETLY YONDER';
-      expect(
-          difficultyScore(dense), greaterThan(difficultyScore(footholds)));
+      expect(difficultyScore(dense), greaterThan(difficultyScore(footholds)));
     });
 
     test('score stays within 0-100', () {

@@ -13,11 +13,11 @@ enum Difficulty { beginner, casual, skilled, expert }
 
 extension DifficultyLabel on Difficulty {
   String get label => switch (this) {
-        Difficulty.beginner => 'Beginner',
-        Difficulty.casual => 'Casual',
-        Difficulty.skilled => 'Skilled',
-        Difficulty.expert => 'Expert',
-      };
+    Difficulty.beginner => 'Beginner',
+    Difficulty.casual => 'Casual',
+    Difficulty.skilled => 'Skilled',
+    Difficulty.expert => 'Expert',
+  };
 }
 
 /// Relative English letter frequencies (per 1000 letters, standard table).
@@ -58,7 +58,8 @@ double difficultyScore(String rawText) {
       .toList();
   final shortWords = words.where((w) => w.length <= 3).length;
 
-  final score = 38 * _clamp01((120 - length) / 90) +
+  final score =
+      38 * _clamp01((120 - length) / 90) +
       24 * (singles / unique) +
       20 * _clamp01((unique - 8) / 14) +
       12 * rarity +

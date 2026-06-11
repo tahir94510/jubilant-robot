@@ -11,13 +11,12 @@ Future<ProgressController> _controller(FakeClock clock) async {
   return ProgressController(storage: storage, clock: clock);
 }
 
-Future<void> _solveDaily(ProgressController p, String id) =>
-    p.recordSolve(
-      quoteId: id,
-      solveTime: const Duration(minutes: 2),
-      hintsUsed: 0,
-      isDaily: true,
-    );
+Future<void> _solveDaily(ProgressController p, String id) => p.recordSolve(
+  quoteId: id,
+  solveTime: const Duration(minutes: 2),
+  hintsUsed: 0,
+  isDaily: true,
+);
 
 void main() {
   group('daily streak', () {
@@ -107,15 +106,17 @@ void main() {
       final clock = FakeClock(DateTime(2026, 6, 10, 9));
       final p = await _controller(clock);
       await p.recordSolve(
-          quoteId: 'x',
-          solveTime: const Duration(seconds: 90),
-          hintsUsed: 0,
-          isDaily: false);
+        quoteId: 'x',
+        solveTime: const Duration(seconds: 90),
+        hintsUsed: 0,
+        isDaily: false,
+      );
       await p.recordSolve(
-          quoteId: 'x',
-          solveTime: const Duration(seconds: 50),
-          hintsUsed: 0,
-          isDaily: false);
+        quoteId: 'x',
+        solveTime: const Duration(seconds: 50),
+        hintsUsed: 0,
+        isDaily: false,
+      );
       expect(p.stats.totalSolved, 1);
       expect(p.stats.bestTimeSeconds, 50);
     });

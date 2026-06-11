@@ -3,15 +3,15 @@ import 'package:quotecrack/engine/daily_puzzle.dart';
 import 'package:quotecrack/models/quote.dart';
 
 List<Quote> _pool(int n) => List.generate(
-      n,
-      (i) => Quote(
-        id: 'q-${i.toString().padLeft(3, '0')}',
-        text: 'Sample quote number $i with enough letters to play',
-        author: 'Author $i',
-        source: 'Source',
-        category: 'wisdom',
-      ),
-    );
+  n,
+  (i) => Quote(
+    id: 'q-${i.toString().padLeft(3, '0')}',
+    text: 'Sample quote number $i with enough letters to play',
+    author: 'Author $i',
+    source: 'Source',
+    category: 'wisdom',
+  ),
+);
 
 void main() {
   final pool = _pool(400);
@@ -26,21 +26,24 @@ void main() {
 
     test('every day of 2026 picks a distinct quote', () {
       final seen = <String>{};
-      for (var d = DateTime(2026, 1, 1);
-          d.year == 2026;
-          d = d.add(const Duration(days: 1))) {
+      for (
+        var d = DateTime(2026, 1, 1);
+        d.year == 2026;
+        d = d.add(const Duration(days: 1))
+      ) {
         final picked = selectDaily(pool, d).quote.id;
-        expect(seen.add(picked), isTrue,
-            reason: '$d repeated quote $picked');
+        expect(seen.add(picked), isTrue, reason: '$d repeated quote $picked');
       }
       expect(seen.length, 365);
     });
 
     test('leap year 2028 also has no repeats', () {
       final seen = <String>{};
-      for (var d = DateTime(2028, 1, 1);
-          d.year == 2028;
-          d = d.add(const Duration(days: 1))) {
+      for (
+        var d = DateTime(2028, 1, 1);
+        d.year == 2028;
+        d = d.add(const Duration(days: 1))
+      ) {
         expect(seen.add(selectDaily(pool, d).quote.id), isTrue);
       }
       expect(seen.length, 366);
@@ -66,10 +69,14 @@ void main() {
     });
 
     test('dailySeed differs across adjacent days', () {
-      expect(dailySeed(DateTime(2026, 6, 11)),
-          isNot(dailySeed(DateTime(2026, 6, 12))));
-      expect(dailySeed(DateTime(2026, 12, 31)),
-          isNot(dailySeed(DateTime(2027, 1, 1))));
+      expect(
+        dailySeed(DateTime(2026, 6, 11)),
+        isNot(dailySeed(DateTime(2026, 6, 12))),
+      );
+      expect(
+        dailySeed(DateTime(2026, 12, 31)),
+        isNot(dailySeed(DateTime(2027, 1, 1))),
+      );
     });
   });
 }
