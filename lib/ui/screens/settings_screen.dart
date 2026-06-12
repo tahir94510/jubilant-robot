@@ -84,33 +84,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    width: double.infinity,
-                    child: SegmentedButton<AppThemeMode>(
-                      segments: const [
-                        ButtonSegment(
-                          value: AppThemeMode.system,
-                          icon: Icon(Icons.brightness_auto_outlined, size: 18),
-                          label: Text('Auto'),
-                        ),
-                        ButtonSegment(
-                          value: AppThemeMode.light,
-                          icon: Icon(Icons.light_mode_outlined, size: 18),
-                        ),
-                        ButtonSegment(
-                          value: AppThemeMode.dark,
-                          icon: Icon(Icons.dark_mode_outlined, size: 18),
-                        ),
-                        ButtonSegment(
-                          value: AppThemeMode.sepia,
-                          icon: Icon(Icons.menu_book_outlined, size: 18),
-                        ),
-                      ],
-                      selected: {settings.themeMode},
-                      onSelectionChanged: (s) =>
-                          controller.setThemeMode(s.first),
-                      showSelectedIcon: false,
-                    ),
+                  // A 2x2 grid of labelled cards instead of a SegmentedButton:
+                  // four segments squeezed labels off narrow phones, and
+                  // icon-only segments read poorly. Every option keeps its
+                  // text label at any width/text scale (ellipsis as the
+                  // absolute last resort).
+                  _ThemeGrid(
+                    selected: settings.themeMode,
+                    onSelect: controller.setThemeMode,
                   ),
                 ],
               ),
@@ -267,6 +248,113 @@ class _SettingsScreenState extends State<SettingsScreen> {
               subtitle: Text(AppConfig.appVersion),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ThemeGrid extends StatelessWidget {
+  const _ThemeGrid({required this.selected, required this.onSelect});
+
+  final AppThemeMode selected;
+  final ValueChanged<AppThemeMode> onSelect;
+
+  static const _options = [
+    (AppThemeMode.system, Icons.brightness_auto_outlined, 'Auto'),
+    (AppThemeMode.light, Icons.light_mode_outlined, 'Light'),
+    (AppThemeMode.dark, Icons.dark_mode_outlined, 'Dark'),
+    (AppThemeMode.sepia, Icons.menu_book_outlined, 'Sepia'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    Widget card(int index) {
+      final (mode, icon, label) = _options[index];
+      return Expanded(
+        child: _ThemeCard(
+          icon: icon,
+          label: label,
+          selected: mode == selected,
+          onTap: () => onSelect(mode),
+        ),
+      );
+    }
+
+    return Column(
+      children: [
+        Row(children: [card(0), const SizedBox(width: 10), card(1)]),
+        const SizedBox(height: 10),
+        Row(children: [card(2), const SizedBox(width: 10), card(3)]),
+      ],
+    );
+  }
+}
+
+class _ThemeCard extends StatelessWidget {
+  const _ThemeCard({
+    required this.icon,
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Semantics(
+      button: true,
+      selected: selected,
+      label: '$label theme',
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 150),
+          curve: Curves.easeOut,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          decoration: BoxDecoration(
+            color: selected
+                ? scheme.primary.withValues(alpha: .12)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(
+              color: selected
+                  ? scheme.primary
+                  : scheme.onSurface.withValues(alpha: .12),
+              width: 1.4,
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 18,
+                color: selected
+                    ? scheme.primary
+                    : scheme.onSurface.withValues(alpha: .6),
+              ),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: selected ? scheme.primary : scheme.onSurface,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

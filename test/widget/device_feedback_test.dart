@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/app_settings.dart';
+import 'package:quotecrack/models/quote.dart';
 import 'package:quotecrack/services/storage_service.dart';
+import 'package:quotecrack/ui/screens/achievements_screen.dart';
+import 'package:quotecrack/ui/screens/home_screen.dart';
+import 'package:quotecrack/ui/screens/onboarding_screen.dart';
+import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/screens/settings_screen.dart';
+import 'package:quotecrack/ui/screens/stats_screen.dart';
+import 'package:quotecrack/ui/widgets/letter_cell.dart';
 import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 
 import '../fakes/test_harness.dart';
 import 'puzzle_flow_test.dart' show solveByTapping;
+import 'screens_smoke_test.dart' show loadRealQuotes;
+
+/// The longest word in the live dataset is 15 letters; at the old fixed
+/// cell width this overflowed every phone narrower than ~460dp (the
+/// on-device "RIGHT OVERFLOWED BY N PIXELS" stripes).
+final Quote longWordQuote = Quote(
+  id: 'test-longword',
+  text: 'All generalizations are false, including this one.',
+  author: 'Anonymous',
+  source: 'Folk saying',
+  category: 'humor',
+);
 
 /// Regression suite for the issues found during on-device testing:
 /// layout overflow near the keyboard, the lying theme selector, slider
@@ -31,6 +50,54 @@ void main() {
 
     expect(find.byType(PuzzleScreen), findsOneWidget);
     expect(tester.takeException(), isNull);
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('a 15-letter word fits a narrow phone with huge system text', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    final h = await Harness.create(quotes: [longWordQuote]);
+    h.game.start(longWordQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen(), textScale: 1.6));
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+    // The whole board shrinks evenly: one uniform cell width everywhere.
+    final widths = tester
+        .widgetList<LetterCell>(find.byType(LetterCell))
+        .map((c) => c.width)
+        .toSet();
+    expect(widths, hasLength(1));
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('a 15-letter word fits a typical 360dp phone', (tester) async {
+    // The screenshotted device: 360x800 logical, default text scale.
+    tester.view.physicalSize = const Size(360, 800);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    final h = await Harness.create(quotes: [longWordQuote]);
+    h.game.start(longWordQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+    final widths = tester
+        .widgetList<LetterCell>(find.byType(LetterCell))
+        .map((c) => c.width)
+        .toSet();
+    expect(widths, hasLength(1));
+    // Cells shrank below the screen-only formula to make the word fit.
+    expect(widths.single, lessThan(360 / 13.5));
 
     h.game.stopTimer();
   });
@@ -98,6 +165,16 @@ void main() {
     expect(find.textContaining('day streak'), findsOneWidget);
     expect(tester.takeException(), isNull);
 
+    // The actions are pinned above the banner: both buttons must be fully
+    // visible and tappable WITHOUT scrolling, even on this small viewport
+    // (they used to sit below the fold inside the scrolling list).
+    expect(find.text('Share result').hitTestable(), findsOneWidget);
+    expect(find.text('Back to menu').hitTestable(), findsOneWidget);
+    expect(
+      tester.getBottomLeft(find.text('Back to menu')).dy,
+      lessThanOrEqualTo(640),
+    );
+
     h.game.stopTimer();
   });
 
@@ -128,6 +205,12 @@ void main() {
     expect(h.settings.settings.themeMode, AppThemeMode.system);
     expect(find.text('Auto — follows your device'), findsOneWidget);
 
+    // Every option carries a readable text label, not just an icon.
+    expect(find.text('Auto'), findsOneWidget);
+    expect(find.text('Light'), findsOneWidget);
+    expect(find.text('Dark'), findsOneWidget);
+    expect(find.text('Sepia'), findsOneWidget);
+
     await tester.tap(find.byIcon(Icons.dark_mode_outlined));
     await tester.pump();
     expect(h.settings.settings.themeMode, AppThemeMode.dark);
@@ -136,6 +219,30 @@ void main() {
     await tester.tap(find.byIcon(Icons.brightness_auto_outlined));
     await tester.pump();
     expect(h.settings.settings.themeMode, AppThemeMode.system);
+  });
+
+  testWidgets('theme cards keep their labels on a narrow phone with huge '
+      'text', (tester) async {
+    // The on-device report: the old segmented control wrapped/clipped the
+    // "Auto" label. The card grid must show all four labels at 320dp + 1.6x.
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    final h = await Harness.create();
+    await tester.pumpWidget(h.app(const SettingsScreen(), textScale: 1.6));
+    await tester.pump();
+
+    expect(tester.takeException(), isNull);
+    expect(find.text('Auto'), findsOneWidget);
+    expect(find.text('Light'), findsOneWidget);
+    expect(find.text('Dark'), findsOneWidget);
+    expect(find.text('Sepia'), findsOneWidget);
+
+    await tester.tap(find.text('Sepia'));
+    await tester.pump();
+    expect(h.settings.settings.themeMode, AppThemeMode.sepia);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('text-size slider previews live but persists once on release', (
@@ -221,5 +328,68 @@ void main() {
     expect(h.sounds.played, contains('conflict'));
 
     h.game.stopTimer();
+  });
+
+  // Every remaining screen gets the same narrow-phone + huge-text guard the
+  // puzzle/settings/completion screens already have: 320x640 at 1.6 text
+  // scale, scrolled end to end, must never overflow.
+  group('all menu screens survive 320x640 with huge text', () {
+    Future<Harness> pumpAt320(
+      WidgetTester tester,
+      Widget screen, {
+      bool realData = false,
+    }) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      final h = await Harness.create(
+        quotes: realData ? loadRealQuotes() : null,
+      );
+      await tester.pumpWidget(h.app(screen, textScale: 1.6));
+      await tester.pump();
+      return h;
+    }
+
+    testWidgets('home', (tester) async {
+      await pumpAt320(tester, const HomeScreen(), realData: true);
+      await tester.scrollUntilVisible(find.text('Go Premium'), 150);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('statistics incl. heatmap', (tester) async {
+      await pumpAt320(tester, const StatsScreen());
+      await tester.scrollUntilVisible(
+        find.textContaining('Last 16 weeks'),
+        150,
+      );
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('achievements down to the last entry', (tester) async {
+      await pumpAt320(tester, const AchievementsScreen());
+      await tester.scrollUntilVisible(find.text('Morning Coffee'), 150);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('paywall', (tester) async {
+      await pumpAt320(tester, const PaywallScreen());
+      await tester.scrollUntilVisible(
+        find.text('Restore previous purchase'),
+        150,
+      );
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('onboarding, every page', (tester) async {
+      await pumpAt320(tester, const OnboardingScreen());
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.text('Next'));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.text('Next'));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.text('Try one — 30 seconds'), findsOneWidget);
+    });
   });
 }

@@ -60,9 +60,15 @@ Whether you love word games, brain teasers, logic puzzles, or just beautiful quo
 
 | Asset | File | Spec |
 |---|---|---|
-| App icon | `assets/icon/icon.png` (resize to 512×512) | 512×512 PNG, <1MB |
+| App icon | `store_assets/play_icon_512.png` (hazır, tam-kanama kare) | 512×512 PNG, <1MB |
 | Feature graphic | `store_assets/feature_graphic.png` | 1024×500 PNG |
 | Phone screenshots | take 4-6 on your device | 16:9 or 9:16, min 320px |
+
+> Not: Tüm raster görseller (ikonlar, splash, bildirim glifi, web ikonları,
+> Play ikonu, feature graphic) tek komutla üretilir:
+> `python3 tool/generate_icons.py`. `dart run flutter_launcher_icons`
+> ÇALIŞTIRMAYIN — araç çıktılarının üzerine düşük kaliteli ölçekleme yazar
+> (pubspec'teki blok yalnız adaptif ikon bağlantısını belgelemek için durur).
 
 Suggested screenshot order (first two matter most):
 1. Puzzle screen mid-solve (the core experience)

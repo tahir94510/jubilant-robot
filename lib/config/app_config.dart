@@ -47,5 +47,5 @@ abstract final class AppConfig {
 
   /// Shown in Settings. Bump together with `version:` in pubspec.yaml on
   /// every release.
-  static const String appVersion = '1.0.0';
+  static const String appVersion = '1.0.1';
 }

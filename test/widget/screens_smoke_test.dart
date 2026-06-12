@@ -183,14 +183,22 @@ void main() {
     await tester.pump();
     expect(settings.colorblindMode, isTrue);
 
+    // The labelled theme grid made Appearance taller, so the gameplay
+    // toggles start below the 600dp test viewport — scroll to each first.
+    await tester.scrollUntilVisible(find.text('Error checking'), 150);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Error checking'));
     await tester.pump();
     expect(settings.errorChecking, isFalse);
 
+    await tester.scrollUntilVisible(find.text('Show timer'), 150);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Show timer'));
     await tester.pump();
     expect(settings.showTimer, isFalse);
 
+    await tester.scrollUntilVisible(find.text('Haptic feedback'), 150);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Haptic feedback'));
     await tester.pump();
     expect(settings.haptics, isFalse);

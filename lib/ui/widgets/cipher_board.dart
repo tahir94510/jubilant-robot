@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/puzzle.dart';
+import 'board_metrics.dart';
 import 'letter_cell.dart';
 
 /// The puzzle board: the cipher text laid out word by word, wrapping lines,
@@ -25,40 +26,56 @@ class CipherBoard extends StatelessWidget {
     final conflicts = session.conflicts;
     final boardFull = session.progress >= 1.0;
 
-    // Cell width adapts to screen and quote length so long quotes still fit
-    // comfortably; text scale is applied by MediaQuery at app level.
-    final screenWidth = MediaQuery.sizeOf(context).width;
-    final cellWidth = (screenWidth / 13.5).clamp(22.0, 34.0);
-
     final words = session.cipherText.split(' ');
 
-    return Wrap(
-      alignment: WrapAlignment.center,
-      runSpacing: 14,
-      spacing: cellWidth * 0.45,
-      children: [
-        for (final word in words)
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              for (final ch in word.split(''))
-                if (_isLetter(ch))
-                  LetterCell(
-                    cipherLetter: ch,
-                    guess: session.guesses[ch],
-                    width: cellWidth,
-                    state: _stateFor(ch, conflicts, boardFull),
-                    onTap: () => onSelect(ch),
-                  )
-                else
-                  PunctuationCell(char: ch, width: cellWidth * 0.5),
-            ],
-          ),
-      ],
+    // Cell width adapts to screen and quote length so long quotes still fit
+    // comfortably; text scale is applied by MediaQuery at app level. The
+    // longest word then caps the width further so a single 15-letter word
+    // shrinks the whole board evenly instead of overflowing the row
+    // (words render as non-wrapping Rows inside the Wrap below).
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final screenWidth = MediaQuery.sizeOf(context).width;
+        final preferred = (screenWidth / 13.5).clamp(22.0, 34.0);
+        final available = constraints.maxWidth.isFinite
+            ? constraints.maxWidth
+            : screenWidth;
+        final cellWidth = fitCellWidth(
+          preferred: preferred,
+          availableWidth: available,
+          words: words,
+        );
+
+        return Wrap(
+          alignment: WrapAlignment.center,
+          runSpacing: 14,
+          spacing: cellWidth * 0.45,
+          children: [
+            for (final word in words)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (final ch in word.split(''))
+                    if (isBoardLetter(ch))
+                      LetterCell(
+                        cipherLetter: ch,
+                        guess: session.guesses[ch],
+                        width: cellWidth,
+                        state: _stateFor(ch, conflicts, boardFull),
+                        onTap: () => onSelect(ch),
+                      )
+                    else
+                      PunctuationCell(
+                        char: ch,
+                        width: cellWidth * kPunctuationCellFactor,
+                      ),
+                ],
+              ),
+          ],
+        );
+      },
     );
   }
-
-  bool _isLetter(String ch) => ch.codeUnitAt(0) >= 65 && ch.codeUnitAt(0) <= 90;
 
   CellState _stateFor(
     String cipherLetter,

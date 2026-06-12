@@ -82,40 +82,45 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 onPageChanged: (i) => setState(() => _page = i),
                 itemBuilder: (context, i) {
                   final (icon, title, body) = _steps[i];
-                  return Padding(
-                    padding: const EdgeInsets.all(32),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 96,
-                          height: 96,
-                          decoration: BoxDecoration(
-                            color: scheme.primary.withValues(alpha: .12),
-                            borderRadius: BorderRadius.circular(28),
+                  // Centered on roomy screens, scrollable on tiny ones with
+                  // huge system text — a fixed Column overflowed 320x640
+                  // at 1.6x scale.
+                  return Center(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(32),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            width: 96,
+                            height: 96,
+                            decoration: BoxDecoration(
+                              color: scheme.primary.withValues(alpha: .12),
+                              borderRadius: BorderRadius.circular(28),
+                            ),
+                            child: Icon(icon, size: 48, color: scheme.primary),
                           ),
-                          child: Icon(icon, size: 48, color: scheme.primary),
-                        ),
-                        const SizedBox(height: 28),
-                        Text(
-                          title,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700,
+                          const SizedBox(height: 28),
+                          Text(
+                            title,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 14),
-                        Text(
-                          body,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            height: 1.5,
-                            color: scheme.onSurface.withValues(alpha: .65),
+                          const SizedBox(height: 14),
+                          Text(
+                            body,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16,
+                              height: 1.5,
+                              color: scheme.onSurface.withValues(alpha: .65),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },

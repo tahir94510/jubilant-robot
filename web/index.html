@@ -16,7 +16,12 @@
   <meta property="og:title" content="Quotecrack — Cryptogram Puzzles">
   <meta property="og:description" content="Decode famous quotes. One cipher a day.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tahir94510.github.io/jubilant-robot/app/">
+  <meta property="og:image" content="https://tahir94510.github.io/jubilant-robot/app/icons/Icon-512.png">
   <meta name="twitter:card" content="summary">
+
+  <!-- Browser chrome matches the brand while loading. -->
+  <meta name="theme-color" content="#1C2541">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -38,12 +43,27 @@
       color: #F7F5F0; font-family: system-ui, sans-serif;
       transition: opacity .3s; z-index: 10;
     }
+    #boot-splash .dots { display: flex; gap: 6px; margin-top: 4px; }
+    #boot-splash .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #98C1D9;
+      animation: boot-pulse 1.2s ease-in-out infinite;
+    }
+    #boot-splash .dot:nth-child(2) { animation-delay: .2s; }
+    #boot-splash .dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes boot-pulse {
+      0%, 80%, 100% { opacity: .25; transform: scale(.8); }
+      40% { opacity: 1; transform: scale(1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #boot-splash .dot { animation: none; opacity: .7; }
+    }
   </style>
 </head>
 <body>
   <div id="boot-splash">
     <div style="font-size:2rem;font-weight:700">Quotecrack</div>
     <div style="opacity:.8">Loading puzzles…</div>
+    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
   </div>
   <script>
     window.addEventListener('flutter-first-frame', function () {

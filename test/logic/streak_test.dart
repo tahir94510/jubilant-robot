@@ -72,6 +72,20 @@ void main() {
       expect(p.stats.currentStreak, 2);
     });
 
+    test('Dec 31 to Jan 1 keeps the streak across the year boundary', () async {
+      final clock = FakeClock(DateTime(2026, 12, 31, 21));
+      final p = await _controller(clock);
+
+      await _solveDaily(p, 'a');
+      expect(p.stats.currentStreak, 1);
+
+      clock.value = DateTime(2027, 1, 1, 8);
+      await _solveDaily(p, 'b');
+      expect(p.stats.currentStreak, 2);
+      expect(p.stats.bestStreak, 2);
+      expect(p.displayStreak, 2);
+    });
+
     test('displayStreak hides a stale streak until re-earned', () async {
       final clock = FakeClock(DateTime(2026, 6, 10, 9));
       final p = await _controller(clock);
