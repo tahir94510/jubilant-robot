@@ -41,13 +41,14 @@ Future<void> main() async {
   final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
   await sounds.initialize();
   final music = MusicService(isEnabled: () => settings.settings.music);
-  await music.initialize();
   // Pauses/resumes the ambient bed with the app lifecycle.
   WidgetsBinding.instance.addObserver(music);
 
   // Store layer first (cached premium flag), then ads (skipped entirely for
-  // premium). Both run post-launch and never block the first frame.
+  // premium). All of this runs post-launch and never blocks the first
+  // frame — including preparing the (large) music asset.
   WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await music.initialize();
     // Starts immediately on Android; on the web the autoplay policy defers
     // it to the first tap (retried by the app-level Listener).
     music.ensureStarted();

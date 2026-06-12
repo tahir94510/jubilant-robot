@@ -85,4 +85,26 @@ void main() {
 
     h.game.stopTimer();
   });
+
+  testWidgets('backing out mid-wave still lands on the complete screen '
+      '(the solve must be recorded, not abandoned)', (tester) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    await solveByTapping(tester, h);
+    await tester.pump(const Duration(milliseconds: 200)); // mid-wave
+
+    // The 620ms celebration opened a window where back used to abandon the
+    // completion flow — and with it the stats/streak/token recording.
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(PuzzleCompleteScreen), findsOneWidget);
+    expect(h.progress.stats.totalSolved, 1);
+
+    h.game.stopTimer();
+  });
 }
