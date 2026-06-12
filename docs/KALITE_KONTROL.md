@@ -117,6 +117,9 @@ kurup şu listeyi işaretleyin:
         streak" kartı görünüyor; "Remind me daily" bildirimi planlıyor,
         "Not now" sessizce kapatıyor — her iki durumda da kart bir daha
         ASLA görünmüyor (paket çözümlerinde hiç görünmez).
+24. [ ] Hatırlatma dayanıklılığı: hatırlatma açıkken saati 2-3 dk sonraya
+        kur, bildirimin GELDİĞİNİ gör; sonra cihazı yeniden başlat ve
+        ertesi gün bildirimi yine geldiğini doğrula (boot receiver).
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
