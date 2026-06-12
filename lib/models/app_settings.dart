@@ -16,6 +16,7 @@ class AppSettings {
     this.reminderEnabled = false,
     this.reminderHour = 9,
     this.reminderMinute = 0,
+    this.reminderNudgeDone = false,
     this.onboardingDone = false,
   });
 
@@ -33,6 +34,7 @@ class AppSettings {
     reminderEnabled: json['reminderEnabled'] as bool? ?? false,
     reminderHour: json['reminderHour'] as int? ?? 9,
     reminderMinute: json['reminderMinute'] as int? ?? 0,
+    reminderNudgeDone: json['reminderNudgeDone'] as bool? ?? false,
     onboardingDone: json['onboardingDone'] as bool? ?? false,
   );
 
@@ -55,6 +57,10 @@ class AppSettings {
   bool reminderEnabled;
   int reminderHour;
   int reminderMinute;
+
+  /// The one-time "protect your streak" reminder invitation on the daily
+  /// completion screen: shown once, then never again (either answer).
+  bool reminderNudgeDone;
   bool onboardingDone;
 
   TimeOfDay get reminderTime =>
@@ -72,6 +78,7 @@ class AppSettings {
     'reminderEnabled': reminderEnabled,
     'reminderHour': reminderHour,
     'reminderMinute': reminderMinute,
+    'reminderNudgeDone': reminderNudgeDone,
     'onboardingDone': onboardingDone,
   };
 }

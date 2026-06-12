@@ -29,11 +29,13 @@ void main() {
       reminderEnabled: true,
       reminderHour: 21,
       reminderMinute: 30,
+      reminderNudgeDone: true,
       onboardingDone: true,
     );
     final r = AppSettings.fromJson(s.toJson());
     expect(r.toJson(), s.toJson());
     expect(r.music, isFalse);
+    expect(r.reminderNudgeDone, isTrue);
   });
 
   test('legacy settings JSON without a music key defaults to ON', () {
@@ -45,6 +47,7 @@ void main() {
     expect(r.music, isTrue);
     expect(r.themeMode, AppThemeMode.dark);
     expect(r.soundEffects, isFalse);
+    expect(r.reminderNudgeDone, isFalse);
   });
 
   test('setMusic persists and survives a controller restart', () async {

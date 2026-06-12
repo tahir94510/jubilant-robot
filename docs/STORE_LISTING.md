@@ -5,6 +5,20 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes — v1.1.0 (max 500 chars — paste into "What's new")
+
+```
+NEW in 1.1.0
+• Soothing ambient soundtrack while you solve (toggle in Settings)
+• Celebrations: the board lights up word by word and confetti rains on every solve
+• A soft chime when you complete a word
+• Smoother screen transitions and a refreshed look
+• Optional daily reminder so your streak never breaks
+Happy decoding!
+```
+
+---
+
 ## App name (max 30 chars — currently 29)
 
 ```

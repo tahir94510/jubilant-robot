@@ -78,6 +78,11 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  Future<void> markReminderNudgeDone() {
+    settings.reminderNudgeDone = true;
+    return _save();
+  }
+
   /// Returns false when the OS permission was denied.
   Future<bool> setReminder({required bool enabled, TimeOfDay? time}) async {
     if (enabled) {

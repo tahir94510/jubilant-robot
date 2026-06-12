@@ -113,6 +113,10 @@ kurup şu listeyi işaretleyin:
         kapat" erişilebilirlik ayarı açıkken ikisi de YOK (tasarım gereği).
 22. [ ] Kelime cue'su: bir kelimenin son harfi doğru girilince normal tuş
         sesinden farklı, tek parlak çan duyuluyor.
+23. [ ] Seri daveti: İLK günlük çözümün sonuç ekranında "Protect your
+        streak" kartı görünüyor; "Remind me daily" bildirimi planlıyor,
+        "Not now" sessizce kapatıyor — her iki durumda da kart bir daha
+        ASLA görünmüyor (paket çözümlerinde hiç görünmez).
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 

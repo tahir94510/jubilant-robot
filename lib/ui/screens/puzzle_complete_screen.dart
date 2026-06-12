@@ -7,12 +7,14 @@ import '../../models/achievement.dart';
 import '../../models/pack.dart';
 import '../../models/quote.dart';
 import '../../services/ads/ads_service.dart';
+import '../../services/notifications/notification_service.dart';
 import '../../services/review_service.dart';
 import '../../services/share_service.dart';
 import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
+import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/banner_ad_slot.dart';
 import '../widgets/confetti_burst.dart';
@@ -83,9 +85,19 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final game = context.read<GameController>();
     final progress = context.read<ProgressController>();
     final repo = context.read<QuoteRepository>();
+    final settingsController = context.watch<SettingsController>();
     final session = game.session;
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+
+    // The one-time streak-protection invite: the moment a player finishes
+    // their first daily is when a reminder is most welcome — and Settings
+    // is where nobody would find it on their own.
+    final showReminderNudge =
+        game.isDaily &&
+        context.read<NotificationService>().supported &&
+        !settingsController.settings.reminderEnabled &&
+        !settingsController.settings.reminderNudgeDone;
 
     if (session == null) return const Scaffold(body: SizedBox.shrink());
 
@@ -206,6 +218,10 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                             ),
                           ),
                       ],
+                      if (showReminderNudge) ...[
+                        const SizedBox(height: 20),
+                        _ReminderNudgeCard(controller: settingsController),
+                      ],
                     ],
                   ),
                 ),
@@ -305,6 +321,82 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       }
     }
     return null;
+  }
+}
+
+/// One-time invite to enable the daily reminder, shown right after a daily
+/// solve. Either answer dismisses it forever; the time (default 9:00) can
+/// be changed later in Settings.
+class _ReminderNudgeCard extends StatelessWidget {
+  const _ReminderNudgeCard({required this.controller});
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(18, 14, 18, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.alarm_outlined, size: 20, color: scheme.primary),
+                const SizedBox(width: 8),
+                const Expanded(
+                  child: Text(
+                    'Protect your streak',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'One gentle nudge a day, so tomorrow’s puzzle never slips '
+              'by. You can change the time in Settings.',
+              style: TextStyle(
+                fontSize: 13,
+                height: 1.4,
+                color: scheme.onSurface.withValues(alpha: .6),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Wrap: both labels stay readable on narrow phones with large
+            // text instead of overflowing a Row.
+            Wrap(
+              alignment: WrapAlignment.end,
+              spacing: 4,
+              children: [
+                TextButton(
+                  onPressed: () => controller.markReminderNudgeDone(),
+                  child: const Text('Not now'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    final ok = await controller.setReminder(enabled: true);
+                    await controller.markReminderNudgeDone();
+                    if (!ok && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Notification permission was denied — you can '
+                            'enable it anytime in Settings.',
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Remind me daily'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
