@@ -3,7 +3,7 @@ description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram
 publish_to: 'none'
 
 # versionName+versionCode for Android. Bump +N for every Play Store upload.
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ^3.12.1
@@ -52,6 +52,10 @@ flutter:
         - asset: assets/fonts/Lora-Italic-Variable.ttf
           style: italic
 
+# NOT: Bu blok yalnız adaptif ikon bağlantısını BELGELEMEK için durur.
+# `dart run flutter_launcher_icons` ÇALIŞTIRMAYIN — tüm raster'lar
+# tool/generate_icons.py tarafından süper-örneklemeli üretilir ve commit'lidir;
+# bu araç onların üzerine düşük kaliteli ölçekleme yazar.
 flutter_launcher_icons:
   android: true
   ios: false

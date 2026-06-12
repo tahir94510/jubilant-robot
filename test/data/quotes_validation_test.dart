@@ -70,6 +70,13 @@ void main() {
       expect(q.author.trim(), isNotEmpty, reason: q.id);
       expect(q.source.trim(), isNotEmpty, reason: q.id);
       expect(q.category.trim(), isNotEmpty, reason: q.id);
+      // "— Unknown" reads cheap on the board and the solve screen; folk
+      // material is credited "Anonymous" (or "Proverb") instead.
+      expect(
+        q.author.trim().toLowerCase(),
+        isNot('unknown'),
+        reason: '${q.id}: use "Anonymous" instead of "Unknown"',
+      );
     }
   });
 

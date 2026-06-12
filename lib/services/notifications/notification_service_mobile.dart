@@ -24,7 +24,9 @@ class MobileNotificationService extends NotificationService {
   @override
   Future<void> initialize() async {
     const settings = InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      // A dedicated white-on-transparent glyph: status bars render launcher
+      // icons as a flat gray blob, the alpha-only mark stays crisp.
+      android: AndroidInitializationSettings('@drawable/ic_stat_quotecrack'),
     );
     await _plugin.initialize(settings: settings);
   }

@@ -18,29 +18,38 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **77 otomatik test** | Aşağıdaki döküm |
+| **103 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**77 testin dökümü:**
-- **Motor (24):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
+**103 testin dökümü:**
+- **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır — değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
 - **Veri seti (7):** 461 söz; benzersiz kimlik, kopya metin yok, ASCII,
-  20-180 harf, atıf alanları dolu, 11 paketin hepsi dolu, her zorluk
-  kovasında ≥40 söz.
-- **Mantık (16):** Seri artışı/sıfırlanması/gece yarısı sınırı, jeton
-  kazan/harca/taban, premium sınırsızlığı ve kalıcılığı, interstisyel
-  kadans+bekleme penceresi, başarımların eşikte tam bir kez açılması.
-- **Ekran ve etkileşim (30):** Uçtan uca çözüm akışı, otomatik doldurma,
+  20-180 harf, atıf alanları dolu ve "Unknown" yasak (halk malı sözler
+  "Anonymous"/"Proverb"), 11 paketin hepsi dolu, her zorluk kovasında
+  ≥40 söz.
+- **Mantık (32):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
+  (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
+  kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
+  tam bir kez açılması; tahta sığdırma matematiği (15 harfli kelime 360dp
+  ekrana sığar + 461 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
+  sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
+  çözülmüş bulmacanın temiz başlaması.
+- **Ekran ve etkileşim (41):** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   11 paketin listelenip açılması, premium kilit→paywall ve premium→içerik
   yönlendirmeleri, istatistik/başarım ekranları, **ayarlardaki her kontrol**
-  (tema, yazı boyutu, 4 anahtar, hatırlatma kur/iptal/izin-reddi, geri
-  yükleme), öğretici akışı+atlama; tekrar-oynamanın jeton/reklam
-  üretmediği; arka planda kronometrenin durduğu.
+  (tema kartları — dördü de etiketli ve 320dp+1.6x'te kırılmadan, yazı
+  boyutu, 4 anahtar, hatırlatma kur/iptal/izin-reddi, geri yükleme),
+  öğretici akışı+atlama; tekrar-oynamanın jeton/reklam üretmediği; arka
+  planda kronometrenin durduğu; uzun kelimeli tahtanın dar ekranda
+  taşmaması; tamamlama ekranında düğmelerin kaydırmasız erişilebilir
+  kalması; ısı haritası geometrisi (16 hafta, Pazartesi hizası, ay
+  başlığı); 0 jetonda ipucu düğmesinin kapanıp +3'ün kalması.
 
 > Otomatikleştirilemeyenler (tasarımı gereği): gerçek reklam dolumu, gerçek
 > satın alma, bildirimin fiziksel teslimi — bunlar B turunun işidir.
@@ -82,7 +91,18 @@ kurup şu listeyi işaretleyin:
         "Sound effects" kapatınca tam sessiz; telefon sessiz moddayken de
         çalmıyor (tasarım gereği).
 14. [ ] Tema seçici: varsayılan "Auto" seçili ve cihaz temasını izliyor;
+        dört kartın da etiketi tam okunuyor (320dp + büyük yazıda bile),
         dört seçenek de anında uygulanıyor.
+15. [ ] Açılış: soğuk başlatmada markalı splash görünüyor (lacivert
+        gradyan + logo; Android 12+'da daire içinde logo), splash →
+        ilk kare geçişinde beyaz flaş YOK (koyu temada da dene).
+16. [ ] Launcher ikonu ana ekranda net ve dolgun (Q? + alt çizgi); Android
+        13+ temalı ikon modunda tek renkli varyant düzgün.
+17. [ ] Hatırlatma bildirimi durum çubuğunda BEYAZ "Q" glifi olarak
+        görünüyor (gri kare/leke değil).
+18. [ ] Uzun kelimeli bulmaca (ör. "generalizations" içeren) 360dp ekranda
+        taşma şeridi olmadan sığıyor; hücreler eşit boyda küçülüyor.
+19. [ ] "— Anonymous" atıflı sözler düzgün görünüyor ("Unknown" kalmadı).
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 

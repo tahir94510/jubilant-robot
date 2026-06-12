@@ -155,4 +155,33 @@ void main() {
 
     h.game.stopTimer();
   });
+
+  testWidgets('at zero tokens the hint button shows (0), disables, and the '
+      'rewarded +3 stays available', (tester) async {
+    final h = await Harness.create();
+    while (h.economy.tokens > 0) {
+      h.economy.spendHintToken();
+    }
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    final label = find.text('Reveal letter (0)');
+    expect(label, findsOneWidget);
+    final button = tester.widget<OutlinedButton>(
+      find.ancestor(of: label, matching: find.byType(OutlinedButton)).first,
+    );
+    expect(button.enabled, isFalse);
+
+    // Tapping the dead button must not reveal anything for free.
+    await tester.tap(label, warnIfMissed: false);
+    await tester.pump();
+    expect(h.game.hintsUsed, 0);
+
+    // The way out is the rewarded ad, which stays visible.
+    expect(find.text('+3'), findsOneWidget);
+
+    h.game.stopTimer();
+  });
 }

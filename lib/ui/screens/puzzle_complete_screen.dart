@@ -15,6 +15,7 @@ import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/banner_ad_slot.dart';
+import '../widgets/scale_safe.dart';
 import 'puzzle_screen.dart';
 
 /// Post-solve celebration: full quote with attribution, solve stats, share
@@ -104,7 +105,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
           children: [
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.fromLTRB(24, 16, 24, 16),
+                padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
                 children: [
                   // A small celebratory pop on entrance.
                   TweenAnimationBuilder<double>(
@@ -115,11 +116,11 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                         Transform.scale(scale: scale, child: child),
                     child: Icon(
                       Icons.check_circle_outline,
-                      size: 56,
+                      size: 48,
                       color: palette.success,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 14),
                   Text(
                     '\u{201C}${quote.text}\u{201D}',
                     textAlign: TextAlign.center,
@@ -149,7 +150,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                       color: scheme.onSurface.withValues(alpha: .4),
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 18),
                   // Wrap, not Row: with three chips (daily) on a narrow
                   // phone the row overflowed; now extras flow to a new line.
                   Wrap(
@@ -193,38 +194,59 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                         ),
                       ),
                   ],
-                  const SizedBox(height: 24),
-                  if (game.isDaily)
-                    FilledButton.icon(
-                      onPressed: () => _shareDaily(context),
-                      icon: const Icon(Icons.share_outlined),
-                      label: const Text('Share result'),
-                    )
-                  else if (_nextInPack(repo, game) != null)
-                    FilledButton.icon(
-                      onPressed: () {
-                        final next = _nextInPack(repo, game)!;
-                        game.start(
-                          next,
-                          daily: false,
-                          packId: game.originPackId,
-                        );
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (_) => const PuzzleScreen(),
-                          ),
-                        );
-                      },
-                      icon: const Icon(Icons.arrow_forward),
-                      label: const Text('Next puzzle'),
-                    ),
-                  const SizedBox(height: 10),
-                  OutlinedButton(
-                    onPressed: () =>
-                        Navigator.of(context).popUntil((r) => r.isFirst),
-                    child: const Text('Back to menu'),
-                  ),
                 ],
+              ),
+            ),
+            // Actions stay pinned above the banner so "Back to menu" is
+            // always reachable without scrolling — on 360x800 phones the
+            // buttons used to sit below the fold inside the list.
+            ScaleSafe(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 8, 24, 10),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (game.isDaily)
+                      SizedBox(
+                        width: double.infinity,
+                        child: FilledButton.icon(
+                          onPressed: () => _shareDaily(context),
+                          icon: const Icon(Icons.share_outlined),
+                          label: const Text('Share result'),
+                        ),
+                      )
+                    else if (_nextInPack(repo, game) != null)
+                      SizedBox(
+                        width: double.infinity,
+                        child: FilledButton.icon(
+                          onPressed: () {
+                            final next = _nextInPack(repo, game)!;
+                            game.start(
+                              next,
+                              daily: false,
+                              packId: game.originPackId,
+                            );
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (_) => const PuzzleScreen(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.arrow_forward),
+                          label: const Text('Next puzzle'),
+                        ),
+                      ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () =>
+                            Navigator.of(context).popUntil((r) => r.isFirst),
+                        child: const Text('Back to menu'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             const BannerAdSlot(slotName: 'complete'),

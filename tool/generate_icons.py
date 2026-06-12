@@ -1,15 +1,33 @@
 #!/usr/bin/env python3
-"""Deterministic generator for the app icon, adaptive layers, and the Play
-feature graphic. Pure geometry + the bundled Lora font — no external
-artwork, so there is nothing to license and the visual style matches the
-in-game cryptogram board (letter tiles with underlines).
+"""Deterministic generator for EVERY committed raster: app icon, adaptive
+layers, Android mipmaps/drawables, splash + notification icons, web icons,
+favicon, the Play Store icon, and the feature graphic. Pure geometry + the
+bundled OFL fonts — nothing to license, and the style matches the in-game
+cryptogram board.
 
-Usage: python3 tool/generate_icons.py
+This tool is the single source of truth for raster assets. Do NOT run
+`dart run flutter_launcher_icons`: it would overwrite these supersampled
+outputs with its own plain scaling. The pubspec config block stays only as
+documentation of the adaptive-icon wiring.
+
+Everything is drawn on a 2048px canvas and downscaled with Lanczos, so
+edges stay crisp at every density.
+
+Usage: python3 tool/generate_icons.py  (requires Pillow)
+
 Outputs (committed to the repo):
-  assets/icon/icon.png               1024x1024 full icon
-  assets/icon/icon_foreground.png    1024x1024 adaptive foreground (safe zone)
-  assets/icon/icon_monochrome.png    1024x1024 Android 13 themed icon layer
-  store_assets/feature_graphic.png   1024x500  Play Store feature graphic
+  assets/icon/icon.png                          1024  full icon, rounded
+  assets/icon/icon_foreground.png               1024  adaptive foreground
+  assets/icon/icon_monochrome.png               1024  Android 13 themed layer
+  android/.../mipmap-*/ic_launcher.png          48-192   legacy launcher
+  android/.../drawable-*/ic_launcher_foreground.png 108-432 adaptive
+  android/.../drawable-*/ic_launcher_monochrome.png 108-432 themed
+  android/.../drawable-*/splash_icon.png        288-1152 launch screen logo
+  android/.../drawable-*/ic_stat_quotecrack.png 24-96    notification glyph
+  web/icons/Icon-{192,512}.png + maskable       PWA / social preview
+  web/favicon.png                               48
+  store_assets/play_icon_512.png                512   Play listing (full bleed)
+  store_assets/feature_graphic.png              1024x500
 """
 
 from pathlib import Path
@@ -17,8 +35,9 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
-FONT_PATH = ROOT / "assets/fonts/Lora-Variable.ttf"
+FONT_QUOTE = ROOT / "assets/fonts/Lora-Variable.ttf"
 FONT_UI = ROOT / "assets/fonts/Inter-Bold.ttf"
+ANDROID_RES = ROOT / "android/app/src/main/res"
 
 # Brand colors (match lib/ui/theme): deep indigo night + warm paper accents.
 BG_TOP = (28, 37, 65)        # #1C2541
@@ -27,14 +46,36 @@ PAPER = (247, 245, 240)      # #F7F5F0
 ACCENT = (238, 108, 77)      # #EE6C4D
 UNDERLINE = (152, 193, 217)  # #98C1D9
 
+SS = 2048  # supersample size: draw big, downscale Lanczos
+
+MIPMAP_SIZES = {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144,
+                "xxxhdpi": 192}
+ADAPTIVE_SIZES = {"mdpi": 108, "hdpi": 162, "xhdpi": 216, "xxhdpi": 324,
+                  "xxxhdpi": 432}
+SPLASH_SIZES = {"mdpi": 288, "hdpi": 432, "xhdpi": 576, "xxhdpi": 864,
+                "xxxhdpi": 1152}
+STAT_SIZES = {"mdpi": 24, "hdpi": 36, "xhdpi": 48, "xxhdpi": 72,
+              "xxxhdpi": 96}
+
+
+def lora(px, weight=700):
+    """Lora at a variable-font weight; bold gives the glyph shelf presence."""
+    font = ImageFont.truetype(str(FONT_QUOTE), px)
+    try:
+        font.set_variation_by_axes([weight])
+    except OSError:
+        pass  # older FreeType: regular weight still reads fine
+    return font
+
 
 def vertical_gradient(size, top, bottom):
     img = Image.new("RGB", size)
     w, h = size
+    draw = ImageDraw.Draw(img)
     for y in range(h):
         t = y / max(h - 1, 1)
         color = tuple(round(top[i] + (bottom[i] - top[i]) * t) for i in range(3))
-        ImageDraw.Draw(img).line([(0, y), (w, y)], fill=color)
+        draw.line([(0, y), (w, y)], fill=color)
     return img
 
 
@@ -46,107 +87,151 @@ def rounded_mask(size, radius):
     return mask
 
 
-def draw_tile(draw, x, y, w, h, letter, font, *, letter_color, line_color,
-              small=None, small_font=None, small_color=None):
-    """One cryptogram tile: big letter, underline, small cipher letter."""
-    bbox = draw.textbbox((0, 0), letter, font=font)
-    lw, lh = bbox[2] - bbox[0], bbox[3] - bbox[1]
-    draw.text((x + (w - lw) / 2 - bbox[0], y + (h * 0.52 - lh) / 2 - bbox[1]),
-              letter, font=font, fill=letter_color)
-    ly = y + h * 0.62
-    draw.line([(x + w * 0.08, ly), (x + w * 0.92, ly)],
-              fill=line_color, width=max(6, int(h * 0.045)))
-    if small:
-        sb = draw.textbbox((0, 0), small, font=small_font)
-        sw = sb[2] - sb[0]
-        draw.text((x + (w - sw) / 2 - sb[0], ly + h * 0.07 - sb[1]),
-                  small, font=small_font, fill=small_color)
+def draw_glyph_centered(draw, text, font, center, fill):
+    """Draws text with its ink box centered on `center`."""
+    bbox = draw.textbbox((0, 0), text, font=font)
+    w, h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    draw.text((center[0] - w / 2 - bbox[0], center[1] - h / 2 - bbox[1]),
+              text, font=font, fill=fill)
 
 
-def icon_artwork(size, *, transparent_bg=False, monochrome=False, scale=1.0):
-    """The 'Q?' tile pair used by every icon variant."""
-    s = size[0]
-    if transparent_bg:
-        img = Image.new("RGBA", size, (0, 0, 0, 0))
-    else:
-        img = vertical_gradient(size, BG_TOP, BG_BOTTOM).convert("RGBA")
+def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
+    """The brand mark: one dominant serif Q, a coral ? at its shoulder, and
+    the shared cryptogram underline beneath. Three bold elements that stay
+    legible at 48dp — the old two-tile motif read tiny and cluttered on real
+    launchers."""
+    s = img.size[0]
     draw = ImageDraw.Draw(img)
-
-    # Generous glyph: launcher icons read tiny on home screens, so the
-    # artwork fills most of the canvas instead of floating in padding.
-    tile_w = s * 0.40 * scale
-    tile_h = s * 0.62 * scale
-    gap = s * 0.045 * scale
-    total_w = tile_w * 2 + gap
-    x0 = (s - total_w) / 2
-    y0 = (s - tile_h) / 2
-
-    big = ImageFont.truetype(str(FONT_PATH), int(tile_h * 0.62))
-    small = ImageFont.truetype(str(FONT_UI), int(tile_h * 0.16))
+    a = s * scale
+    ox = oy = (s - a) / 2
 
     white = (255, 255, 255, 255)
-    letter_color = white if monochrome else PAPER + (255,)
+    q_color = white if monochrome else PAPER + (255,)
+    mark_color = white if monochrome else ACCENT + (255,)
     line_color = white if monochrome else UNDERLINE + (255,)
-    accent_color = white if monochrome else ACCENT + (255,)
-    small_color = white if monochrome else UNDERLINE + (230,)
 
-    draw_tile(draw, x0, y0, tile_w, tile_h, "Q", big,
-              letter_color=letter_color, line_color=line_color,
-              small="X", small_font=small, small_color=small_color)
-    draw_tile(draw, x0 + tile_w + gap, y0, tile_w, tile_h, "?", big,
-              letter_color=accent_color, line_color=line_color,
-              small="J", small_font=small, small_color=small_color)
+    draw_glyph_centered(draw, "Q", lora(int(a * 0.60)),
+                        (ox + a * 0.42, oy + a * 0.44), q_color)
+    if with_question:
+        draw_glyph_centered(draw, "?", lora(int(a * 0.26)),
+                            (ox + a * 0.78, oy + a * 0.28), mark_color)
+    line_h = a * 0.055
+    draw.rounded_rectangle(
+        [ox + a * 0.16, oy + a * 0.82 - line_h / 2,
+         ox + a * 0.84, oy + a * 0.82 + line_h / 2],
+        radius=line_h / 2, fill=line_color,
+    )
     return img
 
 
-def make_icon():
-    img = icon_artwork((1024, 1024))
-    # Squircle-ish rounding baked in for stores that show the raw PNG.
-    img.putalpha(rounded_mask((1024, 1024), 180))
-    out = ROOT / "assets/icon/icon.png"
+def artwork(size, *, transparent_bg=False, monochrome=False, scale=1.0,
+            with_question=True):
+    """Renders the mark supersampled, then downscales to `size`."""
+    if transparent_bg:
+        big = Image.new("RGBA", (SS, SS), (0, 0, 0, 0))
+    else:
+        big = vertical_gradient((SS, SS), BG_TOP, BG_BOTTOM).convert("RGBA")
+    paint_artwork(big, monochrome=monochrome, scale=scale,
+                  with_question=with_question)
+    return big.resize((size, size), Image.LANCZOS)
+
+
+def save(img, rel_path):
+    out = ROOT / rel_path
     out.parent.mkdir(parents=True, exist_ok=True)
     img.save(out)
-    print(f"wrote {out}")
+    print(f"wrote {rel_path}")
 
 
-def make_adaptive_foreground():
-    # Adaptive icons crop to a centered circle ~66% of the canvas; 0.72 of
-    # the (larger) artwork still fits the safe zone while reading much
-    # bigger on launchers than the previous timid sizing.
-    img = icon_artwork((1024, 1024), transparent_bg=True, scale=0.72)
-    out = ROOT / "assets/icon/icon_foreground.png"
-    img.save(out)
-    print(f"wrote {out}")
+def make_masters():
+    full = artwork(1024)
+    rounded = full.copy()
+    # Squircle-ish rounding baked in for surfaces that show the raw PNG.
+    rounded.putalpha(rounded_mask((1024, 1024), 180))
+    save(rounded, "assets/icon/icon.png")
+    # Adaptive layers: launchers mask to a ~66% circle; 0.72 of the artwork
+    # stays inside the safe zone (the anydpi-v26 XML adds a 16% inset).
+    save(artwork(1024, transparent_bg=True, scale=0.72),
+         "assets/icon/icon_foreground.png")
+    save(artwork(1024, transparent_bg=True, monochrome=True, scale=0.72),
+         "assets/icon/icon_monochrome.png")
 
 
-def make_monochrome():
-    img = icon_artwork((1024, 1024), transparent_bg=True,
-                       monochrome=True, scale=0.72)
-    out = ROOT / "assets/icon/icon_monochrome.png"
-    img.save(out)
-    print(f"wrote {out}")
+def make_android_launchers():
+    rounded = Image.open(ROOT / "assets/icon/icon.png")
+    for density, px in MIPMAP_SIZES.items():
+        save(rounded.resize((px, px), Image.LANCZOS),
+             f"android/app/src/main/res/mipmap-{density}/ic_launcher.png")
+    for density, px in ADAPTIVE_SIZES.items():
+        save(artwork(px, transparent_bg=True, scale=0.72),
+             f"android/app/src/main/res/drawable-{density}/"
+             f"ic_launcher_foreground.png")
+        save(artwork(px, transparent_bg=True, monochrome=True, scale=0.72),
+             f"android/app/src/main/res/drawable-{density}/"
+             f"ic_launcher_monochrome.png")
+
+
+def make_splash_icons():
+    # Android 12+ masks the splash icon to a 2/3-diameter circle; 0.60
+    # keeps the mark comfortably inside on every OEM. The same drawable is
+    # the centered logo of the pre-12 launch_background layer-list.
+    for density, px in SPLASH_SIZES.items():
+        save(artwork(px, transparent_bg=True, scale=0.60),
+             f"android/app/src/main/res/drawable-{density}/splash_icon.png")
+
+
+def make_notification_icons():
+    # Status-bar glyphs are alpha-only: white mark, no ?, no background.
+    for density, px in STAT_SIZES.items():
+        save(artwork(px, transparent_bg=True, monochrome=True, scale=0.92,
+                     with_question=False),
+             f"android/app/src/main/res/drawable-{density}/"
+             f"ic_stat_quotecrack.png")
+
+
+def make_web_icons():
+    full = artwork(1024)
+    for px in (192, 512):
+        save(full.resize((px, px), Image.LANCZOS).convert("RGB"),
+             f"web/icons/Icon-{px}.png")
+    # Maskable: artwork inside the 80%-diameter safe circle, full-bleed bg.
+    for px in (192, 512):
+        save(artwork(px, scale=0.66), f"web/icons/Icon-maskable-{px}.png")
+    rounded = Image.open(ROOT / "assets/icon/icon.png")
+    save(rounded.resize((48, 48), Image.LANCZOS), "web/favicon.png")
+
+
+def make_play_icon():
+    # Play Store listing icon: 512x512 full-bleed square, no baked corners
+    # (Google applies its own mask).
+    save(artwork(512).convert("RGB"), "store_assets/play_icon_512.png")
 
 
 def make_feature_graphic():
+    """Play feature graphic keeps the richer decoded-word motif: QUOTECRACK
+    as solved tiles over their cipher row."""
     size = (1024, 500)
     img = vertical_gradient(size, BG_TOP, BG_BOTTOM).convert("RGBA")
     draw = ImageDraw.Draw(img)
 
-    # Decoded-word motif: QUOTECRACK as solved tiles.
     word = "QUOTECRACK"
     tile_w, tile_h, gap = 76, 150, 12
     total = len(word) * tile_w + (len(word) - 1) * gap
     x = (size[0] - total) / 2
     y = 105
-    big = ImageFont.truetype(str(FONT_PATH), int(tile_h * 0.58))
+    big = lora(int(tile_h * 0.58))
     small = ImageFont.truetype(str(FONT_UI), int(tile_h * 0.15))
     cipher = "XJWZQVKYBN"  # decorative cipher row
     for i, ch in enumerate(word):
         color = ACCENT + (255,) if ch in "CK" and i >= 5 else PAPER + (255,)
-        draw_tile(draw, x + i * (tile_w + gap), y, tile_w, tile_h, ch, big,
-                  letter_color=color, line_color=UNDERLINE + (255,),
-                  small=cipher[i], small_font=small,
-                  small_color=UNDERLINE + (210,))
+        cx = x + i * (tile_w + gap) + tile_w / 2
+        draw_glyph_centered(draw, ch, big, (cx, y + tile_h * 0.26), color)
+        ly = y + tile_h * 0.62
+        draw.line([(cx - tile_w * 0.42, ly), (cx + tile_w * 0.42, ly)],
+                  fill=UNDERLINE + (255,), width=max(6, int(tile_h * 0.045)))
+        sb = draw.textbbox((0, 0), cipher[i], font=small)
+        draw.text((cx - (sb[2] - sb[0]) / 2 - sb[0], ly + tile_h * 0.07 - sb[1]),
+                  cipher[i], font=small, fill=UNDERLINE + (210,))
 
     tag = "Decode famous quotes. One cipher a day."
     tag_font = ImageFont.truetype(str(FONT_UI), 40)
@@ -154,14 +239,14 @@ def make_feature_graphic():
     draw.text(((size[0] - (bbox[2] - bbox[0])) / 2, 330), tag,
               font=tag_font, fill=PAPER + (235,))
 
-    out = ROOT / "store_assets/feature_graphic.png"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    img.convert("RGB").save(out)
-    print(f"wrote {out}")
+    save(img.convert("RGB"), "store_assets/feature_graphic.png")
 
 
 if __name__ == "__main__":
-    make_icon()
-    make_adaptive_foreground()
-    make_monochrome()
+    make_masters()
+    make_android_launchers()
+    make_splash_icons()
+    make_notification_icons()
+    make_web_icons()
+    make_play_icon()
     make_feature_graphic()

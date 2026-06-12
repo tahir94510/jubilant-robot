@@ -5,17 +5,20 @@ import '../../services/clock.dart';
 
 /// GitHub-style heatmap of the last ~16 weeks of daily-puzzle activity.
 class HeatmapCalendar extends StatelessWidget {
-  const HeatmapCalendar({super.key, required this.dailyHistory});
+  const HeatmapCalendar({super.key, required this.dailyHistory, this.now});
 
   /// 'yyyy-MM-dd' -> solved.
   final Map<String, bool> dailyHistory;
+
+  /// Injectable "today" so tests can pin the grid; defaults to the clock.
+  final DateTime? now;
 
   static const int _weeks = 16;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final today = DateTime.now();
+    final today = now ?? DateTime.now();
     // Last day of the grid = today; grid starts weeks back on a Monday.
     final start = DateTime(
       today.year,
