@@ -45,13 +45,22 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Quotecrack',
-                          style: TextStyle(
-                            fontSize: 26,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: -0.5,
-                            color: scheme.onSurface,
+                        // The wordmark scales down rather than pushing the
+                        // streak badge + settings off a narrow phone when
+                        // large system text is on.
+                        Flexible(
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              'Quotecrack',
+                              style: TextStyle(
+                                fontSize: 26,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: -0.5,
+                                color: scheme.onSurface,
+                              ),
+                            ),
                           ),
                         ),
                         Row(

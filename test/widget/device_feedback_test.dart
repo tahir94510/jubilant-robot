@@ -3,13 +3,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/app_settings.dart';
 import 'package:quotecrack/models/quote.dart';
 import 'package:quotecrack/services/storage_service.dart';
+import 'package:quotecrack/ui/screens/achievements_screen.dart';
+import 'package:quotecrack/ui/screens/home_screen.dart';
+import 'package:quotecrack/ui/screens/onboarding_screen.dart';
+import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/screens/settings_screen.dart';
+import 'package:quotecrack/ui/screens/stats_screen.dart';
 import 'package:quotecrack/ui/widgets/letter_cell.dart';
 import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 
 import '../fakes/test_harness.dart';
 import 'puzzle_flow_test.dart' show solveByTapping;
+import 'screens_smoke_test.dart' show loadRealQuotes;
 
 /// The longest word in the live dataset is 15 letters; at the old fixed
 /// cell width this overflowed every phone narrower than ~460dp (the
@@ -322,5 +328,68 @@ void main() {
     expect(h.sounds.played, contains('conflict'));
 
     h.game.stopTimer();
+  });
+
+  // Every remaining screen gets the same narrow-phone + huge-text guard the
+  // puzzle/settings/completion screens already have: 320x640 at 1.6 text
+  // scale, scrolled end to end, must never overflow.
+  group('all menu screens survive 320x640 with huge text', () {
+    Future<Harness> pumpAt320(
+      WidgetTester tester,
+      Widget screen, {
+      bool realData = false,
+    }) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      final h = await Harness.create(
+        quotes: realData ? loadRealQuotes() : null,
+      );
+      await tester.pumpWidget(h.app(screen, textScale: 1.6));
+      await tester.pump();
+      return h;
+    }
+
+    testWidgets('home', (tester) async {
+      await pumpAt320(tester, const HomeScreen(), realData: true);
+      await tester.scrollUntilVisible(find.text('Go Premium'), 150);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('statistics incl. heatmap', (tester) async {
+      await pumpAt320(tester, const StatsScreen());
+      await tester.scrollUntilVisible(
+        find.textContaining('Last 16 weeks'),
+        150,
+      );
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('achievements down to the last entry', (tester) async {
+      await pumpAt320(tester, const AchievementsScreen());
+      await tester.scrollUntilVisible(find.text('Morning Coffee'), 150);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('paywall', (tester) async {
+      await pumpAt320(tester, const PaywallScreen());
+      await tester.scrollUntilVisible(
+        find.text('Restore previous purchase'),
+        150,
+      );
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('onboarding, every page', (tester) async {
+      await pumpAt320(tester, const OnboardingScreen());
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.text('Next'));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      await tester.tap(find.text('Next'));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull);
+      expect(find.text('Try one — 30 seconds'), findsOneWidget);
+    });
   });
 }
