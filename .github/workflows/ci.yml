@@ -7,10 +7,13 @@
 # Kurulumunuz icin tek seferlik adimlar: docs/YAYINLAMA_REHBERI.md
 name: CI
 
+# Yalnizca push: bu repoda her PR'in head dali zaten main/claude/** ile
+# eslesir ve push kosusunun sonuclari PR sayfasinda gorunur. Eski
+# `pull_request` tetikleyicisi, PR acikken ayni commit'i IKINCI kez
+# kosturuyordu (cift CI) — bilincli olarak kaldirildi.
 on:
   push:
     branches: [main, 'claude/**']
-  pull_request:
 
 concurrency:
   group: ci-${{ github.ref }}
