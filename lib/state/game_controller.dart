@@ -44,6 +44,12 @@ class GameController extends ChangeNotifier {
   bool _lastInputCreatedConflict = false;
   bool get lastInputCreatedConflict => _lastInputCreatedConflict;
 
+  /// True when the most recent [enterGuess] finished a whole word without
+  /// solving the puzzle (the solving keystroke belongs to the success
+  /// fanfare). Drives the small "word done" sound cue.
+  bool _lastInputCompletedWord = false;
+  bool get lastInputCompletedWord => _lastInputCompletedWord;
+
   Timer? _ticker;
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
@@ -78,6 +84,8 @@ class GameController extends ChangeNotifier {
 
     _isDaily = daily;
     _completed = false;
+    _lastInputCreatedConflict = false;
+    _lastInputCompletedWord = false;
     _selectedCipherLetter = _firstEmptyCipherLetter();
     _undoStack.clear();
 
@@ -132,6 +140,9 @@ class GameController extends ChangeNotifier {
   /// Assigns [plainLetter] to the selected cipher letter, auto-advances to
   /// the next empty cell, and detects completion.
   void enterGuess(String plainLetter) {
+    // Any new interaction invalidates the one-shot cue, even when the call
+    // turns out to be a no-op (stale flags must never replay a sound).
+    _lastInputCompletedWord = false;
     final s = _session;
     final target = _selectedCipherLetter;
     if (s == null || target == null || _completed) return;
@@ -139,12 +150,18 @@ class GameController extends ChangeNotifier {
 
     _undoStack.add(_Move(target, s.guesses[target]));
     final conflictsBefore = s.conflicts.length;
+    final wordsBefore = s.correctWordCount;
     s.guesses[target] = plainLetter;
     _lastInputCreatedConflict = s.conflicts.length > conflictsBefore;
+    _lastInputCompletedWord =
+        !_lastInputCreatedConflict &&
+        !s.isSolved &&
+        s.correctWordCount > wordsBefore;
     _afterChange();
   }
 
   void clearGuess() {
+    _lastInputCompletedWord = false;
     final s = _session;
     final target = _selectedCipherLetter;
     if (s == null || target == null || _completed) return;
@@ -157,6 +174,7 @@ class GameController extends ChangeNotifier {
   }
 
   void undo() {
+    _lastInputCompletedWord = false;
     final s = _session;
     if (s == null || _undoStack.isEmpty || _completed) return;
     final move = _undoStack.removeLast();
@@ -173,6 +191,7 @@ class GameController extends ChangeNotifier {
   /// Reveals the correct letter for the selected (or first empty) cell.
   /// Token accounting happens in EconomyController; this just mutates state.
   void revealSelected() {
+    _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;
     if (s == null || _completed) return;
     var target = _selectedCipherLetter ?? _firstEmptyCipherLetter();

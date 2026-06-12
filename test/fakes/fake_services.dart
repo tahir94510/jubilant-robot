@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:quotecrack/services/ads/ads_service.dart';
 import 'package:quotecrack/services/clock.dart';
+import 'package:quotecrack/services/music_service.dart';
 import 'package:quotecrack/services/notifications/notification_service.dart';
 import 'package:quotecrack/services/purchases/purchase_service.dart';
 import 'package:quotecrack/services/sound_service.dart';
@@ -147,6 +148,32 @@ class FakeSoundService extends SoundService {
 
   @override
   void achievement() => _record('achievement');
+
+  @override
+  void wordComplete() => _record('word');
+}
+
+/// Records music calls instead of touching the plugin.
+class FakeMusicService extends MusicService {
+  FakeMusicService({required super.isEnabled});
+
+  final List<String> calls = [];
+
+  @override
+  Future<void> initialize() async {}
+
+  @override
+  void ensureStarted() {
+    if (isEnabled()) calls.add('ensureStarted');
+  }
+
+  @override
+  Future<void> setEnabled(bool on) async {
+    calls.add('enabled:$on');
+  }
+
+  @override
+  void dispose() {}
 }
 
 /// A clock whose `now` the test controls.

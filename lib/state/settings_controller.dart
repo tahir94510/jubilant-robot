@@ -48,6 +48,11 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  Future<void> setMusic(bool value) {
+    settings.music = value;
+    return _save();
+  }
+
   Future<void> setColorblindMode(bool value) {
     settings.colorblindMode = value;
     return _save();

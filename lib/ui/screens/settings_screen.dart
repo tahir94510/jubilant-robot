@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../config/app_config.dart';
 import '../../models/app_settings.dart';
 import '../../services/ads/ads_service.dart';
+import '../../services/music_service.dart';
 import '../../services/notifications/notification_service.dart';
 import '../../services/purchases/purchase_service.dart';
 import '../../state/economy_controller.dart';
@@ -139,6 +140,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               subtitle: const Text('Soft key taps and gentle chimes'),
               value: settings.soundEffects,
               onChanged: controller.setSoundEffects,
+            ),
+            SwitchListTile(
+              title: const Text('Music'),
+              subtitle: const Text('Calm ambient loop while you play'),
+              value: settings.music,
+              onChanged: (value) async {
+                // Persist first so the service's isEnabled() gate already
+                // reflects the new choice, then apply it audibly.
+                await controller.setMusic(value);
+                if (context.mounted) {
+                  await context.read<MusicService>().setEnabled(value);
+                }
+              },
             ),
             if (notificationsSupported) ...[
               section('Daily reminder'),

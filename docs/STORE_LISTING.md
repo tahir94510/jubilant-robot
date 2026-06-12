@@ -41,6 +41,7 @@ MADE FOR COMFORT
 • Light, dark, and sepia reading themes
 • Adjustable text size and a colorblind-friendly palette
 • Large touch targets and a custom keyboard built for puzzles
+• Soothing ambient soundtrack — or switch it off for pure silence
 
 TRACK YOUR JOURNEY
 • Daily streaks with a calendar heatmap

@@ -12,6 +12,7 @@ class AppSettings {
     this.showTimer = true,
     this.haptics = true,
     this.soundEffects = true,
+    this.music = true,
     this.reminderEnabled = false,
     this.reminderHour = 9,
     this.reminderMinute = 0,
@@ -28,6 +29,7 @@ class AppSettings {
     showTimer: json['showTimer'] as bool? ?? true,
     haptics: json['haptics'] as bool? ?? true,
     soundEffects: json['soundEffects'] as bool? ?? true,
+    music: json['music'] as bool? ?? true,
     reminderEnabled: json['reminderEnabled'] as bool? ?? false,
     reminderHour: json['reminderHour'] as int? ?? 9,
     reminderMinute: json['reminderMinute'] as int? ?? 0,
@@ -46,6 +48,10 @@ class AppSettings {
   bool showTimer;
   bool haptics;
   bool soundEffects;
+
+  /// Looping ambient bed; independent from [soundEffects] so players can
+  /// keep the gentle key taps and still solve in silence (or vice versa).
+  bool music;
   bool reminderEnabled;
   int reminderHour;
   int reminderMinute;
@@ -62,6 +68,7 @@ class AppSettings {
     'showTimer': showTimer,
     'haptics': haptics,
     'soundEffects': soundEffects,
+    'music': music,
     'reminderEnabled': reminderEnabled,
     'reminderHour': reminderHour,
     'reminderMinute': reminderMinute,

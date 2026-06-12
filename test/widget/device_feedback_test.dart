@@ -330,6 +330,63 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('completing a word plays the word cue instead of a tap', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    final session = h.game.session!;
+
+    Future<void> type(String plain) async {
+      h.game.selectCipherLetter(session.cipher.encryptLetter(plain));
+      await tester.pump();
+      await tester.tap(
+        find.descendant(
+          of: find.byType(PuzzleKeyboard),
+          matching: find.text(plain),
+        ),
+      );
+      await tester.pump();
+    }
+
+    await type('I'); // half of IS — a plain tap
+    expect(h.sounds.played, contains('tap'));
+    expect(h.sounds.played, isNot(contains('word')));
+
+    await type('S'); // completes IS (LESS still misses L and E)
+    expect(h.sounds.played.where((s) => s == 'word').length, 1);
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('the music toggle applies immediately and persists', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Music'), 150);
+    expect(h.settings.settings.music, isTrue);
+
+    await tester.tap(find.text('Music'));
+    await tester.pumpAndSettle();
+
+    expect(h.settings.settings.music, isFalse);
+    // The running service was told to stop right away, not on next launch.
+    expect(h.music.calls, contains('enabled:false'));
+    final saved = h.storage.readJson(StorageService.settingsKey);
+    expect(saved?['music'], isFalse);
+
+    await tester.tap(find.text('Music'));
+    await tester.pumpAndSettle();
+    expect(h.settings.settings.music, isTrue);
+    expect(h.music.calls, contains('enabled:true'));
+  });
+
   // Every remaining screen gets the same narrow-phone + huge-text guard the
   // puzzle/settings/completion screens already have: 320x640 at 1.6 text
   // scale, scrolled end to end, must never overflow.

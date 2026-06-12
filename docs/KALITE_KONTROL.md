@@ -103,10 +103,20 @@ kurup şu listeyi işaretleyin:
 18. [ ] Uzun kelimeli bulmaca (ör. "generalizations" içeren) 360dp ekranda
         taşma şeridi olmadan sığıyor; hücreler eşit boyda küçülüyor.
 19. [ ] "— Anonymous" atıflı sözler düzgün görünüyor ("Unknown" kalmadı).
+20. [ ] Müzik: açılışta sakin ambient döngü yumuşakça (fade-in) başlıyor;
+        Ayarlar → "Music" kapatınca anında susuyor, açınca geri geliyor;
+        uygulama arka plana alınınca / tam ekran reklam açılınca duruyor;
+        başka uygulamada çalan müziği/podcast'i KESMİYOR (birlikte çalar,
+        tasarım gereği) ve telefon sessiz moddayken çalmıyor.
+21. [ ] Kutlama: bulmaca çözülünce tahtada soldan sağa yeşil dalga +
+        sonuç ekranında konfeti patlaması görünüyor; sistem "animasyonları
+        kapat" erişilebilirlik ayarı açıkken ikisi de YOK (tasarım gereği).
+22. [ ] Kelime cue'su: bir kelimenin son harfi doğru girilince normal tuş
+        sesinden farklı, tek parlak çan duyuluyor.
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.0.1+2` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.0+3` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
 Play Console'a yükle.

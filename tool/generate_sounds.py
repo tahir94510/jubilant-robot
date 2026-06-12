@@ -146,3 +146,12 @@ write(
         (0.17, air(bell(1975.5, 0.7, volume=0.30, decay=4))),
     ),
 )
+
+# Word complete: one soft high bell (E6) — quieter and shorter than the
+# hint's two-note rise, so it reads as "progress", not "reward".
+# (Appended last: earlier outputs share the module RNG and must stay
+# byte-identical.)
+write(
+    "word.wav",
+    mix((0.00, air(bell(1318.5, 0.32, volume=0.24, decay=7), amount=0.04))),
+)

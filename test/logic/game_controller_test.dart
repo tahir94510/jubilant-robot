@@ -66,4 +66,112 @@ void main() {
       replay.dispose();
     },
   );
+
+  // "Less is more." — three words: LESS, IS, MORE.
+  group('word-complete signal', () {
+    test('fires exactly when a typed guess finishes a word', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      void type(String plain) {
+        game.selectCipherLetter(s.cipher.encryptLetter(plain));
+        game.enterGuess(plain);
+      }
+
+      expect(s.correctWordCount, 0);
+      type('I'); // half of IS
+      expect(game.lastInputCompletedWord, isFalse);
+      type('S'); // completes IS (LESS still misses L and E)
+      expect(game.lastInputCompletedWord, isTrue);
+      expect(s.correctWordCount, 1);
+
+      type('L');
+      expect(game.lastInputCompletedWord, isFalse);
+      type('E'); // completes LESS
+      expect(game.lastInputCompletedWord, isTrue);
+      expect(s.correctWordCount, 2);
+
+      game.stopTimer();
+      game.dispose();
+    });
+
+    test('a wrong or conflicting guess never fires it', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      game.selectCipherLetter(s.cipher.encryptLetter('I'));
+      game.enterGuess('I');
+      // Wrong letter into S's cell: even though it touches the word IS,
+      // nothing completed.
+      game.selectCipherLetter(s.cipher.encryptLetter('S'));
+      game.enterGuess('Z');
+      expect(game.lastInputCompletedWord, isFalse);
+
+      // A conflicting (duplicate) assignment is feedback territory for the
+      // conflict cue, never the word cue.
+      game.enterGuess('I');
+      expect(game.lastInputCreatedConflict, isTrue);
+      expect(game.lastInputCompletedWord, isFalse);
+
+      game.stopTimer();
+      game.dispose();
+    });
+
+    test('hints, clears, and undo reset it', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      game.selectCipherLetter(s.cipher.encryptLetter('I'));
+      game.enterGuess('I');
+      game.selectCipherLetter(s.cipher.encryptLetter('S'));
+      game.enterGuess('S');
+      expect(game.lastInputCompletedWord, isTrue);
+
+      game.undo();
+      expect(game.lastInputCompletedWord, isFalse);
+      game.enterGuess('S');
+      expect(game.lastInputCompletedWord, isTrue);
+      game.clearGuess();
+      expect(game.lastInputCompletedWord, isFalse);
+
+      game.revealSelected(); // hints have their own chime
+      expect(game.lastInputCompletedWord, isFalse);
+
+      game.stopTimer();
+      game.dispose();
+    });
+
+    test(
+      'the solving keystroke belongs to success, not the word cue',
+      () async {
+        final store = await storage();
+        final game = GameController(storage: store);
+        game.start(shortQuote, daily: false);
+        final s = game.session!;
+
+        void type(String plain) {
+          game.selectCipherLetter(s.cipher.encryptLetter(plain));
+          game.enterGuess(plain);
+        }
+
+        for (final plain in ['L', 'E', 'S', 'I', 'M', 'O']) {
+          type(plain);
+        }
+        expect(game.completed, isFalse);
+
+        type('R'); // finishes MORE and the whole puzzle at once
+        expect(game.completed, isTrue);
+        expect(game.session!.correctWordCount, 3);
+        expect(game.lastInputCompletedWord, isFalse);
+
+        game.dispose();
+      },
+    );
+  });
 }

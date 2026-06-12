@@ -28,6 +28,7 @@ Outputs (committed to the repo):
   web/favicon.png                               48
   store_assets/play_icon_512.png                512   Play listing (full bleed)
   store_assets/feature_graphic.png              1024x500
+  pages/og-image.png                            1200x630 social-share card
 """
 
 from pathlib import Path
@@ -207,21 +208,15 @@ def make_play_icon():
     save(artwork(512).convert("RGB"), "store_assets/play_icon_512.png")
 
 
-def make_feature_graphic():
-    """Play feature graphic keeps the richer decoded-word motif: QUOTECRACK
-    as solved tiles over their cipher row."""
-    size = (1024, 500)
-    img = vertical_gradient(size, BG_TOP, BG_BOTTOM).convert("RGBA")
-    draw = ImageDraw.Draw(img)
-
+def draw_decoded_tiles(draw, *, canvas_w, y, tile_w, tile_h, gap):
+    """The decoded-word motif: QUOTECRACK as solved tiles over their cipher
+    row. Shared by the Play feature graphic and the social-share card."""
     word = "QUOTECRACK"
-    tile_w, tile_h, gap = 76, 150, 12
+    cipher = "XJWZQVKYBN"  # decorative cipher row
     total = len(word) * tile_w + (len(word) - 1) * gap
-    x = (size[0] - total) / 2
-    y = 105
+    x = (canvas_w - total) / 2
     big = lora(int(tile_h * 0.58))
     small = ImageFont.truetype(str(FONT_UI), int(tile_h * 0.15))
-    cipher = "XJWZQVKYBN"  # decorative cipher row
     for i, ch in enumerate(word):
         color = ACCENT + (255,) if ch in "CK" and i >= 5 else PAPER + (255,)
         cx = x + i * (tile_w + gap) + tile_w / 2
@@ -233,6 +228,16 @@ def make_feature_graphic():
         draw.text((cx - (sb[2] - sb[0]) / 2 - sb[0], ly + tile_h * 0.07 - sb[1]),
                   cipher[i], font=small, fill=UNDERLINE + (210,))
 
+
+def make_feature_graphic():
+    """Play feature graphic keeps the richer decoded-word motif."""
+    size = (1024, 500)
+    img = vertical_gradient(size, BG_TOP, BG_BOTTOM).convert("RGBA")
+    draw = ImageDraw.Draw(img)
+
+    draw_decoded_tiles(draw, canvas_w=size[0], y=105,
+                       tile_w=76, tile_h=150, gap=12)
+
     tag = "Decode famous quotes. One cipher a day."
     tag_font = ImageFont.truetype(str(FONT_UI), 40)
     bbox = draw.textbbox((0, 0), tag, font=tag_font)
@@ -240,6 +245,33 @@ def make_feature_graphic():
               font=tag_font, fill=PAPER + (235,))
 
     save(img.convert("RGB"), "store_assets/feature_graphic.png")
+
+
+def make_og_image():
+    """1200x630 social-share card (og:image / Twitter large card) for the
+    Pages site. Drawn at 2x and Lanczos-downscaled so link previews stay
+    crisp on high-DPI screens."""
+    w, h = 2400, 1260
+    img = vertical_gradient((w, h), BG_TOP, BG_BOTTOM).convert("RGBA")
+    draw = ImageDraw.Draw(img)
+
+    draw_decoded_tiles(draw, canvas_w=w, y=290,
+                       tile_w=176, tile_h=340, gap=28)
+
+    tag = "Decode famous quotes. One cipher a day."
+    tag_font = ImageFont.truetype(str(FONT_UI), 92)
+    bbox = draw.textbbox((0, 0), tag, font=tag_font)
+    draw.text(((w - (bbox[2] - bbox[0])) / 2, 810), tag,
+              font=tag_font, fill=PAPER + (235,))
+
+    sub = "Free · Offline · Daily cryptogram puzzles"
+    sub_font = ImageFont.truetype(str(FONT_UI), 56)
+    sb = draw.textbbox((0, 0), sub, font=sub_font)
+    draw.text(((w - (sb[2] - sb[0])) / 2, 970), sub,
+              font=sub_font, fill=UNDERLINE + (235,))
+
+    save(img.resize((1200, 630), Image.LANCZOS).convert("RGB"),
+         "pages/og-image.png")
 
 
 if __name__ == "__main__":
@@ -250,3 +282,4 @@ if __name__ == "__main__":
     make_web_icons()
     make_play_icon()
     make_feature_graphic()
+    make_og_image()

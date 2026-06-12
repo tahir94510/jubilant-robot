@@ -5,6 +5,7 @@ import 'package:quotecrack/engine/quote_repository.dart';
 import 'package:quotecrack/models/quote.dart';
 import 'package:quotecrack/services/ads/ads_service.dart';
 import 'package:quotecrack/services/haptics_service.dart';
+import 'package:quotecrack/services/music_service.dart';
 import 'package:quotecrack/services/notifications/notification_service.dart';
 import 'package:quotecrack/services/purchases/purchase_service.dart';
 import 'package:quotecrack/services/sound_service.dart';
@@ -27,6 +28,7 @@ class Harness {
     required this.purchases,
     required this.notifications,
     required this.sounds,
+    required this.music,
     required this.settings,
     required this.progress,
     required this.economy,
@@ -39,6 +41,7 @@ class Harness {
   final FakePurchaseService purchases;
   final FakeNotificationService notifications;
   final FakeSoundService sounds;
+  final FakeMusicService music;
   final SettingsController settings;
   final ProgressController progress;
   final EconomyController economy;
@@ -61,6 +64,7 @@ class Harness {
     final sounds = FakeSoundService(
       isEnabled: () => settings.settings.soundEffects,
     );
+    final music = FakeMusicService(isEnabled: () => settings.settings.music);
     final progress = ProgressController(storage: storage);
     final economy = EconomyController(
       storage: storage,
@@ -78,6 +82,7 @@ class Harness {
       purchases: purchases,
       notifications: notifications,
       sounds: sounds,
+      music: music,
       settings: settings,
       progress: progress,
       economy: economy,
@@ -99,6 +104,7 @@ class Harness {
           value: HapticsService(isEnabled: () => settings.settings.haptics),
         ),
         Provider<SoundService>.value(value: sounds),
+        Provider<MusicService>.value(value: music),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: economy),

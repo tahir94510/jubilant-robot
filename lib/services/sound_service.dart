@@ -34,6 +34,7 @@ class SoundService {
         'conflict.wav',
         'success.wav',
         'achievement.wav',
+        'word.wav',
       ]) {
         _players[name] = await _load(name);
       }
@@ -68,6 +69,9 @@ class SoundService {
   void hint() => _play(_players['hint.wav']);
 
   void conflict() => _play(_players['conflict.wav']);
+
+  /// A single soft bell when a typed guess finishes a whole word.
+  void wordComplete() => _play(_players['word.wav']);
 
   void success() => _play(_players['success.wav']);
 

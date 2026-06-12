@@ -22,6 +22,7 @@ class PuzzleScreen extends StatefulWidget {
 class _PuzzleScreenState extends State<PuzzleScreen>
     with WidgetsBindingObserver {
   bool _navigatedToComplete = false;
+  bool _celebrating = false;
 
   @override
   void initState() {
@@ -33,6 +34,13 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  void _goToComplete() {
+    if (!mounted) return;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const PuzzleCompleteScreen()),
+    );
   }
 
   // The solve clock only runs while the puzzle is actually on screen:
@@ -60,18 +68,18 @@ class _PuzzleScreenState extends State<PuzzleScreen>
       return const Scaffold(body: SizedBox.shrink());
     }
 
-    // Completion -> celebrate once, replace with the complete screen.
+    // Completion -> celebrate once: success cue, a left-to-right wave of
+    // green across the board, then the complete screen. Reduced-motion
+    // users skip the wave and navigate immediately.
     if (game.completed && !_navigatedToComplete) {
       _navigatedToComplete = true;
       haptics.success();
       sounds.success();
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const PuzzleCompleteScreen()),
-          );
-        }
-      });
+      if (MediaQuery.of(context).disableAnimations) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => _goToComplete());
+      } else {
+        _celebrating = true;
+      }
     }
 
     final minutes = game.elapsed.inMinutes;
@@ -118,15 +126,33 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 padding: const EdgeInsets.fromLTRB(12, 18, 12, 8),
                 child: Column(
                   children: [
-                    CipherBoard(
-                      session: session,
-                      selected: game.selectedCipherLetter,
-                      errorChecking: settings.errorChecking,
-                      onSelect: (c) {
-                        haptics.tap();
-                        game.selectCipherLetter(c);
-                      },
-                    ),
+                    if (_celebrating)
+                      // The wave drives navigation from onEnd: animation
+                      // frames keep the test clock alive (a bare
+                      // Future.delayed would stall pumpAndSettle).
+                      TweenAnimationBuilder<double>(
+                        tween: Tween(begin: 0, end: 1),
+                        duration: const Duration(milliseconds: 620),
+                        curve: Curves.easeOut,
+                        onEnd: _goToComplete,
+                        builder: (context, wave, _) => CipherBoard(
+                          session: session,
+                          selected: null,
+                          errorChecking: settings.errorChecking,
+                          onSelect: (_) {},
+                          solveWave: wave,
+                        ),
+                      )
+                    else
+                      CipherBoard(
+                        session: session,
+                        selected: game.selectedCipherLetter,
+                        errorChecking: settings.errorChecking,
+                        onSelect: (c) {
+                          haptics.tap();
+                          game.selectCipherLetter(c);
+                        },
+                      ),
                     const SizedBox(height: 16),
                     Text(
                       '— ${session.quote.author}',
@@ -165,7 +191,13 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                         sounds.conflict();
                       } else {
                         haptics.tap();
-                        sounds.tap();
+                        // Finishing a whole word earns a brighter blip than
+                        // a plain key tap.
+                        if (game.lastInputCompletedWord) {
+                          sounds.wordComplete();
+                        } else {
+                          sounds.tap();
+                        }
                       }
                     },
                     onBackspace: () {

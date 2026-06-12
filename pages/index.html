@@ -3,48 +3,207 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quotecrack — Cryptogram Puzzles</title>
-  <meta name="description" content="Quotecrack: decode famous quotes with daily cryptogram puzzles. Free, offline word puzzles for Android.">
+  <title>Quotecrack — Daily Cryptogram Puzzles, Free &amp; Offline</title>
+  <meta name="description" content="Quotecrack: decode famous quotes with daily cryptogram puzzles. 460+ hand-picked quotes, streaks, achievements — free, offline, no account. Play in your browser or on Android.">
   <meta name="theme-color" content="#1C2541">
+  <link rel="canonical" href="https://tahir94510.github.io/jubilant-robot/">
   <!-- Icons live in the app build, copied to ./app/ by the Pages assembly. -->
+  <link rel="icon" type="image/svg+xml" href="./app/favicon.svg">
   <link rel="icon" type="image/png" href="./app/favicon.png">
   <link rel="apple-touch-icon" href="./app/icons/Icon-192.png">
+
   <meta property="og:title" content="Quotecrack — Cryptogram Puzzles">
   <meta property="og:description" content="Decode famous quotes. One cipher a day. Free, offline cryptogram puzzles.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tahir94510.github.io/jubilant-robot/">
-  <meta property="og:image" content="https://tahir94510.github.io/jubilant-robot/app/icons/Icon-512.png">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://tahir94510.github.io/jubilant-robot/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quotecrack — Cryptogram Puzzles">
+  <meta name="twitter:description" content="Decode famous quotes. One cipher a day. Free, offline cryptogram puzzles.">
+  <meta name="twitter:image" content="https://tahir94510.github.io/jubilant-robot/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Quotecrack: Cryptogram Puzzle",
+    "url": "https://tahir94510.github.io/jubilant-robot/",
+    "image": "https://tahir94510.github.io/jubilant-robot/og-image.png",
+    "description": "Decode famous quotes with daily cryptogram puzzles. 460+ hand-picked quotes, streaks, achievements — free, offline, no account.",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "Android",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
   <style>
-    :root { color-scheme: light dark; }
+    :root {
+      color-scheme: light dark;
+      --ink: #F7F5F0;
+      --ink-dim: rgba(247, 245, 240, .78);
+      --coral: #EE6C4D;
+      --sky: #98C1D9;
+      --card: rgba(255, 255, 255, .07);
+      --card-border: rgba(255, 255, 255, .12);
+    }
+    * { box-sizing: border-box; }
     body {
-      margin: 0; min-height: 100vh; display: flex; align-items: center;
-      justify-content: center; font-family: system-ui, sans-serif;
-      background: linear-gradient(180deg, #1C2541, #3D5A80); color: #F7F5F0;
+      margin: 0; min-height: 100vh;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg, #1C2541 0%, #2A3A5E 55%, #3D5A80 100%);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
     }
-    main { text-align: center; padding: 48px 24px; max-width: 560px; }
-    h1 { font-size: 2.4rem; letter-spacing: -.5px; margin-bottom: .4rem; }
-    p.tag { opacity: .85; font-size: 1.1rem; margin-top: 0; }
+    main { max-width: 980px; margin: 0 auto; padding: 64px 24px 48px; }
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+
+    /* --- Hero --- */
+    header { text-align: center; }
+    header svg { display: block; margin: 0 auto; filter: drop-shadow(0 10px 30px rgba(0,0,0,.35)); }
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      letter-spacing: -.5px; margin: 22px 0 8px;
+    }
+    p.tag { color: var(--ink-dim); font-size: clamp(1.05rem, 2.6vw, 1.25rem); margin: 0 0 10px; }
+    p.lead { color: var(--ink-dim); max-width: 620px; margin: 0 auto; line-height: 1.6; }
+    .cta { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
     .btn {
-      display: inline-block; margin: 10px 8px 0; padding: 14px 26px;
-      border-radius: 12px; text-decoration: none; font-weight: 600;
-      background: #EE6C4D; color: #fff;
+      display: inline-block; padding: 15px 28px; border-radius: 14px;
+      text-decoration: none; font-weight: 600; font-size: 1.02rem;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
-    .btn.secondary { background: rgba(255,255,255,.14); color: #F7F5F0; }
-    footer { margin-top: 40px; font-size: .85rem; opacity: .65; }
-    footer a { color: #98C1D9; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary { background: var(--coral); color: #fff; box-shadow: 0 8px 24px rgba(238,108,77,.35); }
+    .btn.secondary { background: rgba(255,255,255,.12); color: var(--ink); border: 1px solid var(--card-border); }
+
+    /* --- Decoded-tiles strip (the in-game board, in pure CSS) --- */
+    .tiles {
+      display: flex; justify-content: center; gap: clamp(4px, 1.2vw, 12px);
+      margin: 56px auto 0; max-width: 720px;
+    }
+    .tile { display: flex; flex-direction: column; align-items: center; gap: 7px; flex: 1; min-width: 0; }
+    .tile .plain {
+      font-family: Georgia, 'Times New Roman', serif; font-weight: 700;
+      font-size: clamp(1.15rem, 4.6vw, 2.5rem); line-height: 1;
+    }
+    .tile.accent .plain { color: var(--coral); }
+    .tile .bar { width: 100%; height: 4px; border-radius: 2px; background: var(--sky); }
+    .tile .cipher { font-size: clamp(.6rem, 1.8vw, .85rem); font-weight: 600; color: var(--sky); }
+
+    /* --- Features --- */
+    section.features { margin-top: 72px; }
+    h2 { text-align: center; font-size: 1.05rem; font-weight: 700; letter-spacing: 2.5px; color: var(--sky); margin: 0 0 26px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+    .card {
+      background: var(--card); border: 1px solid var(--card-border);
+      border-radius: 16px; padding: 22px 20px;
+    }
+    .card .icon { font-size: 1.5rem; line-height: 1; }
+    .card h3 { margin: 12px 0 6px; font-size: 1.05rem; }
+    .card p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--ink-dim); }
+
+    footer { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--card-border);
+      text-align: center; font-size: .85rem; color: rgba(247,245,240,.55); }
+    footer a { color: var(--sky); }
+    footer .links { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .btn, .btn:hover { transition: none; transform: none; }
+    }
   </style>
 </head>
 <body>
   <main>
-    <h1>Quotecrack</h1>
-    <p class="tag">Decode famous quotes. One cipher a day.</p>
-    <p>A clean, fully offline cryptogram puzzle game: a daily challenge,
-       450+ hand-curated quotes, streaks, achievements, and zero clutter.</p>
-    <a class="btn" href="./app/">Play in your browser</a>
-    <a class="btn secondary" href="https://play.google.com/store/apps/details?id=io.github.tahir94510.quotecrack">Get it on Google Play</a>
+    <header>
+      <svg width="104" height="104" viewBox="0 0 96 96" role="img" aria-label="Quotecrack logo">
+        <defs>
+          <linearGradient id="qc-bg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1C2541"/>
+            <stop offset="1" stop-color="#3D5A80"/>
+          </linearGradient>
+        </defs>
+        <rect width="96" height="96" rx="17" fill="url(#qc-bg)" stroke="rgba(255,255,255,.18)"/>
+        <text x="40" y="42" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="58" fill="#F7F5F0" text-anchor="middle" dominant-baseline="central">Q</text>
+        <text x="75" y="27" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="25" fill="#EE6C4D" text-anchor="middle" dominant-baseline="central">?</text>
+        <rect x="15" y="76" width="66" height="5.3" rx="2.65" fill="#98C1D9"/>
+      </svg>
+      <h1>Quotecrack</h1>
+      <p class="tag">Decode famous quotes. One cipher a day.</p>
+      <p class="lead">A clean, fully offline cryptogram puzzle game: a daily
+        challenge shared by every player worldwide, 460+ hand-curated quotes
+        from Twain to Shakespeare, streaks, achievements, a soothing ambient
+        soundtrack — and zero clutter.</p>
+      <div class="cta">
+        <a class="btn primary" href="./app/">Play in your browser</a>
+        <a class="btn secondary" href="https://play.google.com/store/apps/details?id=io.github.tahir94510.quotecrack">Get it on Google Play</a>
+      </div>
+
+      <div class="tiles" aria-hidden="true">
+        <div class="tile"><span class="plain">Q</span><span class="bar"></span><span class="cipher">X</span></div>
+        <div class="tile"><span class="plain">U</span><span class="bar"></span><span class="cipher">J</span></div>
+        <div class="tile"><span class="plain">O</span><span class="bar"></span><span class="cipher">W</span></div>
+        <div class="tile"><span class="plain">T</span><span class="bar"></span><span class="cipher">Z</span></div>
+        <div class="tile"><span class="plain">E</span><span class="bar"></span><span class="cipher">Q</span></div>
+        <div class="tile accent"><span class="plain">C</span><span class="bar"></span><span class="cipher">V</span></div>
+        <div class="tile"><span class="plain">R</span><span class="bar"></span><span class="cipher">K</span></div>
+        <div class="tile"><span class="plain">A</span><span class="bar"></span><span class="cipher">Y</span></div>
+        <div class="tile accent"><span class="plain">C</span><span class="bar"></span><span class="cipher">B</span></div>
+        <div class="tile accent"><span class="plain">K</span><span class="bar"></span><span class="cipher">N</span></div>
+      </div>
+    </header>
+
+    <section class="features" aria-label="Features">
+      <h2>WHY QUOTECRACK</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="icon">🗓️</div>
+          <h3>A daily cipher</h3>
+          <p>One puzzle a day, the same quote for everyone on Earth. Solve it,
+            keep your streak alive, and share your time — spoiler-free.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📜</div>
+          <h3>460+ classic quotes</h3>
+          <p>Wisdom, humor, proverbs, literature and science — every quote
+            hand-picked, attributed, and public domain.</p>
+        </div>
+        <div class="card">
+          <div class="icon">✈️</div>
+          <h3>Fully offline</h3>
+          <p>No account, no sign-up, no connection needed. On a plane, on the
+            subway — your puzzles are always with you.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🔥</div>
+          <h3>Streaks &amp; achievements</h3>
+          <p>A calendar heatmap, 16 achievements, personal bests — gentle
+            motivation, never pressure.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🎨</div>
+          <h3>Made for comfort</h3>
+          <p>Light, dark and sepia themes, adjustable text size, a
+            colorblind-friendly palette, and a calm ambient soundtrack.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🆓</div>
+          <h3>Free to play</h3>
+          <p>The full daily game is free. One optional purchase removes ads
+            forever and unlocks two bonus packs.</p>
+        </div>
+      </div>
+    </section>
+
     <footer>
-      <a href="./privacy.html">Privacy Policy</a>
+      <div class="links">
+        <a href="./privacy.html">Privacy Policy</a>
+        <a href="./app/">Web version</a>
+        <a href="https://play.google.com/store/apps/details?id=io.github.tahir94510.quotecrack">Google Play</a>
+      </div>
+      <div>© 2026 Quotecrack · An offline word game, built with care.</div>
     </footer>
   </main>
 </body>
