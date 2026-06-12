@@ -22,6 +22,8 @@ class PuzzleScreen extends StatefulWidget {
 class _PuzzleScreenState extends State<PuzzleScreen>
     with WidgetsBindingObserver {
   bool _navigatedToComplete = false;
+  bool _celebrating = false;
+  bool _completeShown = false;
 
   @override
   void initState() {
@@ -33,6 +35,16 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  /// Idempotent: both the wave's onEnd and a back press during the wave
+  /// route here, and only the first call navigates.
+  void _goToComplete() {
+    if (!mounted || _completeShown) return;
+    _completeShown = true;
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const PuzzleCompleteScreen()),
+    );
   }
 
   // The solve clock only runs while the puzzle is actually on screen:
@@ -60,124 +72,161 @@ class _PuzzleScreenState extends State<PuzzleScreen>
       return const Scaffold(body: SizedBox.shrink());
     }
 
-    // Completion -> celebrate once, replace with the complete screen.
+    // Completion -> celebrate once: success cue, a left-to-right wave of
+    // green across the board, then the complete screen. Reduced-motion
+    // users skip the wave and navigate immediately.
     if (game.completed && !_navigatedToComplete) {
       _navigatedToComplete = true;
       haptics.success();
       sounds.success();
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        if (mounted) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => const PuzzleCompleteScreen()),
-          );
-        }
-      });
+      if (MediaQuery.of(context).disableAnimations) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => _goToComplete());
+      } else {
+        _celebrating = true;
+      }
     }
 
     final minutes = game.elapsed.inMinutes;
     final seconds = (game.elapsed.inSeconds % 60).toString().padLeft(2, '0');
 
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            game.stopTimer();
-            Navigator.of(context).pop();
-          },
-        ),
-        title: Text(
-          game.isDaily
-              ? 'Daily Puzzle'
-              : session.quote.difficulty.name[0].toUpperCase() +
-                    session.quote.difficulty.name.substring(1),
-        ),
-        actions: [
-          if (settings.showTimer)
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: Text(
-                  '$minutes:$seconds',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                    color: scheme.onSurface.withValues(alpha: .6),
+    // Leaving during the 620ms celebration must not abandon the completion
+    // flow — the solve is only recorded on the complete screen. Back
+    // (button or gesture) skips the wave and lands there instead.
+    return PopScope(
+      canPop: !_celebrating,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && _celebrating) _goToComplete();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              if (_celebrating) {
+                _goToComplete();
+                return;
+              }
+              game.stopTimer();
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            game.isDaily
+                ? 'Daily Puzzle'
+                : session.quote.difficulty.name[0].toUpperCase() +
+                      session.quote.difficulty.name.substring(1),
+          ),
+          actions: [
+            if (settings.showTimer)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 16),
+                  child: Text(
+                    '$minutes:$seconds',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      fontFeatures: const [FontFeature.tabularFigures()],
+                      color: scheme.onSurface.withValues(alpha: .6),
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(12, 18, 12, 8),
+          ],
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(12, 18, 12, 8),
+                  child: Column(
+                    children: [
+                      if (_celebrating)
+                        // The wave drives navigation from onEnd: animation
+                        // frames keep the test clock alive (a bare
+                        // Future.delayed would stall pumpAndSettle).
+                        TweenAnimationBuilder<double>(
+                          tween: Tween(begin: 0, end: 1),
+                          duration: const Duration(milliseconds: 620),
+                          curve: Curves.easeOut,
+                          onEnd: _goToComplete,
+                          builder: (context, wave, _) => CipherBoard(
+                            session: session,
+                            selected: null,
+                            errorChecking: settings.errorChecking,
+                            onSelect: (_) {},
+                            solveWave: wave,
+                          ),
+                        )
+                      else
+                        CipherBoard(
+                          session: session,
+                          selected: game.selectedCipherLetter,
+                          errorChecking: settings.errorChecking,
+                          onSelect: (c) {
+                            haptics.tap();
+                            game.selectCipherLetter(c);
+                          },
+                        ),
+                      const SizedBox(height: 16),
+                      Text(
+                        '— ${session.quote.author}',
+                        style: TextStyle(
+                          fontFamily: 'Lora',
+                          fontStyle: FontStyle.italic,
+                          fontSize: 15,
+                          color: scheme.onSurface.withValues(alpha: .45),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              // Controls keep a bounded text scale: the quote board above
+              // honors the user's large-type preference fully, but buttons
+              // and keys must never overflow on narrow screens.
+              MediaQuery.withClampedTextScaling(
+                maxScaleFactor: 1.2,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    CipherBoard(
-                      session: session,
-                      selected: game.selectedCipherLetter,
-                      errorChecking: settings.errorChecking,
-                      onSelect: (c) {
+                    const HintBar(),
+                    const SizedBox(height: 4),
+                    PuzzleKeyboard(
+                      usedLetters: session.usedPlainLetters,
+                      canUndo: game.canUndo,
+                      onUndo: () {
                         haptics.tap();
-                        game.selectCipherLetter(c);
+                        game.undo();
+                      },
+                      onLetter: (ch) {
+                        game.enterGuess(ch);
+                        if (game.lastInputCreatedConflict) {
+                          haptics.error();
+                          sounds.conflict();
+                        } else {
+                          haptics.tap();
+                          // Finishing a whole word earns a brighter blip than
+                          // a plain key tap.
+                          if (game.lastInputCompletedWord) {
+                            sounds.wordComplete();
+                          } else {
+                            sounds.tap();
+                          }
+                        }
+                      },
+                      onBackspace: () {
+                        haptics.tap();
+                        game.clearGuess();
                       },
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      '— ${session.quote.author}',
-                      style: TextStyle(
-                        fontFamily: 'Lora',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 15,
-                        color: scheme.onSurface.withValues(alpha: .45),
-                      ),
-                    ),
+                    const SizedBox(height: 4),
                   ],
                 ),
               ),
-            ),
-            // Controls keep a bounded text scale: the quote board above
-            // honors the user's large-type preference fully, but buttons
-            // and keys must never overflow on narrow screens.
-            MediaQuery.withClampedTextScaling(
-              maxScaleFactor: 1.2,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const HintBar(),
-                  const SizedBox(height: 4),
-                  PuzzleKeyboard(
-                    usedLetters: session.usedPlainLetters,
-                    canUndo: game.canUndo,
-                    onUndo: () {
-                      haptics.tap();
-                      game.undo();
-                    },
-                    onLetter: (ch) {
-                      game.enterGuess(ch);
-                      if (game.lastInputCreatedConflict) {
-                        haptics.error();
-                        sounds.conflict();
-                      } else {
-                        haptics.tap();
-                        sounds.tap();
-                      }
-                    },
-                    onBackspace: () {
-                      haptics.tap();
-                      game.clearGuess();
-                    },
-                  ),
-                  const SizedBox(height: 4),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

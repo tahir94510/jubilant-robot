@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/app_settings.dart';
+import 'page_transitions.dart';
 import 'palette.dart';
 
 /// Three handcrafted themes. UI text is Inter; quotes render in Lora
@@ -81,6 +82,12 @@ abstract final class AppThemes {
     );
     return base.copyWith(
       extensions: [palette],
+      pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          for (final platform in TargetPlatform.values)
+            platform: const FadeThroughPageTransitionsBuilder(),
+        },
+      ),
       appBarTheme: AppBarTheme(
         backgroundColor: surface,
         foregroundColor: onSurface,

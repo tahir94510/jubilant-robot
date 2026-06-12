@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'config/app_config.dart';
+import 'services/music_service.dart';
 import 'state/settings_controller.dart';
 import 'ui/screens/home_screen.dart';
 import 'ui/screens/onboarding_screen.dart';
@@ -13,6 +14,7 @@ class QuotecrackApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settings = context.watch<SettingsController>().settings;
+    final music = context.read<MusicService>();
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
 
     return MaterialApp(
@@ -32,7 +34,14 @@ class QuotecrackApp extends StatelessWidget {
             .clamp(0.85, 1.6);
         return MediaQuery(
           data: mq.copyWith(textScaler: TextScaler.linear(combined)),
-          child: child!,
+          // Browsers only allow audio after a user gesture, so the music
+          // bed re-attempts on taps until one sticks (no-op once playing,
+          // and on Android, where the post-frame start already succeeded).
+          child: Listener(
+            behavior: HitTestBehavior.translucent,
+            onPointerDown: (_) => music.ensureStarted(),
+            child: child!,
+          ),
         );
       },
       home: settings.onboardingDone

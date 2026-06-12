@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../services/purchases/purchase_service.dart';
 import '../../state/economy_controller.dart';
+import '../widgets/brand_mark.dart';
 
 /// One-time premium unlock pitch. Price comes live from the store.
 class PaywallScreen extends StatelessWidget {
@@ -64,11 +65,7 @@ class PaywallScreen extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 64,
-                      color: scheme.primary,
-                    ),
+                    const Center(child: BrandMark(size: 72)),
                     const SizedBox(height: 12),
                     Text(
                       'Solve without limits',

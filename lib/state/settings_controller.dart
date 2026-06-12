@@ -48,6 +48,11 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  Future<void> setMusic(bool value) {
+    settings.music = value;
+    return _save();
+  }
+
   Future<void> setColorblindMode(bool value) {
     settings.colorblindMode = value;
     return _save();
@@ -70,6 +75,11 @@ class SettingsController extends ChangeNotifier {
 
   Future<void> markOnboardingDone() {
     settings.onboardingDone = true;
+    return _save();
+  }
+
+  Future<void> markReminderNudgeDone() {
+    settings.reminderNudgeDone = true;
     return _save();
   }
 

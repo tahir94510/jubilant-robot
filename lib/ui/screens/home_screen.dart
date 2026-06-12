@@ -9,6 +9,7 @@ import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/banner_ad_slot.dart';
+import '../widgets/brand_mark.dart';
 import '../widgets/streak_badge.dart';
 import 'achievements_screen.dart';
 import 'packs_screen.dart';
@@ -52,14 +53,13 @@ class HomeScreen extends StatelessWidget {
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Quotecrack',
-                              style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w700,
-                                letterSpacing: -0.5,
-                                color: scheme.onSurface,
-                              ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                BrandMark(size: 30),
+                                SizedBox(width: 10),
+                                BrandWordmark(fontSize: 26),
+                              ],
                             ),
                           ),
                         ),

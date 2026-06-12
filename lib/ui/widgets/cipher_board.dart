@@ -14,6 +14,7 @@ class CipherBoard extends StatelessWidget {
     required this.selected,
     required this.errorChecking,
     required this.onSelect,
+    this.solveWave,
   });
 
   final PuzzleSession session;
@@ -21,12 +22,21 @@ class CipherBoard extends StatelessWidget {
   final bool errorChecking;
   final void Function(String cipherLetter) onSelect;
 
+  /// 0..1 progress of the post-solve celebration: cells up to this share of
+  /// the text light up in success color, sweeping left to right. Null when
+  /// the puzzle is still being solved.
+  final double? solveWave;
+
   @override
   Widget build(BuildContext context) {
     final conflicts = session.conflicts;
     final boardFull = session.progress >= 1.0;
 
     final words = session.cipherText.split(' ');
+    final totalLetters = session.cipherText
+        .split('')
+        .where(isBoardLetter)
+        .length;
 
     // Cell width adapts to screen and quote length so long quotes still fit
     // comfortably; text scale is applied by MediaQuery at app level. The
@@ -46,32 +56,45 @@ class CipherBoard extends StatelessWidget {
           words: words,
         );
 
+        var letterIndex = 0;
+        final wordRows = <Widget>[];
+        for (final word in words) {
+          final cells = <Widget>[];
+          for (final ch in word.split('')) {
+            if (isBoardLetter(ch)) {
+              final inWave =
+                  solveWave != null &&
+                  totalLetters > 0 &&
+                  letterIndex / totalLetters <= solveWave!;
+              letterIndex++;
+              cells.add(
+                LetterCell(
+                  cipherLetter: ch,
+                  guess: session.guesses[ch],
+                  width: cellWidth,
+                  state: inWave
+                      ? CellState.solved
+                      : _stateFor(ch, conflicts, boardFull),
+                  onTap: () => onSelect(ch),
+                ),
+              );
+            } else {
+              cells.add(
+                PunctuationCell(
+                  char: ch,
+                  width: cellWidth * kPunctuationCellFactor,
+                ),
+              );
+            }
+          }
+          wordRows.add(Row(mainAxisSize: MainAxisSize.min, children: cells));
+        }
+
         return Wrap(
           alignment: WrapAlignment.center,
           runSpacing: 14,
           spacing: cellWidth * 0.45,
-          children: [
-            for (final word in words)
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  for (final ch in word.split(''))
-                    if (isBoardLetter(ch))
-                      LetterCell(
-                        cipherLetter: ch,
-                        guess: session.guesses[ch],
-                        width: cellWidth,
-                        state: _stateFor(ch, conflicts, boardFull),
-                        onTap: () => onSelect(ch),
-                      )
-                    else
-                      PunctuationCell(
-                        char: ch,
-                        width: cellWidth * kPunctuationCellFactor,
-                      ),
-                ],
-              ),
-          ],
+          children: wordRows,
         );
       },
     );

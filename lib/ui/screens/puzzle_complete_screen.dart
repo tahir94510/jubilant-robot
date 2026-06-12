@@ -7,14 +7,17 @@ import '../../models/achievement.dart';
 import '../../models/pack.dart';
 import '../../models/quote.dart';
 import '../../services/ads/ads_service.dart';
+import '../../services/notifications/notification_service.dart';
 import '../../services/review_service.dart';
 import '../../services/share_service.dart';
 import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
+import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/banner_ad_slot.dart';
+import '../widgets/confetti_burst.dart';
 import '../widgets/scale_safe.dart';
 import 'puzzle_screen.dart';
 
@@ -82,15 +85,34 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final game = context.read<GameController>();
     final progress = context.read<ProgressController>();
     final repo = context.read<QuoteRepository>();
+    final settingsController = context.watch<SettingsController>();
     final session = game.session;
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+
+    // The one-time streak-protection invite: the moment a player finishes
+    // their first daily is when a reminder is most welcome — and Settings
+    // is where nobody would find it on their own.
+    final showReminderNudge =
+        game.isDaily &&
+        context.read<NotificationService>().supported &&
+        !settingsController.settings.reminderEnabled &&
+        !settingsController.settings.reminderNudgeDone;
 
     if (session == null) return const Scaffold(body: SizedBox.shrink());
 
     final quote = session.quote;
     final minutes = game.elapsed.inMinutes;
     final seconds = (game.elapsed.inSeconds % 60).toString().padLeft(2, '0');
+
+    // A fresh achievement (or a weekly streak milestone) upgrades the
+    // confetti; the key swap replays the burst when achievements land a
+    // frame after entry.
+    final bigCelebration =
+        _newAchievements.isNotEmpty ||
+        (game.isDaily &&
+            progress.displayStreak > 0 &&
+            progress.displayStreak % 7 == 0);
 
     return Scaffold(
       appBar: AppBar(
@@ -101,155 +123,173 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
         title: Text(game.isDaily ? 'Daily solved!' : 'Solved!'),
       ),
       body: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
-                children: [
-                  // A small celebratory pop on entrance.
-                  TweenAnimationBuilder<double>(
-                    tween: Tween(begin: 0.4, end: 1),
-                    duration: const Duration(milliseconds: 420),
-                    curve: Curves.elasticOut,
-                    builder: (context, scale, child) =>
-                        Transform.scale(scale: scale, child: child),
-                    child: Icon(
-                      Icons.check_circle_outline,
-                      size: 48,
-                      color: palette.success,
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  Text(
-                    '\u{201C}${quote.text}\u{201D}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Lora',
-                      fontSize: 22,
-                      height: 1.45,
-                      color: scheme.onSurface,
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  Text(
-                    '\u{2014} ${quote.author}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'Lora',
-                      fontStyle: FontStyle.italic,
-                      fontSize: 16,
-                      color: scheme.onSurface.withValues(alpha: .65),
-                    ),
-                  ),
-                  Text(
-                    quote.source,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: scheme.onSurface.withValues(alpha: .4),
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  // Wrap, not Row: with three chips (daily) on a narrow
-                  // phone the row overflowed; now extras flow to a new line.
-                  Wrap(
-                    alignment: WrapAlignment.center,
-                    spacing: 10,
-                    runSpacing: 8,
+            Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
                     children: [
-                      _StatChip(
-                        icon: Icons.timer_outlined,
-                        label: '$minutes:$seconds',
-                      ),
-                      _StatChip(
-                        icon: Icons.lightbulb_outline,
-                        label: game.hintsUsed == 0
-                            ? 'No hints'
-                            : '${game.hintsUsed} hint${game.hintsUsed == 1 ? '' : 's'}',
-                      ),
-                      if (game.isDaily)
-                        _StatChip(
-                          icon: Icons.local_fire_department_outlined,
-                          label: '${progress.displayStreak} day streak',
+                      // A small celebratory pop on entrance.
+                      TweenAnimationBuilder<double>(
+                        tween: Tween(begin: 0.4, end: 1),
+                        duration: const Duration(milliseconds: 420),
+                        curve: Curves.elasticOut,
+                        builder: (context, scale, child) =>
+                            Transform.scale(scale: scale, child: child),
+                        child: Icon(
+                          Icons.check_circle_outline,
+                          size: 48,
+                          color: palette.success,
                         ),
-                    ],
-                  ),
-                  if (_newAchievements.isNotEmpty) ...[
-                    const SizedBox(height: 20),
-                    for (final a in _newAchievements)
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Card(
-                          child: ListTile(
-                            leading: Icon(a.icon, color: scheme.primary),
-                            title: Text(
-                              'Achievement: ${a.title}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
+                      ),
+                      const SizedBox(height: 14),
+                      Text(
+                        '\u{201C}${quote.text}\u{201D}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Lora',
+                          fontSize: 22,
+                          height: 1.45,
+                          color: scheme.onSurface,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      Text(
+                        '\u{2014} ${quote.author}',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Lora',
+                          fontStyle: FontStyle.italic,
+                          fontSize: 16,
+                          color: scheme.onSurface.withValues(alpha: .65),
+                        ),
+                      ),
+                      Text(
+                        quote.source,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: scheme.onSurface.withValues(alpha: .4),
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      // Wrap, not Row: with three chips (daily) on a narrow
+                      // phone the row overflowed; now extras flow to a new line.
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 10,
+                        runSpacing: 8,
+                        children: [
+                          _StatChip(
+                            icon: Icons.timer_outlined,
+                            label: '$minutes:$seconds',
+                          ),
+                          _StatChip(
+                            icon: Icons.lightbulb_outline,
+                            label: game.hintsUsed == 0
+                                ? 'No hints'
+                                : '${game.hintsUsed} hint${game.hintsUsed == 1 ? '' : 's'}',
+                          ),
+                          if (game.isDaily)
+                            _StatChip(
+                              icon: Icons.local_fire_department_outlined,
+                              label: '${progress.displayStreak} day streak',
+                            ),
+                        ],
+                      ),
+                      if (_newAchievements.isNotEmpty) ...[
+                        const SizedBox(height: 20),
+                        for (final a in _newAchievements)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Card(
+                              child: ListTile(
+                                leading: Icon(a.icon, color: scheme.primary),
+                                title: Text(
+                                  'Achievement: ${a.title}',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                subtitle: Text(a.description),
                               ),
                             ),
-                            subtitle: Text(a.description),
+                          ),
+                      ],
+                      if (showReminderNudge) ...[
+                        const SizedBox(height: 20),
+                        _ReminderNudgeCard(controller: settingsController),
+                      ],
+                    ],
+                  ),
+                ),
+                // Actions stay pinned above the banner so "Back to menu" is
+                // always reachable without scrolling — on 360x800 phones the
+                // buttons used to sit below the fold inside the list.
+                ScaleSafe(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 8, 24, 10),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (game.isDaily)
+                          SizedBox(
+                            width: double.infinity,
+                            child: FilledButton.icon(
+                              onPressed: () => _shareDaily(context),
+                              icon: const Icon(Icons.share_outlined),
+                              label: const Text('Share result'),
+                            ),
+                          )
+                        else if (_nextInPack(repo, game) != null)
+                          SizedBox(
+                            width: double.infinity,
+                            child: FilledButton.icon(
+                              onPressed: () {
+                                final next = _nextInPack(repo, game)!;
+                                game.start(
+                                  next,
+                                  daily: false,
+                                  packId: game.originPackId,
+                                );
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (_) => const PuzzleScreen(),
+                                  ),
+                                );
+                              },
+                              icon: const Icon(Icons.arrow_forward),
+                              label: const Text('Next puzzle'),
+                            ),
+                          ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          width: double.infinity,
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.of(
+                              context,
+                            ).popUntil((r) => r.isFirst),
+                            child: const Text('Back to menu'),
                           ),
                         ),
-                      ),
-                  ],
-                ],
-              ),
-            ),
-            // Actions stay pinned above the banner so "Back to menu" is
-            // always reachable without scrolling — on 360x800 phones the
-            // buttons used to sit below the fold inside the list.
-            ScaleSafe(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 8, 24, 10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (game.isDaily)
-                      SizedBox(
-                        width: double.infinity,
-                        child: FilledButton.icon(
-                          onPressed: () => _shareDaily(context),
-                          icon: const Icon(Icons.share_outlined),
-                          label: const Text('Share result'),
-                        ),
-                      )
-                    else if (_nextInPack(repo, game) != null)
-                      SizedBox(
-                        width: double.infinity,
-                        child: FilledButton.icon(
-                          onPressed: () {
-                            final next = _nextInPack(repo, game)!;
-                            game.start(
-                              next,
-                              daily: false,
-                              packId: game.originPackId,
-                            );
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (_) => const PuzzleScreen(),
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.arrow_forward),
-                          label: const Text('Next puzzle'),
-                        ),
-                      ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton(
-                        onPressed: () =>
-                            Navigator.of(context).popUntil((r) => r.isFirst),
-                        child: const Text('Back to menu'),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
+                const BannerAdSlot(slotName: 'complete'),
+              ],
+            ),
+            // Confetti overlays everything but never blocks taps; the key
+            // swap replays a bigger burst when fresh achievements land a
+            // frame after entry.
+            Positioned.fill(
+              child: ConfettiBurst(
+                key: ValueKey(bigCelebration),
+                particleCount: bigCelebration ? 150 : 100,
               ),
             ),
-            const BannerAdSlot(slotName: 'complete'),
           ],
         ),
       ),
@@ -281,6 +321,82 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       }
     }
     return null;
+  }
+}
+
+/// One-time invite to enable the daily reminder, shown right after a daily
+/// solve. Either answer dismisses it forever; the time (default 9:00) can
+/// be changed later in Settings.
+class _ReminderNudgeCard extends StatelessWidget {
+  const _ReminderNudgeCard({required this.controller});
+
+  final SettingsController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(18, 14, 18, 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.alarm_outlined, size: 20, color: scheme.primary),
+                const SizedBox(width: 8),
+                const Expanded(
+                  child: Text(
+                    'Protect your streak',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'One gentle nudge a day, so tomorrow’s puzzle never slips '
+              'by. You can change the time in Settings.',
+              style: TextStyle(
+                fontSize: 13,
+                height: 1.4,
+                color: scheme.onSurface.withValues(alpha: .6),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // Wrap: both labels stay readable on narrow phones with large
+            // text instead of overflowing a Row.
+            Wrap(
+              alignment: WrapAlignment.end,
+              spacing: 4,
+              children: [
+                TextButton(
+                  onPressed: () => controller.markReminderNudgeDone(),
+                  child: const Text('Not now'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    final ok = await controller.setReminder(enabled: true);
+                    await controller.markReminderNudgeDone();
+                    if (!ok && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Notification permission was denied — you can '
+                            'enable it anytime in Settings.',
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Remind me daily'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 

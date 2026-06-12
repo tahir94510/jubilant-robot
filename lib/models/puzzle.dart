@@ -60,6 +60,18 @@ class PuzzleSession {
   bool isGuessCorrect(String cipherLetter) =>
       guesses[cipherLetter] == cipher.decryptLetter(cipherLetter);
 
+  /// Words whose every letter is currently guessed correctly — drives the
+  /// small "word done" progress cue.
+  int get correctWordCount {
+    var count = 0;
+    for (final word in cipherText.split(' ')) {
+      final letters = lettersOnly(word);
+      if (letters.isEmpty) continue;
+      if (letters.split('').every(isGuessCorrect)) count++;
+    }
+    return count;
+  }
+
   /// For persistence.
   Map<String, dynamic> toJson() => {
     'quoteId': quote.id,

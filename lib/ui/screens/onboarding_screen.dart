@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../models/quote.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
+import '../widgets/brand_mark.dart';
 import 'home_screen.dart';
 import 'puzzle_screen.dart';
 
@@ -91,15 +92,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Container(
-                            width: 96,
-                            height: 96,
-                            decoration: BoxDecoration(
-                              color: scheme.primary.withValues(alpha: .12),
-                              borderRadius: BorderRadius.circular(28),
+                          // The first page introduces the brand itself; the
+                          // rest keep their topic icons.
+                          if (i == 0)
+                            const BrandMark(size: 96)
+                          else
+                            Container(
+                              width: 96,
+                              height: 96,
+                              decoration: BoxDecoration(
+                                color: scheme.primary.withValues(alpha: .12),
+                                borderRadius: BorderRadius.circular(28),
+                              ),
+                              child: Icon(
+                                icon,
+                                size: 48,
+                                color: scheme.primary,
+                              ),
                             ),
-                            child: Icon(icon, size: 48, color: scheme.primary),
-                          ),
                           const SizedBox(height: 28),
                           Text(
                             title,

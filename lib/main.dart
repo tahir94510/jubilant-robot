@@ -5,6 +5,7 @@ import 'app.dart';
 import 'engine/quote_repository.dart';
 import 'services/ads/ads_service.dart';
 import 'services/haptics_service.dart';
+import 'services/music_service.dart';
 import 'services/notifications/notification_service.dart';
 import 'services/purchases/purchase_service.dart';
 import 'services/sound_service.dart';
@@ -39,10 +40,18 @@ Future<void> main() async {
   final haptics = HapticsService(isEnabled: () => settings.settings.haptics);
   final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
   await sounds.initialize();
+  final music = MusicService(isEnabled: () => settings.settings.music);
+  // Pauses/resumes the ambient bed with the app lifecycle.
+  WidgetsBinding.instance.addObserver(music);
 
   // Store layer first (cached premium flag), then ads (skipped entirely for
-  // premium). Both run post-launch and never block the first frame.
+  // premium). All of this runs post-launch and never blocks the first
+  // frame — including preparing the (large) music asset.
   WidgetsBinding.instance.addPostFrameCallback((_) async {
+    await music.initialize();
+    // Starts immediately on Android; on the web the autoplay policy defers
+    // it to the first tap (retried by the app-level Listener).
+    music.ensureStarted();
     await purchases.initialize(initialPremium: economy.premium);
     await ads.initialize(premium: economy.premium);
   });
@@ -57,6 +66,7 @@ Future<void> main() async {
         Provider<NotificationService>.value(value: notifications),
         Provider.value(value: haptics),
         Provider.value(value: sounds),
+        Provider.value(value: music),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: economy),

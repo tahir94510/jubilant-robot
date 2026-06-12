@@ -52,6 +52,20 @@ class PacksScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
           children: [
             section('By difficulty'),
+            // Players reasonably assume long = hard; in cryptograms it is
+            // the opposite, so say it once where the packs are picked.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
+              child: Text(
+                'Counterintuitive but true: shorter quotes are tougher — '
+                'fewer letters, fewer clues.',
+                style: TextStyle(
+                  fontSize: 12.5,
+                  fontStyle: FontStyle.italic,
+                  color: scheme.onSurface.withValues(alpha: .5),
+                ),
+              ),
+            ),
             ...tiles(PackKind.difficulty),
             section('Themed'),
             ...tiles(PackKind.themed),
