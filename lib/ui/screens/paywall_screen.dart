@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../services/purchases/purchase_service.dart';
 import '../../state/economy_controller.dart';
+import '../theme/palette.dart';
 import '../widgets/brand_mark.dart';
 
 /// One-time premium unlock pitch. Price comes live from the store.
@@ -14,6 +15,7 @@ class PaywallScreen extends StatelessWidget {
     final purchases = context.read<PurchaseService>();
     final premium = context.watch<EconomyController>().premium;
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
 
     Widget benefit(IconData icon, String title, String subtitle) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -42,10 +44,7 @@ class PaywallScreen extends StatelessWidget {
                 ),
                 Text(
                   subtitle,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: scheme.onSurface.withValues(alpha: .55),
-                  ),
+                  style: TextStyle(fontSize: 13, color: palette.textSecondary),
                 ),
               ],
             ),
@@ -82,7 +81,7 @@ class PaywallScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14,
-                        color: scheme.onSurface.withValues(alpha: .55),
+                        color: palette.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -122,7 +121,7 @@ class PaywallScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 13,
-                      color: scheme.onSurface.withValues(alpha: .5),
+                      color: palette.textSecondary,
                     ),
                   )
                 else ...[

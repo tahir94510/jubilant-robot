@@ -153,11 +153,30 @@ void main() {
     await tester.pump();
     expect(find.text('Puzzles solved'), findsOneWidget);
     expect(find.text('Daily activity'), findsOneWidget);
+    // First run: the friendly empty-state banner shows so the all-zero
+    // grid never reads as broken.
+    expect(find.textContaining('start your stats'), findsOneWidget);
 
     await tester.pumpWidget(h.app(const AchievementsScreen()));
     await tester.pump();
     expect(find.textContaining('Achievements (0/'), findsOneWidget);
     expect(find.text('First Crack'), findsOneWidget);
+  });
+
+  testWidgets('stats empty-state banner disappears after the first solve', (
+    tester,
+  ) async {
+    final h = await Harness.create(quotes: realQuotes);
+    await h.progress.recordSolve(
+      quoteId: realQuotes.first.id,
+      solveTime: const Duration(seconds: 30),
+      hintsUsed: 0,
+      isDaily: false,
+    );
+    await tester.pumpWidget(h.app(const StatsScreen()));
+    await tester.pump();
+    expect(find.textContaining('start your stats'), findsNothing);
+    expect(find.text('Puzzles solved'), findsOneWidget);
   });
 
   testWidgets('every settings control responds', (tester) async {

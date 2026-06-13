@@ -68,7 +68,7 @@
       justify-content: center; flex-direction: column; gap: 0;
       background: linear-gradient(180deg, #1C2541, #3D5A80);
       color: #F7F5F0; font-family: system-ui, sans-serif;
-      transition: opacity .3s; z-index: 10;
+      transition: opacity .45s ease; z-index: 10;
     }
     #boot-splash .brand {
       display: flex; flex-direction: column; align-items: center;
@@ -121,7 +121,11 @@
       <div class="wordmark">Quotecrack</div>
       <div class="tagline">Decode famous quotes.</div>
     </div>
-    <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+    <div class="dots" role="status" aria-label="Loading">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="dot" aria-hidden="true"></div>
+      <div class="dot" aria-hidden="true"></div>
+    </div>
   </div>
   <noscript>
     Quotecrack is a free, offline cryptogram puzzle game. It needs
@@ -130,7 +134,7 @@
   <script>
     window.addEventListener('flutter-first-frame', function () {
       var el = document.getElementById('boot-splash');
-      if (el) { el.style.opacity = '0'; setTimeout(function(){ el.remove(); }, 350); }
+      if (el) { el.style.opacity = '0'; setTimeout(function(){ el.remove(); }, 500); }
     });
   </script>
   <script src="flutter_bootstrap.js" async></script>

@@ -5,6 +5,7 @@ import '../../engine/quote_repository.dart';
 import '../../models/pack.dart';
 import '../../state/economy_controller.dart';
 import '../../state/progress_controller.dart';
+import '../theme/palette.dart';
 import 'pack_detail_screen.dart';
 import 'paywall_screen.dart';
 import '../widgets/scale_safe.dart';
@@ -17,7 +18,7 @@ class PacksScreen extends StatelessWidget {
     final repo = context.read<QuoteRepository>();
     final progress = context.watch<ProgressController>();
     final premium = context.select<EconomyController, bool>((e) => e.premium);
-    final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
 
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(4, 18, 4, 8),
@@ -27,7 +28,7 @@ class PacksScreen extends StatelessWidget {
           fontSize: 12,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.2,
-          color: scheme.onSurface.withValues(alpha: .45),
+          color: palette.textSecondary,
         ),
       ),
     );
@@ -62,7 +63,7 @@ class PacksScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 12.5,
                   fontStyle: FontStyle.italic,
-                  color: scheme.onSurface.withValues(alpha: .5),
+                  color: palette.textSecondary,
                 ),
               ),
             ),
@@ -94,6 +95,7 @@ class _PackTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     final done = total > 0 && solved == total;
 
     return Padding(
@@ -139,10 +141,7 @@ class _PackTile extends StatelessWidget {
             children: [
               Text(
                 pack.tagline,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: scheme.onSurface.withValues(alpha: .55),
-                ),
+                style: TextStyle(fontSize: 13, color: palette.textSecondary),
               ),
               const SizedBox(height: 6),
               ClipRRect(
@@ -160,7 +159,7 @@ class _PackTile extends StatelessWidget {
             style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: scheme.onSurface.withValues(alpha: .5),
+              color: palette.textSecondary,
             ),
           ),
         ),

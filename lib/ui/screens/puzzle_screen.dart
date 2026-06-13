@@ -7,6 +7,7 @@ import '../../services/music_service.dart';
 import '../../services/sound_service.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
+import '../theme/palette.dart';
 import '../widgets/cipher_board.dart';
 import '../widgets/hint_bar.dart';
 import '../widgets/puzzle_keyboard.dart';
@@ -68,7 +69,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final haptics = context.read<HapticsService>();
     final sounds = context.read<SoundService>();
     final session = game.session;
-    final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
 
     if (session == null) {
       return const Scaffold(body: SizedBox.shrink());
@@ -167,7 +168,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                           fontFamily: 'Lora',
                           fontStyle: FontStyle.italic,
                           fontSize: 15,
-                          color: scheme.onSurface.withValues(alpha: .45),
+                          color: palette.textSecondary,
                         ),
                       ),
                     ],

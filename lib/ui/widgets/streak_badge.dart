@@ -28,9 +28,7 @@ class StreakBadge extends StatelessWidget {
           Icon(
             Icons.local_fire_department,
             size: 20,
-            color: active
-                ? palette.streakFlame
-                : scheme.onSurface.withValues(alpha: .35),
+            color: active ? palette.streakFlame : palette.textFaint,
           ),
           const SizedBox(width: 4),
           Text(
@@ -38,9 +36,7 @@ class StreakBadge extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
-              color: active
-                  ? palette.streakFlame
-                  : scheme.onSurface.withValues(alpha: .45),
+              color: active ? palette.streakFlame : palette.textFaint,
             ),
           ),
         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../state/progress_controller.dart';
+import '../theme/palette.dart';
 import '../widgets/heatmap_calendar.dart';
 import '../widgets/scale_safe.dart';
 
@@ -20,6 +21,7 @@ class StatsScreen extends StatelessWidget {
     final progress = context.watch<ProgressController>();
     final stats = progress.stats;
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
 
     Widget statCard(String value, String label, IconData icon) => Expanded(
       child: Card(
@@ -40,10 +42,7 @@ class StatsScreen extends StatelessWidget {
               Text(
                 label,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: scheme.onSurface.withValues(alpha: .55),
-                ),
+                style: TextStyle(fontSize: 12, color: palette.textSecondary),
               ),
             ],
           ),
@@ -59,6 +58,37 @@ class StatsScreen extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // First run: a friendly note so the all-zero grid reads as a
+            // fresh start, not a broken screen.
+            if (stats.totalSolved == 0) ...[
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.insights_outlined,
+                        color: scheme.primary,
+                        size: 28,
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Text(
+                          'Crack today’s cipher to start your stats '
+                          'and streak.',
+                          style: TextStyle(
+                            fontSize: 14,
+                            height: 1.4,
+                            color: palette.textSecondary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+            ],
             Row(
               children: [
                 statCard(

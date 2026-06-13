@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/achievement.dart';
 import '../../state/progress_controller.dart';
+import '../theme/palette.dart';
 import '../widgets/scale_safe.dart';
 
 class AchievementsScreen extends StatelessWidget {
@@ -13,6 +14,7 @@ class AchievementsScreen extends StatelessWidget {
     final progress = context.watch<ProgressController>();
     final unlocked = progress.unlockedAchievementIds;
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,15 +57,12 @@ class AchievementsScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: isUnlocked
                         ? scheme.onSurface
-                        : scheme.onSurface.withValues(alpha: .45),
+                        : palette.textSecondary,
                   ),
                 ),
                 subtitle: Text(
                   a.description,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: scheme.onSurface.withValues(alpha: .5),
-                  ),
+                  style: TextStyle(fontSize: 13, color: palette.textSecondary),
                 ),
                 trailing: isUnlocked
                     ? Icon(Icons.check_circle, color: scheme.primary, size: 22)

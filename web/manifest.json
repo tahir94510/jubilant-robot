@@ -1,7 +1,12 @@
 {
   "name": "Quotecrack \u2014 Cryptogram Puzzles",
   "short_name": "Quotecrack",
+  "id": "/jubilant-robot/app/",
   "start_url": ".",
+  "scope": ".",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["games", "puzzle", "education"],
   "display": "standalone",
   "background_color": "#1C2541",
   "theme_color": "#1C2541",

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../services/clock.dart';
+import '../theme/palette.dart';
 
 /// GitHub-style heatmap of the last ~16 weeks of daily-puzzle activity.
 class HeatmapCalendar extends StatelessWidget {
@@ -56,7 +57,7 @@ class HeatmapCalendar extends StatelessWidget {
           'Last $_weeks weeks · ${DateFormat.yMMM().format(start)} – ${DateFormat.yMMM().format(today)}',
           style: TextStyle(
             fontSize: 12,
-            color: scheme.onSurface.withValues(alpha: .5),
+            color: Theme.of(context).extension<GamePalette>()!.textSecondary,
           ),
         ),
       ],

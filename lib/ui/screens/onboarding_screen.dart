@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../models/quote.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
+import '../theme/palette.dart';
 import '../widgets/brand_mark.dart';
 import 'home_screen.dart';
 import 'puzzle_screen.dart';
@@ -80,6 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -134,7 +136,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             style: TextStyle(
                               fontSize: 16,
                               height: 1.5,
-                              color: scheme.onSurface.withValues(alpha: .65),
+                              color: palette.textSecondary,
                             ),
                           ),
                         ],
