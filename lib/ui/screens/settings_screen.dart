@@ -10,6 +10,7 @@ import '../../services/notifications/notification_service.dart';
 import '../../services/purchases/purchase_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/settings_controller.dart';
+import '../theme/palette.dart';
 import '../widgets/scale_safe.dart';
 import 'paywall_screen.dart';
 
@@ -40,7 +41,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final notificationsSupported = context
         .read<NotificationService>()
         .supported;
-    final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
 
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
@@ -50,7 +51,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           fontSize: 12,
           fontWeight: FontWeight.w700,
           letterSpacing: 1.2,
-          color: scheme.onSurface.withValues(alpha: .45),
+          color: palette.textSecondary,
         ),
       ),
     );
@@ -80,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         'Auto — follows your device',
                         style: TextStyle(
                           fontSize: 13,
-                          color: scheme.onSurface.withValues(alpha: .55),
+                          color: palette.textSecondary,
                         ),
                       ),
                     ),

@@ -26,6 +26,8 @@ class BrandMark extends StatelessWidget {
         child: Container(
           width: size,
           height: size,
+          // Clip glyphs to the rounded tile exactly like the generated icon.
+          clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(size * 0.176),
             gradient: const LinearGradient(
@@ -36,16 +38,17 @@ class BrandMark extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              // Fractional centers mirror the icon generator: Q at
-              // (0.42, 0.44), ? at (0.78, 0.28), underline at y 0.82.
+              // Font sizes and centres mirror the icon generator
+              // (tool/generate_icons.py): a dominant serif Q (0.60), the
+              // coral ? at its shoulder (0.26), underline at y 0.82.
               Align(
-                alignment: const Alignment(-0.16, -0.30),
+                alignment: const Alignment(-0.16, -0.06),
                 child: Text(
                   'Q',
                   style: TextStyle(
                     fontFamily: 'Lora',
                     fontVariations: const [FontVariation('wght', 700)],
-                    fontSize: size * 0.52,
+                    fontSize: size * 0.60,
                     height: 1,
                     color: _paper,
                   ),
@@ -53,13 +56,13 @@ class BrandMark extends StatelessWidget {
                 ),
               ),
               Align(
-                alignment: const Alignment(0.56, -0.60),
+                alignment: const Alignment(0.56, -0.40),
                 child: Text(
                   '?',
                   style: TextStyle(
                     fontFamily: 'Lora',
                     fontVariations: const [FontVariation('wght', 700)],
-                    fontSize: size * 0.23,
+                    fontSize: size * 0.26,
                     height: 1,
                     color: _coral,
                   ),

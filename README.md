@@ -44,7 +44,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 
 > Sürüm öncesi/sonrası tüm kontroller tek yerde:
 > [docs/KALITE_KONTROL.md](docs/KALITE_KONTROL.md) — her push'ta CI'ın
-> otomatik kanıtladıkları + 27 maddelik cihaz turu + yayın rutini.
+> otomatik kanıtladıkları + 31 maddelik cihaz turu + yayın rutini.
 > Düzenli yeni bulmaca ekleme sistemi:
 > [docs/ICERIK_EKLEME.md](docs/ICERIK_EKLEME.md).
 
@@ -96,7 +96,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   güvenliği" formu için büyük avantaj).
 - Deterministik motor: gün/şifre seçimi her cihazda ve platformda birebir
   aynıdır (özel 32-bit RNG + FNV-1a; golden-vector testleriyle kilitli).
-- 132 otomatik test CI'da her push'ta koşar (motor, veri seti + ses varlığı
+- 133 otomatik test CI'da her push'ta koşar (motor, veri seti + ses varlığı
   doğrulaması, streak gün sınırları, ekonomi, premium kapılama, müzik/ses
   ayarları, kutlama animasyonları, uçtan uca çözüm akışı).
 

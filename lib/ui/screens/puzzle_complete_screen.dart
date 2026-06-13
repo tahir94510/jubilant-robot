@@ -163,7 +163,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                           fontFamily: 'Lora',
                           fontStyle: FontStyle.italic,
                           fontSize: 16,
-                          color: scheme.onSurface.withValues(alpha: .65),
+                          color: palette.textSecondary,
                         ),
                       ),
                       Text(
@@ -171,7 +171,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 13,
-                          color: scheme.onSurface.withValues(alpha: .4),
+                          color: palette.textFaint,
                         ),
                       ),
                       const SizedBox(height: 18),

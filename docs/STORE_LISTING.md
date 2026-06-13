@@ -5,6 +5,20 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes — v1.1.2 (max 500 chars — paste into "What's new")
+
+```
+NEW in 1.1.2
+• Sharper, higher-contrast text in every theme (easier on the eyes)
+• Clearer cipher letters on the board
+• A polished, brand-coloured daily reminder
+• Friendlier first-run Statistics screen
+• Logo and web polish throughout
+Happy decoding!
+```
+
+---
+
 ## Release notes — v1.1.1 (max 500 chars — paste into "What's new")
 
 ```

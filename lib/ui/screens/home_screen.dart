@@ -160,7 +160,7 @@ class HomeScreen extends StatelessWidget {
                                     : 'A ${daily.quote.difficulty.name} cipher by ${daily.quote.author} awaits.',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: scheme.onSurface.withValues(alpha: .6),
+                                  color: palette.textSecondary,
                                 ),
                               ),
                               const SizedBox(height: 14),
@@ -261,6 +261,7 @@ class _MenuTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     return Card(
       child: ListTile(
         onTap: onTap,
@@ -287,10 +288,7 @@ class _MenuTile extends StatelessWidget {
         ),
         subtitle: Text(
           subtitle,
-          style: TextStyle(
-            fontSize: 13,
-            color: scheme.onSurface.withValues(alpha: .55),
-          ),
+          style: TextStyle(fontSize: 13, color: palette.textSecondary),
         ),
         trailing: Icon(
           Icons.chevron_right,
