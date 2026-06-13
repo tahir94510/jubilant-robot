@@ -103,5 +103,15 @@
   {"id": "wis-102", "text": "What is not started today is never finished tomorrow.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
   {"id": "wis-103", "text": "Doubt grows with knowledge.", "author": "Johann Wolfgang von Goethe", "source": "Proverbs in Prose, 1819", "category": "wisdom"},
   {"id": "wis-104", "text": "Correction does much, but encouragement does more.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-105", "text": "Great works are performed not by strength but by perseverance.", "author": "Samuel Johnson", "source": "Rasselas, 1759", "category": "wisdom"}
+  {"id": "wis-105", "text": "Great works are performed not by strength but by perseverance.", "author": "Samuel Johnson", "source": "Rasselas, 1759", "category": "wisdom"},
+  {"id": "wis2-001", "text": "It is not enough to be industrious; so are the ants. What are you industrious about?", "author": "Henry David Thoreau", "source": "Letter, 1857", "category": "wisdom"},
+  {"id": "wis2-002", "text": "Quality is never an accident; it is always the result of intelligent effort.", "author": "John Ruskin", "source": "Attributed", "category": "wisdom"},
+  {"id": "wis2-003", "text": "Keep your face to the sunshine and you cannot see a shadow.", "author": "Helen Keller", "source": "Attributed", "category": "wisdom"},
+  {"id": "wis2-004", "text": "Do what you can, with what you have, where you are.", "author": "Theodore Roosevelt", "source": "An Autobiography, 1913", "category": "wisdom"},
+  {"id": "wis2-005", "text": "Great things are done by a series of small things brought together.", "author": "Vincent van Gogh", "source": "Letters, translated", "category": "wisdom"},
+  {"id": "wis2-006", "text": "The beginning is the most important part of the work.", "author": "Plato", "source": "The Republic, translated", "category": "wisdom"},
+  {"id": "wis2-007", "text": "Raise your words, not your voice. It is rain that grows flowers, not thunder.", "author": "Rumi", "source": "Attributed", "category": "wisdom"},
+  {"id": "wis2-008", "text": "If there is no struggle, there is no progress.", "author": "Frederick Douglass", "source": "Speech, 1857", "category": "wisdom"},
+  {"id": "wis2-009", "text": "There is only one happiness in this life, to love and be loved.", "author": "George Sand", "source": "Letter, 1862", "category": "wisdom"},
+  {"id": "wis2-010", "text": "The mountains are calling and I must go.", "author": "John Muir", "source": "Letter, 1873", "category": "wisdom"}
 ]

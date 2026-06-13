@@ -61,12 +61,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       OnboardingScreen.tutorialQuote,
       daily: false,
     );
-    Navigator.of(
-      context,
-    ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
+    // Home slides UNDER the stack with no animation; the player sees one
+    // smooth transition straight into the puzzle (the old
+    // pushReplacement+push pair ran two stacked animations — a visible
+    // home-screen flash that read as a glitch).
+    final navigator = Navigator.of(context);
+    navigator.pushAndRemoveUntil(
+      PageRouteBuilder(
+        pageBuilder: (_, _, _) => const HomeScreen(),
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: Duration.zero,
+      ),
+      (_) => false,
+    );
+    navigator.push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
   }
 
   @override

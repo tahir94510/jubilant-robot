@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/app_settings.dart';
+import '../services/music_service.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/storage_service.dart';
 
@@ -51,6 +52,15 @@ class SettingsController extends ChangeNotifier {
   Future<void> setMusic(bool value) {
     settings.music = value;
     return _save();
+  }
+
+  /// Persists the music preference, THEN applies it to the running service.
+  /// Order matters: the service's isEnabled() gate must already reflect the
+  /// new choice when setEnabled fades in/out. The one shared code path for
+  /// the Settings tile and the home-screen quick toggle.
+  Future<void> setMusicAndApply(bool value, MusicService music) async {
+    await setMusic(value);
+    await music.setEnabled(value);
   }
 
   Future<void> setColorblindMode(bool value) {

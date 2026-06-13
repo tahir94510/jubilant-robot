@@ -168,6 +168,11 @@ class FakeMusicService extends MusicService {
   }
 
   @override
+  void duck({Duration hold = const Duration(milliseconds: 1800)}) {
+    if (isEnabled()) calls.add('duck');
+  }
+
+  @override
   Future<void> setEnabled(bool on) async {
     calls.add('enabled:$on');
   }

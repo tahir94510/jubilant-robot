@@ -5,7 +5,23 @@ are respected; do not exceed them when editing.
 
 ---
 
-## Release notes — v1.1.0 (max 500 chars — paste into "What's new")
+## Release notes — v1.1.1 (max 500 chars — paste into "What's new")
+
+```
+NEW in 1.1.1
+• Volume keys now control MEDIA volume (audio fixed)
+• A fully recomposed, calmer soundtrack — no more noise
+• Music gently dips while you celebrate a solve
+• One-tap music mute on the home screen
+• Smoother tutorial start and simpler reminder time entry
+• 49 new public-domain quotes (now 500+)
+• Battery-friendlier solve screen
+Happy decoding!
+```
+
+---
+
+## Release notes — v1.1.0 (previous)
 
 ```
 NEW in 1.1.0
@@ -39,7 +55,7 @@ Crack the code, reveal the quote. Quotecrack is a beautifully simple cryptogram 
 DAILY CRYPTOGRAM
 A new puzzle every day — the same quote for every player worldwide. Solve it, keep your streak alive, and share your time with friends, Wordle-style.
 
-450+ HAND-PICKED QUOTES
+500+ HAND-PICKED QUOTES
 Wisdom, humor, proverbs, literature, and science — from Mark Twain and Oscar Wilde to Jane Austen and old proverbs of the world. Every quote is carefully curated and attributed.
 
 PLAY YOUR WAY

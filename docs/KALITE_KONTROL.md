@@ -18,28 +18,29 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **108 otomatik test** | Aşağıdaki döküm |
+| **132 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**108 testin dökümü:**
+**132 testin dökümü:**
 - **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır — değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
-- **Veri seti (7):** 461 söz; benzersiz kimlik, kopya metin yok, ASCII,
+- **Veri seti (9):** 510 söz; benzersiz kimlik, kopya metin yok, ASCII,
   20-180 harf, atıf alanları dolu ve "Unknown" yasak (halk malı sözler
   "Anonymous"/"Proverb"), 11 paketin hepsi dolu, her zorluk kovasında
-  ≥40 söz.
-- **Mantık (32):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
+  ≥40 söz; 7 ses varlığının (WAV) mevcut+RIFF imzalı olması ve müzik
+  dosyasının boyut bütçesi.
+- **Mantık (40):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
   kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
   tam bir kez açılması; tahta sığdırma matematiği (15 harfli kelime 360dp
-  ekrana sığar + 461 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
+  ekrana sığar + 510 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
   sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
   çözülmüş bulmacanın temiz başlaması.
-- **Ekran ve etkileşim (46):** Uçtan uca çözüm akışı, otomatik doldurma,
+- **Ekran ve etkileşim (60):** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   11 paketin listelenip açılması, premium kilit→paywall ve premium→içerik
   yönlendirmeleri, istatistik/başarım ekranları, **ayarlardaki her kontrol**
@@ -88,8 +89,9 @@ kurup şu listeyi işaretleyin:
         yerden devam ediyor (girilen harfler + süre).
 12. [ ] Çözülmüş bulmacayı tekrar çöz → jeton ARTMIYOR (ekonomi koruması).
 13. [ ] Ses efektleri: tuş tıkları + çözüm melodisi duyuluyor; Ayarlar →
-        "Sound effects" kapatınca tam sessiz; telefon sessiz moddayken de
-        çalmıyor (tasarım gereği).
+        "Sound effects" kapatınca tam sessiz. ÖNEMLİ: oyun sesi MEDYA
+        kanalında — ses açma/kısma tuşları "Medya" sesini ayarlar (zil/
+        arama değil). Başka uygulamada çalan müziği/podcast'i KESMEZ.
 14. [ ] Tema seçici: varsayılan "Auto" seçili ve cihaz temasını izliyor;
         dört kartın da etiketi tam okunuyor (320dp + büyük yazıda bile),
         dört seçenek de anında uygulanıyor.
@@ -103,11 +105,12 @@ kurup şu listeyi işaretleyin:
 18. [ ] Uzun kelimeli bulmaca (ör. "generalizations" içeren) 360dp ekranda
         taşma şeridi olmadan sığıyor; hücreler eşit boyda küçülüyor.
 19. [ ] "— Anonymous" atıflı sözler düzgün görünüyor ("Unknown" kalmadı).
-20. [ ] Müzik: açılışta sakin ambient döngü yumuşakça (fade-in) başlıyor;
-        Ayarlar → "Music" kapatınca anında susuyor, açınca geri geliyor;
-        uygulama arka plana alınınca / tam ekran reklam açılınca duruyor;
-        başka uygulamada çalan müziği/podcast'i KESMİYOR (birlikte çalar,
-        tasarım gereği) ve telefon sessiz moddayken çalmıyor.
+20. [ ] Müzik: açılışta sakin akor döngüsü (C-Am-F-G…) yumuşakça (fade-in)
+        başlıyor; cızırtı/gürültü/patlama YOK, döngü başı-sonu sessizlikte
+        birleştiği için tekrar dikişi duyulmuyor; SFX ile karışmıyor.
+        Çözüm anında müzik kısılıp (duck) melodi bitince geri yükseliyor.
+        Ayarlar → "Music" VEYA ana ekrandaki müzik ikonu kapatınca anında
+        susuyor; arka plana alınca / tam ekran reklamda duruyor.
 21. [ ] Kutlama: bulmaca çözülünce tahtada soldan sağa yeşil dalga +
         sonuç ekranında konfeti patlaması görünüyor; sistem "animasyonları
         kapat" erişilebilirlik ayarı açıkken ikisi de YOK (tasarım gereği).
@@ -120,10 +123,19 @@ kurup şu listeyi işaretleyin:
 24. [ ] Hatırlatma dayanıklılığı: hatırlatma açıkken saati 2-3 dk sonraya
         kur, bildirimin GELDİĞİNİ gör; sonra cihazı yeniden başlat ve
         ertesi gün bildirimi yine geldiğini doğrula (boot receiver).
+25. [ ] Ana ekran müzik ikonu: başlıktaki nota ikonuna dokununca müzik
+        anında susuyor (ikon "müzik kapalı"ya dönüyor); tekrar dokununca
+        geri geliyor — durumu Ayarlar → "Music" ile birebir aynı.
+26. [ ] Öğretici geçişi: ilk açılışta "Try one — 30 seconds"a basınca TEK
+        akıcı geçişle bulmacaya giriliyor (arada ana ekran flaşı YOK);
+        bulmacadan geri basınca ana ekrana düşüyor.
+27. [ ] Hatırlatma saati: "Reminder time"a basınca KLAVYE ile saat giriş
+        ekranı açılıyor (kadran yok → üst üste binen nokta/sayı sorunu yok);
+        kaydedilen saat listede güncelleniyor.
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.0+3` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.1+4` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
 Play Console'a yükle.
