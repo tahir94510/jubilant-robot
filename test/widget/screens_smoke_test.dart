@@ -273,7 +273,12 @@ void main() {
     expect(find.byType(PuzzleScreen), findsOneWidget);
     expect(h.game.session!.quote.id, 'tutorial-001');
 
+    // Home was placed under the puzzle (no animated flash): backing out of
+    // the tutorial lands on it, not on a dead end.
     h.game.stopTimer();
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    expect(find.byType(HomeScreen), findsOneWidget);
   });
 
   testWidgets('onboarding skip lands on home', (tester) async {

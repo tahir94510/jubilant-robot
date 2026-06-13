@@ -4,9 +4,11 @@ import 'package:provider/provider.dart';
 
 import '../../engine/daily_puzzle.dart';
 import '../../engine/quote_repository.dart';
+import '../../services/music_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
+import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/banner_ad_slot.dart';
 import '../widgets/brand_mark.dart';
@@ -27,6 +29,7 @@ class HomeScreen extends StatelessWidget {
     final repo = context.read<QuoteRepository>();
     final progress = context.watch<ProgressController>();
     final economy = context.watch<EconomyController>();
+    final settingsCtl = context.watch<SettingsController>();
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
 
@@ -65,6 +68,20 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
+                            // One-tap music mute, mirrored by Settings.
+                            IconButton(
+                              tooltip: 'Music on/off',
+                              visualDensity: VisualDensity.compact,
+                              onPressed: () => settingsCtl.setMusicAndApply(
+                                !settingsCtl.settings.music,
+                                context.read<MusicService>(),
+                              ),
+                              icon: Icon(
+                                settingsCtl.settings.music
+                                    ? Icons.music_note_outlined
+                                    : Icons.music_off_outlined,
+                              ),
+                            ),
                             StreakBadge(streak: progress.displayStreak),
                             IconButton(
                               tooltip: 'Settings',

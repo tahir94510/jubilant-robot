@@ -18,13 +18,28 @@ class SoundService {
 
   Future<void> initialize() async {
     try {
+      // Game/media stream, never the ringtone stream: volume keys must
+      // control MEDIA volume. (The old AudioContextConfig(respectSilence:
+      // true) forced AndroidUsageType.notificationRingtone, which made all
+      // audio behave like a call/ringtone and follow the RING volume.)
+      // audioFocus none = blips and the music bed never pause or duck the
+      // user's own podcast/music.
       await AudioPlayer.global.setAudioContext(
-        AudioContextConfig(
-          // Respect silent mode and never duck other apps' music: these are
-          // UI blips, not media.
-          focus: AudioContextConfigFocus.mixWithOthers,
-          respectSilence: true,
-        ).build(),
+        AudioContext(
+          android: const AudioContextAndroid(
+            usageType: AndroidUsageType.game,
+            contentType: AndroidContentType.music,
+            audioFocus: AndroidAudioFocus.none,
+            audioMode: AndroidAudioMode.normal,
+          ),
+          // ambient already implies mixing with other audio; passing
+          // mixWithOthers explicitly trips the package assert (it is only
+          // allowed for playback/playAndRecord/multiRoute).
+          iOS: AudioContextIOS(
+            category: AVAudioSessionCategory.ambient,
+            options: const {},
+          ),
+        ),
       );
       for (var i = 0; i < 3; i++) {
         _tapPool.add(await _load('tap.wav'));

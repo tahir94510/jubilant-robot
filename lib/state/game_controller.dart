@@ -54,6 +54,12 @@ class GameController extends ChangeNotifier {
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
 
+  /// Clock ticks publish HERE, not through notifyListeners: only the
+  /// timer text should repaint each second, never the whole board.
+  final ValueNotifier<Duration> elapsedListenable = ValueNotifier(
+    Duration.zero,
+  );
+
   bool _completed = false;
   bool get completed => _completed;
 
@@ -86,6 +92,7 @@ class GameController extends ChangeNotifier {
     _completed = false;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
+    elapsedListenable.value = _elapsed;
     _selectedCipherLetter = _firstEmptyCipherLetter();
     _undoStack.clear();
 
@@ -97,10 +104,10 @@ class GameController extends ChangeNotifier {
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!_completed) {
         _elapsed += const Duration(seconds: 1);
+        elapsedListenable.value = _elapsed;
         // Autosave the clock so neither leaving the screen nor an app kill
         // rewinds it to the moment of the last letter entry.
         if (_elapsed.inSeconds % 10 == 0) _persistState();
-        notifyListeners();
       }
     });
   }
@@ -246,6 +253,7 @@ class GameController extends ChangeNotifier {
   @override
   void dispose() {
     _ticker?.cancel();
+    elapsedListenable.dispose();
     super.dispose();
   }
 }

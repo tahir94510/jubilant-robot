@@ -144,6 +144,15 @@ abstract final class AppThemes {
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
+      // Defense-in-depth: the reminder picker opens input-only, but if a
+      // dial ever becomes reachable it should match the app's look.
+      timePickerTheme: TimePickerThemeData(
+        backgroundColor: cardColor,
+        dialHandColor: primary,
+        hourMinuteShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
     );
   }
 

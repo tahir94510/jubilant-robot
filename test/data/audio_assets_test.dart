@@ -40,10 +40,10 @@ void main() {
   });
 
   test('the music bed stays within its size budget', () {
-    // ~52s mono 22050Hz 16-bit. A jump past the ceiling means someone
-    // regenerated it at a higher rate/length and doubled the app size.
+    // ~64s mono 44.1kHz 16-bit. A jump past the ceiling means someone
+    // regenerated it at a higher rate/length and bloated the app size.
     final length = File('assets/audio/music_calm.wav').lengthSync();
-    expect(length, greaterThan(1500 * 1024));
-    expect(length, lessThan(3500 * 1024));
+    expect(length, greaterThan(4500 * 1024));
+    expect(length, lessThan(7000 * 1024));
   });
 }

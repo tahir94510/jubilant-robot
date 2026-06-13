@@ -145,14 +145,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: const Text('Music'),
               subtitle: const Text('Calm ambient loop while you play'),
               value: settings.music,
-              onChanged: (value) async {
-                // Persist first so the service's isEnabled() gate already
-                // reflects the new choice, then apply it audibly.
-                await controller.setMusic(value);
-                if (context.mounted) {
-                  await context.read<MusicService>().setEnabled(value);
-                }
-              },
+              onChanged: (value) => controller.setMusicAndApply(
+                value,
+                context.read<MusicService>(),
+              ),
             ),
             if (notificationsSupported) ...[
               section('Daily reminder'),
@@ -191,6 +187,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     final picked = await showTimePicker(
                       context: context,
                       initialTime: settings.reminderTime,
+                      // Keyboard entry only: faster for the audience, and
+                      // it sidesteps the M3 dial's overlapping-dot visuals.
+                      initialEntryMode: TimePickerEntryMode.inputOnly,
                     );
                     if (picked != null) {
                       await controller.setReminder(enabled: true, time: picked);

@@ -44,7 +44,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 
 > Sürüm öncesi/sonrası tüm kontroller tek yerde:
 > [docs/KALITE_KONTROL.md](docs/KALITE_KONTROL.md) — her push'ta CI'ın
-> otomatik kanıtladıkları + 22 maddelik cihaz turu + yayın rutini.
+> otomatik kanıtladıkları + 27 maddelik cihaz turu + yayın rutini.
 > Düzenli yeni bulmaca ekleme sistemi:
 > [docs/ICERIK_EKLEME.md](docs/ICERIK_EKLEME.md).
 
@@ -69,15 +69,18 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 - **Günlük bulmaca:** Tarihe göre herkese aynı söz düşer (Wordle mantığı),
   yıl içinde tekrar etmez; seri (streak), takvim ısı haritası ve
   Wordle-tarzı sonuç paylaşımı var.
-- **461 el ile derlenmiş, tamamı kamu malı (public domain) söz** — telif
+- **510 el ile derlenmiş, tamamı kamu malı (public domain) söz** — telif
   riski sıfır: Twain, Wilde, Austen, Shakespeare, atasözleri…
 - **11 paket:** 4 zorluk + 5 tema + 2 premium (Shakespeare, Stoacılık).
 - **İpucu ekonomisi:** Başlangıçta 10 jeton, her çözümde +1, ödüllü
   reklamla +3, premium'da sınırsız.
 - **16 başarım, istatistikler, 30 saniyelik etkileşimli öğretici.**
-- **Atmosfer:** prosedürel üretilmiş (telifsiz) sakin ambient müzik döngüsü
-  (ayrı "Music" anahtarı), kelime tamamlama çanı, çözümde tahtada yeşil
-  dalga + konfeti kutlaması, yumuşak ekran geçişleri.
+- **Atmosfer:** prosedürel üretilmiş (telifsiz) sakin akor döngüsü
+  (C-Am-F-G…, sessizlikten başlayıp sessizliğe çözülerek dikişsiz döner;
+  pad + nazik melodi + düzenli arpej, cızırtısız), ayrı "Music" anahtarı +
+  ana ekranda hızlı sustur ikonu, çözümde müzik kısılır (duck). Sesler
+  MEDYA kanalında (ses tuşları medyayı ayarlar). Kelime tamamlama çanı,
+  çözümde tahtada yeşil dalga + konfeti kutlaması, yumuşak ekran geçişleri.
 - **3 tema** (açık/koyu/sepya), ayarlanabilir yazı boyutu, renk körü dostu
   palet, titreşim, zen modu, günlük hatırlatma bildirimi.
 - **Gelir:** AdMob (banner yalnız menü + sonuç ekranında, çözüm ekranı
@@ -93,7 +96,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   güvenliği" formu için büyük avantaj).
 - Deterministik motor: gün/şifre seçimi her cihazda ve platformda birebir
   aynıdır (özel 32-bit RNG + FNV-1a; golden-vector testleriyle kilitli).
-- 123 otomatik test CI'da her push'ta koşar (motor, veri seti + ses varlığı
+- 132 otomatik test CI'da her push'ta koşar (motor, veri seti + ses varlığı
   doğrulaması, streak gün sınırları, ekonomi, premium kapılama, müzik/ses
   ayarları, kutlama animasyonları, uçtan uca çözüm akışı).
 

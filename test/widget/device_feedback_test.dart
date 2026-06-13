@@ -10,6 +10,7 @@ import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/screens/settings_screen.dart';
 import 'package:quotecrack/ui/screens/stats_screen.dart';
+import 'package:quotecrack/ui/widgets/cipher_board.dart';
 import 'package:quotecrack/ui/widgets/letter_cell.dart';
 import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 
@@ -280,6 +281,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(h.sounds.played, contains('tap'));
     expect(h.sounds.played.where((s) => s == 'success').length, 1);
+    // The music bed ducks under the success fanfare exactly once.
+    expect(h.music.calls.where((c) => c == 'duck').length, 1);
 
     h.game.stopTimer();
   });
@@ -385,6 +388,80 @@ void main() {
     await tester.pumpAndSettle();
     expect(h.settings.settings.music, isTrue);
     expect(h.music.calls, contains('enabled:true'));
+  });
+
+  testWidgets('home header music icon mutes instantly and reflects state', (
+    tester,
+  ) async {
+    final h = await Harness.create(quotes: loadRealQuotes());
+    await tester.pumpWidget(h.app(const HomeScreen()));
+    await tester.pump();
+
+    // Starts on: the note icon is shown, the muted icon is not.
+    expect(find.byIcon(Icons.music_note_outlined), findsOneWidget);
+    expect(find.byIcon(Icons.music_off_outlined), findsNothing);
+
+    await tester.tap(find.byIcon(Icons.music_note_outlined));
+    await tester.pumpAndSettle();
+
+    expect(h.settings.settings.music, isFalse);
+    expect(h.music.calls, contains('enabled:false'));
+    expect(find.byIcon(Icons.music_off_outlined), findsOneWidget);
+
+    // Tapping again turns it back on.
+    await tester.tap(find.byIcon(Icons.music_off_outlined));
+    await tester.pumpAndSettle();
+    expect(h.settings.settings.music, isTrue);
+    expect(find.byIcon(Icons.music_note_outlined), findsOneWidget);
+  });
+
+  testWidgets('reminder time picker opens keyboard-entry, no buggy dial', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    // Enable the reminder first so the "Reminder time" row is visible; the
+    // picker UI is what this test exercises.
+    await h.settings.setReminder(enabled: true);
+    h.notifications.scheduledAt = null; // reset so the re-schedule is visible
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Reminder time'), 150);
+    await tester.tap(find.text('Reminder time'));
+    await tester.pumpAndSettle();
+
+    // input-only mode = text fields, never the dial (the source of the
+    // overlapping-dot artifact on device).
+    expect(find.byType(TextField), findsNWidgets(2));
+
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+    // A reschedule happened (the fake records the time it was handed).
+    expect(h.notifications.scheduledAt, isNotNull);
+  });
+
+  testWidgets('the solve clock ticks the on-screen timer without rebuilding '
+      'the board', (tester) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    expect(find.text('0:00'), findsOneWidget);
+    final boardBefore = tester.widget<CipherBoard>(find.byType(CipherBoard));
+
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pump();
+
+    // The timer text advanced (ticks are live)...
+    expect(find.text('0:02'), findsOneWidget);
+    // ...but the board widget instance is untouched: a pure tick no longer
+    // rebuilds the whole PuzzleScreen, only the AppBar timer.
+    final boardAfter = tester.widget<CipherBoard>(find.byType(CipherBoard));
+    expect(identical(boardBefore, boardAfter), isTrue);
+
+    h.game.stopTimer();
   });
 
   // Every remaining screen gets the same narrow-phone + huge-text guard the

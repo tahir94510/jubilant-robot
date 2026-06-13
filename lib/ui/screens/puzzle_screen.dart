@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/haptics_service.dart';
+import '../../services/music_service.dart';
 import '../../services/sound_service.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
@@ -79,15 +81,14 @@ class _PuzzleScreenState extends State<PuzzleScreen>
       _navigatedToComplete = true;
       haptics.success();
       sounds.success();
+      // The bed dips under the fanfare and swells back afterwards.
+      context.read<MusicService>().duck();
       if (MediaQuery.of(context).disableAnimations) {
         WidgetsBinding.instance.addPostFrameCallback((_) => _goToComplete());
       } else {
         _celebrating = true;
       }
     }
-
-    final minutes = game.elapsed.inMinutes;
-    final seconds = (game.elapsed.inSeconds % 60).toString().padLeft(2, '0');
 
     // Leaving during the 620ms celebration must not abandon the completion
     // flow — the solve is only recorded on the complete screen. Back
@@ -118,20 +119,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
           ),
           actions: [
             if (settings.showTimer)
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16),
-                  child: Text(
-                    '$minutes:$seconds',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      fontFeatures: const [FontFeature.tabularFigures()],
-                      color: scheme.onSurface.withValues(alpha: .6),
-                    ),
-                  ),
-                ),
-              ),
+              _TimerText(elapsedListenable: game.elapsedListenable),
           ],
         ),
         body: SafeArea(
@@ -142,33 +130,36 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                   padding: const EdgeInsets.fromLTRB(12, 18, 12, 8),
                   child: Column(
                     children: [
-                      if (_celebrating)
-                        // The wave drives navigation from onEnd: animation
-                        // frames keep the test clock alive (a bare
-                        // Future.delayed would stall pumpAndSettle).
-                        TweenAnimationBuilder<double>(
-                          tween: Tween(begin: 0, end: 1),
-                          duration: const Duration(milliseconds: 620),
-                          curve: Curves.easeOut,
-                          onEnd: _goToComplete,
-                          builder: (context, wave, _) => CipherBoard(
-                            session: session,
-                            selected: null,
-                            errorChecking: settings.errorChecking,
-                            onSelect: (_) {},
-                            solveWave: wave,
-                          ),
-                        )
-                      else
-                        CipherBoard(
-                          session: session,
-                          selected: game.selectedCipherLetter,
-                          errorChecking: settings.errorChecking,
-                          onSelect: (c) {
-                            haptics.tap();
-                            game.selectCipherLetter(c);
-                          },
-                        ),
+                      // The board only repaints when the game state actually
+                      // changes — clock ticks repaint just the AppBar text.
+                      RepaintBoundary(
+                        child: _celebrating
+                            // The wave drives navigation from onEnd:
+                            // animation frames keep the test clock alive (a
+                            // bare Future.delayed would stall pumpAndSettle).
+                            ? TweenAnimationBuilder<double>(
+                                tween: Tween(begin: 0, end: 1),
+                                duration: const Duration(milliseconds: 620),
+                                curve: Curves.easeOut,
+                                onEnd: _goToComplete,
+                                builder: (context, wave, _) => CipherBoard(
+                                  session: session,
+                                  selected: null,
+                                  errorChecking: settings.errorChecking,
+                                  onSelect: (_) {},
+                                  solveWave: wave,
+                                ),
+                              )
+                            : CipherBoard(
+                                session: session,
+                                selected: game.selectedCipherLetter,
+                                errorChecking: settings.errorChecking,
+                                onSelect: (c) {
+                                  haptics.tap();
+                                  game.selectCipherLetter(c);
+                                },
+                              ),
+                      ),
                       const SizedBox(height: 16),
                       Text(
                         '— ${session.quote.author}',
@@ -227,6 +218,40 @@ class _PuzzleScreenState extends State<PuzzleScreen>
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// The solve clock in the AppBar. Listens to the dedicated tick notifier so
+/// each second repaints ONLY this text — never the board or keyboard.
+class _TimerText extends StatelessWidget {
+  const _TimerText({required this.elapsedListenable});
+
+  final ValueListenable<Duration> elapsedListenable;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16),
+        child: ValueListenableBuilder<Duration>(
+          valueListenable: elapsedListenable,
+          builder: (context, elapsed, _) {
+            final minutes = elapsed.inMinutes;
+            final seconds = (elapsed.inSeconds % 60).toString().padLeft(2, '0');
+            return Text(
+              '$minutes:$seconds',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                fontFeatures: const [FontFeature.tabularFigures()],
+                color: scheme.onSurface.withValues(alpha: .6),
+              ),
+            );
+          },
         ),
       ),
     );
