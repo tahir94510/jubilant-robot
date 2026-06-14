@@ -243,7 +243,7 @@ class HomeScreen extends StatelessWidget {
                           icon: Icons.workspace_premium_outlined,
                           title: 'Go Premium',
                           subtitle:
-                              'Remove ads · unlimited hints · 2 bonus packs',
+                              'Remove ads · unlimited hints · bonus packs',
                           accent: true,
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(

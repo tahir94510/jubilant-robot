@@ -88,41 +88,41 @@ Decode famous quotes! Daily cryptogram puzzles, offline & clean. Crack the code
 ## Full description (max 4000 chars)
 
 ```
-Crack the code, reveal the quote. Quotecrack is a beautifully simple cryptogram puzzle game: every puzzle is a famous quote encrypted with a secret letter substitution. Decode it letter by letter and enjoy the "aha!" moment when the words appear.
+Crack the code, reveal the quote. Every puzzle in Quotecrack is a famous quote hidden behind a secret letter swap. You decode it one letter at a time, and there's a real little thrill the moment the words snap into place.
 
 DAILY CRYPTOGRAM
-A new puzzle every day — the same quote for every player worldwide. Solve it, keep your streak alive, and share your time with friends, Wordle-style.
+A fresh puzzle every day, the same quote for everyone in the world. Solve it, keep your streak going, and share your time with friends, Wordle style.
 
 500+ HAND-PICKED QUOTES
-Wisdom, humor, proverbs, literature, and science — from Mark Twain and Oscar Wilde to Jane Austen and old proverbs of the world. Every quote is carefully curated and attributed.
+Wisdom, humor, proverbs, literature, and science, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world. Every quote is chosen by hand and properly attributed.
 
 PLAY YOUR WAY
 • 4 difficulty packs, from relaxed Beginner to brutal Expert
 • 5 themed packs: Proverbs, Humor, Wisdom, Literature, Science
-• Optional timer — or switch it off for pure zen
-• Smart hints when you are stuck (earn more by solving!)
-• Error checking you can toggle anytime
+• A timer when you want it, off when you'd rather just relax
+• Smart hints for when you're stuck (solve puzzles to earn more)
+• Error checking you can switch on or off
 
 MADE FOR COMFORT
-• Fully OFFLINE — play on a plane, on the subway, anywhere
-• No account, no sign-up, no nonsense
+• Fully offline, so you can play on a plane, on the subway, anywhere
+• No account, no sign-up, no clutter
 • Light, dark, and sepia reading themes
 • Adjustable text size and a colorblind-friendly palette
-• Large touch targets and a custom keyboard built for puzzles
-• Soothing ambient soundtrack — or switch it off for pure silence
+• Big touch targets and a keyboard built for puzzles
+• A calm ambient soundtrack you can turn off anytime
 
 TRACK YOUR JOURNEY
 • Daily streaks with a calendar heatmap
-• Statistics: solve times, fastest cracks, no-hint solves
+• Stats for solve times, fastest cracks, and no-hint solves
 • 16 achievements to unlock
 
-RESPECTFUL FREE-TO-PLAY
-The puzzle screen is always ad-free. A small banner and occasional interstitials keep the lights on — or go Premium once and remove every ad forever, unlock unlimited hints, and get two exclusive packs: Shakespeare and Stoic Wisdom.
+FAIR AND FREE TO PLAY
+The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Prefer a clean run? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive bonus packs (Shakespeare, Stoic wisdom, and more on the way).
 
 WHAT IS A CRYPTOGRAM?
-A cryptogram (also called a cryptoquote or cipher puzzle) is a short text encrypted by replacing each letter with a different one. Solvers use pattern recognition, letter frequency, and word shapes to break the code — the same fun as the cryptoquip in the Sunday paper, now in your pocket.
+A cryptogram (also called a cryptoquote or cipher puzzle) is a short message scrambled by swapping each letter for another. You break it with pattern recognition, letter frequency, and the shapes of words. It's the same fun as the cryptoquip in the Sunday paper, now in your pocket.
 
-Whether you love word games, brain teasers, logic puzzles, or just beautiful quotes, Quotecrack gives your brain a satisfying daily workout. Download free and crack your first cipher in under a minute!
+If you love word games, brain teasers, logic puzzles, or just a good quote, Quotecrack gives your brain a satisfying daily workout. Download it free and crack your first cipher in about a minute.
 ```
 
 ## Graphics checklist
