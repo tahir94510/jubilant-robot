@@ -92,7 +92,7 @@ def melody_voice(freq, dur, *, volume=0.10, attack=1.5, release=2.5):
     return pad_voice(freq, dur, volume=volume, attack=attack, release=release)
 
 
-def pluck(freq, *, volume=0.12, attack=0.004, decay=2.2, dur=2.0):
+def pluck(freq, *, volume=0.12, attack=0.009, decay=2.2, dur=2.0):
     """A soft pluck: fast attack, exponential decay, 50 ms end taper so the
     cut at `dur` can never click."""
     n = int(RATE * dur)
@@ -185,9 +185,19 @@ def main():
     if len(samples) != expected:
         sys.exit(f"FAIL: length {len(samples)} != {expected}")
 
+    # Explicit raised-cosine fades guarantee the loop wraps through true
+    # silence: even though the composition already starts/ends quiet, this
+    # makes the seam mathematically click-free under MediaPlayer's
+    # non-gapless looping.
+    fade = int(RATE * 0.08)
+    for i in range(fade):
+        ramp = 0.5 - 0.5 * math.cos(math.pi * i / fade)
+        samples[i] *= ramp
+        samples[len(samples) - 1 - i] *= ramp
+
     w = int(0.05 * RATE)
     head, tail = rms(samples[:w]), rms(samples[-w:])
-    if head > 2e-3 or tail > 2e-3:
+    if head > 5e-4 or tail > 5e-4:
         sys.exit(f"FAIL: not silence-bracketed (head {head:.5f}, tail {tail:.5f})")
 
     peak = max(abs(v) for v in samples)

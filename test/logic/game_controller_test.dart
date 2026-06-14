@@ -67,9 +67,10 @@ void main() {
     },
   );
 
-  // "Less is more." — three words: LESS, IS, MORE.
+  // "Less is more." — words LESS (4) and MORE (4) count; "is" (2) is too
+  // short to earn the progress cue.
   group('word-complete signal', () {
-    test('fires exactly when a typed guess finishes a word', () async {
+    test('fires for a real (3+ letter) word, not for tiny words', () async {
       final store = await storage();
       final game = GameController(storage: store);
       game.start(shortQuote, daily: false);
@@ -81,17 +82,19 @@ void main() {
       }
 
       expect(s.correctWordCount, 0);
-      type('I'); // half of IS
+      type('L');
       expect(game.lastInputCompletedWord, isFalse);
-      type('S'); // completes IS (LESS still misses L and E)
+      type('E');
+      expect(game.lastInputCompletedWord, isFalse);
+      type('S'); // completes LESS (4 letters)
       expect(game.lastInputCompletedWord, isTrue);
       expect(s.correctWordCount, 1);
 
-      type('L');
+      // Completing the 2-letter "is" must NOT fire the cue (S already set,
+      // typing I finishes it) — it stays a quiet, trivial fill.
+      type('I');
       expect(game.lastInputCompletedWord, isFalse);
-      type('E'); // completes LESS
-      expect(game.lastInputCompletedWord, isTrue);
-      expect(s.correctWordCount, 2);
+      expect(s.correctWordCount, 1);
 
       game.stopTimer();
       game.dispose();
@@ -127,15 +130,21 @@ void main() {
       game.start(shortQuote, daily: false);
       final s = game.session!;
 
-      game.selectCipherLetter(s.cipher.encryptLetter('I'));
-      game.enterGuess('I');
-      game.selectCipherLetter(s.cipher.encryptLetter('S'));
-      game.enterGuess('S');
+      void type(String plain) {
+        game.selectCipherLetter(s.cipher.encryptLetter(plain));
+        game.enterGuess(plain);
+      }
+
+      // Complete LESS (a real word) to arm the cue, then verify every
+      // non-typing path clears it.
+      type('L');
+      type('E');
+      type('S'); // completes LESS
       expect(game.lastInputCompletedWord, isTrue);
 
       game.undo();
       expect(game.lastInputCompletedWord, isFalse);
-      game.enterGuess('S');
+      game.enterGuess('S'); // re-completes LESS
       expect(game.lastInputCompletedWord, isTrue);
       game.clearGuess();
       expect(game.lastInputCompletedWord, isFalse);
@@ -167,7 +176,8 @@ void main() {
 
         type('R'); // finishes MORE and the whole puzzle at once
         expect(game.completed, isTrue);
-        expect(game.session!.correctWordCount, 3);
+        // LESS + MORE count; the 2-letter "is" is excluded.
+        expect(game.session!.correctWordCount, 2);
         expect(game.lastInputCompletedWord, isFalse);
 
         game.dispose();

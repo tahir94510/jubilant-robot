@@ -71,8 +71,29 @@ def mix(*tracks):
     return [v / peak for v in buf]
 
 
+def clean_edges(samples, *, fade_in=0.004, fade_out=0.03):
+    """Force every clip to start and end at true silence with a raised-cosine
+    ramp. Without this, a bell whose exponential tail is still audible when
+    the buffer ends produces a hard step -> an audible click/crackle. This is
+    the single most important anti-crackle step, applied to every sound."""
+    out = list(samples)
+    n = len(out)
+    fi = min(int(RATE * fade_in), n // 2)
+    fo = min(int(RATE * fade_out), n // 2)
+    for i in range(fi):
+        out[i] *= 0.5 - 0.5 * math.cos(math.pi * i / fi)
+    for i in range(fo):
+        out[n - 1 - i] *= 0.5 - 0.5 * math.cos(math.pi * i / fo)
+    return out
+
+
 def write(name, samples):
     OUT.mkdir(parents=True, exist_ok=True)
+    samples = clean_edges(samples)
+    peak = max((abs(v) for v in samples), default=0.0)
+    # Leave headroom so the int16 clamp never hard-clips (clipping = crackle).
+    if peak > 0.95:
+        samples = [v * (0.95 / peak) for v in samples]
     path = OUT / name
     with wave.open(str(path), "w") as f:
         f.setnchannels(1)
@@ -84,7 +105,9 @@ def write(name, samples):
                 for v in samples
             )
         )
-    print(f"wrote {path} ({path.stat().st_size} bytes)")
+    edge = max(abs(samples[0]), abs(samples[-1]))
+    print(f"wrote {path} ({path.stat().st_size} bytes, peak {peak:.3f}, "
+          f"edge {edge:.5f})")
 
 
 # Keyboard tap: woody, barely-there — felt more than heard.
