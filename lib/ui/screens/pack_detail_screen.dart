@@ -23,52 +23,57 @@ class PackDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(pack.title)),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(16),
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 76,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-        ),
-        itemCount: quotes.length,
-        itemBuilder: (context, i) {
-          final quote = quotes[i];
-          final solved = progress.isSolved(quote.id);
-          return Material(
-            color: solved
-                ? palette.success.withValues(alpha: .14)
-                : Theme.of(context).cardTheme.color,
-            borderRadius: BorderRadius.circular(14),
-            child: InkWell(
+      // SafeArea(bottom) keeps the last grid row clear of the system nav bar
+      // under Android edge-to-edge.
+      body: SafeArea(
+        top: false,
+        child: GridView.builder(
+          padding: const EdgeInsets.all(16),
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 76,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemCount: quotes.length,
+          itemBuilder: (context, i) {
+            final quote = quotes[i];
+            final solved = progress.isSolved(quote.id);
+            return Material(
+              color: solved
+                  ? palette.success.withValues(alpha: .14)
+                  : Theme.of(context).cardTheme.color,
               borderRadius: BorderRadius.circular(14),
-              onTap: () {
-                context.read<GameController>().start(
-                  quote,
-                  daily: false,
-                  packId: pack.id,
-                );
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
-              },
-              child: Center(
-                child: solved
-                    ? Icon(Icons.check, color: palette.success, size: 26)
-                    : FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          '${i + 1}',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: scheme.onSurface.withValues(alpha: .75),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(14),
+                onTap: () {
+                  context.read<GameController>().start(
+                    quote,
+                    daily: false,
+                    packId: pack.id,
+                  );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const PuzzleScreen()),
+                  );
+                },
+                child: Center(
+                  child: solved
+                      ? Icon(Icons.check, color: palette.success, size: 26)
+                      : FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            '${i + 1}',
+                            style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w600,
+                              color: scheme.onSurface.withValues(alpha: .75),
+                            ),
                           ),
                         ),
-                      ),
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

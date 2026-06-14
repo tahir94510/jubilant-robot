@@ -10,6 +10,12 @@ class HapticsService {
     if (isEnabled()) HapticFeedback.selectionClick();
   }
 
+  /// A soft, distinct buzz when a whole word falls into place: more than a
+  /// key tap, lighter than a full solve.
+  void wordComplete() {
+    if (isEnabled()) HapticFeedback.lightImpact();
+  }
+
   void success() {
     if (isEnabled()) HapticFeedback.mediumImpact();
   }

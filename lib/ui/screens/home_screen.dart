@@ -284,6 +284,9 @@ class _MenuTile extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
     return Card(
+      // Clip the ink ripple to the card's rounded corners so taps never
+      // flash a sharp rectangle past the edge.
+      clipBehavior: Clip.antiAlias,
       child: ListTile(
         onTap: onTap,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

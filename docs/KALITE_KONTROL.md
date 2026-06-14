@@ -18,12 +18,12 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **139 otomatik test** | Aşağıdaki döküm |
+| **140 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**139 testin dökümü:**
+**140 testin dökümü:**
 - **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
@@ -33,7 +33,7 @@ geçmiş demektir:
   "Anonymous"/"Proverb"), 11 paketin hepsi dolu, her zorluk kovasında
   ≥40 söz; 7 ses varlığının (WAV) mevcut+RIFF imzalı olması ve müzik
   dosyasının boyut bütçesi.
-- **Mantık (44):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
+- **Mantık (45):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
   kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
   tam bir kez açılması ve TÜM başarımların benzersizliği (başlık/açıklama/
@@ -41,7 +41,8 @@ geçmiş demektir:
   temizlenmesi; tahta sığdırma matematiği (15 harfli kelime 360dp
   ekrana sığar + 510 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
   sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
-  çözülmüş bulmacanın temiz başlaması.
+  çözülmüş bulmacanın temiz başlaması; harf girince imlecin geriye değil
+  ileriye (sonraki boş harfe) ilerlemesi.
 - **Ekran ve etkileşim (63):** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   11 paketin listelenip açılması, premium kilit→paywall ve premium→içerik

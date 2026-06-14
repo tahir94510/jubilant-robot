@@ -5,6 +5,20 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.1.6 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.1.6
+• Smoother navigation, with a back button that always responds
+• Content now stays clear of the on-screen system buttons on every phone
+• A cleaner daily-solved screen and tidier menus
+• The cursor steps forward as you type for a smoother solve
+• Small fixes and polish throughout
+Happy decoding!
+```
+
+---
+
 ## Release notes: v1.1.5 (max 500 chars, paste into "What's new")
 
 ```

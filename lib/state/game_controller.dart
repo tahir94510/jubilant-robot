@@ -139,6 +139,28 @@ class GameController extends ChangeNotifier {
     return null;
   }
 
+  /// The next empty cipher letter AT OR AFTER [current]'s first position in
+  /// reading order, wrapping to the start. Moving forward from where the
+  /// player just typed feels natural; the old "jump to the very first empty"
+  /// could fling the cursor backwards across the board.
+  String? _nextEmptyAfter(String? current) {
+    final s = _session;
+    if (s == null) return null;
+    final chars = s.cipherText.split('');
+    var startIdx = 0;
+    if (current != null) {
+      final idx = chars.indexOf(current);
+      if (idx >= 0) startIdx = idx + 1;
+    }
+    for (var i = startIdx; i < chars.length; i++) {
+      final ch = chars[i];
+      if (s.cipherLetters.contains(ch) && !s.guesses.containsKey(ch)) {
+        return ch;
+      }
+    }
+    return _firstEmptyCipherLetter();
+  }
+
   void selectCipherLetter(String? cipherLetter) {
     _selectedCipherLetter = cipherLetter;
     notifyListeners();
@@ -232,7 +254,7 @@ class GameController extends ChangeNotifier {
     } else {
       if (advance) {
         _selectedCipherLetter =
-            _firstEmptyCipherLetter() ?? _selectedCipherLetter;
+            _nextEmptyAfter(_selectedCipherLetter) ?? _selectedCipherLetter;
       }
       _persistState();
     }
