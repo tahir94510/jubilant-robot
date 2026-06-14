@@ -8,6 +8,7 @@ import '../../state/progress_controller.dart';
 import '../theme/palette.dart';
 import 'pack_detail_screen.dart';
 import 'paywall_screen.dart';
+import '../widgets/page_body.dart';
 import '../widgets/scale_safe.dart';
 
 class PacksScreen extends StatelessWidget {
@@ -48,31 +49,33 @@ class PacksScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Puzzle packs')),
-      body: ScaleSafe(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-          children: [
-            section('By difficulty'),
-            // Players reasonably assume long = hard; in cryptograms it is
-            // the opposite, so say it once where the packs are picked.
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
-              child: Text(
-                'Counterintuitive but true: shorter quotes are tougher — '
-                'fewer letters, fewer clues.',
-                style: TextStyle(
-                  fontSize: 12.5,
-                  fontStyle: FontStyle.italic,
-                  color: palette.textSecondary,
+      body: PageBody(
+        child: ScaleSafe(
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+            children: [
+              section('By difficulty'),
+              // Players reasonably assume long = hard; in cryptograms it is
+              // the opposite, so say it once where the packs are picked.
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
+                child: Text(
+                  'Counterintuitive but true: shorter quotes are the hardest. '
+                  'Fewer letters mean fewer clues to work from.',
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontStyle: FontStyle.italic,
+                    color: palette.textSecondary,
+                  ),
                 ),
               ),
-            ),
-            ...tiles(PackKind.difficulty),
-            section('Themed'),
-            ...tiles(PackKind.themed),
-            section('Premium'),
-            ...tiles(PackKind.premium),
-          ],
+              ...tiles(PackKind.difficulty),
+              section('Themed'),
+              ...tiles(PackKind.themed),
+              section('Premium'),
+              ...tiles(PackKind.premium),
+            ],
+          ),
         ),
       ),
     );

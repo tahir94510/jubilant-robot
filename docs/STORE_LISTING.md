@@ -5,6 +5,19 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes — v1.1.3 (max 500 chars — paste into "What's new")
+
+```
+NEW in 1.1.3
+• Crisper, click-free sound effects and music
+• Smoother, more reliable startup
+• Polished layouts on tablets and large screens
+• Small fixes and quality tweaks
+Thanks for playing, and happy decoding!
+```
+
+---
+
 ## Release notes — v1.1.2 (max 500 chars — paste into "What's new")
 
 ```

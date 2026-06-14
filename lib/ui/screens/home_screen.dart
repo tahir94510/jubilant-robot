@@ -12,6 +12,7 @@ import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/banner_ad_slot.dart';
 import '../widgets/brand_mark.dart';
+import '../widgets/page_body.dart';
 import '../widgets/streak_badge.dart';
 import 'achievements_screen.dart';
 import 'packs_screen.dart';
@@ -29,7 +30,12 @@ class HomeScreen extends StatelessWidget {
     final repo = context.read<QuoteRepository>();
     final progress = context.watch<ProgressController>();
     final economy = context.watch<EconomyController>();
-    final settingsCtl = context.watch<SettingsController>();
+    final settingsCtl = context.read<SettingsController>();
+    // Listen to ONLY the music flag so toggling it repaints just the icon,
+    // not the whole home screen.
+    final musicOn = context.select<SettingsController, bool>(
+      (s) => s.settings.music,
+    );
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
 
@@ -42,196 +48,212 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: ScaleSafe(
-                child: ListView(
-                  padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // The wordmark scales down rather than pushing the
-                        // streak badge + settings off a narrow phone when
-                        // large system text is on.
-                        Flexible(
-                          child: FittedBox(
-                            fit: BoxFit.scaleDown,
-                            alignment: Alignment.centerLeft,
+              child: PageBody(
+                child: ScaleSafe(
+                  child: ListView(
+                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // The wordmark scales down rather than pushing the
+                          // streak badge + settings off a narrow phone when
+                          // large system text is on.
+                          Flexible(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  BrandMark(size: 30),
+                                  SizedBox(width: 10),
+                                  BrandWordmark(fontSize: 26),
+                                ],
+                              ),
+                            ),
+                          ),
+                          // The controls keep a bounded text scale so a large
+                          // system font can't balloon the streak number and
+                          // squeeze the wordmark off a narrow phone.
+                          MediaQuery.withClampedTextScaling(
+                            maxScaleFactor: 1.1,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
-                              children: const [
-                                BrandMark(size: 30),
-                                SizedBox(width: 10),
-                                BrandWordmark(fontSize: 26),
+                              children: [
+                                // One-tap music mute, mirrored by Settings.
+                                IconButton(
+                                  tooltip: 'Music on/off',
+                                  visualDensity: VisualDensity.compact,
+                                  onPressed: () => settingsCtl.setMusicAndApply(
+                                    !musicOn,
+                                    context.read<MusicService>(),
+                                  ),
+                                  icon: Icon(
+                                    musicOn
+                                        ? Icons.music_note_outlined
+                                        : Icons.music_off_outlined,
+                                  ),
+                                ),
+                                StreakBadge(streak: progress.displayStreak),
+                                IconButton(
+                                  tooltip: 'Settings',
+                                  visualDensity: VisualDensity.compact,
+                                  onPressed: () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => const SettingsScreen(),
+                                    ),
+                                  ),
+                                  icon: const Icon(Icons.settings_outlined),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+
+                      // --- Daily puzzle card ---
+                      Card(
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(16),
+                          onTap: () {
+                            context.read<GameController>().start(
+                              daily.quote,
+                              daily: true,
+                            );
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const PuzzleScreen(),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.today_outlined,
+                                      size: 18,
+                                      color: scheme.primary,
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Text(
+                                      'DAILY PUZZLE',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        letterSpacing: 1.2,
+                                        color: scheme.primary,
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    if (dailyDone)
+                                      Icon(
+                                        Icons.check_circle,
+                                        size: 20,
+                                        color: palette.success,
+                                      ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  '#${daily.number} · ${DateFormat.MMMMEEEEd().format(today)}',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: scheme.onSurface,
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  dailyDone
+                                      ? 'Solved! Come back tomorrow for a new one.'
+                                      : 'A ${daily.quote.difficulty.name} cipher by ${daily.quote.author} awaits.',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: palette.textSecondary,
+                                  ),
+                                ),
+                                const SizedBox(height: 14),
+                                FilledButton(
+                                  onPressed: () {
+                                    context.read<GameController>().start(
+                                      daily.quote,
+                                      daily: true,
+                                    );
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => const PuzzleScreen(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    dailyDone ? 'Replay' : 'Play now',
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            // One-tap music mute, mirrored by Settings.
-                            IconButton(
-                              tooltip: 'Music on/off',
-                              visualDensity: VisualDensity.compact,
-                              onPressed: () => settingsCtl.setMusicAndApply(
-                                !settingsCtl.settings.music,
-                                context.read<MusicService>(),
-                              ),
-                              icon: Icon(
-                                settingsCtl.settings.music
-                                    ? Icons.music_note_outlined
-                                    : Icons.music_off_outlined,
-                              ),
-                            ),
-                            StreakBadge(streak: progress.displayStreak),
-                            IconButton(
-                              tooltip: 'Settings',
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const SettingsScreen(),
-                                ),
-                              ),
-                              icon: const Icon(Icons.settings_outlined),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
+                      ),
+                      const SizedBox(height: 12),
 
-                    // --- Daily puzzle card ---
-                    Card(
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(16),
-                        onTap: () {
-                          context.read<GameController>().start(
-                            daily.quote,
-                            daily: true,
-                          );
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => const PuzzleScreen(),
-                            ),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.today_outlined,
-                                    size: 18,
-                                    color: scheme.primary,
-                                  ),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    'DAILY PUZZLE',
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700,
-                                      letterSpacing: 1.2,
-                                      color: scheme.primary,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  if (dailyDone)
-                                    Icon(
-                                      Icons.check_circle,
-                                      size: 20,
-                                      color: palette.success,
-                                    ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                '#${daily.number} · ${DateFormat.MMMMEEEEd().format(today)}',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w700,
-                                  color: scheme.onSurface,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                dailyDone
-                                    ? 'Solved! Come back tomorrow for a new one.'
-                                    : 'A ${daily.quote.difficulty.name} cipher by ${daily.quote.author} awaits.',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: palette.textSecondary,
-                                ),
-                              ),
-                              const SizedBox(height: 14),
-                              FilledButton(
-                                onPressed: () {
-                                  context.read<GameController>().start(
-                                    daily.quote,
-                                    daily: true,
-                                  );
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) => const PuzzleScreen(),
-                                    ),
-                                  );
-                                },
-                                child: Text(dailyDone ? 'Replay' : 'Play now'),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-
-                    // --- Menu tiles ---
-                    _MenuTile(
-                      icon: Icons.grid_view_rounded,
-                      title: 'Puzzle packs',
-                      subtitle:
-                          '${progress.stats.solvedIds.length} of ${repo.all.length} solved',
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const PacksScreen()),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _MenuTile(
-                      icon: Icons.insights_outlined,
-                      title: 'Statistics',
-                      subtitle: 'Streaks, times, and your heatmap',
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const StatsScreen()),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _MenuTile(
-                      icon: Icons.emoji_events_outlined,
-                      title: 'Achievements',
-                      subtitle:
-                          '${progress.unlockedAchievementIds.length} unlocked',
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const AchievementsScreen(),
-                        ),
-                      ),
-                    ),
-                    if (!economy.premium) ...[
-                      const SizedBox(height: 10),
+                      // --- Menu tiles ---
                       _MenuTile(
-                        icon: Icons.workspace_premium_outlined,
-                        title: 'Go Premium',
+                        icon: Icons.grid_view_rounded,
+                        title: 'Puzzle packs',
                         subtitle:
-                            'Remove ads · unlimited hints · 2 bonus packs',
-                        accent: true,
+                            '${progress.stats.solvedIds.length} of ${repo.all.length} solved',
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (_) => const PaywallScreen(),
+                            builder: (_) => const PacksScreen(),
                           ),
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      _MenuTile(
+                        icon: Icons.insights_outlined,
+                        title: 'Statistics',
+                        subtitle: 'Streaks, times, and your heatmap',
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const StatsScreen(),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      _MenuTile(
+                        icon: Icons.emoji_events_outlined,
+                        title: 'Achievements',
+                        subtitle:
+                            '${progress.unlockedAchievementIds.length} unlocked',
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) => const AchievementsScreen(),
+                          ),
+                        ),
+                      ),
+                      if (!economy.premium) ...[
+                        const SizedBox(height: 10),
+                        _MenuTile(
+                          icon: Icons.workspace_premium_outlined,
+                          title: 'Go Premium',
+                          subtitle:
+                              'Remove ads · unlimited hints · 2 bonus packs',
+                          accent: true,
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const PaywallScreen(),
+                            ),
+                          ),
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),

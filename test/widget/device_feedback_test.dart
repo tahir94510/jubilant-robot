@@ -6,12 +6,14 @@ import 'package:quotecrack/services/storage_service.dart';
 import 'package:quotecrack/ui/screens/achievements_screen.dart';
 import 'package:quotecrack/ui/screens/home_screen.dart';
 import 'package:quotecrack/ui/screens/onboarding_screen.dart';
+import 'package:quotecrack/ui/screens/packs_screen.dart';
 import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/screens/settings_screen.dart';
 import 'package:quotecrack/ui/screens/stats_screen.dart';
 import 'package:quotecrack/ui/widgets/cipher_board.dart';
 import 'package:quotecrack/ui/widgets/letter_cell.dart';
+import 'package:quotecrack/ui/widgets/page_body.dart';
 import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 
 import '../fakes/test_harness.dart';
@@ -355,11 +357,12 @@ void main() {
       await tester.pump();
     }
 
-    await type('I'); // half of IS — a plain tap
+    await type('L'); // building LESS — a plain tap
+    await type('E');
     expect(h.sounds.played, contains('tap'));
     expect(h.sounds.played, isNot(contains('word')));
 
-    await type('S'); // completes IS (LESS still misses L and E)
+    await type('S'); // completes LESS (a real 3+ letter word)
     expect(h.sounds.played.where((s) => s == 'word').length, 1);
 
     h.game.stopTimer();
@@ -524,6 +527,44 @@ void main() {
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
       expect(find.text('Try one — 30 seconds'), findsOneWidget);
+    });
+  });
+
+  // Big screens (tablets/foldables): content must not overflow and must stay
+  // width-capped/centered rather than stretching edge to edge.
+  group('large screens (tablet) lay out without overflow', () {
+    Future<Harness> pumpLarge(WidgetTester tester, Widget screen) async {
+      tester.view.physicalSize = const Size(1200, 1600);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      final h = await Harness.create(quotes: loadRealQuotes());
+      await tester.pumpWidget(h.app(screen));
+      await tester.pump();
+      return h;
+    }
+
+    testWidgets('home is centered and capped, no overflow', (tester) async {
+      await pumpLarge(tester, const HomeScreen());
+      expect(tester.takeException(), isNull);
+      // The content is width-capped well under the 1200px viewport rather
+      // than stretching edge to edge.
+      expect(find.byType(PageBody), findsOneWidget);
+      final listWidth = tester.getSize(find.byType(ListView).first).width;
+      expect(listWidth, lessThanOrEqualTo(560));
+    });
+
+    testWidgets('packs, stats, settings, achievements survive a tablet', (
+      tester,
+    ) async {
+      for (final screen in const [
+        PacksScreen(),
+        StatsScreen(),
+        SettingsScreen(),
+        AchievementsScreen(),
+      ]) {
+        await pumpLarge(tester, screen);
+        expect(tester.takeException(), isNull);
+      }
     });
   });
 }

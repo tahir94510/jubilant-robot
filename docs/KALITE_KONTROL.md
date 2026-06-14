@@ -18,12 +18,12 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **133 otomatik test** | Aşağıdaki döküm |
+| **135 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**133 testin dökümü:**
+**135 testin dökümü:**
 - **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır — değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
@@ -40,7 +40,7 @@ geçmiş demektir:
   ekrana sığar + 510 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
   sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
   çözülmüş bulmacanın temiz başlaması.
-- **Ekran ve etkileşim (61):** Uçtan uca çözüm akışı, otomatik doldurma,
+- **Ekran ve etkileşim (63):** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   11 paketin listelenip açılması, premium kilit→paywall ve premium→içerik
   yönlendirmeleri, istatistik/başarım ekranları, **ayarlardaki her kontrol**
@@ -142,10 +142,16 @@ kurup şu listeyi işaretleyin:
         sonra kart kayboluyor.
 31. [ ] Uygulama-içi logo: ana ekran/öğretici/paywall'daki Q? logosu
         launcher ikonuyla aynı oranda (Q dolgun, ? omuzda, alt çizgi).
+32. [ ] Tablet/büyük ekran: içerik kenara yapışmadan ortalı ve max ~560dp
+        ile sınırlı; hiçbir ekranda taşma yok (telefon görünümü değişmez).
+33. [ ] Dayanıklılık: bir servis (reklam/bildirim/müzik) başlatılamasa bile
+        uygulama AÇILIR ve oyun oynanır — anında kapanma YOK. (Release
+        çökmesinin kesin nedeni için Play Console → Android vitals →
+        Çökmeler stack trace'i en güvenilir kanıttır.)
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.2+5` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.3+6` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
 Play Console'a yükle.
