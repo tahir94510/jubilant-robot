@@ -1,4 +1,4 @@
-# Quotecrack — Cryptogram Puzzles
+# Quotecrack: Cryptogram Puzzles
 
 Ünlü sözleri harf-şifresi çözerek bulduğunuz, tamamen çevrimdışı çalışan bir
 kelime bulmaca oyunu. Küresel İngilizce konuşan kitle için tasarlandı;
@@ -19,31 +19,31 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
    > ℹ️ **Kalıcı karar: bu repo public kalır.** Nedeni: (1) Play Console'un
    > zorunlu tuttuğu gizlilik politikası sayfası bu reponun Pages sitesinde
    > yaşıyor ve linkin asla ölmemesi gerekiyor; (2) LICENSE "tüm hakları
-   > saklı" — kod görünür ama kopyalanması/yayınlanması yasak; (3) imza
+   > saklı", kod görünür ama kopyalanması/yayınlanması yasak; (3) imza
    > anahtarları ve hesap bilgileri repoda DEĞİL, şifreli Secrets kasasında.
    > Pages ilk kurulum: Settings → Pages → Source: "GitHub Actions"
    > (yapıldı). Pages kapatılırsa CI yine yeşil kalır, yalnız önizleme ve
-   > gizlilik sayfası yayından düşer — bu yüzden kapatmayın.
+   > gizlilik sayfası yayından düşer, bu yüzden kapatmayın.
 
-   (Reklam/satın alma web'de bilerek kapalıdır — oyunun kendisini test
+   (Reklam/satın alma web'de bilerek kapalıdır, oyunun kendisini test
    edersiniz.)
 
 2. **Telefonunuzda dene (gerçek deneyim):**
    GitHub → **Actions** → en üstteki yeşil çalışma → **Artifacts** →
    `quotecrack-debug-apk` dosyasını indirin, telefonunuza atıp kurun.
    ("Bilinmeyen kaynaklara izin ver" sorusuna onay vermeniz gerekir.
-   Debug APK'da Google'ın TEST reklamları görünür — bu normaldir.)
+   Debug APK'da Google'ın TEST reklamları görünür, bu normaldir.)
 
 3. **Play Store paketleri (yayın için):**
    İmza secret'ları eklendiğinden aynı Artifacts listesinde şunlar da
    oluşur:
    - `quotecrack-release-aab` → Play Console'a yüklenen dosya
    - `quotecrack-release-apk` → mağazaya gidecek paketin birebir aynısını
-     telefonda son kez doğrulamak için (⚠️ gerçek reklamlar aktif —
+     telefonda son kez doğrulamak için (⚠️ gerçek reklamlar aktif , 
      görüntüleyin ama TIKLAMAYIN)
 
 > Sürüm öncesi/sonrası tüm kontroller tek yerde:
-> [docs/KALITE_KONTROL.md](docs/KALITE_KONTROL.md) — her push'ta CI'ın
+> [docs/KALITE_KONTROL.md](docs/KALITE_KONTROL.md), her push'ta CI'ın
 > otomatik kanıtladıkları + 33 maddelik cihaz turu + yayın rutini.
 > Düzenli yeni bulmaca ekleme sistemi:
 > [docs/ICERIK_EKLEME.md](docs/ICERIK_EKLEME.md).
@@ -69,7 +69,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 - **Günlük bulmaca:** Tarihe göre herkese aynı söz düşer (Wordle mantığı),
   yıl içinde tekrar etmez; seri (streak), takvim ısı haritası ve
   Wordle-tarzı sonuç paylaşımı var.
-- **510 el ile derlenmiş, tamamı kamu malı (public domain) söz** — telif
+- **510 el ile derlenmiş, tamamı kamu malı (public domain) söz**, telif
   riski sıfır: Twain, Wilde, Austen, Shakespeare, atasözleri…
 - **11 paket:** 4 zorluk + 5 tema + 2 premium (Shakespeare, Stoacılık).
 - **İpucu ekonomisi:** Başlangıçta 10 jeton, her çözümde +1, ödüllü

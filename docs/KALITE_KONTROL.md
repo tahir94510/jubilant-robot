@@ -1,4 +1,4 @@
-# Kalite Kontrol Sistemi — Quotecrack
+# Kalite Kontrol Sistemi: Quotecrack
 
 Bu doküman "her şey kusursuz çalışıyor mu?" sorusunu somut, tekrarlanabilir
 bir sisteme çevirir. Üç katman vardır: **(A)** her push'ta makinenin
@@ -11,21 +11,21 @@ izlenecek döngü vardır.
 ## A) Her push'ta OTOMATİK kanıtlananlar (CI)
 
 GitHub Actions her push'ta şunları koşar; **tek bir adım bile kırmızıysa
-hiçbir paket üretilmez** — yani elinizdeki her artefakt bu kontrollerden
+hiçbir paket üretilmez**, yani elinizdeki her artefakt bu kontrollerden
 geçmiş demektir:
 
 | Kontrol | Kapsam |
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **135 otomatik test** | Aşağıdaki döküm |
+| **139 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**135 testin dökümü:**
+**139 testin dökümü:**
 - **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
-  kalır — değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
+  kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
 - **Veri seti (9):** 510 söz; benzersiz kimlik, kopya metin yok, ASCII,
@@ -33,10 +33,12 @@ geçmiş demektir:
   "Anonymous"/"Proverb"), 11 paketin hepsi dolu, her zorluk kovasında
   ≥40 söz; 7 ses varlığının (WAV) mevcut+RIFF imzalı olması ve müzik
   dosyasının boyut bütçesi.
-- **Mantık (40):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
+- **Mantık (44):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
   kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
-  tam bir kez açılması; tahta sığdırma matematiği (15 harfli kelime 360dp
+  tam bir kez açılması ve TÜM başarımların benzersizliği (başlık/açıklama/
+  ikon kopya değil), yeni içerik "NEW" rozetinin görülene dek kalıp sonra
+  temizlenmesi; tahta sığdırma matematiği (15 harfli kelime 360dp
   ekrana sığar + 510 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
   sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
   çözülmüş bulmacanın temiz başlaması.
@@ -44,7 +46,7 @@ geçmiş demektir:
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   11 paketin listelenip açılması, premium kilit→paywall ve premium→içerik
   yönlendirmeleri, istatistik/başarım ekranları, **ayarlardaki her kontrol**
-  (tema kartları — dördü de etiketli ve 320dp+1.6x'te kırılmadan, yazı
+  (tema kartları, dördü de etiketli ve 320dp+1.6x'te kırılmadan, yazı
   boyutu, 4 anahtar, hatırlatma kur/iptal/izin-reddi, geri yükleme),
   öğretici akışı+atlama; tekrar-oynamanın jeton/reklam üretmediği; arka
   planda kronometrenin durduğu; uzun kelimeli tahtanın dar ekranda
@@ -53,7 +55,7 @@ geçmiş demektir:
   başlığı); 0 jetonda ipucu düğmesinin kapanıp +3'ün kalması.
 
 > Otomatikleştirilemeyenler (tasarımı gereği): gerçek reklam dolumu, gerçek
-> satın alma, bildirimin fiziksel teslimi — bunlar B turunun işidir.
+> satın alma, bildirimin fiziksel teslimi, bunlar B turunun işidir.
 
 ## B) Sürüm öncesi MANUEL tur (cihazda, ~15 dakika)
 
@@ -90,7 +92,7 @@ kurup şu listeyi işaretleyin:
 12. [ ] Çözülmüş bulmacayı tekrar çöz → jeton ARTMIYOR (ekonomi koruması).
 13. [ ] Ses efektleri: tuş tıkları + çözüm melodisi duyuluyor; Ayarlar →
         "Sound effects" kapatınca tam sessiz. ÖNEMLİ: oyun sesi MEDYA
-        kanalında — ses açma/kısma tuşları "Medya" sesini ayarlar (zil/
+        kanalında, ses açma/kısma tuşları "Medya" sesini ayarlar (zil/
         arama değil). Başka uygulamada çalan müziği/podcast'i KESMEZ.
 14. [ ] Tema seçici: varsayılan "Auto" seçili ve cihaz temasını izliyor;
         dört kartın da etiketi tam okunuyor (320dp + büyük yazıda bile),
@@ -104,7 +106,7 @@ kurup şu listeyi işaretleyin:
         görünüyor (gri kare/leke değil).
 18. [ ] Uzun kelimeli bulmaca (ör. "generalizations" içeren) 360dp ekranda
         taşma şeridi olmadan sığıyor; hücreler eşit boyda küçülüyor.
-19. [ ] "— Anonymous" atıflı sözler düzgün görünüyor ("Unknown" kalmadı).
+19. [ ] "Anonymous" atıflı sözler düzgün görünüyor ("Unknown" kalmadı).
 20. [ ] Müzik: açılışta sakin akor döngüsü (C-Am-F-G…) yumuşakça (fade-in)
         başlıyor; cızırtı/gürültü/patlama YOK, döngü başı-sonu sessizlikte
         birleştiği için tekrar dikişi duyulmuyor; SFX ile karışmıyor.
@@ -118,22 +120,22 @@ kurup şu listeyi işaretleyin:
         sesinden farklı, tek parlak çan duyuluyor.
 23. [ ] Seri daveti: İLK günlük çözümün sonuç ekranında "Protect your
         streak" kartı görünüyor; "Remind me daily" bildirimi planlıyor,
-        "Not now" sessizce kapatıyor — her iki durumda da kart bir daha
+        "Not now" sessizce kapatıyor, her iki durumda da kart bir daha
         ASLA görünmüyor (paket çözümlerinde hiç görünmez).
 24. [ ] Hatırlatma dayanıklılığı: hatırlatma açıkken saati 2-3 dk sonraya
         kur, bildirimin GELDİĞİNİ gör; sonra cihazı yeniden başlat ve
         ertesi gün bildirimi yine geldiğini doğrula (boot receiver).
 25. [ ] Ana ekran müzik ikonu: başlıktaki nota ikonuna dokununca müzik
         anında susuyor (ikon "müzik kapalı"ya dönüyor); tekrar dokununca
-        geri geliyor — durumu Ayarlar → "Music" ile birebir aynı.
-26. [ ] Öğretici geçişi: ilk açılışta "Try one — 30 seconds"a basınca TEK
+        geri geliyor, durumu Ayarlar → "Music" ile birebir aynı.
+26. [ ] Öğretici geçişi: ilk açılışta "Try one, 30 seconds"a basınca TEK
         akıcı geçişle bulmacaya giriliyor (arada ana ekran flaşı YOK);
         bulmacadan geri basınca ana ekrana düşüyor.
 27. [ ] Hatırlatma saati: "Reminder time"a basınca KLAVYE ile saat giriş
         ekranı açılıyor (kadran yok → üst üste binen nokta/sayı sorunu yok);
         kaydedilen saat listede güncelleniyor.
 28. [ ] Okunabilirlik: üç temada da (özellikle SEPYA) alt başlıklar/atıflar
-        ve tahtadaki küçük şifre harfi rahat okunuyor — soluk/kaybolmuş
+        ve tahtadaki küçük şifre harfi rahat okunuyor, soluk/kaybolmuş
         metin yok (WCAG AA kontrastı sağlandı).
 29. [ ] Bildirim markası: günlük hatırlatma bildiriminde küçük ikon + uygulama
         adı lacivert tonda; bildirim panelini açınca uzun metin tam görünüyor.
@@ -145,7 +147,7 @@ kurup şu listeyi işaretleyin:
 32. [ ] Tablet/büyük ekran: içerik kenara yapışmadan ortalı ve max ~560dp
         ile sınırlı; hiçbir ekranda taşma yok (telefon görünümü değişmez).
 33. [ ] Dayanıklılık: bir servis (reklam/bildirim/müzik) başlatılamasa bile
-        uygulama AÇILIR ve oyun oynanır — anında kapanma YOK. (Release
+        uygulama AÇILIR ve oyun oynanır, anında kapanma YOK. (Release
         çökmesinin kesin nedeni için Play Console → Android vitals →
         Çökmeler stack trace'i en güvenilir kanıttır.)
 
@@ -166,7 +168,7 @@ garantileri ayrı dokümanda: [ICERIK_EKLEME.md](ICERIK_EKLEME.md)
   (sıralama sinyali); tekrar eden şikayeti bana iletin.
 - AdMob → kazanç + "Ad serving" durumu (yeni uygulamada ilk günlerde
   sınırlı dolum normaldir).
-- Ayda bir: bana "bakım turu" deyin — bağımlılık güncellemeleri + KGP
+- Ayda bir: bana "bakım turu" deyin, bağımlılık güncellemeleri + KGP
   uyarısı veren eklentilerin (flutter_timezone, in_app_review, share_plus)
   yeni sürümlerini kontrol edip güncellerim.
 

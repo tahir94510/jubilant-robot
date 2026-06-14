@@ -1,4 +1,4 @@
-# Monetizasyon Rehberi — AdMob + Premium (IAP)
+# Monetizasyon Rehberi: AdMob + Premium (IAP)
 
 Uygulamada iki gelir kanalı hazır ve kodludur:
 
@@ -28,11 +28,11 @@ oyun" konumlandırmasının temelidir; yorumlara ve kalıcılığa doğrudan yan
    - **Interstitial** → adı `between_puzzles`
    - **Rewarded** → adı `hint_reward` (ödül: 3 / hint yazabilirsiniz;
      uygulama kendi değerini kullanır)
-   Her birinin **Ad unit ID**'sini not edin (`ca-app-pub-…/…` — / işaretli).
+   Her birinin **Ad unit ID**'sini not edin (`ca-app-pub-…/…`, / işaretli).
 
 ### ID'leri yapıştıracağınız YALNIZCA İKİ dosya
 
-**1. `lib/config/monetization_config.dart`** — şu üç satırı kendi ad-unit
+**1. `lib/config/monetization_config.dart`**, şu üç satırı kendi ad-unit
 ID'lerinizle değiştirin:
 
 ```dart
@@ -41,7 +41,7 @@ static const String _interstitialProd = 'ca-app-pub-SIZINKI/interstitial';
 static const String _rewardedProd = 'ca-app-pub-SIZINKI/rewarded';
 ```
 
-**2. `android/app/build.gradle.kts`** — `admobAppId` satırındaki test
+**2. `android/app/build.gradle.kts`**, `admobAppId` satırındaki test
 değerini kendi **App ID**'nizle (~ işaretli) değiştirin:
 
 ```kotlin
@@ -76,9 +76,9 @@ v1.1.5'ten beri "+3 ipucu"na basıldığında reklam hazır değilse kullanıcı
 "şu an video yok, birazdan tekrar deneyin" mesajı gösterilir (eskiden hiçbir
 şey olmuyordu, bu yüzden bozuk gibi hissettiriyordu).
 
-### app-ads.txt (OPSİYONEL — yayından sonra, geliri %5-15 artırabilir)
+### app-ads.txt (OPSİYONEL: yayından sonra, geliri %5-15 artırabilir)
 
-Gizlilik politikası için ek bir şey yapmanıza gerek YOK — o, bu reponun
+Gizlilik politikası için ek bir şey yapmanıza gerek YOK, o, bu reponun
 Pages sitesinde otomatik yayında:
 `https://tahir94510.github.io/jubilant-robot/privacy.html`
 
@@ -87,7 +87,7 @@ doğrulama dosyasıdır ve spec gereği alan adının KÖKÜNDE durmak zorundad�
 (`tahir94510.github.io/app-ads.txt`). Proje sayfası alt dizin olduğu için
 bunun tek yolu, `tahir94510.github.io` adlı ayrı bir "kullanıcı sitesi"
 reposudur. Bu dosya OLMADAN da AdMob'un kendi talebi reklam göstermeye
-devam eder — yani uygulamayı yayınlamak için gerekmez; gelir oturduktan
+devam eder, yani uygulamayı yayınlamak için gerekmez; gelir oturduktan
 sonra 5 dakikalık iyileştirme olarak yapın:
 
 1. GitHub → sağ üst **+** → **New repository** → ad alanına TAM OLARAK
@@ -142,7 +142,7 @@ testing** → kendi Gmail'inizi ekleyin. Bu hesap, kapalı testteki uygulamada
 Kelime bulmaca kitlesi (ABD ağırlıklı, yaşı yüksekçe) mobil oyun
 ortalamasının ÜZERİNDE eCPM getirir, ancak ilk aylar trafik azdır:
 
-- Banner eCPM tipik: $0.3–1.5 · Geçiş reklamı: $8–20 · Ödüllü: $10–25
+- Banner eCPM tipik: $0.3-1.5 · Geçiş reklamı: $8-20 · Ödüllü: $10-25
 - Kaba senaryo: günde 300 aktif kullanıcı × ort. 2 geçiş reklamı ≈
   600 gösterim × $12 eCPM ≈ **~$7/gün** + banner + ödüllü + ara sıra
   premium satışı. 1.000+ günlük kullanıcıda bu doğrusal büyür.
@@ -151,5 +151,5 @@ ortalamasının ÜZERİNDE eCPM getirir, ancak ilk aylar trafik azdır:
   (in-app review akışı entegre) bu eğriyi hızlandırır.
 
 Ayarlanabilir her şey `lib/config/app_config.dart` içindedir (geçiş reklamı
-sıklığı, ipucu jetonları, vb.) — agresifleştirmeden önce yorumlara etkisini
+sıklığı, ipucu jetonları, vb.), agresifleştirmeden önce yorumlara etkisini
 izleyin.
