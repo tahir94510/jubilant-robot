@@ -11,7 +11,7 @@ class StatsScreen extends StatelessWidget {
   const StatsScreen({super.key});
 
   String _fmtTime(int? seconds) {
-    if (seconds == null) return '\u{2014}';
+    if (seconds == null) return '--:--'; // no solve recorded yet
     final m = seconds ~/ 60;
     final s = (seconds % 60).toString().padLeft(2, '0');
     return '$m:$s';

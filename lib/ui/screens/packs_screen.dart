@@ -104,6 +104,7 @@ class _PackTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Card(
+        clipBehavior: Clip.antiAlias,
         child: ListTile(
           onTap: () {
             if (locked) {
