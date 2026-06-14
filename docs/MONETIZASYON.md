@@ -92,8 +92,10 @@ Play Console → uygulamanız → **Monetize → Products → In-app products**:
 2. **Product ID:** `premium_unlock`  ← BİREBİR böyle olmalı
    (kod `lib/config/monetization_config.dart` içinde bunu arar).
 3. **Name:** `Quotecrack Premium`
-4. **Description:** `Remove all ads, unlimited hints, and two bonus packs:
-   Shakespeare and Stoic Wisdom. One-time purchase, yours forever.`
+4. **Description:** `Remove all ads, unlock unlimited hints, and enjoy
+   exclusive bonus puzzle packs. One purchase, yours forever.`
+   > Ucu açık tutuldu (paket adı/sayısı yazmıyor): ileride premium paket
+   > ekleyince bu açıklamayı güncellemek zorunda kalmazsınız.
 5. **Price:** $4.99 (Google diğer para birimlerine kendisi çevirir;
    isterseniz ülke ülke düzeltebilirsiniz).
 6. **Activate** edin.
