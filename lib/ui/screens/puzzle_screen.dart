@@ -92,24 +92,27 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     }
 
     // Leaving during the 620ms celebration must not abandon the completion
-    // flow — the solve is only recorded on the complete screen. Back
-    // (button or gesture) skips the wave and lands there instead.
+    // flow — the solve is only recorded on the complete screen. Back (button
+    // or gesture) skips the wave and lands there instead. Once the complete
+    // screen has been shown (_completeShown), pop is allowed again so the
+    // back button can NEVER dead-end on this screen.
+    final intercept = _celebrating && !_completeShown;
     return PopScope(
-      canPop: !_celebrating,
+      canPop: !intercept,
       onPopInvokedWithResult: (didPop, _) {
-        if (!didPop && _celebrating) _goToComplete();
+        if (!didPop) _goToComplete();
       },
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              if (_celebrating) {
+              if (intercept) {
                 _goToComplete();
                 return;
               }
               game.stopTimer();
-              Navigator.of(context).pop();
+              Navigator.of(context).maybePop();
             },
           ),
           title: Text(
@@ -197,15 +200,14 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                         if (game.lastInputCreatedConflict) {
                           haptics.error();
                           sounds.conflict();
+                        } else if (game.lastInputCompletedWord) {
+                          // Finishing a whole word earns a brighter blip and a
+                          // distinct soft buzz, not a plain key tap.
+                          haptics.wordComplete();
+                          sounds.wordComplete();
                         } else {
                           haptics.tap();
-                          // Finishing a whole word earns a brighter blip than
-                          // a plain key tap.
-                          if (game.lastInputCompletedWord) {
-                            sounds.wordComplete();
-                          } else {
-                            sounds.tap();
-                          }
+                          sounds.tap();
                         }
                       },
                       onBackspace: () {

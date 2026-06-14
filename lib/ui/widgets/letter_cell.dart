@@ -30,6 +30,9 @@ class LetterCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
     final selected = state == CellState.selected;
+    // Honor the system "remove animations" accessibility setting: snap
+    // instantly instead of easing.
+    final motion = !MediaQuery.of(context).disableAnimations;
 
     final guessColor = switch (state) {
       CellState.conflict => palette.conflict,
@@ -44,7 +47,7 @@ class LetterCell extends StatelessWidget {
       onTap: onTap,
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 120),
+        duration: Duration(milliseconds: motion ? 120 : 0),
         curve: Curves.easeOut,
         width: width,
         margin: const EdgeInsets.symmetric(horizontal: 1),
@@ -65,7 +68,7 @@ class LetterCell extends StatelessWidget {
               child: Center(
                 // New guesses pop in with a quick scale for tactile feel.
                 child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 140),
+                  duration: Duration(milliseconds: motion ? 140 : 0),
                   switchInCurve: Curves.easeOutBack,
                   transitionBuilder: (child, animation) =>
                       ScaleTransition(scale: animation, child: child),
@@ -83,7 +86,7 @@ class LetterCell extends StatelessWidget {
               ),
             ),
             AnimatedContainer(
-              duration: const Duration(milliseconds: 120),
+              duration: Duration(milliseconds: motion ? 120 : 0),
               height: selected ? 2.4 : 1.6,
               margin: const EdgeInsets.symmetric(horizontal: 2),
               color: switch (state) {

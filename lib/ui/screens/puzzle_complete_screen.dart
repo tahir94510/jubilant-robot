@@ -90,6 +90,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final session = game.session;
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final motion = !MediaQuery.of(context).disableAnimations;
 
     // The one-time streak-protection invite: the moment a player finishes
     // their first daily is when a reminder is most welcome — and Settings
@@ -132,19 +133,27 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                   child: ListView(
                     padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
                     children: [
-                      // A small celebratory pop on entrance.
-                      TweenAnimationBuilder<double>(
-                        tween: Tween(begin: 0.4, end: 1),
-                        duration: const Duration(milliseconds: 420),
-                        curve: Curves.elasticOut,
-                        builder: (context, scale, child) =>
-                            Transform.scale(scale: scale, child: child),
-                        child: Icon(
+                      // A small celebratory pop on entrance (skipped when the
+                      // system "remove animations" setting is on).
+                      if (motion)
+                        TweenAnimationBuilder<double>(
+                          tween: Tween(begin: 0.4, end: 1),
+                          duration: const Duration(milliseconds: 420),
+                          curve: Curves.elasticOut,
+                          builder: (context, scale, child) =>
+                              Transform.scale(scale: scale, child: child),
+                          child: Icon(
+                            Icons.check_circle_outline,
+                            size: 48,
+                            color: palette.success,
+                          ),
+                        )
+                      else
+                        Icon(
                           Icons.check_circle_outline,
                           size: 48,
                           color: palette.success,
                         ),
-                      ),
                       const SizedBox(height: 14),
                       Text(
                         '\u{201C}${quote.text}\u{201D}',
@@ -369,35 +378,37 @@ class _ReminderNudgeCard extends StatelessWidget {
                 color: scheme.onSurface.withValues(alpha: .6),
               ),
             ),
-            const SizedBox(height: 8),
-            // Wrap: both labels stay readable on narrow phones with large
-            // text instead of overflowing a Row.
-            Wrap(
-              alignment: WrapAlignment.end,
-              spacing: 4,
-              children: [
-                TextButton(
-                  onPressed: () => controller.markReminderNudgeDone(),
-                  child: const Text('Not now'),
-                ),
-                TextButton(
-                  onPressed: () async {
-                    final ok = await controller.setReminder(enabled: true);
-                    await controller.markReminderNudgeDone();
-                    if (!ok && context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Notification permission was denied — you can '
-                            'enable it anytime in Settings.',
-                          ),
+            const SizedBox(height: 14),
+            // Full-width stacked actions: the primary choice is prominent and
+            // both buttons share one clean alignment at any text size (the old
+            // right-wrapped pair stacked unevenly on some devices).
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () async {
+                  final ok = await controller.setReminder(enabled: true);
+                  await controller.markReminderNudgeDone();
+                  if (!ok && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Notification permission was denied. You can '
+                          'enable it anytime in Settings.',
                         ),
-                      );
-                    }
-                  },
-                  child: const Text('Remind me daily'),
-                ),
-              ],
+                      ),
+                    );
+                  }
+                },
+                child: const Text('Remind me daily'),
+              ),
+            ),
+            const SizedBox(height: 4),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () => controller.markReminderNudgeDone(),
+                child: const Text('Not now'),
+              ),
             ),
           ],
         ),

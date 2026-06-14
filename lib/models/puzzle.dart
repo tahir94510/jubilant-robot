@@ -60,15 +60,15 @@ class PuzzleSession {
   bool isGuessCorrect(String cipherLetter) =>
       guesses[cipherLetter] == cipher.decryptLetter(cipherLetter);
 
-  /// Number of "meaningful" words (3+ letters) currently solved correctly —
-  /// drives the small "word done" progress cue. Trivial 1-2 letter words
-  /// (A, I, is, to, of...) are excluded so the cue rewards real progress
-  /// instead of firing on a single keystroke.
+  /// Number of real words (2+ letters) currently solved correctly — drives
+  /// the small "word done" progress cue. Single-letter words (A, I) are a
+  /// single keystroke, so they stay a plain tap; everything from two-letter
+  /// words up earns the brighter chime.
   int get correctWordCount {
     var count = 0;
     for (final word in cipherText.split(' ')) {
       final letters = lettersOnly(word);
-      if (letters.length < 3) continue;
+      if (letters.length < 2) continue;
       if (letters.split('').every(isGuessCorrect)) count++;
     }
     return count;
