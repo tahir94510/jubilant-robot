@@ -47,5 +47,11 @@ abstract final class AppConfig {
 
   /// Shown in Settings. Bump together with `version:` in pubspec.yaml on
   /// every release.
-  static const String appVersion = '1.1.4';
+  static const String appVersion = '1.1.5';
+
+  /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
+  /// achievements ships; items tagged with this number show a "NEW" badge
+  /// until the player opens the screen that lists them. (1 = launch content,
+  /// 2 = the v1.1.5 achievement batch.)
+  static const int contentVersion = 2;
 }

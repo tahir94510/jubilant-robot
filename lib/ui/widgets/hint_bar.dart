@@ -51,17 +51,28 @@ class HintBar extends StatelessWidget {
               return OutlinedButton.icon(
                 onPressed: () async {
                   final earned = await ads.showRewardedForHints();
+                  if (!context.mounted) return;
                   if (earned) {
                     economy.grantRewardedTokens();
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            '+${AppConfig.tokensPerRewardedAd} hints added',
-                          ),
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          '+${AppConfig.tokensPerRewardedAd} hints added',
                         ),
-                      );
-                    }
+                      ),
+                    );
+                  } else {
+                    // No fill yet (common on a freshly published app until
+                    // AdMob warms up) or the video was closed early. Tell the
+                    // player instead of leaving the tap feeling broken.
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'No video is available right now. '
+                          'Please try again in a moment.',
+                        ),
+                      ),
+                    );
                   }
                 },
                 icon: Icon(

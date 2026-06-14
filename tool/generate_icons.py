@@ -173,11 +173,12 @@ def make_android_launchers():
 
 
 def make_splash_icons():
-    # Android 12+ masks the splash icon to a 2/3-diameter circle; 0.60
-    # keeps the mark comfortably inside on every OEM. The same drawable is
+    # Android 12+ masks the splash icon to a 2/3-diameter circle; 0.64 fills
+    # that circle with a little more presence at launch while still keeping
+    # the whole mark comfortably inside on every OEM. The same drawable is
     # the centered logo of the pre-12 launch_background layer-list.
     for density, px in SPLASH_SIZES.items():
-        save(artwork(px, transparent_bg=True, scale=0.60),
+        save(artwork(px, transparent_bg=True, scale=0.64),
              f"android/app/src/main/res/drawable-{density}/splash_icon.png")
 
 

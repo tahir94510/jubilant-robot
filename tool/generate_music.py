@@ -4,19 +4,24 @@
 Pure stdlib (wave + math): no licensing, no "stock asset" feel — the same
 philosophy as tool/generate_sounds.py, scaled up from blips to a bed.
 
-v2 design notes (replaces the v1 crossfade-seam piece):
-- The track is a 64 s phrase over a classic, restful progression
-  (C - Am - F - G - C - F - Dm - G), three predictable layers:
-  warm pads, one gentle melody note per chord, and a soft plucked
-  arpeggio on a regular 2-second grid. Predictability reads as calm;
-  v1's randomly-timed bells read as eerie and were removed, along with
-  the low-passed "room air" noise layer (it was heard as hiss).
+v3 design notes (a longer, two-section bed so it doesn't feel repetitive):
+- The track is a ~128 s piece in two restful sections that share one key,
+  so they flow without a seam. Section A is the classic
+  C - Am - F - G - C - F - Dm - G; section B answers it with
+  F - C - Dm - Am - F - G - Am - G before the V (G) pulls back into A's
+  opening C. Three predictable layers throughout: warm pads, one gentle
+  melody note per chord, and a soft plucked arpeggio on a regular grid.
+  Predictability reads as calm; the second section gives the ear
+  somewhere new to go so a long session never feels looped.
 - The piece STARTS from silence (first chord fades in) and RESOLVES to
-  silence (every envelope is closed by 63.3 s). The loop wrap therefore
+  silence (every envelope is closed by ~127.3 s). The loop wrap therefore
   falls inside a natural breath: Android MediaPlayer's looping is not
   gapless, and this composition makes that gap musically invisible —
   no seam crossfade math, no mid-blend start, no wrap click by design.
-- 44.1 kHz mono 16-bit for clean highs on the plucks (~5.4 MB).
+- 22.05 kHz mono 16-bit: a soft pad/pluck bed has no energy near the old
+  22 kHz ceiling, so half the sample rate is inaudible here and keeps the
+  file small (~5.6 MB) AND lighter to decode, which removes the buffer
+  underrun crackle some low-end phones hit on a big 44.1 kHz asset.
 - Every melody/arp pitch is a chord tone of the chord it sounds over,
   enforced by a self-check: a wrong note is mathematically impossible.
 
@@ -30,8 +35,8 @@ import sys
 import wave
 from pathlib import Path
 
-RATE = 44100
-TOTAL_SECONDS = 64.0
+RATE = 22050
+TOTAL_SECONDS = 128.0
 CHORD_SPAN = 8.0
 OUT = Path(__file__).resolve().parent.parent / "assets/audio"
 
@@ -44,11 +49,19 @@ CHORDS = {
     "G": (98.00, 146.83, 196.00, 246.94),  # G2 D3 G3 B3
     "Dm": (146.83, 220.00, 293.66, 349.23),  # D3 A3 D4 F4
 }
-PROGRESSION = ["C", "Am", "F", "G", "C", "F", "Dm", "G"]
+# Section A, then section B (a gentle answer in the same key). Concatenated,
+# they make one ~128 s piece; B's closing G is the V that resolves into A's
+# opening C, so the wrap is a real cadence, not a cut.
+PROGRESSION_A = ["C", "Am", "F", "G", "C", "F", "Dm", "G"]
+PROGRESSION_B = ["F", "C", "Dm", "Am", "F", "G", "Am", "G"]
+PROGRESSION = PROGRESSION_A + PROGRESSION_B
 
 # One whole note per chord, stepwise where possible, always a chord tone.
-MELODY = (329.63, 261.63, 261.63, 246.94, 261.63, 220.00, 349.23, 246.94)
-#          E4      C4      C4      B3      C4      A3      F4      B3
+MELODY_A = (329.63, 261.63, 261.63, 246.94, 261.63, 220.00, 349.23, 246.94)
+#            E4      C4      C4      B3      C4      A3      F4      B3
+MELODY_B = (220.00, 261.63, 293.66, 261.63, 220.00, 246.94, 220.00, 246.94)
+#            A3      C4      D4      C4      A3      B3      A3      B3
+MELODY = MELODY_A + MELODY_B
 
 # Soft plucked arpeggio beats (seconds within each 8 s chord); the note is
 # the chord tone at index beat/2, cycling low to high.
@@ -130,7 +143,7 @@ def compose():
 
         # Pads: 3 s tail into the next chord keeps transitions seamless;
         # the first chord rises out of silence, the last one closes fully
-        # at 63.3 s so the loop wraps inside a quiet breath.
+        # at ~127.3 s so the loop wraps inside a quiet breath.
         if idx == last:
             dur, attack, release = 7.3, 4.0, 3.3
         elif idx == 0:
@@ -152,7 +165,7 @@ def compose():
         # Arpeggio on a regular grid (predictable = calm). The very first
         # beat stays silent so the piece truly starts from nothing, and the
         # final chord drops its last beat so every pluck dies before the
-        # 63.3 s close.
+        # ~127.3 s close.
         for beat_i, beat in enumerate(ARP_BEATS):
             if idx == 0 and beat == 0.0:
                 continue

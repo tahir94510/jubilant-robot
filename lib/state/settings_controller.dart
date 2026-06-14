@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../config/app_config.dart';
 import '../models/app_settings.dart';
 import '../services/music_service.dart';
 import '../services/notifications/notification_service.dart';
@@ -90,6 +91,21 @@ class SettingsController extends ChangeNotifier {
 
   Future<void> markReminderNudgeDone() {
     settings.reminderNudgeDone = true;
+    return _save();
+  }
+
+  /// True when [item] is newer than the content the player has already seen,
+  /// so it should wear a "NEW" badge.
+  bool isContentNew(int addedInVersion) =>
+      addedInVersion > settings.seenContentVersion;
+
+  /// Clears the "NEW" badges by recording that the player has now seen the
+  /// current content revision. A no-op (no disk write) once already current.
+  Future<void> markContentSeen() {
+    if (settings.seenContentVersion >= AppConfig.contentVersion) {
+      return Future.value();
+    }
+    settings.seenContentVersion = AppConfig.contentVersion;
     return _save();
   }
 

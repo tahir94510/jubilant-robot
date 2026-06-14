@@ -25,7 +25,7 @@ OUT = Path(__file__).resolve().parent.parent / "assets/audio"
 random.seed(7)  # deterministic output
 
 
-def bell(freq, dur, *, volume=0.5, attack=0.008, decay=4.0,
+def bell(freq, dur, *, volume=0.5, attack=0.011, decay=4.0,
          partials=((1.0, 1.0, 1.0), (2.0, 0.32, 1.9), (2.99, 0.14, 2.6),
                    (0.5, 0.18, 0.8)),
          detune_cents=4.0):
@@ -60,18 +60,24 @@ def air(samples, *, amount=0.05, delay_ms=23.0):
     return out
 
 
-def mix(*tracks):
+def mix(*tracks, target=0.82):
+    """Sum tracks, then scale so the result peaks exactly at `target`.
+
+    `target` is the per-sound loudness role, so the family stays balanced:
+    the solve fanfare is the loudest moment, a keyboard tap the quietest,
+    everything else sits between. (Playback volume is uniform, so the WAV
+    peak *is* the relative loudness.)"""
     total = max(int(off * RATE) + len(s) for off, s in tracks)
     buf = [0.0] * total
     for off, s in tracks:
         start = int(off * RATE)
         for i, v in enumerate(s):
             buf[start + i] += v
-    peak = max(1.0, max(abs(v) for v in buf) / 0.82)
-    return [v / peak for v in buf]
+    peak = max(abs(v) for v in buf) or 1.0
+    return [v * (target / peak) for v in buf]
 
 
-def clean_edges(samples, *, fade_in=0.004, fade_out=0.03):
+def clean_edges(samples, *, fade_in=0.005, fade_out=0.045):
     """Force every clip to start and end at true silence with a raised-cosine
     ramp. Without this, a bell whose exponential tail is still audible when
     the buffer ends produces a hard step -> an audible click/crackle. This is
@@ -125,7 +131,8 @@ def tap_sound():
     return out
 
 
-write("tap.wav", mix((0, tap_sound())))
+# Keyboard tap is the quietest member of the family: felt, not heard.
+write("tap.wav", mix((0, tap_sound()), target=0.34))
 
 # Hint reveal: two soft ascending bells (G5 -> C6) with air.
 write(
@@ -133,6 +140,7 @@ write(
     mix(
         (0.00, air(bell(784, 0.30, volume=0.30, decay=7))),
         (0.09, air(bell(1046.5, 0.42, volume=0.32, decay=6))),
+        target=0.60,
     ),
 )
 
@@ -142,7 +150,8 @@ write(
     mix((0, air(bell(208, 0.26, volume=0.34, decay=11,
                      partials=((1.0, 1.0, 1.0), (1.62, 0.3, 2.2),
                                (0.5, 0.22, 0.9)),
-                     detune_cents=7), amount=0.04))),
+                     detune_cents=7), amount=0.04)),
+        target=0.52),
 )
 
 # Puzzle solved: unhurried C-major arpeggio with a low C pad underneath —
@@ -157,16 +166,20 @@ write(
         (0.13, air(bell(659.25, 0.9, volume=0.30, decay=3.2))),     # E5
         (0.26, air(bell(783.99, 1.0, volume=0.30, decay=2.9))),     # G5
         (0.42, air(bell(1046.5, 1.25, volume=0.33, decay=2.2))),    # C6
+        target=0.90,  # the loudest, most rewarding moment in the app
     ),
 )
 
 # Achievement: bright two-note sparkle (E6 -> B6) over a quick G5 grace.
+# The top note gets a softer attack and a touch less level so it sparkles
+# instead of "ticking" on small phone speakers.
 write(
     "achievement.wav",
     mix(
         (0.00, air(bell(784, 0.25, volume=0.20, decay=8))),
-        (0.05, air(bell(1318.5, 0.5, volume=0.28, decay=5))),
-        (0.17, air(bell(1975.5, 0.7, volume=0.30, decay=4))),
+        (0.05, air(bell(1318.5, 0.5, volume=0.27, decay=5))),
+        (0.17, air(bell(1975.5, 0.7, volume=0.22, decay=4.5, attack=0.016))),
+        target=0.72,
     ),
 )
 
@@ -176,5 +189,6 @@ write(
 # byte-identical.)
 write(
     "word.wav",
-    mix((0.00, air(bell(1318.5, 0.32, volume=0.24, decay=7), amount=0.04))),
+    mix((0.00, air(bell(1318.5, 0.32, volume=0.24, decay=7), amount=0.04)),
+        target=0.42),
 )

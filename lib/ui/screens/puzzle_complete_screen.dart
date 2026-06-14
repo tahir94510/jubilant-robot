@@ -16,6 +16,7 @@ import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
 import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
+import '../widgets/achievement_tile.dart';
 import '../widgets/banner_ad_slot.dart';
 import '../widgets/confetti_burst.dart';
 import '../widgets/scale_safe.dart';
@@ -200,21 +201,26 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                         ],
                       ),
                       if (_newAchievements.isNotEmpty) ...[
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 16),
+                        Text(
+                          _newAchievements.length == 1
+                              ? 'Achievement unlocked'
+                              : 'Achievements unlocked',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 1.2,
+                            color: scheme.primary,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
                         for (final a in _newAchievements)
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10),
-                            child: Card(
-                              child: ListTile(
-                                leading: Icon(a.icon, color: scheme.primary),
-                                title: Text(
-                                  'Achievement: ${a.title}',
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                subtitle: Text(a.description),
-                              ),
+                            child: AchievementTile(
+                              achievement: a,
+                              justUnlocked: true,
                             ),
                           ),
                       ],

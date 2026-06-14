@@ -285,7 +285,7 @@ void main() {
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Try one — 30 seconds'));
+    await tester.tap(find.text('Try one (30 seconds)'));
     await tester.pumpAndSettle();
 
     expect(h.settings.settings.onboardingDone, isTrue);

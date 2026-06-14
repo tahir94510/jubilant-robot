@@ -65,8 +65,10 @@ class MusicService with WidgetsBindingObserver {
     );
   }
 
-  /// Briefly dips the bed under the success fanfare, then restores it.
-  void duck({Duration hold = const Duration(milliseconds: 1800)}) {
+  /// Briefly dips the bed under the success fanfare, then restores it. The
+  /// hold spans the full ~1.7 s fanfare (plus a beat) so the bed never swells
+  /// back up while the solve chord is still ringing.
+  void duck({Duration hold = const Duration(milliseconds: 2000)}) {
     final p = _player;
     if (!_ready || p == null || !_playing || !isEnabled()) return;
     _duckTimer?.cancel();

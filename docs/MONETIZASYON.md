@@ -56,6 +56,26 @@ ederken gerçek ID'lere tıklamanız diye bir risk yoktur.
 > Yayın sonrası ilk saatlerde "Ad serving limited" görmek normaldir;
 > AdMob uygulamayı doğruladıkça açılır (günler-haftalar).
 
+### "Hiç reklam görmüyorum" (bu bir bug DEĞİL)
+
+Yeni yayımlanan, AdMob'un henüz onaylamadığı bir uygulamada banner da,
+"+3 ipucu" ödüllü reklamı da bir süre **boş döner** ("no fill"). Sebepleri:
+
+- **Onay bekleme:** AdMob yeni uygulamayı/ad-unit'leri doğrulayana kadar
+  reklam doldurmaz. Bu genelde birkaç gün, bazen 1-2 hafta sürer. AdMob →
+  uygulamanız → durum "Ready/Getting ready" olunca akış kendiliğinden başlar.
+- **Henüz gerçek ID girmediyseniz:** yukarıdaki iki dosyada hâlâ test ID'leri
+  varsa, **release** derlemesi (kDebugMode=false) gerçek ID arar ve test
+  reklamı GÖSTERMEZ; sonuç yine boş ekran olur.
+- **Test etmek için:** **debug APK** her zaman Google'ın test reklamını
+  gösterir. Banner'ı, geçiş reklamını ve "+3 ipucu" ödüllü akışını telefonda
+  doğrulamak için debug APK kullanın; orada reklam GÖRÜNÜR.
+
+Kodda hata yok: reklam dolmazsa uygulama çökmez, sessizce reklamsız çalışır.
+v1.1.5'ten beri "+3 ipucu"na basıldığında reklam hazır değilse kullanıcıya
+"şu an video yok, birazdan tekrar deneyin" mesajı gösterilir (eskiden hiçbir
+şey olmuyordu, bu yüzden bozuk gibi hissettiriyordu).
+
 ### app-ads.txt (OPSİYONEL — yayından sonra, geliri %5-15 artırabilir)
 
 Gizlilik politikası için ek bir şey yapmanıza gerek YOK — o, bu reponun
