@@ -5,6 +5,17 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes — v1.1.4 (max 500 chars — paste into "What's new")
+
+```
+NEW in 1.1.4
+• Fixed a startup crash on some devices — the app now opens reliably
+• Stability and performance improvements under the hood
+Thanks for your patience, and happy decoding!
+```
+
+---
+
 ## Release notes — v1.1.3 (max 500 chars — paste into "What's new")
 
 ```
