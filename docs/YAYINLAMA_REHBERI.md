@@ -1,4 +1,4 @@
-# Yayınlama Rehberi — A'dan Z'ye Google Play
+# Yayınlama Rehberi: A'dan Z'ye Google Play
 
 Bu rehber, hiç uygulama yayımlamamış biri için yazıldı. Sırayla uygulayın;
 her bölüm bir öncekine dayanır. Toplam aktif eforunuz ~2-3 saattir, takvim
@@ -6,7 +6,7 @@ süresi ise kapalı test şartı nedeniyle ~3 haftadır.
 
 ---
 
-## §1 — Google Play Developer hesabı ($25, tek seferlik)
+## §1: Google Play Developer hesabı ($25, tek seferlik)
 
 1. https://play.google.com/console adresine gidin, Google hesabınızla girin.
 2. **Hesap türü: Kişisel** seçin (şirketiniz yoksa).
@@ -17,10 +17,10 @@ süresi ise kapalı test şartı nedeniyle ~3 haftadır.
    mağaza profilinde herkese gösterir; buna uygun bir e-posta kullanın.
 
 > 13 Kasım 2023 sonrası açılan kişisel hesaplar **§8'deki kapalı test
-> şartına** tabidir. Hesabı NE KADAR ERKEN açarsanız o kadar iyi — kimlik
+> şartına** tabidir. Hesabı NE KADAR ERKEN açarsanız o kadar iyi, kimlik
 > onayı beklerken diğer adımları yapabilirsiniz.
 
-## §2 — İmza anahtarı (keystore): Actions'ta tek tık
+## §2: İmza anahtarı (keystore): Actions'ta tek tık
 
 Play Store'a yüklenecek paketler sizin "yükleme anahtarınızla" imzalanmalı.
 Bilgisayarınıza hiçbir şey kurmadan üretin:
@@ -56,7 +56,7 @@ Bilgisayarınıza hiçbir şey kurmadan üretin:
    > etkileşmeniz gerekiyorsa AdMob → Ayarlar → Test cihazları'na
    > cihazınızı ekleyin.
 
-## §3 — Play Console'da uygulamayı oluşturma
+## §3: Play Console'da uygulamayı oluşturma
 
 Play Console → **Create app**:
 - **App name:** `Quotecrack: Cryptogram Puzzle`
@@ -64,7 +64,7 @@ Play Console → **Create app**:
 - **App or game:** Game · **Free or paid:** Free
 - Beyanları işaretleyin, **Create app**.
 
-## §4 — Mağaza kaydı (Store listing)
+## §4: Mağaza kaydı (Store listing)
 
 **Grow → Store presence → Main store listing** sayfasını
 [STORE_LISTING.md](STORE_LISTING.md) dosyasındaki hazır İngilizce
@@ -79,7 +79,7 @@ metinlerle doldurun (kopyala-yapıştır):
   paketler, istatistikler. (Telefonda ekran görüntüsü: Güç+Ses kısma.)
   Alternatif: web önizlemeyi telefon görünümünde açıp görüntü alın.
 
-## §5 — Uygulama içeriği formları (App content)
+## §5: Uygulama içeriği formları (App content)
 
 Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
 
@@ -96,10 +96,10 @@ Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
    - Şiddet/cinsellik/küfür/kumar/uyuşturucu sorularının tümü: **No**.
    - "Does the app share user location": **No**. "Digital purchases": **Yes**
      (premium IAP). Sonuç tipik olarak **Everyone / PEGI 3** çıkar.
-5. **Target audience:** 13+ seçin (çocuklara yönelik DEĞİL deyin) —
+5. **Target audience:** 13+ seçin (çocuklara yönelik DEĞİL deyin) , 
    böylece "Families" ek politikalarına girmezsiniz.
 6. **News app:** No. **COVID-19 app:** No.
-7. **Data safety** formu — şunları beyan edin (AdMob nedeniyle):
+7. **Data safety** formu, şunları beyan edin (AdMob nedeniyle):
    - *Does your app collect or share any of the required user data types?*
      → **Yes**.
    - **Device or other IDs → Device or other IDs:** Collected: Yes,
@@ -119,22 +119,22 @@ Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
      kullanılıyor → amaç: Advertising.
 8. **Government apps / Financial features:** No / None.
 
-## §6 — Ülkeler ve fiyat
+## §6: Ülkeler ve fiyat
 
 - **Countries/regions:** All countries (veya en azından US, UK, CA, AU,
-  IN, PH, ZA + Avrupa — İngilizce konuşan pazarlar kritik).
+  IN, PH, ZA + Avrupa, İngilizce konuşan pazarlar kritik).
 - Uygulama ücretsiz; premium IAP fiyatı §IAP'ta (MONETIZASYON.md).
 
-## §7 — İlk paketi yükleme (kapalı test)
+## §7: İlk paketi yükleme (kapalı test)
 
 1. Sol menü → **Test and release → Testing → Closed testing** →
    **Create track** (adı "Alpha" kalabilir).
 2. **Create new release** → "App integrity" adımında **Play App Signing**
    varsayılanını kabul edin (Google, imzalamayı sizin yükleme anahtarınız
-   üstünden yönetir — anahtar kaybında kurtarma şansı sağlar).
+   üstünden yönetir, anahtar kaybında kurtarma şansı sağlar).
 3. GitHub Actions'tan indirdiğiniz `quotecrack-release-aab` zip'inden çıkan
    `app-release.aab` dosyasını sürükleyip bırakın.
-4. Release notes: `First release — daily cryptogram puzzles.`
+4. Release notes: `First release, daily cryptogram puzzles.`
 5. **Testers** sekmesi → **Create email list** → testçilerin Gmail
    adreslerini ekleyin → kaydedin. Oluşan **opt-in link**'i testçilere
    gönderin (linke girip "Become a tester" demeleri ve uygulamayı Play'den
@@ -142,14 +142,14 @@ Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
 6. **Save → Review release → Start rollout to Closed testing.**
    İlk incelemesi birkaç gün sürebilir.
 
-## §8 — 12 testçi × 14 gün şartı ve üretime geçiş
+## §8: 12 testçi × 14 gün şartı ve üretime geçiş
 
 Kişisel hesabınız yeniyse Google şunu ister: kapalı testinizde **en az 12
 testçi, kesintisiz son 14 gün boyunca** kayıtlı (opt-in) kalmalı.
 
 **Testçi bulma stratejileri (ücretsiz):**
 - Aile + arkadaşlar + iş arkadaşları (WhatsApp grubunuz yeter).
-- Reddit: r/AndroidClosedTesting ve r/AppTesters — karşılıklı test
+- Reddit: r/AndroidClosedTesting ve r/AppTesters, karşılıklı test
   toplulukları ("ben seninkini test ederim, sen benimkini").
 - Testçilere mesaj şablonu: opt-in linki + "Play'den indirin, ARADA BİR
   açın ve 14 gün boyunca silmeyin" notu.
@@ -164,7 +164,7 @@ Onay gelince:
    rollout %100.
 2. İlk üretim incelemesi de birkaç gün sürebilir. Yayında! 🎉
 
-## §9 — Yayın sonrası kontrol listesi
+## §9: Yayın sonrası kontrol listesi
 
 - [ ] MONETIZASYON.md'deki **gerçek AdMob ID'leri** yayın AAB'sine girdi mi?
 - [ ] `premium_unlock` ürünü **Active** mi? Fiyat doğru mu?
@@ -173,7 +173,7 @@ Onay gelince:
 - [ ] Uygulamayı Play'den kendiniz indirip: reklamların geldiğini, premium
       satın almanın çalıştığını (lisans testçisiyle ücretsiz test
       edebilirsiniz), bildirimin geldiğini doğrulayın.
-- [ ] Yorumlara ilk haftalarda hızlı yanıt verin — sıralama sinyali.
+- [ ] Yorumlara ilk haftalarda hızlı yanıt verin, sıralama sinyali.
 
 ## Sürüm güncelleme rutini
 

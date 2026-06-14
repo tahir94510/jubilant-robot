@@ -18,6 +18,31 @@ void main() {
     }
   });
 
+  test('every achievement is distinct (no shallow copies)', () {
+    final n = Achievement.catalog.length;
+    // Title, description, and icon must all be unique: each achievement is a
+    // genuinely different goal, never a reskinned duplicate of another.
+    expect(
+      Achievement.catalog.map((a) => a.title).toSet().length,
+      n,
+      reason: 'duplicate achievement title',
+    );
+    expect(
+      Achievement.catalog.map((a) => a.description).toSet().length,
+      n,
+      reason: 'duplicate achievement description',
+    );
+    expect(
+      Achievement.catalog.map((a) => a.icon).toSet().length,
+      n,
+      reason: 'duplicate achievement icon',
+    );
+    for (final a in Achievement.catalog) {
+      expect(a.title.trim(), isNotEmpty, reason: a.id);
+      expect(a.description.trim(), isNotEmpty, reason: a.id);
+    }
+  });
+
   test('first solve unlocks exactly the right achievements once', () async {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();
