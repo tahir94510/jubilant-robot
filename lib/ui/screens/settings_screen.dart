@@ -80,7 +80,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(
-                          'Auto — follows your device',
+                          'Auto (follows your device)',
                           style: TextStyle(
                             fontSize: 13,
                             color: palette.textSecondary,

@@ -57,6 +57,6 @@ void main() {
     );
     await tester.pump();
 
-    expect(find.text('Last 16 weeks · Feb 2026 – Jun 2026'), findsOneWidget);
+    expect(find.text('Last 16 weeks · Feb 2026 to Jun 2026'), findsOneWidget);
   });
 }

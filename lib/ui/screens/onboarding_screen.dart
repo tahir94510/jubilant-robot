@@ -35,7 +35,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     (
       Icons.swap_horiz,
       'Every letter is swapped',
-      'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A — but the swap is consistent everywhere.',
+      'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A, but the swap is consistent everywhere.',
     ),
     (
       Icons.psychology_outlined,
@@ -178,7 +178,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: Text(
                       _page < _steps.length - 1
                           ? 'Next'
-                          : 'Try one — 30 seconds',
+                          : 'Try one (30 seconds)',
                     ),
                   ),
                   TextButton(

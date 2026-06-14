@@ -112,7 +112,7 @@ class PaywallScreen extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.check),
-                  label: const Text('Premium active — enjoy!'),
+                  label: const Text('Premium active. Enjoy!'),
                 )
               else ...[
                 if (!purchases.supported)

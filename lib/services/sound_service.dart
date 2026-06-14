@@ -10,9 +10,16 @@ class SoundService {
 
   final bool Function() isEnabled;
 
-  /// A small pool so rapid keyboard taps don't cut each other off.
+  /// A small pool so rapid keyboard taps don't cut each other off. Taps are
+  /// the only latency-critical sound (one per keystroke), so they stay on the
+  /// low-latency SoundPool path.
   final List<AudioPlayer> _tapPool = [];
   int _tapIndex = 0;
+
+  /// The discrete event sounds (hint, conflict, word, success, achievement).
+  /// One media-player each: they never overlap themselves, and the media path
+  /// lets us replay with a clean seek-to-zero instead of a stop()/teardown,
+  /// which is what popped the ringing tail on the old build.
   final Map<String, AudioPlayer> _players = {};
   bool _ready = false;
 
@@ -42,7 +49,7 @@ class SoundService {
         ),
       );
       for (var i = 0; i < 3; i++) {
-        _tapPool.add(await _load('tap.wav'));
+        _tapPool.add(await _load('tap.wav', lowLatency: true));
       }
       for (final name in [
         'hint.wav',
@@ -51,7 +58,7 @@ class SoundService {
         'achievement.wav',
         'word.wav',
       ]) {
-        _players[name] = await _load(name);
+        _players[name] = await _load(name, lowLatency: false);
       }
       _ready = true;
     } catch (_) {
@@ -61,24 +68,36 @@ class SoundService {
     }
   }
 
-  Future<AudioPlayer> _load(String asset) async {
+  Future<AudioPlayer> _load(String asset, {required bool lowLatency}) async {
     final p = AudioPlayer();
-    await p.setPlayerMode(PlayerMode.lowLatency);
+    await p.setPlayerMode(
+      lowLatency ? PlayerMode.lowLatency : PlayerMode.mediaPlayer,
+    );
     await p.setSource(AssetSource('audio/$asset'));
     await p.setReleaseMode(ReleaseMode.stop);
     return p;
   }
 
+  /// Replay a media-player sound from its start without a stop()/teardown.
+  /// seek-to-zero repositions in place (no SoundPool stream rebuild), so the
+  /// ringing tail of the previous play is never hard-cut into a click.
   void _play(AudioPlayer? player) {
     if (!_ready || player == null || !isEnabled()) return;
-    // Fire and forget; errors are irrelevant for a UI blip.
-    unawaited(player.stop().then((_) => player.resume()).catchError((_) {}));
+    unawaited(
+      player
+          .seek(Duration.zero)
+          .then((_) => player.resume())
+          .catchError((_) {}),
+    );
   }
 
   void tap() {
-    if (_tapPool.isEmpty) return;
+    if (!_ready || _tapPool.isEmpty || !isEnabled()) return;
     _tapIndex = (_tapIndex + 1) % _tapPool.length;
-    _play(_tapPool[_tapIndex]);
+    // Low-latency (SoundPool) does not support seek; a stop()+resume on a
+    // pooled, already-finished player retriggers it without an audible cut.
+    final player = _tapPool[_tapIndex];
+    unawaited(player.stop().then((_) => player.resume()).catchError((_) {}));
   }
 
   void hint() => _play(_players['hint.wav']);

@@ -206,7 +206,7 @@ void main() {
     // Default is system ("Auto") and the UI says so instead of faking
     // a light selection.
     expect(h.settings.settings.themeMode, AppThemeMode.system);
-    expect(find.text('Auto — follows your device'), findsOneWidget);
+    expect(find.text('Auto (follows your device)'), findsOneWidget);
 
     // Every option carries a readable text label, not just an icon.
     expect(find.text('Auto'), findsOneWidget);
@@ -217,7 +217,7 @@ void main() {
     await tester.tap(find.byIcon(Icons.dark_mode_outlined));
     await tester.pump();
     expect(h.settings.settings.themeMode, AppThemeMode.dark);
-    expect(find.text('Auto — follows your device'), findsNothing);
+    expect(find.text('Auto (follows your device)'), findsNothing);
 
     await tester.tap(find.byIcon(Icons.brightness_auto_outlined));
     await tester.pump();
@@ -504,7 +504,7 @@ void main() {
 
     testWidgets('achievements down to the last entry', (tester) async {
       await pumpAt320(tester, const AchievementsScreen());
-      await tester.scrollUntilVisible(find.text('Morning Coffee'), 150);
+      await tester.scrollUntilVisible(find.text('Hundred Mornings'), 150);
       expect(tester.takeException(), isNull);
     });
 
@@ -526,7 +526,7 @@ void main() {
       await tester.tap(find.text('Next'));
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(find.text('Try one — 30 seconds'), findsOneWidget);
+      expect(find.text('Try one (30 seconds)'), findsOneWidget);
     });
   });
 

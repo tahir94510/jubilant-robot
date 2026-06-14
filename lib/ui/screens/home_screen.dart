@@ -56,26 +56,23 @@ class HomeScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          // The wordmark scales down rather than pushing the
-                          // streak badge + settings off a narrow phone when
-                          // large system text is on.
-                          Flexible(
+                          // Just the serif wordmark: the logo already greets
+                          // the player on the launch screen and the app icon,
+                          // so the home header stays clean and uncrowded. It
+                          // scales down rather than pushing the controls off a
+                          // narrow phone when large system text is on.
+                          const Flexible(
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               alignment: Alignment.centerLeft,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  BrandMark(size: 30),
-                                  SizedBox(width: 10),
-                                  BrandWordmark(fontSize: 26),
-                                ],
-                              ),
+                              child: BrandWordmark(fontSize: 26),
                             ),
                           ),
                           // The controls keep a bounded text scale so a large
                           // system font can't balloon the streak number and
-                          // squeeze the wordmark off a narrow phone.
+                          // squeeze the wordmark off a narrow phone. A little
+                          // space around the streak badge keeps the three
+                          // controls from reading as one cramped cluster.
                           MediaQuery.withClampedTextScaling(
                             maxScaleFactor: 1.1,
                             child: Row(
@@ -95,7 +92,9 @@ class HomeScreen extends StatelessWidget {
                                         : Icons.music_off_outlined,
                                   ),
                                 ),
+                                const SizedBox(width: 4),
                                 StreakBadge(streak: progress.displayStreak),
+                                const SizedBox(width: 4),
                                 IconButton(
                                   tooltip: 'Settings',
                                   visualDensity: VisualDensity.compact,
@@ -111,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 18),
 
                       // --- Daily puzzle card ---
                       Card(

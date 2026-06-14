@@ -18,6 +18,7 @@ class AppSettings {
     this.reminderMinute = 0,
     this.reminderNudgeDone = false,
     this.onboardingDone = false,
+    this.seenContentVersion = 1,
   });
 
   factory AppSettings.fromJson(Map<String, dynamic> json) => AppSettings(
@@ -36,6 +37,7 @@ class AppSettings {
     reminderMinute: json['reminderMinute'] as int? ?? 0,
     reminderNudgeDone: json['reminderNudgeDone'] as bool? ?? false,
     onboardingDone: json['onboardingDone'] as bool? ?? false,
+    seenContentVersion: json['seenContentVersion'] as int? ?? 1,
   );
 
   AppThemeMode themeMode;
@@ -63,6 +65,12 @@ class AppSettings {
   bool reminderNudgeDone;
   bool onboardingDone;
 
+  /// Highest content revision the player has already seen listed. Achievements
+  /// (and, later, packs) with a higher [Achievement.addedInVersion] show a
+  /// "NEW" badge until the player opens the relevant screen, which advances
+  /// this to [AppConfig.contentVersion].
+  int seenContentVersion;
+
   TimeOfDay get reminderTime =>
       TimeOfDay(hour: reminderHour, minute: reminderMinute);
 
@@ -80,5 +88,6 @@ class AppSettings {
     'reminderMinute': reminderMinute,
     'reminderNudgeDone': reminderNudgeDone,
     'onboardingDone': onboardingDone,
+    'seenContentVersion': seenContentVersion,
   };
 }

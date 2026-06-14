@@ -151,7 +151,7 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.4+7` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.5+8` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
 Play Console'a yükle.

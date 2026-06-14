@@ -54,7 +54,7 @@ class HeatmapCalendar extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'Last $_weeks weeks · ${DateFormat.yMMM().format(start)} – ${DateFormat.yMMM().format(today)}',
+          'Last $_weeks weeks · ${DateFormat.yMMM().format(start)} to ${DateFormat.yMMM().format(today)}',
           style: TextStyle(
             fontSize: 12,
             color: Theme.of(context).extension<GamePalette>()!.textSecondary,
