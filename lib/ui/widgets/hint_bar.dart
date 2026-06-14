@@ -25,7 +25,7 @@ class HintBar extends StatelessWidget {
       alignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
       spacing: 10,
-      runSpacing: 6,
+      runSpacing: 10,
       children: [
         OutlinedButton.icon(
           onPressed: economy.canUseHint

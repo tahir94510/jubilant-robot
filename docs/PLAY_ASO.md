@@ -7,11 +7,15 @@ anahtar kelimeler, yükleme/çökme oranı, puan ve yorumlar, ve KALICILIK
 
 ## Kritik kontrol listesi (etkiye göre sıralı)
 
-1. **Lokalize mağaza listeleri (en büyük kaldıraç).** Oyun İngilizce kalır;
-   yalnız mağaza metnini çevirirsin. Öncelik: **Türkçe** (senin pazarın ve en
-   kolayı), sonra ES, PT-BR, DE, FR, HI. Her dil yeni bir keşif havuzu açar.
-   Play Console > Store listings > Add language. (STORE_LISTING.md'deki
-   İngilizce metni temel al.)
+1. **Lokalize mağaza listeleri (en büyük kaldıraç).** Google Play, listen
+   olmayan dillerde otomatik (makine) çeviri GÖSTERİR, yani teknik olarak
+   şart değil. Ama otomatik çeviri: (a) o dilin anahtar kelimeleri için
+   sıralamada elle yazılmış liste kadar iyi değildir, (b) "Google tarafından
+   çevrildi" notuyla gelir ve dönüşümü düşürür. Bu yüzden tavsiyem: en az
+   **Türkçe** için elle bir liste yaz (senin pazarın, en yüksek getiri);
+   ES/PT-BR/DE/FR/HI'yi başta otomatik çeviriye bırakabilirsin, trafik
+   oturunca elle eklersin. Oyun her durumda İngilizce kalır; yalnız mağaza
+   metni çevrilir. Play Console > Store listings > Add language.
 2. **Ekran görüntüleri (dönüşümün belkemiği).** 5-8 telefon görseli; ilk 2'si
    en kritik. Her görsele kısa bir başlık şeridi ekle (ör. "Her gün yeni bir
    şifre", "Tamamen çevrim dışı"). Sıra için STORE_LISTING.md'deki öneriye bak.
