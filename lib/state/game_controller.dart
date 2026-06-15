@@ -209,6 +209,27 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Moves the cursor to the next ([dir] > 0) or previous board letter,
+  /// wrapping around. Drives arrow-key navigation for physical keyboards,
+  /// TVs, and accessibility.
+  void moveSelection(int dir) {
+    final s = _session;
+    if (s == null) return;
+    final t = s.cipherText;
+    final n = t.length;
+    if (n == 0) return;
+    var i = _selectedIndex ?? (dir > 0 ? -1 : 0);
+    for (var step = 0; step < n; step++) {
+      i = (i + dir) % n;
+      if (i < 0) i += n;
+      if (s.cipherLetters.contains(t[i])) {
+        _selectedIndex = i;
+        notifyListeners();
+        return;
+      }
+    }
+  }
+
   /// Compatibility selector by cipher letter — focuses that letter's first
   /// occurrence. The UI selects by position via [selectIndex]; this remains
   /// for callers and tests that reason in letters.
