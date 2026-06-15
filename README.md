@@ -1,8 +1,10 @@
 # Quotecrack: Cryptogram Puzzles
 
 Ünlü sözleri harf-şifresi çözerek bulduğunuz, tamamen çevrimdışı çalışan bir
-kelime bulmaca oyunu. Küresel İngilizce konuşan kitle için tasarlandı;
-Google Play'de yayımlanmaya hazırdır.
+kelime bulmaca oyunu. **7 dilde** (İngilizce, Türkçe, İspanyolca, Almanca,
+Fransızca, İtalyanca, Portekizce) tam yerelleştirilmiş arayüzle küresel
+kitleye hitap eder; her cihaza (telefon/tablet/PC/TV) uyumludur ve Google
+Play'de yayımlanmaya hazırdır.
 
 **Play Store başlığı:** `Quotecrack: Cryptogram Puzzle`
 **Paket kimliği:** `io.github.tahir94510.quotecrack`
@@ -75,12 +77,24 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 - **İpucu ekonomisi:** Başlangıçta 10 jeton, her çözümde +1, ödüllü
   reklamla +3, premium'da sınırsız.
 - **16 başarım, istatistikler, 30 saniyelik etkileşimli öğretici.**
-- **Atmosfer:** prosedürel üretilmiş (telifsiz) sakin akor döngüsü
+- **7 dilde tam yerelleştirme:** Arayüzün her ekranı + paylaşım metni +
+  günlük hatırlatma bildirimi seçilen dilde. Ayarlardan dil seçimi (veya
+  cihaz dilini izle). Her dil **kendi alfabesinde** oynanır: Türkçe 29 harf
+  (İ/ı ayrımı doğru), İspanyolca Ñ, Almanca/Fransızca aksan katlama —
+  şifre matematiği her alfabe için determinizm + sabit-noktasızlık testiyle
+  kanıtlı.
+- **"Ink & Gold" asil kimlik:** Sıcak mürekkep zemin + şampanya altını
+  vurgular + zarif garnet (eski mavi-merkezli palet ve amatör logo elden
+  geçti; logo, ikon, splash, web ve mağaza görselleri tutarlı).
+- **Atmosfer & ses:** prosedürel üretilmiş (telifsiz) sakin akor döngüsü
   (C-Am-F-G…, sessizlikten başlayıp sessizliğe çözülerek dikişsiz döner;
-  pad + nazik melodi + düzenli arpej, cızırtısız), ayrı "Music" anahtarı +
-  ana ekranda hızlı sustur ikonu, çözümde müzik kısılır (duck). Sesler
-  MEDYA kanalında (ses tuşları medyayı ayarlar). Kelime tamamlama çanı,
-  çözümde tahtada yeşil dalga + konfeti kutlaması, yumuşak ekran geçişleri.
+  cızırtısız), **müzik ve efekt için ayrı ses kaydırıcıları**, arka plana
+  geçişte ani kesme yerine yumuşak fade, çözümde müzik kısılır (duck).
+  Sesler MEDYA kanalında. Kelime tamamlama çanı, çözümde yeşil dalga +
+  konfeti, yumuşak ekran geçişleri.
+- **Her cihazda oynanış:** dokunmatik + **fiziksel klavye** (harf yaz,
+  Backspace/Delete sil, oklarla gez, Ctrl/Cmd+Z geri al) — PC, tablet ve
+  TV için tam destek.
 - **3 tema** (açık/koyu/sepya), ayarlanabilir yazı boyutu, renk körü dostu
   palet, titreşim, zen modu, günlük hatırlatma bildirimi.
 - **Gelir:** AdMob (banner yalnız menü + sonuç ekranında, çözüm ekranı
@@ -96,9 +110,14 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   güvenliği" formu için büyük avantaj).
 - Deterministik motor: gün/şifre seçimi her cihazda ve platformda birebir
   aynıdır (özel 32-bit RNG + FNV-1a; golden-vector testleriyle kilitli).
-- 135 otomatik test CI'da her push'ta koşar (motor, veri seti + ses varlığı
-  doğrulaması, streak gün sınırları, ekonomi, premium kapılama, müzik/ses
-  ayarları, kutlama animasyonları, uçtan uca çözüm akışı).
+- 172 otomatik test CI'da her push'ta koşar (motor + 7 alfabenin şifre
+  matematiği, veri seti + ses varlığı doğrulaması, harf-girişi/undo/süre
+  regresyonları, fiziksel klavye, yerelleştirme, streak gün sınırları,
+  ekonomi, premium kapılama, müzik/ses ayarları, kutlama animasyonları,
+  uçtan uca çözüm akışı). CI ayrıca `dart format` ve `flutter analyze`
+  geçişini zorunlu tutar.
+- **i18n:** `flutter_localizations` + gen-l10n; çeviriler `lib/l10n/app_*.arb`
+  dosyalarında. Yeni dil eklemek = bir alfabe kaydı + bir ARB dosyası.
 
 ### Yerelde geliştirme (opsiyonel)
 
