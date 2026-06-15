@@ -317,4 +317,74 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'Autorizzazione alle notifiche negata. Puoi attivarla quando vuoi nelle Impostazioni.';
+
+  @override
+  String get packsSectionByDifficulty => 'Per difficoltà';
+
+  @override
+  String get packsDifficultyHint =>
+      'Controintuitivo ma vero: le citazioni più corte sono le più difficili. Meno lettere significano meno indizi su cui lavorare.';
+
+  @override
+  String get packsSectionThemed => 'A tema';
+
+  @override
+  String get statsFirstRun =>
+      'Risolvi il cifrato di oggi per avviare le tue statistiche e la tua serie.';
+
+  @override
+  String get statPuzzlesSolved => 'Enigmi risolti';
+
+  @override
+  String get statCurrentStreak => 'Serie attuale';
+
+  @override
+  String get statBestStreak => 'Serie migliore';
+
+  @override
+  String get statFastestSolve => 'Risoluzione più veloce';
+
+  @override
+  String get statNoHintSolves => 'Senza indizi';
+
+  @override
+  String get statDailiesSolved => 'Giornalieri risolti';
+
+  @override
+  String get statsDailyActivity => 'Attività giornaliera';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Obiettivi ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Ogni lettera è sostituita';
+
+  @override
+  String get onbStep1Body =>
+      'In un crittogramma ogni lettera dell’alfabeto ne rappresenta un’altra. La E può essere K, la T può essere A, ma la sostituzione è coerente ovunque.';
+
+  @override
+  String get onbStep2Title => 'Risolvilo con gli schemi';
+
+  @override
+  String get onbStep2Body =>
+      'Le parole corte sono appigli: le lettere più frequenti sono E e A, e parole come IL, LA, E sono ovunque. La frequenza delle lettere è tua amica.';
+
+  @override
+  String get onbStep3Title => 'Tocca, poi scrivi';
+
+  @override
+  String get onbStep3Body =>
+      'Tocca una casella per selezionare quella lettera cifrata, poi scegli la sua lettera reale sulla tastiera. Le lettere identiche si riempiono insieme.';
+
+  @override
+  String get onbNext => 'Avanti';
+
+  @override
+  String get onbTryOne => 'Provane uno (30 secondi)';
+
+  @override
+  String get onbSkip => 'Salta';
 }

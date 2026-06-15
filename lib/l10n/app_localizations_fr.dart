@@ -314,4 +314,74 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'L’autorisation de notification a été refusée. Vous pouvez l’activer à tout moment dans les Paramètres.';
+
+  @override
+  String get packsSectionByDifficulty => 'Par difficulté';
+
+  @override
+  String get packsDifficultyHint =>
+      'Contre-intuitif mais vrai : les citations courtes sont les plus dures. Moins de lettres, c’est moins d’indices pour avancer.';
+
+  @override
+  String get packsSectionThemed => 'Thématiques';
+
+  @override
+  String get statsFirstRun =>
+      'Résolvez l’énigme du jour pour lancer vos statistiques et votre série.';
+
+  @override
+  String get statPuzzlesSolved => 'Énigmes résolues';
+
+  @override
+  String get statCurrentStreak => 'Série actuelle';
+
+  @override
+  String get statBestStreak => 'Meilleure série';
+
+  @override
+  String get statFastestSolve => 'Résolution la plus rapide';
+
+  @override
+  String get statNoHintSolves => 'Sans indice';
+
+  @override
+  String get statDailiesSolved => 'Quotidiennes résolues';
+
+  @override
+  String get statsDailyActivity => 'Activité quotidienne';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Succès ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Chaque lettre est remplacée';
+
+  @override
+  String get onbStep1Body =>
+      'Dans un cryptogramme, chaque lettre de l’alphabet en représente une autre. E peut être K, T peut être A, mais la substitution est cohérente partout.';
+
+  @override
+  String get onbStep2Title => 'Déchiffrez par les motifs';
+
+  @override
+  String get onbStep2Body =>
+      'Les mots courts sont des appuis : les lettres fréquentes sont E et A, et LE, LA, ET reviennent partout. La fréquence des lettres est votre alliée.';
+
+  @override
+  String get onbStep3Title => 'Touchez, puis tapez';
+
+  @override
+  String get onbStep3Body =>
+      'Touchez une case pour sélectionner cette lettre chiffrée, puis choisissez sa vraie lettre au clavier. Les lettres identiques se remplissent ensemble.';
+
+  @override
+  String get onbNext => 'Suivant';
+
+  @override
+  String get onbTryOne => 'Essayez-en une (30 secondes)';
+
+  @override
+  String get onbSkip => 'Passer';
 }

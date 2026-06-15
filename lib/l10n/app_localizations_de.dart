@@ -313,4 +313,74 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'Benachrichtigungsberechtigung verweigert. Du kannst sie jederzeit in den Einstellungen aktivieren.';
+
+  @override
+  String get packsSectionByDifficulty => 'Nach Schwierigkeit';
+
+  @override
+  String get packsDifficultyHint =>
+      'Überraschend, aber wahr: Kürzere Zitate sind die schwersten. Weniger Buchstaben bedeuten weniger Anhaltspunkte.';
+
+  @override
+  String get packsSectionThemed => 'Themen';
+
+  @override
+  String get statsFirstRun =>
+      'Löse das heutige Rätsel, um deine Statistik und Serie zu starten.';
+
+  @override
+  String get statPuzzlesSolved => 'Gelöste Rätsel';
+
+  @override
+  String get statCurrentStreak => 'Aktuelle Serie';
+
+  @override
+  String get statBestStreak => 'Beste Serie';
+
+  @override
+  String get statFastestSolve => 'Schnellste Lösung';
+
+  @override
+  String get statNoHintSolves => 'Ohne Hinweise';
+
+  @override
+  String get statDailiesSolved => 'Gelöste Tagesrätsel';
+
+  @override
+  String get statsDailyActivity => 'Tägliche Aktivität';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Erfolge ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Jeder Buchstabe ist vertauscht';
+
+  @override
+  String get onbStep1Body =>
+      'In einem Kryptogramm steht jeder Buchstabe des Alphabets für einen anderen. E kann K sein, T kann A sein – aber die Ersetzung ist überall gleich.';
+
+  @override
+  String get onbStep2Title => 'Knack es mit Mustern';
+
+  @override
+  String get onbStep2Body =>
+      'Kurze Wörter sind Stützen: häufige Buchstaben sind E und N, und Wörter wie DER, DIE und UND tauchen überall auf. Buchstabenhäufigkeit ist dein Freund.';
+
+  @override
+  String get onbStep3Title => 'Tippen, dann eingeben';
+
+  @override
+  String get onbStep3Body =>
+      'Tippe auf eine Zelle, um diesen Geheimbuchstaben auszuwählen, und wähle dann seinen echten Buchstaben auf der Tastatur. Gleiche Buchstaben füllen sich gemeinsam.';
+
+  @override
+  String get onbNext => 'Weiter';
+
+  @override
+  String get onbTryOne => 'Probier eins (30 Sekunden)';
+
+  @override
+  String get onbSkip => 'Überspringen';
 }

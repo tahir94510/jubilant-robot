@@ -310,4 +310,74 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'Notification permission was denied. You can enable it anytime in Settings.';
+
+  @override
+  String get packsSectionByDifficulty => 'By difficulty';
+
+  @override
+  String get packsDifficultyHint =>
+      'Counterintuitive but true: shorter quotes are the hardest. Fewer letters mean fewer clues to work from.';
+
+  @override
+  String get packsSectionThemed => 'Themed';
+
+  @override
+  String get statsFirstRun =>
+      'Crack today\'s cipher to start your stats and streak.';
+
+  @override
+  String get statPuzzlesSolved => 'Puzzles solved';
+
+  @override
+  String get statCurrentStreak => 'Current streak';
+
+  @override
+  String get statBestStreak => 'Best streak';
+
+  @override
+  String get statFastestSolve => 'Fastest solve';
+
+  @override
+  String get statNoHintSolves => 'No-hint solves';
+
+  @override
+  String get statDailiesSolved => 'Dailies solved';
+
+  @override
+  String get statsDailyActivity => 'Daily activity';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Achievements ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Every letter is swapped';
+
+  @override
+  String get onbStep1Body =>
+      'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A, but the swap is consistent everywhere.';
+
+  @override
+  String get onbStep2Title => 'Crack it with patterns';
+
+  @override
+  String get onbStep2Body =>
+      'Short words are footholds: a single letter is usually A or I, and THE is everywhere. Letter frequency is your friend.';
+
+  @override
+  String get onbStep3Title => 'Tap, then type';
+
+  @override
+  String get onbStep3Body =>
+      'Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.';
+
+  @override
+  String get onbNext => 'Next';
+
+  @override
+  String get onbTryOne => 'Try one (30 seconds)';
+
+  @override
+  String get onbSkip => 'Skip';
 }

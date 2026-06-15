@@ -316,4 +316,74 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'Se denegó el permiso de notificaciones. Puedes activarlo cuando quieras en Ajustes.';
+
+  @override
+  String get packsSectionByDifficulty => 'Por dificultad';
+
+  @override
+  String get packsDifficultyHint =>
+      'Contraintuitivo pero cierto: las frases más cortas son las más difíciles. Menos letras significan menos pistas con las que trabajar.';
+
+  @override
+  String get packsSectionThemed => 'Temáticos';
+
+  @override
+  String get statsFirstRun =>
+      'Resuelve el cifrado de hoy para empezar tus estadísticas y tu racha.';
+
+  @override
+  String get statPuzzlesSolved => 'Puzles resueltos';
+
+  @override
+  String get statCurrentStreak => 'Racha actual';
+
+  @override
+  String get statBestStreak => 'Mejor racha';
+
+  @override
+  String get statFastestSolve => 'Resolución más rápida';
+
+  @override
+  String get statNoHintSolves => 'Sin pistas';
+
+  @override
+  String get statDailiesSolved => 'Diarios resueltos';
+
+  @override
+  String get statsDailyActivity => 'Actividad diaria';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Logros ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Cada letra está sustituida';
+
+  @override
+  String get onbStep1Body =>
+      'En un criptograma, cada letra del alfabeto representa a otra distinta. La E puede ser K, la T puede ser A, pero la sustitución es coherente en todo el texto.';
+
+  @override
+  String get onbStep2Title => 'Descífralo con patrones';
+
+  @override
+  String get onbStep2Body =>
+      'Las palabras cortas son apoyos: las letras más frecuentes son E y A, y artículos como EL o LA aparecen por todas partes. La frecuencia de letras es tu aliada.';
+
+  @override
+  String get onbStep3Title => 'Toca y escribe';
+
+  @override
+  String get onbStep3Body =>
+      'Toca cualquier casilla para seleccionar esa letra cifrada y luego elige su letra real en el teclado. Las letras idénticas se rellenan juntas.';
+
+  @override
+  String get onbNext => 'Siguiente';
+
+  @override
+  String get onbTryOne => 'Prueba uno (30 segundos)';
+
+  @override
+  String get onbSkip => 'Omitir';
 }

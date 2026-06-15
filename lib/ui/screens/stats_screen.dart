@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../state/progress_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/heatmap_calendar.dart';
@@ -23,6 +24,7 @@ class StatsScreen extends StatelessWidget {
     final stats = progress.stats;
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
 
     // These dense 3-up cards keep a bounded text scale so a large system
     // font can't overflow or crush them on a narrow phone.
@@ -63,7 +65,7 @@ class StatsScreen extends StatelessWidget {
     final dailySolved = stats.dailyHistory.values.where((v) => v).length;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Statistics')),
+      appBar: AppBar(title: Text(l10n.statistics)),
       body: PageBody(
         child: ScaleSafe(
           child: ListView(
@@ -85,8 +87,7 @@ class StatsScreen extends StatelessWidget {
                         const SizedBox(width: 14),
                         Expanded(
                           child: Text(
-                            'Crack today’s cipher to start your stats '
-                            'and streak.',
+                            l10n.statsFirstRun,
                             style: TextStyle(
                               fontSize: 14,
                               height: 1.4,
@@ -104,19 +105,19 @@ class StatsScreen extends StatelessWidget {
                 children: [
                   statCard(
                     '${stats.totalSolved}',
-                    'Puzzles solved',
+                    l10n.statPuzzlesSolved,
                     Icons.extension_outlined,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '${progress.displayStreak}',
-                    'Current streak',
+                    l10n.statCurrentStreak,
                     Icons.local_fire_department_outlined,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '${stats.bestStreak}',
-                    'Best streak',
+                    l10n.statBestStreak,
                     Icons.star_outline,
                   ),
                 ],
@@ -126,19 +127,19 @@ class StatsScreen extends StatelessWidget {
                 children: [
                   statCard(
                     _fmtTime(stats.bestTimeSeconds),
-                    'Fastest solve',
+                    l10n.statFastestSolve,
                     Icons.bolt_outlined,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '${stats.noHintSolves}',
-                    'No-hint solves',
+                    l10n.statNoHintSolves,
                     Icons.do_not_touch_outlined,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '$dailySolved',
-                    'Dailies solved',
+                    l10n.statDailiesSolved,
                     Icons.today_outlined,
                   ),
                 ],
@@ -150,9 +151,9 @@ class StatsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Daily activity',
-                        style: TextStyle(
+                      Text(
+                        l10n.statsDailyActivity,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
                         ),

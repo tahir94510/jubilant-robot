@@ -629,6 +629,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notification permission was denied. You can enable it anytime in Settings.'**
   String get reminderNudgeDenied;
+
+  /// No description provided for @packsSectionByDifficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'By difficulty'**
+  String get packsSectionByDifficulty;
+
+  /// No description provided for @packsDifficultyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Counterintuitive but true: shorter quotes are the hardest. Fewer letters mean fewer clues to work from.'**
+  String get packsDifficultyHint;
+
+  /// No description provided for @packsSectionThemed.
+  ///
+  /// In en, this message translates to:
+  /// **'Themed'**
+  String get packsSectionThemed;
+
+  /// No description provided for @statsFirstRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Crack today\'s cipher to start your stats and streak.'**
+  String get statsFirstRun;
+
+  /// No description provided for @statPuzzlesSolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzles solved'**
+  String get statPuzzlesSolved;
+
+  /// No description provided for @statCurrentStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Current streak'**
+  String get statCurrentStreak;
+
+  /// No description provided for @statBestStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Best streak'**
+  String get statBestStreak;
+
+  /// No description provided for @statFastestSolve.
+  ///
+  /// In en, this message translates to:
+  /// **'Fastest solve'**
+  String get statFastestSolve;
+
+  /// No description provided for @statNoHintSolves.
+  ///
+  /// In en, this message translates to:
+  /// **'No-hint solves'**
+  String get statNoHintSolves;
+
+  /// No description provided for @statDailiesSolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Dailies solved'**
+  String get statDailiesSolved;
+
+  /// No description provided for @statsDailyActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily activity'**
+  String get statsDailyActivity;
+
+  /// No description provided for @achievementsCountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements ({unlocked}/{total})'**
+  String achievementsCountTitle(int unlocked, int total);
+
+  /// No description provided for @onbStep1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Every letter is swapped'**
+  String get onbStep1Title;
+
+  /// No description provided for @onbStep1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A, but the swap is consistent everywhere.'**
+  String get onbStep1Body;
+
+  /// No description provided for @onbStep2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Crack it with patterns'**
+  String get onbStep2Title;
+
+  /// No description provided for @onbStep2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Short words are footholds: a single letter is usually A or I, and THE is everywhere. Letter frequency is your friend.'**
+  String get onbStep2Body;
+
+  /// No description provided for @onbStep3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap, then type'**
+  String get onbStep3Title;
+
+  /// No description provided for @onbStep3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.'**
+  String get onbStep3Body;
+
+  /// No description provided for @onbNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onbNext;
+
+  /// No description provided for @onbTryOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Try one (30 seconds)'**
+  String get onbTryOne;
+
+  /// No description provided for @onbSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onbSkip;
 }
 
 class _AppLocalizationsDelegate

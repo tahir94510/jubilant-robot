@@ -316,4 +316,74 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'A permissão de notificações foi negada. Você pode ativá-la quando quiser nas Configurações.';
+
+  @override
+  String get packsSectionByDifficulty => 'Por dificuldade';
+
+  @override
+  String get packsDifficultyHint =>
+      'Contraintuitivo, mas verdadeiro: as frases mais curtas são as mais difíceis. Menos letras significam menos pistas para trabalhar.';
+
+  @override
+  String get packsSectionThemed => 'Temáticos';
+
+  @override
+  String get statsFirstRun =>
+      'Resolva o cifrado de hoje para iniciar suas estatísticas e sua sequência.';
+
+  @override
+  String get statPuzzlesSolved => 'Desafios resolvidos';
+
+  @override
+  String get statCurrentStreak => 'Sequência atual';
+
+  @override
+  String get statBestStreak => 'Melhor sequência';
+
+  @override
+  String get statFastestSolve => 'Resolução mais rápida';
+
+  @override
+  String get statNoHintSolves => 'Sem dicas';
+
+  @override
+  String get statDailiesSolved => 'Diários resolvidos';
+
+  @override
+  String get statsDailyActivity => 'Atividade diária';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Conquistas ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Cada letra é trocada';
+
+  @override
+  String get onbStep1Body =>
+      'Num criptograma, cada letra do alfabeto representa outra. O E pode ser K, o T pode ser A, mas a troca é consistente em todo o texto.';
+
+  @override
+  String get onbStep2Title => 'Decifre com padrões';
+
+  @override
+  String get onbStep2Body =>
+      'Palavras curtas são apoios: as letras mais frequentes são A e E, e palavras como O, A, E aparecem por toda parte. A frequência das letras é sua aliada.';
+
+  @override
+  String get onbStep3Title => 'Toque e digite';
+
+  @override
+  String get onbStep3Body =>
+      'Toque em qualquer célula para selecionar aquela letra cifrada e escolha a letra real no teclado. Letras iguais se preenchem juntas.';
+
+  @override
+  String get onbNext => 'Avançar';
+
+  @override
+  String get onbTryOne => 'Experimente um (30 segundos)';
+
+  @override
+  String get onbSkip => 'Pular';
 }

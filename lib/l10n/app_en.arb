@@ -110,5 +110,29 @@
   "reminderNudgeTitle": "Protect your streak",
   "reminderNudgeBody": "One gentle nudge a day, so tomorrow's puzzle never slips by. You can change the time in Settings.",
   "reminderNudgeNo": "Not now",
-  "reminderNudgeDenied": "Notification permission was denied. You can enable it anytime in Settings."
+  "reminderNudgeDenied": "Notification permission was denied. You can enable it anytime in Settings.",
+  "packsSectionByDifficulty": "By difficulty",
+  "packsDifficultyHint": "Counterintuitive but true: shorter quotes are the hardest. Fewer letters mean fewer clues to work from.",
+  "packsSectionThemed": "Themed",
+  "statsFirstRun": "Crack today's cipher to start your stats and streak.",
+  "statPuzzlesSolved": "Puzzles solved",
+  "statCurrentStreak": "Current streak",
+  "statBestStreak": "Best streak",
+  "statFastestSolve": "Fastest solve",
+  "statNoHintSolves": "No-hint solves",
+  "statDailiesSolved": "Dailies solved",
+  "statsDailyActivity": "Daily activity",
+  "achievementsCountTitle": "Achievements ({unlocked}/{total})",
+  "@achievementsCountTitle": {
+    "placeholders": { "unlocked": { "type": "int" }, "total": { "type": "int" } }
+  },
+  "onbStep1Title": "Every letter is swapped",
+  "onbStep1Body": "In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A, but the swap is consistent everywhere.",
+  "onbStep2Title": "Crack it with patterns",
+  "onbStep2Body": "Short words are footholds: a single letter is usually A or I, and THE is everywhere. Letter frequency is your friend.",
+  "onbStep3Title": "Tap, then type",
+  "onbStep3Body": "Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.",
+  "onbNext": "Next",
+  "onbTryOne": "Try one (30 seconds)",
+  "onbSkip": "Skip"
 }

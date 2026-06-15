@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../engine/quote_repository.dart';
 import '../../models/pack.dart';
 import '../../state/economy_controller.dart';
@@ -20,6 +21,7 @@ class PacksScreen extends StatelessWidget {
     final progress = context.watch<ProgressController>();
     final premium = context.select<EconomyController, bool>((e) => e.premium);
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
 
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(4, 18, 4, 8),
@@ -48,20 +50,19 @@ class PacksScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Puzzle packs')),
+      appBar: AppBar(title: Text(l10n.puzzlePacks)),
       body: PageBody(
         child: ScaleSafe(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
             children: [
-              section('By difficulty'),
+              section(l10n.packsSectionByDifficulty),
               // Players reasonably assume long = hard; in cryptograms it is
               // the opposite, so say it once where the packs are picked.
               Padding(
                 padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
                 child: Text(
-                  'Counterintuitive but true: shorter quotes are the hardest. '
-                  'Fewer letters mean fewer clues to work from.',
+                  l10n.packsDifficultyHint,
                   style: TextStyle(
                     fontSize: 12.5,
                     fontStyle: FontStyle.italic,
@@ -70,9 +71,9 @@ class PacksScreen extends StatelessWidget {
                 ),
               ),
               ...tiles(PackKind.difficulty),
-              section('Themed'),
+              section(l10n.packsSectionThemed),
               ...tiles(PackKind.themed),
-              section('Premium'),
+              section(l10n.sectionPremium),
               ...tiles(PackKind.premium),
             ],
           ),

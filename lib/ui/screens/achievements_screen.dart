@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../models/achievement.dart';
 import '../../state/progress_controller.dart';
 import '../../state/settings_controller.dart';
@@ -40,7 +41,9 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Achievements (${unlocked.length}/${Achievement.catalog.length})',
+          AppLocalizations.of(
+            context,
+          ).achievementsCountTitle(unlocked.length, Achievement.catalog.length),
         ),
       ),
       body: PageBody(

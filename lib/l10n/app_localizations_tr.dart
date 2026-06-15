@@ -311,4 +311,74 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get reminderNudgeDenied =>
       'Bildirim izni reddedildi. İstediğin zaman Ayarlar’dan açabilirsin.';
+
+  @override
+  String get packsSectionByDifficulty => 'Zorluğa göre';
+
+  @override
+  String get packsDifficultyHint =>
+      'Sezgiye aykırı ama gerçek: kısa sözler en zorudur. Daha az harf, üzerinde çalışacak daha az ipucu demektir.';
+
+  @override
+  String get packsSectionThemed => 'Temalı';
+
+  @override
+  String get statsFirstRun =>
+      'İstatistiklerini ve serini başlatmak için bugünün şifresini çöz.';
+
+  @override
+  String get statPuzzlesSolved => 'Çözülen bulmaca';
+
+  @override
+  String get statCurrentStreak => 'Güncel seri';
+
+  @override
+  String get statBestStreak => 'En iyi seri';
+
+  @override
+  String get statFastestSolve => 'En hızlı çözüm';
+
+  @override
+  String get statNoHintSolves => 'İpucusuz çözüm';
+
+  @override
+  String get statDailiesSolved => 'Çözülen günlük';
+
+  @override
+  String get statsDailyActivity => 'Günlük etkinlik';
+
+  @override
+  String achievementsCountTitle(int unlocked, int total) {
+    return 'Başarımlar ($unlocked/$total)';
+  }
+
+  @override
+  String get onbStep1Title => 'Her harf yer değiştirir';
+
+  @override
+  String get onbStep1Body =>
+      'Bir kriptogramda alfabedeki her harf, başka bir harfin yerine geçer. E aslında K olabilir, T aslında A olabilir; ama bu değişim metnin her yerinde tutarlıdır.';
+
+  @override
+  String get onbStep2Title => 'Örüntülerle çöz';
+
+  @override
+  String get onbStep2Body =>
+      'Kısa kelimeler dayanak noktandır: en sık harfler genelde A ve E’dir, VE ile BİR her yerde geçer. Harf sıklığı en büyük yardımcın.';
+
+  @override
+  String get onbStep3Title => 'Dokun, sonra yaz';
+
+  @override
+  String get onbStep3Body =>
+      'Bir şifre harfini seçmek için herhangi bir kutucuğa dokun, sonra klavyeden gerçek harfini seç. Aynı harfler birlikte dolar.';
+
+  @override
+  String get onbNext => 'İleri';
+
+  @override
+  String get onbTryOne => 'Bir tane dene (30 saniye)';
+
+  @override
+  String get onbSkip => 'Atla';
 }
