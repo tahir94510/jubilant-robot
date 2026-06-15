@@ -70,5 +70,45 @@
   },
   "goPremiumSubtitleHome": "Remove ads · unlimited hints · bonus packs",
   "musicToggleTooltip": "Music on/off",
-  "settingsTooltip": "Settings"
+  "settingsTooltip": "Settings",
+  "paywallTitle": "Quotecrack Premium",
+  "paywallHeadline": "Solve without limits",
+  "paywallSubhead": "One purchase. Yours forever. No subscription.",
+  "paywallNoAdsTitle": "No ads, ever",
+  "paywallNoAdsBody": "Every banner and full-screen ad, gone",
+  "paywallHintsTitle": "Unlimited hints",
+  "paywallHintsBody": "Reveal a letter whenever you're stuck",
+  "paywallPacksTitle": "Exclusive bonus packs",
+  "paywallPacksBody": "Shakespeare, Stoic wisdom, and more on the way",
+  "paywallSupportTitle": "Support the game",
+  "paywallSupportBody": "One purchase helps Quotecrack keep growing",
+  "paywallActive": "Premium active. Enjoy!",
+  "paywallUnavailable": "Purchases are available in the Android app.",
+  "paywallLoadingPrice": "Loading price…",
+  "paywallUnlock": "Unlock Premium · {price}",
+  "@paywallUnlock": {
+    "placeholders": { "price": { "type": "String" } }
+  },
+  "paywallRestore": "Restore previous purchase",
+  "completeDailyTitle": "Daily solved!",
+  "completeTitle": "Solved!",
+  "solveHints": "{count, plural, =0{No hints} =1{1 hint} other{{count} hints}}",
+  "@solveHints": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "solveStreak": "{count, plural, =1{1 day streak} other{{count} day streak}}",
+  "@solveStreak": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "achievementsUnlockedHeader": "{count, plural, =1{Achievement unlocked} other{Achievements unlocked}}",
+  "@achievementsUnlockedHeader": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "shareResult": "Share result",
+  "nextPuzzle": "Next puzzle",
+  "backToMenu": "Back to menu",
+  "reminderNudgeTitle": "Protect your streak",
+  "reminderNudgeBody": "One gentle nudge a day, so tomorrow's puzzle never slips by. You can change the time in Settings.",
+  "reminderNudgeNo": "Not now",
+  "reminderNudgeDenied": "Notification permission was denied. You can enable it anytime in Settings."
 }

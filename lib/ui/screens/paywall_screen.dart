@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../services/purchases/purchase_service.dart';
 import '../../state/economy_controller.dart';
 import '../theme/palette.dart';
@@ -16,6 +17,7 @@ class PaywallScreen extends StatelessWidget {
     final premium = context.watch<EconomyController>().premium;
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
 
     Widget benefit(IconData icon, String title, String subtitle) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -54,7 +56,7 @@ class PaywallScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Quotecrack Premium')),
+      appBar: AppBar(title: Text(l10n.paywallTitle)),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -67,7 +69,7 @@ class PaywallScreen extends StatelessWidget {
                     const Center(child: BrandMark(size: 72)),
                     const SizedBox(height: 12),
                     Text(
-                      'Solve without limits',
+                      l10n.paywallHeadline,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 24,
@@ -77,7 +79,7 @@ class PaywallScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'One purchase. Yours forever. No subscription.',
+                      l10n.paywallSubhead,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 14,
@@ -87,23 +89,23 @@ class PaywallScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     benefit(
                       Icons.block,
-                      'No ads, ever',
-                      'Every banner and full-screen ad, gone',
+                      l10n.paywallNoAdsTitle,
+                      l10n.paywallNoAdsBody,
                     ),
                     benefit(
                       Icons.lightbulb,
-                      'Unlimited hints',
-                      "Reveal a letter whenever you're stuck",
+                      l10n.paywallHintsTitle,
+                      l10n.paywallHintsBody,
                     ),
                     benefit(
                       Icons.workspace_premium_outlined,
-                      'Exclusive bonus packs',
-                      'Shakespeare, Stoic wisdom, and more on the way',
+                      l10n.paywallPacksTitle,
+                      l10n.paywallPacksBody,
                     ),
                     benefit(
                       Icons.favorite_outline,
-                      'Support the game',
-                      'One purchase helps Quotecrack keep growing',
+                      l10n.paywallSupportTitle,
+                      l10n.paywallSupportBody,
                     ),
                   ],
                 ),
@@ -112,12 +114,12 @@ class PaywallScreen extends StatelessWidget {
                 FilledButton.icon(
                   onPressed: () => Navigator.of(context).pop(),
                   icon: const Icon(Icons.check),
-                  label: const Text('Premium active. Enjoy!'),
+                  label: Text(l10n.paywallActive),
                 )
               else ...[
                 if (!purchases.supported)
                   Text(
-                    'Purchases are available in the Android app.',
+                    l10n.paywallUnavailable,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 13,
@@ -133,15 +135,15 @@ class PaywallScreen extends StatelessWidget {
                           : () => purchases.buyPremium(),
                       child: Text(
                         price == null
-                            ? 'Loading price...'
-                            : 'Unlock Premium · $price',
+                            ? l10n.paywallLoadingPrice
+                            : l10n.paywallUnlock(price),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8),
                   TextButton(
                     onPressed: () => purchases.restore(),
-                    child: const Text('Restore previous purchase'),
+                    child: Text(l10n.paywallRestore),
                   ),
                 ],
               ],

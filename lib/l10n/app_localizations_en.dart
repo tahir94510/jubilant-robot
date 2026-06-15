@@ -195,4 +195,119 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTooltip => 'Settings';
+
+  @override
+  String get paywallTitle => 'Quotecrack Premium';
+
+  @override
+  String get paywallHeadline => 'Solve without limits';
+
+  @override
+  String get paywallSubhead => 'One purchase. Yours forever. No subscription.';
+
+  @override
+  String get paywallNoAdsTitle => 'No ads, ever';
+
+  @override
+  String get paywallNoAdsBody => 'Every banner and full-screen ad, gone';
+
+  @override
+  String get paywallHintsTitle => 'Unlimited hints';
+
+  @override
+  String get paywallHintsBody => 'Reveal a letter whenever you\'re stuck';
+
+  @override
+  String get paywallPacksTitle => 'Exclusive bonus packs';
+
+  @override
+  String get paywallPacksBody =>
+      'Shakespeare, Stoic wisdom, and more on the way';
+
+  @override
+  String get paywallSupportTitle => 'Support the game';
+
+  @override
+  String get paywallSupportBody => 'One purchase helps Quotecrack keep growing';
+
+  @override
+  String get paywallActive => 'Premium active. Enjoy!';
+
+  @override
+  String get paywallUnavailable =>
+      'Purchases are available in the Android app.';
+
+  @override
+  String get paywallLoadingPrice => 'Loading price…';
+
+  @override
+  String paywallUnlock(String price) {
+    return 'Unlock Premium · $price';
+  }
+
+  @override
+  String get paywallRestore => 'Restore previous purchase';
+
+  @override
+  String get completeDailyTitle => 'Daily solved!';
+
+  @override
+  String get completeTitle => 'Solved!';
+
+  @override
+  String solveHints(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hints',
+      one: '1 hint',
+      zero: 'No hints',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String solveStreak(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count day streak',
+      one: '1 day streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String achievementsUnlockedHeader(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Achievements unlocked',
+      one: 'Achievement unlocked',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareResult => 'Share result';
+
+  @override
+  String get nextPuzzle => 'Next puzzle';
+
+  @override
+  String get backToMenu => 'Back to menu';
+
+  @override
+  String get reminderNudgeTitle => 'Protect your streak';
+
+  @override
+  String get reminderNudgeBody =>
+      'One gentle nudge a day, so tomorrow\'s puzzle never slips by. You can change the time in Settings.';
+
+  @override
+  String get reminderNudgeNo => 'Not now';
+
+  @override
+  String get reminderNudgeDenied =>
+      'Notification permission was denied. You can enable it anytime in Settings.';
 }

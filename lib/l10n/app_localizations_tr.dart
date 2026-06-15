@@ -196,4 +196,119 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settingsTooltip => 'Ayarlar';
+
+  @override
+  String get paywallTitle => 'Quotecrack Premium';
+
+  @override
+  String get paywallHeadline => 'Sınırsız çöz';
+
+  @override
+  String get paywallSubhead =>
+      'Tek seferlik alım. Sonsuza dek senin. Abonelik yok.';
+
+  @override
+  String get paywallNoAdsTitle => 'Hiç reklam yok';
+
+  @override
+  String get paywallNoAdsBody => 'Tüm banner ve tam ekran reklamlar kalkar';
+
+  @override
+  String get paywallHintsTitle => 'Sınırsız ipucu';
+
+  @override
+  String get paywallHintsBody => 'Takıldığında istediğin an bir harf aç';
+
+  @override
+  String get paywallPacksTitle => 'Özel bonus paketler';
+
+  @override
+  String get paywallPacksBody => 'Shakespeare, Stoacı bilgelik ve dahası yolda';
+
+  @override
+  String get paywallSupportTitle => 'Oyuna destek ol';
+
+  @override
+  String get paywallSupportBody =>
+      'Tek bir alım Quotecrack’in büyümesine yardım eder';
+
+  @override
+  String get paywallActive => 'Premium etkin. Keyfini çıkar!';
+
+  @override
+  String get paywallUnavailable =>
+      'Satın alma yalnızca Android uygulamasında mevcut.';
+
+  @override
+  String get paywallLoadingPrice => 'Fiyat yükleniyor…';
+
+  @override
+  String paywallUnlock(String price) {
+    return 'Premium’u aç · $price';
+  }
+
+  @override
+  String get paywallRestore => 'Önceki satın alımı geri yükle';
+
+  @override
+  String get completeDailyTitle => 'Günlük çözüldü!';
+
+  @override
+  String get completeTitle => 'Çözüldü!';
+
+  @override
+  String solveHints(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ipucu',
+      one: '1 ipucu',
+      zero: 'İpucu yok',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String solveStreak(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count günlük seri',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String achievementsUnlockedHeader(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Başarımlar açıldı',
+      one: 'Başarım açıldı',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareResult => 'Sonucu paylaş';
+
+  @override
+  String get nextPuzzle => 'Sonraki bulmaca';
+
+  @override
+  String get backToMenu => 'Ana menüye dön';
+
+  @override
+  String get reminderNudgeTitle => 'Serini koru';
+
+  @override
+  String get reminderNudgeBody =>
+      'Günde bir nazik hatırlatma, böylece yarının bulmacası asla kaçmaz. Saati Ayarlar’dan değiştirebilirsin.';
+
+  @override
+  String get reminderNudgeNo => 'Şimdi değil';
+
+  @override
+  String get reminderNudgeDenied =>
+      'Bildirim izni reddedildi. İstediğin zaman Ayarlar’dan açabilirsin.';
 }

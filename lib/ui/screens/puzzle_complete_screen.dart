@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../engine/daily_puzzle.dart';
 import '../../engine/quote_repository.dart';
 import '../../models/achievement.dart';
@@ -91,6 +92,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
     final motion = !MediaQuery.of(context).disableAnimations;
+    final l10n = AppLocalizations.of(context);
 
     // The one-time streak-protection invite: the moment a player finishes
     // their first daily is when a reminder is most welcome — and Settings
@@ -122,7 +124,9 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
           icon: const Icon(Icons.close),
           onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
         ),
-        title: Text(game.isDaily ? 'Daily solved!' : 'Solved!'),
+        title: Text(
+          game.isDaily ? l10n.completeDailyTitle : l10n.completeTitle,
+        ),
       ),
       body: SafeArea(
         child: Stack(
@@ -198,23 +202,21 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                           ),
                           _StatChip(
                             icon: Icons.lightbulb_outline,
-                            label: game.hintsUsed == 0
-                                ? 'No hints'
-                                : '${game.hintsUsed} hint${game.hintsUsed == 1 ? '' : 's'}',
+                            label: l10n.solveHints(game.hintsUsed),
                           ),
                           if (game.isDaily)
                             _StatChip(
                               icon: Icons.local_fire_department_outlined,
-                              label: '${progress.displayStreak} day streak',
+                              label: l10n.solveStreak(progress.displayStreak),
                             ),
                         ],
                       ),
                       if (_newAchievements.isNotEmpty) ...[
                         const SizedBox(height: 16),
                         Text(
-                          _newAchievements.length == 1
-                              ? 'Achievement unlocked'
-                              : 'Achievements unlocked',
+                          l10n.achievementsUnlockedHeader(
+                            _newAchievements.length,
+                          ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 12,
@@ -255,7 +257,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                             child: FilledButton.icon(
                               onPressed: () => _shareDaily(context),
                               icon: const Icon(Icons.share_outlined),
-                              label: const Text('Share result'),
+                              label: Text(l10n.shareResult),
                             ),
                           )
                         else if (_nextInPack(repo, game) != null)
@@ -276,7 +278,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                 );
                               },
                               icon: const Icon(Icons.arrow_forward),
-                              label: const Text('Next puzzle'),
+                              label: Text(l10n.nextPuzzle),
                             ),
                           ),
                         const SizedBox(height: 10),
@@ -286,7 +288,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                             onPressed: () => Navigator.of(
                               context,
                             ).popUntil((r) => r.isFirst),
-                            child: const Text('Back to menu'),
+                            child: Text(l10n.backToMenu),
                           ),
                         ),
                       ],
@@ -350,6 +352,7 @@ class _ReminderNudgeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context);
     return Card(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(18, 14, 18, 12),
@@ -360,18 +363,20 @@ class _ReminderNudgeCard extends StatelessWidget {
               children: [
                 Icon(Icons.alarm_outlined, size: 20, color: scheme.primary),
                 const SizedBox(width: 8),
-                const Expanded(
+                Expanded(
                   child: Text(
-                    'Protect your streak',
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 15),
+                    l10n.reminderNudgeTitle,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 15,
+                    ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 6),
             Text(
-              'One gentle nudge a day, so tomorrow’s puzzle never slips '
-              'by. You can change the time in Settings.',
+              l10n.reminderNudgeBody,
               style: TextStyle(
                 fontSize: 13,
                 height: 1.4,
@@ -390,16 +395,11 @@ class _ReminderNudgeCard extends StatelessWidget {
                   await controller.markReminderNudgeDone();
                   if (!ok && context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Notification permission was denied. You can '
-                          'enable it anytime in Settings.',
-                        ),
-                      ),
+                      SnackBar(content: Text(l10n.reminderNudgeDenied)),
                     );
                   }
                 },
-                child: const Text('Remind me daily'),
+                child: Text(l10n.remindMeDaily),
               ),
             ),
             const SizedBox(height: 4),
@@ -407,7 +407,7 @@ class _ReminderNudgeCard extends StatelessWidget {
               width: double.infinity,
               child: TextButton(
                 onPressed: () => controller.markReminderNudgeDone(),
-                child: const Text('Not now'),
+                child: Text(l10n.reminderNudgeNo),
               ),
             ),
           ],

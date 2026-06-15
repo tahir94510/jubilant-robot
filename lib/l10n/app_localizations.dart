@@ -461,6 +461,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settingsTooltip;
+
+  /// No description provided for @paywallTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quotecrack Premium'**
+  String get paywallTitle;
+
+  /// No description provided for @paywallHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve without limits'**
+  String get paywallHeadline;
+
+  /// No description provided for @paywallSubhead.
+  ///
+  /// In en, this message translates to:
+  /// **'One purchase. Yours forever. No subscription.'**
+  String get paywallSubhead;
+
+  /// No description provided for @paywallNoAdsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No ads, ever'**
+  String get paywallNoAdsTitle;
+
+  /// No description provided for @paywallNoAdsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Every banner and full-screen ad, gone'**
+  String get paywallNoAdsBody;
+
+  /// No description provided for @paywallHintsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited hints'**
+  String get paywallHintsTitle;
+
+  /// No description provided for @paywallHintsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal a letter whenever you\'re stuck'**
+  String get paywallHintsBody;
+
+  /// No description provided for @paywallPacksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exclusive bonus packs'**
+  String get paywallPacksTitle;
+
+  /// No description provided for @paywallPacksBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Shakespeare, Stoic wisdom, and more on the way'**
+  String get paywallPacksBody;
+
+  /// No description provided for @paywallSupportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Support the game'**
+  String get paywallSupportTitle;
+
+  /// No description provided for @paywallSupportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One purchase helps Quotecrack keep growing'**
+  String get paywallSupportBody;
+
+  /// No description provided for @paywallActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium active. Enjoy!'**
+  String get paywallActive;
+
+  /// No description provided for @paywallUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases are available in the Android app.'**
+  String get paywallUnavailable;
+
+  /// No description provided for @paywallLoadingPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading price…'**
+  String get paywallLoadingPrice;
+
+  /// No description provided for @paywallUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock Premium · {price}'**
+  String paywallUnlock(String price);
+
+  /// No description provided for @paywallRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore previous purchase'**
+  String get paywallRestore;
+
+  /// No description provided for @completeDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily solved!'**
+  String get completeDailyTitle;
+
+  /// No description provided for @completeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Solved!'**
+  String get completeTitle;
+
+  /// No description provided for @solveHints.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No hints} =1{1 hint} other{{count} hints}}'**
+  String solveHints(int count);
+
+  /// No description provided for @solveStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day streak} other{{count} day streak}}'**
+  String solveStreak(int count);
+
+  /// No description provided for @achievementsUnlockedHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Achievement unlocked} other{Achievements unlocked}}'**
+  String achievementsUnlockedHeader(int count);
+
+  /// No description provided for @shareResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Share result'**
+  String get shareResult;
+
+  /// No description provided for @nextPuzzle.
+  ///
+  /// In en, this message translates to:
+  /// **'Next puzzle'**
+  String get nextPuzzle;
+
+  /// No description provided for @backToMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to menu'**
+  String get backToMenu;
+
+  /// No description provided for @reminderNudgeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your streak'**
+  String get reminderNudgeTitle;
+
+  /// No description provided for @reminderNudgeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One gentle nudge a day, so tomorrow\'s puzzle never slips by. You can change the time in Settings.'**
+  String get reminderNudgeBody;
+
+  /// No description provided for @reminderNudgeNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get reminderNudgeNo;
+
+  /// No description provided for @reminderNudgeDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification permission was denied. You can enable it anytime in Settings.'**
+  String get reminderNudgeDenied;
 }
 
 class _AppLocalizationsDelegate

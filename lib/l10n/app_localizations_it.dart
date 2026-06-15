@@ -200,4 +200,121 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settingsTooltip => 'Impostazioni';
+
+  @override
+  String get paywallTitle => 'Quotecrack Premium';
+
+  @override
+  String get paywallHeadline => 'Risolvi senza limiti';
+
+  @override
+  String get paywallSubhead =>
+      'Un solo acquisto. Tuo per sempre. Nessun abbonamento.';
+
+  @override
+  String get paywallNoAdsTitle => 'Mai più pubblicità';
+
+  @override
+  String get paywallNoAdsBody =>
+      'Tutti i banner e gli annunci a schermo intero spariscono';
+
+  @override
+  String get paywallHintsTitle => 'Indizi illimitati';
+
+  @override
+  String get paywallHintsBody => 'Rivela una lettera ogni volta che ti blocchi';
+
+  @override
+  String get paywallPacksTitle => 'Pacchetti bonus esclusivi';
+
+  @override
+  String get paywallPacksBody =>
+      'Shakespeare, saggezza stoica e altro in arrivo';
+
+  @override
+  String get paywallSupportTitle => 'Sostieni il gioco';
+
+  @override
+  String get paywallSupportBody => 'Un acquisto aiuta Quotecrack a crescere';
+
+  @override
+  String get paywallActive => 'Premium attivo. Buon divertimento!';
+
+  @override
+  String get paywallUnavailable =>
+      'Gli acquisti sono disponibili nell’app Android.';
+
+  @override
+  String get paywallLoadingPrice => 'Caricamento prezzo…';
+
+  @override
+  String paywallUnlock(String price) {
+    return 'Sblocca Premium · $price';
+  }
+
+  @override
+  String get paywallRestore => 'Ripristina l’acquisto precedente';
+
+  @override
+  String get completeDailyTitle => 'Enigma del giorno risolto!';
+
+  @override
+  String get completeTitle => 'Risolto!';
+
+  @override
+  String solveHints(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count indizi',
+      one: '1 indizio',
+      zero: 'Nessun indizio',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String solveStreak(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Serie di $count giorni',
+      one: 'Serie di 1 giorno',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String achievementsUnlockedHeader(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Obiettivi sbloccati',
+      one: 'Obiettivo sbloccato',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get shareResult => 'Condividi risultato';
+
+  @override
+  String get nextPuzzle => 'Prossimo enigma';
+
+  @override
+  String get backToMenu => 'Torna al menu';
+
+  @override
+  String get reminderNudgeTitle => 'Proteggi la tua serie';
+
+  @override
+  String get reminderNudgeBody =>
+      'Un promemoria gentile al giorno, così l’enigma di domani non ti sfugge mai. Puoi cambiare l’ora nelle Impostazioni.';
+
+  @override
+  String get reminderNudgeNo => 'Non ora';
+
+  @override
+  String get reminderNudgeDenied =>
+      'Autorizzazione alle notifiche negata. Puoi attivarla quando vuoi nelle Impostazioni.';
 }
