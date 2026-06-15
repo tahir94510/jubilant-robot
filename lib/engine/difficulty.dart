@@ -7,7 +7,7 @@
 library;
 
 import '../config/app_config.dart';
-import 'cipher.dart';
+import 'alphabet.dart';
 
 enum Difficulty { beginner, casual, skilled, expert }
 
@@ -30,10 +30,13 @@ const Map<String, double> _englishFreq = {
 
 double _clamp01(double v) => v < 0 ? 0 : (v > 1 ? 1 : v);
 
-/// Score in [0, 100]; higher = harder.
-double difficultyScore(String rawText) {
-  final normalized = normalizeQuoteText(rawText);
-  final letters = lettersOnly(normalized);
+/// Score in [0, 100]; higher = harder. [alphabet] defaults to English; other
+/// languages reuse the English frequency table as a reasonable rarity proxy
+/// (letters absent from it count as rare, which is the right direction).
+double difficultyScore(String rawText, {Alphabet? alphabet}) {
+  final a = alphabet ?? Alphabets.en;
+  final normalized = a.normalize(rawText);
+  final letters = a.lettersOnly(normalized);
   if (letters.isEmpty) return 0;
 
   final counts = <String, int>{};
@@ -48,14 +51,11 @@ double difficultyScore(String rawText) {
   final maxFreq = _englishFreq['E']!;
   var raritySum = 0.0;
   counts.forEach((ch, count) {
-    raritySum += (1 - _englishFreq[ch]! / maxFreq) * count;
+    raritySum += (1 - (_englishFreq[ch] ?? 1) / maxFreq) * count;
   });
   final rarity = raritySum / length;
 
-  final words = normalized
-      .split(RegExp('[^A-Z]+'))
-      .where((w) => w.isNotEmpty)
-      .toList();
+  final words = a.words(normalized);
   final shortWords = words.where((w) => w.length <= 3).length;
 
   final score =

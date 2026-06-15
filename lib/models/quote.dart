@@ -1,7 +1,7 @@
-import '../engine/cipher.dart';
+import '../engine/alphabet.dart';
 import '../engine/difficulty.dart';
 
-/// One quote from assets/data/quotes/*.json with derived puzzle fields.
+/// One quote from assets/data/quotes/**/*.json with derived puzzle fields.
 class Quote {
   Quote({
     required this.id,
@@ -9,8 +9,10 @@ class Quote {
     required this.author,
     required this.source,
     required this.category,
-  }) : normalizedText = normalizeQuoteText(text),
-       score = difficultyScore(text) {
+    this.locale = 'en',
+  }) : alphabet = Alphabets.forLocale(locale) {
+    normalizedText = alphabet.normalize(text);
+    score = difficultyScore(text, alphabet: alphabet);
     difficulty = difficultyBucket(score);
   }
 
@@ -20,6 +22,7 @@ class Quote {
     author: json['author'] as String,
     source: json['source'] as String,
     category: json['category'] as String,
+    locale: json['locale'] as String? ?? 'en',
   );
 
   final String id;
@@ -28,11 +31,18 @@ class Quote {
   final String source;
   final String category;
 
-  /// Uppercased, ASCII-folded text shown on the board.
-  final String normalizedText;
-  final double score;
+  /// BCP-47-ish language code; selects the playable [alphabet].
+  final String locale;
+
+  /// The alphabet this quote's cryptogram plays on.
+  final Alphabet alphabet;
+
+  /// Uppercased, locale-folded text shown on the board.
+  late final String normalizedText;
+  late final double score;
   late final Difficulty difficulty;
 
-  /// Distinct A-Z letters used by this quote.
-  Set<String> get usedLetters => lettersOnly(normalizedText).split('').toSet();
+  /// Distinct letters (in this quote's alphabet) used by the quote.
+  Set<String> get usedLetters =>
+      alphabet.lettersOnly(normalizedText).split('').toSet();
 }

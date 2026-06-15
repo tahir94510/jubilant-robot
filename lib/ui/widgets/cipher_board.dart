@@ -35,11 +35,12 @@ class CipherBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     final conflicts = session.conflicts;
     final boardFull = session.progress >= 1.0;
+    final isLetter = session.alphabet.isLetter;
 
     final words = session.cipherText.split(' ');
     final totalLetters = session.cipherText
         .split('')
-        .where(isBoardLetter)
+        .where(isLetter)
         .length;
 
     // Cell width adapts to screen and quote length so long quotes still fit
@@ -58,6 +59,7 @@ class CipherBoard extends StatelessWidget {
           preferred: preferred,
           availableWidth: available,
           words: words,
+          isLetter: isLetter,
         );
 
         var letterIndex = 0;
@@ -71,7 +73,7 @@ class CipherBoard extends StatelessWidget {
           for (final ch in word.split('')) {
             final thisPos = charPos;
             charPos++;
-            if (isBoardLetter(ch)) {
+            if (isLetter(ch)) {
               final inWave =
                   solveWave != null &&
                   totalLetters > 0 &&

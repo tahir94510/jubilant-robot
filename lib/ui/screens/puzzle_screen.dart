@@ -112,10 +112,15 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     }
     // A typed letter (layout-aware via event.character; fall back to the
     // key's label for environments that don't populate the character).
-    final typed = (event.character ?? key.keyLabel).toUpperCase();
-    if (typed.length == 1 && RegExp('[A-Z]').hasMatch(typed)) {
-      _onLetter(typed);
-      return KeyEventResult.handled;
+    // Accept it only if it belongs to this puzzle's alphabet.
+    final session = game.session;
+    final raw = event.character ?? key.keyLabel;
+    if (session != null && raw.isNotEmpty) {
+      final typed = session.alphabet.normalize(raw);
+      if (typed.length == 1 && session.alphabet.isLetter(typed)) {
+        _onLetter(typed);
+        return KeyEventResult.handled;
+      }
     }
     return KeyEventResult.ignored;
   }
@@ -273,6 +278,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                     const HintBar(),
                     const SizedBox(height: 4),
                     PuzzleKeyboard(
+                      rows: session.alphabet.keyboardRows,
                       usedLetters: session.usedPlainLetters,
                       canUndo: game.canUndo,
                       onUndo: _onUndo,

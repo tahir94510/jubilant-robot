@@ -6,22 +6,29 @@ library;
 
 import 'deterministic_rng.dart';
 
-const String alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+/// The default 26-letter Latin alphabet (English + accent-folding languages).
+const String latinAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+/// Backwards-compatible alias for call sites that predate multi-language.
+const String alphabet = latinAlphabet;
 
 /// A substitution mapping: `cipherOf[plainLetter] = cipherLetter`.
 ///
 /// Generated with Sattolo's algorithm, which produces a permutation that is
-/// a single 26-cycle. A cycle of length 26 cannot have fixed points, so no
-/// letter ever encodes to itself — guaranteed, no rejection loop needed.
+/// a single N-cycle over the alphabet. A cycle of length N (>= 2) cannot have
+/// fixed points, so no letter ever encodes to itself — guaranteed, no
+/// rejection loop needed, for a 26-letter Latin set or a 29-letter Turkish one
+/// alike.
 class CipherMap {
   CipherMap._(this._plainToCipher, this._cipherToPlain);
 
-  factory CipherMap.fromSeed(int seed) {
+  factory CipherMap.fromSeed(int seed, {String alphabet = latinAlphabet}) {
+    final n = alphabet.length;
     final rng = DeterministicRng(fmix32(seed));
-    final indices = _sattolo(26, rng);
+    final indices = _sattolo(n, rng);
     final plainToCipher = <String, String>{};
     final cipherToPlain = <String, String>{};
-    for (var i = 0; i < 26; i++) {
+    for (var i = 0; i < n; i++) {
       final plain = alphabet[i];
       final cipher = alphabet[indices[i]];
       plainToCipher[plain] = cipher;
@@ -30,10 +37,10 @@ class CipherMap {
     return CipherMap._(plainToCipher, cipherToPlain);
   }
 
-  /// Same quote id -> same cipher on every device and platform, so friends
-  /// can compare notes on the daily puzzle.
-  factory CipherMap.forQuoteId(String quoteId) =>
-      CipherMap.fromSeed(stableStringHash(quoteId));
+  /// Same quote id + alphabet -> same cipher on every device and platform, so
+  /// friends can compare notes on the daily puzzle.
+  factory CipherMap.forQuoteId(String quoteId, {String alphabet = latinAlphabet}) =>
+      CipherMap.fromSeed(stableStringHash(quoteId), alphabet: alphabet);
 
   final Map<String, String> _plainToCipher;
   final Map<String, String> _cipherToPlain;

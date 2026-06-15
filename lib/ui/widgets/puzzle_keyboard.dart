@@ -16,9 +16,12 @@ class PuzzleKeyboard extends StatelessWidget {
     required this.onBackspace,
     required this.onUndo,
     required this.canUndo,
+    this.rows = const ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'],
   });
 
-  static const _rows = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
+  /// Keyboard letter rows for the active alphabet. The undo/backspace action
+  /// keys attach to the last row.
+  final List<String> rows;
 
   final Set<String> usedLetters;
   final void Function(String letter) onLetter;
@@ -26,17 +29,31 @@ class PuzzleKeyboard extends StatelessWidget {
   final VoidCallback onUndo;
   final bool canUndo;
 
+  // Each action key (undo, backspace) is 1.4 letter-widths wide.
+  static const double _actionFactor = 1.4;
+
   @override
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final lastRow = rows.length - 1;
 
     return SafeArea(
       top: false,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          // Widest row: 7 letter keys + two 1.4x action keys = 9.8 units;
-          // top row: 10 units. Derive key width from the real constraint.
-          final keyWidth = ((constraints.maxWidth - 12) / 10).clamp(26.0, 46.0);
+          // Derive the key width from the widest row so any alphabet (10-key
+          // QWERTY, 27-letter Spanish, 29-letter Turkish) fits without
+          // overflow. The last row also carries the two action keys.
+          var maxUnits = 1.0;
+          for (var i = 0; i < rows.length; i++) {
+            final double units =
+                rows[i].length + (i == lastRow ? _actionFactor * 2 : 0.0);
+            if (units > maxUnits) maxUnits = units;
+          }
+          final keyWidth = ((constraints.maxWidth - 12) / maxUnits).clamp(
+            20.0,
+            46.0,
+          );
           final keyHeight = (keyWidth * 1.42).clamp(40.0, 58.0);
 
           Widget key({
@@ -70,11 +87,11 @@ class PuzzleKeyboard extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                for (final (i, row) in _rows.indexed)
+                for (final (i, row) in rows.indexed)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (i == 2)
+                      if (i == lastRow)
                         key(
                           child: Icon(
                             Icons.undo,
@@ -84,7 +101,7 @@ class PuzzleKeyboard extends StatelessWidget {
                                 : palette.keyUsedText,
                           ),
                           onTap: canUndo ? onUndo : null,
-                          widthFactor: 1.4,
+                          widthFactor: _actionFactor,
                         ),
                       for (final ch in row.split(''))
                         key(
@@ -103,7 +120,7 @@ class PuzzleKeyboard extends StatelessWidget {
                               : palette.keyBg,
                           onTap: () => onLetter(ch),
                         ),
-                      if (i == 2)
+                      if (i == lastRow)
                         key(
                           child: Icon(
                             Icons.backspace_outlined,
@@ -111,7 +128,7 @@ class PuzzleKeyboard extends StatelessWidget {
                             color: palette.keyText,
                           ),
                           onTap: onBackspace,
-                          widthFactor: 1.4,
+                          widthFactor: _actionFactor,
                         ),
                     ],
                   ),
