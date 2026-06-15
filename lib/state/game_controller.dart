@@ -11,6 +11,11 @@ class _Move {
   _Move(this.cipherLetter, this.previousGuess);
   final String cipherLetter;
   final String? previousGuess;
+
+  Map<String, dynamic> toJson() => {'c': cipherLetter, 'p': previousGuess};
+
+  static _Move fromJson(Map<String, dynamic> j) =>
+      _Move(j['c'] as String, j['p'] as String?);
 }
 
 /// Owns the active [PuzzleSession]: selection, input, hints, timer,
@@ -30,8 +35,27 @@ class GameController extends ChangeNotifier {
   String? _originPackId;
   String? get originPackId => _originPackId;
 
-  String? _selectedCipherLetter;
-  String? get selectedCipherLetter => _selectedCipherLetter;
+  /// The cursor's position within [PuzzleSession.cipherText]. Selection is
+  /// tracked by board POSITION, not by cipher letter: a cipher letter can
+  /// appear many times on the board, so "advance to the cell after the one I
+  /// just typed" must key off the exact cell that was tapped. Keying off the
+  /// letter's *first* occurrence (the old bug) flung the cursor backwards
+  /// across the board whenever a repeated letter was edited.
+  int? _selectedIndex;
+  int? get selectedIndex => _selectedIndex;
+
+  /// The cipher letter currently under the cursor. Drives the board's "every
+  /// instance of this letter lights up together" cue, so it is still exposed
+  /// as a letter even though selection is positional underneath.
+  String? get selectedCipherLetter {
+    final s = _session;
+    final i = _selectedIndex;
+    if (s == null || i == null || i < 0 || i >= s.cipherText.length) {
+      return null;
+    }
+    final ch = s.cipherText[i];
+    return s.cipherLetters.contains(ch) ? ch : null;
+  }
 
   int _hintsUsed = 0;
   int get hintsUsed => _hintsUsed;
@@ -68,21 +92,28 @@ class GameController extends ChangeNotifier {
     _originPackId = packId;
     _ticker?.cancel();
     final saved = _storage.readJson(StorageService.puzzleStateKey(quote.id));
+    final resuming = saved != null && saved['solved'] != true;
 
     Map<String, String>? savedGuesses;
-    if (saved != null && saved['solved'] != true) {
+    if (resuming) {
       savedGuesses = (saved['guesses'] as Map<String, dynamic>?)?.map(
         (k, v) => MapEntry(k, v as String),
       );
     }
 
     _session = PuzzleSession(quote: quote, guesses: savedGuesses);
-    if (saved != null && saved['solved'] != true) {
+    _undoStack.clear();
+    if (resuming) {
       _session!.revealed.addAll(
         ((saved['revealed'] as List<dynamic>?) ?? const []).cast<String>(),
       );
       _hintsUsed = saved['hintsUsed'] as int? ?? 0;
       _elapsed = Duration(seconds: saved['elapsedSeconds'] as int? ?? 0);
+      // Undo history must survive leaving and re-entering the puzzle: the
+      // stack is checkpointed to storage, not held only in memory.
+      for (final m in (saved['undo'] as List<dynamic>?) ?? const []) {
+        _undoStack.add(_Move.fromJson((m as Map).cast<String, dynamic>()));
+      }
     } else {
       _hintsUsed = 0;
       _elapsed = Duration.zero;
@@ -93,8 +124,7 @@ class GameController extends ChangeNotifier {
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
     elapsedListenable.value = _elapsed;
-    _selectedCipherLetter = _firstEmptyCipherLetter();
-    _undoStack.clear();
+    _selectedIndex = _firstEmptyIndex();
 
     _startTicker();
     notifyListeners();
@@ -128,41 +158,87 @@ class GameController extends ChangeNotifier {
     }
   }
 
-  String? _firstEmptyCipherLetter() {
+  int? _firstEmptyIndex() {
     final s = _session;
     if (s == null) return null;
-    for (final ch in s.cipherText.split('')) {
-      if (s.cipherLetters.contains(ch) && !s.guesses.containsKey(ch)) {
-        return ch;
-      }
+    final t = s.cipherText;
+    for (var i = 0; i < t.length; i++) {
+      final ch = t[i];
+      if (s.cipherLetters.contains(ch) && !s.guesses.containsKey(ch)) return i;
     }
     return null;
   }
 
-  /// The next empty cipher letter AT OR AFTER [current]'s first position in
-  /// reading order, wrapping to the start. Moving forward from where the
-  /// player just typed feels natural; the old "jump to the very first empty"
-  /// could fling the cursor backwards across the board.
-  String? _nextEmptyAfter(String? current) {
+  /// The next empty cell strictly AFTER [from] in reading order, wrapping to
+  /// the first empty cell. Keyed off the cursor's real position so typing
+  /// always steps forward from the tapped cell instead of jumping to a
+  /// repeated letter's first occurrence.
+  int? _nextEmptyIndexAfter(int? from) {
     final s = _session;
     if (s == null) return null;
-    final chars = s.cipherText.split('');
-    var startIdx = 0;
-    if (current != null) {
-      final idx = chars.indexOf(current);
-      if (idx >= 0) startIdx = idx + 1;
+    final t = s.cipherText;
+    final start = from == null ? 0 : from + 1;
+    for (var i = start; i < t.length; i++) {
+      final ch = t[i];
+      if (s.cipherLetters.contains(ch) && !s.guesses.containsKey(ch)) return i;
     }
-    for (var i = startIdx; i < chars.length; i++) {
-      final ch = chars[i];
-      if (s.cipherLetters.contains(ch) && !s.guesses.containsKey(ch)) {
-        return ch;
-      }
-    }
-    return _firstEmptyCipherLetter();
+    return _firstEmptyIndex();
   }
 
+  int? _indexOfLetter(String cipherLetter) {
+    final s = _session;
+    if (s == null) return null;
+    final i = s.cipherText.indexOf(cipherLetter);
+    return i >= 0 ? i : null;
+  }
+
+  String? _firstEmptyLetter() {
+    final s = _session;
+    final i = _firstEmptyIndex();
+    if (s == null || i == null) return null;
+    return s.cipherText[i];
+  }
+
+  /// Selects a board cell by its position in the cipher text. This is what the
+  /// board taps call: it pins the cursor to the exact cell touched.
+  void selectIndex(int index) {
+    final s = _session;
+    if (s == null || index < 0 || index >= s.cipherText.length) return;
+    if (!s.cipherLetters.contains(s.cipherText[index])) return;
+    _selectedIndex = index;
+    notifyListeners();
+  }
+
+  /// Moves the cursor to the next ([dir] > 0) or previous board letter,
+  /// wrapping around. Drives arrow-key navigation for physical keyboards,
+  /// TVs, and accessibility.
+  void moveSelection(int dir) {
+    final s = _session;
+    if (s == null) return;
+    final t = s.cipherText;
+    final n = t.length;
+    if (n == 0) return;
+    var i = _selectedIndex ?? (dir > 0 ? -1 : 0);
+    for (var step = 0; step < n; step++) {
+      i = (i + dir) % n;
+      if (i < 0) i += n;
+      if (s.cipherLetters.contains(t[i])) {
+        _selectedIndex = i;
+        notifyListeners();
+        return;
+      }
+    }
+  }
+
+  /// Compatibility selector by cipher letter — focuses that letter's first
+  /// occurrence. The UI selects by position via [selectIndex]; this remains
+  /// for callers and tests that reason in letters.
   void selectCipherLetter(String? cipherLetter) {
-    _selectedCipherLetter = cipherLetter;
+    if (cipherLetter == null) {
+      _selectedIndex = null;
+    } else {
+      _selectedIndex = _indexOfLetter(cipherLetter) ?? _selectedIndex;
+    }
     notifyListeners();
   }
 
@@ -173,7 +249,7 @@ class GameController extends ChangeNotifier {
     // turns out to be a no-op (stale flags must never replay a sound).
     _lastInputCompletedWord = false;
     final s = _session;
-    final target = _selectedCipherLetter;
+    final target = selectedCipherLetter;
     if (s == null || target == null || _completed) return;
     if (s.revealed.contains(target)) return;
 
@@ -192,7 +268,7 @@ class GameController extends ChangeNotifier {
   void clearGuess() {
     _lastInputCompletedWord = false;
     final s = _session;
-    final target = _selectedCipherLetter;
+    final target = selectedCipherLetter;
     if (s == null || target == null || _completed) return;
     if (s.revealed.contains(target)) return;
     if (!s.guesses.containsKey(target)) return;
@@ -212,7 +288,7 @@ class GameController extends ChangeNotifier {
     } else {
       s.guesses[move.cipherLetter] = move.previousGuess!;
     }
-    _selectedCipherLetter = move.cipherLetter;
+    _selectedIndex = _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
     _persistState();
     notifyListeners();
   }
@@ -223,7 +299,7 @@ class GameController extends ChangeNotifier {
     _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;
     if (s == null || _completed) return;
-    var target = _selectedCipherLetter ?? _firstEmptyCipherLetter();
+    var target = selectedCipherLetter ?? _firstEmptyLetter();
     // Prefer an unsolved cell: if the selected one is already correct,
     // reveal the first wrong/empty one instead so the hint always helps.
     if (target == null || s.isGuessCorrect(target)) {
@@ -239,6 +315,7 @@ class GameController extends ChangeNotifier {
     _hintsUsed += 1;
     s.guesses[target] = s.cipher.decryptLetter(target);
     s.revealed.add(target);
+    _selectedIndex = _indexOfLetter(target) ?? _selectedIndex;
     _undoStack.clear(); // reveals are permanent
     _afterChange();
   }
@@ -253,8 +330,7 @@ class GameController extends ChangeNotifier {
       });
     } else {
       if (advance) {
-        _selectedCipherLetter =
-            _nextEmptyAfter(_selectedCipherLetter) ?? _selectedCipherLetter;
+        _selectedIndex = _nextEmptyIndexAfter(_selectedIndex) ?? _selectedIndex;
       }
       _persistState();
     }
@@ -268,6 +344,7 @@ class GameController extends ChangeNotifier {
       ...s.toJson(),
       'hintsUsed': _hintsUsed,
       'elapsedSeconds': _elapsed.inSeconds,
+      'undo': _undoStack.map((m) => m.toJson()).toList(),
       'solved': false,
     });
   }

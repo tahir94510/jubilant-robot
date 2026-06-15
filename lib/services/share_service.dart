@@ -1,26 +1,11 @@
 import 'package:share_plus/share_plus.dart';
 
-import '../config/app_config.dart';
-
-/// Builds and sends the Wordle-style daily share text.
+/// Sends the Wordle-style daily share text. The text itself is composed by
+/// the caller (which has a BuildContext) so it is localized to the player's
+/// UI language; this service owns only time formatting and the platform
+/// share sheet.
 class ShareService {
   const ShareService();
-
-  /// e.g.  Quotecrack #162 · solved in 3:42, no hints  🔥 12 day streak
-  String buildDailyShareText({
-    required int puzzleNumber,
-    required Duration solveTime,
-    required int hintsUsed,
-    required int streak,
-  }) {
-    final hints = hintsUsed == 0
-        ? 'no hints'
-        : '$hintsUsed hint${hintsUsed == 1 ? '' : 's'}';
-    final streakPart = streak >= 2 ? '  \u{1F525} $streak day streak' : '';
-    return '${AppConfig.appName} #$puzzleNumber \u{00B7} '
-        'solved in ${formatSolveTime(solveTime)}, $hints$streakPart\n'
-        '${AppConfig.listingUrl}';
-  }
 
   /// "3:42", or "1:05:03" once a solve runs past an hour, so the minutes
   /// field never shows an out-of-range value like "72:14".

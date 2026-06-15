@@ -20,8 +20,13 @@ abstract class NotificationService {
 
   /// (Re)schedules the repeating daily reminder. Inexact by design: no
   /// SCHEDULE_EXACT_ALARM permission, and a few minutes of drift is fine
-  /// for a puzzle reminder.
-  Future<void> scheduleDaily(TimeOfDay time);
+  /// for a puzzle reminder. [title]/[body] arrive already localized to the
+  /// user's chosen UI language.
+  Future<void> scheduleDaily(
+    TimeOfDay time, {
+    required String title,
+    required String body,
+  });
 
   Future<void> cancelAll();
 }

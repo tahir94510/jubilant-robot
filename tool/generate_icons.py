@@ -40,12 +40,13 @@ FONT_QUOTE = ROOT / "assets/fonts/Lora-Variable.ttf"
 FONT_UI = ROOT / "assets/fonts/Inter-Bold.ttf"
 ANDROID_RES = ROOT / "android/app/src/main/res"
 
-# Brand colors (match lib/ui/theme): deep indigo night + warm paper accents.
-BG_TOP = (28, 37, 65)        # #1C2541
-BG_BOTTOM = (61, 90, 128)    # #3D5A80
-PAPER = (247, 245, 240)      # #F7F5F0
-ACCENT = (238, 108, 77)      # #EE6C4D
-UNDERLINE = (152, 193, 217)  # #98C1D9
+# Brand colors (match lib/ui/theme + brand_mark.dart): "Ink & Gold" — a warm
+# ink gradient with ivory + champagne-gold accents.
+BG_TOP = (26, 24, 20)        # #1A1814
+BG_BOTTOM = (46, 42, 34)     # #2E2A22
+PAPER = (243, 238, 226)      # #F3EEE2
+ACCENT = (224, 184, 90)      # #E0B85A
+UNDERLINE = (203, 162, 78)   # #CBA24E
 
 SS = 2048  # supersample size: draw big, downscale Lanczos
 
@@ -111,15 +112,17 @@ def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
     mark_color = white if monochrome else ACCENT + (255,)
     line_color = white if monochrome else UNDERLINE + (255,)
 
-    draw_glyph_centered(draw, "Q", lora(int(a * 0.60)),
-                        (ox + a * 0.42, oy + a * 0.44), q_color)
+    # Q lifted and sized down, underline pushed lower, so the serif Q's tail
+    # keeps a clear optical gap above the bar (matches brand_mark.dart).
+    draw_glyph_centered(draw, "Q", lora(int(a * 0.56), weight=600),
+                        (ox + a * 0.44, oy + a * 0.42), q_color)
     if with_question:
-        draw_glyph_centered(draw, "?", lora(int(a * 0.26)),
-                            (ox + a * 0.78, oy + a * 0.28), mark_color)
-    line_h = a * 0.055
+        draw_glyph_centered(draw, "?", lora(int(a * 0.235)),
+                            (ox + a * 0.76, oy + a * 0.29), mark_color)
+    line_h = a * 0.05
     draw.rounded_rectangle(
-        [ox + a * 0.16, oy + a * 0.82 - line_h / 2,
-         ox + a * 0.84, oy + a * 0.82 + line_h / 2],
+        [ox + a * 0.20, oy + a * 0.87 - line_h / 2,
+         ox + a * 0.80, oy + a * 0.87 + line_h / 2],
         radius=line_h / 2, fill=line_color,
     )
     return img
@@ -148,7 +151,7 @@ def make_masters():
     full = artwork(1024)
     rounded = full.copy()
     # Squircle-ish rounding baked in for surfaces that show the raw PNG.
-    rounded.putalpha(rounded_mask((1024, 1024), 180))
+    rounded.putalpha(rounded_mask((1024, 1024), 225))
     save(rounded, "assets/icon/icon.png")
     # Adaptive layers: launchers mask to a ~66% circle; 0.72 of the artwork
     # stays inside the safe zone (the anydpi-v26 XML adds a 16% inset).

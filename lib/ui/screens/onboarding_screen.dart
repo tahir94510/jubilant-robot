@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../models/quote.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
@@ -31,23 +32,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pages = PageController();
   int _page = 0;
 
-  static const _steps = [
-    (
-      Icons.swap_horiz,
-      'Every letter is swapped',
-      'In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A, but the swap is consistent everywhere.',
-    ),
-    (
-      Icons.psychology_outlined,
-      'Crack it with patterns',
-      'Short words are footholds: a single letter is usually A or I, and THE is everywhere. Letter frequency is your friend.',
-    ),
-    (
-      Icons.touch_app_outlined,
-      'Tap, then type',
-      'Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.',
-    ),
+  static const _icons = [
+    Icons.swap_horiz,
+    Icons.psychology_outlined,
+    Icons.touch_app_outlined,
   ];
+
+  static String _title(AppLocalizations l10n, int i) =>
+      [l10n.onbStep1Title, l10n.onbStep2Title, l10n.onbStep3Title][i];
+
+  static String _body(AppLocalizations l10n, int i) =>
+      [l10n.onbStep1Body, l10n.onbStep2Body, l10n.onbStep3Body][i];
 
   @override
   void dispose() {
@@ -82,6 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -89,10 +85,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: _pages,
-                itemCount: _steps.length,
+                itemCount: _icons.length,
                 onPageChanged: (i) => setState(() => _page = i),
                 itemBuilder: (context, i) {
-                  final (icon, title, body) = _steps[i];
+                  final icon = _icons[i];
+                  final title = _title(l10n, i);
+                  final body = _body(l10n, i);
                   // Centered on roomy screens, scrollable on tiny ones with
                   // huge system text — a fixed Column overflowed 320x640
                   // at 1.6x scale.
@@ -149,7 +147,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for (var i = 0; i < _steps.length; i++)
+                for (var i = 0; i < _icons.length; i++)
                   Container(
                     width: i == _page ? 22 : 8,
                     height: 8,
@@ -169,16 +167,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   FilledButton(
-                    onPressed: _page < _steps.length - 1
+                    onPressed: _page < _icons.length - 1
                         ? () => _pages.nextPage(
                             duration: const Duration(milliseconds: 250),
                             curve: Curves.easeOut,
                           )
                         : _startTutorialPuzzle,
                     child: Text(
-                      _page < _steps.length - 1
-                          ? 'Next'
-                          : 'Try one (30 seconds)',
+                      _page < _icons.length - 1 ? l10n.onbNext : l10n.onbTryOne,
                     ),
                   ),
                   TextButton(
@@ -192,7 +188,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       }
                     },
-                    child: const Text('Skip'),
+                    child: Text(l10n.onbSkip),
                   ),
                 ],
               ),

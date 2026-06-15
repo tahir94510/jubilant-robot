@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quotecrack/engine/alphabet.dart';
 import 'package:quotecrack/engine/difficulty.dart';
 
 void main() {
@@ -35,6 +36,37 @@ void main() {
         final score = difficultyScore(s);
         expect(score, inInclusiveRange(0, 100));
       }
+    });
+
+    test('rarity uses each language own frequencies, not English', () {
+      // Turkish words made of letters that are COMMON in Turkish (a, e, i, n,
+      // l, r) must NOT be judged rare. Scored with the English table, the
+      // Turkish-specific 'İ' would be unknown and inflate rarity; with the
+      // Turkish table it is one of the most common letters.
+      const trCommon = 'ANNE ELİNİ NİNE İLE';
+      final tr = difficultyScore(trCommon, alphabet: Alphabets.tr);
+      // A Turkish phrase loaded with genuinely rare Turkish letters (j, f, ğ).
+      const trRare = 'JÖF FÜJ ĞAJ FÖJ';
+      final trRareScore = difficultyScore(trRare, alphabet: Alphabets.tr);
+      expect(trRareScore, greaterThan(tr));
+    });
+
+    test('every alphabet scores within 0-100', () {
+      const samples = {
+        'tr': 'Damlaya damlaya göl olur, aka aka sel olur.',
+        'es': 'No hay mal que por bien no venga.',
+        'de': 'Übung macht den Meister.',
+        'fr': 'Petit à petit, l’oiseau fait son nid.',
+        'it': 'Chi va piano va sano e va lontano.',
+        'pt': 'Água mole em pedra dura tanto bate até que fura.',
+      };
+      samples.forEach((code, text) {
+        final score = difficultyScore(
+          text,
+          alphabet: Alphabets.forLocale(code),
+        );
+        expect(score, inInclusiveRange(0, 100), reason: '$code out of range');
+      });
     });
 
     test('buckets cover all thresholds', () {

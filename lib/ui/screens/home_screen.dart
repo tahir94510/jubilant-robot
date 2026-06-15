@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../engine/daily_puzzle.dart';
 import '../../engine/quote_repository.dart';
 import '../../services/music_service.dart';
@@ -38,6 +39,7 @@ class HomeScreen extends StatelessWidget {
     );
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
 
     final today = DateTime.now();
     final daily = selectDaily(repo.dailyPool, today);
@@ -80,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 // One-tap music mute, mirrored by Settings.
                                 IconButton(
-                                  tooltip: 'Music on/off',
+                                  tooltip: l10n.musicToggleTooltip,
                                   visualDensity: VisualDensity.compact,
                                   onPressed: () => settingsCtl.setMusicAndApply(
                                     !musicOn,
@@ -96,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                                 StreakBadge(streak: progress.displayStreak),
                                 const SizedBox(width: 4),
                                 IconButton(
-                                  tooltip: 'Settings',
+                                  tooltip: l10n.settingsTooltip,
                                   visualDensity: VisualDensity.compact,
                                   onPressed: () => Navigator.of(context).push(
                                     MaterialPageRoute(
@@ -141,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 6),
                                     Text(
-                                      'DAILY PUZZLE',
+                                      l10n.homeDailyLabel,
                                       style: TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
@@ -170,8 +172,10 @@ class HomeScreen extends StatelessWidget {
                                 const SizedBox(height: 6),
                                 Text(
                                   dailyDone
-                                      ? 'Solved! Come back tomorrow for a new one.'
-                                      : 'A ${daily.quote.difficulty.name} cipher by ${daily.quote.author} awaits.',
+                                      ? l10n.homeDailySolved
+                                      : l10n.homeDailyAwaits(
+                                          daily.quote.author,
+                                        ),
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: palette.textSecondary,
@@ -191,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                                     );
                                   },
                                   child: Text(
-                                    dailyDone ? 'Replay' : 'Play now',
+                                    dailyDone ? l10n.replay : l10n.playNow,
                                   ),
                                 ),
                               ],
@@ -204,9 +208,11 @@ class HomeScreen extends StatelessWidget {
                       // --- Menu tiles ---
                       _MenuTile(
                         icon: Icons.grid_view_rounded,
-                        title: 'Puzzle packs',
-                        subtitle:
-                            '${progress.stats.solvedIds.length} of ${repo.all.length} solved',
+                        title: l10n.puzzlePacks,
+                        subtitle: l10n.packsSolved(
+                          progress.stats.solvedIds.length,
+                          repo.all.length,
+                        ),
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => const PacksScreen(),
@@ -216,8 +222,8 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       _MenuTile(
                         icon: Icons.insights_outlined,
-                        title: 'Statistics',
-                        subtitle: 'Streaks, times, and your heatmap',
+                        title: l10n.statistics,
+                        subtitle: l10n.statisticsSubtitle,
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => const StatsScreen(),
@@ -227,9 +233,10 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       _MenuTile(
                         icon: Icons.emoji_events_outlined,
-                        title: 'Achievements',
-                        subtitle:
-                            '${progress.unlockedAchievementIds.length} unlocked',
+                        title: l10n.achievements,
+                        subtitle: l10n.achievementsUnlocked(
+                          progress.unlockedAchievementIds.length,
+                        ),
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => const AchievementsScreen(),
@@ -240,9 +247,8 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         _MenuTile(
                           icon: Icons.workspace_premium_outlined,
-                          title: 'Go Premium',
-                          subtitle:
-                              'Remove ads · unlimited hints · bonus packs',
+                          title: l10n.goPremium,
+                          subtitle: l10n.goPremiumSubtitleHome,
                           accent: true,
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(

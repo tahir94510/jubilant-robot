@@ -13,16 +13,24 @@ const double kPunctuationCellFactor = 0.5;
 /// on the smallest supported phones.
 const double kMinBoardCellWidth = 14.0;
 
+/// Predicate for "is this a playable letter cell" — pluggable so non-Latin
+/// alphabets (Turkish Ç/Ş/…) lay out correctly. Defaults to A-Z.
+typedef LetterTest = bool Function(String ch);
+
 bool isBoardLetter(String ch) =>
     ch.codeUnitAt(0) >= 65 && ch.codeUnitAt(0) <= 90;
 
 /// Width one word occupies on the board at [cellWidth]: letters cost a cell
 /// plus margins, punctuation rides along at half a cell.
-double wordWidthAt(String word, double cellWidth) {
+double wordWidthAt(
+  String word,
+  double cellWidth, {
+  LetterTest isLetter = isBoardLetter,
+}) {
   var letters = 0;
   var puncts = 0;
   for (final ch in word.split('')) {
-    if (isBoardLetter(ch)) {
+    if (isLetter(ch)) {
       letters++;
     } else {
       puncts++;
@@ -42,13 +50,14 @@ double fitCellWidth({
   required double availableWidth,
   required Iterable<String> words,
   double minWidth = kMinBoardCellWidth,
+  LetterTest isLetter = isBoardLetter,
 }) {
   var cell = preferred;
   for (final word in words) {
     var letters = 0;
     var puncts = 0;
     for (final ch in word.split('')) {
-      if (isBoardLetter(ch)) {
+      if (isLetter(ch)) {
         letters++;
       } else {
         puncts++;

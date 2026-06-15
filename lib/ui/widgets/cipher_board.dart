@@ -20,7 +20,11 @@ class CipherBoard extends StatelessWidget {
   final PuzzleSession session;
   final String? selected;
   final bool errorChecking;
-  final void Function(String cipherLetter) onSelect;
+
+  /// Called with the tapped cell's POSITION in [PuzzleSession.cipherText], not
+  /// its letter: the cursor must pin to the exact cell so typing advances from
+  /// there rather than from a repeated letter's first occurrence.
+  final void Function(int charIndex) onSelect;
 
   /// 0..1 progress of the post-solve celebration: cells up to this share of
   /// the text light up in success color, sweeping left to right. Null when
@@ -31,12 +35,10 @@ class CipherBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     final conflicts = session.conflicts;
     final boardFull = session.progress >= 1.0;
+    final isLetter = session.alphabet.isLetter;
 
     final words = session.cipherText.split(' ');
-    final totalLetters = session.cipherText
-        .split('')
-        .where(isBoardLetter)
-        .length;
+    final totalLetters = session.cipherText.split('').where(isLetter).length;
 
     // Cell width adapts to screen and quote length so long quotes still fit
     // comfortably; text scale is applied by MediaQuery at app level. The
@@ -54,14 +56,21 @@ class CipherBoard extends StatelessWidget {
           preferred: preferred,
           availableWidth: available,
           words: words,
+          isLetter: isLetter,
         );
 
         var letterIndex = 0;
+        // Absolute position in cipherText. words come from split(' '), which
+        // drops one space between each pair, so we step over that separator
+        // after every word to keep the index aligned with the real string.
+        var charPos = 0;
         final wordRows = <Widget>[];
         for (final word in words) {
           final cells = <Widget>[];
           for (final ch in word.split('')) {
-            if (isBoardLetter(ch)) {
+            final thisPos = charPos;
+            charPos++;
+            if (isLetter(ch)) {
               final inWave =
                   solveWave != null &&
                   totalLetters > 0 &&
@@ -75,7 +84,7 @@ class CipherBoard extends StatelessWidget {
                   state: inWave
                       ? CellState.solved
                       : _stateFor(ch, conflicts, boardFull),
-                  onTap: () => onSelect(ch),
+                  onTap: () => onSelect(thisPos),
                 ),
               );
             } else {
@@ -87,6 +96,7 @@ class CipherBoard extends StatelessWidget {
               );
             }
           }
+          charPos++; // the space separator that split(' ') removed
           wordRows.add(Row(mainAxisSize: MainAxisSize.min, children: cells));
         }
 

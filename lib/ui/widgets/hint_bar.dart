@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../config/app_config.dart';
+import '../../l10n/app_localizations.dart';
 import '../../services/ads/ads_service.dart';
 import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
@@ -18,6 +19,7 @@ class HintBar extends StatelessWidget {
     final ads = context.read<AdsService>();
     final sounds = context.read<SoundService>();
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context);
 
     // Wrap, not Row: on narrow screens / large system text the two buttons
     // stack instead of overflowing (seen as "overflow by N px" on device).
@@ -39,8 +41,8 @@ class HintBar extends StatelessWidget {
           icon: const Icon(Icons.lightbulb_outline, size: 20),
           label: Text(
             economy.premium
-                ? 'Reveal letter'
-                : 'Reveal letter (${economy.tokens})',
+                ? l10n.hintRevealLetter
+                : l10n.hintRevealLetterCount(economy.tokens),
           ),
         ),
         if (!economy.premium && ads.supported)
@@ -57,7 +59,7 @@ class HintBar extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
-                          '+${AppConfig.tokensPerRewardedAd} hints added',
+                          l10n.hintTokensAdded(AppConfig.tokensPerRewardedAd),
                         ),
                       ),
                     );
@@ -65,14 +67,9 @@ class HintBar extends StatelessWidget {
                     // No fill yet (common on a freshly published app until
                     // AdMob warms up) or the video was closed early. Tell the
                     // player instead of leaving the tap feeling broken.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'No video is available right now. '
-                          'Please try again in a moment.',
-                        ),
-                      ),
-                    );
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(l10n.adNoVideo)));
                   }
                 },
                 icon: Icon(

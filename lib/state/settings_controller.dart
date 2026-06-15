@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../config/app_config.dart';
+import '../l10n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../services/music_service.dart';
 import '../services/notifications/notification_service.dart';
+import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 
 /// Owns [AppSettings]: persistence + applying side effects (reminders).
@@ -32,6 +34,25 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  /// Sets the UI language ([code] null = follow the device locale).
+  Future<void> setLanguage(String? code) {
+    settings.languageCode = code;
+    return _save();
+  }
+
+  /// Resolves [AppLocalizations] for the active UI language without a
+  /// BuildContext — used to localize scheduled notifications. Falls back to
+  /// the device locale, then English, for any unsupported code.
+  AppLocalizations _activeL10n() {
+    final supported = AppLocalizations.supportedLocales
+        .map((l) => l.languageCode)
+        .toSet();
+    var code = settings.languageCode;
+    code ??= WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+    if (!supported.contains(code)) code = 'en';
+    return lookupAppLocalizations(Locale(code));
+  }
+
   Future<void> setTextScale(double scale) {
     settings.textScale = scale.clamp(0.85, 1.4);
     return _save();
@@ -50,8 +71,35 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  /// Live effect-volume drag: applies to the running service every tick for
+  /// instant audible feedback, without a disk write. Commit with
+  /// [setSoundVolume] on release.
+  void previewSoundVolume(double value, SoundService sounds) {
+    settings.soundVolume = value.clamp(0.0, 1.0);
+    sounds.setUserVolume(settings.soundVolume);
+    notifyListeners();
+  }
+
+  Future<void> setSoundVolume(double value, SoundService sounds) {
+    settings.soundVolume = value.clamp(0.0, 1.0);
+    sounds.setUserVolume(settings.soundVolume);
+    return _save();
+  }
+
   Future<void> setMusic(bool value) {
     settings.music = value;
+    return _save();
+  }
+
+  void previewMusicVolume(double value, MusicService music) {
+    settings.musicVolume = value.clamp(0.0, 1.0);
+    music.setUserVolume(settings.musicVolume);
+    notifyListeners();
+  }
+
+  Future<void> setMusicVolume(double value, MusicService music) {
+    settings.musicVolume = value.clamp(0.0, 1.0);
+    music.setUserVolume(settings.musicVolume);
     return _save();
   }
 
@@ -123,7 +171,12 @@ class SettingsController extends ChangeNotifier {
         settings.reminderHour = time.hour;
         settings.reminderMinute = time.minute;
       }
-      await _notifications.scheduleDaily(settings.reminderTime);
+      final l10n = _activeL10n();
+      await _notifications.scheduleDaily(
+        settings.reminderTime,
+        title: l10n.notificationDailyTitle,
+        body: l10n.notificationDailyBody,
+      );
     } else {
       settings.reminderEnabled = false;
       await _notifications.cancelAll();

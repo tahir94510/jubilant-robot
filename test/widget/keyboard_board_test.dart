@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/widgets/letter_cell.dart';
@@ -6,6 +7,38 @@ import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 import '../fakes/test_harness.dart';
 
 void main() {
+  testWidgets('a physical keyboard types, deletes, and navigates', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    final session = h.game.session!;
+    // Focus the first empty cell, then type its plain letter on a real key.
+    final firstLetter = h.game.selectedCipherLetter!;
+    final plain = session.cipher.decryptLetter(firstLetter);
+    await tester.sendKeyEvent(_keyForLetter(plain));
+    await tester.pump();
+    expect(session.guesses[firstLetter], plain);
+
+    // Backspace clears the currently selected cell.
+    h.game.selectCipherLetter(firstLetter);
+    await tester.sendKeyEvent(LogicalKeyboardKey.backspace);
+    await tester.pump();
+    expect(session.guesses.containsKey(firstLetter), isFalse);
+
+    // Arrow keys move the cursor between board letters.
+    final before = h.game.selectedIndex;
+    await tester.sendKeyEvent(LogicalKeyboardKey.arrowRight);
+    await tester.pump();
+    expect(h.game.selectedIndex, isNot(before));
+
+    h.game.stopTimer();
+  });
+
   testWidgets('identical cipher letters auto-fill together', (tester) async {
     final h = await Harness.create();
     h.game.start(shortQuote, daily: false); // LESS IS MORE: S appears 3x
@@ -102,3 +135,8 @@ void main() {
     h.game.stopTimer();
   });
 }
+
+/// Maps a plain A-Z letter to its logical key (a-z logical ids are the
+/// contiguous Unicode lowercase range).
+LogicalKeyboardKey _keyForLetter(String plain) =>
+    LogicalKeyboardKey(0x61 + (plain.codeUnitAt(0) - 65));

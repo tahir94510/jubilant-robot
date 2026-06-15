@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../models/achievement.dart';
 import '../theme/palette.dart';
 
@@ -31,6 +32,7 @@ class AchievementTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
     final lit = unlocked || justUnlocked;
 
     return Card(
@@ -56,7 +58,7 @@ class AchievementTile extends StatelessWidget {
           children: [
             Flexible(
               child: Text(
-                achievement.title,
+                achievement.localizedTitle(l10n),
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   color: lit ? scheme.onSurface : palette.textSecondary,
@@ -67,7 +69,7 @@ class AchievementTile extends StatelessWidget {
           ],
         ),
         subtitle: Text(
-          achievement.description,
+          achievement.localizedDescription(l10n),
           style: TextStyle(fontSize: 13, color: palette.textSecondary),
         ),
         trailing: justUnlocked

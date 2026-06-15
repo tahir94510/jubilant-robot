@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#1C2541</color>
+    <color name="ic_launcher_background">#1A1814</color>
     <!-- Matches AppThemes.light surface so the window behind the first
          Flutter frame never flashes a foreign color. -->
-    <color name="app_surface">#F7F5F0</color>
+    <color name="app_surface">#F7F4EC</color>
 </resources>

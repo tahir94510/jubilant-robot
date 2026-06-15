@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../engine/difficulty.dart';
+import '../l10n/app_localizations.dart';
 import 'quote.dart';
 
-enum PackKind { difficulty, themed, premium }
+enum PackKind { difficulty, themed, language, premium }
 
 /// A puzzle pack: a named, filtered slice of the quote dataset.
 class Pack {
@@ -28,6 +29,10 @@ class Pack {
   bool get premiumOnly => kind == PackKind.premium;
 
   bool contains(Quote q) {
+    // Localized (non-English) quotes only ever belong to their own dedicated
+    // language pack (matched by category), so the difficulty ladder, the
+    // English themed packs and the daily stay English/consistent.
+    if (q.locale != 'en') return category == q.category;
     if (difficulty != null && q.difficulty != difficulty) return false;
     if (category != null && q.category != category) return false;
     if (kind != PackKind.premium &&
@@ -113,6 +118,56 @@ class Pack {
       kind: PackKind.themed,
       category: 'science',
     ),
+    // Native-language packs (playable by everyone; each plays in its own
+    // alphabet). More languages drop in here as their content lands.
+    Pack(
+      id: 'turkish',
+      title: 'Türkçe',
+      tagline: 'Türk atasözleri ve özlü sözler',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'turkish',
+    ),
+    Pack(
+      id: 'spanish',
+      title: 'Español',
+      tagline: 'Spanish proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'spanish',
+    ),
+    Pack(
+      id: 'german',
+      title: 'Deutsch',
+      tagline: 'German proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'german',
+    ),
+    Pack(
+      id: 'french',
+      title: 'Français',
+      tagline: 'French proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'french',
+    ),
+    Pack(
+      id: 'italian',
+      title: 'Italiano',
+      tagline: 'Italian proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'italian',
+    ),
+    Pack(
+      id: 'portuguese',
+      title: 'Português',
+      tagline: 'Portuguese proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'portuguese',
+    ),
     // Premium bonus packs
     Pack(
       id: 'shakespeare',
@@ -133,4 +188,51 @@ class Pack {
   ];
 
   static Pack byId(String id) => catalog.firstWhere((p) => p.id == id);
+}
+
+/// Localized title/tagline for a [Pack], resolved by id. The English [title]/
+/// [tagline] on the const definitions stay as the fallback for any pack a
+/// translation hasn't covered yet.
+extension PackL10n on Pack {
+  String localizedTitle(AppLocalizations l) => switch (id) {
+    'beginner' => l.packTitleBeginner,
+    'casual' => l.packTitleCasual,
+    'skilled' => l.packTitleSkilled,
+    'expert' => l.packTitleExpert,
+    'proverbs' => l.packTitleProverbs,
+    'humor' => l.packTitleHumor,
+    'wisdom' => l.packTitleWisdom,
+    'literature' => l.packTitleLiterature,
+    'science' => l.packTitleScience,
+    'shakespeare' => l.packTitleShakespeare,
+    'stoic' => l.packTitleStoic,
+    'turkish' => l.packTitleTurkish,
+    'spanish' => l.packTitleSpanish,
+    'german' => l.packTitleGerman,
+    'french' => l.packTitleFrench,
+    'italian' => l.packTitleItalian,
+    'portuguese' => l.packTitlePortuguese,
+    _ => title,
+  };
+
+  String localizedTagline(AppLocalizations l) => switch (id) {
+    'beginner' => l.packTaglineBeginner,
+    'casual' => l.packTaglineCasual,
+    'skilled' => l.packTaglineSkilled,
+    'expert' => l.packTaglineExpert,
+    'proverbs' => l.packTaglineProverbs,
+    'humor' => l.packTaglineHumor,
+    'wisdom' => l.packTaglineWisdom,
+    'literature' => l.packTaglineLiterature,
+    'science' => l.packTaglineScience,
+    'shakespeare' => l.packTaglineShakespeare,
+    'stoic' => l.packTaglineStoic,
+    'turkish' => l.packTaglineTurkish,
+    'spanish' => l.packTaglineSpanish,
+    'german' => l.packTaglineGerman,
+    'french' => l.packTaglineFrench,
+    'italian' => l.packTaglineItalian,
+    'portuguese' => l.packTaglinePortuguese,
+    _ => tagline,
+  };
 }

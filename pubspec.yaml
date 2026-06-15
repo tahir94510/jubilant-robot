@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   provider: ^6.1.5
   shared_preferences: ^2.5.3
   google_mobile_ads: ^9.0.0
@@ -32,9 +34,16 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true # gen-l10n: builds AppLocalizations from lib/l10n/*.arb
 
   assets:
     - assets/data/quotes/
+    - assets/data/quotes/tr/
+    - assets/data/quotes/es/
+    - assets/data/quotes/de/
+    - assets/data/quotes/fr/
+    - assets/data/quotes/it/
+    - assets/data/quotes/pt/
     - assets/audio/
 
   fonts:
@@ -60,7 +69,7 @@ flutter_launcher_icons:
   android: true
   ios: false
   image_path: "assets/icon/icon.png"
-  adaptive_icon_background: "#1C2541"
+  adaptive_icon_background: "#1A1814"
   adaptive_icon_foreground: "assets/icon/icon_foreground.png"
   adaptive_icon_monochrome: "assets/icon/icon_monochrome.png"
   min_sdk_android: 24

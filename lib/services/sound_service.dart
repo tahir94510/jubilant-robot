@@ -23,6 +23,20 @@ class SoundService {
   final Map<String, AudioPlayer> _players = {};
   bool _ready = false;
 
+  /// 0..1 user multiplier (soundVolume from settings). The WAVs are already
+  /// balanced against each other; this scales the whole family uniformly.
+  double _volume = 1.0;
+
+  /// Applies the user's effect-volume preference to every pooled and discrete
+  /// player. Cheap and idempotent, so Settings can call it on every change.
+  void setUserVolume(double value) {
+    _volume = value.clamp(0.0, 1.0);
+    if (!_ready) return;
+    for (final p in [..._tapPool, ..._players.values]) {
+      unawaited(p.setVolume(_volume).catchError((_) {}));
+    }
+  }
+
   Future<void> initialize() async {
     try {
       // Game/media stream, never the ringtone stream: volume keys must

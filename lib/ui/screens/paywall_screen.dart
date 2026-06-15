@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../services/purchases/purchase_service.dart';
 import '../../state/economy_controller.dart';
 import '../theme/palette.dart';
@@ -16,6 +17,7 @@ class PaywallScreen extends StatelessWidget {
     final premium = context.watch<EconomyController>().premium;
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
 
     Widget benefit(IconData icon, String title, String subtitle) => Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -54,98 +56,106 @@ class PaywallScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Quotecrack Premium')),
+      appBar: AppBar(title: Text(l10n.paywallTitle)),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    const Center(child: BrandMark(size: 72)),
-                    const SizedBox(height: 12),
-                    Text(
-                      'Solve without limits',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: scheme.onSurface,
+        // Cap + center on large screens so the pitch reads as a tidy column
+        // on tablets/desktop/TV instead of stretching edge to edge.
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 560),
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        const Center(child: BrandMark(size: 72)),
+                        const SizedBox(height: 12),
+                        Text(
+                          l10n.paywallHeadline,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: scheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          l10n.paywallSubhead,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: palette.textSecondary,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        benefit(
+                          Icons.block,
+                          l10n.paywallNoAdsTitle,
+                          l10n.paywallNoAdsBody,
+                        ),
+                        benefit(
+                          Icons.lightbulb,
+                          l10n.paywallHintsTitle,
+                          l10n.paywallHintsBody,
+                        ),
+                        benefit(
+                          Icons.workspace_premium_outlined,
+                          l10n.paywallPacksTitle,
+                          l10n.paywallPacksBody,
+                        ),
+                        benefit(
+                          Icons.favorite_outline,
+                          l10n.paywallSupportTitle,
+                          l10n.paywallSupportBody,
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (premium)
+                    FilledButton.icon(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const Icon(Icons.check),
+                      label: Text(l10n.paywallActive),
+                    )
+                  else ...[
+                    if (!purchases.supported)
+                      Text(
+                        l10n.paywallUnavailable,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: palette.textSecondary,
+                        ),
+                      )
+                    else ...[
+                      ValueListenableBuilder<String?>(
+                        valueListenable: purchases.premiumPrice,
+                        builder: (context, price, _) => FilledButton(
+                          onPressed: price == null
+                              ? null
+                              : () => purchases.buyPremium(),
+                          child: Text(
+                            price == null
+                                ? l10n.paywallLoadingPrice
+                                : l10n.paywallUnlock(price),
+                          ),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'One purchase. Yours forever. No subscription.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: palette.textSecondary,
+                      const SizedBox(height: 8),
+                      TextButton(
+                        onPressed: () => purchases.restore(),
+                        child: Text(l10n.paywallRestore),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    benefit(
-                      Icons.block,
-                      'No ads, ever',
-                      'Every banner and full-screen ad, gone',
-                    ),
-                    benefit(
-                      Icons.lightbulb,
-                      'Unlimited hints',
-                      "Reveal a letter whenever you're stuck",
-                    ),
-                    benefit(
-                      Icons.workspace_premium_outlined,
-                      'Exclusive bonus packs',
-                      'Shakespeare, Stoic wisdom, and more on the way',
-                    ),
-                    benefit(
-                      Icons.favorite_outline,
-                      'Support the game',
-                      'One purchase helps Quotecrack keep growing',
-                    ),
+                    ],
                   ],
-                ),
-              ),
-              if (premium)
-                FilledButton.icon(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(Icons.check),
-                  label: const Text('Premium active. Enjoy!'),
-                )
-              else ...[
-                if (!purchases.supported)
-                  Text(
-                    'Purchases are available in the Android app.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: palette.textSecondary,
-                    ),
-                  )
-                else ...[
-                  ValueListenableBuilder<String?>(
-                    valueListenable: purchases.premiumPrice,
-                    builder: (context, price, _) => FilledButton(
-                      onPressed: price == null
-                          ? null
-                          : () => purchases.buyPremium(),
-                      child: Text(
-                        price == null
-                            ? 'Loading price...'
-                            : 'Unlock Premium · $price',
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  TextButton(
-                    onPressed: () => purchases.restore(),
-                    child: const Text('Restore previous purchase'),
-                  ),
                 ],
-              ],
-            ],
+              ),
+            ),
           ),
         ),
       ),

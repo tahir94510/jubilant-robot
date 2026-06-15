@@ -110,9 +110,18 @@ class FakeNotificationService extends NotificationService {
   @override
   Future<bool> requestPermission() async => permissionGranted;
 
+  String? scheduledTitle;
+  String? scheduledBody;
+
   @override
-  Future<void> scheduleDaily(TimeOfDay time) async {
+  Future<void> scheduleDaily(
+    TimeOfDay time, {
+    required String title,
+    required String body,
+  }) async {
     scheduledAt = time;
+    scheduledTitle = title;
+    scheduledBody = body;
   }
 
   @override
