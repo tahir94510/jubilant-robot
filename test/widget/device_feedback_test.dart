@@ -566,5 +566,36 @@ void main() {
         expect(tester.takeException(), isNull);
       }
     });
+
+    testWidgets('puzzle board + keyboard stay width-capped on a tablet', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(1200, 1600);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+      final h = await Harness.create();
+      h.game.start(shortQuote, daily: false);
+      await tester.pumpWidget(h.app(const PuzzleScreen()));
+      await tester.pump();
+
+      expect(tester.takeException(), isNull);
+      // Capped well under the 1200px viewport rather than sprawling.
+      expect(
+        tester.getSize(find.byType(PuzzleKeyboard)).width,
+        lessThanOrEqualTo(600),
+      );
+      h.game.stopTimer();
+    });
+
+    testWidgets('paywall stays centered and capped on a tablet', (
+      tester,
+    ) async {
+      await pumpLarge(tester, const PaywallScreen());
+      expect(tester.takeException(), isNull);
+      expect(
+        tester.getSize(find.byType(ListView).first).width,
+        lessThanOrEqualTo(560),
+      );
+    });
   });
 }
