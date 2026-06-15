@@ -20,5 +20,17 @@
   { "id": "fr-019", "text": "Tel est pris qui croyait prendre.", "author": "Jean de La Fontaine", "source": "Fables", "category": "french", "locale": "fr" },
   { "id": "fr-020", "text": "Il ne faut jurer de rien dans la vie.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
   { "id": "fr-021", "text": "Chacun pour soi et Dieu pour tous.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
-  { "id": "fr-022", "text": "Qui veut voyager loin ménage sa monture.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" }
+  { "id": "fr-022", "text": "Qui veut voyager loin ménage sa monture.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-023", "text": "L’appétit vient en mangeant.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-024", "text": "La fin justifie les moyens, dit-on parfois.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-025", "text": "Il n’y a pas de fumée sans feu.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-026", "text": "Le chat parti, les souris dansent.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-027", "text": "Petite pluie abat grand vent.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-028", "text": "Bien mal acquis ne profite jamais.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-029", "text": "On reconnaît l’arbre à ses fruits.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-030", "text": "Chose promise, chose due entre amis.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-031", "text": "À chaque jour suffit sa peine.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-032", "text": "Le silence est d’or et la parole est d’argent.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-033", "text": "Comme on fait son lit, on se couche.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-034", "text": "Un tiens vaut mieux que deux tu l’auras.", "author": "Jean de La Fontaine", "source": "Fables", "category": "french", "locale": "fr" }
 ]

@@ -20,5 +20,17 @@
   { "id": "es-019", "text": "El que ríe el último ríe mejor.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
   { "id": "es-020", "text": "Perro que ladra no muerde.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
   { "id": "es-021", "text": "Más vale prevenir que lamentar.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
-  { "id": "es-022", "text": "La libertad es uno de los más preciados dones.", "author": "Miguel de Cervantes", "source": "Don Quijote", "category": "spanish", "locale": "es" }
+  { "id": "es-022", "text": "La libertad es uno de los más preciados dones.", "author": "Miguel de Cervantes", "source": "Don Quijote", "category": "spanish", "locale": "es" },
+  { "id": "es-023", "text": "Quien mucho duerme poco aprende.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-024", "text": "A falta de pan, buenas son tortas.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-025", "text": "El que algo quiere, algo le cuesta.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-026", "text": "Hombre prevenido vale por dos.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-027", "text": "Cuando el río suena, agua lleva.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-028", "text": "No hay rosa sin espinas en esta vida.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-029", "text": "Más vale maña que fuerza.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-030", "text": "Lo cortés no quita lo valiente.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-031", "text": "Quien a buen árbol se arrima, buena sombra le cobija.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-032", "text": "Donde una puerta se cierra, otra se abre.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-033", "text": "El tiempo todo lo cura y todo lo muda.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" },
+  { "id": "es-034", "text": "A palabras necias, oídos sordos.", "author": "Refrán español", "source": "Tradicional", "category": "spanish", "locale": "es" }
 ]

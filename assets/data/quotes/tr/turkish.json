@@ -30,5 +30,17 @@
   { "id": "tr-029", "text": "Yurtta sulh, cihanda sulh.", "author": "Mustafa Kemal Atatürk", "source": "Atfedilen", "category": "turkish", "locale": "tr" },
   { "id": "tr-030", "text": "Ya olduğun gibi görün ya göründüğün gibi ol.", "author": "Mevlana Celaleddin Rumi", "source": "Atfedilen", "category": "turkish", "locale": "tr" },
   { "id": "tr-031", "text": "Sevelim sevilelim, dünya kimseye kalmaz.", "author": "Yunus Emre", "source": "Divan", "category": "turkish", "locale": "tr" },
-  { "id": "tr-032", "text": "Eline, diline, beline sahip ol.", "author": "Hacı Bektaş Veli", "source": "Atfedilen", "category": "turkish", "locale": "tr" }
+  { "id": "tr-032", "text": "Eline, diline, beline sahip ol.", "author": "Hacı Bektaş Veli", "source": "Atfedilen", "category": "turkish", "locale": "tr" },
+  { "id": "tr-033", "text": "Bin bilsen de bir bilene danış.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-034", "text": "Lafla peynir gemisi yürümez.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-035", "text": "Sora sora Bağdat bulunur.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-036", "text": "Yalancının mumu yatsıya kadar yanar.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-037", "text": "Misafir umduğunu değil, bulduğunu yer.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-038", "text": "İğneyi kendine, çuvaldızı başkasına batır.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-039", "text": "Ucuz etin yahnisi tatsız olur.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-040", "text": "Çok söyleme arsız olur, aç koyma hırsız olur.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-041", "text": "Horoz ne kadar öterse ötsün, sabah yine olur.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-042", "text": "Tembele iş buyur, sana akıl öğretsin.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-043", "text": "Gümüş kılıcın altın kını olmaz.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" },
+  { "id": "tr-044", "text": "Ağaç yaprağıyla gürler.", "author": "Türk Atasözü", "source": "Anonim", "category": "turkish", "locale": "tr" }
 ]
