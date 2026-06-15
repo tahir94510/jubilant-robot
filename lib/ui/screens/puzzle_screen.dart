@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +35,10 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   /// typing on PC, tablet, and TV — not just by tapping the on-screen keys.
   final FocusNode _keyboardFocus = FocusNode(debugLabel: 'puzzleKeyboard');
 
+  /// Bumped each time a guess introduces a conflict; the board shakes once in
+  /// response, reinforcing the red tint + error haptic + conflict chime.
+  int _conflictPulse = 0;
+
   @override
   void initState() {
     super.initState();
@@ -56,6 +62,9 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     if (game.lastInputCreatedConflict) {
       haptics.error();
       sounds.conflict();
+      // enterGuess already notifies listeners (rebuild), which picks up the
+      // new pulse value and drives the shake — no extra setState needed.
+      _conflictPulse++;
     } else if (game.lastInputCompletedWord) {
       haptics.wordComplete();
       sounds.wordComplete();
@@ -243,14 +252,17 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                     solveWave: wave,
                                   ),
                                 )
-                              : CipherBoard(
-                                  session: session,
-                                  selected: game.selectedCipherLetter,
-                                  errorChecking: settings.errorChecking,
-                                  onSelect: (index) {
-                                    haptics.tap();
-                                    game.selectIndex(index);
-                                  },
+                              : _Shaker(
+                                  trigger: _conflictPulse,
+                                  child: CipherBoard(
+                                    session: session,
+                                    selected: game.selectedCipherLetter,
+                                    errorChecking: settings.errorChecking,
+                                    onSelect: (index) {
+                                      haptics.tap();
+                                      game.selectIndex(index);
+                                    },
+                                  ),
                                 ),
                         ),
                         const SizedBox(height: 16),
@@ -294,6 +306,55 @@ class _PuzzleScreenState extends State<PuzzleScreen>
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Plays a single damped horizontal shake whenever [trigger] changes — used
+/// to punctuate a conflicting guess. Honors the system "remove animations"
+/// setting by passing the child straight through.
+class _Shaker extends StatefulWidget {
+  const _Shaker({required this.trigger, required this.child});
+
+  final int trigger;
+  final Widget child;
+
+  @override
+  State<_Shaker> createState() => _ShakerState();
+}
+
+class _ShakerState extends State<_Shaker> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 320),
+  );
+
+  @override
+  void didUpdateWidget(_Shaker old) {
+    super.didUpdateWidget(old);
+    if (widget.trigger != old.trigger && widget.trigger != 0) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (MediaQuery.of(context).disableAnimations) return widget.child;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        final t = _controller.value;
+        // Decaying sine: a couple of quick swings that settle to centre.
+        final dx = t == 0 ? 0.0 : math.sin(t * math.pi * 4) * 7 * (1 - t);
+        return Transform.translate(offset: Offset(dx, 0), child: child);
+      },
+      child: widget.child,
     );
   }
 }
