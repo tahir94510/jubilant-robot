@@ -80,7 +80,9 @@ Future<void> _start() async {
   final haptics = HapticsService(isEnabled: () => settings.settings.haptics);
   final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
   await sounds.initialize(); // already internally guarded
-  final music = MusicService(isEnabled: () => settings.settings.music);
+  sounds.setUserVolume(settings.settings.soundVolume);
+  final music = MusicService(isEnabled: () => settings.settings.music)
+    ..setUserVolume(settings.settings.musicVolume);
   // Pauses/resumes the ambient bed with the app lifecycle.
   WidgetsBinding.instance.addObserver(music);
 

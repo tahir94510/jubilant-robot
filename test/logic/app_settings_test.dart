@@ -14,6 +14,20 @@ void main() {
     expect(s.music, isTrue);
     expect(s.soundEffects, isTrue);
     expect(s.themeMode, AppThemeMode.system);
+    // Sensible mix defaults: effects at full, the bed sitting under them.
+    expect(s.soundVolume, 1.0);
+    expect(s.musicVolume, lessThan(1.0));
+  });
+
+  test('volume preferences round-trip and default for legacy JSON', () {
+    final s = AppSettings(soundVolume: 0.4, musicVolume: 0.2);
+    final r = AppSettings.fromJson(s.toJson());
+    expect(r.soundVolume, 0.4);
+    expect(r.musicVolume, 0.2);
+    // Upgraders without the keys fall back to the defaults, not silence.
+    final legacy = AppSettings.fromJson({'music': true});
+    expect(legacy.soundVolume, 1.0);
+    expect(legacy.musicVolume, 0.65);
   });
 
   test('toJson/fromJson round-trips every field', () {

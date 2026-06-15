@@ -8,6 +8,7 @@ import '../../services/ads/ads_service.dart';
 import '../../services/music_service.dart';
 import '../../services/notifications/notification_service.dart';
 import '../../services/purchases/purchase_service.dart';
+import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
@@ -146,6 +147,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 value: settings.soundEffects,
                 onChanged: controller.setSoundEffects,
               ),
+              if (settings.soundEffects)
+                _VolumeTile(
+                  icon: Icons.graphic_eq,
+                  label: 'Effects volume',
+                  value: settings.soundVolume,
+                  onPreview: (v) => controller.previewSoundVolume(
+                    v,
+                    context.read<SoundService>(),
+                  ),
+                  onCommit: (v) => controller.setSoundVolume(
+                    v,
+                    context.read<SoundService>(),
+                  ),
+                ),
               SwitchListTile(
                 title: const Text('Music'),
                 subtitle: const Text('Calm ambient loop while you play'),
@@ -155,6 +170,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   context.read<MusicService>(),
                 ),
               ),
+              if (settings.music)
+                _VolumeTile(
+                  icon: Icons.music_note_outlined,
+                  label: 'Music volume',
+                  value: settings.musicVolume,
+                  onPreview: (v) => controller.previewMusicVolume(
+                    v,
+                    context.read<MusicService>(),
+                  ),
+                  onCommit: (v) => controller.setMusicVolume(
+                    v,
+                    context.read<MusicService>(),
+                  ),
+                ),
               if (notificationsSupported) ...[
                 section('Daily reminder'),
                 SwitchListTile(
@@ -271,6 +300,62 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// A compact volume row: an icon, a label, and a percentage slider that
+/// previews live (audible while dragging) and commits to disk on release.
+class _VolumeTile extends StatelessWidget {
+  const _VolumeTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.onPreview,
+    required this.onCommit,
+  });
+
+  final IconData icon;
+  final String label;
+  final double value;
+  final ValueChanged<double> onPreview;
+  final ValueChanged<double> onCommit;
+
+  @override
+  Widget build(BuildContext context) {
+    final palette = Theme.of(context).extension<GamePalette>()!;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: palette.textSecondary),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Slider(
+              value: value,
+              max: 1.0,
+              divisions: 10,
+              label: '$label · ${(value * 100).round()}%',
+              semanticFormatterCallback: (v) =>
+                  '$label ${(v * 100).round()} percent',
+              onChanged: onPreview,
+              onChangeEnd: onCommit,
+            ),
+          ),
+          SizedBox(
+            width: 44,
+            child: Text(
+              '${(value * 100).round()}%',
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: palette.textSecondary,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

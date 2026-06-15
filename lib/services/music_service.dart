@@ -14,11 +14,19 @@ class MusicService with WidgetsBindingObserver {
 
   final bool Function() isEnabled;
 
-  /// Quiet by design: the bed sits well under the UI sound effects.
-  static const double _targetVolume = 0.22;
+  /// The bed's base level at full user volume. Quiet by design: it sits well
+  /// under the UI sound effects, and the user's [setUserVolume] scales it.
+  static const double _baseVolume = 0.30;
 
-  /// Where the bed sits while the success fanfare plays.
-  static const double _duckVolume = 0.08;
+  /// Fraction of the playing level the bed dips to under the success fanfare.
+  static const double _duckFactor = 0.32;
+
+  /// 0..1 user multiplier from settings (musicVolume).
+  double _userVolume = 0.65;
+
+  /// The level the bed plays at right now, honoring the user's choice.
+  double get _targetVolume => _baseVolume * _userVolume;
+  double get _duckVolume => _targetVolume * _duckFactor;
 
   AudioPlayer? _player;
   bool _ready = false;
@@ -26,6 +34,16 @@ class MusicService with WidgetsBindingObserver {
   double _volume = 0;
   Timer? _fadeTimer;
   Timer? _duckTimer;
+
+  /// Applies the user's music-volume preference (0..1). Fades smoothly to the
+  /// new level if the bed is currently playing.
+  void setUserVolume(double value) {
+    _userVolume = value.clamp(0.0, 1.0);
+    if (_playing && isEnabled()) {
+      _duckTimer?.cancel();
+      _fadeTo(_targetVolume, duration: const Duration(milliseconds: 280));
+    }
+  }
 
   Future<void> initialize() async {
     try {
@@ -106,13 +124,17 @@ class MusicService with WidgetsBindingObserver {
     if (state == AppLifecycleState.resumed) {
       if (_playing && isEnabled()) {
         unawaited(p.resume().catchError((_) {}));
-        _fadeTo(_targetVolume, duration: const Duration(milliseconds: 500));
+        _fadeTo(_targetVolume, duration: const Duration(milliseconds: 600));
       }
     } else {
-      // Backgrounded, covered by a call or a full-screen ad: go quiet.
-      _fadeTimer?.cancel();
+      // Backgrounded, covered by a call or a full-screen ad: duck out
+      // smoothly before pausing so the bed never gets chopped mid-note.
       _duckTimer?.cancel();
-      unawaited(p.pause().catchError((_) {}));
+      _fadeTo(
+        0,
+        duration: const Duration(milliseconds: 220),
+        onDone: () => unawaited(p.pause().catchError((_) {})),
+      );
     }
   }
 
