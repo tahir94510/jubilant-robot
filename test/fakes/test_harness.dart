@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:quotecrack/l10n/app_localizations.dart';
 import 'package:quotecrack/engine/quote_repository.dart';
 import 'package:quotecrack/models/quote.dart';
 import 'package:quotecrack/services/ads/ads_service.dart';
@@ -91,8 +92,9 @@ class Harness {
   }
 
   /// Wraps [child] in the full provider tree inside a MaterialApp.
-  /// [textScale] simulates a device-level large-type setting.
-  Widget app(Widget child, {double textScale = 1.0}) {
+  /// [textScale] simulates a device-level large-type setting; [locale] forces
+  /// a UI language for localization tests.
+  Widget app(Widget child, {double textScale = 1.0, Locale? locale}) {
     return MultiProvider(
       providers: [
         Provider.value(value: storage),
@@ -112,6 +114,9 @@ class Harness {
       ],
       child: MaterialApp(
         theme: AppThemes.light(colorblind: false),
+        locale: locale,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         builder: (context, c) => MediaQuery(
           data: MediaQuery.of(
             context,

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../config/app_config.dart';
+import '../../l10n/app_localizations.dart';
 import '../../models/app_settings.dart';
 import '../../services/ads/ads_service.dart';
 import '../../services/music_service.dart';
@@ -44,6 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         .read<NotificationService>()
         .supported;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
 
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
@@ -59,13 +61,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(l10n.settingsTitle)),
       body: PageBody(
         child: ScaleSafe(
           child: ListView(
             padding: const EdgeInsets.only(bottom: 32),
             children: [
-              section('Appearance'),
+              section(l10n.sectionLanguage),
+              _LanguageTile(
+                selectedCode: settings.languageCode,
+                onSelect: controller.setLanguage,
+              ),
+              section(l10n.sectionAppearance),
               // "Auto" follows the device's light/dark setting and is the
               // default — it gets its own segment so the selection never lies
               // about what is on screen. The selector sits on its own row
@@ -76,12 +83,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Theme', style: TextStyle(fontSize: 16)),
+                    Text(l10n.theme, style: const TextStyle(fontSize: 16)),
                     if (settings.themeMode == AppThemeMode.system)
                       Padding(
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(
-                          'Auto (follows your device)',
+                          l10n.themeAutoSubtitle,
                           style: TextStyle(
                             fontSize: 13,
                             color: palette.textSecondary,
@@ -102,7 +109,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               ListTile(
-                title: const Text('Text size'),
+                title: Text(l10n.textSize),
                 subtitle: Slider(
                   value: settings.textScale,
                   min: 0.85,
@@ -116,41 +123,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               SwitchListTile(
-                title: const Text('Colorblind-friendly colors'),
-                subtitle: const Text('Blue/orange highlights instead of red'),
+                title: Text(l10n.colorblindTitle),
+                subtitle: Text(l10n.colorblindSubtitle),
                 value: settings.colorblindMode,
                 onChanged: controller.setColorblindMode,
               ),
-              section('Gameplay'),
+              section(l10n.sectionGameplay),
               SwitchListTile(
-                title: const Text('Error checking'),
-                subtitle: const Text(
-                  'Mark wrong letters once the board is full',
-                ),
+                title: Text(l10n.errorCheckingTitle),
+                subtitle: Text(l10n.errorCheckingSubtitle),
                 value: settings.errorChecking,
                 onChanged: controller.setErrorChecking,
               ),
               SwitchListTile(
-                title: const Text('Show timer'),
-                subtitle: const Text('Turn off for a fully zen experience'),
+                title: Text(l10n.showTimerTitle),
+                subtitle: Text(l10n.showTimerSubtitle),
                 value: settings.showTimer,
                 onChanged: controller.setShowTimer,
               ),
               SwitchListTile(
-                title: const Text('Haptic feedback'),
+                title: Text(l10n.hapticsTitle),
                 value: settings.haptics,
                 onChanged: controller.setHaptics,
               ),
               SwitchListTile(
-                title: const Text('Sound effects'),
-                subtitle: const Text('Soft key taps and gentle chimes'),
+                title: Text(l10n.soundEffectsTitle),
+                subtitle: Text(l10n.soundEffectsSubtitle),
                 value: settings.soundEffects,
                 onChanged: controller.setSoundEffects,
               ),
               if (settings.soundEffects)
                 _VolumeTile(
                   icon: Icons.graphic_eq,
-                  label: 'Effects volume',
+                  label: l10n.effectsVolume,
                   value: settings.soundVolume,
                   onPreview: (v) => controller.previewSoundVolume(
                     v,
@@ -162,8 +167,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
               SwitchListTile(
-                title: const Text('Music'),
-                subtitle: const Text('Calm ambient loop while you play'),
+                title: Text(l10n.musicTitle),
+                subtitle: Text(l10n.musicSubtitle),
                 value: settings.music,
                 onChanged: (value) => controller.setMusicAndApply(
                   value,
@@ -173,7 +178,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               if (settings.music)
                 _VolumeTile(
                   icon: Icons.music_note_outlined,
-                  label: 'Music volume',
+                  label: l10n.musicVolume,
                   value: settings.musicVolume,
                   onPreview: (v) => controller.previewMusicVolume(
                     v,
@@ -185,31 +190,27 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                 ),
               if (notificationsSupported) ...[
-                section('Daily reminder'),
+                section(l10n.sectionDailyReminder),
                 SwitchListTile(
-                  title: const Text('Remind me daily'),
+                  title: Text(l10n.remindMeDaily),
                   subtitle: Text(
                     settings.reminderEnabled
-                        ? 'At ${settings.reminderTime.format(context)}'
-                        : 'Never miss your streak',
+                        ? l10n.reminderAt(settings.reminderTime.format(context))
+                        : l10n.neverMissStreak,
                   ),
                   value: settings.reminderEnabled,
                   onChanged: (enabled) async {
                     final ok = await controller.setReminder(enabled: enabled);
                     if (!ok && context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Notification permission was denied in system settings.',
-                          ),
-                        ),
+                        SnackBar(content: Text(l10n.reminderDenied)),
                       );
                     }
                   },
                 ),
                 if (settings.reminderEnabled)
                   ListTile(
-                    title: const Text('Reminder time'),
+                    title: Text(l10n.reminderTime),
                     trailing: Text(
                       settings.reminderTime.format(context),
                       style: const TextStyle(
@@ -234,51 +235,47 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
               ],
-              section('Premium'),
+              section(l10n.sectionPremium),
               if (economy.premium)
-                const ListTile(
-                  leading: Icon(Icons.workspace_premium),
-                  title: Text('Premium active'),
-                  subtitle: Text('Thank you for supporting Quotecrack!'),
+                ListTile(
+                  leading: const Icon(Icons.workspace_premium),
+                  title: Text(l10n.premiumActive),
+                  subtitle: Text(l10n.premiumActiveSubtitle),
                 )
               else ...[
                 ListTile(
                   leading: const Icon(Icons.workspace_premium_outlined),
-                  title: const Text('Go Premium'),
-                  subtitle: const Text(
-                    'Remove ads, unlimited hints, bonus packs',
-                  ),
+                  title: Text(l10n.goPremium),
+                  subtitle: Text(l10n.goPremiumSubtitle),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => const PaywallScreen()),
                   ),
                 ),
                 ListTile(
                   leading: const Icon(Icons.restore),
-                  title: const Text('Restore purchases'),
+                  title: Text(l10n.restorePurchases),
                   onTap: () async {
                     await purchases.restore();
                     if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Checking previous purchases...'),
-                        ),
+                        SnackBar(content: Text(l10n.checkingPurchases)),
                       );
                     }
                   },
                 ),
               ],
-              section('Privacy & about'),
+              section(l10n.sectionPrivacyAbout),
               if (_privacyOptionsRequired)
                 ListTile(
                   leading: const Icon(Icons.privacy_tip_outlined),
-                  title: const Text('Privacy options'),
-                  subtitle: const Text('Manage your ad consent choices'),
+                  title: Text(l10n.privacyOptions),
+                  subtitle: Text(l10n.privacyOptionsSubtitle),
                   onTap: () =>
                       context.read<AdsService>().showPrivacyOptionsForm(),
                 ),
               ListTile(
                 leading: const Icon(Icons.policy_outlined),
-                title: const Text('Privacy policy'),
+                title: Text(l10n.privacyPolicy),
                 onTap: () => launchUrl(
                   Uri.parse(AppConfig.privacyPolicyUrl),
                   mode: LaunchMode.externalApplication,
@@ -286,21 +283,91 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.description_outlined),
-                title: const Text('Open-source licenses'),
+                title: Text(l10n.openSourceLicenses),
                 onTap: () => showLicensePage(
                   context: context,
                   applicationName: AppConfig.appName,
                 ),
               ),
-              const ListTile(
-                leading: Icon(Icons.info_outline),
-                title: Text('Version'),
-                subtitle: Text(AppConfig.appVersion),
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: Text(l10n.version),
+                subtitle: const Text(AppConfig.appVersion),
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+/// The app-language picker. Languages are shown by their native name
+/// (endonym), which reads correctly whatever the current UI language is.
+class _LanguageTile extends StatelessWidget {
+  const _LanguageTile({required this.selectedCode, required this.onSelect});
+
+  final String? selectedCode;
+  final ValueChanged<String?> onSelect;
+
+  /// Native names for the supported languages.
+  static const _names = {
+    'en': 'English',
+    'tr': 'Türkçe',
+    'es': 'Español',
+    'de': 'Deutsch',
+    'fr': 'Français',
+    'it': 'Italiano',
+    'pt': 'Português',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final current = selectedCode == null
+        ? l10n.languageSystem
+        : (_names[selectedCode] ?? selectedCode!);
+    return ListTile(
+      leading: const Icon(Icons.translate_outlined),
+      title: Text(l10n.appLanguage),
+      subtitle: Text(current),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: () {
+        showModalBottomSheet<void>(
+          context: context,
+          showDragHandle: true,
+          builder: (sheetContext) {
+            final entries = <MapEntry<String?, String>>[
+              MapEntry(null, l10n.languageSystem),
+              ..._names.entries.map(
+                (e) => MapEntry<String?, String>(e.key, e.value),
+              ),
+            ];
+            // Act on tap (then close) so dismissing the sheet — which would
+            // also "return null" — can never be mistaken for picking System
+            // default. A trailing check marks the current choice.
+            final scheme = Theme.of(sheetContext).colorScheme;
+            return SafeArea(
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  for (final e in entries)
+                    ListTile(
+                      title: Text(e.value),
+                      trailing: e.key == selectedCode
+                          ? Icon(Icons.check, color: scheme.primary)
+                          : null,
+                      onTap: () {
+                        Navigator.of(sheetContext).pop();
+                        onSelect(e.key);
+                      },
+                    ),
+                ],
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -368,20 +435,27 @@ class _ThemeGrid extends StatelessWidget {
   final ValueChanged<AppThemeMode> onSelect;
 
   static const _options = [
-    (AppThemeMode.system, Icons.brightness_auto_outlined, 'Auto'),
-    (AppThemeMode.light, Icons.light_mode_outlined, 'Light'),
-    (AppThemeMode.dark, Icons.dark_mode_outlined, 'Dark'),
-    (AppThemeMode.sepia, Icons.menu_book_outlined, 'Sepia'),
+    (AppThemeMode.system, Icons.brightness_auto_outlined),
+    (AppThemeMode.light, Icons.light_mode_outlined),
+    (AppThemeMode.dark, Icons.dark_mode_outlined),
+    (AppThemeMode.sepia, Icons.menu_book_outlined),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    String labelFor(AppThemeMode mode) => switch (mode) {
+      AppThemeMode.system => l10n.themeAuto,
+      AppThemeMode.light => l10n.themeLight,
+      AppThemeMode.dark => l10n.themeDark,
+      AppThemeMode.sepia => l10n.themeSepia,
+    };
     Widget card(int index) {
-      final (mode, icon, label) = _options[index];
+      final (mode, icon) = _options[index];
       return Expanded(
         child: _ThemeCard(
           icon: icon,
-          label: label,
+          label: labelFor(mode),
           selected: mode == selected,
           onTap: () => onSelect(mode),
         ),

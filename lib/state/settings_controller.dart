@@ -33,6 +33,12 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  /// Sets the UI language ([code] null = follow the device locale).
+  Future<void> setLanguage(String? code) {
+    settings.languageCode = code;
+    return _save();
+  }
+
   Future<void> setTextScale(double scale) {
     settings.textScale = scale.clamp(0.85, 1.4);
     return _save();

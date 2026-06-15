@@ -6,6 +6,7 @@ enum AppThemeMode { light, dark, sepia, system }
 class AppSettings {
   AppSettings({
     this.themeMode = AppThemeMode.system,
+    this.languageCode,
     this.textScale = 1.0,
     this.colorblindMode = false,
     this.errorChecking = true,
@@ -27,6 +28,7 @@ class AppSettings {
     themeMode:
         AppThemeMode.values.asNameMap()[json['themeMode']] ??
         AppThemeMode.system,
+    languageCode: json['languageCode'] as String?,
     textScale: (json['textScale'] as num?)?.toDouble() ?? 1.0,
     colorblindMode: json['colorblindMode'] as bool? ?? false,
     errorChecking: json['errorChecking'] as bool? ?? true,
@@ -45,6 +47,9 @@ class AppSettings {
   );
 
   AppThemeMode themeMode;
+
+  /// UI language override (e.g. 'en', 'tr'); null follows the device locale.
+  String? languageCode;
 
   /// 0.85 .. 1.4 — clamped in the UI; word-puzzle players skew older, so
   /// large-type support is a first-class feature.
@@ -88,6 +93,7 @@ class AppSettings {
 
   Map<String, dynamic> toJson() => {
     'themeMode': themeMode.name,
+    'languageCode': languageCode,
     'textScale': textScale,
     'colorblindMode': colorblindMode,
     'errorChecking': errorChecking,

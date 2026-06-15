@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   provider: ^6.1.5
   shared_preferences: ^2.5.3
   google_mobile_ads: ^9.0.0
@@ -32,6 +34,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true # gen-l10n: builds AppLocalizations from lib/l10n/*.arb
 
   assets:
     - assets/data/quotes/

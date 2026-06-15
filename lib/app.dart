@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'config/app_config.dart';
+import 'l10n/app_localizations.dart';
 import 'services/music_service.dart';
 import 'state/settings_controller.dart';
 import 'ui/screens/home_screen.dart';
@@ -20,6 +21,12 @@ class QuotecrackApp extends StatelessWidget {
     return MaterialApp(
       title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      // null follows the device locale; a saved choice overrides it.
+      locale: settings.languageCode == null
+          ? null
+          : Locale(settings.languageCode!),
       theme: AppThemes.resolve(
         settings.themeMode,
         colorblind: settings.colorblindMode,
