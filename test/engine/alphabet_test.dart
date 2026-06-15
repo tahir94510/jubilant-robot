@@ -17,14 +17,20 @@ void main() {
           final outputs = <String>{};
           for (final plain in a.letters.split('')) {
             final cipher = map.encryptLetter(plain);
-            expect(cipher, isNot(plain),
-                reason: '${a.code} seed $seed: $plain maps to itself');
+            expect(
+              cipher,
+              isNot(plain),
+              reason: '${a.code} seed $seed: $plain maps to itself',
+            );
             expect(a.isLetter(cipher), isTrue);
             outputs.add(cipher);
             expect(map.decryptLetter(cipher), plain);
           }
-          expect(outputs.length, n,
-              reason: '${a.code} seed $seed: not a bijection');
+          expect(
+            outputs.length,
+            n,
+            reason: '${a.code} seed $seed: not a bijection',
+          );
         }
       });
 
@@ -90,12 +96,18 @@ void main() {
         for (final c in session.cipherLetters) {
           session.guesses[c] = session.cipher.decryptLetter(c);
         }
-        expect(session.isSolved, isTrue,
-            reason: '$locale puzzle did not solve with the correct letters');
+        expect(
+          session.isSolved,
+          isTrue,
+          reason: '$locale puzzle did not solve with the correct letters',
+        );
         // And the keyboard can produce every needed plain letter.
         final keys = quote.alphabet.keyboardRows.join().split('').toSet();
-        expect(keys.containsAll(session.usedPlainLetters), isTrue,
-            reason: '$locale keyboard is missing a needed letter');
+        expect(
+          keys.containsAll(session.usedPlainLetters),
+          isTrue,
+          reason: '$locale keyboard is missing a needed letter',
+        );
       });
     });
   });

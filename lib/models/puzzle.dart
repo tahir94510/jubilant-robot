@@ -10,10 +10,7 @@ import 'quote.dart';
 class PuzzleSession {
   PuzzleSession({required this.quote, Map<String, String>? guesses})
     : alphabet = quote.alphabet,
-      cipher = CipherMap.forQuoteId(
-        quote.id,
-        alphabet: quote.alphabet.letters,
-      ),
+      cipher = CipherMap.forQuoteId(quote.id, alphabet: quote.alphabet.letters),
       guesses = Map.of(guesses ?? const {}) {
     cipherText = cipher.encrypt(quote.normalizedText);
   }

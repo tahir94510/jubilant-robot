@@ -122,9 +122,24 @@ abstract final class Alphabets {
     letters: latinAlphabet,
     keyboardRows: _qwerty,
     folds: {
-      'À': 'A', 'Â': 'A', 'Ä': 'A', 'Ç': 'C', 'É': 'E', 'È': 'E', 'Ê': 'E',
-      'Ë': 'E', 'Î': 'I', 'Ï': 'I', 'Ô': 'O', 'Ö': 'O', 'Ù': 'U', 'Û': 'U',
-      'Ü': 'U', 'Ÿ': 'Y', 'Œ': 'OE', 'Æ': 'AE',
+      'À': 'A',
+      'Â': 'A',
+      'Ä': 'A',
+      'Ç': 'C',
+      'É': 'E',
+      'È': 'E',
+      'Ê': 'E',
+      'Ë': 'E',
+      'Î': 'I',
+      'Ï': 'I',
+      'Ô': 'O',
+      'Ö': 'O',
+      'Ù': 'U',
+      'Û': 'U',
+      'Ü': 'U',
+      'Ÿ': 'Y',
+      'Œ': 'OE',
+      'Æ': 'AE',
     },
   );
 
@@ -134,8 +149,16 @@ abstract final class Alphabets {
     letters: latinAlphabet,
     keyboardRows: _qwerty,
     folds: {
-      'À': 'A', 'È': 'E', 'É': 'E', 'Ì': 'I', 'Í': 'I', 'Î': 'I', 'Ò': 'O',
-      'Ó': 'O', 'Ù': 'U', 'Ú': 'U',
+      'À': 'A',
+      'È': 'E',
+      'É': 'E',
+      'Ì': 'I',
+      'Í': 'I',
+      'Î': 'I',
+      'Ò': 'O',
+      'Ó': 'O',
+      'Ù': 'U',
+      'Ú': 'U',
     },
   );
 
@@ -145,8 +168,19 @@ abstract final class Alphabets {
     letters: latinAlphabet,
     keyboardRows: _qwerty,
     folds: {
-      'Á': 'A', 'Â': 'A', 'Ã': 'A', 'À': 'A', 'Ç': 'C', 'É': 'E', 'Ê': 'E',
-      'Í': 'I', 'Ó': 'O', 'Ô': 'O', 'Õ': 'O', 'Ú': 'U', 'Ü': 'U',
+      'Á': 'A',
+      'Â': 'A',
+      'Ã': 'A',
+      'À': 'A',
+      'Ç': 'C',
+      'É': 'E',
+      'Ê': 'E',
+      'Í': 'I',
+      'Ó': 'O',
+      'Ô': 'O',
+      'Õ': 'O',
+      'Ú': 'U',
+      'Ü': 'U',
     },
   );
 
@@ -169,9 +203,7 @@ abstract final class Alphabets {
 
   static final List<Alphabet> all = [en, es, de, fr, it, pt, tr];
 
-  static final Map<String, Alphabet> _byCode = {
-    for (final a in all) a.code: a,
-  };
+  static final Map<String, Alphabet> _byCode = {for (final a in all) a.code: a};
 
   /// The alphabet for [code], falling back to English for unknown/null codes.
   static Alphabet forLocale(String? code) => _byCode[code] ?? en;

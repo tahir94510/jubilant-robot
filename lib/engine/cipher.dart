@@ -39,8 +39,10 @@ class CipherMap {
 
   /// Same quote id + alphabet -> same cipher on every device and platform, so
   /// friends can compare notes on the daily puzzle.
-  factory CipherMap.forQuoteId(String quoteId, {String alphabet = latinAlphabet}) =>
-      CipherMap.fromSeed(stableStringHash(quoteId), alphabet: alphabet);
+  factory CipherMap.forQuoteId(
+    String quoteId, {
+    String alphabet = latinAlphabet,
+  }) => CipherMap.fromSeed(stableStringHash(quoteId), alphabet: alphabet);
 
   final Map<String, String> _plainToCipher;
   final Map<String, String> _cipherToPlain;

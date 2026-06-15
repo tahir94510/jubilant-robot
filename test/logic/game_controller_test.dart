@@ -149,29 +149,34 @@ void main() {
     resumed.dispose();
   });
 
-  test('re-entering resumes the saved clock, not the time spent away', () async {
-    final store = await storage();
-    // A half-finished puzzle that was last left at 30s elapsed.
-    store.writeJson(StorageService.puzzleStateKey(shortQuote.id), {
-      'quoteId': shortQuote.id,
-      'guesses': <String, String>{},
-      'revealed': <String>[],
-      'hintsUsed': 0,
-      'elapsedSeconds': 30,
-      'undo': <dynamic>[],
-      'solved': false,
-    });
+  test(
+    're-entering resumes the saved clock, not the time spent away',
+    () async {
+      final store = await storage();
+      // A half-finished puzzle that was last left at 30s elapsed.
+      store.writeJson(StorageService.puzzleStateKey(shortQuote.id), {
+        'quoteId': shortQuote.id,
+        'guesses': <String, String>{},
+        'revealed': <String>[],
+        'hintsUsed': 0,
+        'elapsedSeconds': 30,
+        'undo': <dynamic>[],
+        'solved': false,
+      });
 
-    final game = GameController(storage: store);
-    game.start(shortQuote, daily: false);
-    // Resumes exactly at 30s — time spent in the menu never inflates it.
-    expect(game.elapsed, const Duration(seconds: 30));
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      // Resumes exactly at 30s — time spent in the menu never inflates it.
+      expect(game.elapsed, const Duration(seconds: 30));
 
-    game.stopTimer();
-    final saved = store.readJson(StorageService.puzzleStateKey(shortQuote.id))!;
-    expect(saved['elapsedSeconds'], 30);
-    game.dispose();
-  });
+      game.stopTimer();
+      final saved = store.readJson(
+        StorageService.puzzleStateKey(shortQuote.id),
+      )!;
+      expect(saved['elapsedSeconds'], 30);
+      game.dispose();
+    },
+  );
 
   // "Less is more." — every real word counts: LESS (4), "is" (2), MORE (4).
   // Only single-letter words (none here) stay a quiet, trivial fill.

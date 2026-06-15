@@ -330,8 +330,7 @@ class GameController extends ChangeNotifier {
       });
     } else {
       if (advance) {
-        _selectedIndex =
-            _nextEmptyIndexAfter(_selectedIndex) ?? _selectedIndex;
+        _selectedIndex = _nextEmptyIndexAfter(_selectedIndex) ?? _selectedIndex;
       }
       _persistState();
     }

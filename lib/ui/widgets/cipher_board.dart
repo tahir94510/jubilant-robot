@@ -38,10 +38,7 @@ class CipherBoard extends StatelessWidget {
     final isLetter = session.alphabet.isLetter;
 
     final words = session.cipherText.split(' ');
-    final totalLetters = session.cipherText
-        .split('')
-        .where(isLetter)
-        .length;
+    final totalLetters = session.cipherText.split('').where(isLetter).length;
 
     // Cell width adapts to screen and quote length so long quotes still fit
     // comfortably; text scale is applied by MediaQuery at app level. The
