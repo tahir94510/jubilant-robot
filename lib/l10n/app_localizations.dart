@@ -773,6 +773,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'solved in {time}'**
   String shareSolvedIn(String time);
+
+  /// No description provided for @packTitleBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get packTitleBeginner;
+
+  /// No description provided for @packTaglineBeginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Long quotes, gentle ciphers'**
+  String get packTaglineBeginner;
+
+  /// No description provided for @packTitleCasual.
+  ///
+  /// In en, this message translates to:
+  /// **'Casual'**
+  String get packTitleCasual;
+
+  /// No description provided for @packTaglineCasual.
+  ///
+  /// In en, this message translates to:
+  /// **'A comfortable challenge'**
+  String get packTaglineCasual;
+
+  /// No description provided for @packTitleSkilled.
+  ///
+  /// In en, this message translates to:
+  /// **'Skilled'**
+  String get packTitleSkilled;
+
+  /// No description provided for @packTaglineSkilled.
+  ///
+  /// In en, this message translates to:
+  /// **'For practiced decoders'**
+  String get packTaglineSkilled;
+
+  /// No description provided for @packTitleExpert.
+  ///
+  /// In en, this message translates to:
+  /// **'Expert'**
+  String get packTitleExpert;
+
+  /// No description provided for @packTaglineExpert.
+  ///
+  /// In en, this message translates to:
+  /// **'Short, sharp, unforgiving'**
+  String get packTaglineExpert;
+
+  /// No description provided for @packTitleProverbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Proverbs'**
+  String get packTitleProverbs;
+
+  /// No description provided for @packTaglineProverbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Folk wisdom of the world'**
+  String get packTaglineProverbs;
+
+  /// No description provided for @packTitleHumor.
+  ///
+  /// In en, this message translates to:
+  /// **'Humor'**
+  String get packTitleHumor;
+
+  /// No description provided for @packTaglineHumor.
+  ///
+  /// In en, this message translates to:
+  /// **'Wit from Twain to Wilde'**
+  String get packTaglineHumor;
+
+  /// No description provided for @packTitleWisdom.
+  ///
+  /// In en, this message translates to:
+  /// **'Wisdom'**
+  String get packTitleWisdom;
+
+  /// No description provided for @packTaglineWisdom.
+  ///
+  /// In en, this message translates to:
+  /// **'Thinkers and statesmen'**
+  String get packTaglineWisdom;
+
+  /// No description provided for @packTitleLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Literature'**
+  String get packTitleLiterature;
+
+  /// No description provided for @packTaglineLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Lines from great books'**
+  String get packTaglineLiterature;
+
+  /// No description provided for @packTitleScience.
+  ///
+  /// In en, this message translates to:
+  /// **'Science'**
+  String get packTitleScience;
+
+  /// No description provided for @packTaglineScience.
+  ///
+  /// In en, this message translates to:
+  /// **'Minds that moved the world'**
+  String get packTaglineScience;
+
+  /// No description provided for @packTitleShakespeare.
+  ///
+  /// In en, this message translates to:
+  /// **'Shakespeare'**
+  String get packTitleShakespeare;
+
+  /// No description provided for @packTaglineShakespeare.
+  ///
+  /// In en, this message translates to:
+  /// **'The Bard, uncut'**
+  String get packTaglineShakespeare;
+
+  /// No description provided for @packTitleStoic.
+  ///
+  /// In en, this message translates to:
+  /// **'Stoic Wisdom'**
+  String get packTitleStoic;
+
+  /// No description provided for @packTaglineStoic.
+  ///
+  /// In en, this message translates to:
+  /// **'Marcus, Seneca, Epictetus'**
+  String get packTaglineStoic;
 }
 
 class _AppLocalizationsDelegate

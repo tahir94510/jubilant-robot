@@ -100,6 +100,7 @@ class _PackTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
     final done = total > 0 && solved == total;
 
     return Padding(
@@ -138,14 +139,14 @@ class _PackTile extends StatelessWidget {
             ),
           ),
           title: Text(
-            pack.title,
+            pack.localizedTitle(l10n),
             style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
           ),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                pack.tagline,
+                pack.localizedTagline(l10n),
                 style: TextStyle(fontSize: 13, color: palette.textSecondary),
               ),
               const SizedBox(height: 6),

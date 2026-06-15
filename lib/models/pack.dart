@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../engine/difficulty.dart';
+import '../l10n/app_localizations.dart';
 import 'quote.dart';
 
 enum PackKind { difficulty, themed, premium }
@@ -133,4 +134,39 @@ class Pack {
   ];
 
   static Pack byId(String id) => catalog.firstWhere((p) => p.id == id);
+}
+
+/// Localized title/tagline for a [Pack], resolved by id. The English [title]/
+/// [tagline] on the const definitions stay as the fallback for any pack a
+/// translation hasn't covered yet.
+extension PackL10n on Pack {
+  String localizedTitle(AppLocalizations l) => switch (id) {
+    'beginner' => l.packTitleBeginner,
+    'casual' => l.packTitleCasual,
+    'skilled' => l.packTitleSkilled,
+    'expert' => l.packTitleExpert,
+    'proverbs' => l.packTitleProverbs,
+    'humor' => l.packTitleHumor,
+    'wisdom' => l.packTitleWisdom,
+    'literature' => l.packTitleLiterature,
+    'science' => l.packTitleScience,
+    'shakespeare' => l.packTitleShakespeare,
+    'stoic' => l.packTitleStoic,
+    _ => title,
+  };
+
+  String localizedTagline(AppLocalizations l) => switch (id) {
+    'beginner' => l.packTaglineBeginner,
+    'casual' => l.packTaglineCasual,
+    'skilled' => l.packTaglineSkilled,
+    'expert' => l.packTaglineExpert,
+    'proverbs' => l.packTaglineProverbs,
+    'humor' => l.packTaglineHumor,
+    'wisdom' => l.packTaglineWisdom,
+    'literature' => l.packTaglineLiterature,
+    'science' => l.packTaglineScience,
+    'shakespeare' => l.packTaglineShakespeare,
+    'stoic' => l.packTaglineStoic,
+    _ => tagline,
+  };
 }

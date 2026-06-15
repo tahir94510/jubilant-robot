@@ -140,5 +140,27 @@
   "shareSolvedIn": "solved in {time}",
   "@shareSolvedIn": {
     "placeholders": { "time": { "type": "String" } }
-  }
+  },
+  "packTitleBeginner": "Beginner",
+  "packTaglineBeginner": "Long quotes, gentle ciphers",
+  "packTitleCasual": "Casual",
+  "packTaglineCasual": "A comfortable challenge",
+  "packTitleSkilled": "Skilled",
+  "packTaglineSkilled": "For practiced decoders",
+  "packTitleExpert": "Expert",
+  "packTaglineExpert": "Short, sharp, unforgiving",
+  "packTitleProverbs": "Proverbs",
+  "packTaglineProverbs": "Folk wisdom of the world",
+  "packTitleHumor": "Humor",
+  "packTaglineHumor": "Wit from Twain to Wilde",
+  "packTitleWisdom": "Wisdom",
+  "packTaglineWisdom": "Thinkers and statesmen",
+  "packTitleLiterature": "Literature",
+  "packTaglineLiterature": "Lines from great books",
+  "packTitleScience": "Science",
+  "packTaglineScience": "Minds that moved the world",
+  "packTitleShakespeare": "Shakespeare",
+  "packTaglineShakespeare": "The Bard, uncut",
+  "packTitleStoic": "Stoic Wisdom",
+  "packTaglineStoic": "Marcus, Seneca, Epictetus"
 }

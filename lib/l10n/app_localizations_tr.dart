@@ -393,4 +393,70 @@ class AppLocalizationsTr extends AppLocalizations {
   String shareSolvedIn(String time) {
     return '$time sürede çözüldü';
   }
+
+  @override
+  String get packTitleBeginner => 'Başlangıç';
+
+  @override
+  String get packTaglineBeginner => 'Uzun sözler, yumuşak şifreler';
+
+  @override
+  String get packTitleCasual => 'Rahat';
+
+  @override
+  String get packTaglineCasual => 'Keyifli bir meydan okuma';
+
+  @override
+  String get packTitleSkilled => 'Usta';
+
+  @override
+  String get packTaglineSkilled => 'Deneyimli çözücüler için';
+
+  @override
+  String get packTitleExpert => 'Uzman';
+
+  @override
+  String get packTaglineExpert => 'Kısa, keskin, affetmez';
+
+  @override
+  String get packTitleProverbs => 'Atasözleri';
+
+  @override
+  String get packTaglineProverbs => 'Dünyanın halk bilgeliği';
+
+  @override
+  String get packTitleHumor => 'Mizah';
+
+  @override
+  String get packTaglineHumor => 'Twain’den Wilde’a nükteler';
+
+  @override
+  String get packTitleWisdom => 'Bilgelik';
+
+  @override
+  String get packTaglineWisdom => 'Düşünürler ve devlet adamları';
+
+  @override
+  String get packTitleLiterature => 'Edebiyat';
+
+  @override
+  String get packTaglineLiterature => 'Büyük kitaplardan satırlar';
+
+  @override
+  String get packTitleScience => 'Bilim';
+
+  @override
+  String get packTaglineScience => 'Dünyayı değiştiren zihinler';
+
+  @override
+  String get packTitleShakespeare => 'Shakespeare';
+
+  @override
+  String get packTaglineShakespeare => 'Usta, sansürsüz';
+
+  @override
+  String get packTitleStoic => 'Stoacı Bilgelik';
+
+  @override
+  String get packTaglineStoic => 'Marcus, Seneca, Epiktetos';
 }

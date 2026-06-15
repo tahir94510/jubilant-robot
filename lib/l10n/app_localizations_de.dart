@@ -395,4 +395,70 @@ class AppLocalizationsDe extends AppLocalizations {
   String shareSolvedIn(String time) {
     return 'gelöst in $time';
   }
+
+  @override
+  String get packTitleBeginner => 'Anfänger';
+
+  @override
+  String get packTaglineBeginner => 'Lange Zitate, sanfte Chiffren';
+
+  @override
+  String get packTitleCasual => 'Locker';
+
+  @override
+  String get packTaglineCasual => 'Eine angenehme Herausforderung';
+
+  @override
+  String get packTitleSkilled => 'Geübt';
+
+  @override
+  String get packTaglineSkilled => 'Für geübte Entschlüssler';
+
+  @override
+  String get packTitleExpert => 'Experte';
+
+  @override
+  String get packTaglineExpert => 'Kurz, scharf, gnadenlos';
+
+  @override
+  String get packTitleProverbs => 'Sprichwörter';
+
+  @override
+  String get packTaglineProverbs => 'Volksweisheit aus aller Welt';
+
+  @override
+  String get packTitleHumor => 'Humor';
+
+  @override
+  String get packTaglineHumor => 'Witz von Twain bis Wilde';
+
+  @override
+  String get packTitleWisdom => 'Weisheit';
+
+  @override
+  String get packTaglineWisdom => 'Denker und Staatsmänner';
+
+  @override
+  String get packTitleLiterature => 'Literatur';
+
+  @override
+  String get packTaglineLiterature => 'Zeilen aus großen Büchern';
+
+  @override
+  String get packTitleScience => 'Wissenschaft';
+
+  @override
+  String get packTaglineScience => 'Köpfe, die die Welt bewegten';
+
+  @override
+  String get packTitleShakespeare => 'Shakespeare';
+
+  @override
+  String get packTaglineShakespeare => 'Der Barde, ungekürzt';
+
+  @override
+  String get packTitleStoic => 'Stoische Weisheit';
+
+  @override
+  String get packTaglineStoic => 'Mark Aurel, Seneca, Epiktet';
 }

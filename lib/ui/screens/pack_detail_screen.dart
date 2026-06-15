@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../engine/quote_repository.dart';
 import '../../models/pack.dart';
 import '../../state/game_controller.dart';
@@ -22,7 +23,9 @@ class PackDetailScreen extends StatelessWidget {
     final quotes = repo.forPack(pack);
 
     return Scaffold(
-      appBar: AppBar(title: Text(pack.title)),
+      appBar: AppBar(
+        title: Text(pack.localizedTitle(AppLocalizations.of(context))),
+      ),
       // SafeArea(bottom) keeps the last grid row clear of the system nav bar
       // under Android edge-to-edge.
       body: SafeArea(
