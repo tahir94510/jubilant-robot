@@ -1085,6 +1085,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hundred Mornings'**
   String get achTitleDaily100;
+
+  /// No description provided for @packsSectionLanguages.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages'**
+  String get packsSectionLanguages;
+
+  /// No description provided for @packTitleTurkish.
+  ///
+  /// In en, this message translates to:
+  /// **'Türkçe'**
+  String get packTitleTurkish;
+
+  /// No description provided for @packTaglineTurkish.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish proverbs & sayings'**
+  String get packTaglineTurkish;
 }
 
 class _AppLocalizationsDelegate

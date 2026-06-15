@@ -562,4 +562,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Cent Matins';
+
+  @override
+  String get packsSectionLanguages => 'Langues';
+
+  @override
+  String get packTitleTurkish => 'Türkçe';
+
+  @override
+  String get packTaglineTurkish => 'Proverbes et maximes turcs';
 }

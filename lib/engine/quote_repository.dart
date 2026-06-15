@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart' show AssetBundle, rootBundle;
+import 'package:flutter/services.dart'
+    show AssetBundle, AssetManifest, rootBundle;
 
 import '../models/pack.dart';
 import '../models/quote.dart';
@@ -14,25 +15,27 @@ class QuoteRepository {
     }
   }
 
-  static const List<String> _categoryFiles = [
-    'wisdom',
-    'humor',
-    'proverbs',
-    'literature',
-    'science',
-    'shakespeare',
-    'stoic',
-  ];
-
   /// Categories reserved for the premium packs.
   static const Set<String> premiumCategories = {'shakespeare', 'stoic'};
 
+  /// Discovers EVERY quote file under assets/data/quotes (English at the root,
+  /// each localized pack in its own locale subfolder) via the asset manifest,
+  /// so adding a language is just dropping in a JSON file + a pubspec entry —
+  /// no code change here.
   static Future<QuoteRepository> load({AssetBundle? bundle}) async {
     final b = bundle ?? rootBundle;
+    final manifest = await AssetManifest.loadFromAssetBundle(b);
+    final paths =
+        manifest
+            .listAssets()
+            .where(
+              (p) => p.startsWith('assets/data/quotes/') && p.endsWith('.json'),
+            )
+            .toList()
+          ..sort(); // stable, platform-independent load order
     final all = <Quote>[];
-    for (final name in _categoryFiles) {
-      final raw = await b.loadString('assets/data/quotes/$name.json');
-      final list = jsonDecode(raw) as List<dynamic>;
+    for (final p in paths) {
+      final list = jsonDecode(await b.loadString(p)) as List<dynamic>;
       all.addAll(list.map((e) => Quote.fromJson(e as Map<String, dynamic>)));
     }
     return QuoteRepository._(all);
@@ -55,11 +58,18 @@ class QuoteRepository {
   List<Quote> byDifficulty(Difficulty difficulty) =>
       _quotes.where((q) => q.difficulty == difficulty).toList();
 
-  /// Pool for the daily puzzle: free categories only, sorted by id for
-  /// platform-stable ordering (asset iteration order must not matter).
+  /// Pool for the daily puzzle: the shared GLOBAL daily is English so everyone
+  /// gets the same cipher to compare (Wordle-style). Free categories only,
+  /// sorted by id for platform-stable ordering (asset iteration order must
+  /// not matter). Localized packs are played on demand, never as the daily.
   List<Quote> get dailyPool {
     final pool =
-        _quotes.where((q) => !premiumCategories.contains(q.category)).toList()
+        _quotes
+            .where(
+              (q) =>
+                  q.locale == 'en' && !premiumCategories.contains(q.category),
+            )
+            .toList()
           ..sort((a, b) => a.id.compareTo(b.id));
     return pool;
   }

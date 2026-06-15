@@ -4,7 +4,7 @@ import '../engine/difficulty.dart';
 import '../l10n/app_localizations.dart';
 import 'quote.dart';
 
-enum PackKind { difficulty, themed, premium }
+enum PackKind { difficulty, themed, language, premium }
 
 /// A puzzle pack: a named, filtered slice of the quote dataset.
 class Pack {
@@ -29,6 +29,10 @@ class Pack {
   bool get premiumOnly => kind == PackKind.premium;
 
   bool contains(Quote q) {
+    // Localized (non-English) quotes only ever belong to their own dedicated
+    // language pack (matched by category), so the difficulty ladder, the
+    // English themed packs and the daily stay English/consistent.
+    if (q.locale != 'en') return category == q.category;
     if (difficulty != null && q.difficulty != difficulty) return false;
     if (category != null && q.category != category) return false;
     if (kind != PackKind.premium &&
@@ -114,6 +118,16 @@ class Pack {
       kind: PackKind.themed,
       category: 'science',
     ),
+    // Native-language packs (playable by everyone; each plays in its own
+    // alphabet). More languages drop in here as their content lands.
+    Pack(
+      id: 'turkish',
+      title: 'Türkçe',
+      tagline: 'Türk atasözleri ve özlü sözler',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'turkish',
+    ),
     // Premium bonus packs
     Pack(
       id: 'shakespeare',
@@ -152,6 +166,7 @@ extension PackL10n on Pack {
     'science' => l.packTitleScience,
     'shakespeare' => l.packTitleShakespeare,
     'stoic' => l.packTitleStoic,
+    'turkish' => l.packTitleTurkish,
     _ => title,
   };
 
@@ -167,6 +182,7 @@ extension PackL10n on Pack {
     'science' => l.packTaglineScience,
     'shakespeare' => l.packTaglineShakespeare,
     'stoic' => l.packTaglineStoic,
+    'turkish' => l.packTaglineTurkish,
     _ => tagline,
   };
 }

@@ -564,4 +564,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Cien Mañanas';
+
+  @override
+  String get packsSectionLanguages => 'Idiomas';
+
+  @override
+  String get packTitleTurkish => 'Türkçe';
+
+  @override
+  String get packTaglineTurkish => 'Refranes y dichos turcos';
 }

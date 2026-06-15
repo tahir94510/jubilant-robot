@@ -197,5 +197,8 @@
   "achTitleDaily10": "Daily Ritual",
   "achTitleDaily25": "Faithful Solver",
   "achTitleDaily50": "Morning Coffee",
-  "achTitleDaily100": "Hundred Mornings"
+  "achTitleDaily100": "Hundred Mornings",
+  "packsSectionLanguages": "Languages",
+  "packTitleTurkish": "Türkçe",
+  "packTaglineTurkish": "Turkish proverbs & sayings"
 }

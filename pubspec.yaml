@@ -38,6 +38,7 @@ flutter:
 
   assets:
     - assets/data/quotes/
+    - assets/data/quotes/tr/
     - assets/audio/
 
   fonts:

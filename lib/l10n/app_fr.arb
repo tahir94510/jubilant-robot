@@ -162,5 +162,8 @@
   "achTitleDaily10": "Rituel Quotidien",
   "achTitleDaily25": "Solveur Fidèle",
   "achTitleDaily50": "Café du Matin",
-  "achTitleDaily100": "Cent Matins"
+  "achTitleDaily100": "Cent Matins",
+  "packsSectionLanguages": "Langues",
+  "packTitleTurkish": "Türkçe",
+  "packTaglineTurkish": "Proverbes et maximes turcs"
 }

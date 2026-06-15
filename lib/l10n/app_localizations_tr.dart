@@ -559,4 +559,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Yüz Sabah';
+
+  @override
+  String get packsSectionLanguages => 'Diller';
+
+  @override
+  String get packTitleTurkish => 'Türkçe';
+
+  @override
+  String get packTaglineTurkish => 'Türk atasözleri ve özlü sözler';
 }

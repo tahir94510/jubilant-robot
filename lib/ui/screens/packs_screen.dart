@@ -73,6 +73,8 @@ class PacksScreen extends StatelessWidget {
               ...tiles(PackKind.difficulty),
               section(l10n.packsSectionThemed),
               ...tiles(PackKind.themed),
+              section(l10n.packsSectionLanguages),
+              ...tiles(PackKind.language),
               section(l10n.sectionPremium),
               ...tiles(PackKind.premium),
             ],

@@ -22,7 +22,7 @@ import '../fakes/test_harness.dart';
 List<Quote> loadRealQuotes() {
   final dir = Directory('assets/data/quotes');
   return [
-    for (final file in dir.listSync().whereType<File>())
+    for (final file in dir.listSync(recursive: true).whereType<File>())
       if (file.path.endsWith('.json'))
         ...(jsonDecode(file.readAsStringSync()) as List<dynamic>).map(
           (e) => Quote.fromJson(e as Map<String, dynamic>),
