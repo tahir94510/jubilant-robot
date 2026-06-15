@@ -12,45 +12,47 @@ abstract final class AppThemes {
   static const String quoteFont = 'Lora';
 
   static ThemeData light({required bool colorblind}) {
-    const surface = Color(0xFFF7F5F0);
-    const onSurface = Color(0xFF23262B);
-    const primary = Color(0xFF3D5A80);
+    // Warm ivory "paper", deep ink text, antique-gold primary.
+    const surface = Color(0xFFF7F4EC);
+    const onSurface = Color(0xFF211E1A);
+    const primary = Color(0xFF936F1F);
     return _base(
       brightness: Brightness.light,
       surface: surface,
       onSurface: onSurface,
       primary: primary,
-      onPrimary: Colors.white,
-      cardColor: Colors.white,
+      onPrimary: const Color(0xFFFFFDF8),
+      cardColor: const Color(0xFFFFFDF8),
       palette: GamePalette.light(colorblind: colorblind),
     );
   }
 
   static ThemeData dark({required bool colorblind}) {
-    const surface = Color(0xFF15181E);
-    const onSurface = Color(0xFFECEFF4);
-    const primary = Color(0xFF98C1D9);
+    // Deep warm "ink" charcoal, ivory text, champagne-gold primary.
+    const surface = Color(0xFF161512);
+    const onSurface = Color(0xFFF2EDE2);
+    const primary = Color(0xFFD9B25A);
     return _base(
       brightness: Brightness.dark,
       surface: surface,
       onSurface: onSurface,
       primary: primary,
-      onPrimary: const Color(0xFF15181E),
-      cardColor: const Color(0xFF1F242C),
+      onPrimary: const Color(0xFF161512),
+      cardColor: const Color(0xFF211F1A),
       palette: GamePalette.dark(colorblind: colorblind),
     );
   }
 
   static ThemeData sepia({required bool colorblind}) {
     const surface = Color(0xFFF4EBDC);
-    const onSurface = Color(0xFF42351F);
-    const primary = Color(0xFF8B5E34);
+    const onSurface = Color(0xFF3A2E1C);
+    const primary = Color(0xFF9C7B33);
     return _base(
       brightness: Brightness.light,
       surface: surface,
       onSurface: onSurface,
       primary: primary,
-      onPrimary: Colors.white,
+      onPrimary: const Color(0xFFFFFDF8),
       cardColor: const Color(0xFFFBF3E4),
       palette: GamePalette.sepia(colorblind: colorblind),
     );

@@ -9,16 +9,18 @@ class BrandMark extends StatelessWidget {
 
   final double size;
 
-  static const _gradientTop = Color(0xFF1C2541);
-  static const _gradientBottom = Color(0xFF3D5A80);
-  static const _paper = Color(0xFFF7F5F0);
-  static const _coral = Color(0xFFEE6C4D);
-  static const _underline = Color(0xFF98C1D9);
+  // "Ink & Gold" brand: a warm-ink gradient tile, an ivory serif Q, a
+  // champagne-gold question mark at its shoulder, and a slim gold underline.
+  static const _gradientTop = Color(0xFF1A1814);
+  static const _gradientBottom = Color(0xFF2E2A22);
+  static const _paper = Color(0xFFF3EEE2);
+  static const _gold = Color(0xFFE0B85A);
+  static const _underline = Color(0xFFCBA24E);
 
   @override
   Widget build(BuildContext context) {
     // Brand text is part of the artwork: it must not scale with system text.
-    final lineHeight = size * 0.055;
+    final lineHeight = size * 0.05;
     return Semantics(
       image: true,
       label: 'Quotecrack logo',
@@ -29,26 +31,28 @@ class BrandMark extends StatelessWidget {
           // Clip glyphs to the rounded tile exactly like the generated icon.
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(size * 0.176),
+            borderRadius: BorderRadius.circular(size * 0.22),
             gradient: const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
               colors: [_gradientTop, _gradientBottom],
             ),
           ),
           child: Stack(
             children: [
               // Font sizes and centres mirror the icon generator
-              // (tool/generate_icons.py): a dominant serif Q (0.60), the
-              // coral ? at its shoulder (0.26), underline at y 0.82.
+              // (tool/generate_icons.py). The Q is lifted (y -0.16) and sized
+              // down (0.56) and the underline pushed to y 0.87 so the serif
+              // Q's tail keeps a clear optical gap above the bar instead of
+              // fusing into it.
               Align(
-                alignment: const Alignment(-0.16, -0.06),
+                alignment: const Alignment(-0.12, -0.16),
                 child: Text(
                   'Q',
                   style: TextStyle(
                     fontFamily: 'Lora',
-                    fontVariations: const [FontVariation('wght', 700)],
-                    fontSize: size * 0.60,
+                    fontVariations: const [FontVariation('wght', 600)],
+                    fontSize: size * 0.56,
                     height: 1,
                     color: _paper,
                   ),
@@ -56,23 +60,23 @@ class BrandMark extends StatelessWidget {
                 ),
               ),
               Align(
-                alignment: const Alignment(0.56, -0.40),
+                alignment: const Alignment(0.52, -0.42),
                 child: Text(
                   '?',
                   style: TextStyle(
                     fontFamily: 'Lora',
                     fontVariations: const [FontVariation('wght', 700)],
-                    fontSize: size * 0.26,
+                    fontSize: size * 0.235,
                     height: 1,
-                    color: _coral,
+                    color: _gold,
                   ),
                   textScaler: TextScaler.noScaling,
                 ),
               ),
               Positioned(
-                left: size * 0.16,
-                right: size * 0.16,
-                top: size * 0.82 - lineHeight / 2,
+                left: size * 0.20,
+                right: size * 0.20,
+                top: size * 0.87 - lineHeight / 2,
                 height: lineHeight,
                 child: DecoratedBox(
                   decoration: BoxDecoration(

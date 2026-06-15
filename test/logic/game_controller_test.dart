@@ -90,6 +90,89 @@ void main() {
     game.dispose();
   });
 
+  test(
+    'typing into a repeated letter advances past THAT cell, not its first copy',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      final cipherS = s.cipher.encryptLetter('S'); // repeats: LeSS, iS
+      final cipherI = s.cipher.encryptLetter('I'); // empty cell after first S
+      final cipherM = s.cipher.encryptLetter('M'); // start of the last word
+
+      // Select the LAST S on the board (the one in "is"), then type it.
+      final positions = [
+        for (var i = 0; i < s.cipherText.length; i++)
+          if (s.cipherText[i] == cipherS) i,
+      ];
+      expect(positions.length, greaterThan(1));
+      game.selectIndex(positions.last);
+      game.enterGuess('S');
+
+      // Cursor steps forward from that last S into "more" (M). The old bug
+      // used indexOf(S) -> first S, landing the cursor back on the empty 'I'.
+      expect(game.selectedCipherLetter, cipherM);
+      expect(game.selectedCipherLetter, isNot(cipherI));
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
+  test('undo history survives leaving and re-entering the puzzle', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    game.selectCipherLetter(s.cipher.encryptLetter('L'));
+    game.enterGuess('L');
+    game.selectCipherLetter(s.cipher.encryptLetter('E'));
+    game.enterGuess('E');
+    expect(game.canUndo, isTrue);
+    game.stopTimer(); // back to the menu
+
+    // A fresh controller (re-entering the puzzle) must restore the undo stack.
+    final resumed = GameController(storage: store);
+    resumed.start(shortQuote, daily: false);
+    expect(resumed.canUndo, isTrue, reason: 'undo stack must persist');
+
+    final eCipher = resumed.session!.cipher.encryptLetter('E');
+    expect(resumed.session!.guesses[eCipher], 'E');
+    resumed.undo(); // reverts the last guess (E)
+    expect(resumed.session!.guesses.containsKey(eCipher), isFalse);
+
+    resumed.stopTimer();
+    game.dispose();
+    resumed.dispose();
+  });
+
+  test('re-entering resumes the saved clock, not the time spent away', () async {
+    final store = await storage();
+    // A half-finished puzzle that was last left at 30s elapsed.
+    store.writeJson(StorageService.puzzleStateKey(shortQuote.id), {
+      'quoteId': shortQuote.id,
+      'guesses': <String, String>{},
+      'revealed': <String>[],
+      'hintsUsed': 0,
+      'elapsedSeconds': 30,
+      'undo': <dynamic>[],
+      'solved': false,
+    });
+
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    // Resumes exactly at 30s — time spent in the menu never inflates it.
+    expect(game.elapsed, const Duration(seconds: 30));
+
+    game.stopTimer();
+    final saved = store.readJson(StorageService.puzzleStateKey(shortQuote.id))!;
+    expect(saved['elapsedSeconds'], 30);
+    game.dispose();
+  });
+
   // "Less is more." — every real word counts: LESS (4), "is" (2), MORE (4).
   // Only single-letter words (none here) stay a quiet, trivial fill.
   group('word-complete signal', () {

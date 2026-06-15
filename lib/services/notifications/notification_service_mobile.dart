@@ -82,7 +82,7 @@ class MobileNotificationService extends NotificationService {
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           // Brand accent tints the small icon + app name in the shade.
-          color: Color(0xFF3D5A80),
+          color: Color(0xFF936F1F),
           // Expands the longer body cleanly when the shade is pulled down.
           styleInformation: BigTextStyleInformation(
             'A fresh quote is waiting to be decoded. Keep your streak alive!',

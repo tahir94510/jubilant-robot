@@ -137,20 +137,20 @@ class _StartupErrorApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color(0xFF1C2541),
+        backgroundColor: const Color(0xFF161512),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(32),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: const [
-                Icon(Icons.refresh, color: Color(0xFF98C1D9), size: 48),
+                Icon(Icons.refresh, color: Color(0xFFD9B25A), size: 48),
                 SizedBox(height: 16),
                 Text(
                   "Quotecrack couldn't start",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Color(0xFFF7F5F0),
+                    color: Color(0xFFF3EEE2),
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
@@ -160,7 +160,7 @@ class _StartupErrorApp extends StatelessWidget {
                   'Please close the app fully and open it again. If this '
                   'keeps happening, reinstalling will fix it.',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xFFB9C2D0), height: 1.4),
+                  style: TextStyle(color: Color(0xFFC3BBA9), height: 1.4),
                 ),
               ],
             ),

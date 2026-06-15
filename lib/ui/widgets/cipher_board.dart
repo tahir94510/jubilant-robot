@@ -20,7 +20,11 @@ class CipherBoard extends StatelessWidget {
   final PuzzleSession session;
   final String? selected;
   final bool errorChecking;
-  final void Function(String cipherLetter) onSelect;
+
+  /// Called with the tapped cell's POSITION in [PuzzleSession.cipherText], not
+  /// its letter: the cursor must pin to the exact cell so typing advances from
+  /// there rather than from a repeated letter's first occurrence.
+  final void Function(int charIndex) onSelect;
 
   /// 0..1 progress of the post-solve celebration: cells up to this share of
   /// the text light up in success color, sweeping left to right. Null when
@@ -57,10 +61,16 @@ class CipherBoard extends StatelessWidget {
         );
 
         var letterIndex = 0;
+        // Absolute position in cipherText. words come from split(' '), which
+        // drops one space between each pair, so we step over that separator
+        // after every word to keep the index aligned with the real string.
+        var charPos = 0;
         final wordRows = <Widget>[];
         for (final word in words) {
           final cells = <Widget>[];
           for (final ch in word.split('')) {
+            final thisPos = charPos;
+            charPos++;
             if (isBoardLetter(ch)) {
               final inWave =
                   solveWave != null &&
@@ -75,7 +85,7 @@ class CipherBoard extends StatelessWidget {
                   state: inWave
                       ? CellState.solved
                       : _stateFor(ch, conflicts, boardFull),
-                  onTap: () => onSelect(ch),
+                  onTap: () => onSelect(thisPos),
                 ),
               );
             } else {
@@ -87,6 +97,7 @@ class CipherBoard extends StatelessWidget {
               );
             }
           }
+          charPos++; // the space separator that split(' ') removed
           wordRows.add(Row(mainAxisSize: MainAxisSize.min, children: cells));
         }
 

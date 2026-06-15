@@ -158,9 +158,9 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                 session: session,
                                 selected: game.selectedCipherLetter,
                                 errorChecking: settings.errorChecking,
-                                onSelect: (c) {
+                                onSelect: (index) {
                                   haptics.tap();
-                                  game.selectCipherLetter(c);
+                                  game.selectIndex(index);
                                 },
                               ),
                       ),
