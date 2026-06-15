@@ -571,4 +571,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Proverbes et maximes turcs';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'Proverbes et maximes espagnols';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'Proverbes et maximes allemands';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'Proverbes et maximes français';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'Proverbes et maximes italiens';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese => 'Proverbes et maximes portugais';
 }

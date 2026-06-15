@@ -575,4 +575,34 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Proverbi e detti turchi';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'Proverbi e detti spagnoli';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'Proverbi e detti tedeschi';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'Proverbi e detti francesi';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'Proverbi e detti italiani';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese => 'Proverbi e detti portoghesi';
 }

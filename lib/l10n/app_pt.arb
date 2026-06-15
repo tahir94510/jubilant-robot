@@ -165,5 +165,15 @@
   "achTitleDaily100": "Cem Manhãs",
   "packsSectionLanguages": "Idiomas",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Provérbios e ditados turcos"
+  "packTaglineTurkish": "Provérbios e ditados turcos",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "Provérbios e ditados espanhóis",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "Provérbios e ditados alemães",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "Provérbios e ditados franceses",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "Provérbios e ditados italianos",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Provérbios e ditados portugueses"
 }

@@ -165,5 +165,15 @@
   "achTitleDaily100": "Cento Mattine",
   "packsSectionLanguages": "Lingue",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Proverbi e detti turchi"
+  "packTaglineTurkish": "Proverbi e detti turchi",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "Proverbi e detti spagnoli",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "Proverbi e detti tedeschi",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "Proverbi e detti francesi",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "Proverbi e detti italiani",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Proverbi e detti portoghesi"
 }

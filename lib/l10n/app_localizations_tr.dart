@@ -568,4 +568,34 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Türk atasözleri ve özlü sözler';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'İspanyol atasözleri ve özlü sözler';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'Alman atasözleri ve özlü sözler';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'Fransız atasözleri ve özlü sözler';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'İtalyan atasözleri ve özlü sözler';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese => 'Portekiz atasözleri ve özlü sözler';
 }

@@ -165,5 +165,15 @@
   "achTitleDaily100": "Cent Matins",
   "packsSectionLanguages": "Langues",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Proverbes et maximes turcs"
+  "packTaglineTurkish": "Proverbes et maximes turcs",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "Proverbes et maximes espagnols",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "Proverbes et maximes allemands",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "Proverbes et maximes français",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "Proverbes et maximes italiens",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Proverbes et maximes portugais"
 }

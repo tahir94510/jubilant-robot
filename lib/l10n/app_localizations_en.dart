@@ -567,4 +567,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Turkish proverbs & sayings';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'Spanish proverbs & sayings';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'German proverbs & sayings';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'French proverbs & sayings';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'Italian proverbs & sayings';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese => 'Portuguese proverbs & sayings';
 }

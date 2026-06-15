@@ -573,4 +573,34 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Provérbios e ditados turcos';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'Provérbios e ditados espanhóis';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'Provérbios e ditados alemães';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'Provérbios e ditados franceses';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'Provérbios e ditados italianos';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese => 'Provérbios e ditados portugueses';
 }

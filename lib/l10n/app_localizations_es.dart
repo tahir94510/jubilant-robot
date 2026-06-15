@@ -573,4 +573,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Refranes y dichos turcos';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'Refranes y dichos españoles';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'Refranes y dichos alemanes';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'Refranes y dichos franceses';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'Refranes y dichos italianos';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese => 'Refranes y dichos portugueses';
 }

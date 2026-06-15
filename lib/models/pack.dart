@@ -128,6 +128,46 @@ class Pack {
       kind: PackKind.language,
       category: 'turkish',
     ),
+    Pack(
+      id: 'spanish',
+      title: 'Español',
+      tagline: 'Spanish proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'spanish',
+    ),
+    Pack(
+      id: 'german',
+      title: 'Deutsch',
+      tagline: 'German proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'german',
+    ),
+    Pack(
+      id: 'french',
+      title: 'Français',
+      tagline: 'French proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'french',
+    ),
+    Pack(
+      id: 'italian',
+      title: 'Italiano',
+      tagline: 'Italian proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'italian',
+    ),
+    Pack(
+      id: 'portuguese',
+      title: 'Português',
+      tagline: 'Portuguese proverbs & sayings',
+      icon: Icons.translate_outlined,
+      kind: PackKind.language,
+      category: 'portuguese',
+    ),
     // Premium bonus packs
     Pack(
       id: 'shakespeare',
@@ -167,6 +207,11 @@ extension PackL10n on Pack {
     'shakespeare' => l.packTitleShakespeare,
     'stoic' => l.packTitleStoic,
     'turkish' => l.packTitleTurkish,
+    'spanish' => l.packTitleSpanish,
+    'german' => l.packTitleGerman,
+    'french' => l.packTitleFrench,
+    'italian' => l.packTitleItalian,
+    'portuguese' => l.packTitlePortuguese,
     _ => title,
   };
 
@@ -183,6 +228,11 @@ extension PackL10n on Pack {
     'shakespeare' => l.packTaglineShakespeare,
     'stoic' => l.packTaglineStoic,
     'turkish' => l.packTaglineTurkish,
+    'spanish' => l.packTaglineSpanish,
+    'german' => l.packTaglineGerman,
+    'french' => l.packTaglineFrench,
+    'italian' => l.packTaglineItalian,
+    'portuguese' => l.packTaglinePortuguese,
     _ => tagline,
   };
 }

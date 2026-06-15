@@ -165,5 +165,15 @@
   "achTitleDaily100": "Hundert Morgen",
   "packsSectionLanguages": "Sprachen",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Türkische Sprichwörter & Aphorismen"
+  "packTaglineTurkish": "Türkische Sprichwörter & Aphorismen",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "Spanische Sprichwörter & Aphorismen",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "Deutsche Sprichwörter & Aphorismen",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "Französische Sprichwörter & Aphorismen",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "Italienische Sprichwörter & Aphorismen",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Portugiesische Sprichwörter & Aphorismen"
 }

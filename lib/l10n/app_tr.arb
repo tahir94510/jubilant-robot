@@ -165,5 +165,15 @@
   "achTitleDaily100": "Yüz Sabah",
   "packsSectionLanguages": "Diller",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Türk atasözleri ve özlü sözler"
+  "packTaglineTurkish": "Türk atasözleri ve özlü sözler",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "İspanyol atasözleri ve özlü sözler",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "Alman atasözleri ve özlü sözler",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "Fransız atasözleri ve özlü sözler",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "İtalyan atasözleri ve özlü sözler",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Portekiz atasözleri ve özlü sözler"
 }

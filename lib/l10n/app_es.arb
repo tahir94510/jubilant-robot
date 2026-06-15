@@ -165,5 +165,15 @@
   "achTitleDaily100": "Cien Mañanas",
   "packsSectionLanguages": "Idiomas",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Refranes y dichos turcos"
+  "packTaglineTurkish": "Refranes y dichos turcos",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "Refranes y dichos españoles",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "Refranes y dichos alemanes",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "Refranes y dichos franceses",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "Refranes y dichos italianos",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Refranes y dichos portugueses"
 }

@@ -570,4 +570,35 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get packTaglineTurkish => 'Türkische Sprichwörter & Aphorismen';
+
+  @override
+  String get packTitleSpanish => 'Español';
+
+  @override
+  String get packTaglineSpanish => 'Spanische Sprichwörter & Aphorismen';
+
+  @override
+  String get packTitleGerman => 'Deutsch';
+
+  @override
+  String get packTaglineGerman => 'Deutsche Sprichwörter & Aphorismen';
+
+  @override
+  String get packTitleFrench => 'Français';
+
+  @override
+  String get packTaglineFrench => 'Französische Sprichwörter & Aphorismen';
+
+  @override
+  String get packTitleItalian => 'Italiano';
+
+  @override
+  String get packTaglineItalian => 'Italienische Sprichwörter & Aphorismen';
+
+  @override
+  String get packTitlePortuguese => 'Português';
+
+  @override
+  String get packTaglinePortuguese =>
+      'Portugiesische Sprichwörter & Aphorismen';
 }

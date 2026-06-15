@@ -200,5 +200,15 @@
   "achTitleDaily100": "Hundred Mornings",
   "packsSectionLanguages": "Languages",
   "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Turkish proverbs & sayings"
+  "packTaglineTurkish": "Turkish proverbs & sayings",
+  "packTitleSpanish": "Español",
+  "packTaglineSpanish": "Spanish proverbs & sayings",
+  "packTitleGerman": "Deutsch",
+  "packTaglineGerman": "German proverbs & sayings",
+  "packTitleFrench": "Français",
+  "packTaglineFrench": "French proverbs & sayings",
+  "packTitleItalian": "Italiano",
+  "packTaglineItalian": "Italian proverbs & sayings",
+  "packTitlePortuguese": "Português",
+  "packTaglinePortuguese": "Portuguese proverbs & sayings"
 }
