@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../l10n/app_localizations.dart';
 import 'game_stats.dart';
 
 /// A static achievement definition; unlocked ids are persisted separately.
@@ -203,4 +204,66 @@ class Achievement {
       addedInVersion: 2,
     ),
   ];
+}
+
+/// Localized name/description for an [Achievement], resolved by id. The
+/// English [title]/[description] on the const definitions stay as the
+/// fallback. Descriptions are parameterized patterns so the threshold numbers
+/// render correctly in each language.
+extension AchievementL10n on Achievement {
+  String localizedTitle(AppLocalizations l) => switch (id) {
+    'first_solve' => l.achTitleFirstSolve,
+    'solve_10' => l.achTitleSolve10,
+    'solve_25' => l.achTitleSolve25,
+    'solve_50' => l.achTitleSolve50,
+    'solve_100' => l.achTitleSolve100,
+    'solve_250' => l.achTitleSolve250,
+    'solve_500' => l.achTitleSolve500,
+    'streak_3' => l.achTitleStreak3,
+    'streak_7' => l.achTitleStreak7,
+    'streak_14' => l.achTitleStreak14,
+    'streak_30' => l.achTitleStreak30,
+    'streak_100' => l.achTitleStreak100,
+    'streak_365' => l.achTitleStreak365,
+    'no_hints_10' => l.achTitleNoHints10,
+    'no_hints_25' => l.achTitleNoHints25,
+    'no_hints_50' => l.achTitleNoHints50,
+    'no_hints_100' => l.achTitleNoHints100,
+    'speed_30' => l.achTitleSpeed30,
+    'speed_60' => l.achTitleSpeed60,
+    'speed_120' => l.achTitleSpeed120,
+    'daily_10' => l.achTitleDaily10,
+    'daily_25' => l.achTitleDaily25,
+    'daily_50' => l.achTitleDaily50,
+    'daily_100' => l.achTitleDaily100,
+    _ => title,
+  };
+
+  String localizedDescription(AppLocalizations l) => switch (id) {
+    'first_solve' => l.achDescFirst,
+    'solve_10' => l.achDescSolve(10),
+    'solve_25' => l.achDescSolve(25),
+    'solve_50' => l.achDescSolve(50),
+    'solve_100' => l.achDescSolve(100),
+    'solve_250' => l.achDescSolve(250),
+    'solve_500' => l.achDescSolve(500),
+    'streak_3' => l.achDescStreak(3),
+    'streak_7' => l.achDescStreak(7),
+    'streak_14' => l.achDescStreak(14),
+    'streak_30' => l.achDescStreak(30),
+    'streak_100' => l.achDescStreak(100),
+    'streak_365' => l.achDescStreak(365),
+    'no_hints_10' => l.achDescNoHints(10),
+    'no_hints_25' => l.achDescNoHints(25),
+    'no_hints_50' => l.achDescNoHints(50),
+    'no_hints_100' => l.achDescNoHints(100),
+    'speed_30' => l.achDescSpeed(30),
+    'speed_60' => l.achDescSpeed(60),
+    'speed_120' => l.achDescSpeed(120),
+    'daily_10' => l.achDescDaily(10),
+    'daily_25' => l.achDescDaily(25),
+    'daily_50' => l.achDescDaily(50),
+    'daily_100' => l.achDescDaily(100),
+    _ => description,
+  };
 }

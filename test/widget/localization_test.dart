@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/quote.dart';
+import 'package:quotecrack/ui/screens/achievements_screen.dart';
 import 'package:quotecrack/ui/screens/home_screen.dart';
 import 'package:quotecrack/ui/screens/settings_screen.dart';
 
@@ -62,5 +63,19 @@ void main() {
     expect(find.text('Bulmaca paketleri'), findsOneWidget); // Puzzle packs
     expect(find.text('İstatistikler'), findsOneWidget); // Statistics
     expect(find.text('Play now'), findsNothing);
+  });
+
+  testWidgets('Achievements render localized names/descriptions in Turkish', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    await tester.pumpWidget(
+      h.app(const AchievementsScreen(), locale: const Locale('tr')),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('İlk Kırış'), findsOneWidget); // First Crack
+    expect(find.text('İlk kriptogramını çöz'), findsOneWidget); // description
+    expect(find.text('First Crack'), findsNothing);
   });
 }

@@ -462,4 +462,104 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get packTaglineStoic => 'Marc Aurèle, Sénèque, Épictète';
+
+  @override
+  String get achDescFirst => 'Résolvez votre premier cryptogramme';
+
+  @override
+  String achDescSolve(int count) {
+    return 'Résolvez $count énigmes';
+  }
+
+  @override
+  String achDescStreak(int count) {
+    return 'Atteignez une série de $count jours';
+  }
+
+  @override
+  String achDescNoHints(int count) {
+    return 'Résolvez $count énigmes sans indice';
+  }
+
+  @override
+  String achDescSpeed(int count) {
+    return 'Résolvez une énigme en moins de $count secondes';
+  }
+
+  @override
+  String achDescDaily(int count) {
+    return 'Résolvez $count énigmes quotidiennes';
+  }
+
+  @override
+  String get achTitleFirstSolve => 'Premier Décryptage';
+
+  @override
+  String get achTitleSolve10 => 'Décrypteur Apprenti';
+
+  @override
+  String get achTitleSolve25 => 'Briseur de Codes';
+
+  @override
+  String get achTitleSolve50 => 'Limier des Chiffres';
+
+  @override
+  String get achTitleSolve100 => 'Centurion';
+
+  @override
+  String get achTitleSolve250 => 'Maître Cryptologue';
+
+  @override
+  String get achTitleSolve500 => 'Grand Maître';
+
+  @override
+  String get achTitleStreak3 => 'Échauffement';
+
+  @override
+  String get achTitleStreak7 => 'Une Semaine Pleine';
+
+  @override
+  String get achTitleStreak14 => 'Quinzaine de Focus';
+
+  @override
+  String get achTitleStreak30 => 'Dévouement Mensuel';
+
+  @override
+  String get achTitleStreak100 => 'Incassable';
+
+  @override
+  String get achTitleStreak365 => 'Décrypteur de l’Année';
+
+  @override
+  String get achTitleNoHints10 => 'Puriste';
+
+  @override
+  String get achTitleNoHints25 => 'Autonome';
+
+  @override
+  String get achTitleNoHints50 => 'Volonté de Fer';
+
+  @override
+  String get achTitleNoHints100 => 'Esprit sans Aide';
+
+  @override
+  String get achTitleSpeed30 => 'En un Clin d’Œil';
+
+  @override
+  String get achTitleSpeed60 => 'Rapide comme l’Éclair';
+
+  @override
+  String get achTitleSpeed120 => 'Esprit Vif';
+
+  @override
+  String get achTitleDaily10 => 'Rituel Quotidien';
+
+  @override
+  String get achTitleDaily25 => 'Solveur Fidèle';
+
+  @override
+  String get achTitleDaily50 => 'Café du Matin';
+
+  @override
+  String get achTitleDaily100 => 'Cent Matins';
 }

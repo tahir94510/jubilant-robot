@@ -461,4 +461,104 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get packTaglineStoic => 'Mark Aurel, Seneca, Epiktet';
+
+  @override
+  String get achDescFirst => 'Löse dein erstes Kryptogramm';
+
+  @override
+  String achDescSolve(int count) {
+    return 'Löse $count Rätsel';
+  }
+
+  @override
+  String achDescStreak(int count) {
+    return 'Erreiche eine Serie von $count Tagen';
+  }
+
+  @override
+  String achDescNoHints(int count) {
+    return 'Löse $count Rätsel ohne Hinweise';
+  }
+
+  @override
+  String achDescSpeed(int count) {
+    return 'Löse ein Rätsel in unter $count Sekunden';
+  }
+
+  @override
+  String achDescDaily(int count) {
+    return 'Löse $count Tagesrätsel';
+  }
+
+  @override
+  String get achTitleFirstSolve => 'Erster Knacker';
+
+  @override
+  String get achTitleSolve10 => 'Entschlüssler-Lehrling';
+
+  @override
+  String get achTitleSolve25 => 'Codeknacker';
+
+  @override
+  String get achTitleSolve50 => 'Chiffren-Spürhund';
+
+  @override
+  String get achTitleSolve100 => 'Zenturio';
+
+  @override
+  String get achTitleSolve250 => 'Meister-Kryptologe';
+
+  @override
+  String get achTitleSolve500 => 'Großmeister';
+
+  @override
+  String get achTitleStreak3 => 'Aufwärmen';
+
+  @override
+  String get achTitleStreak7 => 'Eine ganze Woche';
+
+  @override
+  String get achTitleStreak14 => 'Zwei Wochen Fokus';
+
+  @override
+  String get achTitleStreak30 => 'Monatliche Hingabe';
+
+  @override
+  String get achTitleStreak100 => 'Unzerbrechlich';
+
+  @override
+  String get achTitleStreak365 => 'Ganzjahres-Entschlüssler';
+
+  @override
+  String get achTitleNoHints10 => 'Purist';
+
+  @override
+  String get achTitleNoHints25 => 'Eigenständig';
+
+  @override
+  String get achTitleNoHints50 => 'Eiserner Wille';
+
+  @override
+  String get achTitleNoHints100 => 'Geist ohne Hilfe';
+
+  @override
+  String get achTitleSpeed30 => 'Im Handumdrehen';
+
+  @override
+  String get achTitleSpeed60 => 'Blitzschnell';
+
+  @override
+  String get achTitleSpeed120 => 'Schnelldenker';
+
+  @override
+  String get achTitleDaily10 => 'Tägliches Ritual';
+
+  @override
+  String get achTitleDaily25 => 'Treuer Löser';
+
+  @override
+  String get achTitleDaily50 => 'Morgenkaffee';
+
+  @override
+  String get achTitleDaily100 => 'Hundert Morgen';
 }

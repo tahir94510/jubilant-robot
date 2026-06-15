@@ -459,4 +459,104 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packTaglineStoic => 'Marcus, Seneca, Epiktetos';
+
+  @override
+  String get achDescFirst => 'İlk kriptogramını çöz';
+
+  @override
+  String achDescSolve(int count) {
+    return '$count bulmaca çöz';
+  }
+
+  @override
+  String achDescStreak(int count) {
+    return '$count günlük seriye ulaş';
+  }
+
+  @override
+  String achDescNoHints(int count) {
+    return 'İpucu kullanmadan $count bulmaca çöz';
+  }
+
+  @override
+  String achDescSpeed(int count) {
+    return 'Bir bulmacayı $count saniyenin altında çöz';
+  }
+
+  @override
+  String achDescDaily(int count) {
+    return '$count günlük bulmaca çöz';
+  }
+
+  @override
+  String get achTitleFirstSolve => 'İlk Kırış';
+
+  @override
+  String get achTitleSolve10 => 'Çırak Çözücü';
+
+  @override
+  String get achTitleSolve25 => 'Şifre Kırıcı';
+
+  @override
+  String get achTitleSolve50 => 'Şifre Dedektifi';
+
+  @override
+  String get achTitleSolve100 => 'Yüzbaşı';
+
+  @override
+  String get achTitleSolve250 => 'Usta Kriptolog';
+
+  @override
+  String get achTitleSolve500 => 'Büyük Usta';
+
+  @override
+  String get achTitleStreak3 => 'Isınıyor';
+
+  @override
+  String get achTitleStreak7 => 'Tam Bir Hafta';
+
+  @override
+  String get achTitleStreak14 => 'İki Hafta İstikrar';
+
+  @override
+  String get achTitleStreak30 => 'Aylık Adanmışlık';
+
+  @override
+  String get achTitleStreak100 => 'Kırılmaz';
+
+  @override
+  String get achTitleStreak365 => 'Yıl Boyu Çözücü';
+
+  @override
+  String get achTitleNoHints10 => 'Saf Çözücü';
+
+  @override
+  String get achTitleNoHints25 => 'Kendine Yeten';
+
+  @override
+  String get achTitleNoHints50 => 'Demir İrade';
+
+  @override
+  String get achTitleNoHints100 => 'Yardımsız Zihin';
+
+  @override
+  String get achTitleSpeed30 => 'Göz Açıp Kapayana Dek';
+
+  @override
+  String get achTitleSpeed60 => 'Şimşek Hızı';
+
+  @override
+  String get achTitleSpeed120 => 'Hızlı Düşünür';
+
+  @override
+  String get achTitleDaily10 => 'Günlük Ritüel';
+
+  @override
+  String get achTitleDaily25 => 'Sadık Çözücü';
+
+  @override
+  String get achTitleDaily50 => 'Sabah Kahvesi';
+
+  @override
+  String get achTitleDaily100 => 'Yüz Sabah';
 }

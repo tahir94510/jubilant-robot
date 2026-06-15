@@ -464,4 +464,104 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get packTaglineStoic => 'Marco Aurélio, Sêneca, Epicteto';
+
+  @override
+  String get achDescFirst => 'Resolva seu primeiro criptograma';
+
+  @override
+  String achDescSolve(int count) {
+    return 'Resolva $count desafios';
+  }
+
+  @override
+  String achDescStreak(int count) {
+    return 'Alcance uma sequência de $count dias';
+  }
+
+  @override
+  String achDescNoHints(int count) {
+    return 'Resolva $count desafios sem dicas';
+  }
+
+  @override
+  String achDescSpeed(int count) {
+    return 'Resolva um desafio em menos de $count segundos';
+  }
+
+  @override
+  String achDescDaily(int count) {
+    return 'Resolva $count desafios diários';
+  }
+
+  @override
+  String get achTitleFirstSolve => 'Primeira Quebra';
+
+  @override
+  String get achTitleSolve10 => 'Decifrador Aprendiz';
+
+  @override
+  String get achTitleSolve25 => 'Quebrador de Códigos';
+
+  @override
+  String get achTitleSolve50 => 'Sabujo das Cifras';
+
+  @override
+  String get achTitleSolve100 => 'Centurião';
+
+  @override
+  String get achTitleSolve250 => 'Mestre Criptólogo';
+
+  @override
+  String get achTitleSolve500 => 'Grão-Mestre';
+
+  @override
+  String get achTitleStreak3 => 'Aquecendo';
+
+  @override
+  String get achTitleStreak7 => 'Uma Semana Inteira';
+
+  @override
+  String get achTitleStreak14 => 'Quinzena de Foco';
+
+  @override
+  String get achTitleStreak30 => 'Devoção Mensal';
+
+  @override
+  String get achTitleStreak100 => 'Inquebrável';
+
+  @override
+  String get achTitleStreak365 => 'Decifrador do Ano Todo';
+
+  @override
+  String get achTitleNoHints10 => 'Purista';
+
+  @override
+  String get achTitleNoHints25 => 'Autossuficiente';
+
+  @override
+  String get achTitleNoHints50 => 'Vontade de Ferro';
+
+  @override
+  String get achTitleNoHints100 => 'Mente sem Ajuda';
+
+  @override
+  String get achTitleSpeed30 => 'Num Piscar de Olhos';
+
+  @override
+  String get achTitleSpeed60 => 'Rápido como um Raio';
+
+  @override
+  String get achTitleSpeed120 => 'Pensador Ágil';
+
+  @override
+  String get achTitleDaily10 => 'Ritual Diário';
+
+  @override
+  String get achTitleDaily25 => 'Solucionador Fiel';
+
+  @override
+  String get achTitleDaily50 => 'Café da Manhã';
+
+  @override
+  String get achTitleDaily100 => 'Cem Manhãs';
 }

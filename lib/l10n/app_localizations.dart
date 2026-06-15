@@ -905,6 +905,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Marcus, Seneca, Epictetus'**
   String get packTaglineStoic;
+
+  /// No description provided for @achDescFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve your first cryptogram'**
+  String get achDescFirst;
+
+  /// No description provided for @achDescSolve.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve {count} puzzles'**
+  String achDescSolve(int count);
+
+  /// No description provided for @achDescStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach a {count}-day daily streak'**
+  String achDescStreak(int count);
+
+  /// No description provided for @achDescNoHints.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve {count} puzzles without hints'**
+  String achDescNoHints(int count);
+
+  /// No description provided for @achDescSpeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve a puzzle in under {count} seconds'**
+  String achDescSpeed(int count);
+
+  /// No description provided for @achDescDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Solve {count} daily puzzles'**
+  String achDescDaily(int count);
+
+  /// No description provided for @achTitleFirstSolve.
+  ///
+  /// In en, this message translates to:
+  /// **'First Crack'**
+  String get achTitleFirstSolve;
+
+  /// No description provided for @achTitleSolve10.
+  ///
+  /// In en, this message translates to:
+  /// **'Apprentice Decoder'**
+  String get achTitleSolve10;
+
+  /// No description provided for @achTitleSolve25.
+  ///
+  /// In en, this message translates to:
+  /// **'Code Breaker'**
+  String get achTitleSolve25;
+
+  /// No description provided for @achTitleSolve50.
+  ///
+  /// In en, this message translates to:
+  /// **'Cipher Sleuth'**
+  String get achTitleSolve50;
+
+  /// No description provided for @achTitleSolve100.
+  ///
+  /// In en, this message translates to:
+  /// **'Centurion'**
+  String get achTitleSolve100;
+
+  /// No description provided for @achTitleSolve250.
+  ///
+  /// In en, this message translates to:
+  /// **'Master Cryptologist'**
+  String get achTitleSolve250;
+
+  /// No description provided for @achTitleSolve500.
+  ///
+  /// In en, this message translates to:
+  /// **'Grandmaster'**
+  String get achTitleSolve500;
+
+  /// No description provided for @achTitleStreak3.
+  ///
+  /// In en, this message translates to:
+  /// **'Warming Up'**
+  String get achTitleStreak3;
+
+  /// No description provided for @achTitleStreak7.
+  ///
+  /// In en, this message translates to:
+  /// **'One Solid Week'**
+  String get achTitleStreak7;
+
+  /// No description provided for @achTitleStreak14.
+  ///
+  /// In en, this message translates to:
+  /// **'Fortnight Focus'**
+  String get achTitleStreak14;
+
+  /// No description provided for @achTitleStreak30.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Devotion'**
+  String get achTitleStreak30;
+
+  /// No description provided for @achTitleStreak100.
+  ///
+  /// In en, this message translates to:
+  /// **'Unbreakable'**
+  String get achTitleStreak100;
+
+  /// No description provided for @achTitleStreak365.
+  ///
+  /// In en, this message translates to:
+  /// **'Year-Round Decoder'**
+  String get achTitleStreak365;
+
+  /// No description provided for @achTitleNoHints10.
+  ///
+  /// In en, this message translates to:
+  /// **'Purist'**
+  String get achTitleNoHints10;
+
+  /// No description provided for @achTitleNoHints25.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-Reliant'**
+  String get achTitleNoHints25;
+
+  /// No description provided for @achTitleNoHints50.
+  ///
+  /// In en, this message translates to:
+  /// **'Iron Will'**
+  String get achTitleNoHints50;
+
+  /// No description provided for @achTitleNoHints100.
+  ///
+  /// In en, this message translates to:
+  /// **'Unaided Mind'**
+  String get achTitleNoHints100;
+
+  /// No description provided for @achTitleSpeed30.
+  ///
+  /// In en, this message translates to:
+  /// **'Blink of an Eye'**
+  String get achTitleSpeed30;
+
+  /// No description provided for @achTitleSpeed60.
+  ///
+  /// In en, this message translates to:
+  /// **'Lightning Fast'**
+  String get achTitleSpeed60;
+
+  /// No description provided for @achTitleSpeed120.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Thinker'**
+  String get achTitleSpeed120;
+
+  /// No description provided for @achTitleDaily10.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Ritual'**
+  String get achTitleDaily10;
+
+  /// No description provided for @achTitleDaily25.
+  ///
+  /// In en, this message translates to:
+  /// **'Faithful Solver'**
+  String get achTitleDaily25;
+
+  /// No description provided for @achTitleDaily50.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning Coffee'**
+  String get achTitleDaily50;
+
+  /// No description provided for @achTitleDaily100.
+  ///
+  /// In en, this message translates to:
+  /// **'Hundred Mornings'**
+  String get achTitleDaily100;
 }
 
 class _AppLocalizationsDelegate

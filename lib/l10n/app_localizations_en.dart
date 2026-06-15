@@ -458,4 +458,104 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packTaglineStoic => 'Marcus, Seneca, Epictetus';
+
+  @override
+  String get achDescFirst => 'Solve your first cryptogram';
+
+  @override
+  String achDescSolve(int count) {
+    return 'Solve $count puzzles';
+  }
+
+  @override
+  String achDescStreak(int count) {
+    return 'Reach a $count-day daily streak';
+  }
+
+  @override
+  String achDescNoHints(int count) {
+    return 'Solve $count puzzles without hints';
+  }
+
+  @override
+  String achDescSpeed(int count) {
+    return 'Solve a puzzle in under $count seconds';
+  }
+
+  @override
+  String achDescDaily(int count) {
+    return 'Solve $count daily puzzles';
+  }
+
+  @override
+  String get achTitleFirstSolve => 'First Crack';
+
+  @override
+  String get achTitleSolve10 => 'Apprentice Decoder';
+
+  @override
+  String get achTitleSolve25 => 'Code Breaker';
+
+  @override
+  String get achTitleSolve50 => 'Cipher Sleuth';
+
+  @override
+  String get achTitleSolve100 => 'Centurion';
+
+  @override
+  String get achTitleSolve250 => 'Master Cryptologist';
+
+  @override
+  String get achTitleSolve500 => 'Grandmaster';
+
+  @override
+  String get achTitleStreak3 => 'Warming Up';
+
+  @override
+  String get achTitleStreak7 => 'One Solid Week';
+
+  @override
+  String get achTitleStreak14 => 'Fortnight Focus';
+
+  @override
+  String get achTitleStreak30 => 'Monthly Devotion';
+
+  @override
+  String get achTitleStreak100 => 'Unbreakable';
+
+  @override
+  String get achTitleStreak365 => 'Year-Round Decoder';
+
+  @override
+  String get achTitleNoHints10 => 'Purist';
+
+  @override
+  String get achTitleNoHints25 => 'Self-Reliant';
+
+  @override
+  String get achTitleNoHints50 => 'Iron Will';
+
+  @override
+  String get achTitleNoHints100 => 'Unaided Mind';
+
+  @override
+  String get achTitleSpeed30 => 'Blink of an Eye';
+
+  @override
+  String get achTitleSpeed60 => 'Lightning Fast';
+
+  @override
+  String get achTitleSpeed120 => 'Quick Thinker';
+
+  @override
+  String get achTitleDaily10 => 'Daily Ritual';
+
+  @override
+  String get achTitleDaily25 => 'Faithful Solver';
+
+  @override
+  String get achTitleDaily50 => 'Morning Coffee';
+
+  @override
+  String get achTitleDaily100 => 'Hundred Mornings';
 }
