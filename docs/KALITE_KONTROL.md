@@ -28,10 +28,14 @@ geçmiş demektir:
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
-- **Veri seti (9):** 510 söz; benzersiz kimlik, kopya metin yok, ASCII,
-  20-180 harf, atıf alanları dolu ve "Unknown" yasak (halk malı sözler
-  "Anonymous"/"Proverb"), 11 paketin hepsi dolu, her zorluk kovasında
-  ≥40 söz; 7 ses varlığının (WAV) mevcut+RIFF imzalı olması ve müzik
+- **Veri seti:** İngilizce 510 söz + her dile özgün yerel paketler
+  (TR/ES/DE/FR/IT/PT). Benzersiz kimlik, dil içinde kopya metin yok,
+  İngilizce ASCII, her sözün **kendi alfabesinde** 20-180 harf, atıf alanları
+  dolu ve "Unknown" yasak (halk malı sözler "Anonymous"/"Atasözü" vb.).
+  Yerel sözlerin yalnızca kendi alfabesinin harflerini kullanması (kaçak
+  â/î/û yakalanır) ve **her sözün çözülebilirliği** doğrulanır; 17 paketin
+  hepsi dolu, her İngilizce zorluk kovasında ≥40 söz, günlük havuz
+  İngilizce-only; ses varlıklarının (WAV) mevcut+RIFF imzalı olması ve müzik
   dosyasının boyut bütçesi.
 - **Mantık (45):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
@@ -45,7 +49,7 @@ geçmiş demektir:
   ileriye (sonraki boş harfe) ilerlemesi.
 - **Ekran ve etkileşim (63):** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
-  11 paketin listelenip açılması, premium kilit→paywall ve premium→içerik
+  17 paketin (zorluk/tema/dil/premium) listelenip açılması, premium kilit→paywall ve premium→içerik
   yönlendirmeleri, istatistik/başarım ekranları, **ayarlardaki her kontrol**
   (tema kartları, dördü de etiketli ve 320dp+1.6x'te kırılmadan, yazı
   boyutu, 4 anahtar, hatırlatma kur/iptal/izin-reddi, geri yükleme),

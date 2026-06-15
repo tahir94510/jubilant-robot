@@ -185,7 +185,9 @@ in December) to refresh the listing.
 
 ## Localized listings (later, optional)
 
-After launch, adding store listings in DE/FR/ES/PT-BR (texts only; the game
-stays English) widens discovery cheaply; cryptogram fans exist in every
-market and the puzzle itself is language-light. Use Play Console > Store
+The app itself is already fully localized in 7 languages (EN, TR, ES, DE, FR,
+IT, PT), each with native puzzle content in its own alphabet — so adding
+matching store listings in those languages converts especially well. Adding
+listings in further markets widens discovery cheaply; cryptogram fans exist
+everywhere and the puzzle itself is language-light. Use Play Console > Store
 listings > Add language.

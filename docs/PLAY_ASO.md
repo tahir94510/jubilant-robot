@@ -13,9 +13,12 @@ anahtar kelimeler, yükleme/çökme oranı, puan ve yorumlar, ve KALICILIK
    sıralamada elle yazılmış liste kadar iyi değildir, (b) "Google tarafından
    çevrildi" notuyla gelir ve dönüşümü düşürür. Bu yüzden tavsiyem: en az
    **Türkçe** için elle bir liste yaz (senin pazarın, en yüksek getiri);
-   ES/PT-BR/DE/FR/HI'yi başta otomatik çeviriye bırakabilirsin, trafik
-   oturunca elle eklersin. Oyun her durumda İngilizce kalır; yalnız mağaza
-   metni çevrilir. Play Console > Store listings > Add language.
+   ES/PT-BR/DE/FR/IT'yi başta otomatik çeviriye bırakabilirsin, trafik
+   oturunca elle eklersin. NOT: Uygulamanın KENDİSİ artık 7 dilde tam
+   yerelleştirilmiş (EN, TR, ES, DE, FR, IT, PT) ve her dilin kendi
+   alfabesinde özgün içerik paketleri var; bu, lokalize mağaza listelerinin
+   dönüşümünü daha da güçlendirir. Play Console > Store listings > Add
+   language.
 2. **Ekran görüntüleri (dönüşümün belkemiği).** 5-8 telefon görseli; ilk 2'si
    en kritik. Her görsele kısa bir başlık şeridi ekle (ör. "Her gün yeni bir
    şifre", "Tamamen çevrim dışı"). Sıra için STORE_LISTING.md'deki öneriye bak.
