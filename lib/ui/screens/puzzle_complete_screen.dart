@@ -132,172 +132,182 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
-                    children: [
-                      // A small celebratory pop on entrance (skipped when the
-                      // system "remove animations" setting is on).
-                      if (motion)
-                        TweenAnimationBuilder<double>(
-                          tween: Tween(begin: 0.4, end: 1),
-                          duration: const Duration(milliseconds: 420),
-                          curve: Curves.elasticOut,
-                          builder: (context, scale, child) =>
-                              Transform.scale(scale: scale, child: child),
-                          child: Icon(
-                            Icons.check_circle_outline,
-                            size: 48,
-                            color: palette.success,
-                          ),
-                        )
-                      else
-                        Icon(
-                          Icons.check_circle_outline,
-                          size: 48,
-                          color: palette.success,
-                        ),
-                      const SizedBox(height: 14),
-                      Text(
-                        '\u{201C}${quote.text}\u{201D}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Lora',
-                          fontSize: 22,
-                          height: 1.45,
-                          color: scheme.onSurface,
-                        ),
-                      ),
-                      const SizedBox(height: 14),
-                      Text(
-                        '\u{2014} ${quote.author}',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: 'Lora',
-                          fontStyle: FontStyle.italic,
-                          fontSize: 16,
-                          color: palette.textSecondary,
-                        ),
-                      ),
-                      Text(
-                        quote.source,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: palette.textFaint,
-                        ),
-                      ),
-                      const SizedBox(height: 18),
-                      // Wrap, not Row: with three chips (daily) on a narrow
-                      // phone the row overflowed; now extras flow to a new line.
-                      Wrap(
-                        alignment: WrapAlignment.center,
-                        spacing: 10,
-                        runSpacing: 8,
+            // Cap + center the celebration content on large screens; the
+            // confetti below still covers the full viewport.
+            Align(
+              alignment: Alignment.topCenter,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 560),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        padding: const EdgeInsets.fromLTRB(24, 12, 24, 8),
                         children: [
-                          _StatChip(
-                            icon: Icons.timer_outlined,
-                            label: '$minutes:$seconds',
-                          ),
-                          _StatChip(
-                            icon: Icons.lightbulb_outline,
-                            label: l10n.solveHints(game.hintsUsed),
-                          ),
-                          if (game.isDaily)
-                            _StatChip(
-                              icon: Icons.local_fire_department_outlined,
-                              label: l10n.solveStreak(progress.displayStreak),
+                          // A small celebratory pop on entrance (skipped when the
+                          // system "remove animations" setting is on).
+                          if (motion)
+                            TweenAnimationBuilder<double>(
+                              tween: Tween(begin: 0.4, end: 1),
+                              duration: const Duration(milliseconds: 420),
+                              curve: Curves.elasticOut,
+                              builder: (context, scale, child) =>
+                                  Transform.scale(scale: scale, child: child),
+                              child: Icon(
+                                Icons.check_circle_outline,
+                                size: 48,
+                                color: palette.success,
+                              ),
+                            )
+                          else
+                            Icon(
+                              Icons.check_circle_outline,
+                              size: 48,
+                              color: palette.success,
                             ),
+                          const SizedBox(height: 14),
+                          Text(
+                            '\u{201C}${quote.text}\u{201D}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Lora',
+                              fontSize: 22,
+                              height: 1.45,
+                              color: scheme.onSurface,
+                            ),
+                          ),
+                          const SizedBox(height: 14),
+                          Text(
+                            '\u{2014} ${quote.author}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Lora',
+                              fontStyle: FontStyle.italic,
+                              fontSize: 16,
+                              color: palette.textSecondary,
+                            ),
+                          ),
+                          Text(
+                            quote.source,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: palette.textFaint,
+                            ),
+                          ),
+                          const SizedBox(height: 18),
+                          // Wrap, not Row: with three chips (daily) on a narrow
+                          // phone the row overflowed; now extras flow to a new line.
+                          Wrap(
+                            alignment: WrapAlignment.center,
+                            spacing: 10,
+                            runSpacing: 8,
+                            children: [
+                              _StatChip(
+                                icon: Icons.timer_outlined,
+                                label: '$minutes:$seconds',
+                              ),
+                              _StatChip(
+                                icon: Icons.lightbulb_outline,
+                                label: l10n.solveHints(game.hintsUsed),
+                              ),
+                              if (game.isDaily)
+                                _StatChip(
+                                  icon: Icons.local_fire_department_outlined,
+                                  label: l10n.solveStreak(
+                                    progress.displayStreak,
+                                  ),
+                                ),
+                            ],
+                          ),
+                          if (_newAchievements.isNotEmpty) ...[
+                            const SizedBox(height: 16),
+                            Text(
+                              l10n.achievementsUnlockedHeader(
+                                _newAchievements.length,
+                              ),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 1.2,
+                                color: scheme.primary,
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            for (final a in _newAchievements)
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 10),
+                                child: AchievementTile(
+                                  achievement: a,
+                                  justUnlocked: true,
+                                ),
+                              ),
+                          ],
+                          if (showReminderNudge) ...[
+                            const SizedBox(height: 20),
+                            _ReminderNudgeCard(controller: settingsController),
+                          ],
                         ],
                       ),
-                      if (_newAchievements.isNotEmpty) ...[
-                        const SizedBox(height: 16),
-                        Text(
-                          l10n.achievementsUnlockedHeader(
-                            _newAchievements.length,
-                          ),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 1.2,
-                            color: scheme.primary,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        for (final a in _newAchievements)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
-                            child: AchievementTile(
-                              achievement: a,
-                              justUnlocked: true,
-                            ),
-                          ),
-                      ],
-                      if (showReminderNudge) ...[
-                        const SizedBox(height: 20),
-                        _ReminderNudgeCard(controller: settingsController),
-                      ],
-                    ],
-                  ),
-                ),
-                // Actions stay pinned above the banner so "Back to menu" is
-                // always reachable without scrolling — on 360x800 phones the
-                // buttons used to sit below the fold inside the list.
-                ScaleSafe(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 8, 24, 10),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (game.isDaily)
-                          SizedBox(
-                            width: double.infinity,
-                            child: FilledButton.icon(
-                              onPressed: () => _shareDaily(context),
-                              icon: const Icon(Icons.share_outlined),
-                              label: Text(l10n.shareResult),
-                            ),
-                          )
-                        else if (_nextInPack(repo, game) != null)
-                          SizedBox(
-                            width: double.infinity,
-                            child: FilledButton.icon(
-                              onPressed: () {
-                                final next = _nextInPack(repo, game)!;
-                                game.start(
-                                  next,
-                                  daily: false,
-                                  packId: game.originPackId,
-                                );
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (_) => const PuzzleScreen(),
-                                  ),
-                                );
-                              },
-                              icon: const Icon(Icons.arrow_forward),
-                              label: Text(l10n.nextPuzzle),
-                            ),
-                          ),
-                        const SizedBox(height: 10),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton(
-                            onPressed: () => Navigator.of(
-                              context,
-                            ).popUntil((r) => r.isFirst),
-                            child: Text(l10n.backToMenu),
-                          ),
-                        ),
-                      ],
                     ),
-                  ),
+                    // Actions stay pinned above the banner so "Back to menu" is
+                    // always reachable without scrolling — on 360x800 phones the
+                    // buttons used to sit below the fold inside the list.
+                    ScaleSafe(
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(24, 8, 24, 10),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (game.isDaily)
+                              SizedBox(
+                                width: double.infinity,
+                                child: FilledButton.icon(
+                                  onPressed: () => _shareDaily(context),
+                                  icon: const Icon(Icons.share_outlined),
+                                  label: Text(l10n.shareResult),
+                                ),
+                              )
+                            else if (_nextInPack(repo, game) != null)
+                              SizedBox(
+                                width: double.infinity,
+                                child: FilledButton.icon(
+                                  onPressed: () {
+                                    final next = _nextInPack(repo, game)!;
+                                    game.start(
+                                      next,
+                                      daily: false,
+                                      packId: game.originPackId,
+                                    );
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (_) => const PuzzleScreen(),
+                                      ),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.arrow_forward),
+                                  label: Text(l10n.nextPuzzle),
+                                ),
+                              ),
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton(
+                                onPressed: () => Navigator.of(
+                                  context,
+                                ).popUntil((r) => r.isFirst),
+                                child: Text(l10n.backToMenu),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const BannerAdSlot(slotName: 'complete'),
+                  ],
                 ),
-                const BannerAdSlot(slotName: 'complete'),
-              ],
+              ),
             ),
             // Confetti overlays everything but never blocks taps; the key
             // swap replays a bigger burst when fresh achievements land a
