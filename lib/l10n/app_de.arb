@@ -44,5 +44,19 @@
   "privacyOptionsSubtitle": "Verwalte deine Einwilligung zu Werbung",
   "privacyPolicy": "Datenschutzerklärung",
   "openSourceLicenses": "Open-Source-Lizenzen",
-  "version": "Version"
+  "version": "Version",
+  "homeDailyLabel": "TÄGLICHES RÄTSEL",
+  "homeDailySolved": "Gelöst! Komm morgen für ein neues wieder.",
+  "homeDailyAwaits": "Ein Geheimtext von {author} wartet auf dich.",
+  "playNow": "Jetzt spielen",
+  "replay": "Nochmal spielen",
+  "puzzlePacks": "Rätselpakete",
+  "packsSolved": "{solved} von {total} gelöst",
+  "statistics": "Statistiken",
+  "statisticsSubtitle": "Serien, Zeiten und deine Heatmap",
+  "achievements": "Erfolge",
+  "achievementsUnlocked": "{count} freigeschaltet",
+  "goPremiumSubtitleHome": "Werbefrei · unbegrenzte Hinweise · Bonus-Pakete",
+  "musicToggleTooltip": "Musik an/aus",
+  "settingsTooltip": "Einstellungen"
 }

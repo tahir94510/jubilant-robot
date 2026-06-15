@@ -44,5 +44,19 @@
   "privacyOptionsSubtitle": "Gestiona tus preferencias de consentimiento de anuncios",
   "privacyPolicy": "Política de privacidad",
   "openSourceLicenses": "Licencias de código abierto",
-  "version": "Versión"
+  "version": "Versión",
+  "homeDailyLabel": "PUZLE DIARIO",
+  "homeDailySolved": "¡Resuelto! Vuelve mañana por uno nuevo.",
+  "homeDailyAwaits": "Te espera un cifrado de {author}.",
+  "playNow": "Jugar ahora",
+  "replay": "Volver a jugar",
+  "puzzlePacks": "Paquetes de puzles",
+  "packsSolved": "{solved} de {total} resueltos",
+  "statistics": "Estadísticas",
+  "statisticsSubtitle": "Rachas, tiempos y tu mapa de actividad",
+  "achievements": "Logros",
+  "achievementsUnlocked": "{count} desbloqueados",
+  "goPremiumSubtitleHome": "Sin anuncios · pistas ilimitadas · packs extra",
+  "musicToggleTooltip": "Música sí/no",
+  "settingsTooltip": "Ajustes"
 }

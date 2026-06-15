@@ -44,5 +44,19 @@
   "privacyOptionsSubtitle": "Gestisci le tue preferenze sul consenso pubblicitario",
   "privacyPolicy": "Informativa sulla privacy",
   "openSourceLicenses": "Licenze open source",
-  "version": "Versione"
+  "version": "Versione",
+  "homeDailyLabel": "ENIGMA DEL GIORNO",
+  "homeDailySolved": "Risolto! Torna domani per uno nuovo.",
+  "homeDailyAwaits": "Ti aspetta un messaggio cifrato di {author}.",
+  "playNow": "Gioca ora",
+  "replay": "Rigioca",
+  "puzzlePacks": "Pacchetti di enigmi",
+  "packsSolved": "{solved} su {total} risolti",
+  "statistics": "Statistiche",
+  "statisticsSubtitle": "Serie, tempi e la tua mappa di attività",
+  "achievements": "Obiettivi",
+  "achievementsUnlocked": "{count} sbloccati",
+  "goPremiumSubtitleHome": "Senza pubblicità · indizi illimitati · pacchetti bonus",
+  "musicToggleTooltip": "Musica on/off",
+  "settingsTooltip": "Impostazioni"
 }

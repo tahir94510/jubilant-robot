@@ -151,4 +151,53 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get version => 'Versione';
+
+  @override
+  String get homeDailyLabel => 'ENIGMA DEL GIORNO';
+
+  @override
+  String get homeDailySolved => 'Risolto! Torna domani per uno nuovo.';
+
+  @override
+  String homeDailyAwaits(String author) {
+    return 'Ti aspetta un messaggio cifrato di $author.';
+  }
+
+  @override
+  String get playNow => 'Gioca ora';
+
+  @override
+  String get replay => 'Rigioca';
+
+  @override
+  String get puzzlePacks => 'Pacchetti di enigmi';
+
+  @override
+  String packsSolved(int solved, int total) {
+    return '$solved su $total risolti';
+  }
+
+  @override
+  String get statistics => 'Statistiche';
+
+  @override
+  String get statisticsSubtitle => 'Serie, tempi e la tua mappa di attività';
+
+  @override
+  String get achievements => 'Obiettivi';
+
+  @override
+  String achievementsUnlocked(int count) {
+    return '$count sbloccati';
+  }
+
+  @override
+  String get goPremiumSubtitleHome =>
+      'Senza pubblicità · indizi illimitati · pacchetti bonus';
+
+  @override
+  String get musicToggleTooltip => 'Musica on/off';
+
+  @override
+  String get settingsTooltip => 'Impostazioni';
 }

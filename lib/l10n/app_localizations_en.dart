@@ -146,4 +146,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get version => 'Version';
+
+  @override
+  String get homeDailyLabel => 'DAILY PUZZLE';
+
+  @override
+  String get homeDailySolved => 'Solved! Come back tomorrow for a new one.';
+
+  @override
+  String homeDailyAwaits(String author) {
+    return 'A cipher by $author awaits.';
+  }
+
+  @override
+  String get playNow => 'Play now';
+
+  @override
+  String get replay => 'Replay';
+
+  @override
+  String get puzzlePacks => 'Puzzle packs';
+
+  @override
+  String packsSolved(int solved, int total) {
+    return '$solved of $total solved';
+  }
+
+  @override
+  String get statistics => 'Statistics';
+
+  @override
+  String get statisticsSubtitle => 'Streaks, times, and your heatmap';
+
+  @override
+  String get achievements => 'Achievements';
+
+  @override
+  String achievementsUnlocked(int count) {
+    return '$count unlocked';
+  }
+
+  @override
+  String get goPremiumSubtitleHome =>
+      'Remove ads · unlimited hints · bonus packs';
+
+  @override
+  String get musicToggleTooltip => 'Music on/off';
+
+  @override
+  String get settingsTooltip => 'Settings';
 }

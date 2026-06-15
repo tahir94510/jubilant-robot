@@ -44,5 +44,19 @@
   "privacyOptionsSubtitle": "Reklam onay tercihlerinizi yönetin",
   "privacyPolicy": "Gizlilik politikası",
   "openSourceLicenses": "Açık kaynak lisansları",
-  "version": "Sürüm"
+  "version": "Sürüm",
+  "homeDailyLabel": "GÜNLÜK BULMACA",
+  "homeDailySolved": "Çözüldü! Yarın yenisi için tekrar uğra.",
+  "homeDailyAwaits": "{author} imzalı bir şifre sizi bekliyor.",
+  "playNow": "Hemen oyna",
+  "replay": "Tekrar oyna",
+  "puzzlePacks": "Bulmaca paketleri",
+  "packsSolved": "{total} bulmacanın {solved} tanesi çözüldü",
+  "statistics": "İstatistikler",
+  "statisticsSubtitle": "Seriler, süreler ve ısı haritan",
+  "achievements": "Başarımlar",
+  "achievementsUnlocked": "{count} açıldı",
+  "goPremiumSubtitleHome": "Reklamsız · sınırsız ipucu · bonus paketler",
+  "musicToggleTooltip": "Müzik açık/kapalı",
+  "settingsTooltip": "Ayarlar"
 }

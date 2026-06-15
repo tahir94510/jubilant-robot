@@ -147,4 +147,54 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get version => 'Version';
+
+  @override
+  String get homeDailyLabel => 'ÉNIGME DU JOUR';
+
+  @override
+  String get homeDailySolved => 'Résolu ! Revenez demain pour une nouvelle.';
+
+  @override
+  String homeDailyAwaits(String author) {
+    return 'Un message chiffré de $author vous attend.';
+  }
+
+  @override
+  String get playNow => 'Jouer';
+
+  @override
+  String get replay => 'Rejouer';
+
+  @override
+  String get puzzlePacks => 'Packs d’énigmes';
+
+  @override
+  String packsSolved(int solved, int total) {
+    return '$solved sur $total résolues';
+  }
+
+  @override
+  String get statistics => 'Statistiques';
+
+  @override
+  String get statisticsSubtitle =>
+      'Séries, temps et votre calendrier d’activité';
+
+  @override
+  String get achievements => 'Succès';
+
+  @override
+  String achievementsUnlocked(int count) {
+    return '$count débloqués';
+  }
+
+  @override
+  String get goPremiumSubtitleHome =>
+      'Sans pub · indices illimités · packs bonus';
+
+  @override
+  String get musicToggleTooltip => 'Musique activée/désactivée';
+
+  @override
+  String get settingsTooltip => 'Paramètres';
 }

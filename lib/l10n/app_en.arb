@@ -47,5 +47,28 @@
   "privacyOptionsSubtitle": "Manage your ad consent choices",
   "privacyPolicy": "Privacy policy",
   "openSourceLicenses": "Open-source licenses",
-  "version": "Version"
+  "version": "Version",
+  "homeDailyLabel": "DAILY PUZZLE",
+  "homeDailySolved": "Solved! Come back tomorrow for a new one.",
+  "homeDailyAwaits": "A cipher by {author} awaits.",
+  "@homeDailyAwaits": {
+    "placeholders": { "author": { "type": "String" } }
+  },
+  "playNow": "Play now",
+  "replay": "Replay",
+  "puzzlePacks": "Puzzle packs",
+  "packsSolved": "{solved} of {total} solved",
+  "@packsSolved": {
+    "placeholders": { "solved": { "type": "int" }, "total": { "type": "int" } }
+  },
+  "statistics": "Statistics",
+  "statisticsSubtitle": "Streaks, times, and your heatmap",
+  "achievements": "Achievements",
+  "achievementsUnlocked": "{count} unlocked",
+  "@achievementsUnlocked": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "goPremiumSubtitleHome": "Remove ads · unlimited hints · bonus packs",
+  "musicToggleTooltip": "Music on/off",
+  "settingsTooltip": "Settings"
 }

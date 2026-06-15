@@ -149,4 +149,53 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get version => 'Versión';
+
+  @override
+  String get homeDailyLabel => 'PUZLE DIARIO';
+
+  @override
+  String get homeDailySolved => '¡Resuelto! Vuelve mañana por uno nuevo.';
+
+  @override
+  String homeDailyAwaits(String author) {
+    return 'Te espera un cifrado de $author.';
+  }
+
+  @override
+  String get playNow => 'Jugar ahora';
+
+  @override
+  String get replay => 'Volver a jugar';
+
+  @override
+  String get puzzlePacks => 'Paquetes de puzles';
+
+  @override
+  String packsSolved(int solved, int total) {
+    return '$solved de $total resueltos';
+  }
+
+  @override
+  String get statistics => 'Estadísticas';
+
+  @override
+  String get statisticsSubtitle => 'Rachas, tiempos y tu mapa de actividad';
+
+  @override
+  String get achievements => 'Logros';
+
+  @override
+  String achievementsUnlocked(int count) {
+    return '$count desbloqueados';
+  }
+
+  @override
+  String get goPremiumSubtitleHome =>
+      'Sin anuncios · pistas ilimitadas · packs extra';
+
+  @override
+  String get musicToggleTooltip => 'Música sí/no';
+
+  @override
+  String get settingsTooltip => 'Ajustes';
 }

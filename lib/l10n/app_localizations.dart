@@ -377,6 +377,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Version'**
   String get version;
+
+  /// No description provided for @homeDailyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'DAILY PUZZLE'**
+  String get homeDailyLabel;
+
+  /// No description provided for @homeDailySolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Solved! Come back tomorrow for a new one.'**
+  String get homeDailySolved;
+
+  /// No description provided for @homeDailyAwaits.
+  ///
+  /// In en, this message translates to:
+  /// **'A cipher by {author} awaits.'**
+  String homeDailyAwaits(String author);
+
+  /// No description provided for @playNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Play now'**
+  String get playNow;
+
+  /// No description provided for @replay.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay'**
+  String get replay;
+
+  /// No description provided for @puzzlePacks.
+  ///
+  /// In en, this message translates to:
+  /// **'Puzzle packs'**
+  String get puzzlePacks;
+
+  /// No description provided for @packsSolved.
+  ///
+  /// In en, this message translates to:
+  /// **'{solved} of {total} solved'**
+  String packsSolved(int solved, int total);
+
+  /// No description provided for @statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statistics;
+
+  /// No description provided for @statisticsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Streaks, times, and your heatmap'**
+  String get statisticsSubtitle;
+
+  /// No description provided for @achievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
+
+  /// No description provided for @achievementsUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} unlocked'**
+  String achievementsUnlocked(int count);
+
+  /// No description provided for @goPremiumSubtitleHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove ads · unlimited hints · bonus packs'**
+  String get goPremiumSubtitleHome;
+
+  /// No description provided for @musicToggleTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Music on/off'**
+  String get musicToggleTooltip;
+
+  /// No description provided for @settingsTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTooltip;
 }
 
 class _AppLocalizationsDelegate

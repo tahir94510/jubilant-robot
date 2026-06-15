@@ -147,4 +147,53 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get version => 'Sürüm';
+
+  @override
+  String get homeDailyLabel => 'GÜNLÜK BULMACA';
+
+  @override
+  String get homeDailySolved => 'Çözüldü! Yarın yenisi için tekrar uğra.';
+
+  @override
+  String homeDailyAwaits(String author) {
+    return '$author imzalı bir şifre sizi bekliyor.';
+  }
+
+  @override
+  String get playNow => 'Hemen oyna';
+
+  @override
+  String get replay => 'Tekrar oyna';
+
+  @override
+  String get puzzlePacks => 'Bulmaca paketleri';
+
+  @override
+  String packsSolved(int solved, int total) {
+    return '$total bulmacanın $solved tanesi çözüldü';
+  }
+
+  @override
+  String get statistics => 'İstatistikler';
+
+  @override
+  String get statisticsSubtitle => 'Seriler, süreler ve ısı haritan';
+
+  @override
+  String get achievements => 'Başarımlar';
+
+  @override
+  String achievementsUnlocked(int count) {
+    return '$count açıldı';
+  }
+
+  @override
+  String get goPremiumSubtitleHome =>
+      'Reklamsız · sınırsız ipucu · bonus paketler';
+
+  @override
+  String get musicToggleTooltip => 'Müzik açık/kapalı';
+
+  @override
+  String get settingsTooltip => 'Ayarlar';
 }

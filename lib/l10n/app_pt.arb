@@ -44,5 +44,19 @@
   "privacyOptionsSubtitle": "Gerencie suas escolhas de consentimento de anúncios",
   "privacyPolicy": "Política de privacidade",
   "openSourceLicenses": "Licenças de código aberto",
-  "version": "Versão"
+  "version": "Versão",
+  "homeDailyLabel": "DESAFIO DIÁRIO",
+  "homeDailySolved": "Resolvido! Volte amanhã para um novo.",
+  "homeDailyAwaits": "Um texto cifrado de {author} espera por você.",
+  "playNow": "Jogar agora",
+  "replay": "Jogar de novo",
+  "puzzlePacks": "Pacotes de desafios",
+  "packsSolved": "{solved} de {total} resolvidos",
+  "statistics": "Estatísticas",
+  "statisticsSubtitle": "Sequências, tempos e seu mapa de atividade",
+  "achievements": "Conquistas",
+  "achievementsUnlocked": "{count} desbloqueadas",
+  "goPremiumSubtitleHome": "Sem anúncios · dicas ilimitadas · pacotes bônus",
+  "musicToggleTooltip": "Música lig/desl",
+  "settingsTooltip": "Configurações"
 }
