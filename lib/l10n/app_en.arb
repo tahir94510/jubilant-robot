@@ -134,5 +134,11 @@
   "onbStep3Body": "Tap any cell to select that cipher letter, then choose its real letter on the keyboard. Identical letters fill in together.",
   "onbNext": "Next",
   "onbTryOne": "Try one (30 seconds)",
-  "onbSkip": "Skip"
+  "onbSkip": "Skip",
+  "notificationDailyTitle": "Your daily cryptogram is ready",
+  "notificationDailyBody": "A fresh quote is waiting to be decoded. Keep your streak alive!",
+  "shareSolvedIn": "solved in {time}",
+  "@shareSolvedIn": {
+    "placeholders": { "time": { "type": "String" } }
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../../config/app_config.dart';
 import '../../engine/daily_puzzle.dart';
 import '../../engine/quote_repository.dart';
 import '../../models/achievement.dart';
@@ -316,13 +317,20 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
   void _shareDaily(BuildContext context) {
     final game = context.read<GameController>();
     final progress = context.read<ProgressController>();
+    final l10n = AppLocalizations.of(context);
     const share = ShareService();
-    final text = share.buildDailyShareText(
-      puzzleNumber: puzzleNumberFor(DateTime.now()),
-      solveTime: game.elapsed,
-      hintsUsed: game.hintsUsed,
-      streak: progress.displayStreak,
+    final number = puzzleNumberFor(DateTime.now());
+    final solvedIn = l10n.shareSolvedIn(
+      ShareService.formatSolveTime(game.elapsed),
     );
+    final streak = progress.displayStreak;
+    final streakPart = streak >= 2
+        ? '  \u{1F525} ${l10n.solveStreak(streak)}'
+        : '';
+    final text =
+        '${AppConfig.appName} #$number \u{00B7} '
+        '$solvedIn, ${l10n.solveHints(game.hintsUsed)}$streakPart\n'
+        '${AppConfig.listingUrl}';
     share.share(text);
   }
 

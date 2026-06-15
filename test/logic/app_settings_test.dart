@@ -64,6 +64,25 @@ void main() {
     expect(r.reminderNudgeDone, isFalse);
   });
 
+  test('the daily reminder text follows the chosen UI language', () async {
+    SharedPreferences.setMockInitialValues({});
+    final storage = await StorageService.init();
+    final notifications = FakeNotificationService();
+    final controller = SettingsController(
+      storage: storage,
+      notifications: notifications,
+    );
+
+    await controller.setLanguage('tr');
+    await controller.setReminder(enabled: true);
+    expect(notifications.scheduledTitle, 'Günlük şifren hazır');
+    expect(notifications.scheduledBody, contains('Serini canlı tut'));
+
+    await controller.setLanguage('en');
+    await controller.setReminder(enabled: true);
+    expect(notifications.scheduledTitle, 'Your daily cryptogram is ready');
+  });
+
   test('setMusic persists and survives a controller restart', () async {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();

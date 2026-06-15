@@ -107,5 +107,8 @@
   "onbStep3Body": "Tocca una casella per selezionare quella lettera cifrata, poi scegli la sua lettera reale sulla tastiera. Le lettere identiche si riempiono insieme.",
   "onbNext": "Avanti",
   "onbTryOne": "Provane uno (30 secondi)",
-  "onbSkip": "Salta"
+  "onbSkip": "Salta",
+  "notificationDailyTitle": "Il tuo crittogramma del giorno è pronto",
+  "notificationDailyBody": "Una nuova citazione aspetta di essere decifrata. Tieni viva la tua serie!",
+  "shareSolvedIn": "risolto in {time}"
 }

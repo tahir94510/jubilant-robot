@@ -107,5 +107,8 @@
   "onbStep3Body": "Toca cualquier casilla para seleccionar esa letra cifrada y luego elige su letra real en el teclado. Las letras idénticas se rellenan juntas.",
   "onbNext": "Siguiente",
   "onbTryOne": "Prueba uno (30 segundos)",
-  "onbSkip": "Omitir"
+  "onbSkip": "Omitir",
+  "notificationDailyTitle": "Tu criptograma diario está listo",
+  "notificationDailyBody": "Una nueva frase espera a ser descifrada. ¡Mantén viva tu racha!",
+  "shareSolvedIn": "resuelto en {time}"
 }

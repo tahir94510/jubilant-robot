@@ -386,4 +386,16 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get onbSkip => 'Pular';
+
+  @override
+  String get notificationDailyTitle => 'Seu criptograma diário está pronto';
+
+  @override
+  String get notificationDailyBody =>
+      'Uma nova frase espera para ser decifrada. Mantenha sua sequência viva!';
+
+  @override
+  String shareSolvedIn(String time) {
+    return 'resolvido em $time';
+  }
 }

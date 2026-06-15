@@ -107,5 +107,8 @@
   "onbStep3Body": "Bir şifre harfini seçmek için herhangi bir kutucuğa dokun, sonra klavyeden gerçek harfini seç. Aynı harfler birlikte dolar.",
   "onbNext": "İleri",
   "onbTryOne": "Bir tane dene (30 saniye)",
-  "onbSkip": "Atla"
+  "onbSkip": "Atla",
+  "notificationDailyTitle": "Günlük şifren hazır",
+  "notificationDailyBody": "Çözülmeyi bekleyen taze bir söz var. Serini canlı tut!",
+  "shareSolvedIn": "{time} sürede çözüldü"
 }

@@ -107,5 +107,8 @@
   "onbStep3Body": "Tippe auf eine Zelle, um diesen Geheimbuchstaben auszuwählen, und wähle dann seinen echten Buchstaben auf der Tastatur. Gleiche Buchstaben füllen sich gemeinsam.",
   "onbNext": "Weiter",
   "onbTryOne": "Probier eins (30 Sekunden)",
-  "onbSkip": "Überspringen"
+  "onbSkip": "Überspringen",
+  "notificationDailyTitle": "Dein Tagesrätsel ist bereit",
+  "notificationDailyBody": "Ein neues Zitat wartet darauf, entschlüsselt zu werden. Halte deine Serie am Leben!",
+  "shareSolvedIn": "gelöst in {time}"
 }

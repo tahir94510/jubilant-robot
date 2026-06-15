@@ -54,7 +54,11 @@ class MobileNotificationService extends NotificationService {
   }
 
   @override
-  Future<void> scheduleDaily(TimeOfDay time) async {
+  Future<void> scheduleDaily(
+    TimeOfDay time, {
+    required String title,
+    required String body,
+  }) async {
     await _ensureTimezone();
     await _plugin.cancel(id: _dailyReminderId);
 
@@ -71,10 +75,10 @@ class MobileNotificationService extends NotificationService {
 
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
-      title: 'Your daily cryptogram is ready',
-      body: 'A fresh quote is waiting to be decoded. Keep your streak alive!',
+      title: title,
+      body: body,
       scheduledDate: next,
-      notificationDetails: const NotificationDetails(
+      notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           'daily_reminder',
           'Daily puzzle reminder',
@@ -82,12 +86,9 @@ class MobileNotificationService extends NotificationService {
           importance: Importance.defaultImportance,
           priority: Priority.defaultPriority,
           // Brand accent tints the small icon + app name in the shade.
-          color: Color(0xFF936F1F),
+          color: const Color(0xFF936F1F),
           // Expands the longer body cleanly when the shade is pulled down.
-          styleInformation: BigTextStyleInformation(
-            'A fresh quote is waiting to be decoded. Keep your streak alive!',
-            contentTitle: 'Your daily cryptogram is ready',
-          ),
+          styleInformation: BigTextStyleInformation(body, contentTitle: title),
         ),
       ),
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,

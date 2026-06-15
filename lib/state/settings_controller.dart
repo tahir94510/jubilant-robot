@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../config/app_config.dart';
+import '../l10n/app_localizations.dart';
 import '../models/app_settings.dart';
 import '../services/music_service.dart';
 import '../services/notifications/notification_service.dart';
@@ -37,6 +38,19 @@ class SettingsController extends ChangeNotifier {
   Future<void> setLanguage(String? code) {
     settings.languageCode = code;
     return _save();
+  }
+
+  /// Resolves [AppLocalizations] for the active UI language without a
+  /// BuildContext — used to localize scheduled notifications. Falls back to
+  /// the device locale, then English, for any unsupported code.
+  AppLocalizations _activeL10n() {
+    final supported = AppLocalizations.supportedLocales
+        .map((l) => l.languageCode)
+        .toSet();
+    var code = settings.languageCode;
+    code ??= WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+    if (!supported.contains(code)) code = 'en';
+    return lookupAppLocalizations(Locale(code));
   }
 
   Future<void> setTextScale(double scale) {
@@ -157,7 +171,12 @@ class SettingsController extends ChangeNotifier {
         settings.reminderHour = time.hour;
         settings.reminderMinute = time.minute;
       }
-      await _notifications.scheduleDaily(settings.reminderTime);
+      final l10n = _activeL10n();
+      await _notifications.scheduleDaily(
+        settings.reminderTime,
+        title: l10n.notificationDailyTitle,
+        body: l10n.notificationDailyBody,
+      );
     } else {
       settings.reminderEnabled = false;
       await _notifications.cancelAll();

@@ -387,4 +387,17 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get onbSkip => 'Salta';
+
+  @override
+  String get notificationDailyTitle =>
+      'Il tuo crittogramma del giorno è pronto';
+
+  @override
+  String get notificationDailyBody =>
+      'Una nuova citazione aspetta di essere decifrata. Tieni viva la tua serie!';
+
+  @override
+  String shareSolvedIn(String time) {
+    return 'risolto in $time';
+  }
 }

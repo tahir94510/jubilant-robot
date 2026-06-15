@@ -381,4 +381,16 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get onbSkip => 'Atla';
+
+  @override
+  String get notificationDailyTitle => 'Günlük şifren hazır';
+
+  @override
+  String get notificationDailyBody =>
+      'Çözülmeyi bekleyen taze bir söz var. Serini canlı tut!';
+
+  @override
+  String shareSolvedIn(String time) {
+    return '$time sürede çözüldü';
+  }
 }

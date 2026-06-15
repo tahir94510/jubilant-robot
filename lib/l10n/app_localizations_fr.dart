@@ -384,4 +384,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onbSkip => 'Passer';
+
+  @override
+  String get notificationDailyTitle => 'Votre cryptogramme du jour est prêt';
+
+  @override
+  String get notificationDailyBody =>
+      'Une nouvelle citation attend d’être déchiffrée. Gardez votre série en vie !';
+
+  @override
+  String shareSolvedIn(String time) {
+    return 'résolu en $time';
+  }
 }

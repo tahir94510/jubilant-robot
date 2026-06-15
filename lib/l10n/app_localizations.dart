@@ -755,6 +755,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Skip'**
   String get onbSkip;
+
+  /// No description provided for @notificationDailyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your daily cryptogram is ready'**
+  String get notificationDailyTitle;
+
+  /// No description provided for @notificationDailyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A fresh quote is waiting to be decoded. Keep your streak alive!'**
+  String get notificationDailyBody;
+
+  /// No description provided for @shareSolvedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'solved in {time}'**
+  String shareSolvedIn(String time);
 }
 
 class _AppLocalizationsDelegate

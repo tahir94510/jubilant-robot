@@ -383,4 +383,16 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onbSkip => 'Überspringen';
+
+  @override
+  String get notificationDailyTitle => 'Dein Tagesrätsel ist bereit';
+
+  @override
+  String get notificationDailyBody =>
+      'Ein neues Zitat wartet darauf, entschlüsselt zu werden. Halte deine Serie am Leben!';
+
+  @override
+  String shareSolvedIn(String time) {
+    return 'gelöst in $time';
+  }
 }

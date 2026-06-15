@@ -107,5 +107,8 @@
   "onbStep3Body": "Toque em qualquer célula para selecionar aquela letra cifrada e escolha a letra real no teclado. Letras iguais se preenchem juntas.",
   "onbNext": "Avançar",
   "onbTryOne": "Experimente um (30 segundos)",
-  "onbSkip": "Pular"
+  "onbSkip": "Pular",
+  "notificationDailyTitle": "Seu criptograma diário está pronto",
+  "notificationDailyBody": "Uma nova frase espera para ser decifrada. Mantenha sua sequência viva!",
+  "shareSolvedIn": "resolvido em {time}"
 }
