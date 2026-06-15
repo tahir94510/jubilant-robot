@@ -175,5 +175,9 @@
   "packTitleItalian": "Italiano",
   "packTaglineItalian": "İtalyan atasözleri ve özlü sözler",
   "packTitlePortuguese": "Português",
-  "packTaglinePortuguese": "Portekiz atasözleri ve özlü sözler"
+  "packTaglinePortuguese": "Portekiz atasözleri ve özlü sözler",
+  "hintRevealLetter": "Harf aç",
+  "hintRevealLetterCount": "Harf aç ({count})",
+  "hintTokensAdded": "+{count} ipucu eklendi",
+  "adNoVideo": "Şu anda video yok. Lütfen birazdan tekrar dene."
 }

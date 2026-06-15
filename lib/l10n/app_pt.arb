@@ -175,5 +175,9 @@
   "packTitleItalian": "Italiano",
   "packTaglineItalian": "Provérbios e ditados italianos",
   "packTitlePortuguese": "Português",
-  "packTaglinePortuguese": "Provérbios e ditados portugueses"
+  "packTaglinePortuguese": "Provérbios e ditados portugueses",
+  "hintRevealLetter": "Revelar letra",
+  "hintRevealLetterCount": "Revelar letra ({count})",
+  "hintTokensAdded": "+{count} dicas adicionadas",
+  "adNoVideo": "Nenhum vídeo disponível agora. Tente novamente em instantes."
 }

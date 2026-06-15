@@ -210,5 +210,11 @@
   "packTitleItalian": "Italiano",
   "packTaglineItalian": "Italian proverbs & sayings",
   "packTitlePortuguese": "Português",
-  "packTaglinePortuguese": "Portuguese proverbs & sayings"
+  "packTaglinePortuguese": "Portuguese proverbs & sayings",
+  "hintRevealLetter": "Reveal letter",
+  "hintRevealLetterCount": "Reveal letter ({count})",
+  "@hintRevealLetterCount": { "placeholders": { "count": { "type": "int" } } },
+  "hintTokensAdded": "+{count} hints added",
+  "@hintTokensAdded": { "placeholders": { "count": { "type": "int" } } },
+  "adNoVideo": "No video is available right now. Please try again in a moment."
 }

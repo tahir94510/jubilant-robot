@@ -1163,6 +1163,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Portuguese proverbs & sayings'**
   String get packTaglinePortuguese;
+
+  /// No description provided for @hintRevealLetter.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal letter'**
+  String get hintRevealLetter;
+
+  /// No description provided for @hintRevealLetterCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal letter ({count})'**
+  String hintRevealLetterCount(int count);
+
+  /// No description provided for @hintTokensAdded.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} hints added'**
+  String hintTokensAdded(int count);
+
+  /// No description provided for @adNoVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'No video is available right now. Please try again in a moment.'**
+  String get adNoVideo;
 }
 
 class _AppLocalizationsDelegate

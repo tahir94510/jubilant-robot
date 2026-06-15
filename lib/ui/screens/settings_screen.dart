@@ -491,7 +491,9 @@ class _ThemeCard extends StatelessWidget {
     return Semantics(
       button: true,
       selected: selected,
-      label: '$label theme',
+      // The localized theme name already reads clearly to a screen reader;
+      // an English "theme" suffix would be inconsistent under other locales.
+      label: label,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(14),

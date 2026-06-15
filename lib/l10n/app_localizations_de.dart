@@ -601,4 +601,21 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get packTaglinePortuguese =>
       'Portugiesische Sprichwörter & Aphorismen';
+
+  @override
+  String get hintRevealLetter => 'Buchstabe aufdecken';
+
+  @override
+  String hintRevealLetterCount(int count) {
+    return 'Buchstabe aufdecken ($count)';
+  }
+
+  @override
+  String hintTokensAdded(int count) {
+    return '+$count Hinweise hinzugefügt';
+  }
+
+  @override
+  String get adNoVideo =>
+      'Gerade ist kein Video verfügbar. Bitte versuche es gleich noch einmal.';
 }

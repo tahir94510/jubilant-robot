@@ -175,5 +175,9 @@
   "packTitleItalian": "Italiano",
   "packTaglineItalian": "Proverbi e detti italiani",
   "packTitlePortuguese": "Português",
-  "packTaglinePortuguese": "Proverbi e detti portoghesi"
+  "packTaglinePortuguese": "Proverbi e detti portoghesi",
+  "hintRevealLetter": "Rivela una lettera",
+  "hintRevealLetterCount": "Rivela una lettera ({count})",
+  "hintTokensAdded": "+{count} indizi aggiunti",
+  "adNoVideo": "Nessun video disponibile al momento. Riprova tra poco."
 }

@@ -597,4 +597,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packTaglinePortuguese => 'Portuguese proverbs & sayings';
+
+  @override
+  String get hintRevealLetter => 'Reveal letter';
+
+  @override
+  String hintRevealLetterCount(int count) {
+    return 'Reveal letter ($count)';
+  }
+
+  @override
+  String hintTokensAdded(int count) {
+    return '+$count hints added';
+  }
+
+  @override
+  String get adNoVideo =>
+      'No video is available right now. Please try again in a moment.';
 }

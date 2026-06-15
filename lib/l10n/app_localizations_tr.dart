@@ -598,4 +598,20 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packTaglinePortuguese => 'Portekiz atasözleri ve özlü sözler';
+
+  @override
+  String get hintRevealLetter => 'Harf aç';
+
+  @override
+  String hintRevealLetterCount(int count) {
+    return 'Harf aç ($count)';
+  }
+
+  @override
+  String hintTokensAdded(int count) {
+    return '+$count ipucu eklendi';
+  }
+
+  @override
+  String get adNoVideo => 'Şu anda video yok. Lütfen birazdan tekrar dene.';
 }

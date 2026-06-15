@@ -603,4 +603,21 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get packTaglinePortuguese => 'Provérbios e ditados portugueses';
+
+  @override
+  String get hintRevealLetter => 'Revelar letra';
+
+  @override
+  String hintRevealLetterCount(int count) {
+    return 'Revelar letra ($count)';
+  }
+
+  @override
+  String hintTokensAdded(int count) {
+    return '+$count dicas adicionadas';
+  }
+
+  @override
+  String get adNoVideo =>
+      'Nenhum vídeo disponível agora. Tente novamente em instantes.';
 }

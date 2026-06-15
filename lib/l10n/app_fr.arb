@@ -175,5 +175,9 @@
   "packTitleItalian": "Italiano",
   "packTaglineItalian": "Proverbes et maximes italiens",
   "packTitlePortuguese": "Português",
-  "packTaglinePortuguese": "Proverbes et maximes portugais"
+  "packTaglinePortuguese": "Proverbes et maximes portugais",
+  "hintRevealLetter": "Révéler une lettre",
+  "hintRevealLetterCount": "Révéler une lettre ({count})",
+  "hintTokensAdded": "+{count} indices ajoutés",
+  "adNoVideo": "Aucune vidéo n’est disponible pour le moment. Réessayez dans un instant."
 }
