@@ -56,27 +56,28 @@ az doygun; kaliteli bir kriptogram burada daha kolay sıralanır. (Ham hacim
 istersen "Puzzle" da seçilebilir, ama tavsiye "Word".)
 
 ### Etiketler (en fazla 5) — "Etiket" ve "İlgili etiket"
-Play'in etiket seçici **sabit bir taksonomidir**: önce geniş bir alan ("Etiket"),
-sonra altındaki spesifik bir değer ("İlgili etiket") seçilir. Etiketler birer
-**anahtar kelime DEĞİLDİR** (metin aramasını doğrudan etkilemez); Google'ın
-**öneri/benzer-uygulama** yerleşimini besler. Bu yüzden ölçüt **doğruluktur**:
-oyununun mekaniğine uymayan bir etiket, yanlış kitleyi çeker → hızlı kaldırma →
-sıralama düşer.
+Play'in etiket seçici **sabit bir taksonomidir** (TR arayüzde sütunlar:
+"Etiket" = seçtiğin etiket, "İlgili etiketler" = Google'ın o etiketi bağladığı
+geniş kategoriler/yerleşim). Etiketler birer **anahtar kelime DEĞİLDİR** (metin
+aramasını doğrudan etkilemez); Google'ın **öneri/benzer-uygulama** yerleşimini
+besler. Bu yüzden ölçüt **doğruluktur**: oyununun mekaniğine uymayan bir etiket,
+yanlış kitleyi çeker → hızlı kaldırma → sıralama düşer.
 
-**Önerilen 5 etiket (öncelik sırasıyla, Etiket → İlgili etiket):**
-1. **Word → Word puzzle / Word** — temel mekanik (harf-ikamesi ile kelime/söz çözme).
-2. **Brain games → Brain teaser / Brain games** — kriptogram klasik bir zeka bilmecesidir.
-3. **Puzzle → Logic** — tümevarımsal (harf sıklığı, kısa kelimeler) çözüm.
-4. **Word → Crossword** — bulmaca/çapraz-bulmaca/cryptoquote çözenlerle kitle örtüşmesi yüksek.
-5. **Education → Trivia** — içerik ünlü sözler/bilgelik; quote/trivia kitlesini çeker.
+**Önerilen 5 etiket (TR seçicideki gerçek adlarla; Etiket → İlgili etiketler):**
+1. **Kelime → Kelime** — temel mekanik (harf-ikamesiyle söz çözme).
+2. **Bulmaca → Bulmaca** — geniş bulmaca yerleşimi.
+3. **Mantık bilmecesi → Bulmaca** — tümevarımsal (harf sıklığı, kısa kelimeler) çözüm.
+4. **Zeka oyunu → Bulmaca, Zeka oyunu** — kriptogram klasik bir zeka bilmecesidir.
+5. **Kelime oyunu / Kelime bulmaca → Kelime** (seçici sunuyorsa). Sunmuyorsa ikinci
+   bir **Bulmaca → Kelime** varyantı da iyidir: seni hem Bulmaca hem Kelime
+   yerleşimine sokar.
 
-**Kaçın / değiştir:** Mevcut listendeki **"Kelime arama (Word search)"** YANLIŞ —
-o, ızgarada gizli kelime bulma mekaniğidir; kriptogramla alakasız ve farklı bir
-kitleyi çeker. Yerine yukarıdaki **Crossword** veya **Trivia**'yı koy.
+**Kaçın:** **"Kelime arama" (Word search)** — ızgarada gizli kelime bulma
+mekaniğidir; kriptogramla alakasız, yanlış kitle çeker. Seçme.
 
-> Not: Play yalnızca kendi sunduğu etiketlerden seçtirir ve liste zamanla küçük
-> değişiklikler gösterir. İlke sabit: şu kümeden en yakın ve DOĞRU 5'i seç —
-> {Word/Word puzzle, Brain games/Brain teaser, Puzzle/Logic, Crossword, Trivia}.
+> Not: Play yalnızca kendi sunduğu etiketlerden seçtirir; liste zamanla küçük
+> değişiklikler gösterir. İlke sabit: şu kümeden en yakın ve DOĞRU olanları seç —
+> {Kelime, Bulmaca, Mantık bilmecesi, Zeka oyunu, (varsa) Kelime oyunu/bulmaca}.
 > Oyuncusu başka bir oyun bekleyecek hiçbir etiketi seçme.
 
 ### Tamamlanması gereken diğer mağaza unsurları
