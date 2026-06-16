@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../state/progress_controller.dart';
 import '../theme/palette.dart';
+import '../widgets/count_up_text.dart';
 import '../widgets/heatmap_calendar.dart';
 import '../widgets/page_body.dart';
 import '../widgets/scale_safe.dart';
@@ -28,7 +29,15 @@ class StatsScreen extends StatelessWidget {
 
     // These dense 3-up cards keep a bounded text scale so a large system
     // font can't overflow or crush them on a narrow phone.
-    Widget statCard(String value, String label, IconData icon) => Expanded(
+    const valueStyle = TextStyle(fontSize: 22, fontWeight: FontWeight.w700);
+    // [animateTo] != null renders an animated count-up; otherwise [value]
+    // (used for the non-numeric fastest-time "m:ss" / "--:--").
+    Widget statCard(
+      String value,
+      String label,
+      IconData icon, {
+      int? animateTo,
+    }) => Expanded(
       child: Card(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
@@ -38,15 +47,15 @@ class StatsScreen extends StatelessWidget {
               children: [
                 Icon(icon, size: 22, color: scheme.primary),
                 const SizedBox(height: 8),
-                Text(
-                  value,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w700,
+                if (animateTo != null)
+                  CountUpText(value: animateTo, style: valueStyle)
+                else
+                  Text(
+                    value,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: valueStyle,
                   ),
-                ),
                 const SizedBox(height: 2),
                 Text(
                   label,
@@ -107,18 +116,21 @@ class StatsScreen extends StatelessWidget {
                     '${stats.totalSolved}',
                     l10n.statPuzzlesSolved,
                     Icons.extension_outlined,
+                    animateTo: stats.totalSolved,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '${progress.displayStreak}',
                     l10n.statCurrentStreak,
                     Icons.local_fire_department_outlined,
+                    animateTo: progress.displayStreak,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '${stats.bestStreak}',
                     l10n.statBestStreak,
                     Icons.star_outline,
+                    animateTo: stats.bestStreak,
                   ),
                 ],
               ),
@@ -135,12 +147,14 @@ class StatsScreen extends StatelessWidget {
                     '${stats.noHintSolves}',
                     l10n.statNoHintSolves,
                     Icons.do_not_touch_outlined,
+                    animateTo: stats.noHintSolves,
                   ),
                   const SizedBox(width: 10),
                   statCard(
                     '$dailySolved',
                     l10n.statDailiesSolved,
                     Icons.today_outlined,
+                    animateTo: dailySolved,
                   ),
                 ],
               ),

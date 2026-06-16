@@ -40,6 +40,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   /// response, reinforcing the red tint + error haptic + conflict chime.
   int _conflictPulse = 0;
 
+  /// Bumped when a guess completes a whole word; the board gives a brief,
+  /// gentle pop to match the word-done chime + haptic (a little visual
+  /// reward for steady progress).
+  int _wordPulse = 0;
+
   @override
   void initState() {
     super.initState();
@@ -69,6 +74,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     } else if (game.lastInputCompletedWord) {
       haptics.wordComplete();
       sounds.wordComplete();
+      _wordPulse++;
     } else {
       haptics.tap();
       sounds.tap();
@@ -277,16 +283,19 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                             solveWave: wave,
                                           ),
                                     )
-                                  : _Shaker(
-                                      trigger: _conflictPulse,
-                                      child: CipherBoard(
-                                        session: session,
-                                        selected: game.selectedCipherLetter,
-                                        errorChecking: settings.errorChecking,
-                                        onSelect: (index) {
-                                          haptics.tap();
-                                          game.selectIndex(index);
-                                        },
+                                  : _Pulse(
+                                      trigger: _wordPulse,
+                                      child: _Shaker(
+                                        trigger: _conflictPulse,
+                                        child: CipherBoard(
+                                          session: session,
+                                          selected: game.selectedCipherLetter,
+                                          errorChecking: settings.errorChecking,
+                                          onSelect: (index) {
+                                            haptics.tap();
+                                            game.selectIndex(index);
+                                          },
+                                        ),
                                       ),
                                     ),
                             ),
@@ -420,6 +429,55 @@ class _ShakerState extends State<_Shaker> with SingleTickerProviderStateMixin {
         // Decaying sine: a couple of quick swings that settle to centre.
         final dx = t == 0 ? 0.0 : math.sin(t * math.pi * 4) * 7 * (1 - t);
         return Transform.translate(offset: Offset(dx, 0), child: child);
+      },
+      child: widget.child,
+    );
+  }
+}
+
+/// A single gentle scale "pop" whenever [trigger] changes — a small visual
+/// reward that lands with the word-complete chime. Honors the system "remove
+/// animations" setting by passing the child straight through.
+class _Pulse extends StatefulWidget {
+  const _Pulse({required this.trigger, required this.child});
+
+  final int trigger;
+  final Widget child;
+
+  @override
+  State<_Pulse> createState() => _PulseState();
+}
+
+class _PulseState extends State<_Pulse> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 260),
+  );
+
+  @override
+  void didUpdateWidget(_Pulse old) {
+    super.didUpdateWidget(old);
+    if (widget.trigger != old.trigger && widget.trigger != 0) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (MediaQuery.of(context).disableAnimations) return widget.child;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        // A quick rise to +3.5% and an eased settle back to rest.
+        final t = _controller.value;
+        final scale = 1 + math.sin(t * math.pi) * 0.035;
+        return Transform.scale(scale: scale, child: child);
       },
       child: widget.child,
     );

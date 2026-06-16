@@ -30,6 +30,11 @@ class LetterCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
     final selected = state == CellState.selected;
+    // A letter the player typed (a plain guess, not a hint reveal or a
+    // celebration cell): mark it with a faint fill so your own progress reads
+    // at a glance. Never implies correctness.
+    final playerFilled =
+        state == CellState.normal && guess != null && guess!.isNotEmpty;
     // Honor the system "remove animations" accessibility setting: snap
     // instantly instead of easing.
     final motion = !MediaQuery.of(context).disableAnimations;
@@ -53,7 +58,11 @@ class LetterCell extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 1),
         padding: const EdgeInsets.only(top: 2),
         decoration: BoxDecoration(
-          color: selected ? palette.boardCellSelectedBg : palette.boardCellBg,
+          color: selected
+              ? palette.boardCellSelectedBg
+              : playerFilled
+              ? palette.boardCellFilledBg
+              : palette.boardCellBg,
           borderRadius: BorderRadius.circular(6),
           border: Border.all(
             color: selected ? palette.revealed : Colors.transparent,

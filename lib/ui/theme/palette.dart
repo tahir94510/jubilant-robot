@@ -9,6 +9,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     required this.boardCellBg,
     required this.boardCellSelectedBg,
     required this.boardCellRelatedBg,
+    required this.boardCellFilledBg,
     required this.boardUnderline,
     required this.guessText,
     required this.cipherText,
@@ -28,6 +29,12 @@ class GamePalette extends ThemeExtension<GamePalette> {
   final Color boardCellBg;
   final Color boardCellSelectedBg;
   final Color boardCellRelatedBg;
+
+  /// Faint fill behind a cell the PLAYER has filled in (not a hint), so your
+  /// own entries read as present at a glance instead of blending into empty
+  /// slots. Intentionally neutral — it marks "you typed here", never whether
+  /// the guess is right (that would spoil the puzzle).
+  final Color boardCellFilledBg;
   final Color boardUnderline;
   final Color guessText;
   final Color cipherText;
@@ -61,6 +68,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellBg: const Color(0x00000000),
     boardCellSelectedBg: const Color(0xFF936F1F).withValues(alpha: .16),
     boardCellRelatedBg: const Color(0xFF936F1F).withValues(alpha: .07),
+    boardCellFilledBg: const Color(0xFF211E1A).withValues(alpha: .055),
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
     cipherText: const Color(0xFF8A7E66),
@@ -81,6 +89,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellBg: const Color(0x00000000),
     boardCellSelectedBg: const Color(0xFFD9B25A).withValues(alpha: .22),
     boardCellRelatedBg: const Color(0xFFD9B25A).withValues(alpha: .10),
+    boardCellFilledBg: const Color(0xFFF2EDE2).withValues(alpha: .07),
     boardUnderline: const Color(0xFF4A453B),
     guessText: const Color(0xFFF2EDE2),
     cipherText: const Color(0xFF968B79),
@@ -101,6 +110,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellBg: const Color(0x00000000),
     boardCellSelectedBg: const Color(0xFF9C7B33).withValues(alpha: .20),
     boardCellRelatedBg: const Color(0xFF9C7B33).withValues(alpha: .08),
+    boardCellFilledBg: const Color(0xFF3A2E1C).withValues(alpha: .06),
     boardUnderline: const Color(0xFFC4AE8E),
     guessText: const Color(0xFF3A2E1C),
     cipherText: const Color(0xFF755F3F),
