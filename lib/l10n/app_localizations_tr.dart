@@ -39,7 +39,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get theme => 'Tema';
 
   @override
-  String get themeAutoSubtitle => 'Otomatik (cihazınızı izler)';
+  String get themeAutoSubtitle => 'Otomatik (cihazını izler)';
 
   @override
   String get themeAuto => 'Otomatik';
@@ -73,7 +73,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get showTimerTitle => 'Süreyi göster';
 
   @override
-  String get showTimerSubtitle => 'Tamamen sakin bir deneyim için kapatın';
+  String get showTimerSubtitle => 'Tamamen sakin bir deneyim için kapat';
 
   @override
   String get hapticsTitle => 'Dokunsal geri bildirim';
@@ -118,7 +118,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get premiumActiveSubtitle =>
-      'Quotecrack’i desteklediğiniz için teşekkürler!';
+      'Quotecrack’i desteklediğin için teşekkürler!';
 
   @override
   String get goPremium => 'Premium’a geç';
@@ -137,7 +137,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get privacyOptions => 'Gizlilik seçenekleri';
 
   @override
-  String get privacyOptionsSubtitle => 'Reklam onay tercihlerinizi yönetin';
+  String get privacyOptionsSubtitle => 'Reklam onay tercihlerini yönet';
 
   @override
   String get privacyPolicy => 'Gizlilik politikası';
@@ -156,7 +156,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String homeDailyAwaits(String author) {
-    return '$author imzalı bir şifre sizi bekliyor.';
+    return '$author imzalı bir şifre seni bekliyor.';
   }
 
   @override

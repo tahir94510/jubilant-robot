@@ -356,7 +356,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get puzzleAlreadySolved => 'Tu as déjà résolu celui-ci.';
+  String get puzzleAlreadySolved => 'Vous avez déjà résolu celui-ci.';
 
   @override
   String achievementsCountTitle(int unlocked, int total) {
