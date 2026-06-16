@@ -235,12 +235,15 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            for (final a in _newAchievements)
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
-                                child: AchievementTile(
-                                  achievement: a,
-                                  justUnlocked: true,
+                            for (final e in _newAchievements.asMap().entries)
+                              _AchievementEntrance(
+                                index: e.key,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: AchievementTile(
+                                    achievement: e.value,
+                                    justUnlocked: true,
+                                  ),
                                 ),
                               ),
                           ],
@@ -466,6 +469,35 @@ class _StatChip extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// A staggered fade-and-rise entrance for each freshly unlocked achievement
+/// tile, so they cascade in instead of popping. Honors the system
+/// "reduce motion" setting by rendering the child instantly.
+class _AchievementEntrance extends StatelessWidget {
+  const _AchievementEntrance({required this.index, required this.child});
+
+  final int index;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (MediaQuery.of(context).disableAnimations) return child;
+    final start = (index * 0.18).clamp(0.0, 0.8).toDouble();
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 900),
+      curve: Interval(start, 1, curve: Curves.easeOutBack),
+      builder: (context, t, child) => Opacity(
+        opacity: t.clamp(0.0, 1.0),
+        child: Transform.translate(
+          offset: Offset(0, (1 - t) * 14),
+          child: child,
+        ),
+      ),
+      child: child,
     );
   }
 }
