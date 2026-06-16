@@ -42,9 +42,9 @@ class BrandMark extends StatelessWidget {
             children: [
               // Font sizes and centres mirror the icon generator
               // (tool/generate_icons.py). The Q is lifted (y -0.16) and sized
-              // down (0.56) and the underline pushed to y 0.87 so the serif
-              // Q's tail keeps a clear optical gap above the bar instead of
-              // fusing into it.
+              // down (0.56); the underline sits at y 0.80 — a small, even gap
+              // below the glyph, close enough to read as one mark yet clear of
+              // the serif Q's tail (which used to fuse into it).
               Align(
                 alignment: const Alignment(-0.12, -0.16),
                 child: Text(
@@ -76,7 +76,7 @@ class BrandMark extends StatelessWidget {
               Positioned(
                 left: size * 0.20,
                 right: size * 0.20,
-                top: size * 0.87 - lineHeight / 2,
+                top: size * 0.80 - lineHeight / 2,
                 height: lineHeight,
                 child: DecoratedBox(
                   decoration: BoxDecoration(

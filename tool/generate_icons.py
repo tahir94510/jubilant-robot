@@ -112,8 +112,9 @@ def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
     mark_color = white if monochrome else ACCENT + (255,)
     line_color = white if monochrome else UNDERLINE + (255,)
 
-    # Q lifted and sized down, underline pushed lower, so the serif Q's tail
-    # keeps a clear optical gap above the bar (matches brand_mark.dart).
+    # Q lifted and sized down; the underline sits at y 0.80 — a small, even
+    # gap below the glyph, close but clear of the serif Q's tail (matches
+    # brand_mark.dart).
     draw_glyph_centered(draw, "Q", lora(int(a * 0.56), weight=600),
                         (ox + a * 0.44, oy + a * 0.42), q_color)
     if with_question:
@@ -121,8 +122,8 @@ def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
                             (ox + a * 0.76, oy + a * 0.29), mark_color)
     line_h = a * 0.05
     draw.rounded_rectangle(
-        [ox + a * 0.20, oy + a * 0.87 - line_h / 2,
-         ox + a * 0.80, oy + a * 0.87 + line_h / 2],
+        [ox + a * 0.20, oy + a * 0.80 - line_h / 2,
+         ox + a * 0.80, oy + a * 0.80 + line_h / 2],
         radius=line_h / 2, fill=line_color,
     )
     return img

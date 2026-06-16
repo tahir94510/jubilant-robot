@@ -8,5 +8,5 @@
   <rect width="64" height="64" rx="14" fill="url(#bg)"/>
   <text x="28.2" y="26.9" font-family="Georgia,'Times New Roman',serif" font-weight="600" font-size="35.8" fill="#F3EEE2" text-anchor="middle" dominant-baseline="central">Q</text>
   <text x="48.6" y="18.6" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="15" fill="#E0B85A" text-anchor="middle" dominant-baseline="central">?</text>
-  <rect x="12.8" y="54.1" width="38.4" height="3.2" rx="1.6" fill="#CBA24E"/>
+  <rect x="12.8" y="49.6" width="38.4" height="3.2" rx="1.6" fill="#CBA24E"/>
 </svg>
