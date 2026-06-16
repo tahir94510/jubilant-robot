@@ -28,18 +28,29 @@ class Pack {
 
   bool get premiumOnly => kind == PackKind.premium;
 
-  bool contains(Quote q) {
-    // Localized (non-English) quotes only ever belong to their own dedicated
-    // language pack (matched by category), so the difficulty ladder, the
-    // English themed packs and the daily stay English/consistent.
-    if (q.locale != 'en') return category == q.category;
-    if (difficulty != null && q.difficulty != difficulty) return false;
-    if (category != null && q.category != category) return false;
-    if (kind != PackKind.premium &&
-        (q.category == 'shakespeare' || q.category == 'stoic')) {
-      return false;
+  /// Whether [q] belongs in this pack for a player whose active content
+  /// language is [activeLocale].
+  ///
+  /// The difficulty ladder follows the player's language: English by default,
+  /// but the moment they switch to (say) Turkish, Beginner→Expert fill with
+  /// natively-authored Turkish quotes, graded by the same language-aware
+  /// difficulty engine. Themed and premium packs stay English (curated
+  /// collections), and each "language pack" is matched by its own category so
+  /// every native library remains playable by everyone.
+  bool contains(Quote q, {String activeLocale = 'en'}) {
+    switch (kind) {
+      case PackKind.difficulty:
+        if (q.locale != activeLocale) return false;
+        // The free ladder never leaks the premium-only categories.
+        if (q.category == 'shakespeare' || q.category == 'stoic') return false;
+        return q.difficulty == difficulty;
+      case PackKind.themed:
+        // Curated English themes — identical for every player.
+        return q.locale == 'en' && q.category == category;
+      case PackKind.language:
+      case PackKind.premium:
+        return q.category == category;
     }
-    return true;
   }
 
   /// The full pack catalog shown on the Packs screen, in display order.

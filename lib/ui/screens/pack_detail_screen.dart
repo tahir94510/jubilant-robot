@@ -20,7 +20,8 @@ class PackDetailScreen extends StatelessWidget {
     final progress = context.watch<ProgressController>();
     final palette = Theme.of(context).extension<GamePalette>()!;
     final scheme = Theme.of(context).colorScheme;
-    final quotes = repo.forPack(pack);
+    final locale = Localizations.localeOf(context).languageCode;
+    final quotes = repo.forPack(pack, activeLocale: locale);
 
     return Scaffold(
       appBar: AppBar(

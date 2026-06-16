@@ -22,6 +22,7 @@ class PacksScreen extends StatelessWidget {
     final premium = context.select<EconomyController, bool>((e) => e.premium);
     final palette = Theme.of(context).extension<GamePalette>()!;
     final l10n = AppLocalizations.of(context);
+    final locale = Localizations.localeOf(context).languageCode;
 
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(4, 18, 4, 8),
@@ -38,15 +39,16 @@ class PacksScreen extends StatelessWidget {
 
     List<Widget> tiles(PackKind kind) => [
       for (final pack in Pack.catalog.where((p) => p.kind == kind))
-        _PackTile(
-          pack: pack,
-          total: repo.forPack(pack).length,
-          solved: repo
-              .forPack(pack)
-              .where((q) => progress.isSolved(q.id))
-              .length,
-          locked: pack.premiumOnly && !premium,
-        ),
+        if (repo.forPack(pack, activeLocale: locale).isNotEmpty)
+          _PackTile(
+            pack: pack,
+            total: repo.forPack(pack, activeLocale: locale).length,
+            solved: repo
+                .forPack(pack, activeLocale: locale)
+                .where((q) => progress.isSolved(q.id))
+                .length,
+            locked: pack.premiumOnly && !premium,
+          ),
     ];
 
     return Scaffold(
@@ -56,23 +58,27 @@ class PacksScreen extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
             children: [
-              section(l10n.packsSectionByDifficulty),
-              // Players reasonably assume long = hard; in cryptograms it is
-              // the opposite, so say it once where the packs are picked.
-              Padding(
-                padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
-                child: Text(
-                  l10n.packsDifficultyHint,
-                  style: TextStyle(
-                    fontSize: 12.5,
-                    fontStyle: FontStyle.italic,
-                    color: palette.textSecondary,
+              if (tiles(PackKind.difficulty).isNotEmpty) ...[
+                section(l10n.packsSectionByDifficulty),
+                // Players reasonably assume long = hard; in cryptograms it is
+                // the opposite, so say it once where the packs are picked.
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 10),
+                  child: Text(
+                    l10n.packsDifficultyHint,
+                    style: TextStyle(
+                      fontSize: 12.5,
+                      fontStyle: FontStyle.italic,
+                      color: palette.textSecondary,
+                    ),
                   ),
                 ),
-              ),
-              ...tiles(PackKind.difficulty),
-              section(l10n.packsSectionThemed),
-              ...tiles(PackKind.themed),
+                ...tiles(PackKind.difficulty),
+              ],
+              if (tiles(PackKind.themed).isNotEmpty) ...[
+                section(l10n.packsSectionThemed),
+                ...tiles(PackKind.themed),
+              ],
               section(l10n.packsSectionLanguages),
               ...tiles(PackKind.language),
               section(l10n.sectionPremium),

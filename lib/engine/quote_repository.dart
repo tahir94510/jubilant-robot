@@ -58,10 +58,9 @@ class QuoteRepository {
   List<Quote> byDifficulty(Difficulty difficulty) =>
       _quotes.where((q) => q.difficulty == difficulty).toList();
 
-  /// Pool for the daily puzzle: the shared GLOBAL daily is English so everyone
-  /// gets the same cipher to compare (Wordle-style). Free categories only,
-  /// sorted by id for platform-stable ordering (asset iteration order must
-  /// not matter). Localized packs are played on demand, never as the daily.
+  /// The English daily pool: every player on Earth shares the same English
+  /// cipher to compare (Wordle-style) when playing in English. Free categories
+  /// only, sorted by id for platform-stable ordering.
   List<Quote> get dailyPool {
     final pool =
         _quotes
@@ -74,14 +73,36 @@ class QuoteRepository {
     return pool;
   }
 
+  /// The daily pool for a player whose content language is [locale]. Everyone
+  /// on that language shares the same daily cipher for the day. Falls back to
+  /// the English pool when a locale has no native dailies yet, so the home
+  /// screen can always present a puzzle.
+  List<Quote> dailyPoolFor(String locale) {
+    if (locale == 'en') return dailyPool;
+    final pool =
+        _quotes
+            .where(
+              (q) =>
+                  q.locale == locale &&
+                  !premiumCategories.contains(q.category),
+            )
+            .toList()
+          ..sort((a, b) => a.id.compareTo(b.id));
+    return pool.isEmpty ? dailyPool : pool;
+  }
+
   /// Quotes belonging to [pack], ordered easiest-first inside the pack so
-  /// progress feels like a ramp.
-  List<Quote> forPack(Pack pack) {
-    final list = _quotes.where(pack.contains).toList()
-      ..sort((a, b) {
-        final byScore = a.score.compareTo(b.score);
-        return byScore != 0 ? byScore : a.id.compareTo(b.id);
-      });
+  /// progress feels like a ramp. [activeLocale] steers the difficulty ladder
+  /// to the player's language (English by default).
+  List<Quote> forPack(Pack pack, {String activeLocale = 'en'}) {
+    final list =
+        _quotes
+            .where((q) => pack.contains(q, activeLocale: activeLocale))
+            .toList()
+          ..sort((a, b) {
+            final byScore = a.score.compareTo(b.score);
+            return byScore != 0 ? byScore : a.id.compareTo(b.id);
+          });
     return list;
   }
 }

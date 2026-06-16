@@ -15,14 +15,72 @@ import 'puzzle_screen.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
-  /// Famous, friendly, and short — the tutorial puzzle.
-  static final Quote tutorialQuote = Quote(
-    id: 'tutorial-001',
-    text: 'Less is more.',
-    author: 'Robert Browning',
-    source: 'Andrea del Sarto, 1855',
-    category: 'wisdom',
-  );
+  /// The tutorial puzzle, one per language. These are chosen for *repeated
+  /// words* ("there is a", "damlaya", "va… va… va"), not brevity: in a
+  /// cryptogram repetition gives the footholds that make a solve feel easy,
+  /// whereas a terse line like "Less is more." is actually expert-hard. The
+  /// very first puzzle also greets players in their own language.
+  static final Map<String, Quote> _tutorialQuotes = {
+    'en': Quote(
+      id: 'tutorial-en',
+      text: 'Where there is a will, there is a way.',
+      author: 'English proverb',
+      source: 'Traditional',
+      category: 'wisdom',
+    ),
+    'tr': Quote(
+      id: 'tutorial-tr',
+      text: 'Damlaya damlaya göl olur.',
+      author: 'Türk atasözü',
+      source: 'Geleneksel',
+      category: 'turkish',
+      locale: 'tr',
+    ),
+    'es': Quote(
+      id: 'tutorial-es',
+      text: 'Poco a poco se anda lejos.',
+      author: 'Refrán español',
+      source: 'Tradicional',
+      category: 'spanish',
+      locale: 'es',
+    ),
+    'de': Quote(
+      id: 'tutorial-de',
+      text: 'Ende gut, alles gut.',
+      author: 'Deutsches Sprichwort',
+      source: 'Überliefert',
+      category: 'german',
+      locale: 'de',
+    ),
+    'fr': Quote(
+      id: 'tutorial-fr',
+      text: "Petit à petit, l'oiseau fait son nid.",
+      author: 'Proverbe français',
+      source: 'Traditionnel',
+      category: 'french',
+      locale: 'fr',
+    ),
+    'it': Quote(
+      id: 'tutorial-it',
+      text: 'Chi va piano, va sano e va lontano.',
+      author: 'Proverbio italiano',
+      source: 'Tradizionale',
+      category: 'italian',
+      locale: 'it',
+    ),
+    'pt': Quote(
+      id: 'tutorial-pt',
+      text: 'Quem não arrisca, não petisca.',
+      author: 'Provérbio português',
+      source: 'Tradicional',
+      category: 'portuguese',
+      locale: 'pt',
+    ),
+  };
+
+  /// The tutorial puzzle for [locale], falling back to English.
+  static Quote tutorialQuoteFor(String locale) =>
+      _tutorialQuotes[locale] ?? _tutorialQuotes['en']!;
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -51,10 +109,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Future<void> _startTutorialPuzzle() async {
+    final locale = Localizations.localeOf(context).languageCode;
     await context.read<SettingsController>().markOnboardingDone();
     if (!mounted) return;
     context.read<GameController>().start(
-      OnboardingScreen.tutorialQuote,
+      OnboardingScreen.tutorialQuoteFor(locale),
       daily: false,
     );
     // Home slides UNDER the stack with no animation; the player sees one

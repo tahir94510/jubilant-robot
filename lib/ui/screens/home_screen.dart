@@ -42,7 +42,10 @@ class HomeScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     final today = DateTime.now();
-    final daily = selectDaily(repo.dailyPool, today);
+    // The daily follows the player's language: an English player and a Turkish
+    // player each get their own deterministic puzzle of the day.
+    final contentLocale = Localizations.localeOf(context).languageCode;
+    final daily = selectDaily(repo.dailyPoolFor(contentLocale), today);
     final dailyDone = progress.dailySolvedToday;
 
     return Scaffold(
