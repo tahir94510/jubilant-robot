@@ -32,5 +32,15 @@
   { "id": "fr-031", "text": "À chaque jour suffit sa peine.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
   { "id": "fr-032", "text": "Le silence est d’or et la parole est d’argent.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
   { "id": "fr-033", "text": "Comme on fait son lit, on se couche.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
-  { "id": "fr-034", "text": "Un tiens vaut mieux que deux tu l’auras.", "author": "Jean de La Fontaine", "source": "Fables", "category": "french", "locale": "fr" }
+  { "id": "fr-034", "text": "Un tiens vaut mieux que deux tu l’auras.", "author": "Jean de La Fontaine", "source": "Fables", "category": "french", "locale": "fr" },
+  { "id": "fr-035", "text": "Après l’effort, le réconfort.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-036", "text": "Les murs ont des oreilles.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-037", "text": "Il faut battre le fer pendant qu’il est chaud.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-038", "text": "Tant va la cruche à l’eau qu’à la fin elle se casse.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-039", "text": "On n’apprend pas à un vieux singe à faire la grimace.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-040", "text": "Qui ne dit mot consent, dit-on.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-041", "text": "La raison du plus fort est toujours la meilleure.", "author": "Jean de La Fontaine", "source": "Fables", "category": "french", "locale": "fr" },
+  { "id": "fr-042", "text": "Plus on est de fous, plus on rit.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-043", "text": "Charbonnier est maître chez soi.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" },
+  { "id": "fr-044", "text": "Il n’est pire eau que l’eau qui dort.", "author": "Proverbe français", "source": "Tradition", "category": "french", "locale": "fr" }
 ]
