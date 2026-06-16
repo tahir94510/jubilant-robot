@@ -74,7 +74,7 @@ void main() {
     expect(find.text('Go Premium'), findsNothing);
   });
 
-  testWidgets('packs screen lists all 11 packs and opens a detail grid', (
+  testWidgets('packs screen lists all 9 packs and opens a detail grid', (
     tester,
   ) async {
     final h = await Harness.create(quotes: realQuotes);
@@ -87,12 +87,10 @@ void main() {
       'Skilled',
       'Expert',
       'Proverbs',
-      'Humor',
       'Wisdom',
+      'Wit',
       'Literature',
-      'Science',
-      'Shakespeare',
-      'Stoic Wisdom',
+      'Classics',
     ]) {
       await tester.scrollUntilVisible(find.text(title), 150);
       expect(find.text(title), findsOneWidget, reason: 'pack "$title" missing');
@@ -122,10 +120,10 @@ void main() {
     await tester.pumpWidget(h.app(const PacksScreen()));
     await tester.pump();
 
-    await tester.scrollUntilVisible(find.text('Shakespeare'), 200);
-    await tester.ensureVisible(find.text('Shakespeare'));
+    await tester.scrollUntilVisible(find.text('Classics'), 200);
+    await tester.ensureVisible(find.text('Classics'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Shakespeare'));
+    await tester.tap(find.text('Classics'));
     await tester.pumpAndSettle();
     expect(find.byType(PaywallScreen), findsOneWidget);
     expect(h.economy.premium, isFalse);
@@ -136,10 +134,10 @@ void main() {
     await tester.pumpWidget(h.app(const PacksScreen()));
     await tester.pump();
 
-    await tester.scrollUntilVisible(find.text('Stoic Wisdom'), 200);
-    await tester.ensureVisible(find.text('Stoic Wisdom'));
+    await tester.scrollUntilVisible(find.text('Classics'), 200);
+    await tester.ensureVisible(find.text('Classics'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Stoic Wisdom'));
+    await tester.tap(find.text('Classics'));
     await tester.pumpAndSettle();
     expect(find.byType(PackDetailScreen), findsOneWidget);
   });

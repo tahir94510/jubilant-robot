@@ -15,8 +15,8 @@ class QuoteRepository {
     }
   }
 
-  /// Categories reserved for the premium packs.
-  static const Set<String> premiumCategories = {'shakespeare', 'stoic'};
+  /// Categories reserved for the premium packs (the per-language Classics).
+  static const Set<String> premiumCategories = {'classics'};
 
   /// Discovers EVERY quote file under assets/data/quotes (English at the root,
   /// each localized pack in its own locale subfolder) via the asset manifest,

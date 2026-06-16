@@ -16,14 +16,14 @@ void main() {
       text: 'The quick brown fox jumps over the lazy dog tonight.',
       author: 'Pangram',
       source: 'Traditional',
-      category: 'wisdom',
+      category: 'proverbs',
     ),
     Quote(
       id: 'en-2',
       text: 'Brevity is the soul of wit.',
       author: 'Shakespeare',
       source: 'Hamlet',
-      category: 'wisdom',
+      category: 'proverbs',
     ),
     // Turkish natives spanning the spectrum.
     Quote(
@@ -31,7 +31,7 @@ void main() {
       text: 'Damlaya damlaya göl olur, aka aka sel olur.',
       author: 'Türk atasözü',
       source: 'Geleneksel',
-      category: 'turkish',
+      category: 'proverbs',
       locale: 'tr',
     ),
     Quote(
@@ -39,7 +39,7 @@ void main() {
       text: 'Sabrın sonu selamettir.',
       author: 'Türk atasözü',
       source: 'Geleneksel',
-      category: 'turkish',
+      category: 'proverbs',
       locale: 'tr',
     ),
   ];
@@ -88,7 +88,7 @@ void main() {
         text: 'Sabrın sonu selamettir, acele işe şeytan karışır.',
         author: 'Türk atasözü',
         source: 'Geleneksel',
-        category: 'turkish',
+        category: 'proverbs',
         locale: 'tr',
       ),
     ];
@@ -97,13 +97,16 @@ void main() {
     expect(selectDaily(pool, DateTime(2026, 12, 31)).quote.id, 'tr-only');
   });
 
-  test('themed packs stay English even for a Turkish player', () {
+  test('themed packs are native to the active language', () {
     final repo = QuoteRepository.fromQuotes(sample());
-    final themed = Pack.byId('wisdom');
-    expect(
-      repo.forPack(themed, activeLocale: 'tr').every((q) => q.locale == 'en'),
-      isTrue,
-    );
+    final proverbs = Pack.byId('proverbs');
+    // English player sees English proverbs...
+    expect(repo.forPack(proverbs).every((q) => q.locale == 'en'), isTrue);
+    expect(repo.forPack(proverbs), isNotEmpty);
+    // ...a Turkish player sees Turkish proverbs in the very same pack.
+    final tr = repo.forPack(proverbs, activeLocale: 'tr');
+    expect(tr, isNotEmpty);
+    expect(tr.every((q) => q.locale == 'tr'), isTrue);
   });
 
   test('bucketing is language-aware, not English-centric', () {
@@ -114,7 +117,7 @@ void main() {
       text: 'Damlaya damlaya göl olur, aka aka sel olur.',
       author: 'Türk atasözü',
       source: 'Geleneksel',
-      category: 'turkish',
+      category: 'proverbs',
       locale: 'tr',
     );
     expect(Difficulty.values.contains(q.difficulty), isTrue);

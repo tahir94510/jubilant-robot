@@ -1,0 +1,834 @@
+[
+  {
+    "id": "de-001",
+    "text": "Übung macht den Meister.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-002",
+    "text": "Morgenstund hat Gold im Mund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-003",
+    "text": "Wer anderen eine Grube gräbt, fällt selbst hinein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-004",
+    "text": "Der Apfel fällt nicht weit vom Stamm.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-005",
+    "text": "Hochmut kommt vor dem Fall.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-006",
+    "text": "Was du heute kannst besorgen, das verschiebe nicht auf morgen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-007",
+    "text": "Erst die Arbeit, dann das Vergnügen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-008",
+    "text": "Der Krug geht so lange zum Brunnen, bis er bricht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-009",
+    "text": "Reden ist Silber, Schweigen ist Gold.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-010",
+    "text": "Hunde, die bellen, beißen nicht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-011",
+    "text": "Es ist nicht alles Gold, was glänzt.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-012",
+    "text": "Viele Köche verderben den Brei.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-013",
+    "text": "Wer zuletzt lacht, lacht am besten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-014",
+    "text": "Wer A sagt, muss auch B sagen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-015",
+    "text": "Probieren geht über Studieren.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-016",
+    "text": "Eine Schwalbe macht noch keinen Sommer.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-017",
+    "text": "Wer nicht wagt, der nicht gewinnt.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-018",
+    "text": "In der Kürze liegt die Würze.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-019",
+    "text": "Man soll den Tag nicht vor dem Abend loben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-020",
+    "text": "Der frühe Vogel fängt den Wurm.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-021",
+    "text": "Was Hänschen nicht lernt, lernt Hans nimmermehr.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-022",
+    "text": "Gleich und gleich gesellt sich gern.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-023",
+    "text": "Wer den Pfennig nicht ehrt, ist des Talers nicht wert.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-024",
+    "text": "Wie man in den Wald hineinruft, so schallt es heraus.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-025",
+    "text": "Es ist noch kein Meister vom Himmel gefallen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-026",
+    "text": "Wer zuerst kommt, mahlt zuerst.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-027",
+    "text": "Not macht erfinderisch.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-028",
+    "text": "Wer einmal lügt, dem glaubt man nicht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-029",
+    "text": "Ein gutes Gewissen ist ein sanftes Ruhekissen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-030",
+    "text": "Wer im Glashaus sitzt, soll nicht mit Steinen werfen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-031",
+    "text": "Geteiltes Leid ist halbes Leid.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-032",
+    "text": "Aus den Augen, aus dem Sinn.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-033",
+    "text": "Wer nicht hören will, muss fühlen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-034",
+    "text": "Morgen, morgen, nur nicht heute, sagen alle faulen Leute.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-035",
+    "text": "Wer den Schaden hat, braucht für den Spott nicht zu sorgen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-036",
+    "text": "Wie gewonnen, so zerronnen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-037",
+    "text": "Vorsicht ist die Mutter der Porzellankiste.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-038",
+    "text": "Was lange währt, wird endlich gut.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-039",
+    "text": "Jeder ist seines Glückes Schmied.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-040",
+    "text": "Den letzten beißen die Hunde.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-041",
+    "text": "Andere Länder, andere Sitten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-042",
+    "text": "Man muss das Eisen schmieden, solange es heiß ist.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-043",
+    "text": "Eile mit Weile, sagt der Volksmund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-044",
+    "text": "Ehrlich währt am längsten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-101",
+    "text": "Lügen haben kurze Beine.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-102",
+    "text": "Aller Anfang ist schwer.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-103",
+    "text": "Stille Wasser sind tief.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-104",
+    "text": "Geld allein macht nicht glücklich.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-105",
+    "text": "Kleider machen Leute, sagt man.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-106",
+    "text": "Liebe geht durch den Magen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-107",
+    "text": "Übermut tut selten gut, heißt es.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-108",
+    "text": "Müßiggang ist aller Laster Anfang.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-109",
+    "text": "Geduld bringt Rosen, sagt der Volksmund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-110",
+    "text": "Übel gewonnen, übel zerronnen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-111",
+    "text": "Wer rastet, der rostet, sagt man oft.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-112",
+    "text": "Hunger ist der beste Koch.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-113",
+    "text": "Einem geschenkten Gaul schaut man nicht ins Maul, das weiß doch jedes Kind.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-114",
+    "text": "Wer Wind sät, wird Sturm ernten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-115",
+    "text": "Der Klügere gibt so lange nach, bis er der Dumme ist.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-116",
+    "text": "Unkraut vergeht nicht, sagt das Volk.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-117",
+    "text": "Pünktlichkeit ist die Höflichkeit der Könige, doch nicht jeder hält sich daran.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-118",
+    "text": "Ohne Fleiß kein Preis, sagt der Lehrer.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-119",
+    "text": "Allzu viel ist ungesund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-120",
+    "text": "Vertrauen ist gut, Kontrolle ist besser, sagt ein bekanntes geflügeltes Wort.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-121",
+    "text": "Ein Unglück kommt selten allein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-122",
+    "text": "Wo ein Wille ist, da ist auch ein Weg.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-123",
+    "text": "Der Ton macht die Musik, sagt der Lehrer.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-124",
+    "text": "Was sich liebt, das neckt sich, so heißt es schon seit alten Zeiten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-125",
+    "text": "Lieber ein Ende mit Schrecken als ein Schrecken ohne Ende.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-126",
+    "text": "Es ist noch nicht aller Tage Abend.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-127",
+    "text": "Wer sät, der wird auch ernten, sagt der Volksmund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-128",
+    "text": "Die dümmsten Bauern haben die dicksten Kartoffeln, sagt man auf dem Lande.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-129",
+    "text": "Wer nicht hören will, der muss es eben fühlen am eigenen Leibe.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-130",
+    "text": "Es ist nichts so fein gesponnen, es kommt doch endlich an die Sonnen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-131",
+    "text": "Wenn zwei sich streiten, dann freut sich am Ende meistens der lachende Dritte.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-132",
+    "text": "Der Mensch denkt, und Gott lenkt am Ende doch das Geschick.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-133",
+    "text": "Frisch gewagt ist halb gewonnen, sagen kluge Leute.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-134",
+    "text": "Wer im Sommer nicht sammelt, der muss im Winter darben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-135",
+    "text": "Kleine Geschenke erhalten die Freundschaft unter guten und ehrlichen Nachbarn.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-136",
+    "text": "Wer das Glück hat, der führt die Braut nach Hause.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-137",
+    "text": "Faulheit ist der Schlüssel zur Armut, sagt ein altes Wort.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-138",
+    "text": "Auch ein blindes Huhn findet einmal ein Korn, wenn es nur lange genug sucht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-139",
+    "text": "Das Bessere ist der Feind des Guten, das weiß jeder.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-140",
+    "text": "Ein Spatz in der Hand ist besser als eine Taube auf dem Dach.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-141",
+    "text": "Edel sei der Mensch, hilfreich und gut, denn das allein unterscheidet ihn von allen Wesen.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Das Göttliche",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-142",
+    "text": "Es irrt der Mensch, solang er strebt.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Faust",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-143",
+    "text": "Grau, teurer Freund, ist alle Theorie, und grün des Lebens goldner Baum.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Faust",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-144",
+    "text": "Zwei Seelen wohnen, ach, in meiner Brust, die eine will sich von der andern trennen.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Faust",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-145",
+    "text": "Wer immer strebend sich bemüht, den können wir erlösen, und hat an ihm die Liebe gar von oben teilgenommen.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Faust",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-146",
+    "text": "Das also war des Pudels Kern, das hätte ich nicht gedacht.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Faust",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-147",
+    "text": "Mit der Dummheit kämpfen Götter selbst vergebens, denn gegen sie ist nun einmal kein Kraut gewachsen.",
+    "author": "Friedrich Schiller",
+    "source": "Die Jungfrau von Orleans",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-148",
+    "text": "Früh übt sich, was ein Meister werden will.",
+    "author": "Friedrich Schiller",
+    "source": "Wilhelm Tell",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-149",
+    "text": "Der brave Mann denkt an sich selbst zuletzt.",
+    "author": "Friedrich Schiller",
+    "source": "Wilhelm Tell",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-150",
+    "text": "Es kann der Frömmste nicht in Frieden leben, wenn es dem bösen Nachbarn nicht gefällt.",
+    "author": "Friedrich Schiller",
+    "source": "Wilhelm Tell",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-151",
+    "text": "Raum ist in der kleinsten Hütte für ein glücklich liebend Paar.",
+    "author": "Friedrich Schiller",
+    "source": "Der Jüngling am Bache",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-152",
+    "text": "Seid umschlungen, Millionen! Diesen Kuss der ganzen Welt!",
+    "author": "Friedrich Schiller",
+    "source": "An die Freude",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-153",
+    "text": "Was uns nicht umbringt, das macht uns nur noch stärker.",
+    "author": "Friedrich Nietzsche",
+    "source": "Götzen-Dämmerung",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-154",
+    "text": "Wer ein Warum zu leben hat, der erträgt fast jedes Wie.",
+    "author": "Friedrich Nietzsche",
+    "source": "Götzen-Dämmerung",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-155",
+    "text": "Und wenn du lange in einen Abgrund blickst, blickt der Abgrund auch in dich hinein.",
+    "author": "Friedrich Nietzsche",
+    "source": "Jenseits von Gut und Böse",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-156",
+    "text": "Habe Mut, dich deines eigenen Verstandes zu bedienen.",
+    "author": "Immanuel Kant",
+    "source": "Beantwortung der Frage: Was ist Aufklärung?",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-157",
+    "text": "Der Mensch ist frei geschaffen, ist frei, und würd er in Ketten geboren.",
+    "author": "Friedrich Schiller",
+    "source": "Die Worte des Glaubens",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-158",
+    "text": "Es lebt der Mensch, solange er hofft, und hofft, solange er lebt.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-159",
+    "text": "Bescheidenheit ist eine Zier, doch weiter kommt man ohne ihr.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-160",
+    "text": "Wo gehobelt wird, da fallen Späne, das ist nun einmal so.",
+    "author": "Deutsches Sprichwort",
+    "source": "Überliefert",
+    "category": "proverbs",
+    "locale": "de"
+  }
+]

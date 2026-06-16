@@ -1,117 +1,1143 @@
 [
-  {"id": "wis-001", "text": "The secret of getting ahead is getting started.", "author": "Mark Twain", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-002", "text": "It is not length of life, but depth of life.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-003", "text": "The only way to have a friend is to be one.", "author": "Ralph Waldo Emerson", "source": "Essays: First Series, 1841", "category": "wisdom"},
-  {"id": "wis-004", "text": "What you do speaks so loudly that I cannot hear what you say.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-005", "text": "Adopt the pace of nature: her secret is patience.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-006", "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-007", "text": "The mind, once stretched by a new idea, never returns to its original dimensions.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-008", "text": "Do not go where the path may lead, go instead where there is no path and leave a trail.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-009", "text": "Well done is better than well said.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1737", "category": "wisdom"},
-  {"id": "wis-010", "text": "An investment in knowledge pays the best interest.", "author": "Benjamin Franklin", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-011", "text": "By failing to prepare, you are preparing to fail.", "author": "Benjamin Franklin", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-012", "text": "Lost time is never found again.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1748", "category": "wisdom"},
-  {"id": "wis-013", "text": "Tell me and I forget. Teach me and I remember. Involve me and I learn.", "author": "Benjamin Franklin", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-014", "text": "Early to bed and early to rise makes a man healthy, wealthy, and wise.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1735", "category": "wisdom"},
-  {"id": "wis-015", "text": "Energy and persistence conquer all things.", "author": "Benjamin Franklin", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-016", "text": "It is better to remain silent and be thought a fool than to speak and remove all doubt.", "author": "Abraham Lincoln", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-017", "text": "The best way to predict your future is to create it.", "author": "Abraham Lincoln", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-018", "text": "Whatever you are, be a good one.", "author": "Abraham Lincoln", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-019", "text": "I am a slow walker, but I never walk back.", "author": "Abraham Lincoln", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-020", "text": "Nearly all men can stand adversity, but if you want to test a man's character, give him power.", "author": "Abraham Lincoln", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-021", "text": "Go confidently in the direction of your dreams. Live the life you have imagined.", "author": "Henry David Thoreau", "source": "Walden, 1854, adapted", "category": "wisdom"},
-  {"id": "wis-022", "text": "It is not what you look at that matters, it is what you see.", "author": "Henry David Thoreau", "source": "Journal, 1851", "category": "wisdom"},
-  {"id": "wis-023", "text": "The price of anything is the amount of life you exchange for it.", "author": "Henry David Thoreau", "source": "Walden, 1854, adapted", "category": "wisdom"},
-  {"id": "wis-024", "text": "Success usually comes to those who are too busy to be looking for it.", "author": "Henry David Thoreau", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-025", "text": "Live in the sunshine, swim the sea, drink the wild air.", "author": "Ralph Waldo Emerson", "source": "Merlin's Song, 1867", "category": "wisdom"},
-  {"id": "wis-026", "text": "Knowing yourself is the beginning of all wisdom.", "author": "Aristotle", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-027", "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.", "author": "Will Durant", "source": "The Story of Philosophy, 1926", "category": "wisdom"},
-  {"id": "wis-028", "text": "It is during our darkest moments that we must focus to see the light.", "author": "Aristotle", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-029", "text": "Pleasure in the job puts perfection in the work.", "author": "Aristotle", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-030", "text": "The roots of education are bitter, but the fruit is sweet.", "author": "Aristotle", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-031", "text": "Patience is bitter, but its fruit is sweet.", "author": "Jean-Jacques Rousseau", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-032", "text": "The beginning of wisdom is the definition of terms.", "author": "Socrates", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-033", "text": "The only true wisdom is in knowing you know nothing.", "author": "Socrates", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-034", "text": "The unexamined life is not worth living.", "author": "Socrates", "source": "Plato, Apology", "category": "wisdom"},
-  {"id": "wis-035", "text": "Be kind, for everyone you meet is fighting a hard battle.", "author": "Ian Maclaren", "source": "Attributed, 1897", "category": "wisdom"},
-  {"id": "wis-036", "text": "Courage is knowing what not to fear.", "author": "Plato", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-037", "text": "Wise men speak because they have something to say; fools because they have to say something.", "author": "Plato", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-038", "text": "The first and greatest victory is to conquer yourself.", "author": "Plato", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-039", "text": "Real knowledge is to know the extent of one's ignorance.", "author": "Confucius", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-040", "text": "It does not matter how slowly you go as long as you do not stop.", "author": "Confucius", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-041", "text": "Our greatest glory is not in never falling, but in rising every time we fall.", "author": "Confucius", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-042", "text": "The man who moves a mountain begins by carrying away small stones.", "author": "Confucius", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-043", "text": "When it is obvious that the goals cannot be reached, do not adjust the goals, adjust the action steps.", "author": "Confucius", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-044", "text": "The journey of a thousand miles begins with a single step.", "author": "Lao Tzu", "source": "Tao Te Ching", "category": "wisdom"},
-  {"id": "wis-045", "text": "Knowing others is intelligence; knowing yourself is true wisdom.", "author": "Lao Tzu", "source": "Tao Te Ching", "category": "wisdom"},
-  {"id": "wis-046", "text": "Nature does not hurry, yet everything is accomplished.", "author": "Lao Tzu", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-047", "text": "A good traveler has no fixed plans and is not intent on arriving.", "author": "Lao Tzu", "source": "Tao Te Ching", "category": "wisdom"},
-  {"id": "wis-048", "text": "Respond intelligently even to unintelligent treatment.", "author": "Lao Tzu", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-049", "text": "Simplicity is the ultimate sophistication.", "author": "Leonardo da Vinci", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-050", "text": "Learning never exhausts the mind.", "author": "Leonardo da Vinci", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-051", "text": "Time stays long enough for anyone who will use it.", "author": "Leonardo da Vinci", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-052", "text": "I have been impressed with the urgency of doing. Knowing is not enough; we must apply.", "author": "Leonardo da Vinci", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-053", "text": "Knowing is not enough; we must apply. Willing is not enough; we must do.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-054", "text": "Magic is believing in yourself. If you can do that, you can make anything happen.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-055", "text": "Whatever you can do or dream you can, begin it. Boldness has genius, power and magic in it.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-056", "text": "He who has a why to live can bear almost any how.", "author": "Friedrich Nietzsche", "source": "Twilight of the Idols, 1889", "category": "wisdom"},
-  {"id": "wis-057", "text": "That which does not kill us makes us stronger.", "author": "Friedrich Nietzsche", "source": "Twilight of the Idols, 1889", "category": "wisdom"},
-  {"id": "wis-058", "text": "He who would learn to fly one day must first learn to stand and walk.", "author": "Friedrich Nietzsche", "source": "Thus Spoke Zarathustra, 1883", "category": "wisdom"},
-  {"id": "wis-059", "text": "There is more wisdom in your body than in your deepest philosophy.", "author": "Friedrich Nietzsche", "source": "Thus Spoke Zarathustra, 1883", "category": "wisdom"},
-  {"id": "wis-060", "text": "Everyone thinks of changing the world, but no one thinks of changing himself.", "author": "Leo Tolstoy", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-061", "text": "The two most powerful warriors are patience and time.", "author": "Leo Tolstoy", "source": "War and Peace, 1869", "category": "wisdom"},
-  {"id": "wis-062", "text": "If you want to be happy, be.", "author": "Leo Tolstoy", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-063", "text": "True life is lived when tiny changes occur.", "author": "Leo Tolstoy", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-064", "text": "The smallest minority on earth is the individual.", "author": "Ralph Waldo Emerson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-065", "text": "Quality is not an act, it is a habit.", "author": "Aristotle", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-066", "text": "He that can have patience can have what he will.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1736", "category": "wisdom"},
-  {"id": "wis-067", "text": "Knowledge speaks, but wisdom listens.", "author": "Anonymous", "source": "Traditional saying", "category": "wisdom"},
-  {"id": "wis-068", "text": "The obstacle is the path.", "author": "Anonymous", "source": "Zen proverb", "category": "wisdom"},
-  {"id": "wis-069", "text": "What we achieve inwardly will change outer reality.", "author": "Plutarch", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-070", "text": "The mind is not a vessel to be filled but a fire to be kindled.", "author": "Plutarch", "source": "On Listening to Lectures", "category": "wisdom"},
-  {"id": "wis-071", "text": "No man ever steps in the same river twice, for it is not the same river and he is not the same man.", "author": "Heraclitus", "source": "Fragments", "category": "wisdom"},
-  {"id": "wis-072", "text": "Man's character is his fate.", "author": "Heraclitus", "source": "Fragments", "category": "wisdom"},
-  {"id": "wis-073", "text": "Big results require big ambitions.", "author": "Heraclitus", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-074", "text": "Do not spoil what you have by desiring what you have not.", "author": "Epicurus", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-075", "text": "Not what we have but what we enjoy constitutes our abundance.", "author": "Epicurus", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-076", "text": "The greater the difficulty, the more glory in surmounting it.", "author": "Epicurus", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-077", "text": "Judge a man by his questions rather than by his answers.", "author": "Voltaire", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-078", "text": "Common sense is not so common.", "author": "Voltaire", "source": "Philosophical Dictionary, 1764", "category": "wisdom"},
-  {"id": "wis-079", "text": "Perfect is the enemy of good.", "author": "Voltaire", "source": "La Begueule, 1772", "category": "wisdom"},
-  {"id": "wis-080", "text": "Each player must accept the cards life deals him or her: but once they are in hand, he or she alone must decide how to play the cards.", "author": "Voltaire", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-081", "text": "Little strokes fell great oaks.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1750", "category": "wisdom"},
-  {"id": "wis-082", "text": "All our knowledge has its origins in our perceptions.", "author": "Leonardo da Vinci", "source": "Notebooks", "category": "wisdom"},
-  {"id": "wis-083", "text": "If you would not be forgotten as soon as you are dead, either write something worth reading or do things worth the writing.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1738", "category": "wisdom"},
-  {"id": "wis-084", "text": "Honesty is the first chapter in the book of wisdom.", "author": "Thomas Jefferson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-085", "text": "Nothing can stop the man with the right mental attitude from achieving his goal; nothing on earth can help the man with the wrong mental attitude.", "author": "Thomas Jefferson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-086", "text": "I find that the harder I work, the more luck I seem to have.", "author": "Thomas Jefferson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-087", "text": "Do you want to know who you are? Do not ask. Act. Action will delineate and define you.", "author": "Thomas Jefferson", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-088", "text": "It is wonderful how much may be done if we are always doing.", "author": "Thomas Jefferson", "source": "Letter to Martha Jefferson, 1787", "category": "wisdom"},
-  {"id": "wis-089", "text": "If you would know the value of money, go and try to borrow some.", "author": "Benjamin Franklin", "source": "Poor Richard's Almanack, 1754", "category": "wisdom"},
-  {"id": "wis-090", "text": "Without struggle there can be no progress.", "author": "Frederick Douglass", "source": "Speech, 1857, adapted", "category": "wisdom"},
-  {"id": "wis-091", "text": "It is easier to build strong children than to repair broken men.", "author": "Frederick Douglass", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-092", "text": "Knowledge is the pathway from slavery to freedom.", "author": "Frederick Douglass", "source": "Narrative, 1845, adapted", "category": "wisdom"},
-  {"id": "wis-093", "text": "Success is to be measured not so much by the position that one has reached in life as by the obstacles which he has overcome.", "author": "Booker T. Washington", "source": "Up from Slavery, 1901", "category": "wisdom"},
-  {"id": "wis-094", "text": "If you want to lift yourself up, lift up someone else.", "author": "Booker T. Washington", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-095", "text": "Excellence is to do a common thing in an uncommon way.", "author": "Booker T. Washington", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-096", "text": "Act as if what you do makes a difference. It does.", "author": "William James", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-097", "text": "The greatest weapon against stress is our ability to choose one thought over another.", "author": "William James", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-098", "text": "Begin to be now what you will be hereafter.", "author": "William James", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-099", "text": "Great minds discuss ideas; average minds discuss events; small minds discuss people.", "author": "Anonymous", "source": "Attributed to various", "category": "wisdom"},
-  {"id": "wis-100", "text": "The best time to plant a tree was twenty years ago. The second best time is now.", "author": "Anonymous", "source": "Proverb, attributed", "category": "wisdom"},
-  {"id": "wis-101", "text": "He who learns but does not think is lost. He who thinks but does not learn is in great danger.", "author": "Confucius", "source": "Analects", "category": "wisdom"},
-  {"id": "wis-102", "text": "What is not started today is never finished tomorrow.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-103", "text": "Doubt grows with knowledge.", "author": "Johann Wolfgang von Goethe", "source": "Proverbs in Prose, 1819", "category": "wisdom"},
-  {"id": "wis-104", "text": "Correction does much, but encouragement does more.", "author": "Johann Wolfgang von Goethe", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis-105", "text": "Great works are performed not by strength but by perseverance.", "author": "Samuel Johnson", "source": "Rasselas, 1759", "category": "wisdom"},
-  {"id": "wis2-001", "text": "It is not enough to be industrious; so are the ants. What are you industrious about?", "author": "Henry David Thoreau", "source": "Letter, 1857", "category": "wisdom"},
-  {"id": "wis2-002", "text": "Quality is never an accident; it is always the result of intelligent effort.", "author": "John Ruskin", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis2-003", "text": "Keep your face to the sunshine and you cannot see a shadow.", "author": "Helen Keller", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis2-004", "text": "Do what you can, with what you have, where you are.", "author": "Theodore Roosevelt", "source": "An Autobiography, 1913", "category": "wisdom"},
-  {"id": "wis2-005", "text": "Great things are done by a series of small things brought together.", "author": "Vincent van Gogh", "source": "Letters, translated", "category": "wisdom"},
-  {"id": "wis2-006", "text": "The beginning is the most important part of the work.", "author": "Plato", "source": "The Republic, translated", "category": "wisdom"},
-  {"id": "wis2-007", "text": "Raise your words, not your voice. It is rain that grows flowers, not thunder.", "author": "Rumi", "source": "Attributed", "category": "wisdom"},
-  {"id": "wis2-008", "text": "If there is no struggle, there is no progress.", "author": "Frederick Douglass", "source": "Speech, 1857", "category": "wisdom"},
-  {"id": "wis2-009", "text": "There is only one happiness in this life, to love and be loved.", "author": "George Sand", "source": "Letter, 1862", "category": "wisdom"},
-  {"id": "wis2-010", "text": "The mountains are calling and I must go.", "author": "John Muir", "source": "Letter, 1873", "category": "wisdom"}
+  {
+    "id": "wis-001",
+    "text": "The secret of getting ahead is getting started.",
+    "author": "Mark Twain",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-002",
+    "text": "It is not length of life, but depth of life.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-003",
+    "text": "The only way to have a friend is to be one.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Essays: First Series, 1841",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-004",
+    "text": "What you do speaks so loudly that I cannot hear what you say.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-005",
+    "text": "Adopt the pace of nature: her secret is patience.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-006",
+    "text": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-007",
+    "text": "The mind, once stretched by a new idea, never returns to its original dimensions.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-008",
+    "text": "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-009",
+    "text": "Well done is better than well said.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1737",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-010",
+    "text": "An investment in knowledge pays the best interest.",
+    "author": "Benjamin Franklin",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-011",
+    "text": "By failing to prepare, you are preparing to fail.",
+    "author": "Benjamin Franklin",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-012",
+    "text": "Lost time is never found again.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1748",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-013",
+    "text": "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
+    "author": "Benjamin Franklin",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-014",
+    "text": "Early to bed and early to rise makes a man healthy, wealthy, and wise.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1735",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-015",
+    "text": "Energy and persistence conquer all things.",
+    "author": "Benjamin Franklin",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-016",
+    "text": "It is better to remain silent and be thought a fool than to speak and remove all doubt.",
+    "author": "Abraham Lincoln",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-017",
+    "text": "The best way to predict your future is to create it.",
+    "author": "Abraham Lincoln",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-018",
+    "text": "Whatever you are, be a good one.",
+    "author": "Abraham Lincoln",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-019",
+    "text": "I am a slow walker, but I never walk back.",
+    "author": "Abraham Lincoln",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-020",
+    "text": "Nearly all men can stand adversity, but if you want to test a man's character, give him power.",
+    "author": "Abraham Lincoln",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-021",
+    "text": "Go confidently in the direction of your dreams. Live the life you have imagined.",
+    "author": "Henry David Thoreau",
+    "source": "Walden, 1854, adapted",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-022",
+    "text": "It is not what you look at that matters, it is what you see.",
+    "author": "Henry David Thoreau",
+    "source": "Journal, 1851",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-023",
+    "text": "The price of anything is the amount of life you exchange for it.",
+    "author": "Henry David Thoreau",
+    "source": "Walden, 1854, adapted",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-024",
+    "text": "Success usually comes to those who are too busy to be looking for it.",
+    "author": "Henry David Thoreau",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-025",
+    "text": "Live in the sunshine, swim the sea, drink the wild air.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Merlin's Song, 1867",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-026",
+    "text": "Knowing yourself is the beginning of all wisdom.",
+    "author": "Aristotle",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-027",
+    "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    "author": "Will Durant",
+    "source": "The Story of Philosophy, 1926",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-028",
+    "text": "It is during our darkest moments that we must focus to see the light.",
+    "author": "Aristotle",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-029",
+    "text": "Pleasure in the job puts perfection in the work.",
+    "author": "Aristotle",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-030",
+    "text": "The roots of education are bitter, but the fruit is sweet.",
+    "author": "Aristotle",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-031",
+    "text": "Patience is bitter, but its fruit is sweet.",
+    "author": "Jean-Jacques Rousseau",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-032",
+    "text": "The beginning of wisdom is the definition of terms.",
+    "author": "Socrates",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-033",
+    "text": "The only true wisdom is in knowing you know nothing.",
+    "author": "Socrates",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-034",
+    "text": "The unexamined life is not worth living.",
+    "author": "Socrates",
+    "source": "Plato, Apology",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-035",
+    "text": "Be kind, for everyone you meet is fighting a hard battle.",
+    "author": "Ian Maclaren",
+    "source": "Attributed, 1897",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-036",
+    "text": "Courage is knowing what not to fear.",
+    "author": "Plato",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-037",
+    "text": "Wise men speak because they have something to say; fools because they have to say something.",
+    "author": "Plato",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-038",
+    "text": "The first and greatest victory is to conquer yourself.",
+    "author": "Plato",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-039",
+    "text": "Real knowledge is to know the extent of one's ignorance.",
+    "author": "Confucius",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-040",
+    "text": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "Confucius",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-041",
+    "text": "Our greatest glory is not in never falling, but in rising every time we fall.",
+    "author": "Confucius",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-042",
+    "text": "The man who moves a mountain begins by carrying away small stones.",
+    "author": "Confucius",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-043",
+    "text": "When it is obvious that the goals cannot be reached, do not adjust the goals, adjust the action steps.",
+    "author": "Confucius",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-044",
+    "text": "The journey of a thousand miles begins with a single step.",
+    "author": "Lao Tzu",
+    "source": "Tao Te Ching",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-045",
+    "text": "Knowing others is intelligence; knowing yourself is true wisdom.",
+    "author": "Lao Tzu",
+    "source": "Tao Te Ching",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-046",
+    "text": "Nature does not hurry, yet everything is accomplished.",
+    "author": "Lao Tzu",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-047",
+    "text": "A good traveler has no fixed plans and is not intent on arriving.",
+    "author": "Lao Tzu",
+    "source": "Tao Te Ching",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-048",
+    "text": "Respond intelligently even to unintelligent treatment.",
+    "author": "Lao Tzu",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-049",
+    "text": "Simplicity is the ultimate sophistication.",
+    "author": "Leonardo da Vinci",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-050",
+    "text": "Learning never exhausts the mind.",
+    "author": "Leonardo da Vinci",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-051",
+    "text": "Time stays long enough for anyone who will use it.",
+    "author": "Leonardo da Vinci",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-052",
+    "text": "I have been impressed with the urgency of doing. Knowing is not enough; we must apply.",
+    "author": "Leonardo da Vinci",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-053",
+    "text": "Knowing is not enough; we must apply. Willing is not enough; we must do.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-054",
+    "text": "Magic is believing in yourself. If you can do that, you can make anything happen.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-055",
+    "text": "Whatever you can do or dream you can, begin it. Boldness has genius, power and magic in it.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-056",
+    "text": "He who has a why to live can bear almost any how.",
+    "author": "Friedrich Nietzsche",
+    "source": "Twilight of the Idols, 1889",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-057",
+    "text": "That which does not kill us makes us stronger.",
+    "author": "Friedrich Nietzsche",
+    "source": "Twilight of the Idols, 1889",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-058",
+    "text": "He who would learn to fly one day must first learn to stand and walk.",
+    "author": "Friedrich Nietzsche",
+    "source": "Thus Spoke Zarathustra, 1883",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-059",
+    "text": "There is more wisdom in your body than in your deepest philosophy.",
+    "author": "Friedrich Nietzsche",
+    "source": "Thus Spoke Zarathustra, 1883",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-060",
+    "text": "Everyone thinks of changing the world, but no one thinks of changing himself.",
+    "author": "Leo Tolstoy",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-061",
+    "text": "The two most powerful warriors are patience and time.",
+    "author": "Leo Tolstoy",
+    "source": "War and Peace, 1869",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-062",
+    "text": "If you want to be happy, be.",
+    "author": "Leo Tolstoy",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-063",
+    "text": "True life is lived when tiny changes occur.",
+    "author": "Leo Tolstoy",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-064",
+    "text": "The smallest minority on earth is the individual.",
+    "author": "Ralph Waldo Emerson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-065",
+    "text": "Quality is not an act, it is a habit.",
+    "author": "Aristotle",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-066",
+    "text": "He that can have patience can have what he will.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1736",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-067",
+    "text": "Knowledge speaks, but wisdom listens.",
+    "author": "Anonymous",
+    "source": "Traditional saying",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-068",
+    "text": "The obstacle is the path.",
+    "author": "Anonymous",
+    "source": "Zen proverb",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-069",
+    "text": "What we achieve inwardly will change outer reality.",
+    "author": "Plutarch",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-070",
+    "text": "The mind is not a vessel to be filled but a fire to be kindled.",
+    "author": "Plutarch",
+    "source": "On Listening to Lectures",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-071",
+    "text": "No man ever steps in the same river twice, for it is not the same river and he is not the same man.",
+    "author": "Heraclitus",
+    "source": "Fragments",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-072",
+    "text": "Man's character is his fate.",
+    "author": "Heraclitus",
+    "source": "Fragments",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-073",
+    "text": "Big results require big ambitions.",
+    "author": "Heraclitus",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-074",
+    "text": "Do not spoil what you have by desiring what you have not.",
+    "author": "Epicurus",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-075",
+    "text": "Not what we have but what we enjoy constitutes our abundance.",
+    "author": "Epicurus",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-076",
+    "text": "The greater the difficulty, the more glory in surmounting it.",
+    "author": "Epicurus",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-077",
+    "text": "Judge a man by his questions rather than by his answers.",
+    "author": "Voltaire",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-078",
+    "text": "Common sense is not so common.",
+    "author": "Voltaire",
+    "source": "Philosophical Dictionary, 1764",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-079",
+    "text": "Perfect is the enemy of good.",
+    "author": "Voltaire",
+    "source": "La Begueule, 1772",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-080",
+    "text": "Each player must accept the cards life deals him or her: but once they are in hand, he or she alone must decide how to play the cards.",
+    "author": "Voltaire",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-081",
+    "text": "Little strokes fell great oaks.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1750",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-082",
+    "text": "All our knowledge has its origins in our perceptions.",
+    "author": "Leonardo da Vinci",
+    "source": "Notebooks",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-083",
+    "text": "If you would not be forgotten as soon as you are dead, either write something worth reading or do things worth the writing.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1738",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-084",
+    "text": "Honesty is the first chapter in the book of wisdom.",
+    "author": "Thomas Jefferson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-085",
+    "text": "Nothing can stop the man with the right mental attitude from achieving his goal; nothing on earth can help the man with the wrong mental attitude.",
+    "author": "Thomas Jefferson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-086",
+    "text": "I find that the harder I work, the more luck I seem to have.",
+    "author": "Thomas Jefferson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-087",
+    "text": "Do you want to know who you are? Do not ask. Act. Action will delineate and define you.",
+    "author": "Thomas Jefferson",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-088",
+    "text": "It is wonderful how much may be done if we are always doing.",
+    "author": "Thomas Jefferson",
+    "source": "Letter to Martha Jefferson, 1787",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-089",
+    "text": "If you would know the value of money, go and try to borrow some.",
+    "author": "Benjamin Franklin",
+    "source": "Poor Richard's Almanack, 1754",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-090",
+    "text": "Without struggle there can be no progress.",
+    "author": "Frederick Douglass",
+    "source": "Speech, 1857, adapted",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-091",
+    "text": "It is easier to build strong children than to repair broken men.",
+    "author": "Frederick Douglass",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-092",
+    "text": "Knowledge is the pathway from slavery to freedom.",
+    "author": "Frederick Douglass",
+    "source": "Narrative, 1845, adapted",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-093",
+    "text": "Success is to be measured not so much by the position that one has reached in life as by the obstacles which he has overcome.",
+    "author": "Booker T. Washington",
+    "source": "Up from Slavery, 1901",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-094",
+    "text": "If you want to lift yourself up, lift up someone else.",
+    "author": "Booker T. Washington",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-095",
+    "text": "Excellence is to do a common thing in an uncommon way.",
+    "author": "Booker T. Washington",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-096",
+    "text": "Act as if what you do makes a difference. It does.",
+    "author": "William James",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-097",
+    "text": "The greatest weapon against stress is our ability to choose one thought over another.",
+    "author": "William James",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-098",
+    "text": "Begin to be now what you will be hereafter.",
+    "author": "William James",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-099",
+    "text": "Great minds discuss ideas; average minds discuss events; small minds discuss people.",
+    "author": "Anonymous",
+    "source": "Attributed to various",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-100",
+    "text": "The best time to plant a tree was twenty years ago. The second best time is now.",
+    "author": "Anonymous",
+    "source": "Proverb, attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-101",
+    "text": "He who learns but does not think is lost. He who thinks but does not learn is in great danger.",
+    "author": "Confucius",
+    "source": "Analects",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-102",
+    "text": "What is not started today is never finished tomorrow.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-103",
+    "text": "Doubt grows with knowledge.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Proverbs in Prose, 1819",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-104",
+    "text": "Correction does much, but encouragement does more.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis-105",
+    "text": "Great works are performed not by strength but by perseverance.",
+    "author": "Samuel Johnson",
+    "source": "Rasselas, 1759",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-001",
+    "text": "It is not enough to be industrious; so are the ants. What are you industrious about?",
+    "author": "Henry David Thoreau",
+    "source": "Letter, 1857",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-002",
+    "text": "Quality is never an accident; it is always the result of intelligent effort.",
+    "author": "John Ruskin",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-003",
+    "text": "Keep your face to the sunshine and you cannot see a shadow.",
+    "author": "Helen Keller",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-004",
+    "text": "Do what you can, with what you have, where you are.",
+    "author": "Theodore Roosevelt",
+    "source": "An Autobiography, 1913",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-005",
+    "text": "Great things are done by a series of small things brought together.",
+    "author": "Vincent van Gogh",
+    "source": "Letters, translated",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-006",
+    "text": "The beginning is the most important part of the work.",
+    "author": "Plato",
+    "source": "The Republic, translated",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-007",
+    "text": "Raise your words, not your voice. It is rain that grows flowers, not thunder.",
+    "author": "Rumi",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-008",
+    "text": "If there is no struggle, there is no progress.",
+    "author": "Frederick Douglass",
+    "source": "Speech, 1857",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-009",
+    "text": "There is only one happiness in this life, to love and be loved.",
+    "author": "George Sand",
+    "source": "Letter, 1862",
+    "category": "wisdom"
+  },
+  {
+    "id": "wis2-010",
+    "text": "The mountains are calling and I must go.",
+    "author": "John Muir",
+    "source": "Letter, 1873",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-001",
+    "text": "If I have seen further it is by standing on the shoulders of giants.",
+    "author": "Isaac Newton",
+    "source": "Letter to Robert Hooke, 1675",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-002",
+    "text": "I can calculate the motion of heavenly bodies, but not the madness of people.",
+    "author": "Isaac Newton",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-003",
+    "text": "Truth is ever to be found in simplicity, and not in the multiplicity and confusion of things.",
+    "author": "Isaac Newton",
+    "source": "Notes, circa 1710",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-004",
+    "text": "Nature, to be commanded, must be obeyed.",
+    "author": "Francis Bacon",
+    "source": "Novum Organum, 1620",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-005",
+    "text": "A man who dares to waste one hour of time has not discovered the value of life.",
+    "author": "Charles Darwin",
+    "source": "Letter, 1836",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-006",
+    "text": "Read not to contradict and confute, nor to believe and take for granted, but to weigh and consider.",
+    "author": "Francis Bacon",
+    "source": "Of Studies, 1625",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-007",
+    "text": "Ignorance more frequently begets confidence than does knowledge.",
+    "author": "Charles Darwin",
+    "source": "The Descent of Man, 1871",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-008",
+    "text": "Chance favors the prepared mind.",
+    "author": "Louis Pasteur",
+    "source": "Lecture, 1854",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-009",
+    "text": "Science knows no country, because knowledge belongs to humanity.",
+    "author": "Louis Pasteur",
+    "source": "Address, 1876",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-010",
+    "text": "Let me tell you the secret that has led me to my goal: my strength lies solely in my tenacity.",
+    "author": "Louis Pasteur",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-011",
+    "text": "We have a hunger of the mind which asks for knowledge of all around us.",
+    "author": "Maria Mitchell",
+    "source": "Diary, 1866",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-012",
+    "text": "Genius is one percent inspiration and ninety-nine percent perspiration.",
+    "author": "Thomas Edison",
+    "source": "Interview, 1903",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-013",
+    "text": "I have not failed. I have just found ten thousand ways that will not work.",
+    "author": "Thomas Edison",
+    "source": "Attributed, circa 1910",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-014",
+    "text": "Opportunity is missed by most people because it is dressed in overalls and looks like work.",
+    "author": "Thomas Edison",
+    "source": "Attributed, 1920s",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-015",
+    "text": "There is no substitute for hard work.",
+    "author": "Thomas Edison",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-016",
+    "text": "The value of an idea lies in the using of it.",
+    "author": "Thomas Edison",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-017",
+    "text": "The present is theirs; the future, for which I really worked, is mine.",
+    "author": "Nikola Tesla",
+    "source": "Interview, 1927",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-018",
+    "text": "If you want to find the secrets of the universe, think in terms of energy, frequency and vibration.",
+    "author": "Nikola Tesla",
+    "source": "Attributed, 1920s",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-019",
+    "text": "Invention is the most important product of the creative brain of man.",
+    "author": "Nikola Tesla",
+    "source": "My Inventions, 1919",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-020",
+    "text": "Nature uses as little as possible of anything.",
+    "author": "Johannes Kepler",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-021",
+    "text": "Nothing has such power to broaden the mind as the ability to investigate systematically.",
+    "author": "Marcus Aurelius",
+    "source": "Meditations, Long translation",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-022",
+    "text": "Measure what is measurable, and make measurable what is not so.",
+    "author": "Galileo Galilei",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-023",
+    "text": "All truths are easy to understand once they are discovered; the point is to discover them.",
+    "author": "Galileo Galilei",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-024",
+    "text": "I have never met a man so ignorant that I could not learn something from him.",
+    "author": "Galileo Galilei",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-025",
+    "text": "You cannot teach a man anything; you can only help him find it within himself.",
+    "author": "Galileo Galilei",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-026",
+    "text": "Nature is relentless and unchangeable, and it is indifferent as to whether its hidden reasons are understandable by man or not.",
+    "author": "Galileo Galilei",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-027",
+    "text": "Observation is a passive science, experimentation an active science.",
+    "author": "Claude Bernard",
+    "source": "Experimental Medicine, 1865",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-028",
+    "text": "Nothing is too wonderful to be true, if it be consistent with the laws of nature.",
+    "author": "Michael Faraday",
+    "source": "Laboratory journal, 1849",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-029",
+    "text": "But still try, for who knows what is possible.",
+    "author": "Michael Faraday",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-030",
+    "text": "The important thing is to know how to take all things quietly.",
+    "author": "Michael Faraday",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-031",
+    "text": "Science is the great antidote to the poison of enthusiasm and superstition.",
+    "author": "Adam Smith",
+    "source": "The Wealth of Nations, 1776",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-032",
+    "text": "Nothing is so fatal to the progress of the human mind as to suppose that our views of science are ultimate.",
+    "author": "Humphry Davy",
+    "source": "Lecture, 1810",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-033",
+    "text": "The art of medicine consists of amusing the patient while nature cures the disease.",
+    "author": "Voltaire",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-034",
+    "text": "The greater the ignorance the greater the dogmatism.",
+    "author": "William Osler",
+    "source": "Address, 1902",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-035",
+    "text": "Science is organized knowledge. Wisdom is organized life.",
+    "author": "Herbert Spencer",
+    "source": "Attributed, 19th century",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-036",
+    "text": "The great tragedy of science: the slaying of a beautiful hypothesis by an ugly fact.",
+    "author": "Thomas Huxley",
+    "source": "Address, 1870",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-037",
+    "text": "Try to learn something about everything and everything about something.",
+    "author": "Thomas Huxley",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-038",
+    "text": "Sit down before fact as a little child, be prepared to give up every preconceived notion.",
+    "author": "Thomas Huxley",
+    "source": "Letter, 1860",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-039",
+    "text": "The known is finite, the unknown infinite.",
+    "author": "Thomas Huxley",
+    "source": "Essay, 1887",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-040",
+    "text": "Mathematics is the language in which God has written the universe.",
+    "author": "Galileo Galilei",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-041",
+    "text": "Mathematics is the queen of the sciences.",
+    "author": "Carl Friedrich Gauss",
+    "source": "Attributed, 1856",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-042",
+    "text": "The most dangerous worldview is the worldview of those who have not viewed the world.",
+    "author": "Alexander von Humboldt",
+    "source": "Attributed",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-043",
+    "text": "The scientist does not study nature because it is useful; he studies it because he delights in it, and he delights in it because it is beautiful.",
+    "author": "Henri Poincare",
+    "source": "Science and Method, 1908",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-044",
+    "text": "It is through science that we prove, but through intuition that we discover.",
+    "author": "Henri Poincare",
+    "source": "Science and Method, 1908",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-045",
+    "text": "Doubt is not a pleasant condition, but certainty is absurd.",
+    "author": "Voltaire",
+    "source": "Letter, 1770",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-046",
+    "text": "He who loves practice without theory is like the sailor who boards ship without a rudder and compass.",
+    "author": "Leonardo da Vinci",
+    "source": "Notebooks",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-047",
+    "text": "Nature never breaks her own laws.",
+    "author": "Leonardo da Vinci",
+    "source": "Notebooks",
+    "category": "wisdom"
+  },
+  {
+    "id": "sci-048",
+    "text": "Experience never errs; it is only your judgments that err by promising themselves effects such as are not caused by your experiments.",
+    "author": "Leonardo da Vinci",
+    "source": "Notebooks",
+    "category": "wisdom"
+  }
 ]

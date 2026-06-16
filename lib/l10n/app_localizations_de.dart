@@ -226,7 +226,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get paywallPacksBody =>
-      'Shakespeare, stoische Weisheit und mehr in Arbeit';
+      'Ein exklusives Klassiker-Paket mit zeitlosen Stimmen – und mehr ist unterwegs';
 
   @override
   String get paywallSupportTitle => 'Unterstütze das Spiel';
@@ -435,12 +435,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get packTaglineProverbs => 'Volksweisheit aus aller Welt';
 
   @override
-  String get packTitleHumor => 'Humor';
-
-  @override
-  String get packTaglineHumor => 'Witz von Twain bis Wilde';
-
-  @override
   String get packTitleWisdom => 'Weisheit';
 
   @override
@@ -453,22 +447,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get packTaglineLiterature => 'Zeilen aus großen Büchern';
 
   @override
-  String get packTitleScience => 'Wissenschaft';
+  String get packTitleWit => 'Witz';
 
   @override
-  String get packTaglineScience => 'Köpfe, die die Welt bewegten';
+  String get packTaglineWit => 'Scharfzüngig und schlagfertig';
 
   @override
-  String get packTitleShakespeare => 'Shakespeare';
+  String get packTitleClassics => 'Klassiker';
 
   @override
-  String get packTaglineShakespeare => 'Der Barde, ungekürzt';
-
-  @override
-  String get packTitleStoic => 'Stoische Weisheit';
-
-  @override
-  String get packTaglineStoic => 'Mark Aurel, Seneca, Epiktet';
+  String get packTaglineClassics => 'Zeitlose Stimmen, handverlesen';
 
   @override
   String get achDescFirst => 'Löse dein erstes Kryptogramm';
@@ -569,46 +557,6 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Hundert Morgen';
-
-  @override
-  String get packsSectionLanguages => 'Sprachen';
-
-  @override
-  String get packTitleTurkish => 'Türkçe';
-
-  @override
-  String get packTaglineTurkish => 'Türkische Sprichwörter & Aphorismen';
-
-  @override
-  String get packTitleSpanish => 'Español';
-
-  @override
-  String get packTaglineSpanish => 'Spanische Sprichwörter & Aphorismen';
-
-  @override
-  String get packTitleGerman => 'Deutsch';
-
-  @override
-  String get packTaglineGerman => 'Deutsche Sprichwörter & Aphorismen';
-
-  @override
-  String get packTitleFrench => 'Français';
-
-  @override
-  String get packTaglineFrench => 'Französische Sprichwörter & Aphorismen';
-
-  @override
-  String get packTitleItalian => 'Italiano';
-
-  @override
-  String get packTaglineItalian => 'Italienische Sprichwörter & Aphorismen';
-
-  @override
-  String get packTitlePortuguese => 'Português';
-
-  @override
-  String get packTaglinePortuguese =>
-      'Portugiesische Sprichwörter & Aphorismen';
 
   @override
   String get hintRevealLetter => 'Buchstabe aufdecken';

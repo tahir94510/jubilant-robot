@@ -32,7 +32,11 @@
   "remindMeDaily": "Remind me daily",
   "reminderAt": "At {time}",
   "@reminderAt": {
-    "placeholders": { "time": { "type": "String" } }
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
   },
   "neverMissStreak": "Never miss your streak",
   "reminderTime": "Reminder time",
@@ -52,21 +56,36 @@
   "homeDailySolved": "Solved! Come back tomorrow for a new one.",
   "homeDailyAwaits": "A cipher by {author} awaits.",
   "@homeDailyAwaits": {
-    "placeholders": { "author": { "type": "String" } }
+    "placeholders": {
+      "author": {
+        "type": "String"
+      }
+    }
   },
   "playNow": "Play now",
   "replay": "Replay",
   "puzzlePacks": "Puzzle packs",
   "packsSolved": "{solved} of {total} solved",
   "@packsSolved": {
-    "placeholders": { "solved": { "type": "int" }, "total": { "type": "int" } }
+    "placeholders": {
+      "solved": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "statistics": "Statistics",
   "statisticsSubtitle": "Streaks, times, and your heatmap",
   "achievements": "Achievements",
   "achievementsUnlocked": "{count} unlocked",
   "@achievementsUnlocked": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "goPremiumSubtitleHome": "Remove ads · unlimited hints · bonus packs",
   "musicToggleTooltip": "Music on/off",
@@ -79,7 +98,7 @@
   "paywallHintsTitle": "Unlimited hints",
   "paywallHintsBody": "Reveal a letter whenever you're stuck",
   "paywallPacksTitle": "Exclusive bonus packs",
-  "paywallPacksBody": "Shakespeare, Stoic wisdom, and more on the way",
+  "paywallPacksBody": "An exclusive Classics pack of timeless voices — and more on the way",
   "paywallSupportTitle": "Support the game",
   "paywallSupportBody": "One purchase helps Quotecrack keep growing",
   "paywallActive": "Premium active. Enjoy!",
@@ -87,22 +106,38 @@
   "paywallLoadingPrice": "Loading price…",
   "paywallUnlock": "Unlock Premium · {price}",
   "@paywallUnlock": {
-    "placeholders": { "price": { "type": "String" } }
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
   },
   "paywallRestore": "Restore previous purchase",
   "completeDailyTitle": "Daily solved!",
   "completeTitle": "Solved!",
   "solveHints": "{count, plural, =0{No hints} =1{1 hint} other{{count} hints}}",
   "@solveHints": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "solveStreak": "{count, plural, =1{1 day streak} other{{count} day streak}}",
   "@solveStreak": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "achievementsUnlockedHeader": "{count, plural, =1{Achievement unlocked} other{Achievements unlocked}}",
   "@achievementsUnlockedHeader": {
-    "placeholders": { "count": { "type": "int" } }
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   },
   "shareResult": "Share result",
   "nextPuzzle": "Next puzzle",
@@ -125,15 +160,28 @@
   "statsHeatmapCaption": "Last {weeks} weeks · {start} to {end}",
   "@statsHeatmapCaption": {
     "placeholders": {
-      "weeks": { "type": "int" },
-      "start": { "type": "String" },
-      "end": { "type": "String" }
+      "weeks": {
+        "type": "int"
+      },
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
     }
   },
   "puzzleAlreadySolved": "You've already cracked this one.",
   "achievementsCountTitle": "Achievements ({unlocked}/{total})",
   "@achievementsCountTitle": {
-    "placeholders": { "unlocked": { "type": "int" }, "total": { "type": "int" } }
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   },
   "onbStep1Title": "Every letter is swapped",
   "onbStep1Body": "In a cryptogram, each letter of the alphabet stands for a different one. E might be K, T might be A, but the swap is consistent everywhere.",
@@ -148,7 +196,11 @@
   "notificationDailyBody": "A fresh quote is waiting to be decoded. Keep your streak alive!",
   "shareSolvedIn": "solved in {time}",
   "@shareSolvedIn": {
-    "placeholders": { "time": { "type": "String" } }
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
   },
   "packTitleBeginner": "Beginner",
   "packTaglineBeginner": "Long quotes, gentle ciphers",
@@ -160,29 +212,55 @@
   "packTaglineExpert": "Short, sharp, unforgiving",
   "packTitleProverbs": "Proverbs",
   "packTaglineProverbs": "Folk wisdom of the world",
-  "packTitleHumor": "Humor",
-  "packTaglineHumor": "Wit from Twain to Wilde",
   "packTitleWisdom": "Wisdom",
   "packTaglineWisdom": "Thinkers and statesmen",
   "packTitleLiterature": "Literature",
   "packTaglineLiterature": "Lines from great books",
-  "packTitleScience": "Science",
-  "packTaglineScience": "Minds that moved the world",
-  "packTitleShakespeare": "Shakespeare",
-  "packTaglineShakespeare": "The Bard, uncut",
-  "packTitleStoic": "Stoic Wisdom",
-  "packTaglineStoic": "Marcus, Seneca, Epictetus",
+  "packTitleWit": "Wit",
+  "packTaglineWit": "Sharp tongues and clever quips",
+  "packTitleClassics": "Classics",
+  "packTaglineClassics": "Timeless voices, hand-picked",
   "achDescFirst": "Solve your first cryptogram",
   "achDescSolve": "Solve {count} puzzles",
-  "@achDescSolve": { "placeholders": { "count": { "type": "int" } } },
+  "@achDescSolve": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "achDescStreak": "Reach a {count}-day daily streak",
-  "@achDescStreak": { "placeholders": { "count": { "type": "int" } } },
+  "@achDescStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "achDescNoHints": "Solve {count} puzzles without hints",
-  "@achDescNoHints": { "placeholders": { "count": { "type": "int" } } },
+  "@achDescNoHints": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "achDescSpeed": "Solve a puzzle in under {count} seconds",
-  "@achDescSpeed": { "placeholders": { "count": { "type": "int" } } },
+  "@achDescSpeed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "achDescDaily": "Solve {count} daily puzzles",
-  "@achDescDaily": { "placeholders": { "count": { "type": "int" } } },
+  "@achDescDaily": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "achTitleFirstSolve": "First Crack",
   "achTitleSolve10": "Apprentice Decoder",
   "achTitleSolve25": "Code Breaker",
@@ -207,23 +285,22 @@
   "achTitleDaily25": "Faithful Solver",
   "achTitleDaily50": "Morning Coffee",
   "achTitleDaily100": "Hundred Mornings",
-  "packsSectionLanguages": "Languages",
-  "packTitleTurkish": "Türkçe",
-  "packTaglineTurkish": "Turkish proverbs & sayings",
-  "packTitleSpanish": "Español",
-  "packTaglineSpanish": "Spanish proverbs & sayings",
-  "packTitleGerman": "Deutsch",
-  "packTaglineGerman": "German proverbs & sayings",
-  "packTitleFrench": "Français",
-  "packTaglineFrench": "French proverbs & sayings",
-  "packTitleItalian": "Italiano",
-  "packTaglineItalian": "Italian proverbs & sayings",
-  "packTitlePortuguese": "Português",
-  "packTaglinePortuguese": "Portuguese proverbs & sayings",
   "hintRevealLetter": "Reveal letter",
   "hintRevealLetterCount": "Reveal letter ({count})",
-  "@hintRevealLetterCount": { "placeholders": { "count": { "type": "int" } } },
+  "@hintRevealLetterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "hintTokensAdded": "+{count} hints added",
-  "@hintTokensAdded": { "placeholders": { "count": { "type": "int" } } },
+  "@hintTokensAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "adNoVideo": "No video is available right now. Please try again in a moment."
 }

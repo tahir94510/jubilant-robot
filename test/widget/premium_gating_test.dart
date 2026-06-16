@@ -97,6 +97,6 @@ void main() {
         .where((p) => p.premiumOnly)
         .map((p) => p.id)
         .toSet();
-    expect(premiumPacks, {'shakespeare', 'stoic'});
+    expect(premiumPacks, {'classics'});
   });
 }
