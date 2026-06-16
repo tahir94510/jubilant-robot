@@ -1,0 +1,178 @@
+[
+  {
+    "id": "it-c001",
+    "text": "E quindi uscimmo a riveder le stelle.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c002",
+    "text": "Considerate la vostra semenza: fatti non foste a viver come bruti.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c003",
+    "text": "Galeotto fu 'l libro e chi lo scrisse: quel giorno più non vi leggemmo avante.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c004",
+    "text": "Tu proverai sì come sa di sale lo pane altrui, e come è duro calle lo scendere e 'l salir per l'altrui scale.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Paradiso",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c005",
+    "text": "Vuolsi così colà dove si puote ciò che si vuole, e più non dimandare.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c006",
+    "text": "O frati, dissi, che per cento milia perigli siete giunti a l'occidente.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c007",
+    "text": "Tanto gentile e tanto onesta pare la donna mia quand'ella altrui saluta.",
+    "author": "Dante Alighieri",
+    "source": "Vita Nuova",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c008",
+    "text": "Studia prima la scienza, e poi seguita la pratica nata da essa scienza.",
+    "author": "Leonardo da Vinci",
+    "source": "Codice Atlantico",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c009",
+    "text": "Il moto è causa d'ogni vita.",
+    "author": "Leonardo da Vinci",
+    "source": "Codice Atlantico",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c010",
+    "text": "Dove si grida non è vera scienza, perché la verità ha un sol termine.",
+    "author": "Leonardo da Vinci",
+    "source": "Codice Atlantico",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c011",
+    "text": "Ogni nostra cognizione prencipia da' sentimenti.",
+    "author": "Leonardo da Vinci",
+    "source": "Codice Trivulziano",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c012",
+    "text": "L'acqua che tocchi de' fiumi è l'ultima di quella che andò e la prima di quella che viene.",
+    "author": "Leonardo da Vinci",
+    "source": "Codice Atlantico",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c013",
+    "text": "È meglio essere temuto che amato, quando si abbia a mancare dell'una delle due.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c014",
+    "text": "Un principe deve imparare a non essere buono, e usarlo e non usarlo secondo la necessità.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c015",
+    "text": "Nel governare gli stati, gli uomini si guadagnano più con le opere che con le parole.",
+    "author": "Niccolò Machiavelli",
+    "source": "Discorsi sopra la prima deca di Tito Livio",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c016",
+    "text": "Erano disposti ad andare in galera per le idee, purché altri ce le mettesse.",
+    "author": "Niccolò Machiavelli",
+    "source": "La Mandragola",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c017",
+    "text": "Erano i capei d'oro a l'aura sparsi che 'n mille dolci nodi gli avolgea.",
+    "author": "Francesco Petrarca",
+    "source": "Canzoniere",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c018",
+    "text": "Benedetto sia 'l giorno, e 'l mese, et l'anno, et la stagione, e 'l tempo, et l'ora, e 'l punto.",
+    "author": "Francesco Petrarca",
+    "source": "Canzoniere",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c019",
+    "text": "La vita fugge, et non s'arresta una hora, et la morte vien dietro a gran giornate.",
+    "author": "Francesco Petrarca",
+    "source": "Canzoniere",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c020",
+    "text": "Pace non trovo, et non ò da far guerra; e temo, et spero; et ardo, et son un ghiaccio.",
+    "author": "Francesco Petrarca",
+    "source": "Canzoniere",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c021",
+    "text": "Quanto è bella giovinezza, che si fugge tuttavia! Chi vuol esser lieto, sia: di doman non c'è certezza.",
+    "author": "Lorenzo de' Medici",
+    "source": "Canzona di Bacco",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c022",
+    "text": "Le donne, i cavallier, l'arme, gli amori, le cortesie, l'audaci imprese io canto.",
+    "author": "Ludovico Ariosto",
+    "source": "Orlando Furioso",
+    "category": "classics",
+    "locale": "it"
+  }
+]

@@ -1,0 +1,250 @@
+[
+  {
+    "id": "de-w001",
+    "text": "Gott ist tot. Gott bleibt tot. Und wir haben ihn getötet.",
+    "author": "Friedrich Nietzsche",
+    "source": "Die fröhliche Wissenschaft",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w002",
+    "text": "Wer mit Ungeheuern kämpft, mag zusehn, dass er nicht dabei zum Ungeheuer wird.",
+    "author": "Friedrich Nietzsche",
+    "source": "Jenseits von Gut und Böse",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w003",
+    "text": "Ohne Musik wäre das Leben ein Irrtum.",
+    "author": "Friedrich Nietzsche",
+    "source": "Götzen-Dämmerung",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w004",
+    "text": "Man muss noch Chaos in sich haben, um einen tanzenden Stern gebären zu können.",
+    "author": "Friedrich Nietzsche",
+    "source": "Also sprach Zarathustra",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w005",
+    "text": "Der Mensch ist etwas, das überwunden werden soll.",
+    "author": "Friedrich Nietzsche",
+    "source": "Also sprach Zarathustra",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w006",
+    "text": "Zwei Dinge erfüllen das Gemüt mit immer neuer Bewunderung: der bestirnte Himmel über mir und das moralische Gesetz in mir.",
+    "author": "Immanuel Kant",
+    "source": "Kritik der praktischen Vernunft",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w007",
+    "text": "Aufklärung ist der Ausgang des Menschen aus seiner selbst verschuldeten Unmündigkeit.",
+    "author": "Immanuel Kant",
+    "source": "Was ist Aufklärung?",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w008",
+    "text": "Handle so, dass die Maxime deines Willens jederzeit als Prinzip einer allgemeinen Gesetzgebung gelten könne.",
+    "author": "Immanuel Kant",
+    "source": "Kritik der praktischen Vernunft",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w009",
+    "text": "Aus so krummem Holze, als woraus der Mensch gemacht ist, kann nichts ganz Gerades gezimmert werden.",
+    "author": "Immanuel Kant",
+    "source": "Idee zu einer allgemeinen Geschichte",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w010",
+    "text": "Das Leben ist eine missliche Sache. Ich habe mir vorgesetzt, es damit hinzubringen, darüber nachzudenken.",
+    "author": "Arthur Schopenhauer",
+    "source": "Parerga und Paralipomena",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w011",
+    "text": "Jeder Mensch hält die Grenzen seines eigenen Gesichtsfeldes für die Grenzen der Welt.",
+    "author": "Arthur Schopenhauer",
+    "source": "Parerga und Paralipomena",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w012",
+    "text": "Die Gesundheit überwiegt alle äußeren Güter so sehr, dass ein gesunder Bettler glücklicher ist als ein kranker König.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen zur Lebensweisheit",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w013",
+    "text": "Reichtum gleicht dem Seewasser: je mehr man davon trinkt, desto durstiger wird man.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen zur Lebensweisheit",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w014",
+    "text": "Ich weiß nicht, ob es besser wird, wenn es anders wird. Aber es muss anders werden, wenn es gut werden soll.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w015",
+    "text": "Wer weniger hat, als er begehrt, muss wissen, dass er mehr hat, als er verdient.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w016",
+    "text": "Es ist fast unmöglich, die Fackel der Wahrheit durch ein Gedränge zu tragen, ohne jemandem den Bart zu sengen.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w017",
+    "text": "Phantasie und Wissen liegen oft näher beieinander, als man denkt.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w018",
+    "text": "Die Phantasie ist wichtiger als Wissen, denn Wissen ist begrenzt.",
+    "author": "Albert Einstein",
+    "source": "Interview, Saturday Evening Post",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w019",
+    "text": "Zwei Dinge sind unendlich, das Universum und die menschliche Dummheit, aber beim Universum bin ich mir noch nicht ganz sicher.",
+    "author": "Albert Einstein",
+    "source": "zugeschrieben",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w020",
+    "text": "Probleme kann man niemals mit derselben Denkweise lösen, durch die sie entstanden sind.",
+    "author": "Albert Einstein",
+    "source": "zugeschrieben",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w021",
+    "text": "Es gibt nur zwei Tage im Jahr, an denen man gar nichts tun kann: der eine heißt gestern, der andere morgen.",
+    "author": "Albert Einstein",
+    "source": "zugeschrieben",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w022",
+    "text": "Niemand hat das Recht zu gehorchen.",
+    "author": "Hannah Arendt",
+    "source": "Eichmann in Jerusalem",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w023",
+    "text": "Keiner hat das Recht zu befehlen und keiner die Pflicht zu gehorchen, wo die Freiheit fehlt.",
+    "author": "Hannah Arendt",
+    "source": "Über die Revolution",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w024",
+    "text": "Das Vergeben ist der Schlüssel zum Handeln und zur Freiheit.",
+    "author": "Hannah Arendt",
+    "source": "Vita activa",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w025",
+    "text": "Wer denken will, muss bereit sein, sich überraschen zu lassen.",
+    "author": "Hannah Arendt",
+    "source": "Vom Leben des Geistes",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w026",
+    "text": "Was du heute kannst besorgen, das verschiebe nicht auf morgen, doch denke selbst, ehe du handelst.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w027",
+    "text": "Der Wille zur Macht ist das Grundprinzip alles Lebendigen, das nach Wachstum und Überwindung strebt.",
+    "author": "Friedrich Nietzsche",
+    "source": "Der Wille zur Macht",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w028",
+    "text": "Die Welt ist meine Vorstellung: dies ist die Wahrheit, welche in Beziehung auf jedes lebende und erkennende Wesen gilt.",
+    "author": "Arthur Schopenhauer",
+    "source": "Die Welt als Wille und Vorstellung",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w029",
+    "text": "Gedanken ohne Inhalt sind leer, Anschauungen ohne Begriffe sind blind.",
+    "author": "Immanuel Kant",
+    "source": "Kritik der reinen Vernunft",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w030",
+    "text": "Was aus Liebe getan wird, geschieht immer jenseits von Gut und Böse.",
+    "author": "Friedrich Nietzsche",
+    "source": "Jenseits von Gut und Böse",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w031",
+    "text": "Das Böse ist banal, denn es entspringt oft nicht der Bosheit, sondern der Gedankenlosigkeit.",
+    "author": "Hannah Arendt",
+    "source": "Eichmann in Jerusalem",
+    "category": "wisdom",
+    "locale": "de"
+  }
+]

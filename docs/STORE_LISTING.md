@@ -132,14 +132,18 @@ Decode famous quotes. A new cryptogram puzzle every day, free and offline.
 Reveal the quote, one letter at a time. Every puzzle in Quotecrack is a famous quote hidden behind a simple letter swap. You work it out letter by letter, and there's a real little thrill the moment the words fall into place.
 
 DAILY CRYPTOGRAM
-A fresh puzzle every day, the same quote for everyone in the world. Solve it, keep your streak going, and share your time with friends, Wordle style.
+A fresh puzzle every day. Solve it, keep your streak going, and share your time with friends, Wordle style. Every language has its own daily, drawn from its own quotes.
 
-500+ HAND-PICKED QUOTES
-Wisdom, humor, proverbs, literature, and science, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world. Every quote is chosen by hand and properly attributed.
+PLAYS IN YOUR LANGUAGE
+Choose from 7 languages — English, Türkçe, Español, Deutsch, Français, Italiano, Português — and the whole game speaks it. Every language has its own hand-picked packs of native quotes, played in its own alphabet and on its own keyboard. Switch language and the entire catalog becomes that culture's voices.
+
+HAND-PICKED QUOTES
+Proverbs, wisdom, wit, and literature, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world — plus a premium Classics pack of timeless authors. Every quote is chosen by hand and properly attributed.
 
 PLAY YOUR WAY
 • 4 difficulty packs, from relaxed Beginner to tough Expert
-• 5 themed packs: Proverbs, Humor, Wisdom, Literature, Science
+• 4 themed packs: Proverbs, Wisdom, Wit, Literature
+• A bonus Classics pack with Premium
 • A timer when you want it, off when you'd rather just relax
 • Smart hints for when you're stuck (solve puzzles to earn more)
 • Error checking you can switch on or off
@@ -158,7 +162,7 @@ TRACK YOUR JOURNEY
 • 24 achievements to unlock
 
 FAIR AND FREE TO PLAY
-The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive bonus packs (Shakespeare, Stoic wisdom, and more on the way).
+The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive Classics pack — your language's most timeless voices, hand-picked.
 
 WHAT IS A CRYPTOGRAM?
 A cryptogram (also called a cryptoquote or cipher puzzle) is a short message scrambled by swapping each letter for another. You break it with pattern recognition, letter frequency, and the shapes of words. It's the same fun as the cryptoquip in the Sunday paper, now in your pocket.
@@ -184,22 +188,42 @@ Quotecrack: Şifre Bulmaca
 Sözü harf harf çöz. Quotecrack'teki her bulmaca, basit bir harf değişimiyle gizlenmiş ünlü bir sözdür; harfleri tek tek çözersin ve kelimeler yerine oturduğu an gerçek bir keyif yaşarsın.
 
 GÜNLÜK ŞİFRE
-Her gün herkese aynı söz düşer. Çöz, serini sürdür ve süreni arkadaşlarınla paylaş.
+Her gün yeni bir bulmaca. Çöz, serini sürdür ve süreni arkadaşlarınla paylaş. Her dilin kendi günlük bulmacası vardır.
 
-TÜRKÇE VE 7 DİL
-Türkçe atasözleri ve özlü sözlerden oluşan özgün paketler; ayrıca İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca ve Portekizce içerik. Her dil kendi alfabesinde oynanır.
+SENİN DİLİNDE
+Türkçe'yi seç, oyunun tamamı Türkçeleşsin: Türk atasözleri, bilgelik sözleri, nükteler ve edebiyatımızdan dizeler — hepsi kendi alfabesinde ve kendi klavyesinde. Oyun 7 dil destekler (Türkçe, İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca, Portekizce) ve her dilin kendi özgün paketleri vardır. Dili değiştir, tüm içerik o kültürün sesleriyle dolsun.
 
-NASIL OYNANIR
-• Kolaydan zora zorluk paketleri
-• Tema paketleri ve dil paketleri
+ÖZENLE SEÇİLMİŞ SÖZLER
+Atasözleri, Bilgelik, Nükte ve Edebiyat paketleri; ayrıca Premium ile açılan Klasikler paketi (Mevlânâ, Yunus Emre ve daha fazlası). Her söz elle seçilir ve doğru biçimde atıflanır.
+
+DİLEDİĞİN GİBİ OYNA
+• Kolaydan zora 4 zorluk paketi (Başlangıç'tan Uzman'a)
+• 4 temalı paket: Atasözleri, Bilgelik, Nükte, Edebiyat
+• Premium ile bonus Klasikler paketi
 • İstersen süre, istersen tam sakinlik
-• Takıldığında akıllı ipuçları
-• Açık, koyu ve sepya temalar
+• Takıldığında akıllı ipuçları (çözdükçe kazan)
+• Açıp kapatabileceğin hata denetimi
 
-TAMAMEN ÇEVRİMDIŞI
-Hesap yok, kayıt yok. Uçakta, metroda, her yerde oyna. Çözüm ekranı her zaman reklamsız; dilersen tek seferlik Premium ile tüm reklamları kaldır.
+KONFOR İÇİN
+• Tamamen çevrimdışı; uçakta, metroda, her yerde
+• Hesap yok, kayıt yok, reklam karmaşası yok
+• Açık, koyu ve sepya okuma temaları
+• Ayarlanabilir yazı boyutu ve renk körlüğüne uygun palet
+• Büyük dokunma alanları ve bulmacaya özel klavye
+• İstediğin an kapatabileceğin yumuşak müzik
 
-Kelime oyunlarını ve güzel sözleri seviyorsan, Quotecrack zihnine keyifli bir günlük antrenman sunar. Ücretsiz indir, ilk şifreni bir dakikada çöz.
+YOLCULUĞUNU İZLE
+• Takvim ısı haritalı günlük seriler
+• Çözüm süresi, en hızlı çözüm ve ipucusuz çözüm istatistikleri
+• Açılacak başarımlar
+
+ADİL VE ÜCRETSİZ
+Çözüm ekranı her zaman reklamsız. Küçük bir banner ve ara sıra tam ekran reklam oyunu ayakta tutar. Reklamsız mı istiyorsun? Tek seferlik Premium ile tüm reklamları kaldır, sınırsız ipucu aç ve Klasikler paketine kavuş.
+
+KRİPTOGRAM NEDİR?
+Kriptogram, her harfin başka bir harfle değiştirildiği kısa, şifreli bir mesajdır. Örüntü tanıma, harf sıklığı ve kelime şekilleriyle çözülür. Gazetedeki şifreli bulmacanın keyfi, şimdi cebinde.
+
+Kelime oyunlarını, zekâ bulmacalarını ve güzel sözleri seviyorsan, Quotecrack zihnine keyifli bir günlük antrenman sunar. Ücretsiz indir, ilk şifreni yaklaşık bir dakikada çöz.
 ```
 
 ### Español (es)

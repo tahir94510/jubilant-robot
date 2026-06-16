@@ -1,0 +1,162 @@
+[
+  {
+    "id": "es-w001",
+    "text": "Yo soy yo y mi circunstancia, y si no la salvo a ella no me salvo yo.",
+    "author": "José Ortega y Gasset",
+    "source": "Meditaciones del Quijote",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w002",
+    "text": "Procuremos más ser padres de nuestro porvenir que hijos de nuestro pasado.",
+    "author": "Miguel de Unamuno",
+    "source": "Ensayos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w003",
+    "text": "La vida es aquello que te va sucediendo mientras te empeñas en hacer otros planes.",
+    "author": "Antonio Machado",
+    "source": "Proverbios y cantares",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w004",
+    "text": "Hoy es siempre todavía, toda la vida es ahora.",
+    "author": "Antonio Machado",
+    "source": "Proverbios y cantares",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w005",
+    "text": "La libertad es uno de los más preciosos dones que a los hombres dieron los cielos.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w006",
+    "text": "Saber esperar es el gran secreto de la vida.",
+    "author": "Concepción Arenal",
+    "source": "La mujer del porvenir",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w007",
+    "text": "Vivir no es sólo existir, sino existir y crear, gozar y sufrir, y no dormir sin soñar.",
+    "author": "Gregorio Marañón",
+    "source": "Ensayos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w008",
+    "text": "La sabiduría consiste en saber cuál es el siguiente paso; la virtud, en darlo.",
+    "author": "Concepción Arenal",
+    "source": "Cartas a un obrero",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w009",
+    "text": "No hay camino para la paz, la paz es el camino.",
+    "author": "José Luis Sampedro",
+    "source": "Conferencias",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w010",
+    "text": "Aprender es como remar contra corriente: en cuanto se deja, se retrocede.",
+    "author": "Benito Pérez Galdós",
+    "source": "Discursos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w011",
+    "text": "El secreto de la buena memoria es el secreto de la atención.",
+    "author": "Santiago Ramón y Cajal",
+    "source": "Reglas y consejos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w012",
+    "text": "Al que madruga, la fortuna le ayuda a hilar su propio destino.",
+    "author": "Baltasar Gracián",
+    "source": "El Criticón",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w013",
+    "text": "Más obran quintaesencias que fárragos.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w014",
+    "text": "Nunca por mucho desconfiar se pierde, sino por mucho confiar.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w015",
+    "text": "La verdadera ciencia enseña, por encima de todo, a dudar y a ser ignorante.",
+    "author": "Miguel de Unamuno",
+    "source": "Del sentimiento trágico de la vida",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w016",
+    "text": "Solo el que sabe es libre, y más libre el que más sabe.",
+    "author": "Miguel de Unamuno",
+    "source": "Ensayos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w017",
+    "text": "El arte de vivir consiste en hacer de la vida una obra de arte.",
+    "author": "María Zambrano",
+    "source": "Claros del bosque",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w018",
+    "text": "Pensar es conversar con uno mismo.",
+    "author": "María Zambrano",
+    "source": "El hombre y lo divino",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w019",
+    "text": "La rutina es la costumbre de no pensar.",
+    "author": "Jacinto Benavente",
+    "source": "Pensamientos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w020",
+    "text": "La prudencia es saber distinguir lo posible de lo imposible.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  }
+]

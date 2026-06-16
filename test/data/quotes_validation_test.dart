@@ -132,6 +132,35 @@ void main() {
     }
   });
 
+  test('every language fills the whole pack structure', () {
+    final repo = QuoteRepository.fromQuotes(quotes);
+    const locales = ['en', 'tr', 'es', 'de', 'fr', 'it', 'pt'];
+    for (final loc in locales) {
+      // Difficulty ladder collectively has content.
+      final ladder = Pack.catalog
+          .where((p) => p.kind == PackKind.difficulty)
+          .expand((p) => repo.forPack(p, activeLocale: loc))
+          .length;
+      expect(ladder, greaterThan(0), reason: '$loc difficulty ladder is empty');
+      // Each themed pack is non-empty, and the premium Classics pack is stocked.
+      for (final pack in Pack.catalog.where((p) => p.kind != PackKind.difficulty)) {
+        final size = repo.forPack(pack, activeLocale: loc).length;
+        expect(
+          size,
+          greaterThan(0),
+          reason: '$loc pack ${pack.id} is empty',
+        );
+        if (pack.premiumOnly) {
+          expect(
+            size,
+            greaterThanOrEqualTo(15),
+            reason: '$loc Classics pack too small ($size)',
+          );
+        }
+      }
+    }
+  });
+
   test('the daily pool stays English-only', () {
     final repo = QuoteRepository.fromQuotes(quotes);
     expect(repo.dailyPool.every((q) => q.locale == 'en'), isTrue);

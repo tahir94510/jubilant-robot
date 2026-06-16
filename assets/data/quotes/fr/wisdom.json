@@ -1,0 +1,242 @@
+[
+  {
+    "id": "fr-w002",
+    "text": "Le monde n'est qu'une branloire pérenne.",
+    "author": "Michel de Montaigne",
+    "source": "Essais",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w003",
+    "text": "Philosopher, c'est apprendre à mourir.",
+    "author": "Michel de Montaigne",
+    "source": "Essais",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w004",
+    "text": "Il se faut prêter à autrui et ne se donner qu'à soi-même.",
+    "author": "Michel de Montaigne",
+    "source": "Essais",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w005",
+    "text": "La plus subtile folie se fait de la plus subtile sagesse.",
+    "author": "Michel de Montaigne",
+    "source": "Essais",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w006",
+    "text": "Tous les jours vont à la mort, le dernier y arrive.",
+    "author": "Michel de Montaigne",
+    "source": "Essais",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w007",
+    "text": "Le silence éternel de ces espaces infinis m'effraie.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w008",
+    "text": "Tout le malheur des hommes vient d'une seule chose, qui est de ne savoir pas demeurer en repos dans une chambre.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w009",
+    "text": "L'homme est visiblement fait pour penser ; c'est toute sa dignité et tout son mérite.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w010",
+    "text": "La justice sans la force est impuissante, la force sans la justice est tyrannique.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w011",
+    "text": "Travaillons donc à bien penser : voilà le principe de la morale.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w012",
+    "text": "Le nez de Cléopâtre : s'il eût été plus court, toute la face de la terre aurait changé.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w013",
+    "text": "Si l'on bâtissait la maison du bonheur, la plus grande pièce en serait la salle d'attente.",
+    "author": "Jules Renard",
+    "source": "Journal",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w014",
+    "text": "Les lois inutiles affaiblissent les lois nécessaires.",
+    "author": "Montesquieu",
+    "source": "De l'esprit des lois",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w015",
+    "text": "Pour qu'on ne puisse abuser du pouvoir, il faut que, par la disposition des choses, le pouvoir arrête le pouvoir.",
+    "author": "Montesquieu",
+    "source": "De l'esprit des lois",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w016",
+    "text": "Il faut pleurer les hommes à leur naissance, et non pas à leur mort.",
+    "author": "Montesquieu",
+    "source": "Lettres persanes",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w017",
+    "text": "L'homme est né libre, et partout il est dans les fers.",
+    "author": "Jean-Jacques Rousseau",
+    "source": "Du contrat social",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w018",
+    "text": "Renoncer à sa liberté, c'est renoncer à sa qualité d'homme, aux droits de l'humanité, même à ses devoirs.",
+    "author": "Jean-Jacques Rousseau",
+    "source": "Du contrat social",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w019",
+    "text": "L'homme qui pense est un animal dépravé.",
+    "author": "Jean-Jacques Rousseau",
+    "source": "Discours sur l'origine de l'inégalité",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w020",
+    "text": "Je sentis avant de penser : c'est le sort commun de l'humanité.",
+    "author": "Jean-Jacques Rousseau",
+    "source": "Les Confessions",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w021",
+    "text": "Au milieu de l'hiver, j'apprenais enfin qu'il y avait en moi un été invincible.",
+    "author": "Albert Camus",
+    "source": "L'Été",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w022",
+    "text": "Mal nommer les choses, c'est ajouter au malheur du monde.",
+    "author": "Albert Camus",
+    "source": "Sur une philosophie de l'expression",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w023",
+    "text": "La vraie générosité envers l'avenir consiste à tout donner au présent.",
+    "author": "Albert Camus",
+    "source": "L'Homme révolté",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w024",
+    "text": "Je me révolte, donc nous sommes.",
+    "author": "Albert Camus",
+    "source": "L'Homme révolté",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w025",
+    "text": "L'attention est la forme la plus rare et la plus pure de la générosité.",
+    "author": "Simone Weil",
+    "source": "Œuvres",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w026",
+    "text": "Il n'y a pour l'homme que deux biens véritables : la pensée et l'action.",
+    "author": "Simone Weil",
+    "source": "La Condition ouvrière",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w027",
+    "text": "Le malheur attaché à un être humain le rend muet.",
+    "author": "Simone Weil",
+    "source": "L'Enracinement",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w028",
+    "text": "Ce n'est pas la religion mais la révolution qui est l'opium du peuple.",
+    "author": "Simone Weil",
+    "source": "Œuvres",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w029",
+    "text": "La force est ce qui fait de quiconque lui est soumis une chose.",
+    "author": "Simone Weil",
+    "source": "L'Iliade ou le poème de la force",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w030",
+    "text": "Tout être crie en silence pour être lu autrement.",
+    "author": "Simone Weil",
+    "source": "La Pesanteur et la Grâce",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-w031",
+    "text": "Le doute n'est pas un état bien agréable, mais l'assurance est un état ridicule.",
+    "author": "Voltaire",
+    "source": "Lettre à Frédéric II de Prusse",
+    "category": "wisdom",
+    "locale": "fr"
+  }
+]

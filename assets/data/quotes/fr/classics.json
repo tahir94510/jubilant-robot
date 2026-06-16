@@ -1,0 +1,154 @@
+[
+  {
+    "id": "fr-c001",
+    "text": "Dans ce pays-ci, il est bon de tuer de temps en temps un amiral pour encourager les autres.",
+    "author": "Voltaire",
+    "source": "Candide",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c002",
+    "text": "Je ne suis pas d'accord avec ce que vous dites, mais je me battrai pour que vous ayez le droit de le dire.",
+    "author": "Voltaire",
+    "source": "Attribué",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c003",
+    "text": "Si Dieu n'existait pas, il faudrait l'inventer.",
+    "author": "Voltaire",
+    "source": "Épître à l'auteur du livre des trois imposteurs",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c005",
+    "text": "L'amour est de tous les âges.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c006",
+    "text": "En toute chose il faut considérer la fin.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c007",
+    "text": "On rencontre sa destinée souvent par des chemins qu'on prend pour l'éviter.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c008",
+    "text": "Patience et longueur de temps font plus que force ni que rage.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c009",
+    "text": "Quand on n'a pas ce que l'on aime, il faut aimer ce que l'on a.",
+    "author": "Pierre Corneille",
+    "source": "Le Cid",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c011",
+    "text": "Le crime fait la honte, et non pas l'échafaud.",
+    "author": "Pierre Corneille",
+    "source": "Le Comte d'Essex",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c012",
+    "text": "On ne meurt qu'une fois, et c'est pour si longtemps !",
+    "author": "Molière",
+    "source": "Le Dépit amoureux",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c013",
+    "text": "Les gens de qualité savent tout sans avoir jamais rien appris.",
+    "author": "Molière",
+    "source": "Les Précieuses ridicules",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c014",
+    "text": "Non, je ne puis souffrir cette lâche méthode qu'affectent la plupart de vos gens à la mode.",
+    "author": "Molière",
+    "source": "Le Misanthrope",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c015",
+    "text": "Qu'il est doux de bercer ses chagrins et ses peines.",
+    "author": "Jean Racine",
+    "source": "Andromaque",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c016",
+    "text": "Dans l'Orient désert quel devint mon ennui !",
+    "author": "Jean Racine",
+    "source": "Bérénice",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c017",
+    "text": "C'est Vénus tout entière à sa proie attachée.",
+    "author": "Jean Racine",
+    "source": "Phèdre",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c018",
+    "text": "L'homme n'est ni ange ni bête, et le malheur veut que qui veut faire l'ange fait la bête.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c020",
+    "text": "Diseur de bons mots, mauvais caractère.",
+    "author": "Blaise Pascal",
+    "source": "Pensées",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c021",
+    "text": "Pour savoir ce que Dieu voulait, il ne consultait que l'Évangile et n'écoutait que sa conscience.",
+    "author": "René Descartes",
+    "source": "Discours de la méthode",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c022",
+    "text": "Il ne suffit pas d'avoir l'esprit bon, mais le principal est de l'appliquer bien.",
+    "author": "René Descartes",
+    "source": "Discours de la méthode",
+    "category": "classics",
+    "locale": "fr"
+  }
+]

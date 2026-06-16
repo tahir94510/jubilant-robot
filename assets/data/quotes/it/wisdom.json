@@ -1,0 +1,234 @@
+[
+  {
+    "id": "it-w001",
+    "text": "Chi vuol veder quello che ha da essere consideri quello che è stato.",
+    "author": "Niccolò Machiavelli",
+    "source": "Discorsi sopra la prima deca di Tito Livio",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w002",
+    "text": "La fortuna è arbitra della metà delle azioni nostre, ma ne lascia governare l'altra metà a noi.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w003",
+    "text": "Gli uomini dimenticano più presto la morte del padre che la perdita del patrimonio.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w004",
+    "text": "Non è titolo onorevole quel che si ottiene con l'inganno e con la fortuna, ma quel che si merita.",
+    "author": "Niccolò Machiavelli",
+    "source": "Discorsi sopra la prima deca di Tito Livio",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w005",
+    "text": "La natura non ha fatto nulla invano.",
+    "author": "Niccolò Machiavelli",
+    "source": "Discorsi sopra la prima deca di Tito Livio",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w006",
+    "text": "Il pensiero molesto, sterminato desiderio, e l'animo per sua natura insaziabile, formano la mia infelicità.",
+    "author": "Giacomo Leopardi",
+    "source": "Zibaldone",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w007",
+    "text": "La noia è in qualche modo il più sublime dei sentimenti umani.",
+    "author": "Giacomo Leopardi",
+    "source": "Zibaldone",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w008",
+    "text": "Tutto è male; cioè tutto quello che è, è male; che ciascuna cosa esista è un male.",
+    "author": "Giacomo Leopardi",
+    "source": "Zibaldone",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w009",
+    "text": "Nessuno è così pienamente disingannato del mondo, e così persuaso del nulla delle cose, che non vi si lasci ingannare di nuovo.",
+    "author": "Giacomo Leopardi",
+    "source": "Zibaldone",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w010",
+    "text": "L'uomo è condannato a essere libero solo nella misura in cui pensa la propria storia.",
+    "author": "Benedetto Croce",
+    "source": "La storia come pensiero e come azione",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w011",
+    "text": "Ogni vera storia è storia contemporanea.",
+    "author": "Benedetto Croce",
+    "source": "Teoria e storia della storiografia",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w012",
+    "text": "Non possiamo non dirci cristiani.",
+    "author": "Benedetto Croce",
+    "source": "Perché non possiamo non dirci cristiani",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w013",
+    "text": "Istruitevi, perché avremo bisogno di tutta la nostra intelligenza.",
+    "author": "Antonio Gramsci",
+    "source": "L'Ordine Nuovo",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w014",
+    "text": "Odio gli indifferenti. Credo che vivere voglia dire essere partigiani.",
+    "author": "Antonio Gramsci",
+    "source": "La Città Futura",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w015",
+    "text": "Il vecchio mondo sta morendo. Quello nuovo tarda a comparire. E in questo chiaroscuro nascono i mostri.",
+    "author": "Antonio Gramsci",
+    "source": "Quaderni del carcere",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w016",
+    "text": "Pessimismo dell'intelligenza, ottimismo della volontà.",
+    "author": "Antonio Gramsci",
+    "source": "Quaderni del carcere",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w017",
+    "text": "Il proprio fine ognuno lo trova nella vita, non c'è bisogno di andarlo a cercare lontano.",
+    "author": "Antonio Gramsci",
+    "source": "Lettere dal carcere",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w018",
+    "text": "Il bambino non è un vaso da riempire, ma un fuoco da accendere.",
+    "author": "Maria Montessori",
+    "source": "La scoperta del bambino",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w020",
+    "text": "Il premio e il castigo sono incentivi verso uno sforzo innaturale, e perciò non possiamo certo parlare di sviluppo naturale del bambino.",
+    "author": "Maria Montessori",
+    "source": "Il metodo della pedagogia scientifica",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w021",
+    "text": "L'educazione è un'arma di pace.",
+    "author": "Maria Montessori",
+    "source": "Educazione e pace",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w022",
+    "text": "Mai aiutare un bambino mentre sta svolgendo un compito nel quale sente di poter avere successo.",
+    "author": "Maria Montessori",
+    "source": "La mente del bambino",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w023",
+    "text": "Chi è cagione che uno diventi potente, rovina; perché quella potenza è causata da lui o con industria o con forza.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w024",
+    "text": "Debbe adunque uno principe non si curare della infamia di crudele, per tenere i sudditi suoi uniti e in fede.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w025",
+    "text": "L'arte è la negazione della filosofia, ed è anch'essa conoscenza, ma conoscenza dell'individuale.",
+    "author": "Benedetto Croce",
+    "source": "Estetica come scienza dell'espressione",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w026",
+    "text": "Ciascuno cresce solo se sognato.",
+    "author": "Danilo Dolci",
+    "source": "Il limone lunare",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w027",
+    "text": "La cultura è quella cosa che resta dopo aver dimenticato tutto ciò che si è imparato.",
+    "author": "Edmondo De Amicis",
+    "source": "Attribuita",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w028",
+    "text": "L'uomo che non legge non ha alcun vantaggio su quello che non sa leggere.",
+    "author": "Proverbio italiano",
+    "source": "Tradizione",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w029",
+    "text": "Chi sa fa, e chi non sa insegna; ma chi davvero impara insegna a sé stesso ogni giorno.",
+    "author": "Proverbio italiano",
+    "source": "Tradizione",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-w030",
+    "text": "La pazienza è la virtù dei forti, e il tempo è padre di tutte le verità.",
+    "author": "Proverbio italiano",
+    "source": "Tradizione",
+    "category": "wisdom",
+    "locale": "it"
+  }
+]
