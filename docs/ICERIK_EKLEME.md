@@ -115,8 +115,8 @@ Değiştirdikten sonra `flutter test` ses ve içerik testlerini de doğrular.
 | Alan | Davranış |
 |---|---|
 | Paketler | Kategoriye eklenen söz ilgili paket(ler)de kendiliğinden görünür; paket sayaçları (`12/68` gibi) kendiliğinden güncellenir |
-| Zorluk rafları | Yeni sözün zorluğu koddan hesaplanır, doğru rafa düşer |
-| Günlük havuz | Ücretsiz kategorilere eklenenler günlük havuza kendiliğinden girer |
+| Zorluk rafları | Yeni sözün zorluğu koddan hesaplanır, doğru rafa düşer. Raf merdiveni **aktif dile** göre çalışır: oyuncu Türkçe'deyse Başlangıç→Uzman rafları Türkçe sözlerle, İngilizce'deyse İngilizce sözlerle dolar |
+| Günlük havuz | Günlük bulmaca da **aktif dile** göre seçilir: her dilin kendi günlük havuzu vardır (İngilizce için ücretsiz kategoriler; diğer diller için o dilin yerel sözleri) |
 | Sayaç başarımları | Mevcut sözlerle kendiliğinden ilerler; YENİ başarım eklemek ayrı bir adımdır (yukarı bakın) |
 | Eski oyuncular | İlerleme/seri/jeton aynen korunur (kayıtlar söz/başarım kimliğine bağlı) |
 
@@ -125,6 +125,12 @@ havuz büyüyünce o yılın kalan günlük sırası yeniden karılır (çok dü
 olasılıkla yıl içinde bir söz ikinci kez "günün bulmacası" olabilir). Çeyrek
 başına bir ekleme kadansında pratikte fark edilmez; istenirse içerik
 partilerini 1 Ocak güncellemelerinde yayınlayarak tamamen önlenebilir.
+
+Diller için: İngilizce havuz bir artık yılı (366+) kapsar, bu yüzden yıl
+içinde tekrar olmaz. Yerel dil havuzları daha küçük olabilir; bu durumda
+günlük seçim havuz boyutuna göre **deterministik biçimde döngüye girer**
+(aynı gün herkes için aynı bulmaca olur, ama küçük havuzda yıl içinde tekrar
+mümkündür). Havuz büyüdükçe tekrar aralığı kendiliğinden açılır.
 
 ## Zorluk eşikleri (çok söz eklerken DİKKAT)
 

@@ -214,7 +214,10 @@ class GameController extends ChangeNotifier {
   /// Restarts the ticker after a lifecycle pause (app backgrounded, ad
   /// overlay, phone call) so off-screen time never counts as solve time.
   void resumeTimer() {
-    if (_session != null && !_completed && !_reviewingSolved && _ticker == null) {
+    if (_session != null &&
+        !_completed &&
+        !_reviewingSolved &&
+        _ticker == null) {
       _startTicker();
     }
   }

@@ -83,8 +83,7 @@ class QuoteRepository {
         _quotes
             .where(
               (q) =>
-                  q.locale == locale &&
-                  !premiumCategories.contains(q.category),
+                  q.locale == locale && !premiumCategories.contains(q.category),
             )
             .toList()
           ..sort((a, b) => a.id.compareTo(b.id));

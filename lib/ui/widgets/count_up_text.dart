@@ -18,9 +18,15 @@ class CountUpText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reduceMotion = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    final reduceMotion =
+        MediaQuery.maybeOf(context)?.disableAnimations ?? false;
     if (reduceMotion || value == 0) {
-      return Text('$value', maxLines: 1, overflow: TextOverflow.ellipsis, style: style);
+      return Text(
+        '$value',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: style,
+      );
     }
     return TweenAnimationBuilder<int>(
       // A fresh key per target so a changed value re-runs the tween from the
@@ -28,8 +34,12 @@ class CountUpText extends StatelessWidget {
       tween: IntTween(begin: 0, end: value),
       duration: duration,
       curve: Curves.easeOutCubic,
-      builder: (context, v, _) =>
-          Text('$v', maxLines: 1, overflow: TextOverflow.ellipsis, style: style),
+      builder: (context, v, _) => Text(
+        '$v',
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: style,
+      ),
     );
   }
 }
