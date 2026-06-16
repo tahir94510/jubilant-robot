@@ -143,13 +143,11 @@ void main() {
           .length;
       expect(ladder, greaterThan(0), reason: '$loc difficulty ladder is empty');
       // Each themed pack is non-empty, and the premium Classics pack is stocked.
-      for (final pack in Pack.catalog.where((p) => p.kind != PackKind.difficulty)) {
+      for (final pack in Pack.catalog.where(
+        (p) => p.kind != PackKind.difficulty,
+      )) {
         final size = repo.forPack(pack, activeLocale: loc).length;
-        expect(
-          size,
-          greaterThan(0),
-          reason: '$loc pack ${pack.id} is empty',
-        );
+        expect(size, greaterThan(0), reason: '$loc pack ${pack.id} is empty');
         if (pack.premiumOnly) {
           expect(
             size,
