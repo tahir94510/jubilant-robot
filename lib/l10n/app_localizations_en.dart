@@ -352,6 +352,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get puzzleAlreadySolved => 'You\'ve already cracked this one.';
+
+  @override
   String achievementsCountTitle(int unlocked, int total) {
     return 'Achievements ($unlocked/$total)';
   }

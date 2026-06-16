@@ -130,6 +130,7 @@
       "end": { "type": "String" }
     }
   },
+  "puzzleAlreadySolved": "You've already cracked this one.",
   "achievementsCountTitle": "Achievements ({unlocked}/{total})",
   "@achievementsCountTitle": {
     "placeholders": { "unlocked": { "type": "int" }, "total": { "type": "int" } }

@@ -99,6 +99,7 @@
   "statDailiesSolved": "Çözülen günlük",
   "statsDailyActivity": "Günlük etkinlik",
   "statsHeatmapCaption": "Son {weeks} hafta · {start} – {end}",
+  "puzzleAlreadySolved": "Bunu zaten çözdün.",
   "achievementsCountTitle": "Başarımlar ({unlocked}/{total})",
   "onbStep1Title": "Her harf yer değiştirir",
   "onbStep1Body": "Bir kriptogramda alfabedeki her harf, başka bir harfin yerine geçer. E aslında K olabilir, T aslında A olabilir; ama bu değişim metnin her yerinde tutarlıdır.",

@@ -358,6 +358,9 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get puzzleAlreadySolved => 'Você já decifrou este.';
+
+  @override
   String achievementsCountTitle(int unlocked, int total) {
     return 'Conquistas ($unlocked/$total)';
   }

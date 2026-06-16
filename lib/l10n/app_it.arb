@@ -99,6 +99,7 @@
   "statDailiesSolved": "Giornalieri risolti",
   "statsDailyActivity": "Attività giornaliera",
   "statsHeatmapCaption": "Ultime {weeks} settimane · {start} – {end}",
+  "puzzleAlreadySolved": "Hai già risolto questo.",
   "achievementsCountTitle": "Obiettivi ({unlocked}/{total})",
   "onbStep1Title": "Ogni lettera è sostituita",
   "onbStep1Body": "In un crittogramma ogni lettera dell’alfabeto ne rappresenta un’altra. La E può essere K, la T può essere A, ma la sostituzione è coerente ovunque.",
