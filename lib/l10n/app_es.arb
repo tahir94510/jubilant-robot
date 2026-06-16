@@ -98,6 +98,7 @@
   "statNoHintSolves": "Sin pistas",
   "statDailiesSolved": "Diarios resueltos",
   "statsDailyActivity": "Actividad diaria",
+  "statsHeatmapCaption": "Últimas {weeks} semanas · {start} – {end}",
   "achievementsCountTitle": "Logros ({unlocked}/{total})",
   "onbStep1Title": "Cada letra está sustituida",
   "onbStep1Body": "En un criptograma, cada letra del alfabeto representa a otra distinta. La E puede ser K, la T puede ser A, pero la sustitución es coherente en todo el texto.",

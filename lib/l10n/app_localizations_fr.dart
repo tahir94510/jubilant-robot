@@ -351,6 +351,11 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statsDailyActivity => 'Activité quotidienne';
 
   @override
+  String statsHeatmapCaption(int weeks, String start, String end) {
+    return '$weeks dernières semaines · $start – $end';
+  }
+
+  @override
   String achievementsCountTitle(int unlocked, int total) {
     return 'Succès ($unlocked/$total)';
   }

@@ -290,7 +290,7 @@ void main() {
 
     expect(h.settings.settings.onboardingDone, isTrue);
     expect(find.byType(PuzzleScreen), findsOneWidget);
-    expect(h.game.session!.quote.id, 'tutorial-001');
+    expect(h.game.session!.quote.id, 'tutorial-en');
 
     // Home was placed under the puzzle (no animated flash): backing out of
     // the tutorial lands on it, not on a dead end.

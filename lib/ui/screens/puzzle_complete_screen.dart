@@ -9,7 +9,6 @@ import '../../models/achievement.dart';
 import '../../models/pack.dart';
 import '../../models/quote.dart';
 import '../../services/ads/ads_service.dart';
-import '../../services/music_service.dart';
 import '../../services/notifications/notification_service.dart';
 import '../../services/review_service.dart';
 import '../../services/share_service.dart';
@@ -71,10 +70,6 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     if (mounted && fresh.isNotEmpty) {
       setState(() => _newAchievements = fresh);
       context.read<SoundService>().achievement();
-      // Let the bed yield to the unlock sting, then swell back.
-      context.read<MusicService>().duck(
-        hold: const Duration(milliseconds: 1400),
-      );
     }
 
     if (firstSolve) {

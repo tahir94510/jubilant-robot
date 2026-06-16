@@ -148,6 +148,8 @@ class _PackTile extends StatelessWidget {
           ),
           title: Text(
             pack.localizedTitle(l10n),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
           ),
           subtitle: Column(
@@ -155,6 +157,8 @@ class _PackTile extends StatelessWidget {
             children: [
               Text(
                 pack.localizedTagline(l10n),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 13, color: palette.textSecondary),
               ),
               const SizedBox(height: 6),

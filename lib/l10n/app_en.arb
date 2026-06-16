@@ -122,6 +122,14 @@
   "statNoHintSolves": "No-hint solves",
   "statDailiesSolved": "Dailies solved",
   "statsDailyActivity": "Daily activity",
+  "statsHeatmapCaption": "Last {weeks} weeks · {start} to {end}",
+  "@statsHeatmapCaption": {
+    "placeholders": {
+      "weeks": { "type": "int" },
+      "start": { "type": "String" },
+      "end": { "type": "String" }
+    }
+  },
   "achievementsCountTitle": "Achievements ({unlocked}/{total})",
   "@achievementsCountTitle": {
     "placeholders": { "unlocked": { "type": "int" }, "total": { "type": "int" } }

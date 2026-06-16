@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../services/clock.dart';
 import '../theme/palette.dart';
 
@@ -53,12 +54,25 @@ class HeatmapCalendar extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        Text(
-          'Last $_weeks weeks · ${DateFormat.yMMM().format(start)} to ${DateFormat.yMMM().format(today)}',
-          style: TextStyle(
-            fontSize: 12,
-            color: Theme.of(context).extension<GamePalette>()!.textSecondary,
-          ),
+        Builder(
+          builder: (context) {
+            // Month labels follow the active locale ("Şub 2026", "févr. 2026").
+            final localeName = Localizations.localeOf(context).toString();
+            final fmt = DateFormat.yMMM(localeName);
+            return Text(
+              AppLocalizations.of(context).statsHeatmapCaption(
+                _weeks,
+                fmt.format(start),
+                fmt.format(today),
+              ),
+              style: TextStyle(
+                fontSize: 12,
+                color: Theme.of(
+                  context,
+                ).extension<GamePalette>()!.textSecondary,
+              ),
+            );
+          },
         ),
       ],
     );

@@ -348,6 +348,11 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statsDailyActivity => 'Günlük etkinlik';
 
   @override
+  String statsHeatmapCaption(int weeks, String start, String end) {
+    return 'Son $weeks hafta · $start – $end';
+  }
+
+  @override
   String achievementsCountTitle(int unlocked, int total) {
     return 'Başarımlar ($unlocked/$total)';
   }
