@@ -98,6 +98,8 @@
   "statNoHintSolves": "Sem dicas",
   "statDailiesSolved": "Diários resolvidos",
   "statsDailyActivity": "Atividade diária",
+  "statsHeatmapCaption": "Últimas {weeks} semanas · {start} – {end}",
+  "puzzleAlreadySolved": "Você já decifrou este.",
   "achievementsCountTitle": "Conquistas ({unlocked}/{total})",
   "onbStep1Title": "Cada letra é trocada",
   "onbStep1Body": "Num criptograma, cada letra do alfabeto representa outra. O E pode ser K, o T pode ser A, mas a troca é consistente em todo o texto.",

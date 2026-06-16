@@ -1,14 +1,36 @@
 import 'package:flutter/material.dart';
 
-/// The Quotecrack logo drawn with pure widgets — the same geometry as the
-/// generated app icon (tool/generate_icons.py), so it is vector-crisp at
-/// any size and DPI: a serif Q on the brand gradient, a coral question
+/// The Quotecrack logo, drawn with a [CustomPainter] so it is vector-crisp at
+/// any size and DPI: a serif Q on the brand gradient, a champagne-gold question
 /// mark at its shoulder, and the cryptogram underline beneath.
+///
+/// Why a painter and not stacked [Align]s: the generated app icon
+/// (tool/generate_icons.py) centres each glyph by its *ink box*, but `Align`
+/// centres the *line box* (font ascent/descent included), which dropped the
+/// serif Q lower than in the icon and let its tail fuse into the underline.
+/// Here the underline is positioned strictly below the Q's layout box, so the
+/// descender can never reach it — at size 24 or 240.
 class BrandMark extends StatelessWidget {
   const BrandMark({super.key, this.size = 48});
 
   final double size;
 
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      image: true,
+      label: 'Quotecrack logo',
+      child: ExcludeSemantics(
+        child: SizedBox.square(
+          dimension: size,
+          child: CustomPaint(painter: _BrandPainter()),
+        ),
+      ),
+    );
+  }
+}
+
+class _BrandPainter extends CustomPainter {
   // "Ink & Gold" brand: a warm-ink gradient tile, an ivory serif Q, a
   // champagne-gold question mark at its shoulder, and a slim gold underline.
   static const _gradientTop = Color(0xFF1A1814);
@@ -17,80 +39,72 @@ class BrandMark extends StatelessWidget {
   static const _gold = Color(0xFFE0B85A);
   static const _underline = Color(0xFFCBA24E);
 
-  @override
-  Widget build(BuildContext context) {
-    // Brand text is part of the artwork: it must not scale with system text.
-    final lineHeight = size * 0.05;
-    return Semantics(
-      image: true,
-      label: 'Quotecrack logo',
-      child: ExcludeSemantics(
-        child: Container(
-          width: size,
-          height: size,
-          // Clip glyphs to the rounded tile exactly like the generated icon.
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(size * 0.22),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [_gradientTop, _gradientBottom],
-            ),
-          ),
-          child: Stack(
-            children: [
-              // Font sizes and centres mirror the icon generator
-              // (tool/generate_icons.py). The Q is lifted (y -0.16) and sized
-              // down (0.56); the underline sits at y 0.80 — a small, even gap
-              // below the glyph, close enough to read as one mark yet clear of
-              // the serif Q's tail (which used to fuse into it).
-              Align(
-                alignment: const Alignment(-0.12, -0.16),
-                child: Text(
-                  'Q',
-                  style: TextStyle(
-                    fontFamily: 'Lora',
-                    fontVariations: const [FontVariation('wght', 600)],
-                    fontSize: size * 0.56,
-                    height: 1,
-                    color: _paper,
-                  ),
-                  textScaler: TextScaler.noScaling,
-                ),
-              ),
-              Align(
-                alignment: const Alignment(0.52, -0.42),
-                child: Text(
-                  '?',
-                  style: TextStyle(
-                    fontFamily: 'Lora',
-                    fontVariations: const [FontVariation('wght', 700)],
-                    fontSize: size * 0.235,
-                    height: 1,
-                    color: _gold,
-                  ),
-                  textScaler: TextScaler.noScaling,
-                ),
-              ),
-              Positioned(
-                left: size * 0.20,
-                right: size * 0.20,
-                top: size * 0.80 - lineHeight / 2,
-                height: lineHeight,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: _underline,
-                    borderRadius: BorderRadius.circular(lineHeight / 2),
-                  ),
-                ),
-              ),
-            ],
-          ),
+  TextPainter _glyph(String ch, double fontSize, int weight, Color color) {
+    final tp = TextPainter(
+      text: TextSpan(
+        text: ch,
+        style: TextStyle(
+          fontFamily: 'Lora',
+          fontVariations: [FontVariation('wght', weight.toDouble())],
+          fontSize: fontSize,
+          height: 1,
+          color: color,
         ),
       ),
-    );
+      textDirection: TextDirection.ltr,
+      textScaler: TextScaler.noScaling, // the logo is artwork, never scaled
+    )..layout();
+    return tp;
   }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final s = size.width;
+    final rrect = RRect.fromRectAndRadius(
+      Offset.zero & size,
+      Radius.circular(s * 0.22),
+    );
+
+    // Gradient tile, clipped to the rounded square — matches the app icon.
+    canvas.save();
+    canvas.clipRRect(rrect);
+    canvas.drawRect(
+      Offset.zero & size,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [_gradientTop, _gradientBottom],
+        ).createShader(Offset.zero & size),
+    );
+
+    // Q: box centred at (0.44, 0.42) like the icon. Its box bottom lands near
+    // 0.70s, comfortably above the underline at 0.80s.
+    final q = _glyph('Q', s * 0.56, 600, _paper);
+    q.paint(canvas, Offset(s * 0.44 - q.width / 2, s * 0.42 - q.height / 2));
+
+    // Question mark at the shoulder (no descender, so no clearance worry).
+    final mark = _glyph('?', s * 0.235, 700, _gold);
+    mark.paint(
+      canvas,
+      Offset(s * 0.76 - mark.width / 2, s * 0.30 - mark.height / 2),
+    );
+
+    // The cryptogram underline: a slim rounded bar, always clear of the Q.
+    final lineH = s * 0.05;
+    final lineY = s * 0.80;
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        Rect.fromLTRB(s * 0.20, lineY - lineH / 2, s * 0.80, lineY + lineH / 2),
+        Radius.circular(lineH / 2),
+      ),
+      Paint()..color = _underline,
+    );
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_BrandPainter oldDelegate) => false;
 }
 
 /// The serif wordmark. Kept as a literal Text('Quotecrack') — tests and

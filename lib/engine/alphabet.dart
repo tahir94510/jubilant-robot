@@ -101,6 +101,12 @@ abstract final class Alphabets {
   // Standard QWERTY for the Latin-script languages.
   static const _qwerty = ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'];
 
+  // German keyboards are QWERTZ (Z and Y swapped vs QWERTY).
+  static const _qwertz = ['QWERTZUIOP', 'ASDFGHJKL', 'YXCVBNM'];
+
+  // French keyboards are AZERTY (M moves up to row 2).
+  static const _azerty = ['AZERTYUIOP', 'QSDFGHJKLM', 'WXCVBN'];
+
   /// English (and the base for any ASCII content).
   static final Alphabet en = Alphabet(
     code: 'en',
@@ -112,7 +118,7 @@ abstract final class Alphabets {
   static final Alphabet de = Alphabet(
     code: 'de',
     letters: latinAlphabet,
-    keyboardRows: _qwerty,
+    keyboardRows: _qwertz,
     folds: {'Ä': 'A', 'Ö': 'O', 'Ü': 'U', 'ß': 'SS'},
   );
 
@@ -120,7 +126,7 @@ abstract final class Alphabets {
   static final Alphabet fr = Alphabet(
     code: 'fr',
     letters: latinAlphabet,
-    keyboardRows: _qwerty,
+    keyboardRows: _azerty,
     folds: {
       'À': 'A',
       'Â': 'A',
@@ -193,12 +199,13 @@ abstract final class Alphabets {
     folds: {'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U', 'Ü': 'U'},
   );
 
-  /// Turkish: the full 29-letter alphabet, no folding. Q, W, X are not
-  /// Turkish letters, so they are absent from both the cipher and keyboard.
+  /// Turkish: the full 29-letter alphabet, no folding. The layout is the
+  /// familiar Turkish-Q keyboard with Q, W, X removed (they are not Turkish
+  /// letters, so they appear in neither the cipher nor the keyboard).
   static final Alphabet tr = Alphabet(
     code: 'tr',
     letters: 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ',
-    keyboardRows: const ['ABCÇDEFGĞH', 'IİJKLMNOÖP', 'RSŞTUÜVYZ'],
+    keyboardRows: const ['ERTYUIOPĞÜ', 'ASDFGHJKLŞİ', 'ZCVBNMÖÇ'],
   );
 
   static final List<Alphabet> all = [en, es, de, fr, it, pt, tr];

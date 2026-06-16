@@ -696,6 +696,18 @@ abstract class AppLocalizations {
   /// **'Daily activity'**
   String get statsDailyActivity;
 
+  /// No description provided for @statsHeatmapCaption.
+  ///
+  /// In en, this message translates to:
+  /// **'Last {weeks} weeks · {start} to {end}'**
+  String statsHeatmapCaption(int weeks, String start, String end);
+
+  /// No description provided for @puzzleAlreadySolved.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already cracked this one.'**
+  String get puzzleAlreadySolved;
+
   /// No description provided for @achievementsCountTitle.
   ///
   /// In en, this message translates to:

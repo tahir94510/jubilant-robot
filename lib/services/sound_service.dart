@@ -62,7 +62,10 @@ class SoundService {
           ),
         ),
       );
-      for (var i = 0; i < 3; i++) {
+      // A roomier pool (5): at fast typing speeds each voice has finished long
+      // before it is reused, so a retrigger never has to stop a still-ringing
+      // tap — which is what clicked on the old 3-voice pool.
+      for (var i = 0; i < 5; i++) {
         _tapPool.add(await _load('tap.wav', lowLatency: true));
       }
       for (final name in [

@@ -43,9 +43,12 @@ int _dayOfYear(DateTime date) =>
     ).difference(DateTime(date.year, 1, 1)).inDays +
     1;
 
-/// Picks the daily quote from [pool] (must be sorted/stable and >= 366 long).
+/// Picks the daily quote from [pool] (sorted/stable). An English pool covers a
+/// full leap year (>= 366) so a quote never repeats within a calendar year; a
+/// smaller native-language pool cycles deterministically via the modulo below
+/// — still the same quote for everyone on that language, every day.
 DailyPuzzle selectDaily(List<Quote> pool, DateTime date) {
-  assert(pool.length >= 366, 'daily pool must cover a leap year');
+  assert(pool.isNotEmpty, 'daily pool must not be empty');
   final order = List<int>.generate(pool.length, (i) => i);
   final rng = DeterministicRng(fmix32(date.year));
   // Sattolo shuffle of the year's ordering.
@@ -55,7 +58,7 @@ DailyPuzzle selectDaily(List<Quote> pool, DateTime date) {
     order[i] = order[j];
     order[j] = t;
   }
-  final quote = pool[order[_dayOfYear(date) - 1]];
+  final quote = pool[order[(_dayOfYear(date) - 1) % pool.length]];
   return DailyPuzzle(
     quote: quote,
     number: puzzleNumberFor(date),

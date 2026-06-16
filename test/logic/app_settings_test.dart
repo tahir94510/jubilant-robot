@@ -27,7 +27,7 @@ void main() {
     // Upgraders without the keys fall back to the defaults, not silence.
     final legacy = AppSettings.fromJson({'music': true});
     expect(legacy.soundVolume, 1.0);
-    expect(legacy.musicVolume, 0.65);
+    expect(legacy.musicVolume, 0.70);
   });
 
   test('toJson/fromJson round-trips every field', () {

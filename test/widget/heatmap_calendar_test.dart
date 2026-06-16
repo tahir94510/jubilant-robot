@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quotecrack/l10n/app_localizations.dart';
 import 'package:quotecrack/ui/theme/app_themes.dart';
 import 'package:quotecrack/ui/widgets/heatmap_calendar.dart';
 
@@ -9,6 +10,8 @@ import 'package:quotecrack/ui/widgets/heatmap_calendar.dart';
 void main() {
   Widget host(HeatmapCalendar heatmap) => MaterialApp(
     theme: AppThemes.light(colorblind: false),
+    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    supportedLocales: AppLocalizations.supportedLocales,
     home: Scaffold(body: heatmap),
   );
 

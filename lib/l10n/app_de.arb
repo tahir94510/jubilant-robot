@@ -98,6 +98,8 @@
   "statNoHintSolves": "Ohne Hinweise",
   "statDailiesSolved": "Gelöste Tagesrätsel",
   "statsDailyActivity": "Tägliche Aktivität",
+  "statsHeatmapCaption": "Letzte {weeks} Wochen · {start} – {end}",
+  "puzzleAlreadySolved": "Das hast du schon geknackt.",
   "achievementsCountTitle": "Erfolge ({unlocked}/{total})",
   "onbStep1Title": "Jeder Buchstabe ist vertauscht",
   "onbStep1Body": "In einem Kryptogramm steht jeder Buchstabe des Alphabets für einen anderen. E kann K sein, T kann A sein – aber die Ersetzung ist überall gleich.",

@@ -39,6 +39,8 @@ class PaywallScreen extends StatelessWidget {
               children: [
                 Text(
                   title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
@@ -46,6 +48,8 @@ class PaywallScreen extends StatelessWidget {
                 ),
                 Text(
                   subtitle,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 13, color: palette.textSecondary),
                 ),
               ],

@@ -41,7 +41,7 @@ void main() {
   });
 
   test(
-    'a solved puzzle restarts clean instead of resuming stale hints',
+    'a solved puzzle re-opens in review, then Play again restarts clean',
     () async {
       final store = await storage();
       final game = GameController(storage: store);
@@ -54,16 +54,27 @@ void main() {
       expect(game.hintsUsed, greaterThan(0));
       expect(game.session!.isSolved, isTrue);
 
-      // Replaying starts from scratch — no leftover guesses, hints, or clock.
-      final replay = GameController(storage: store);
-      replay.start(shortQuote, daily: false);
-      expect(replay.hintsUsed, 0);
-      expect(replay.elapsed, Duration.zero);
-      expect(replay.session!.guesses, isEmpty);
-      expect(replay.session!.revealed, isEmpty);
-      replay.stopTimer();
+      // Re-opening shows the finished solution read-only (review mode): the
+      // board is filled with the correct answer, the clock is parked, and edits
+      // are blocked so the solved save can't be clobbered.
+      final review = GameController(storage: store);
+      review.start(shortQuote, daily: false);
+      expect(review.reviewingSolved, isTrue);
+      expect(review.session!.isSolved, isTrue);
+      expect(review.elapsed, Duration.zero);
+      review.enterGuess('A'); // ignored in review mode
+      expect(review.session!.isSolved, isTrue);
+
+      // Play again wipes the board back to a fresh attempt.
+      review.replay();
+      expect(review.reviewingSolved, isFalse);
+      expect(review.hintsUsed, 0);
+      expect(review.elapsed, Duration.zero);
+      expect(review.session!.guesses, isEmpty);
+      expect(review.session!.revealed, isEmpty);
+      review.stopTimer();
       game.dispose();
-      replay.dispose();
+      review.dispose();
     },
   );
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../services/sound_service.dart';
@@ -39,6 +40,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   /// response, reinforcing the red tint + error haptic + conflict chime.
   int _conflictPulse = 0;
 
+  /// Bumped when a guess completes a whole word; the board gives a brief,
+  /// gentle pop to match the word-done chime + haptic (a little visual
+  /// reward for steady progress).
+  int _wordPulse = 0;
+
   @override
   void initState() {
     super.initState();
@@ -68,6 +74,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     } else if (game.lastInputCompletedWord) {
       haptics.wordComplete();
       sounds.wordComplete();
+      _wordPulse++;
     } else {
       haptics.tap();
       sounds.tap();
@@ -91,7 +98,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
       return KeyEventResult.ignored;
     }
     final game = context.read<GameController>();
-    if (game.completed) return KeyEventResult.ignored;
+    if (game.completed || game.reviewingSolved) return KeyEventResult.ignored;
     final key = event.logicalKey;
 
     final pressed = HardwareKeyboard.instance.logicalKeysPressed;
@@ -164,6 +171,8 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final sounds = context.read<SoundService>();
     final session = game.session;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
+    final reviewing = game.reviewingSolved;
 
     if (session == null) {
       return const Scaffold(body: SizedBox.shrink());
@@ -220,7 +229,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                         session.quote.difficulty.name.substring(1),
             ),
             actions: [
-              if (settings.showTimer)
+              if (settings.showTimer && !reviewing)
                 _TimerText(elapsedListenable: game.elapsedListenable),
             ],
           ),
@@ -242,7 +251,18 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                             // The board only repaints when the game state actually
                             // changes — clock ticks repaint just the AppBar text.
                             RepaintBoundary(
-                              child: _celebrating
+                              child: reviewing
+                                  // Re-opened solved puzzle: the whole board
+                                  // shows the finished solution in success green,
+                                  // read-only.
+                                  ? CipherBoard(
+                                      session: session,
+                                      selected: null,
+                                      errorChecking: false,
+                                      onSelect: (_) {},
+                                      solveWave: 1.0,
+                                    )
+                                  : _celebrating
                                   // The wave drives navigation from onEnd:
                                   // animation frames keep the test clock alive (a
                                   // bare Future.delayed would stall pumpAndSettle).
@@ -263,16 +283,19 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                             solveWave: wave,
                                           ),
                                     )
-                                  : _Shaker(
-                                      trigger: _conflictPulse,
-                                      child: CipherBoard(
-                                        session: session,
-                                        selected: game.selectedCipherLetter,
-                                        errorChecking: settings.errorChecking,
-                                        onSelect: (index) {
-                                          haptics.tap();
-                                          game.selectIndex(index);
-                                        },
+                                  : _Pulse(
+                                      trigger: _wordPulse,
+                                      child: _Shaker(
+                                        trigger: _conflictPulse,
+                                        child: CipherBoard(
+                                          session: session,
+                                          selected: game.selectedCipherLetter,
+                                          errorChecking: settings.errorChecking,
+                                          onSelect: (index) {
+                                            haptics.tap();
+                                            game.selectIndex(index);
+                                          },
+                                        ),
                                       ),
                                     ),
                             ),
@@ -295,22 +318,62 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                     // and keys must never overflow on narrow screens.
                     MediaQuery.withClampedTextScaling(
                       maxScaleFactor: 1.2,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const HintBar(),
-                          const SizedBox(height: 4),
-                          PuzzleKeyboard(
-                            rows: session.alphabet.keyboardRows,
-                            usedLetters: session.usedPlainLetters,
-                            canUndo: game.canUndo,
-                            onUndo: _onUndo,
-                            onLetter: _onLetter,
-                            onBackspace: _onBackspace,
-                          ),
-                          const SizedBox(height: 4),
-                        ],
-                      ),
+                      child: reviewing
+                          ? Padding(
+                              padding: const EdgeInsets.fromLTRB(16, 6, 16, 14),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.check_circle,
+                                        size: 18,
+                                        color: palette.success,
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        l10n.puzzleAlreadySolved,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: palette.textSecondary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: FilledButton.icon(
+                                      onPressed: () {
+                                        context.read<HapticsService>().tap();
+                                        game.replay();
+                                      },
+                                      icon: const Icon(Icons.refresh),
+                                      label: Text(l10n.replay),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const HintBar(),
+                                const SizedBox(height: 4),
+                                PuzzleKeyboard(
+                                  rows: session.alphabet.keyboardRows,
+                                  usedLetters: session.usedPlainLetters,
+                                  canUndo: game.canUndo,
+                                  onUndo: _onUndo,
+                                  onLetter: _onLetter,
+                                  onBackspace: _onBackspace,
+                                ),
+                                const SizedBox(height: 4),
+                              ],
+                            ),
                     ),
                   ],
                 ),
@@ -366,6 +429,55 @@ class _ShakerState extends State<_Shaker> with SingleTickerProviderStateMixin {
         // Decaying sine: a couple of quick swings that settle to centre.
         final dx = t == 0 ? 0.0 : math.sin(t * math.pi * 4) * 7 * (1 - t);
         return Transform.translate(offset: Offset(dx, 0), child: child);
+      },
+      child: widget.child,
+    );
+  }
+}
+
+/// A single gentle scale "pop" whenever [trigger] changes — a small visual
+/// reward that lands with the word-complete chime. Honors the system "remove
+/// animations" setting by passing the child straight through.
+class _Pulse extends StatefulWidget {
+  const _Pulse({required this.trigger, required this.child});
+
+  final int trigger;
+  final Widget child;
+
+  @override
+  State<_Pulse> createState() => _PulseState();
+}
+
+class _PulseState extends State<_Pulse> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 260),
+  );
+
+  @override
+  void didUpdateWidget(_Pulse old) {
+    super.didUpdateWidget(old);
+    if (widget.trigger != old.trigger && widget.trigger != 0) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (MediaQuery.of(context).disableAnimations) return widget.child;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        // A quick rise to +3.5% and an eased settle back to rest.
+        final t = _controller.value;
+        final scale = 1 + math.sin(t * math.pi) * 0.035;
+        return Transform.scale(scale: scale, child: child);
       },
       child: widget.child,
     );

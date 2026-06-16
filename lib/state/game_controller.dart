@@ -87,6 +87,12 @@ class GameController extends ChangeNotifier {
   bool _completed = false;
   bool get completed => _completed;
 
+  /// True when the player re-opened an already-solved puzzle: the board shows
+  /// the finished solution read-only until they tap "Play again" ([replay]).
+  /// Distinct from [completed], which drives the one-time celebration flow.
+  bool _reviewingSolved = false;
+  bool get reviewingSolved => _reviewingSolved;
+
   /// Starts (or resumes) a puzzle for [quote].
   void start(Quote quote, {required bool daily, String? packId}) {
     _originPackId = packId;
@@ -138,9 +144,48 @@ class GameController extends ChangeNotifier {
     _completed = false;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
+
+    // Re-opening a solved puzzle: fill the finished solution and show it
+    // read-only (a satisfying "you cracked this" view) until the player taps
+    // Play again. No clock, no auto-navigation to the completion screen.
+    _reviewingSolved = saved != null && saved['solved'] == true;
+    if (_reviewingSolved) {
+      final s = _session!;
+      for (final c in s.cipherLetters) {
+        s.guesses[c] = s.cipher.decryptLetter(c);
+      }
+      _elapsed = Duration.zero;
+      _selectedIndex = null;
+      elapsedListenable.value = _elapsed;
+      notifyListeners();
+      return;
+    }
+
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
 
+    _startTicker();
+    notifyListeners();
+  }
+
+  /// Clears a reviewed (or any) puzzle back to a blank board and starts a fresh
+  /// attempt. Re-solving never double-counts: ProgressController already knows
+  /// the quote is solved, so no extra tokens/streak are awarded.
+  void replay() {
+    final s = _session;
+    if (s == null) return;
+    s.guesses.clear();
+    s.revealed.clear();
+    _undoStack.clear();
+    _reviewingSolved = false;
+    _completed = false;
+    _hintsUsed = 0;
+    _elapsed = Duration.zero;
+    _lastInputCreatedConflict = false;
+    _lastInputCompletedWord = false;
+    elapsedListenable.value = _elapsed;
+    _selectedIndex = _firstEmptyIndex();
+    _persistState();
     _startTicker();
     notifyListeners();
   }
@@ -161,14 +206,18 @@ class GameController extends ChangeNotifier {
     _ticker?.cancel();
     _ticker = null;
     // Leaving the puzzle (back button, backgrounding) must checkpoint the
-    // elapsed time, not just the last guess.
-    if (_session != null && !_completed) _persistState();
+    // elapsed time, not just the last guess — but a read-only review of a
+    // solved puzzle must never overwrite its solved save with a filled board.
+    if (_session != null && !_completed && !_reviewingSolved) _persistState();
   }
 
   /// Restarts the ticker after a lifecycle pause (app backgrounded, ad
   /// overlay, phone call) so off-screen time never counts as solve time.
   void resumeTimer() {
-    if (_session != null && !_completed && _ticker == null) {
+    if (_session != null &&
+        !_completed &&
+        !_reviewingSolved &&
+        _ticker == null) {
       _startTicker();
     }
   }
@@ -265,7 +314,7 @@ class GameController extends ChangeNotifier {
     _lastInputCompletedWord = false;
     final s = _session;
     final target = selectedCipherLetter;
-    if (s == null || target == null || _completed) return;
+    if (s == null || target == null || _completed || _reviewingSolved) return;
     if (s.revealed.contains(target)) return;
 
     _undoStack.add(_Move(target, s.guesses[target]));
@@ -284,7 +333,7 @@ class GameController extends ChangeNotifier {
     _lastInputCompletedWord = false;
     final s = _session;
     final target = selectedCipherLetter;
-    if (s == null || target == null || _completed) return;
+    if (s == null || target == null || _completed || _reviewingSolved) return;
     if (s.revealed.contains(target)) return;
     if (!s.guesses.containsKey(target)) return;
 
@@ -296,7 +345,9 @@ class GameController extends ChangeNotifier {
   void undo() {
     _lastInputCompletedWord = false;
     final s = _session;
-    if (s == null || _undoStack.isEmpty || _completed) return;
+    if (s == null || _undoStack.isEmpty || _completed || _reviewingSolved) {
+      return;
+    }
     final move = _undoStack.removeLast();
     if (move.previousGuess == null) {
       s.guesses.remove(move.cipherLetter);
@@ -313,7 +364,7 @@ class GameController extends ChangeNotifier {
   void revealSelected() {
     _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;
-    if (s == null || _completed) return;
+    if (s == null || _completed || _reviewingSolved) return;
     var target = selectedCipherLetter ?? _firstEmptyLetter();
     // Prefer an unsolved cell: if the selected one is already correct,
     // reveal the first wrong/empty one instead so the hint always helps.

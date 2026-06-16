@@ -14,15 +14,20 @@ class MusicService with WidgetsBindingObserver {
 
   final bool Function() isEnabled;
 
-  /// The bed's base level at full user volume. Quiet by design: it sits well
-  /// under the UI sound effects, and the user's [setUserVolume] scales it.
-  static const double _baseVolume = 0.30;
+  /// The bed's base level at full user volume. The mastered track already sits
+  /// low under the sound effects (it peaks at ~0.55 of full scale), so the bed
+  /// needs real gain here to be present rather than a whisper — the old 0.30
+  /// left it inaudible once the user nudged the slider down. [setUserVolume]
+  /// scales it from the Settings slider.
+  static const double _baseVolume = 0.95;
 
   /// Fraction of the playing level the bed dips to under the success fanfare.
-  static const double _duckFactor = 0.32;
+  /// Deliberately not near-zero: the fanfare should ride *over* the bed, not
+  /// erase it, so the two never cancel each other out.
+  static const double _duckFactor = 0.38;
 
   /// 0..1 user multiplier from settings (musicVolume).
-  double _userVolume = 0.65;
+  double _userVolume = 0.70;
 
   /// The level the bed plays at right now, honoring the user's choice.
   double get _targetVolume => _baseVolume * _userVolume;
@@ -146,13 +151,18 @@ class MusicService with WidgetsBindingObserver {
     _fadeTimer?.cancel();
     final p = _player;
     if (p == null) return;
-    const stepMs = 50;
-    final steps = (duration.inMilliseconds / stepMs).ceil();
+    // ~60 fps steps with a smoothstep curve. Fine-grained, eased ramps avoid
+    // the "zipper" crackle that coarse 50 ms linear volume jumps produced on
+    // quick fades (duck, background, toggle).
+    const stepMs = 16;
+    final steps = (duration.inMilliseconds / stepMs).ceil().clamp(1, 100000);
     final start = _volume;
     var i = 0;
     _fadeTimer = Timer.periodic(const Duration(milliseconds: stepMs), (t) {
       i++;
-      _volume = (start + (target - start) * (i / steps)).clamp(0.0, 1.0);
+      final x = (i / steps).clamp(0.0, 1.0);
+      final eased = x * x * (3 - 2 * x); // smoothstep
+      _volume = (start + (target - start) * eased).clamp(0.0, 1.0);
       unawaited(p.setVolume(_volume).catchError((_) {}));
       if (i >= steps) {
         t.cancel();

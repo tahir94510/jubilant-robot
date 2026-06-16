@@ -154,7 +154,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               if (settings.soundEffects)
                 _VolumeTile(
-                  icon: Icons.graphic_eq,
+                  icon: Icons.volume_up_rounded,
                   label: l10n.effectsVolume,
                   value: settings.soundVolume,
                   onPreview: (v) => controller.previewSoundVolume(
@@ -177,7 +177,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               if (settings.music)
                 _VolumeTile(
-                  icon: Icons.music_note_outlined,
+                  icon: Icons.music_note_rounded,
                   label: l10n.musicVolume,
                   value: settings.musicVolume,
                   onPreview: (v) => controller.previewMusicVolume(
@@ -391,33 +391,74 @@ class _VolumeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final pct = (value * 100).round();
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
       child: Row(
         children: [
-          Icon(icon, size: 20, color: palette.textSecondary),
-          const SizedBox(width: 10),
+          // A tinted, evenly-padded chip so the glyph reads as a deliberate
+          // control affordance, not a stray icon floating with dead space.
+          Container(
+            width: 34,
+            height: 34,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: scheme.primary.withValues(alpha: .12),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, size: 19, color: scheme.primary),
+          ),
+          const SizedBox(width: 12),
           Expanded(
-            child: Slider(
-              value: value,
-              max: 1.0,
-              divisions: 10,
-              label: '$label · ${(value * 100).round()}%',
-              semanticFormatterCallback: (v) =>
-                  '$label ${(v * 100).round()} percent',
-              onChanged: onPreview,
-              onChangeEnd: onCommit,
+            child: SliderTheme(
+              data: SliderTheme.of(context).copyWith(
+                trackHeight: 4,
+                activeTrackColor: scheme.primary,
+                inactiveTrackColor: scheme.primary.withValues(alpha: .18),
+                thumbColor: scheme.primary,
+                overlayColor: scheme.primary.withValues(alpha: .14),
+                thumbShape: const RoundSliderThumbShape(
+                  enabledThumbRadius: 8,
+                  pressedElevation: 4,
+                ),
+                overlayShape: const RoundSliderOverlayShape(overlayRadius: 18),
+                trackShape: const RoundedRectSliderTrackShape(),
+                tickMarkShape: SliderTickMarkShape.noTickMark,
+                valueIndicatorShape:
+                    const RectangularSliderValueIndicatorShape(),
+                valueIndicatorColor: scheme.primary,
+                valueIndicatorTextStyle: TextStyle(
+                  color: scheme.onPrimary,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                ),
+              ),
+              child: Slider(
+                value: value,
+                max: 1.0,
+                divisions: 10,
+                label: '$label · $pct%',
+                semanticFormatterCallback: (v) =>
+                    '$label ${(v * 100).round()} percent',
+                onChanged: onPreview,
+                onChangeEnd: onCommit,
+              ),
             ),
           ),
+          const SizedBox(width: 6),
+          // A fixed, tabular-width readout so the slider edge never jitters as
+          // the digits change (8% → 100%).
           SizedBox(
-            width: 44,
+            width: 46,
             child: Text(
-              '${(value * 100).round()}%',
+              '$pct%',
               textAlign: TextAlign.end,
               style: TextStyle(
                 fontSize: 13,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w700,
+                fontFeatures: const [FontFeature.tabularFigures()],
                 color: palette.textSecondary,
               ),
             ),
