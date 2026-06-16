@@ -18,8 +18,9 @@ kullanıcıya asla ulaşamaz.
 
 ## Adım adım: mevcut bir kategoriye söz ekleme
 
-1. `assets/data/quotes/` altında ilgili dosyayı açın (wisdom/humor/
-   proverbs/literature/science; premium: shakespeare/stoic).
+1. `assets/data/quotes/` altında ilgili dosyayı açın. İngilizce kök dizinde,
+   diğer diller kendi alt klasöründe (`tr/`, `es/` ...). Kategoriler her dilde
+   ortaktır: ücretsiz `proverbs / wisdom / wit / literature`, premium `classics`.
 2. Dizinin sonuna şu şemayla satır ekleyin:
 
    ```json

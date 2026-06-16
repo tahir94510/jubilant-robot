@@ -227,7 +227,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get paywallPacksBody =>
-      'Shakespeare, sabiduría estoica y más en camino';
+      'Un paquete exclusivo de Clásicos con voces eternas, y más en camino';
 
   @override
   String get paywallSupportTitle => 'Apoya el juego';
@@ -438,12 +438,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get packTaglineProverbs => 'Sabiduría popular del mundo';
 
   @override
-  String get packTitleHumor => 'Humor';
-
-  @override
-  String get packTaglineHumor => 'Ingenio de Twain a Wilde';
-
-  @override
   String get packTitleWisdom => 'Sabiduría';
 
   @override
@@ -456,22 +450,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get packTaglineLiterature => 'Versos de grandes libros';
 
   @override
-  String get packTitleScience => 'Ciencia';
+  String get packTitleWit => 'Ingenio';
 
   @override
-  String get packTaglineScience => 'Mentes que movieron el mundo';
+  String get packTaglineWit => 'Lenguas afiladas y ocurrencias';
 
   @override
-  String get packTitleShakespeare => 'Shakespeare';
+  String get packTitleClassics => 'Clásicos';
 
   @override
-  String get packTaglineShakespeare => 'El Bardo, sin cortes';
-
-  @override
-  String get packTitleStoic => 'Sabiduría estoica';
-
-  @override
-  String get packTaglineStoic => 'Marco Aurelio, Séneca, Epicteto';
+  String get packTaglineClassics => 'Voces eternas, elegidas a mano';
 
   @override
   String get achDescFirst => 'Resuelve tu primer criptograma';
@@ -572,45 +560,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Cien Mañanas';
-
-  @override
-  String get packsSectionLanguages => 'Idiomas';
-
-  @override
-  String get packTitleTurkish => 'Türkçe';
-
-  @override
-  String get packTaglineTurkish => 'Refranes y dichos turcos';
-
-  @override
-  String get packTitleSpanish => 'Español';
-
-  @override
-  String get packTaglineSpanish => 'Refranes y dichos españoles';
-
-  @override
-  String get packTitleGerman => 'Deutsch';
-
-  @override
-  String get packTaglineGerman => 'Refranes y dichos alemanes';
-
-  @override
-  String get packTitleFrench => 'Français';
-
-  @override
-  String get packTaglineFrench => 'Refranes y dichos franceses';
-
-  @override
-  String get packTitleItalian => 'Italiano';
-
-  @override
-  String get packTaglineItalian => 'Refranes y dichos italianos';
-
-  @override
-  String get packTitlePortuguese => 'Português';
-
-  @override
-  String get packTaglinePortuguese => 'Refranes y dichos portugueses';
 
   @override
   String get hintRevealLetter => 'Revelar letra';

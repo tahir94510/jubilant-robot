@@ -1,0 +1,138 @@
+[
+  {
+    "id": "fr-l001",
+    "text": "Waterloo ! Waterloo ! Waterloo ! morne plaine !",
+    "author": "Victor Hugo",
+    "source": "Les Châtiments",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l002",
+    "text": "Ô insensé qui crois que je ne suis pas toi !",
+    "author": "Victor Hugo",
+    "source": "Les Contemplations",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l003",
+    "text": "Elle avait dans la voix je ne sais quoi de tendre qui faisait défaillir le cœur le plus glacé.",
+    "author": "Victor Hugo",
+    "source": "Les Contemplations",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l004",
+    "text": "Là, tout n'est qu'ordre et beauté, luxe, calme et volupté.",
+    "author": "Charles Baudelaire",
+    "source": "Les Fleurs du mal",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l005",
+    "text": "La Nature est un temple où de vivants piliers laissent parfois sortir de confuses paroles.",
+    "author": "Charles Baudelaire",
+    "source": "Les Fleurs du mal",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l006",
+    "text": "Mon enfant, ma sœur, songe à la douceur d'aller là-bas vivre ensemble !",
+    "author": "Charles Baudelaire",
+    "source": "Les Fleurs du mal",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l008",
+    "text": "On n'est pas sérieux, quand on a dix-sept ans.",
+    "author": "Arthur Rimbaud",
+    "source": "Roman",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l009",
+    "text": "Ô saisons, ô châteaux, quelle âme est sans défauts ?",
+    "author": "Arthur Rimbaud",
+    "source": "Une saison en enfer",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l010",
+    "text": "Maître Corbeau, sur un arbre perché, tenait en son bec un fromage.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l011",
+    "text": "La cigale, ayant chanté tout l'été, se trouva fort dépourvue quand la bise fut venue.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l012",
+    "text": "On a souvent besoin d'un plus petit que soi.",
+    "author": "Jean de La Fontaine",
+    "source": "Fables",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l013",
+    "text": "Couvrez ce sein que je ne saurais voir.",
+    "author": "Molière",
+    "source": "Le Tartuffe",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l014",
+    "text": "Il faut manger pour vivre, et non pas vivre pour manger.",
+    "author": "Molière",
+    "source": "L'Avare",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l015",
+    "text": "Voilà plus de quarante ans que je dis de la prose sans que j'en susse rien.",
+    "author": "Molière",
+    "source": "Le Bourgeois gentilhomme",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l016",
+    "text": "C'est une folie à nulle autre seconde de vouloir se mêler de corriger le monde.",
+    "author": "Molière",
+    "source": "Le Misanthrope",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l017",
+    "text": "Toutes les grandes personnes ont d'abord été des enfants, mais peu d'entre elles s'en souviennent.",
+    "author": "Antoine de Saint-Exupéry",
+    "source": "Le Petit Prince",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-l018",
+    "text": "Tu deviens responsable pour toujours de ce que tu as apprivoisé.",
+    "author": "Antoine de Saint-Exupéry",
+    "source": "Le Petit Prince",
+    "category": "literature",
+    "locale": "fr"
+  }
+]

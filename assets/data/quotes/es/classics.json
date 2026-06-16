@@ -1,0 +1,178 @@
+[
+  {
+    "id": "es-c001",
+    "text": "En un lugar de la Mancha, de cuyo nombre no quiero acordarme.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c002",
+    "text": "La razón de la sinrazón que a mi razón se hace, de tal manera mi razón enflaquece.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c003",
+    "text": "Bien predica quien bien vive, y otras predicaciones son disparates.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c004",
+    "text": "Cada uno es artífice de su propia ventura.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c005",
+    "text": "Dichoso aquel que ha podido poner fin a sus deseos con discreción y prudencia.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c006",
+    "text": "Qué es la vida? Un frenesí. Qué es la vida? Una ilusión, una sombra, una ficción.",
+    "author": "Pedro Calderón de la Barca",
+    "source": "La vida es sueño",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c007",
+    "text": "Pues el delito mayor del hombre es haber nacido.",
+    "author": "Pedro Calderón de la Barca",
+    "source": "La vida es sueño",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c008",
+    "text": "Sueña el rey que es rey, y vive con este engaño mandando, disponiendo y gobernando.",
+    "author": "Pedro Calderón de la Barca",
+    "source": "La vida es sueño",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c009",
+    "text": "Que toda la vida es sueño, y los sueños, sueños son.",
+    "author": "Pedro Calderón de la Barca",
+    "source": "La vida es sueño",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c010",
+    "text": "Recuerde el alma dormida, avive el seso y despierte, contemplando cómo se pasa la vida.",
+    "author": "Jorge Manrique",
+    "source": "Coplas a la muerte de su padre",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c011",
+    "text": "Nuestras vidas son los ríos que van a dar en la mar, que es el morir.",
+    "author": "Jorge Manrique",
+    "source": "Coplas a la muerte de su padre",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c012",
+    "text": "Qué descansada vida la del que huye del mundanal ruido.",
+    "author": "Fray Luis de León",
+    "source": "Oda a la vida retirada",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c013",
+    "text": "Y mientras miserablemente se están los otros abrasando en sed insaciable del peligroso mando.",
+    "author": "Fray Luis de León",
+    "source": "Oda a la vida retirada",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c014",
+    "text": "Cervantes, ingenio lego, todo lo allana y lo apura con su sátira y su risa.",
+    "author": "Lope de Vega",
+    "source": "Rimas",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c015",
+    "text": "Es la mujer del hombre lo más bueno, y locura decir que lo más malo.",
+    "author": "Lope de Vega",
+    "source": "La dama boba",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c016",
+    "text": "Desmayarse, atreverse, estar furioso, áspero, tierno, liberal, esquivo.",
+    "author": "Lope de Vega",
+    "source": "Soneto: Desmayarse, atreverse",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c017",
+    "text": "Mira que te mira Dios, mira que te está mirando.",
+    "author": "Lope de Vega",
+    "source": "Rimas sacras",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c018",
+    "text": "Cerrar podrá mis ojos la postrera sombra que me llevare el blanco día.",
+    "author": "Francisco de Quevedo",
+    "source": "Amor constante más allá de la muerte",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c019",
+    "text": "Su cuerpo dejarán, no su cuidado; serán ceniza, mas tendrá sentido; polvo serán, mas polvo enamorado.",
+    "author": "Francisco de Quevedo",
+    "source": "Amor constante más allá de la muerte",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c020",
+    "text": "Vivir es caminar breve jornada, y muerte viva es, Lico, nuestra vida.",
+    "author": "Francisco de Quevedo",
+    "source": "Sonetos",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c021",
+    "text": "Miré los muros de la patria mía, si un tiempo fuertes, ya desmoronados.",
+    "author": "Francisco de Quevedo",
+    "source": "Salmo XVII",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-c022",
+    "text": "Buscas en Roma a Roma, oh peregrino, y en Roma misma a Roma no la hallas.",
+    "author": "Francisco de Quevedo",
+    "source": "A Roma sepultada en sus ruinas",
+    "category": "classics",
+    "locale": "es"
+  }
+]

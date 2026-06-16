@@ -1,0 +1,130 @@
+[
+  {
+    "id": "de-l001",
+    "text": "Über allen Gipfeln ist Ruh, in allen Wipfeln spürest du kaum einen Hauch.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Wandrers Nachtlied",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l002",
+    "text": "Wer reitet so spät durch Nacht und Wind? Es ist der Vater mit seinem Kind.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Erlkönig",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l003",
+    "text": "Kennst du das Land, wo die Zitronen blühn, im dunkeln Laub die Goldorangen glühn?",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Mignon",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l004",
+    "text": "Ein jeder Engel ist schrecklich. Und so verhalt ich mich denn und verschlucke den Lockruf dunkelen Schluchzens.",
+    "author": "Rainer Maria Rilke",
+    "source": "Duineser Elegien",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l005",
+    "text": "Du musst dein Leben ändern.",
+    "author": "Rainer Maria Rilke",
+    "source": "Archaïscher Torso Apollos",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l006",
+    "text": "Wer jetzt kein Haus hat, baut sich keines mehr. Wer jetzt allein ist, wird es lange bleiben.",
+    "author": "Rainer Maria Rilke",
+    "source": "Herbsttag",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l007",
+    "text": "Wo aber Gefahr ist, wächst das Rettende auch.",
+    "author": "Friedrich Hölderlin",
+    "source": "Patmos",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l008",
+    "text": "Mit gelben Birnen hänget und voll mit wilden Rosen das Land in den See.",
+    "author": "Friedrich Hölderlin",
+    "source": "Hälfte des Lebens",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l009",
+    "text": "Im wunderschönen Monat Mai, als alle Knospen sprangen, da ist in meinem Herzen die Liebe aufgegangen.",
+    "author": "Heinrich Heine",
+    "source": "Buch der Lieder",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l010",
+    "text": "Ich weiß nicht, was soll es bedeuten, dass ich so traurig bin.",
+    "author": "Heinrich Heine",
+    "source": "Die Lorelei",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l011",
+    "text": "Ein Fichtenbaum steht einsam im Norden auf kahler Höh.",
+    "author": "Heinrich Heine",
+    "source": "Buch der Lieder",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l012",
+    "text": "Der das Wenige verachtet, wird es nie zu Vielem bringen, wenn er sich auch Mühe gibt.",
+    "author": "Bertolt Brecht",
+    "source": "Hauspostille",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l013",
+    "text": "Denn die einen sind im Dunkeln und die andern sind im Licht. Und man siehet die im Lichte, die im Dunkeln sieht man nicht.",
+    "author": "Bertolt Brecht",
+    "source": "Die Dreigroschenoper",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l014",
+    "text": "Und der Haifisch, der hat Zähne, und die trägt er im Gesicht.",
+    "author": "Bertolt Brecht",
+    "source": "Die Dreigroschenoper",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l015",
+    "text": "Nur wer im Wohlstand lebt, lebt angenehm. Erst kommt das Fressen, dann kommt die Moral.",
+    "author": "Bertolt Brecht",
+    "source": "Die Dreigroschenoper",
+    "category": "literature",
+    "locale": "de"
+  },
+  {
+    "id": "de-l016",
+    "text": "Herr, es ist Zeit. Der Sommer war sehr groß. Leg deinen Schatten auf die Sonnenuhren.",
+    "author": "Rainer Maria Rilke",
+    "source": "Herbsttag",
+    "category": "literature",
+    "locale": "de"
+  }
+]

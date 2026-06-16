@@ -5,6 +5,20 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.3.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.3.0 — every language, its own world
+• Pick your language and the whole game becomes that culture's quotes — Proverbs, Wisdom, Wit, Literature, and a premium Classics pack
+• Each language plays on its own familiar keyboard (QWERTY, QWERTZ, AZERTY, Turkish-Q)
+• Re-open a solved puzzle to see the solution, then Play again
+• Louder, warmer music and a richer, more rewarding solve fanfare
+• Cleaner stats, a sharper logo, and polish throughout
+Happy decoding!
+```
+
+---
+
 ## Release notes: v1.2.0 (max 500 chars, paste into "What's new")
 
 ```
@@ -132,14 +146,18 @@ Decode famous quotes. A new cryptogram puzzle every day, free and offline.
 Reveal the quote, one letter at a time. Every puzzle in Quotecrack is a famous quote hidden behind a simple letter swap. You work it out letter by letter, and there's a real little thrill the moment the words fall into place.
 
 DAILY CRYPTOGRAM
-A fresh puzzle every day, the same quote for everyone in the world. Solve it, keep your streak going, and share your time with friends, Wordle style.
+A fresh puzzle every day. Solve it, keep your streak going, and share your time with friends, Wordle style. Every language has its own daily, drawn from its own quotes.
 
-500+ HAND-PICKED QUOTES
-Wisdom, humor, proverbs, literature, and science, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world. Every quote is chosen by hand and properly attributed.
+PLAYS IN YOUR LANGUAGE
+Choose from 7 languages — English, Türkçe, Español, Deutsch, Français, Italiano, Português — and the whole game speaks it. Every language has its own hand-picked packs of native quotes, played in its own alphabet and on its own keyboard. Switch language and the entire catalog becomes that culture's voices.
+
+HAND-PICKED QUOTES
+Proverbs, wisdom, wit, and literature, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world — plus a premium Classics pack of timeless authors. Every quote is chosen by hand and properly attributed.
 
 PLAY YOUR WAY
 • 4 difficulty packs, from relaxed Beginner to tough Expert
-• 5 themed packs: Proverbs, Humor, Wisdom, Literature, Science
+• 4 themed packs: Proverbs, Wisdom, Wit, Literature
+• A bonus Classics pack with Premium
 • A timer when you want it, off when you'd rather just relax
 • Smart hints for when you're stuck (solve puzzles to earn more)
 • Error checking you can switch on or off
@@ -158,7 +176,7 @@ TRACK YOUR JOURNEY
 • 24 achievements to unlock
 
 FAIR AND FREE TO PLAY
-The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive bonus packs (Shakespeare, Stoic wisdom, and more on the way).
+The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive Classics pack — your language's most timeless voices, hand-picked.
 
 WHAT IS A CRYPTOGRAM?
 A cryptogram (also called a cryptoquote or cipher puzzle) is a short message scrambled by swapping each letter for another. You break it with pattern recognition, letter frequency, and the shapes of words. It's the same fun as the cryptoquip in the Sunday paper, now in your pocket.
@@ -184,22 +202,42 @@ Quotecrack: Şifre Bulmaca
 Sözü harf harf çöz. Quotecrack'teki her bulmaca, basit bir harf değişimiyle gizlenmiş ünlü bir sözdür; harfleri tek tek çözersin ve kelimeler yerine oturduğu an gerçek bir keyif yaşarsın.
 
 GÜNLÜK ŞİFRE
-Her gün herkese aynı söz düşer. Çöz, serini sürdür ve süreni arkadaşlarınla paylaş.
+Her gün yeni bir bulmaca. Çöz, serini sürdür ve süreni arkadaşlarınla paylaş. Her dilin kendi günlük bulmacası vardır.
 
-TÜRKÇE VE 7 DİL
-Türkçe atasözleri ve özlü sözlerden oluşan özgün paketler; ayrıca İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca ve Portekizce içerik. Her dil kendi alfabesinde oynanır.
+SENİN DİLİNDE
+Türkçe'yi seç, oyunun tamamı Türkçeleşsin: Türk atasözleri, bilgelik sözleri, nükteler ve edebiyatımızdan dizeler — hepsi kendi alfabesinde ve kendi klavyesinde. Oyun 7 dil destekler (Türkçe, İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca, Portekizce) ve her dilin kendi özgün paketleri vardır. Dili değiştir, tüm içerik o kültürün sesleriyle dolsun.
 
-NASIL OYNANIR
-• Kolaydan zora zorluk paketleri
-• Tema paketleri ve dil paketleri
+ÖZENLE SEÇİLMİŞ SÖZLER
+Atasözleri, Bilgelik, Nükte ve Edebiyat paketleri; ayrıca Premium ile açılan Klasikler paketi (Mevlânâ, Yunus Emre ve daha fazlası). Her söz elle seçilir ve doğru biçimde atıflanır.
+
+DİLEDİĞİN GİBİ OYNA
+• Kolaydan zora 4 zorluk paketi (Başlangıç'tan Uzman'a)
+• 4 temalı paket: Atasözleri, Bilgelik, Nükte, Edebiyat
+• Premium ile bonus Klasikler paketi
 • İstersen süre, istersen tam sakinlik
-• Takıldığında akıllı ipuçları
-• Açık, koyu ve sepya temalar
+• Takıldığında akıllı ipuçları (çözdükçe kazan)
+• Açıp kapatabileceğin hata denetimi
 
-TAMAMEN ÇEVRİMDIŞI
-Hesap yok, kayıt yok. Uçakta, metroda, her yerde oyna. Çözüm ekranı her zaman reklamsız; dilersen tek seferlik Premium ile tüm reklamları kaldır.
+KONFOR İÇİN
+• Tamamen çevrimdışı; uçakta, metroda, her yerde
+• Hesap yok, kayıt yok, reklam karmaşası yok
+• Açık, koyu ve sepya okuma temaları
+• Ayarlanabilir yazı boyutu ve renk körlüğüne uygun palet
+• Büyük dokunma alanları ve bulmacaya özel klavye
+• İstediğin an kapatabileceğin yumuşak müzik
 
-Kelime oyunlarını ve güzel sözleri seviyorsan, Quotecrack zihnine keyifli bir günlük antrenman sunar. Ücretsiz indir, ilk şifreni bir dakikada çöz.
+YOLCULUĞUNU İZLE
+• Takvim ısı haritalı günlük seriler
+• Çözüm süresi, en hızlı çözüm ve ipucusuz çözüm istatistikleri
+• Açılacak başarımlar
+
+ADİL VE ÜCRETSİZ
+Çözüm ekranı her zaman reklamsız. Küçük bir banner ve ara sıra tam ekran reklam oyunu ayakta tutar. Reklamsız mı istiyorsun? Tek seferlik Premium ile tüm reklamları kaldır, sınırsız ipucu aç ve Klasikler paketine kavuş.
+
+KRİPTOGRAM NEDİR?
+Kriptogram, her harfin başka bir harfle değiştirildiği kısa, şifreli bir mesajdır. Örüntü tanıma, harf sıklığı ve kelime şekilleriyle çözülür. Gazetedeki şifreli bulmacanın keyfi, şimdi cebinde.
+
+Kelime oyunlarını, zekâ bulmacalarını ve güzel sözleri seviyorsan, Quotecrack zihnine keyifli bir günlük antrenman sunar. Ücretsiz indir, ilk şifreni yaklaşık bir dakikada çöz.
 ```
 
 ### Español (es)
@@ -211,24 +249,45 @@ Quotecrack: Criptograma
 Descifra frases célebres. Un criptograma nuevo cada día, gratis y sin conexión.
 ```
 ```
-Revela la frase, letra a letra. Cada puzle de Quotecrack es una cita célebre oculta tras un sencillo cambio de letras; la resuelves poco a poco y sientes una pequeña emoción cuando las palabras encajan.
+Revela la frase, letra a letra. Cada puzle de Quotecrack es una cita célebre oculta tras un sencillo cambio de letras; la resuelves poco a poco y sientes una pequeña emoción justo cuando las palabras encajan.
 
 CRIPTOGRAMA DIARIO
-Una frase nueva cada día, la misma para todo el mundo. Resuélvela, mantén tu racha y comparte tu tiempo.
+Una frase nueva cada día. Resuélvela, mantén viva tu racha y comparte tu tiempo con tus amigos, al estilo Wordle. Cada idioma tiene su propio criptograma diario, sacado de sus propias citas.
 
-ESPAÑOL Y 7 IDIOMAS
-Refranes y dichos españoles en paquetes propios, además de contenido en inglés, turco, alemán, francés, italiano y portugués. Cada idioma se juega en su propio alfabeto.
+EN TU IDIOMA
+Elige entre 7 idiomas —español, inglés, turco, alemán, francés, italiano y portugués— y el juego entero habla esa lengua. Cada idioma tiene sus propios paquetes de citas nativas, en su alfabeto y con su teclado. Cambia de idioma y todo el catálogo se convierte en las voces de esa cultura.
+
+CITAS ESCOGIDAS A MANO
+Refranes, sabiduría, ingenio y literatura, desde los grandes nombres de las letras en español hasta los refranes de toda la vida, más un paquete Premium de Clásicos con autores eternos como Cervantes, Calderón y Quevedo. Cada cita está elegida a mano y correctamente atribuida.
 
 A TU MANERA
-• Paquetes de dificultad y temáticos
-• Cronómetro opcional
-• Pistas inteligentes
-• Temas claro, oscuro y sepia
+• 4 paquetes de dificultad, del Principiante relajado al Experto exigente
+• 4 paquetes temáticos: Refranes, Sabiduría, Ingenio y Literatura
+• Un paquete extra de Clásicos con Premium
+• Cronómetro cuando lo quieras, apagado cuando prefieras relajarte
+• Pistas inteligentes para cuando te atascas (resuelve puzles y gana más)
+• Comprobación de errores que activas o desactivas
 
-SIN CONEXIÓN
-Sin cuenta ni registro. La pantalla de juego siempre sin anuncios; hazte Premium una vez para quitarlos todos.
+PENSADO PARA TU COMODIDAD
+• Totalmente sin conexión: juega en un avión, en el metro, donde sea
+• Sin cuenta, sin registro, sin estorbos
+• Temas de lectura claro, oscuro y sepia
+• Tamaño de texto ajustable y paleta apta para daltonismo
+• Botones grandes y un teclado pensado para los puzles
+• Música de fondo suave que puedes apagar cuando quieras
 
-Si te gustan los juegos de palabras y las buenas citas, Quotecrack es tu gimnasio mental diario. Descárgalo gratis.
+SIGUE TU PROGRESO
+• Rachas diarias con un calendario de actividad
+• Estadísticas de tiempos, tus resoluciones más rápidas y las que haces sin pistas
+• 24 logros por desbloquear
+
+JUSTO Y GRATIS
+La pantalla de juego siempre está sin anuncios. Un pequeño banner y algún anuncio ocasional a pantalla completa mantienen el proyecto en marcha. ¿Quieres jugar sin anuncios? Hazte Premium una sola vez para quitarlos todos para siempre, desbloquear pistas ilimitadas y conseguir el paquete exclusivo de Clásicos: las voces más eternas de tu idioma, elegidas a mano.
+
+¿QUÉ ES UN CRIPTOGRAMA?
+Un criptograma (también llamado criptocita o cifra) es un mensaje corto codificado al sustituir cada letra por otra. Lo descifras con el reconocimiento de patrones, la frecuencia de las letras y la forma de las palabras. La misma diversión que el pasatiempo cifrado del periódico, ahora en tu bolsillo.
+
+Si te gustan los juegos de palabras, los acertijos, los retos de lógica o simplemente una buena cita, Quotecrack le da a tu mente un entrenamiento diario muy satisfactorio. Descárgalo gratis y resuelve tu primer cifrado en cerca de un minuto.
 ```
 
 ### Deutsch (de)
@@ -240,24 +299,45 @@ Quotecrack: Geheimcode
 Entschlüssle berühmte Zitate. Täglich ein neues Rätsel, gratis und offline.
 ```
 ```
-Enthülle das Zitat, Buchstabe für Buchstabe. Jedes Rätsel in Quotecrack ist ein berühmtes Zitat, versteckt hinter einer einfachen Buchstabenvertauschung – du knackst es Schritt für Schritt, und der Moment, in dem die Worte passen, macht richtig Freude.
+Enthülle das Zitat, Buchstabe für Buchstabe. Jedes Rätsel in Quotecrack ist ein berühmtes Zitat, versteckt hinter einer einfachen Buchstabenvertauschung – du knackst es Schritt für Schritt, und der Moment, in dem die Worte plötzlich passen, macht richtig Freude.
 
 TÄGLICHES KRYPTOGRAMM
-Jeden Tag ein neues Zitat, weltweit dasselbe. Löse es, halte deine Serie und teile deine Zeit.
+Jeden Tag ein frisches Rätsel. Löse es, halte deine Serie am Leben und teile deine Zeit mit Freunden, ganz im Wordle-Stil. Jede Sprache hat ihr eigenes Tagesrätsel, gezogen aus ihren eigenen Zitaten.
 
-DEUTSCH UND 7 SPRACHEN
-Deutsche Sprichwörter in eigenen Paketen, dazu Inhalte auf Englisch, Türkisch, Spanisch, Französisch, Italienisch und Portugiesisch. Jede Sprache wird in ihrem eigenen Alphabet gespielt.
+IN DEINER SPRACHE
+Wähle aus 7 Sprachen – Deutsch, Englisch, Türkisch, Spanisch, Französisch, Italienisch und Portugiesisch – und das ganze Spiel spricht sie. Jede Sprache hat ihre eigenen, handverlesenen Pakete mit muttersprachlichen Zitaten, gespielt in ihrem eigenen Alphabet und auf ihrer eigenen Tastatur. Wechsle die Sprache, und der gesamte Katalog wird zu den Stimmen dieser Kultur.
 
-GANZ NACH DIR
-• Schwierigkeits- und Themenpakete
-• Timer optional
-• Clevere Hinweise
-• Helle, dunkle und Sepia-Themen
+HANDVERLESENE ZITATE
+Sprichwörter, Weisheit, Witz und Literatur, von den großen Namen der deutschen Sprache bis zu den alten Sprichwörtern – dazu ein Premium-Paket Klassiker mit zeitlosen Autoren wie Goethe und Schiller. Jedes Zitat ist von Hand ausgewählt und korrekt zugeordnet.
 
-OFFLINE
-Kein Konto, keine Anmeldung. Der Spielbildschirm ist immer werbefrei; mit einmaligem Premium entfernst du alle Anzeigen.
+SPIEL, WIE DU WILLST
+• 4 Schwierigkeitspakete, vom entspannten Anfänger bis zum harten Experten
+• 4 Themenpakete: Sprichwörter, Weisheit, Witz und Literatur
+• Ein Bonus-Paket Klassiker mit Premium
+• Ein Timer, wenn du ihn willst, aus, wenn du lieber einfach entspannst
+• Clevere Hinweise, wenn du feststeckst (löse Rätsel und verdiene mehr)
+• Fehlerprüfung, die du ein- oder ausschaltest
 
-Wenn du Wortspiele und gute Zitate magst, ist Quotecrack dein tägliches Gehirntraining. Jetzt gratis laden.
+GEMACHT ZUM WOHLFÜHLEN
+• Komplett offline, ob im Flugzeug, in der U-Bahn oder sonst wo
+• Kein Konto, keine Anmeldung, kein Ballast
+• Helle, dunkle und Sepia-Lesethemen
+• Anpassbare Textgröße und eine farbenblindenfreundliche Palette
+• Große Tippflächen und eine Tastatur, die für Rätsel gemacht ist
+• Sanfte Hintergrundmusik, die du jederzeit ausschalten kannst
+
+VERFOLGE DEINEN WEG
+• Tägliche Serien mit einer Kalender-Heatmap
+• Statistiken zu Lösezeiten, schnellsten Lösungen und Lösungen ohne Hinweis
+• 24 Erfolge zum Freischalten
+
+FAIR UND KOSTENLOS
+Der Rätselbildschirm ist immer werbefrei. Ein kleines Banner und hin und wieder eine Vollbildanzeige halten alles am Laufen. Lieber ganz ohne Werbung? Hol dir einmalig Premium, um jede Anzeige für immer zu entfernen, unbegrenzte Hinweise freizuschalten und das exklusive Klassiker-Paket zu bekommen – die zeitlosesten Stimmen deiner Sprache, handverlesen.
+
+WAS IST EIN KRYPTOGRAMM?
+Ein Kryptogramm (auch Geheimcode oder Chiffrenrätsel genannt) ist eine kurze Botschaft, bei der jeder Buchstabe durch einen anderen ersetzt wurde. Du knackst sie mit Mustererkennung, Buchstabenhäufigkeit und den Formen der Wörter. Derselbe Spaß wie das Chiffrenrätsel in der Sonntagszeitung, jetzt in deiner Tasche.
+
+Ob du Wortspiele, Knobeleien, Logikrätsel oder einfach ein gutes Zitat liebst – Quotecrack gibt deinem Kopf ein wohltuendes tägliches Training. Lade es kostenlos und löse deine erste Chiffre in etwa einer Minute.
 ```
 
 ### Français (fr)
@@ -269,24 +349,45 @@ Quotecrack: Cryptogramme
 Déchiffrez des citations célèbres. Une énigme par jour, gratuit et hors ligne.
 ```
 ```
-Révélez la citation, lettre par lettre. Chaque énigme de Quotecrack est une citation célèbre cachée derrière une simple substitution de lettres ; vous la résolvez peu à peu, et le moment où les mots se mettent en place est un vrai plaisir.
+Révélez la citation, lettre par lettre. Chaque énigme de Quotecrack est une citation célèbre cachée derrière une simple substitution de lettres ; vous la résolvez peu à peu, et l'instant où les mots se mettent en place procure un vrai plaisir.
 
 CRYPTOGRAMME DU JOUR
-Une citation par jour, la même pour tous. Résolvez-la, gardez votre série et partagez votre temps.
+Une nouvelle énigme chaque jour. Résolvez-la, gardez votre série et partagez votre temps avec vos amis, à la manière de Wordle. Chaque langue a son propre cryptogramme quotidien, tiré de ses propres citations.
 
-FRANÇAIS ET 7 LANGUES
-Proverbes français en paquets dédiés, plus du contenu en anglais, turc, espagnol, allemand, italien et portugais. Chaque langue se joue dans son propre alphabet.
+DANS VOTRE LANGUE
+Choisissez parmi 7 langues — français, anglais, turc, espagnol, allemand, italien et portugais — et tout le jeu la parle. Chaque langue possède ses propres paquets de citations natives, jouées dans son alphabet et sur son clavier. Changez de langue et tout le catalogue devient les voix de cette culture.
+
+CITATIONS CHOISIES À LA MAIN
+Proverbes, sagesse, esprit et littérature, des grands noms des lettres françaises aux proverbes de toujours, avec en plus un paquet Premium de Classiques aux auteurs intemporels comme Voltaire, Molière et Hugo. Chaque citation est choisie à la main et correctement attribuée.
 
 À VOTRE FAÇON
-• Paquets de difficulté et thématiques
-• Chronomètre optionnel
-• Indices astucieux
-• Thèmes clair, sombre et sépia
+• 4 paquets de difficulté, du Débutant détendu à l'Expert exigeant
+• 4 paquets thématiques : Proverbes, Sagesse, Esprit et Littérature
+• Un paquet bonus de Classiques avec Premium
+• Un chronomètre quand vous le voulez, éteint quand vous préférez vous détendre
+• Des indices astucieux quand vous bloquez (résolvez des énigmes pour en gagner plus)
+• Une vérification des erreurs que vous activez ou désactivez
 
-HORS LIGNE
-Sans compte ni inscription. L'écran de jeu est toujours sans pub ; passez Premium une fois pour tout retirer.
+PENSÉ POUR LE CONFORT
+• Entièrement hors ligne : jouez en avion, dans le métro, n'importe où
+• Sans compte, sans inscription, sans encombrement
+• Thèmes de lecture clair, sombre et sépia
+• Taille de texte réglable et palette adaptée au daltonisme
+• Grandes zones tactiles et un clavier conçu pour les énigmes
+• Une musique de fond douce que vous coupez quand vous voulez
 
-Si vous aimez les jeux de mots et les belles citations, Quotecrack est votre entraînement cérébral quotidien. À télécharger gratuitement.
+SUIVEZ VOTRE PARCOURS
+• Séries quotidiennes avec un calendrier d'activité
+• Statistiques de temps de résolution, vos plus rapides et celles sans indice
+• 24 succès à débloquer
+
+JUSTE ET GRATUIT
+L'écran de jeu est toujours sans publicité. Une petite bannière et une pub plein écran de temps à autre font tourner le projet. Envie de jouer sans pub ? Passez Premium une seule fois pour retirer toute publicité à jamais, débloquer des indices illimités et obtenir le paquet exclusif de Classiques : les voix les plus intemporelles de votre langue, choisies à la main.
+
+QU'EST-CE QU'UN CRYPTOGRAMME ?
+Un cryptogramme (aussi appelé cryptocitation ou message chiffré) est un court message codé en remplaçant chaque lettre par une autre. Vous le décryptez grâce à la reconnaissance de motifs, à la fréquence des lettres et à la forme des mots. Le même plaisir que le jeu chiffré du journal du dimanche, désormais dans votre poche.
+
+Si vous aimez les jeux de mots, les casse-tête, les énigmes de logique ou simplement une belle citation, Quotecrack offre à votre cerveau un entraînement quotidien des plus satisfaisants. Téléchargez-le gratuitement et résolvez votre premier chiffre en une minute environ.
 ```
 
 ### Italiano (it)
@@ -298,24 +399,45 @@ Quotecrack: Crittogramma
 Decifra frasi celebri. Un nuovo crittogramma ogni giorno, gratis e offline.
 ```
 ```
-Svela la frase, lettera per lettera. Ogni enigma di Quotecrack è una frase celebre nascosta dietro un semplice scambio di lettere; la risolvi un po' alla volta e provi una piccola gioia quando le parole vanno al loro posto.
+Svela la frase, lettera per lettera. Ogni enigma di Quotecrack è una frase celebre nascosta dietro un semplice scambio di lettere; la risolvi un po' alla volta e provi una piccola gioia proprio nel momento in cui le parole vanno al loro posto.
 
 CRITTOGRAMMA DEL GIORNO
-Una frase nuova ogni giorno, la stessa per tutti. Risolvila, mantieni la serie e condividi il tuo tempo.
+Un nuovo enigma ogni giorno. Risolvilo, mantieni viva la tua serie e condividi il tuo tempo con gli amici, in stile Wordle. Ogni lingua ha il proprio crittogramma quotidiano, tratto dalle sue stesse citazioni.
 
-ITALIANO E 7 LINGUE
-Proverbi italiani in pacchetti dedicati, oltre a contenuti in inglese, turco, spagnolo, tedesco, francese e portoghese. Ogni lingua si gioca nel proprio alfabeto.
+NELLA TUA LINGUA
+Scegli tra 7 lingue — italiano, inglese, turco, spagnolo, tedesco, francese e portoghese — e l'intero gioco la parla. Ogni lingua ha i suoi pacchetti di citazioni native, giocate nel proprio alfabeto e sulla propria tastiera. Cambia lingua e tutto il catalogo diventa le voci di quella cultura.
+
+CITAZIONI SCELTE A MANO
+Proverbi, saggezza, arguzia e letteratura, dai grandi nomi delle lettere italiane ai proverbi di sempre, più un pacchetto Premium di Classici con autori intramontabili come Dante e Leonardo. Ogni citazione è scelta a mano e attribuita correttamente.
 
 A MODO TUO
-• Pacchetti di difficoltà e a tema
-• Timer opzionale
-• Indizi intelligenti
-• Temi chiaro, scuro e seppia
+• 4 pacchetti di difficoltà, dal Principiante rilassato all'Esperto impegnativo
+• 4 pacchetti a tema: Proverbi, Saggezza, Arguzia e Letteratura
+• Un pacchetto bonus di Classici con il Premium
+• Un timer quando lo vuoi, spento quando preferisci solo rilassarti
+• Indizi intelligenti per quando ti blocchi (risolvi enigmi per guadagnarne altri)
+• Controllo degli errori che attivi o disattivi
 
-OFFLINE
-Niente account né registrazione. La schermata di gioco è sempre senza pubblicità; con il Premium una tantum le rimuovi tutte.
+PENSATO PER IL COMFORT
+• Completamente offline: gioca in aereo, in metro, ovunque
+• Niente account, niente registrazione, niente confusione
+• Temi di lettura chiaro, scuro e seppia
+• Dimensione del testo regolabile e palette adatta al daltonismo
+• Aree di tocco ampie e una tastiera pensata per gli enigmi
+• Musica di sottofondo soffusa che puoi spegnere quando vuoi
 
-Se ami i giochi di parole e le belle citazioni, Quotecrack è il tuo allenamento mentale quotidiano. Scaricalo gratis.
+SEGUI IL TUO PERCORSO
+• Serie quotidiane con un calendario delle attività
+• Statistiche sui tempi di risoluzione, le più veloci e quelle senza indizi
+• 24 obiettivi da sbloccare
+
+GIUSTO E GRATUITO
+La schermata di gioco è sempre senza pubblicità. Un piccolo banner e qualche annuncio a schermo intero ogni tanto tengono in piedi il progetto. Vuoi giocare senza pubblicità? Passa al Premium una volta sola per rimuovere ogni annuncio per sempre, sbloccare indizi illimitati e ottenere l'esclusivo pacchetto di Classici: le voci più intramontabili della tua lingua, scelte a mano.
+
+CHE COS'È UN CRITTOGRAMMA?
+Un crittogramma (detto anche crittocitazione o messaggio cifrato) è un breve messaggio codificato sostituendo ogni lettera con un'altra. Lo decifri con il riconoscimento di schemi, la frequenza delle lettere e la forma delle parole. Lo stesso divertimento del gioco cifrato del giornale della domenica, ora in tasca.
+
+Se ami i giochi di parole, i rompicapo, gli enigmi di logica o semplicemente una bella citazione, Quotecrack regala alla tua mente un soddisfacente allenamento quotidiano. Scaricalo gratis e risolvi il tuo primo cifrario in circa un minuto.
 ```
 
 ### Português (pt)
@@ -327,24 +449,45 @@ Quotecrack: Criptograma
 Decifre frases famosas. Um novo criptograma por dia, grátis e off-line.
 ```
 ```
-Revele a frase, letra por letra. Cada desafio do Quotecrack é uma frase famosa escondida por uma simples troca de letras; você resolve aos poucos e sente uma alegria de verdade quando as palavras se encaixam.
+Revele a frase, letra por letra. Cada desafio do Quotecrack é uma frase famosa escondida por uma simples troca de letras; você resolve aos poucos e sente uma alegria de verdade no instante em que as palavras se encaixam.
 
 CRIPTOGRAMA DIÁRIO
-Uma frase nova por dia, a mesma para todo mundo. Resolva, mantenha sua sequência e compartilhe seu tempo.
+Um novo desafio todos os dias. Resolva, mantenha sua sequência viva e compartilhe seu tempo com os amigos, no estilo Wordle. Cada idioma tem seu próprio criptograma diário, tirado de suas próprias frases.
 
-PORTUGUÊS E 7 IDIOMAS
-Provérbios em pacotes próprios, além de conteúdo em inglês, turco, espanhol, alemão, francês e italiano. Cada idioma é jogado em seu próprio alfabeto.
+NO SEU IDIOMA
+Escolha entre 7 idiomas — português, inglês, turco, espanhol, alemão, francês e italiano — e o jogo inteiro fala esse idioma. Cada idioma tem seus próprios pacotes de frases nativas, jogadas em seu alfabeto e com seu teclado. Troque de idioma e todo o catálogo se torna as vozes daquela cultura.
+
+FRASES ESCOLHIDAS A DEDO
+Provérbios, sabedoria, humor e literatura, dos grandes nomes das letras de língua portuguesa aos provérbios de sempre, além de um pacote Premium de Clássicos com autores atemporais como Camões, Pessoa e Machado de Assis. Cada frase é escolhida a dedo e devidamente atribuída.
 
 DO SEU JEITO
-• Pacotes de dificuldade e temáticos
-• Cronômetro opcional
-• Dicas inteligentes
-• Temas claro, escuro e sépia
+• 4 pacotes de dificuldade, do Iniciante tranquilo ao Especialista exigente
+• 4 pacotes temáticos: Provérbios, Sabedoria, Humor e Literatura
+• Um pacote bônus de Clássicos com o Premium
+• Um cronômetro quando você quiser, desligado quando preferir só relaxar
+• Dicas inteligentes para quando você travar (resolva desafios e ganhe mais)
+• Verificação de erros que você liga ou desliga
 
-OFF-LINE
-Sem conta nem cadastro. A tela de jogo é sempre sem anúncios; vire Premium uma vez para remover todos.
+FEITO PARA O CONFORTO
+• Totalmente off-line: jogue no avião, no metrô, em qualquer lugar
+• Sem conta, sem cadastro, sem bagunça
+• Temas de leitura claro, escuro e sépia
+• Tamanho de texto ajustável e paleta amigável para daltônicos
+• Botões grandes e um teclado feito para os desafios
+• Música de fundo suave que você desliga quando quiser
 
-Se você curte jogos de palavras e boas frases, o Quotecrack é seu treino mental diário. Baixe grátis.
+ACOMPANHE SUA JORNADA
+• Sequências diárias com um calendário de atividade
+• Estatísticas de tempos de resolução, as mais rápidas e as feitas sem dicas
+• 24 conquistas para desbloquear
+
+JUSTO E GRATUITO
+A tela de jogo está sempre sem anúncios. Um pequeno banner e um anúncio em tela cheia de vez em quando mantêm o projeto de pé. Quer jogar sem anúncios? Vire Premium uma única vez para remover todos os anúncios para sempre, desbloquear dicas ilimitadas e ganhar o pacote exclusivo de Clássicos: as vozes mais atemporais do seu idioma, escolhidas a dedo.
+
+O QUE É UM CRIPTOGRAMA?
+Um criptograma (também chamado de criptocitação ou mensagem cifrada) é uma mensagem curta codificada trocando cada letra por outra. Você o decifra com reconhecimento de padrões, frequência das letras e o formato das palavras. A mesma diversão do passatempo cifrado do jornal de domingo, agora no seu bolso.
+
+Se você curte jogos de palavras, quebra-cabeças, desafios de lógica ou simplesmente uma boa frase, o Quotecrack dá ao seu cérebro um treino diário muito satisfatório. Baixe grátis e resolva sua primeira cifra em cerca de um minuto.
 ```
 
 ---

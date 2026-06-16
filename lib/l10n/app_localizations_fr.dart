@@ -226,7 +226,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get paywallPacksBody =>
-      'Shakespeare, sagesse stoïcienne et plus à venir';
+      'Un pack Classiques exclusif de voix intemporelles, et plus à venir';
 
   @override
   String get paywallSupportTitle => 'Soutenez le jeu';
@@ -436,12 +436,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get packTaglineProverbs => 'La sagesse populaire du monde';
 
   @override
-  String get packTitleHumor => 'Humour';
-
-  @override
-  String get packTaglineHumor => 'L’esprit de Twain à Wilde';
-
-  @override
   String get packTitleWisdom => 'Sagesse';
 
   @override
@@ -454,22 +448,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get packTaglineLiterature => 'Des lignes de grands livres';
 
   @override
-  String get packTitleScience => 'Science';
+  String get packTitleWit => 'Esprit';
 
   @override
-  String get packTaglineScience => 'Les esprits qui ont changé le monde';
+  String get packTaglineWit => 'Reparties vives et bons mots';
 
   @override
-  String get packTitleShakespeare => 'Shakespeare';
+  String get packTitleClassics => 'Classiques';
 
   @override
-  String get packTaglineShakespeare => 'Le Barde, sans coupure';
-
-  @override
-  String get packTitleStoic => 'Sagesse stoïcienne';
-
-  @override
-  String get packTaglineStoic => 'Marc Aurèle, Sénèque, Épictète';
+  String get packTaglineClassics => 'Voix intemporelles, triées sur le volet';
 
   @override
   String get achDescFirst => 'Résolvez votre premier cryptogramme';
@@ -570,45 +558,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Cent Matins';
-
-  @override
-  String get packsSectionLanguages => 'Langues';
-
-  @override
-  String get packTitleTurkish => 'Türkçe';
-
-  @override
-  String get packTaglineTurkish => 'Proverbes et maximes turcs';
-
-  @override
-  String get packTitleSpanish => 'Español';
-
-  @override
-  String get packTaglineSpanish => 'Proverbes et maximes espagnols';
-
-  @override
-  String get packTitleGerman => 'Deutsch';
-
-  @override
-  String get packTaglineGerman => 'Proverbes et maximes allemands';
-
-  @override
-  String get packTitleFrench => 'Français';
-
-  @override
-  String get packTaglineFrench => 'Proverbes et maximes français';
-
-  @override
-  String get packTitleItalian => 'Italiano';
-
-  @override
-  String get packTaglineItalian => 'Proverbes et maximes italiens';
-
-  @override
-  String get packTitlePortuguese => 'Português';
-
-  @override
-  String get packTaglinePortuguese => 'Proverbes et maximes portugais';
 
   @override
   String get hintRevealLetter => 'Révéler une lettre';

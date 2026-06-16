@@ -1,0 +1,106 @@
+[
+  {
+    "id": "es-h001",
+    "text": "En este mundo traidor, nada es verdad ni mentira; todo es según el color del cristal con que se mira.",
+    "author": "Ramón de Campoamor",
+    "source": "Doloras",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h002",
+    "text": "Poderoso caballero es don Dinero.",
+    "author": "Francisco de Quevedo",
+    "source": "Letrillas satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h003",
+    "text": "Érase un hombre a una nariz pegado.",
+    "author": "Francisco de Quevedo",
+    "source": "A una nariz",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h004",
+    "text": "El necio es atrevido y el sabio comedido.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h005",
+    "text": "Casarse es como ir a un restaurante con amigos; uno pide lo que quiere y al ver lo del vecino quisiera haber pedido aquello.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h006",
+    "text": "Donde hay poca justicia es un peligro tener razón.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h007",
+    "text": "Los necios y los niños dicen las verdades.",
+    "author": "Refranero español satírico",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h008",
+    "text": "El que de joven no trabaja, de viejo duerme en la paja.",
+    "author": "Refranero español",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h009",
+    "text": "Quien tiene boca se equivoca, y quien tiene lengua, a Roma llega.",
+    "author": "Refranero español",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h010",
+    "text": "No es tan fiero el león como lo pintan.",
+    "author": "Refranero español",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h011",
+    "text": "Cada loco con su tema, y cada cual con su sistema.",
+    "author": "Refranero español",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h012",
+    "text": "Quien mucho abarca, poco aprieta, y al final nada sujeta.",
+    "author": "Refranero español",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h013",
+    "text": "El pez muere por la boca, y el necio por la suya propia.",
+    "author": "Refranero español",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "es"
+  }
+]

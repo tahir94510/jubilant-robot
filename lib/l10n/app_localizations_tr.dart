@@ -223,7 +223,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get paywallPacksTitle => 'Özel bonus paketler';
 
   @override
-  String get paywallPacksBody => 'Shakespeare, Stoacı bilgelik ve dahası yolda';
+  String get paywallPacksBody =>
+      'Zamansız seslerden oluşan özel bir Klasikler paketi — ve dahası yolda';
 
   @override
   String get paywallSupportTitle => 'Oyuna destek ol';
@@ -433,12 +434,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get packTaglineProverbs => 'Dünyanın halk bilgeliği';
 
   @override
-  String get packTitleHumor => 'Mizah';
-
-  @override
-  String get packTaglineHumor => 'Twain’den Wilde’a nükteler';
-
-  @override
   String get packTitleWisdom => 'Bilgelik';
 
   @override
@@ -451,22 +446,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get packTaglineLiterature => 'Büyük kitaplardan satırlar';
 
   @override
-  String get packTitleScience => 'Bilim';
+  String get packTitleWit => 'Nükte';
 
   @override
-  String get packTaglineScience => 'Dünyayı değiştiren zihinler';
+  String get packTaglineWit => 'Keskin diller, zekice espriler';
 
   @override
-  String get packTitleShakespeare => 'Shakespeare';
+  String get packTitleClassics => 'Klasikler';
 
   @override
-  String get packTaglineShakespeare => 'Usta, sansürsüz';
-
-  @override
-  String get packTitleStoic => 'Stoacı Bilgelik';
-
-  @override
-  String get packTaglineStoic => 'Marcus, Seneca, Epiktetos';
+  String get packTaglineClassics => 'Zamansız sesler, özenle seçildi';
 
   @override
   String get achDescFirst => 'İlk kriptogramını çöz';
@@ -567,45 +556,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get achTitleDaily100 => 'Yüz Sabah';
-
-  @override
-  String get packsSectionLanguages => 'Diller';
-
-  @override
-  String get packTitleTurkish => 'Türkçe';
-
-  @override
-  String get packTaglineTurkish => 'Türk atasözleri ve özlü sözler';
-
-  @override
-  String get packTitleSpanish => 'Español';
-
-  @override
-  String get packTaglineSpanish => 'İspanyol atasözleri ve özlü sözler';
-
-  @override
-  String get packTitleGerman => 'Deutsch';
-
-  @override
-  String get packTaglineGerman => 'Alman atasözleri ve özlü sözler';
-
-  @override
-  String get packTitleFrench => 'Français';
-
-  @override
-  String get packTaglineFrench => 'Fransız atasözleri ve özlü sözler';
-
-  @override
-  String get packTitleItalian => 'Italiano';
-
-  @override
-  String get packTaglineItalian => 'İtalyan atasözleri ve özlü sözler';
-
-  @override
-  String get packTitlePortuguese => 'Português';
-
-  @override
-  String get packTaglinePortuguese => 'Portekiz atasözleri ve özlü sözler';
 
   @override
   String get hintRevealLetter => 'Harf aç';

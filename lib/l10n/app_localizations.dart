@@ -513,7 +513,7 @@ abstract class AppLocalizations {
   /// No description provided for @paywallPacksBody.
   ///
   /// In en, this message translates to:
-  /// **'Shakespeare, Stoic wisdom, and more on the way'**
+  /// **'An exclusive Classics pack of timeless voices — and more on the way'**
   String get paywallPacksBody;
 
   /// No description provided for @paywallSupportTitle.
@@ -846,18 +846,6 @@ abstract class AppLocalizations {
   /// **'Folk wisdom of the world'**
   String get packTaglineProverbs;
 
-  /// No description provided for @packTitleHumor.
-  ///
-  /// In en, this message translates to:
-  /// **'Humor'**
-  String get packTitleHumor;
-
-  /// No description provided for @packTaglineHumor.
-  ///
-  /// In en, this message translates to:
-  /// **'Wit from Twain to Wilde'**
-  String get packTaglineHumor;
-
   /// No description provided for @packTitleWisdom.
   ///
   /// In en, this message translates to:
@@ -882,41 +870,29 @@ abstract class AppLocalizations {
   /// **'Lines from great books'**
   String get packTaglineLiterature;
 
-  /// No description provided for @packTitleScience.
+  /// No description provided for @packTitleWit.
   ///
   /// In en, this message translates to:
-  /// **'Science'**
-  String get packTitleScience;
+  /// **'Wit'**
+  String get packTitleWit;
 
-  /// No description provided for @packTaglineScience.
+  /// No description provided for @packTaglineWit.
   ///
   /// In en, this message translates to:
-  /// **'Minds that moved the world'**
-  String get packTaglineScience;
+  /// **'Sharp tongues and clever quips'**
+  String get packTaglineWit;
 
-  /// No description provided for @packTitleShakespeare.
+  /// No description provided for @packTitleClassics.
   ///
   /// In en, this message translates to:
-  /// **'Shakespeare'**
-  String get packTitleShakespeare;
+  /// **'Classics'**
+  String get packTitleClassics;
 
-  /// No description provided for @packTaglineShakespeare.
+  /// No description provided for @packTaglineClassics.
   ///
   /// In en, this message translates to:
-  /// **'The Bard, uncut'**
-  String get packTaglineShakespeare;
-
-  /// No description provided for @packTitleStoic.
-  ///
-  /// In en, this message translates to:
-  /// **'Stoic Wisdom'**
-  String get packTitleStoic;
-
-  /// No description provided for @packTaglineStoic.
-  ///
-  /// In en, this message translates to:
-  /// **'Marcus, Seneca, Epictetus'**
-  String get packTaglineStoic;
+  /// **'Timeless voices, hand-picked'**
+  String get packTaglineClassics;
 
   /// No description provided for @achDescFirst.
   ///
@@ -1097,84 +1073,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hundred Mornings'**
   String get achTitleDaily100;
-
-  /// No description provided for @packsSectionLanguages.
-  ///
-  /// In en, this message translates to:
-  /// **'Languages'**
-  String get packsSectionLanguages;
-
-  /// No description provided for @packTitleTurkish.
-  ///
-  /// In en, this message translates to:
-  /// **'Türkçe'**
-  String get packTitleTurkish;
-
-  /// No description provided for @packTaglineTurkish.
-  ///
-  /// In en, this message translates to:
-  /// **'Turkish proverbs & sayings'**
-  String get packTaglineTurkish;
-
-  /// No description provided for @packTitleSpanish.
-  ///
-  /// In en, this message translates to:
-  /// **'Español'**
-  String get packTitleSpanish;
-
-  /// No description provided for @packTaglineSpanish.
-  ///
-  /// In en, this message translates to:
-  /// **'Spanish proverbs & sayings'**
-  String get packTaglineSpanish;
-
-  /// No description provided for @packTitleGerman.
-  ///
-  /// In en, this message translates to:
-  /// **'Deutsch'**
-  String get packTitleGerman;
-
-  /// No description provided for @packTaglineGerman.
-  ///
-  /// In en, this message translates to:
-  /// **'German proverbs & sayings'**
-  String get packTaglineGerman;
-
-  /// No description provided for @packTitleFrench.
-  ///
-  /// In en, this message translates to:
-  /// **'Français'**
-  String get packTitleFrench;
-
-  /// No description provided for @packTaglineFrench.
-  ///
-  /// In en, this message translates to:
-  /// **'French proverbs & sayings'**
-  String get packTaglineFrench;
-
-  /// No description provided for @packTitleItalian.
-  ///
-  /// In en, this message translates to:
-  /// **'Italiano'**
-  String get packTitleItalian;
-
-  /// No description provided for @packTaglineItalian.
-  ///
-  /// In en, this message translates to:
-  /// **'Italian proverbs & sayings'**
-  String get packTaglineItalian;
-
-  /// No description provided for @packTitlePortuguese.
-  ///
-  /// In en, this message translates to:
-  /// **'Português'**
-  String get packTitlePortuguese;
-
-  /// No description provided for @packTaglinePortuguese.
-  ///
-  /// In en, this message translates to:
-  /// **'Portuguese proverbs & sayings'**
-  String get packTaglinePortuguese;
 
   /// No description provided for @hintRevealLetter.
   ///

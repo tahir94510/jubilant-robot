@@ -1,0 +1,162 @@
+[
+  {
+    "id": "pt-h001",
+    "text": "Cada um sabe a dor e a delícia de ser o que é.",
+    "author": "Caetano Veloso",
+    "source": "Dom de Iludir",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h002",
+    "text": "A vida é a arte de tirar conclusões insuficientes a partir de premissas falsas.",
+    "author": "Millôr Fernandes",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h003",
+    "text": "Casamento é a única guerra em que se dorme com o inimigo.",
+    "author": "Millôr Fernandes",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h004",
+    "text": "A primeira metade da nossa vida é estragada pelos pais e a segunda pelos filhos.",
+    "author": "Millôr Fernandes",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h005",
+    "text": "A democracia é a tirania da maioria. Bom mesmo é o despotismo esclarecido, desde que eu seja o déspota.",
+    "author": "Millôr Fernandes",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h006",
+    "text": "Pátria é onde menos se sofre.",
+    "author": "Millôr Fernandes",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h007",
+    "text": "Sonho que se sonha só é só um sonho que se sonha só, mas sonho que se sonha junto é realidade.",
+    "author": "Raul Seixas",
+    "source": "Prelúdio",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h008",
+    "text": "A consciência é a sogra cuja visita nunca termina.",
+    "author": "Mendes Leal",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h009",
+    "text": "Eu nada entendo da questão. Mas creio que nem o autor nem o leitor a entendem também.",
+    "author": "Machado de Assis",
+    "source": "Memórias Póstumas de Brás Cubas",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h010",
+    "text": "O melhor da festa foi a saída.",
+    "author": "Eça de Queirós",
+    "source": "Atribuição literária",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h011",
+    "text": "Sobre a Terra deslizam contrabandos de luz, e há grandes mansidões serenando o destino.",
+    "author": "Eça de Queirós",
+    "source": "A Cidade e as Serras",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h012",
+    "text": "A inveja é a mais sincera forma de admiração.",
+    "author": "Oscar Wilde",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h013",
+    "text": "Bem-aventurados os que nada esperam, porque não serão desiludidos.",
+    "author": "Alexander Pope",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h014",
+    "text": "Quem casa por amor tem bons dias e más noites.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h015",
+    "text": "A preguiça é a mãe do progresso. Se o homem não tivesse preguiça de andar, não teria inventado a roda.",
+    "author": "Mário Quintana",
+    "source": "Caderno H",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h016",
+    "text": "Eles passarão, eu passarinho.",
+    "author": "Mário Quintana",
+    "source": "Poeminha do Contra",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h017",
+    "text": "Se as coisas são inatingíveis, ora, não é motivo para não querê-las.",
+    "author": "Mário Quintana",
+    "source": "Espelho Mágico",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h018",
+    "text": "Não há nada como o sono para o tempo passar depressa.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h019",
+    "text": "A matemática é a única ciência exata em que nunca se sabe do que se está a falar nem se o que se diz é verdade.",
+    "author": "Bertrand Russell",
+    "source": "Pensamento",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-h020",
+    "text": "O bom-senso é a coisa do mundo mais bem distribuída, pois cada qual pensa estar tão bem provido dele.",
+    "author": "René Descartes",
+    "source": "Discurso do Método",
+    "category": "wit",
+    "locale": "pt"
+  }
+]

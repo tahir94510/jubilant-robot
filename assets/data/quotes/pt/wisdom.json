@@ -1,0 +1,242 @@
+[
+  {
+    "id": "pt-w001",
+    "text": "Pedras no caminho? Guardo todas, um dia vou construir um castelo.",
+    "author": "Fernando Pessoa",
+    "source": "Atribuição literária",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w002",
+    "text": "Tudo o que sei me deu pouco trabalho aprender. O que me custou foi o que aprendi de mim.",
+    "author": "Agostinho da Silva",
+    "source": "Pensamento",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w003",
+    "text": "Ninguém educa ninguém, ninguém educa a si mesmo, os homens se educam entre si, mediatizados pelo mundo.",
+    "author": "Paulo Freire",
+    "source": "Pedagogia do Oprimido",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w004",
+    "text": "A educação é um ato de amor, por isso, um ato de coragem.",
+    "author": "Paulo Freire",
+    "source": "Educação como Prática da Liberdade",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w005",
+    "text": "Não há saber mais ou saber menos: há saberes diferentes.",
+    "author": "Paulo Freire",
+    "source": "Pedagogia da Autonomia",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w006",
+    "text": "Ensinar não é transferir conhecimento, mas criar as possibilidades para a sua produção ou a sua construção.",
+    "author": "Paulo Freire",
+    "source": "Pedagogia da Autonomia",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w007",
+    "text": "A leitura do mundo precede a leitura da palavra.",
+    "author": "Paulo Freire",
+    "source": "A Importância do Ato de Ler",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w008",
+    "text": "Onde quer que haja um homem oprimido, ali há a minha pátria.",
+    "author": "Rui Barbosa",
+    "source": "Pensamento",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w009",
+    "text": "De tanto ver triunfar as nulidades, de tanto ver prosperar a desonra, o homem chega a desanimar da virtude.",
+    "author": "Rui Barbosa",
+    "source": "Oração aos Moços",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w010",
+    "text": "A justiça atrasada não é justiça, senão injustiça qualificada e manifesta.",
+    "author": "Rui Barbosa",
+    "source": "Oração aos Moços",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w011",
+    "text": "A pátria não é ninguém: são todos; e cada qual tem no seio dela o mesmo direito à ideia, à palavra, à associação.",
+    "author": "Rui Barbosa",
+    "source": "Oração aos Moços",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w012",
+    "text": "Tenho a impressão de ter chegado tarde demais a um mundo demasiado velho.",
+    "author": "Fernando Pessoa",
+    "source": "Livro do Desassossego",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w013",
+    "text": "Para viajar basta existir.",
+    "author": "Fernando Pessoa",
+    "source": "Livro do Desassossego",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w014",
+    "text": "Viver não é necessário; o que é necessário é criar.",
+    "author": "Fernando Pessoa",
+    "source": "Páginas Íntimas",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w015",
+    "text": "Tudo é incerto e derradeiro. Tudo é disperso, nada é inteiro.",
+    "author": "Fernando Pessoa",
+    "source": "Cancioneiro",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w016",
+    "text": "Sê plural como o universo.",
+    "author": "Fernando Pessoa",
+    "source": "Páginas Íntimas",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w017",
+    "text": "Há um tempo em que é preciso abandonar as roupas usadas, que já têm a forma do nosso corpo.",
+    "author": "Fernando Pessoa",
+    "source": "Atribuição literária",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w018",
+    "text": "O valor das coisas não está no tempo em que elas duram, mas na intensidade com que acontecem.",
+    "author": "Fernando Pessoa",
+    "source": "Atribuição literária",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w019",
+    "text": "Para ser grande, sê inteiro: nada teu exagera ou exclui. Sê todo em cada coisa. Põe quanto és no mínimo que fazes.",
+    "author": "Ricardo Reis",
+    "source": "Odes de Ricardo Reis",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w020",
+    "text": "Não sou nada. Nunca serei nada. Não posso querer ser nada. À parte isso, tenho em mim todos os sonhos do mundo.",
+    "author": "Álvaro de Campos",
+    "source": "Tabacaria",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w021",
+    "text": "Aprender é a única coisa de que a mente nunca se cansa, nunca tem medo e nunca se arrepende.",
+    "author": "Leonardo da Vinci",
+    "source": "Cadernos",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w022",
+    "text": "A liberdade é pouco. O que desejo ainda não tem nome.",
+    "author": "Clarice Lispector",
+    "source": "Perto do Coração Selvagem",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w023",
+    "text": "Que ninguém se engane, só se consegue a simplicidade através de muito trabalho.",
+    "author": "Clarice Lispector",
+    "source": "A Descoberta do Mundo",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w024",
+    "text": "Liberdade é tão pouca palavra para conter o que se sente quando se está livre.",
+    "author": "Cecília Meireles",
+    "source": "Romanceiro da Inconfidência",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w025",
+    "text": "Bom mesmo é ir à luta com determinação, abraçar a vida e viver com paixão.",
+    "author": "Charlie Chaplin",
+    "source": "Pensamento",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w026",
+    "text": "A vida é a arte do encontro, embora haja tanto desencontro pela vida.",
+    "author": "Vinicius de Moraes",
+    "source": "A Arte do Encontro",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w027",
+    "text": "Tristeza não tem fim, felicidade sim.",
+    "author": "Vinicius de Moraes",
+    "source": "A Felicidade",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w028",
+    "text": "É melhor ser alegre que ser triste, a alegria é a melhor coisa que existe.",
+    "author": "Vinicius de Moraes",
+    "source": "Samba da Bênção",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w029",
+    "text": "O ódio nunca cessa pelo ódio; o ódio cessa pelo amor; esta é a lei eterna.",
+    "author": "Buda",
+    "source": "Dhammapada",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-w030",
+    "text": "Quem não tem ânimo para correr os seus riscos não realiza nunca coisa nenhuma.",
+    "author": "Marquês de Maricá",
+    "source": "Máximas, Pensamentos e Reflexões",
+    "category": "wisdom",
+    "locale": "pt"
+  }
+]

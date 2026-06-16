@@ -1,0 +1,178 @@
+[
+  {
+    "id": "tr-c002",
+    "text": "Aşk bir denizdir, gökyüzü bu denizin köpüğüdür; aşıkların gönlü o denizde damla gibidir.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c003",
+    "text": "Dün geçti, dünle beraber gitti; bugün yeni şeyler söylemek lazım artık.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c004",
+    "text": "Cömertlikte ve yardım etmede akarsu gibi ol; şefkat ve merhamette güneş gibi ol.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c005",
+    "text": "Kötülükleri örtmede gece gibi ol; öfke ve hiddet zamanında ölü gibi ol.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c006",
+    "text": "Sevgide güneş gibi ol, dostluk ve kardeşlikte akarsu gibi ol; tevazu ve alçak gönüllülükte toprak gibi ol.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c007",
+    "text": "Mum olmak kolay değildir; ışık saçmak için önce yanmak gerekir.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c008",
+    "text": "Suret nakşına bakma, manaya bak; manası olan, surete köle olmaz.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Mesnevi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c009",
+    "text": "Bu dünyada ne ararsan onu bulursun; ne ekersen sonunda onu biçersin.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Divan-ı Kebir",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c010",
+    "text": "Bizim aşkımız, gönlü temizleyen bir ateştir; o ateş düştü mü, ne varsa yakar yıkar.",
+    "author": "Mevlana Celaleddin Rumi",
+    "source": "Divan-ı Kebir",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c011",
+    "text": "Cennet de sendedir cehennem de, gözünü aç ve gönlüne bak.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c012",
+    "text": "Çıktım erik dalına, anda yedim üzümü; bostan ıssı kakıyıp der ne yersin kozumu.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c013",
+    "text": "Hak bir gönül verdi bana, ha demeden hayran olur; bir dem gelir şadi olur, bir dem gelir giryan olur.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c014",
+    "text": "Dağlar ile taşlar ile çağırayım Mevlam seni; seherlerde kuşlar ile çağırayım Mevlam seni.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c015",
+    "text": "Söz ola kese savaşı, söz ola kestire başı; söz ola ağulu aşı, balla yağ ede bir söz.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c016",
+    "text": "Mal sahibi mülk sahibi, hani bunun ilk sahibi; mal da yalan mülk de yalan, var biraz da sen oyalan.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c017",
+    "text": "Adımız miskindir bizim, düşmanımız kindir bizim; biz kimseye kin tutmayız, kamu alem birdir bize.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c018",
+    "text": "İlmin kapısı bilgidir, bilgisiz kimse körü körüne yürür; bilgili kişi yolunu şaşırmaz.",
+    "author": "Hoca Ahmet Yesevi",
+    "source": "Divan-ı Hikmet",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c019",
+    "text": "Nerede bir gönül kırığı görsen, onun tamircisi ol; tek bir gönlü yapmak, bin kez hacca gitmekten yeğdir.",
+    "author": "Hoca Ahmet Yesevi",
+    "source": "Divan-ı Hikmet",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c020",
+    "text": "Bir olalım, iri olalım, diri olalım.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Makalat",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c021",
+    "text": "İlimden gidilmeyen yolun sonu karanlıktır; bilgiyle yürüyen, gideceği yeri görür.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Makalat",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c022",
+    "text": "İncinsen de incitme; insanın olgunluğu, kendine yapılmasını istemediğini başkasına yapmamaktır.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Makalat",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-c023",
+    "text": "Okunacak en büyük kitap insandır.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Makalat",
+    "category": "classics",
+    "locale": "tr"
+  }
+]

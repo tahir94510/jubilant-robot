@@ -1,0 +1,122 @@
+[
+  {
+    "id": "es-l001",
+    "text": "Volverán las oscuras golondrinas en tu balcón sus nidos a colgar.",
+    "author": "Gustavo Adolfo Bécquer",
+    "source": "Rimas",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l002",
+    "text": "Podrá no haber poetas; pero siempre habrá poesía.",
+    "author": "Gustavo Adolfo Bécquer",
+    "source": "Rimas",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l003",
+    "text": "Verde que te quiero verde. Verde viento. Verdes ramas.",
+    "author": "Federico García Lorca",
+    "source": "Romance sonámbulo",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l004",
+    "text": "A las cinco de la tarde. Eran las cinco en punto de la tarde.",
+    "author": "Federico García Lorca",
+    "source": "Llanto por Ignacio Sánchez Mejías",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l005",
+    "text": "Juventud, divino tesoro, ya te vas para no volver.",
+    "author": "Rubén Darío",
+    "source": "Canción de otoño en primavera",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l006",
+    "text": "Hombres necios que acusáis a la mujer sin razón, sin ver que sois la ocasión de lo mismo que culpáis.",
+    "author": "Sor Juana Inés de la Cruz",
+    "source": "Redondillas",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l007",
+    "text": "Caminante, son tus huellas el camino y nada más; caminante, no hay camino, se hace camino al andar.",
+    "author": "Antonio Machado",
+    "source": "Proverbios y cantares",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l008",
+    "text": "Puedo escribir los versos más tristes esta noche.",
+    "author": "Pablo Neruda",
+    "source": "Veinte poemas de amor",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l009",
+    "text": "Me gustas cuando callas porque estás como ausente.",
+    "author": "Pablo Neruda",
+    "source": "Veinte poemas de amor",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l010",
+    "text": "Y el verso cae al alma como al pasto el rocío.",
+    "author": "José Martí",
+    "source": "Versos sencillos",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l011",
+    "text": "Cultivo una rosa blanca en julio como en enero.",
+    "author": "José Martí",
+    "source": "Versos sencillos",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l012",
+    "text": "La cuna de los pobres es la escuela primera del mundo.",
+    "author": "Gabriela Mistral",
+    "source": "Poema de Chile",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l013",
+    "text": "Yo no quiero que a mi niña golondrina me la vuelvan.",
+    "author": "Gabriela Mistral",
+    "source": "Ternura",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l014",
+    "text": "Margarita, está linda la mar, y el viento lleva esencia sutil de azahar.",
+    "author": "Rubén Darío",
+    "source": "A Margarita Debayle",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-l015",
+    "text": "Es tan corto el amor, y es tan largo el olvido.",
+    "author": "Pablo Neruda",
+    "source": "Veinte poemas de amor",
+    "category": "literature",
+    "locale": "es"
+  }
+]
