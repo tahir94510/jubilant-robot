@@ -154,32 +154,36 @@ write(
         target=0.52),
 )
 
-# Puzzle solved: unhurried C-major arpeggio with a low C pad underneath —
-# the pad sustains while the melody rings, which reads as "warm", not
-# "ringtone".
+# Puzzle solved: an unhurried C-major arpeggio that climbs two octaves and
+# resolves with a high sparkle, over a sustained low-C pad — triumphant and
+# warm, the single most rewarding moment in the app.
 write(
     "success.wav",
     mix(
-        (0.00, bell(130.81, 1.5, volume=0.16, decay=1.6,
+        (0.00, bell(130.81, 1.7, volume=0.16, decay=1.5,
                     partials=((1.0, 1.0, 1.0), (2.0, 0.2, 1.6)))),  # C3 pad
         (0.00, air(bell(523.25, 0.9, volume=0.30, decay=3.2))),     # C5
         (0.13, air(bell(659.25, 0.9, volume=0.30, decay=3.2))),     # E5
         (0.26, air(bell(783.99, 1.0, volume=0.30, decay=2.9))),     # G5
-        (0.42, air(bell(1046.5, 1.25, volume=0.33, decay=2.2))),    # C6
+        (0.42, air(bell(1046.5, 1.15, volume=0.32, decay=2.4))),    # C6
+        (0.55, air(bell(1568.0, 1.1, volume=0.28, decay=2.4))),     # G6 lift
+        (0.66, air(bell(2093.0, 1.2, volume=0.22, decay=2.2,        # C7 sparkle
+                        attack=0.014))),
         target=0.90,  # the loudest, most rewarding moment in the app
     ),
 )
 
-# Achievement: bright two-note sparkle (E6 -> B6) over a quick G5 grace.
-# The top note gets a softer attack and a touch less level so it sparkles
-# instead of "ticking" on small phone speakers.
+# Achievement: a bright rising sparkle (G5 grace -> E6 -> B6) with a soft low
+# body note for weight, so it lands as a proud "ding!" instead of a thin tick.
 write(
     "achievement.wav",
     mix(
-        (0.00, air(bell(784, 0.25, volume=0.20, decay=8))),
-        (0.05, air(bell(1318.5, 0.5, volume=0.27, decay=5))),
-        (0.17, air(bell(1975.5, 0.7, volume=0.22, decay=4.5, attack=0.016))),
-        target=0.72,
+        (0.00, air(bell(392.0, 0.5, volume=0.14, decay=4.5))),       # G4 body
+        (0.00, air(bell(784, 0.25, volume=0.20, decay=8))),          # G5 grace
+        (0.05, air(bell(1318.5, 0.5, volume=0.27, decay=5))),        # E6
+        (0.17, air(bell(1975.5, 0.75, volume=0.24, decay=4.3, attack=0.016))),
+        (0.30, air(bell(2637.0, 0.6, volume=0.16, decay=4.0, attack=0.018))),
+        target=0.74,
     ),
 )
 
