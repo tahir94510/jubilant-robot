@@ -70,11 +70,18 @@ class PuzzleSession {
   /// the small "word done" progress cue. Single-letter words (A, I) are a
   /// single keystroke, so they stay a plain tap; everything from two-letter
   /// words up earns the brighter chime.
+  ///
+  /// A "word" is a whitespace-delimited token (so a hyphenated word like
+  /// "well-done" or a contraction like "isn't" counts once, not as its
+  /// fragments). Letters are pulled per token with the quote's alphabet so it
+  /// stays correct in every language — NOT alphabet.words(), which would split
+  /// on the hyphen/apostrophe too.
   int get correctWordCount {
     var count = 0;
-    for (final word in alphabet.words(cipherText)) {
-      if (word.length < 2) continue;
-      if (word.split('').every(isGuessCorrect)) count++;
+    for (final word in cipherText.split(' ')) {
+      final letters = alphabet.lettersOnly(word);
+      if (letters.length < 2) continue;
+      if (letters.split('').every(isGuessCorrect)) count++;
     }
     return count;
   }

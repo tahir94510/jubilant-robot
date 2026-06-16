@@ -149,6 +149,28 @@ void main() {
     resumed.dispose();
   });
 
+  test('a corrupt saved state resumes fresh instead of crashing', () async {
+    final store = await storage();
+    // Garbage where structured data is expected (schema drift / partial write).
+    store.writeJson(StorageService.puzzleStateKey(shortQuote.id), {
+      'solved': false,
+      'guesses': 'not-a-map',
+      'revealed': 7,
+      'elapsedSeconds': 'soon',
+      'undo': 42,
+    });
+
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false); // must not throw
+    expect(game.session!.guesses, isEmpty);
+    expect(game.session!.revealed, isEmpty);
+    expect(game.canUndo, isFalse);
+    expect(game.elapsed, Duration.zero);
+
+    game.stopTimer();
+    game.dispose();
+  });
+
   test(
     're-entering resumes the saved clock, not the time spent away',
     () async {

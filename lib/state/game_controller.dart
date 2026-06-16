@@ -92,32 +92,47 @@ class GameController extends ChangeNotifier {
     _originPackId = packId;
     _ticker?.cancel();
     final saved = _storage.readJson(StorageService.puzzleStateKey(quote.id));
-    final resuming = saved != null && saved['solved'] != true;
 
+    // Decode the saved state defensively: a corrupt or schema-drifted save
+    // (partial write, an older/newer build's format) must never crash on
+    // puzzle entry — we simply start the puzzle fresh in that case.
     Map<String, String>? savedGuesses;
+    var savedRevealed = const <String>[];
+    var savedHints = 0;
+    var savedElapsed = 0;
+    final savedUndo = <_Move>[];
+    final resuming = saved != null && saved['solved'] != true;
     if (resuming) {
-      savedGuesses = (saved['guesses'] as Map<String, dynamic>?)?.map(
-        (k, v) => MapEntry(k, v as String),
-      );
+      try {
+        savedGuesses = (saved['guesses'] as Map<String, dynamic>?)?.map(
+          (k, v) => MapEntry(k, v as String),
+        );
+        savedRevealed = ((saved['revealed'] as List<dynamic>?) ?? const [])
+            .cast<String>();
+        savedHints = saved['hintsUsed'] as int? ?? 0;
+        savedElapsed = saved['elapsedSeconds'] as int? ?? 0;
+        // Undo history must survive leaving and re-entering the puzzle: the
+        // stack is checkpointed to storage, not held only in memory.
+        for (final m in (saved['undo'] as List<dynamic>?) ?? const []) {
+          savedUndo.add(_Move.fromJson((m as Map).cast<String, dynamic>()));
+        }
+      } catch (_) {
+        // Discard whatever was partially decoded and start fresh.
+        savedGuesses = null;
+        savedRevealed = const [];
+        savedHints = 0;
+        savedElapsed = 0;
+        savedUndo.clear();
+      }
     }
 
     _session = PuzzleSession(quote: quote, guesses: savedGuesses);
-    _undoStack.clear();
-    if (resuming) {
-      _session!.revealed.addAll(
-        ((saved['revealed'] as List<dynamic>?) ?? const []).cast<String>(),
-      );
-      _hintsUsed = saved['hintsUsed'] as int? ?? 0;
-      _elapsed = Duration(seconds: saved['elapsedSeconds'] as int? ?? 0);
-      // Undo history must survive leaving and re-entering the puzzle: the
-      // stack is checkpointed to storage, not held only in memory.
-      for (final m in (saved['undo'] as List<dynamic>?) ?? const []) {
-        _undoStack.add(_Move.fromJson((m as Map).cast<String, dynamic>()));
-      }
-    } else {
-      _hintsUsed = 0;
-      _elapsed = Duration.zero;
-    }
+    _undoStack
+      ..clear()
+      ..addAll(savedUndo);
+    _session!.revealed.addAll(savedRevealed);
+    _hintsUsed = savedHints;
+    _elapsed = Duration(seconds: savedElapsed);
 
     _isDaily = daily;
     _completed = false;
