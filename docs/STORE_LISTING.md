@@ -5,6 +5,20 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.2.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.2.0 — our biggest update yet
+• Play in 7 languages (English, Türkçe, Español, Deutsch, Français, Italiano, Português), each with native quote packs in its own alphabet
+• A refined, elegant new look across the whole app
+• Full physical-keyboard support — great on tablets, Chromebooks and TV
+• Separate music & sound-effect volume, smoother audio
+• Faster, smarter solving and many fixes
+Happy decoding!
+```
+
+---
+
 ## Release notes: v1.1.6 (max 500 chars, paste into "What's new")
 
 ```
@@ -151,6 +165,189 @@ A cryptogram (also called a cryptoquote or cipher puzzle) is a short message scr
 
 If you love word games, brain teasers, logic puzzles, or just a good quote, Quotecrack gives your brain a satisfying daily workout. Download it free and solve your first cipher in about a minute.
 ```
+
+## Localized store texts (ready to paste)
+
+The app ships fully localized in these languages with native quote packs, so a
+matching store listing converts well. Paste each block into Play Console >
+Store listings > Add language. Title ≤30 chars, short description ≤80.
+
+### Türkçe (tr)
+
+```
+Quotecrack: Şifre Bulmaca
+```
+```
+Ünlü sözleri çöz. Her gün yeni bir şifre bulmacası, ücretsiz ve çevrimdışı.
+```
+```
+Sözü harf harf çöz. Quotecrack'teki her bulmaca, basit bir harf değişimiyle gizlenmiş ünlü bir sözdür; harfleri tek tek çözersin ve kelimeler yerine oturduğu an gerçek bir keyif yaşarsın.
+
+GÜNLÜK ŞİFRE
+Her gün herkese aynı söz düşer. Çöz, serini sürdür ve süreni arkadaşlarınla paylaş.
+
+TÜRKÇE VE 7 DİL
+Türkçe atasözleri ve özlü sözlerden oluşan özgün paketler; ayrıca İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca ve Portekizce içerik. Her dil kendi alfabesinde oynanır.
+
+NASIL OYNANIR
+• Kolaydan zora zorluk paketleri
+• Tema paketleri ve dil paketleri
+• İstersen süre, istersen tam sakinlik
+• Takıldığında akıllı ipuçları
+• Açık, koyu ve sepya temalar
+
+TAMAMEN ÇEVRİMDIŞI
+Hesap yok, kayıt yok. Uçakta, metroda, her yerde oyna. Çözüm ekranı her zaman reklamsız; dilersen tek seferlik Premium ile tüm reklamları kaldır.
+
+Kelime oyunlarını ve güzel sözleri seviyorsan, Quotecrack zihnine keyifli bir günlük antrenman sunar. Ücretsiz indir, ilk şifreni bir dakikada çöz.
+```
+
+### Español (es)
+
+```
+Quotecrack: Criptograma
+```
+```
+Descifra frases célebres. Un criptograma nuevo cada día, gratis y sin conexión.
+```
+```
+Revela la frase, letra a letra. Cada puzle de Quotecrack es una cita célebre oculta tras un sencillo cambio de letras; la resuelves poco a poco y sientes una pequeña emoción cuando las palabras encajan.
+
+CRIPTOGRAMA DIARIO
+Una frase nueva cada día, la misma para todo el mundo. Resuélvela, mantén tu racha y comparte tu tiempo.
+
+ESPAÑOL Y 7 IDIOMAS
+Refranes y dichos españoles en paquetes propios, además de contenido en inglés, turco, alemán, francés, italiano y portugués. Cada idioma se juega en su propio alfabeto.
+
+A TU MANERA
+• Paquetes de dificultad y temáticos
+• Cronómetro opcional
+• Pistas inteligentes
+• Temas claro, oscuro y sepia
+
+SIN CONEXIÓN
+Sin cuenta ni registro. La pantalla de juego siempre sin anuncios; hazte Premium una vez para quitarlos todos.
+
+Si te gustan los juegos de palabras y las buenas citas, Quotecrack es tu gimnasio mental diario. Descárgalo gratis.
+```
+
+### Deutsch (de)
+
+```
+Quotecrack: Geheimcode
+```
+```
+Entschlüssle berühmte Zitate. Täglich ein neues Rätsel, gratis und offline.
+```
+```
+Enthülle das Zitat, Buchstabe für Buchstabe. Jedes Rätsel in Quotecrack ist ein berühmtes Zitat, versteckt hinter einer einfachen Buchstabenvertauschung – du knackst es Schritt für Schritt, und der Moment, in dem die Worte passen, macht richtig Freude.
+
+TÄGLICHES KRYPTOGRAMM
+Jeden Tag ein neues Zitat, weltweit dasselbe. Löse es, halte deine Serie und teile deine Zeit.
+
+DEUTSCH UND 7 SPRACHEN
+Deutsche Sprichwörter in eigenen Paketen, dazu Inhalte auf Englisch, Türkisch, Spanisch, Französisch, Italienisch und Portugiesisch. Jede Sprache wird in ihrem eigenen Alphabet gespielt.
+
+GANZ NACH DIR
+• Schwierigkeits- und Themenpakete
+• Timer optional
+• Clevere Hinweise
+• Helle, dunkle und Sepia-Themen
+
+OFFLINE
+Kein Konto, keine Anmeldung. Der Spielbildschirm ist immer werbefrei; mit einmaligem Premium entfernst du alle Anzeigen.
+
+Wenn du Wortspiele und gute Zitate magst, ist Quotecrack dein tägliches Gehirntraining. Jetzt gratis laden.
+```
+
+### Français (fr)
+
+```
+Quotecrack: Cryptogramme
+```
+```
+Déchiffrez des citations célèbres. Une énigme par jour, gratuit et hors ligne.
+```
+```
+Révélez la citation, lettre par lettre. Chaque énigme de Quotecrack est une citation célèbre cachée derrière une simple substitution de lettres ; vous la résolvez peu à peu, et le moment où les mots se mettent en place est un vrai plaisir.
+
+CRYPTOGRAMME DU JOUR
+Une citation par jour, la même pour tous. Résolvez-la, gardez votre série et partagez votre temps.
+
+FRANÇAIS ET 7 LANGUES
+Proverbes français en paquets dédiés, plus du contenu en anglais, turc, espagnol, allemand, italien et portugais. Chaque langue se joue dans son propre alphabet.
+
+À VOTRE FAÇON
+• Paquets de difficulté et thématiques
+• Chronomètre optionnel
+• Indices astucieux
+• Thèmes clair, sombre et sépia
+
+HORS LIGNE
+Sans compte ni inscription. L'écran de jeu est toujours sans pub ; passez Premium une fois pour tout retirer.
+
+Si vous aimez les jeux de mots et les belles citations, Quotecrack est votre entraînement cérébral quotidien. À télécharger gratuitement.
+```
+
+### Italiano (it)
+
+```
+Quotecrack: Crittogramma
+```
+```
+Decifra frasi celebri. Un nuovo crittogramma ogni giorno, gratis e offline.
+```
+```
+Svela la frase, lettera per lettera. Ogni enigma di Quotecrack è una frase celebre nascosta dietro un semplice scambio di lettere; la risolvi un po' alla volta e provi una piccola gioia quando le parole vanno al loro posto.
+
+CRITTOGRAMMA DEL GIORNO
+Una frase nuova ogni giorno, la stessa per tutti. Risolvila, mantieni la serie e condividi il tuo tempo.
+
+ITALIANO E 7 LINGUE
+Proverbi italiani in pacchetti dedicati, oltre a contenuti in inglese, turco, spagnolo, tedesco, francese e portoghese. Ogni lingua si gioca nel proprio alfabeto.
+
+A MODO TUO
+• Pacchetti di difficoltà e a tema
+• Timer opzionale
+• Indizi intelligenti
+• Temi chiaro, scuro e seppia
+
+OFFLINE
+Niente account né registrazione. La schermata di gioco è sempre senza pubblicità; con il Premium una tantum le rimuovi tutte.
+
+Se ami i giochi di parole e le belle citazioni, Quotecrack è il tuo allenamento mentale quotidiano. Scaricalo gratis.
+```
+
+### Português (pt)
+
+```
+Quotecrack: Criptograma
+```
+```
+Decifre frases famosas. Um novo criptograma por dia, grátis e off-line.
+```
+```
+Revele a frase, letra por letra. Cada desafio do Quotecrack é uma frase famosa escondida por uma simples troca de letras; você resolve aos poucos e sente uma alegria de verdade quando as palavras se encaixam.
+
+CRIPTOGRAMA DIÁRIO
+Uma frase nova por dia, a mesma para todo mundo. Resolva, mantenha sua sequência e compartilhe seu tempo.
+
+PORTUGUÊS E 7 IDIOMAS
+Provérbios em pacotes próprios, além de conteúdo em inglês, turco, espanhol, alemão, francês e italiano. Cada idioma é jogado em seu próprio alfabeto.
+
+DO SEU JEITO
+• Pacotes de dificuldade e temáticos
+• Cronômetro opcional
+• Dicas inteligentes
+• Temas claro, escuro e sépia
+
+OFF-LINE
+Sem conta nem cadastro. A tela de jogo é sempre sem anúncios; vire Premium uma vez para remover todos.
+
+Se você curte jogos de palavras e boas frases, o Quotecrack é seu treino mental diário. Baixe grátis.
+```
+
+---
 
 ## Graphics checklist
 
