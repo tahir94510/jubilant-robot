@@ -85,7 +85,7 @@ kurup şu listeyi işaretleyin:
        asla reklam yok**; 3 çözümde bir geçiş reklamı geliyor (120 sn
        arayla).
 7. [ ] Premium (license tester hesabıyla, ücretsiz): satın al → reklamlar
-       anında kayboluyor, ipuçları sınırsız, Shakespeare+Stoic açılıyor;
+       anında kayboluyor, ipuçları sınırsız, Klasikler paketi açılıyor;
        uygulamayı silip kur → **Restore purchases** premium'u geri
        getiriyor.
 8. [ ] Üç tema + yazı boyutu kaydırıcısı: bulmaca ekranı hepsiyle okunaklı.
