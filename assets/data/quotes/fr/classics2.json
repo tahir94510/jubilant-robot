@@ -1,0 +1,34 @@
+[
+  {
+    "id": "fr-c201",
+    "text": "Je t'aimais inconstant, qu'aurais-je fait fidèle?",
+    "author": "Jean Racine",
+    "source": "Andromaque",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c202",
+    "text": "On ne doit jamais juger des gens sur l'apparence.",
+    "author": "Molière",
+    "source": "Le Misanthrope",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c203",
+    "text": "La parfaite raison fuit toute extrémité, et veut que l'on soit sage avec sobriété.",
+    "author": "Molière",
+    "source": "Le Misanthrope",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c204",
+    "text": "Ce que l'on conçoit bien s'énonce clairement, et les mots pour le dire arrivent aisément.",
+    "author": "Nicolas Boileau",
+    "source": "L'Art poétique",
+    "category": "classics",
+    "locale": "fr"
+  }
+]

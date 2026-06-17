@@ -1,0 +1,642 @@
+[
+  {
+    "id": "de-p201",
+    "text": "Der Ehrliche ist immer der Dumme, sagt der Volksmund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p202",
+    "text": "Wo Rauch ist, da ist auch Feuer.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p203",
+    "text": "Der Fisch stinkt vom Kopf her.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p205",
+    "text": "Eine Hand wäscht die andere.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p206",
+    "text": "Der Teufel scheißt immer auf den größten Haufen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p207",
+    "text": "Wer nicht hören will, der muss eben fühlen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p208",
+    "text": "Wie der Vater, so der Sohn.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p209",
+    "text": "Lieber den Spatz in der Hand als die Taube auf dem Dach.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p211",
+    "text": "Wer zu spät kommt, den bestraft das Leben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p212",
+    "text": "Das letzte Hemd hat keine Taschen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p213",
+    "text": "Wer den Schaden hat, spottet jeder Beschreibung.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p214",
+    "text": "Der Apfel fällt nicht weit vom Birnbaum, scherzt man bisweilen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p215",
+    "text": "Gebranntes Kind scheut das Feuer.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p216",
+    "text": "Was du nicht willst, dass man dir tu, das füg auch keinem andern zu.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p217",
+    "text": "Gelegenheit macht Diebe.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p218",
+    "text": "Wer rastet, rostet, und wer rostet, der vergeht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p219",
+    "text": "Hochmut kommt vor dem Fall, das lehrt die Erfahrung.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p221",
+    "text": "Wer das Feuer haben will, muss den Rauch ertragen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p222",
+    "text": "Steter Tropfen höhlt den Stein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p223",
+    "text": "Wie man sich bettet, so liegt man.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p226",
+    "text": "Auf Regen folgt Sonnenschein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p227",
+    "text": "Wer sich in Gefahr begibt, kommt darin um.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p228",
+    "text": "Die Katze lässt das Mausen nicht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p229",
+    "text": "Wenn die Katze aus dem Haus ist, tanzen die Mäuse.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p231",
+    "text": "Der Mensch lebt nicht vom Brot allein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p232",
+    "text": "Wer wagt, gewinnt, sagt der Volksmund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p233",
+    "text": "Liebe macht blind, das weiß ein jeder.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p234",
+    "text": "Es ist noch kein Gelehrter vom Himmel gefallen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p236",
+    "text": "Wer schön sein will, muss leiden.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p237",
+    "text": "Was sich neckt, das liebt sich.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p238",
+    "text": "Gute Dinge wollen Weile haben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p239",
+    "text": "Auf einen groben Klotz gehört ein grober Keil.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p240",
+    "text": "Der Glaube versetzt Berge.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p241",
+    "text": "Wer den Cent nicht ehrt, ist des Euro nicht wert.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p242",
+    "text": "Schmiede das Eisen, solange es glüht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p243",
+    "text": "Wer im Recht ist, kann gelassen bleiben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p245",
+    "text": "Reden ist Silber, doch Handeln ist Gold.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p246",
+    "text": "Es wird nichts so heiß gegessen, wie es gekocht wird.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p247",
+    "text": "Wer Pech hat, bricht sich den Finger in der Nase.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p249",
+    "text": "Mancher sieht den Wald vor lauter Bäumen nicht.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p250",
+    "text": "Wer den Tag mit Arbeit beginnt, dem lacht der Abend.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p251",
+    "text": "Eine Krähe hackt der anderen kein Auge aus.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p252",
+    "text": "Was du säst, das wirst du ernten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p253",
+    "text": "Der dümmste Bauer erntet die größten Rüben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p255",
+    "text": "Vorfreude ist die schönste Freude.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p256",
+    "text": "Die Hoffnung stirbt zuletzt.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p257",
+    "text": "Wer den Wein trinkt, muss auch den Rausch ertragen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p258",
+    "text": "Wo gehobelt wird, fallen eben Späne.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p259",
+    "text": "Lügen haben kurze Beine, doch sie laufen schnell.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p260",
+    "text": "Geduld und Spucke fangen eine Mucke.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p261",
+    "text": "Wer den Anfang findet, der findet auch das Ende.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p263",
+    "text": "Da liegt der Hund begraben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p264",
+    "text": "Jeder kehre vor seiner eigenen Tür.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p265",
+    "text": "Wer zwei Hasen jagt, fängt keinen.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p266",
+    "text": "Hinterher ist man immer klüger.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p267",
+    "text": "Selbst ist der Mann, und selbst ist die Frau.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p268",
+    "text": "Wer den Wind sät, der erntet den Sturm.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p269",
+    "text": "Übung allein bringt den Erfolg.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p270",
+    "text": "Klappern gehört zum Handwerk.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p271",
+    "text": "Wer einmal stiehlt, bleibt immer ein Dieb.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p272",
+    "text": "Das Hemd ist mir näher als der Rock.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p273",
+    "text": "Wer Sorgen hat, dem schmeckt kein Wein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p274",
+    "text": "Die Ratten verlassen das sinkende Schiff.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p275",
+    "text": "Wer alles haben will, bekommt am Ende nichts.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p276",
+    "text": "Reue kommt zu spät, wenn das Kind in den Brunnen gefallen ist.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p277",
+    "text": "Gut Ding will Weile haben, das weiß ein jeder Handwerker.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p278",
+    "text": "Wer den Pfennig spart, der hat am Ende den Taler.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p279",
+    "text": "Der Klügere trägt die Last des Streites allein.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p280",
+    "text": "Was lange gärt, wird endlich Wut.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p281",
+    "text": "Der Esel nennt sich selbst zuerst.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p282",
+    "text": "Wer nicht kommt zur rechten Zeit, der muss nehmen, was übrig bleibt.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p283",
+    "text": "Eine Lüge ist schnell gesagt, doch lange muss man sie hüten.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p284",
+    "text": "Geteilte Freude ist doppelte Freude.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p285",
+    "text": "Wer den Berg ersteigen will, fängt unten an.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p286",
+    "text": "Besser ein magerer Vergleich als ein fetter Prozess.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p287",
+    "text": "Wer sich entschuldigt, der klagt sich an.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p288",
+    "text": "Ein guter Nachbar ist mehr wert als ein ferner Freund.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p289",
+    "text": "Wer nichts riskiert, der trinkt auch keinen Champagner.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p290",
+    "text": "Erst denken, dann lenken.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-p291",
+    "text": "Wer den Kern essen will, muss die Nuss knacken.",
+    "author": "Deutsches Sprichwort",
+    "source": "Volksmund",
+    "category": "proverbs",
+    "locale": "de"
+  }
+]

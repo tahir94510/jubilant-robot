@@ -1,0 +1,610 @@
+[
+  {
+    "id": "pt-p201",
+    "text": "Quem tem padrinho não morre pagão.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p202",
+    "text": "De pequenino se torce o pepino.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p203",
+    "text": "Cada macaco no seu galho.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p204",
+    "text": "Quem tem boca cala-se quando deve.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p205",
+    "text": "O que não tem remédio remediado está.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p206",
+    "text": "Quem semeia na areia perde o trabalho e a semente.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p207",
+    "text": "Mais sabe o tolo na sua casa do que o sábio na alheia.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p208",
+    "text": "Quem dorme não apanha peixe.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p209",
+    "text": "Agosto amadura, setembro vindima.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p210",
+    "text": "Quem boa cama fizer nela se deitará.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p211",
+    "text": "Em boca fechada não entra mosca.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p212",
+    "text": "Quem semeia abrolhos não ande descalço.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p213",
+    "text": "Roupa suja lava-se em casa.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p214",
+    "text": "Casa em que não há pão, todos gritam e ninguém tem razão.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p215",
+    "text": "Quem ama o feio bonito lhe parece.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p216",
+    "text": "O comer e o coçar está no começar.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p217",
+    "text": "Quem com porcos se mistura, farelos come.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p218",
+    "text": "A palavras loucas, orelhas moucas.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p219",
+    "text": "Quem tem padrinhos não morre na cadeia.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p220",
+    "text": "Junta-te aos bons e serás um deles.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p221",
+    "text": "Mais vale um gosto na vida que três vinténs na arca.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p222",
+    "text": "Quem não tem dinheiro tem juízo.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p223",
+    "text": "Cada um puxa a brasa à sua sardinha.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p224",
+    "text": "Vão-se os anéis, fiquem os dedos.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p225",
+    "text": "Quem espera por sapatos de defunto, toda a vida anda descalço.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p226",
+    "text": "Quanto maior a nau, maior a tormenta.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p227",
+    "text": "Galinha velha faz bom caldo.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p228",
+    "text": "Quem não tem dinheiro não tem vícios.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p231",
+    "text": "De médico e de louco todos temos um pouco.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p232",
+    "text": "Quem muito fala, muito erra.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p234",
+    "text": "Não há sábado sem sol nem domingo sem missa.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p235",
+    "text": "Quem parte e reparte e não fica com a melhor parte, ou é tolo ou não sabe a arte.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p236",
+    "text": "Mais vale quem Deus ajuda do que quem muito madruga.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p237",
+    "text": "Quem tem que dar não procura desculpas.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p238",
+    "text": "O lobo perde o pelo mas não perde o vício.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p239",
+    "text": "Quem ao seu inimigo poupa, às suas mãos morre.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p240",
+    "text": "Sol de inverno, amor de sogra, depressa se põe.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p241",
+    "text": "Quem semeia em maio, colhe alarido.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p242",
+    "text": "Pão por pão, queijo por queijo.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p243",
+    "text": "Quem não tem força, tem manha.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p244",
+    "text": "A cabra vai sempre puxar para o monte.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p245",
+    "text": "Quem se deita com cães, levanta-se com pulgas.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p246",
+    "text": "Onde entra o beber, sai o saber.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p247",
+    "text": "Quem tudo guarda, tudo encontra.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p248",
+    "text": "Em terra de mouros, à força de murros.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p249",
+    "text": "Quem boas árvores tiver, à sombra delas se acolherá.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p250",
+    "text": "A fome é o melhor tempero.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p251",
+    "text": "Quem não tem que fazer, faz colher.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p252",
+    "text": "Cão velho não ladra à toa.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p253",
+    "text": "Quem dá o que tem, a mais não é obrigado.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p254",
+    "text": "Mais vale saber que haver.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p255",
+    "text": "Quem semeia cardos, espinhos colhe.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p256",
+    "text": "O mau passo, dá-lo depressa.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p258",
+    "text": "Diz-me com quem andas, dir-te-ei as manhas que tens.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p259",
+    "text": "Vinho velho, amigo velho e ouro velho.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p260",
+    "text": "Quem não quer ser lobo não lhe vista a pele.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p261",
+    "text": "Por um cravo se perde uma ferradura.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p262",
+    "text": "Quem tem arte por toda a parte se aproveita.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p263",
+    "text": "Boa fama vale mais que dourada cama.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p264",
+    "text": "Quem não trabuca não manduca.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p265",
+    "text": "Cada cousa a seu tempo e os nabos no Advento.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p266",
+    "text": "Quem não ouve conselho não chega a velho.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p267",
+    "text": "Casa sem mulher, barca sem leme.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p268",
+    "text": "Quem dá e torna a tirar ao inferno vai parar.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p269",
+    "text": "Mais depressa cai um mentiroso que um coxo.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p270",
+    "text": "Quem tem telhado de vidro não atire pedras ao do vizinho.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p271",
+    "text": "A ovelha que berra perde o bocado.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p272",
+    "text": "Em janeiro sobe ao outeiro; se vires verdejar, põe-te a chorar.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p273",
+    "text": "Quem o seu cão quer matar, raiva lhe há de levantar.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p274",
+    "text": "Mãos que não dão, que esperam que dêem?",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p275",
+    "text": "Filho de boas mãos sempre dá boa lavoura.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p276",
+    "text": "Quem tem dinheiro tem amigos.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p277",
+    "text": "Cada um sente o seu mal e Deus o de todos.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p278",
+    "text": "Quem quer vai, quem não quer manda.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p279",
+    "text": "Nem todos os dias são de festa.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-p280",
+    "text": "A muito falar, muito errar.",
+    "author": "Provérbio português",
+    "source": "Tradicional",
+    "category": "proverbs",
+    "locale": "pt"
+  }
+]
