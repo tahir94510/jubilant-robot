@@ -580,4 +580,7 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get adNoVideo =>
       'Nenhum vídeo disponível agora. Tente novamente em instantes.';
+
+  @override
+  String get badgeNew => 'NOVO';
 }

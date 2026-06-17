@@ -32,7 +32,11 @@ int dailySeed(DateTime date) =>
 int puzzleNumberFor(DateTime date) {
   final epoch = AppConfig.puzzleEpoch;
   final d = DateTime(date.year, date.month, date.day);
-  return d.difference(DateTime(epoch.year, epoch.month, epoch.day)).inDays + 1;
+  final n =
+      d.difference(DateTime(epoch.year, epoch.month, epoch.day)).inDays + 1;
+  // A device clock set before the epoch would yield a zero/negative number;
+  // the shared "Quotecrack #N" label is 1-based, so floor it at 1.
+  return n < 1 ? 1 : n;
 }
 
 int _dayOfYear(DateTime date) =>

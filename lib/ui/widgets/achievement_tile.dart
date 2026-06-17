@@ -89,6 +89,7 @@ class _NewBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -96,7 +97,7 @@ class _NewBadge extends StatelessWidget {
         borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
-        'NEW',
+        l10n.badgeNew,
         style: TextStyle(
           fontSize: 10,
           height: 1.1,

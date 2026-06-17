@@ -165,5 +165,6 @@
   "hintRevealLetter": "Révéler une lettre",
   "hintRevealLetterCount": "Révéler une lettre ({count})",
   "hintTokensAdded": "+{count} indices ajoutés",
-  "adNoVideo": "Aucune vidéo n’est disponible pour le moment. Réessayez dans un instant."
+  "adNoVideo": "Aucune vidéo n’est disponible pour le moment. Réessayez dans un instant.",
+  "badgeNew": "NOUVEAU"
 }
