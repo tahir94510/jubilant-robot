@@ -94,15 +94,26 @@ class LetterCell extends StatelessWidget {
                 ),
               ),
             ),
-            AnimatedContainer(
-              duration: Duration(milliseconds: motion ? 120 : 0),
-              height: selected ? 2.4 : 1.6,
-              margin: const EdgeInsets.symmetric(horizontal: 2),
-              color: switch (state) {
-                CellState.selected => palette.revealed,
-                CellState.solved => palette.success,
-                _ => palette.boardUnderline,
-              },
+            // The underline lives in a FIXED-height slot so selecting a cell
+            // can never change the cell's total height. Earlier the height
+            // animated 1.6<->2.4, and since selection moves on every keystroke
+            // (auto-advance) and on delete, that 0.8px change re-flowed the
+            // word Row and rippled through the Wrap — the "git-gel" jitter.
+            // Now only the visible thickness animates inside the constant slot.
+            SizedBox(
+              height: 2.4,
+              child: Center(
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: motion ? 120 : 0),
+                  height: selected ? 2.4 : 1.6,
+                  margin: const EdgeInsets.symmetric(horizontal: 2),
+                  color: switch (state) {
+                    CellState.selected => palette.revealed,
+                    CellState.solved => palette.success,
+                    _ => palette.boardUnderline,
+                  },
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 3, bottom: 2),

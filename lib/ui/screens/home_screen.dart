@@ -48,6 +48,14 @@ class HomeScreen extends StatelessWidget {
     final daily = selectDaily(repo.dailyPoolFor(contentLocale), today);
     final dailyDone = progress.dailySolvedToday;
 
+    // Packs progress is scoped to the active content language so the Home
+    // summary matches the locale-scoped Packs screen — the player only ever
+    // reaches their own language's catalog.
+    final localeQuotes = repo.forLocale(contentLocale);
+    final solvedHere = localeQuotes
+        .where((q) => progress.isSolved(q.id))
+        .length;
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -213,8 +221,8 @@ class HomeScreen extends StatelessWidget {
                         icon: Icons.grid_view_rounded,
                         title: l10n.puzzlePacks,
                         subtitle: l10n.packsSolved(
-                          progress.stats.solvedIds.length,
-                          repo.all.length,
+                          solvedHere,
+                          localeQuotes.length,
                         ),
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(

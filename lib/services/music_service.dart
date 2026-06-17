@@ -14,12 +14,11 @@ class MusicService with WidgetsBindingObserver {
 
   final bool Function() isEnabled;
 
-  /// The bed's base level at full user volume. The mastered track already sits
-  /// low under the sound effects (it peaks at ~0.55 of full scale), so the bed
-  /// needs real gain here to be present rather than a whisper — the old 0.30
-  /// left it inaudible once the user nudged the slider down. [setUserVolume]
-  /// scales it from the Settings slider.
-  static const double _baseVolume = 0.95;
+  /// The bed's base level at full user volume. The mastered track is normalized
+  /// to ~0.80 of full scale (on par with the UI sound effects), so playing it
+  /// at full player volume gives a present, audible bed instead of the old
+  /// whisper. [setUserVolume] scales it from the Settings slider.
+  static const double _baseVolume = 1.0;
 
   /// Fraction of the playing level the bed dips to under the success fanfare.
   /// Deliberately not near-zero: the fanfare should ride *over* the bed, not

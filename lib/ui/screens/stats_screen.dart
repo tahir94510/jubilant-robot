@@ -44,6 +44,9 @@ class StatsScreen extends StatelessWidget {
           child: MediaQuery.withClampedTextScaling(
             maxScaleFactor: 1.1,
             child: Column(
+              // Centered so the icon/value/label stay balanced when the card is
+              // stretched to its row's tallest sibling (see IntrinsicHeight).
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(icon, size: 22, color: scheme.primary),
                 const SizedBox(height: 8),
@@ -110,53 +113,63 @@ class StatsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 14),
               ],
-              Row(
-                children: [
-                  statCard(
-                    '${stats.totalSolved}',
-                    l10n.statPuzzlesSolved,
-                    Icons.extension_outlined,
-                    animateTo: stats.totalSolved,
-                  ),
-                  const SizedBox(width: 10),
-                  statCard(
-                    '${progress.displayStreak}',
-                    l10n.statCurrentStreak,
-                    Icons.local_fire_department_outlined,
-                    animateTo: progress.displayStreak,
-                  ),
-                  const SizedBox(width: 10),
-                  statCard(
-                    '${stats.bestStreak}',
-                    l10n.statBestStreak,
-                    Icons.star_outline,
-                    animateTo: stats.bestStreak,
-                  ),
-                ],
+              // IntrinsicHeight + stretch keeps all three cards the same height
+              // even when a translated label wraps to two lines (common in
+              // TR/DE/FR/PT) — otherwise the longer card grows and the row
+              // reads ragged.
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    statCard(
+                      '${stats.totalSolved}',
+                      l10n.statPuzzlesSolved,
+                      Icons.extension_outlined,
+                      animateTo: stats.totalSolved,
+                    ),
+                    const SizedBox(width: 10),
+                    statCard(
+                      '${progress.displayStreak}',
+                      l10n.statCurrentStreak,
+                      Icons.local_fire_department_outlined,
+                      animateTo: progress.displayStreak,
+                    ),
+                    const SizedBox(width: 10),
+                    statCard(
+                      '${stats.bestStreak}',
+                      l10n.statBestStreak,
+                      Icons.star_outline,
+                      animateTo: stats.bestStreak,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
-              Row(
-                children: [
-                  statCard(
-                    _fmtTime(stats.bestTimeSeconds),
-                    l10n.statFastestSolve,
-                    Icons.bolt_outlined,
-                  ),
-                  const SizedBox(width: 10),
-                  statCard(
-                    '${stats.noHintSolves}',
-                    l10n.statNoHintSolves,
-                    Icons.do_not_touch_outlined,
-                    animateTo: stats.noHintSolves,
-                  ),
-                  const SizedBox(width: 10),
-                  statCard(
-                    '$dailySolved',
-                    l10n.statDailiesSolved,
-                    Icons.today_outlined,
-                    animateTo: dailySolved,
-                  ),
-                ],
+              IntrinsicHeight(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    statCard(
+                      _fmtTime(stats.bestTimeSeconds),
+                      l10n.statFastestSolve,
+                      Icons.bolt_outlined,
+                    ),
+                    const SizedBox(width: 10),
+                    statCard(
+                      '${stats.noHintSolves}',
+                      l10n.statNoHintSolves,
+                      Icons.do_not_touch_outlined,
+                      animateTo: stats.noHintSolves,
+                    ),
+                    const SizedBox(width: 10),
+                    statCard(
+                      '$dailySolved',
+                      l10n.statDailiesSolved,
+                      Icons.today_outlined,
+                      animateTo: dailySolved,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 18),
               Card(
