@@ -133,7 +133,7 @@ testing** → kendi Gmail'inizi ekleyin. Bu hesap, kapalı testteki uygulamada
 
 - [ ] Paywall fiyatı mağazadan geliyor (yüklenirken "Loading price…" yazar).
 - [ ] Satın alınca reklamlar anında kayboluyor, ipuçları sınırsız oluyor,
-      Shakespeare/Stoic paketleri açılıyor.
+      Klasikler paketi açılıyor.
 - [ ] Uygulamayı silip yeniden kurunca **Settings → Restore purchases**
       premium'u geri getiriyor.
 

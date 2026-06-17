@@ -42,7 +42,7 @@ anahtar kelimeler, yükleme/çökme oranı, puan ve yorumlar, ve KALICILIK
 11. **Store listing experiments (A/B).** Trafik oturduktan sonra ikon ve
     feature graphic için A/B testi aç; en iyi dönüşeni tut.
 
-## Mağaza ayarları: kategori ve etiketler (2026 Play Console — kesin öneri)
+## Mağaza ayarları: kategori ve etiketler (2026 Play Console, kesin öneri)
 
 Play Console > Grow > Store presence > **Store settings**.
 
@@ -55,7 +55,7 @@ Play Console > Grow > Store presence > **Store settings**.
 az doygun; kaliteli bir kriptogram burada daha kolay sıralanır. (Ham hacim
 istersen "Puzzle" da seçilebilir, ama tavsiye "Word".)
 
-### Etiketler (en fazla 5) — "Etiket" ve "İlgili etiket"
+### Etiketler (en fazla 5): "Etiket" ve "İlgili etiket"
 Play'in etiket seçici **sabit bir taksonomidir** (TR arayüzde sütunlar:
 "Etiket" = seçtiğin etiket, "İlgili etiketler" = Google'ın o etiketi bağladığı
 geniş kategoriler/yerleşim). Etiketler birer **anahtar kelime DEĞİLDİR** (metin
@@ -64,19 +64,19 @@ besler. Bu yüzden ölçüt **doğruluktur**: oyununun mekaniğine uymayan bir e
 yanlış kitleyi çeker → hızlı kaldırma → sıralama düşer.
 
 **Önerilen 5 etiket (TR seçicideki gerçek adlarla; Etiket → İlgili etiketler):**
-1. **Kelime → Kelime** — temel mekanik (harf-ikamesiyle söz çözme).
-2. **Bulmaca → Bulmaca** — geniş bulmaca yerleşimi.
-3. **Mantık bilmecesi → Bulmaca** — tümevarımsal (harf sıklığı, kısa kelimeler) çözüm.
-4. **Zeka oyunu → Bulmaca, Zeka oyunu** — kriptogram klasik bir zeka bilmecesidir.
+1. **Kelime → Kelime**: temel mekanik (harf-ikamesiyle söz çözme).
+2. **Bulmaca → Bulmaca**: geniş bulmaca yerleşimi.
+3. **Mantık bilmecesi → Bulmaca**: tümevarımsal (harf sıklığı, kısa kelimeler) çözüm.
+4. **Zeka oyunu → Bulmaca, Zeka oyunu**: kriptogram klasik bir zeka bilmecesidir.
 5. **Kelime oyunu / Kelime bulmaca → Kelime** (seçici sunuyorsa). Sunmuyorsa ikinci
    bir **Bulmaca → Kelime** varyantı da iyidir: seni hem Bulmaca hem Kelime
    yerleşimine sokar.
 
-**Kaçın:** **"Kelime arama" (Word search)** — ızgarada gizli kelime bulma
+**Kaçın:** **"Kelime arama" (Word search)**: ızgarada gizli kelime bulma
 mekaniğidir; kriptogramla alakasız, yanlış kitle çeker. Seçme.
 
 > Not: Play yalnızca kendi sunduğu etiketlerden seçtirir; liste zamanla küçük
-> değişiklikler gösterir. İlke sabit: şu kümeden en yakın ve DOĞRU olanları seç —
+> değişiklikler gösterir. İlke sabit: şu kümeden en yakın ve DOĞRU olanları seç:
 > {Kelime, Bulmaca, Mantık bilmecesi, Zeka oyunu, (varsa) Kelime oyunu/bulmaca}.
 > Oyuncusu başka bir oyun bekleyecek hiçbir etiketi seçme.
 
