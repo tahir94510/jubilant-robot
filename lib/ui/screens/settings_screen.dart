@@ -392,7 +392,6 @@ class _VolumeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final palette = Theme.of(context).extension<GamePalette>()!;
     final pct = (value * 100).round();
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
@@ -447,11 +446,12 @@ class _VolumeTile extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 6),
-          // A fixed, tabular-width readout so the slider edge never jitters as
-          // the digits change (8% → 100%).
+          const SizedBox(width: 8),
+          // A fixed, tabular-width readout in the slider's own accent so the
+          // value reads as part of the control. Fixed width keeps the slider
+          // edge from jittering as the digits change (8% to 100%).
           SizedBox(
-            width: 46,
+            width: 44,
             child: Text(
               '$pct%',
               textAlign: TextAlign.end,
@@ -459,7 +459,7 @@ class _VolumeTile extends StatelessWidget {
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
                 fontFeatures: const [FontFeature.tabularFigures()],
-                color: palette.textSecondary,
+                color: scheme.primary,
               ),
             ),
           ),

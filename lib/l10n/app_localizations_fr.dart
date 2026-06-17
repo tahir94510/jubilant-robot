@@ -352,11 +352,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String statsHeatmapCaption(int weeks, String start, String end) {
-    return '$weeks dernières semaines · $start – $end';
+    return '$weeks dernières semaines · $start à $end';
   }
 
   @override
   String get puzzleAlreadySolved => 'Vous avez déjà résolu celui-ci.';
+
+  @override
+  String get dailyPuzzleTitle => 'Énigme du jour';
 
   @override
   String achievementsCountTitle(int unlocked, int total) {

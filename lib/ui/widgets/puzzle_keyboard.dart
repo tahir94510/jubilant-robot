@@ -62,23 +62,12 @@ class PuzzleKeyboard extends StatelessWidget {
             Color? bg,
             double widthFactor = 1,
           }) {
-            return Padding(
-              padding: const EdgeInsets.all(2.5),
-              child: Material(
-                color: bg ?? palette.keyBg,
-                borderRadius: BorderRadius.circular(9),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(9),
-                  onTap: onTap,
-                  child: SizedBox(
-                    width: (keyWidth * widthFactor) - 5,
-                    height: keyHeight,
-                    child: Center(
-                      child: FittedBox(fit: BoxFit.scaleDown, child: child),
-                    ),
-                  ),
-                ),
-              ),
+            return _KeyButton(
+              onTap: onTap,
+              bg: bg ?? palette.keyBg,
+              width: (keyWidth * widthFactor) - 5,
+              height: keyHeight,
+              child: child,
             );
           }
 
@@ -136,6 +125,67 @@ class PuzzleKeyboard extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+/// One keyboard key with a quick press-scale "pop" for tactile feedback, on top
+/// of the Material ink ripple. Honors the system "reduce motion" setting.
+class _KeyButton extends StatefulWidget {
+  const _KeyButton({
+    required this.child,
+    required this.onTap,
+    required this.bg,
+    required this.width,
+    required this.height,
+  });
+
+  final Widget child;
+  final VoidCallback? onTap;
+  final Color bg;
+  final double width;
+  final double height;
+
+  @override
+  State<_KeyButton> createState() => _KeyButtonState();
+}
+
+class _KeyButtonState extends State<_KeyButton> {
+  bool _down = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final motion = !MediaQuery.of(context).disableAnimations;
+    final enabled = widget.onTap != null;
+    void set(bool v) {
+      if (enabled && motion) setState(() => _down = v);
+    }
+
+    return Padding(
+      padding: const EdgeInsets.all(2.5),
+      child: AnimatedScale(
+        scale: _down ? 0.90 : 1.0,
+        duration: Duration(milliseconds: motion ? 70 : 0),
+        curve: Curves.easeOut,
+        child: Material(
+          color: widget.bg,
+          borderRadius: BorderRadius.circular(9),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(9),
+            onTap: widget.onTap,
+            onTapDown: (_) => set(true),
+            onTapUp: (_) => set(false),
+            onTapCancel: () => set(false),
+            child: SizedBox(
+              width: widget.width,
+              height: widget.height,
+              child: Center(
+                child: FittedBox(fit: BoxFit.scaleDown, child: widget.child),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

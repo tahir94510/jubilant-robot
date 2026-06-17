@@ -226,7 +226,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get paywallPacksBody =>
-      'Ein exklusives Klassiker-Paket mit zeitlosen Stimmen – und mehr ist unterwegs';
+      'Ein exklusives Klassiker-Paket mit zeitlosen Stimmen, und mehr ist unterwegs';
 
   @override
   String get paywallSupportTitle => 'Unterstütze das Spiel';
@@ -351,11 +351,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String statsHeatmapCaption(int weeks, String start, String end) {
-    return 'Letzte $weeks Wochen · $start – $end';
+    return 'Letzte $weeks Wochen · $start bis $end';
   }
 
   @override
   String get puzzleAlreadySolved => 'Das hast du schon geknackt.';
+
+  @override
+  String get dailyPuzzleTitle => 'Tägliches Rätsel';
 
   @override
   String achievementsCountTitle(int unlocked, int total) {
@@ -367,7 +370,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onbStep1Body =>
-      'In einem Kryptogramm steht jeder Buchstabe des Alphabets für einen anderen. E kann K sein, T kann A sein – aber die Ersetzung ist überall gleich.';
+      'In einem Kryptogramm steht jeder Buchstabe des Alphabets für einen anderen. E kann K sein, T kann A sein, aber die Ersetzung ist überall gleich.';
 
   @override
   String get onbStep2Title => 'Knack es mit Mustern';

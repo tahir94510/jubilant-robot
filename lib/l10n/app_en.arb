@@ -98,7 +98,7 @@
   "paywallHintsTitle": "Unlimited hints",
   "paywallHintsBody": "Reveal a letter whenever you're stuck",
   "paywallPacksTitle": "Exclusive bonus packs",
-  "paywallPacksBody": "An exclusive Classics pack of timeless voices — and more on the way",
+  "paywallPacksBody": "An exclusive Classics pack of timeless voices, with more on the way",
   "paywallSupportTitle": "Support the game",
   "paywallSupportBody": "One purchase helps Quotecrack keep growing",
   "paywallActive": "Premium active. Enjoy!",
@@ -172,6 +172,7 @@
     }
   },
   "puzzleAlreadySolved": "You've already cracked this one.",
+  "dailyPuzzleTitle": "Daily puzzle",
   "achievementsCountTitle": "Achievements ({unlocked}/{total})",
   "@achievementsCountTitle": {
     "placeholders": {

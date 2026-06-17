@@ -8,12 +8,12 @@ are respected; do not exceed them when editing.
 ## Release notes: v1.3.0 (max 500 chars, paste into "What's new")
 
 ```
-NEW in 1.3.0 — every language, its own world
-• Pick your language and the whole game becomes that culture's quotes — Proverbs, Wisdom, Wit, Literature, and a premium Classics pack
+NEW in 1.3.0: every language, its own world
+• Pick your language and the whole game becomes that culture's quotes: Proverbs, Wisdom, Wit, Literature, and a premium Classics pack
 • Each language plays on its own familiar keyboard (QWERTY, QWERTZ, AZERTY, Turkish-Q)
 • Re-open a solved puzzle to see the solution, then Play again
-• Louder, warmer music and a richer, more rewarding solve fanfare
-• Cleaner stats, a sharper logo, and polish throughout
+• Louder, warmer music, a richer solve fanfare, and tactile keys
+• Every screen fully in your language, with smoother typing and fixes
 Happy decoding!
 ```
 
@@ -22,10 +22,10 @@ Happy decoding!
 ## Release notes: v1.2.0 (max 500 chars, paste into "What's new")
 
 ```
-NEW in 1.2.0 — our biggest update yet
+NEW in 1.2.0: our biggest update yet
 • Play in 7 languages (English, Türkçe, Español, Deutsch, Français, Italiano, Português), each with native quote packs in its own alphabet
 • A refined, elegant new look across the whole app
-• Full physical-keyboard support — great on tablets, Chromebooks and TV
+• Full physical-keyboard support, great on tablets, Chromebooks and TV
 • Separate music & sound-effect volume, smoother audio
 • Faster, smarter solving and many fixes
 Happy decoding!
@@ -149,10 +149,10 @@ DAILY CRYPTOGRAM
 A fresh puzzle every day. Solve it, keep your streak going, and share your time with friends, Wordle style. Every language has its own daily, drawn from its own quotes.
 
 PLAYS IN YOUR LANGUAGE
-Choose from 7 languages — English, Türkçe, Español, Deutsch, Français, Italiano, Português — and the whole game speaks it. Every language has its own hand-picked packs of native quotes, played in its own alphabet and on its own keyboard. Switch language and the entire catalog becomes that culture's voices.
+Choose from 7 languages (English, Türkçe, Español, Deutsch, Français, Italiano, Português) and the whole game speaks it. Every language has its own hand-picked packs of native quotes, played in its own alphabet and on its own keyboard. Switch language and the entire catalog becomes that culture's voices.
 
 HAND-PICKED QUOTES
-Proverbs, wisdom, wit, and literature, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world — plus a premium Classics pack of timeless authors. Every quote is chosen by hand and properly attributed.
+Proverbs, wisdom, wit, and literature, from Mark Twain and Oscar Wilde to Jane Austen and the old proverbs of the world, plus a premium Classics pack of timeless authors. Every quote is chosen by hand and properly attributed.
 
 PLAY YOUR WAY
 • 4 difficulty packs, from relaxed Beginner to tough Expert
@@ -176,7 +176,7 @@ TRACK YOUR JOURNEY
 • 24 achievements to unlock
 
 FAIR AND FREE TO PLAY
-The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive Classics pack — your language's most timeless voices, hand-picked.
+The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive Classics pack: your language's most timeless voices, hand-picked.
 
 WHAT IS A CRYPTOGRAM?
 A cryptogram (also called a cryptoquote or cipher puzzle) is a short message scrambled by swapping each letter for another. You break it with pattern recognition, letter frequency, and the shapes of words. It's the same fun as the cryptoquip in the Sunday paper, now in your pocket.
@@ -205,7 +205,7 @@ GÜNLÜK ŞİFRE
 Her gün yeni bir bulmaca. Çöz, serini sürdür ve süreni arkadaşlarınla paylaş. Her dilin kendi günlük bulmacası vardır.
 
 SENİN DİLİNDE
-Türkçe'yi seç, oyunun tamamı Türkçeleşsin: Türk atasözleri, bilgelik sözleri, nükteler ve edebiyatımızdan dizeler — hepsi kendi alfabesinde ve kendi klavyesinde. Oyun 7 dil destekler (Türkçe, İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca, Portekizce) ve her dilin kendi özgün paketleri vardır. Dili değiştir, tüm içerik o kültürün sesleriyle dolsun.
+Türkçe'yi seç, oyunun tamamı Türkçeleşsin: Türk atasözleri, bilgelik sözleri, nükteler ve edebiyatımızdan dizeler; hepsi kendi alfabesinde ve kendi klavyesinde. Oyun 7 dil destekler (Türkçe, İngilizce, İspanyolca, Almanca, Fransızca, İtalyanca, Portekizce) ve her dilin kendi özgün paketleri vardır. Dili değiştir, tüm içerik o kültürün sesleriyle dolsun.
 
 ÖZENLE SEÇİLMİŞ SÖZLER
 Atasözleri, Bilgelik, Nükte ve Edebiyat paketleri; ayrıca Premium ile açılan Klasikler paketi (Mevlânâ, Yunus Emre ve daha fazlası). Her söz elle seçilir ve doğru biçimde atıflanır.
@@ -255,7 +255,7 @@ CRIPTOGRAMA DIARIO
 Una frase nueva cada día. Resuélvela, mantén viva tu racha y comparte tu tiempo con tus amigos, al estilo Wordle. Cada idioma tiene su propio criptograma diario, sacado de sus propias citas.
 
 EN TU IDIOMA
-Elige entre 7 idiomas —español, inglés, turco, alemán, francés, italiano y portugués— y el juego entero habla esa lengua. Cada idioma tiene sus propios paquetes de citas nativas, en su alfabeto y con su teclado. Cambia de idioma y todo el catálogo se convierte en las voces de esa cultura.
+Elige entre 7 idiomas (español, inglés, turco, alemán, francés, italiano y portugués) y el juego entero habla esa lengua. Cada idioma tiene sus propios paquetes de citas nativas, en su alfabeto y con su teclado. Cambia de idioma y todo el catálogo se convierte en las voces de esa cultura.
 
 CITAS ESCOGIDAS A MANO
 Refranes, sabiduría, ingenio y literatura, desde los grandes nombres de las letras en español hasta los refranes de toda la vida, más un paquete Premium de Clásicos con autores eternos como Cervantes, Calderón y Quevedo. Cada cita está elegida a mano y correctamente atribuida.
@@ -355,7 +355,7 @@ CRYPTOGRAMME DU JOUR
 Une nouvelle énigme chaque jour. Résolvez-la, gardez votre série et partagez votre temps avec vos amis, à la manière de Wordle. Chaque langue a son propre cryptogramme quotidien, tiré de ses propres citations.
 
 DANS VOTRE LANGUE
-Choisissez parmi 7 langues — français, anglais, turc, espagnol, allemand, italien et portugais — et tout le jeu la parle. Chaque langue possède ses propres paquets de citations natives, jouées dans son alphabet et sur son clavier. Changez de langue et tout le catalogue devient les voix de cette culture.
+Choisissez parmi 7 langues (français, anglais, turc, espagnol, allemand, italien et portugais) et tout le jeu la parle. Chaque langue possède ses propres paquets de citations natives, jouées dans son alphabet et sur son clavier. Changez de langue et tout le catalogue devient les voix de cette culture.
 
 CITATIONS CHOISIES À LA MAIN
 Proverbes, sagesse, esprit et littérature, des grands noms des lettres françaises aux proverbes de toujours, avec en plus un paquet Premium de Classiques aux auteurs intemporels comme Voltaire, Molière et Hugo. Chaque citation est choisie à la main et correctement attribuée.
@@ -405,7 +405,7 @@ CRITTOGRAMMA DEL GIORNO
 Un nuovo enigma ogni giorno. Risolvilo, mantieni viva la tua serie e condividi il tuo tempo con gli amici, in stile Wordle. Ogni lingua ha il proprio crittogramma quotidiano, tratto dalle sue stesse citazioni.
 
 NELLA TUA LINGUA
-Scegli tra 7 lingue — italiano, inglese, turco, spagnolo, tedesco, francese e portoghese — e l'intero gioco la parla. Ogni lingua ha i suoi pacchetti di citazioni native, giocate nel proprio alfabeto e sulla propria tastiera. Cambia lingua e tutto il catalogo diventa le voci di quella cultura.
+Scegli tra 7 lingue (italiano, inglese, turco, spagnolo, tedesco, francese e portoghese) e l'intero gioco la parla. Ogni lingua ha i suoi pacchetti di citazioni native, giocate nel proprio alfabeto e sulla propria tastiera. Cambia lingua e tutto il catalogo diventa le voci di quella cultura.
 
 CITAZIONI SCELTE A MANO
 Proverbi, saggezza, arguzia e letteratura, dai grandi nomi delle lettere italiane ai proverbi di sempre, più un pacchetto Premium di Classici con autori intramontabili come Dante e Leonardo. Ogni citazione è scelta a mano e attribuita correttamente.
@@ -455,7 +455,7 @@ CRIPTOGRAMA DIÁRIO
 Um novo desafio todos os dias. Resolva, mantenha sua sequência viva e compartilhe seu tempo com os amigos, no estilo Wordle. Cada idioma tem seu próprio criptograma diário, tirado de suas próprias frases.
 
 NO SEU IDIOMA
-Escolha entre 7 idiomas — português, inglês, turco, espanhol, alemão, francês e italiano — e o jogo inteiro fala esse idioma. Cada idioma tem seus próprios pacotes de frases nativas, jogadas em seu alfabeto e com seu teclado. Troque de idioma e todo o catálogo se torna as vozes daquela cultura.
+Escolha entre 7 idiomas (português, inglês, turco, espanhol, alemão, francês e italiano) e o jogo inteiro fala esse idioma. Cada idioma tem seus próprios pacotes de frases nativas, jogadas em seu alfabeto e com seu teclado. Troque de idioma e todo o catálogo se torna as vozes daquela cultura.
 
 FRASES ESCOLHIDAS A DEDO
 Provérbios, sabedoria, humor e literatura, dos grandes nomes das letras de língua portuguesa aos provérbios de sempre, além de um pacote Premium de Clássicos com autores atemporais como Camões, Pessoa e Machado de Assis. Cada frase é escolhida a dedo e devidamente atribuída.
@@ -526,7 +526,7 @@ in December) to refresh the listing.
 ## Localized listings (later, optional)
 
 The app itself is already fully localized in 7 languages (EN, TR, ES, DE, FR,
-IT, PT), each with native puzzle content in its own alphabet — so adding
+IT, PT), each with native puzzle content in its own alphabet, so adding
 matching store listings in those languages converts especially well. Adding
 listings in further markets widens discovery cheaply; cryptogram fans exist
 everywhere and the puzzle itself is language-light. Use Play Console > Store
