@@ -165,5 +165,6 @@
   "hintRevealLetter": "Buchstabe aufdecken",
   "hintRevealLetterCount": "Buchstabe aufdecken ({count})",
   "hintTokensAdded": "+{count} Hinweise hinzugefügt",
-  "adNoVideo": "Gerade ist kein Video verfügbar. Bitte versuche es gleich noch einmal."
+  "adNoVideo": "Gerade ist kein Video verfügbar. Bitte versuche es gleich noch einmal.",
+  "badgeNew": "NEU"
 }

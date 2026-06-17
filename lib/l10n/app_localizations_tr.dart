@@ -575,4 +575,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get adNoVideo => 'Şu anda video yok. Lütfen birazdan tekrar dene.';
+
+  @override
+  String get badgeNew => 'YENİ';
 }

@@ -62,12 +62,15 @@ class ProgressController extends ChangeNotifier {
   }
 
   void _recordDailySolve() {
-    final today = dateKey(_clock.now());
+    // One clock read: deriving today and yesterday from the same instant keeps
+    // them consistent even if the call straddles a midnight tick.
+    final now = _clock.now();
+    final today = dateKey(now);
     if (stats.dailyHistory[today] == true) return; // already counted
 
     stats.dailyHistory[today] = true;
 
-    final yesterday = dateKey(_clock.now().subtract(const Duration(days: 1)));
+    final yesterday = dateKey(now.subtract(const Duration(days: 1)));
     if (stats.lastDailyDate == yesterday) {
       stats.currentStreak += 1;
     } else if (stats.lastDailyDate != today) {
@@ -84,8 +87,9 @@ class ProgressController extends ChangeNotifier {
   int get displayStreak {
     final last = stats.lastDailyDate;
     if (last == null) return 0;
-    final today = dateKey(_clock.now());
-    final yesterday = dateKey(_clock.now().subtract(const Duration(days: 1)));
+    final now = _clock.now();
+    final today = dateKey(now);
+    final yesterday = dateKey(now.subtract(const Duration(days: 1)));
     if (last == today || last == yesterday) return stats.currentStreak;
     return 0;
   }

@@ -303,5 +303,9 @@
       }
     }
   },
-  "adNoVideo": "No video is available right now. Please try again in a moment."
+  "adNoVideo": "No video is available right now. Please try again in a moment.",
+  "badgeNew": "NEW",
+  "@badgeNew": {
+    "description": "Tiny badge on freshly added content (e.g. a new achievement) the player hasn't seen yet. Keep it short."
+  }
 }

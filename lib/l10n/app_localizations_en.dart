@@ -574,4 +574,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get adNoVideo =>
       'No video is available right now. Please try again in a moment.';
+
+  @override
+  String get badgeNew => 'NEW';
 }

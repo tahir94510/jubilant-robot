@@ -1103,6 +1103,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No video is available right now. Please try again in a moment.'**
   String get adNoVideo;
+
+  /// Tiny badge on freshly added content (e.g. a new achievement) the player hasn't seen yet. Keep it short.
+  ///
+  /// In en, this message translates to:
+  /// **'NEW'**
+  String get badgeNew;
 }
 
 class _AppLocalizationsDelegate
