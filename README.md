@@ -41,7 +41,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
    oluşur:
    - `quotecrack-release-aab` → Play Console'a yüklenen dosya
    - `quotecrack-release-apk` → mağazaya gidecek paketin birebir aynısını
-     telefonda son kez doğrulamak için (⚠️ gerçek reklamlar aktif , 
+     telefonda son kez doğrulamak için (⚠️ gerçek reklamlar aktif,
      görüntüleyin ama TIKLAMAYIN)
 
 > Sürüm öncesi/sonrası tüm kontroller tek yerde:
@@ -68,21 +68,26 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 
 ## Oyun ne içeriyor?
 
-- **Günlük bulmaca:** Tarihe göre herkese aynı söz düşer (Wordle mantığı),
-  yıl içinde tekrar etmez; seri (streak), takvim ısı haritası ve
-  Wordle-tarzı sonuç paylaşımı var.
-- **510 el ile derlenmiş, tamamı kamu malı (public domain) söz**, telif
-  riski sıfır: Twain, Wilde, Austen, Shakespeare, atasözleri…
-- **11 paket:** 4 zorluk + 5 tema + 2 premium (Shakespeare, Stoacılık).
+- **Günlük bulmaca:** Her dilin kendi günlük bulmacası var; aynı gün o dili
+  oynayan herkese aynı söz düşer (Wordle mantığı). Seri (streak), takvim ısı
+  haritası ve Wordle-tarzı sonuç paylaşımı var.
+- **Her dil kendi içerik evreni:** Dili değiştirince tüm katalog o kültürün
+  özgün sözlerine döner. İngilizce 510 söz; Türkçe, İspanyolca, Almanca,
+  Fransızca, İtalyanca ve Portekizce için de 320–380 arası özgün, doğru atıflı
+  yerel söz (atasözleri, bilgelik, nükte, edebiyat ve klasikler). Tamamı kamu
+  malı ya da kültürel miras; telif riski sıfır.
+- **Her dil için 9 paket:** 4 zorluk (Başlangıç'tan Uzman'a) + 4 tema
+  (Atasözleri, Bilgelik, Nükte, Edebiyat) + 1 premium Klasikler; hepsi o dile
+  özgü ve zorluk algoritmasıyla otomatik derecelendirilmiş.
 - **İpucu ekonomisi:** Başlangıçta 10 jeton, her çözümde +1, ödüllü
   reklamla +3, premium'da sınırsız.
-- **16 başarım, istatistikler, 30 saniyelik etkileşimli öğretici.**
+- **24 başarım, istatistikler, 30 saniyelik etkileşimli öğretici.**
 - **7 dilde tam yerelleştirme:** Arayüzün her ekranı + paylaşım metni +
   günlük hatırlatma bildirimi seçilen dilde. Ayarlardan dil seçimi (veya
-  cihaz dilini izle). Her dil **kendi alfabesinde** oynanır: Türkçe 29 harf
-  (İ/ı ayrımı doğru), İspanyolca Ñ, Almanca/Fransızca aksan katlama —
-  şifre matematiği her alfabe için determinizm + sabit-noktasızlık testiyle
-  kanıtlı.
+  cihaz dilini izle). Her dil **kendi alfabesinde ve kendi popüler klavyesinde**
+  oynanır (Türkçe-Q, Almanca QWERTZ, Fransızca AZERTY, diğerleri QWERTY):
+  Türkçe 29 harf (İ/ı ayrımı doğru), İspanyolca Ñ. Şifre matematiği her alfabe
+  için determinizm ve sabit-noktasızlık testiyle kanıtlı.
 - **"Ink & Gold" asil kimlik:** Sıcak mürekkep zemin + şampanya altını
   vurgular + zarif garnet (eski mavi-merkezli palet ve amatör logo elden
   geçti; logo, ikon, splash, web ve mağaza görselleri tutarlı).
@@ -93,7 +98,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   Sesler MEDYA kanalında. Kelime tamamlama çanı, çözümde yeşil dalga +
   konfeti, yumuşak ekran geçişleri.
 - **Her cihazda oynanış:** dokunmatik + **fiziksel klavye** (harf yaz,
-  Backspace/Delete sil, oklarla gez, Ctrl/Cmd+Z geri al) — PC, tablet ve
+  Backspace/Delete sil, oklarla gez, Ctrl/Cmd+Z geri al), PC, tablet ve
   TV için tam destek.
 - **3 tema** (açık/koyu/sepya), ayarlanabilir yazı boyutu, renk körü dostu
   palet, titreşim, zen modu, günlük hatırlatma bildirimi.
@@ -110,7 +115,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   güvenliği" formu için büyük avantaj).
 - Deterministik motor: gün/şifre seçimi her cihazda ve platformda birebir
   aynıdır (özel 32-bit RNG + FNV-1a; golden-vector testleriyle kilitli).
-- 172 otomatik test CI'da her push'ta koşar (motor + 7 alfabenin şifre
+- 200+ otomatik test CI'da her push'ta koşar (motor + 7 alfabenin şifre
   matematiği, veri seti + ses varlığı doğrulaması, harf-girişi/undo/süre
   regresyonları, fiziksel klavye, yerelleştirme, streak gün sınırları,
   ekonomi, premium kapılama, müzik/ses ayarları, kutlama animasyonları,
