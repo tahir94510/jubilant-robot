@@ -449,17 +449,25 @@ class _VolumeTile extends StatelessWidget {
           const SizedBox(width: 8),
           // A fixed, tabular-width readout in the slider's own accent so the
           // value reads as part of the control. Fixed width keeps the slider
-          // edge from jittering as the digits change (8% to 100%).
+          // edge from jittering as the digits change (8% to 100%). The
+          // FittedBox guarantees the three-digit "100%" never wraps or clips —
+          // it shrinks to fit at large text scales instead of breaking.
           SizedBox(
             width: 44,
-            child: Text(
-              '$pct%',
-              textAlign: TextAlign.end,
-              style: TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                fontFeatures: const [FontFeature.tabularFigures()],
-                color: scheme.primary,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerRight,
+              child: Text(
+                '$pct%',
+                maxLines: 1,
+                softWrap: false,
+                textAlign: TextAlign.end,
+                style: TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w700,
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                  color: scheme.primary,
+                ),
               ),
             ),
           ),
