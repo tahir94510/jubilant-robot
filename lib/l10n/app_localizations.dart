@@ -513,7 +513,7 @@ abstract class AppLocalizations {
   /// No description provided for @paywallPacksBody.
   ///
   /// In en, this message translates to:
-  /// **'An exclusive Classics pack of timeless voices — and more on the way'**
+  /// **'An exclusive Classics pack of timeless voices, with more on the way'**
   String get paywallPacksBody;
 
   /// No description provided for @paywallSupportTitle.
@@ -707,6 +707,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You\'ve already cracked this one.'**
   String get puzzleAlreadySolved;
+
+  /// No description provided for @dailyPuzzleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily puzzle'**
+  String get dailyPuzzleTitle;
 
   /// No description provided for @achievementsCountTitle.
   ///

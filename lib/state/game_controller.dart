@@ -6,16 +6,25 @@ import '../models/puzzle.dart';
 import '../models/quote.dart';
 import '../services/storage_service.dart';
 
-/// Undo record: one guess assignment.
+/// Undo record: one guess assignment at a specific board position.
 class _Move {
-  _Move(this.cipherLetter, this.previousGuess);
+  _Move(this.cipherLetter, this.previousGuess, this.index);
   final String cipherLetter;
   final String? previousGuess;
 
-  Map<String, dynamic> toJson() => {'c': cipherLetter, 'p': previousGuess};
+  /// The exact board cell the edit happened at. Undo restores the cursor here,
+  /// not to the letter's first occurrence — so editing the second copy of a
+  /// repeated letter and undoing keeps the cursor on that copy.
+  final int? index;
+
+  Map<String, dynamic> toJson() => {
+    'c': cipherLetter,
+    'p': previousGuess,
+    'i': index,
+  };
 
   static _Move fromJson(Map<String, dynamic> j) =>
-      _Move(j['c'] as String, j['p'] as String?);
+      _Move(j['c'] as String, j['p'] as String?, j['i'] as int?);
 }
 
 /// Owns the active [PuzzleSession]: selection, input, hints, timer,
@@ -317,7 +326,7 @@ class GameController extends ChangeNotifier {
     if (s == null || target == null || _completed || _reviewingSolved) return;
     if (s.revealed.contains(target)) return;
 
-    _undoStack.add(_Move(target, s.guesses[target]));
+    _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
     final conflictsBefore = s.conflicts.length;
     final wordsBefore = s.correctWordCount;
     s.guesses[target] = plainLetter;
@@ -337,7 +346,7 @@ class GameController extends ChangeNotifier {
     if (s.revealed.contains(target)) return;
     if (!s.guesses.containsKey(target)) return;
 
-    _undoStack.add(_Move(target, s.guesses[target]));
+    _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
     s.guesses.remove(target);
     _afterChange(advance: false);
   }
@@ -354,7 +363,10 @@ class GameController extends ChangeNotifier {
     } else {
       s.guesses[move.cipherLetter] = move.previousGuess!;
     }
-    _selectedIndex = _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
+    // Restore the cursor to the exact cell that was edited, falling back to the
+    // letter's first occurrence only for legacy saves without a stored index.
+    _selectedIndex =
+        move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
     _persistState();
     notifyListeners();
   }

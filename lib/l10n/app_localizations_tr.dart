@@ -224,7 +224,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get paywallPacksBody =>
-      'Zamansız seslerden oluşan özel bir Klasikler paketi — ve dahası yolda';
+      'Zamansız seslerden oluşan özel bir Klasikler paketi; dahası yolda';
 
   @override
   String get paywallSupportTitle => 'Oyuna destek ol';
@@ -350,11 +350,14 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String statsHeatmapCaption(int weeks, String start, String end) {
-    return 'Son $weeks hafta · $start – $end';
+    return 'Son $weeks hafta · $start ile $end';
   }
 
   @override
   String get puzzleAlreadySolved => 'Bunu zaten çözdün.';
+
+  @override
+  String get dailyPuzzleTitle => 'Günlük bulmaca';
 
   @override
   String achievementsCountTitle(int unlocked, int total) {

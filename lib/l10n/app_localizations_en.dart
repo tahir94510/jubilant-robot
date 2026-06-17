@@ -222,7 +222,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paywallPacksBody =>
-      'An exclusive Classics pack of timeless voices — and more on the way';
+      'An exclusive Classics pack of timeless voices, with more on the way';
 
   @override
   String get paywallSupportTitle => 'Support the game';
@@ -353,6 +353,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get puzzleAlreadySolved => 'You\'ve already cracked this one.';
+
+  @override
+  String get dailyPuzzleTitle => 'Daily puzzle';
 
   @override
   String achievementsCountTitle(int unlocked, int total) {

@@ -41,6 +41,40 @@ void main() {
   });
 
   test(
+    'undo restores the cursor to the exact edited cell, not the first copy',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+      final text = s.cipherText;
+
+      // A cipher letter that appears at least twice on the board.
+      final repeated = s.cipherLetters.firstWhere(
+        (c) => text.split('').where((ch) => ch == c).length >= 2,
+      );
+      final positions = [
+        for (var i = 0; i < text.length; i++)
+          if (text[i] == repeated) i,
+      ];
+      final second = positions[1];
+
+      // Tap the SECOND copy, type, then undo.
+      game.selectIndex(second);
+      game.enterGuess('A');
+      game.undo();
+
+      // The cursor must return to the cell we actually edited, never the first
+      // occurrence (the old bug flung it back to positions[0]).
+      expect(game.selectedIndex, second);
+      expect(game.selectedIndex, isNot(positions[0]));
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
+  test(
     'a solved puzzle re-opens in review, then Play again restarts clean',
     () async {
       final store = await storage();

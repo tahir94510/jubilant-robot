@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../../models/pack.dart';
 import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../services/sound_service.dart';
@@ -224,9 +225,12 @@ class _PuzzleScreenState extends State<PuzzleScreen>
             ),
             title: Text(
               game.isDaily
-                  ? 'Daily Puzzle'
-                  : session.quote.difficulty.name[0].toUpperCase() +
-                        session.quote.difficulty.name.substring(1),
+                  ? l10n.dailyPuzzleTitle
+                  // The difficulty enum names match the difficulty pack ids, so
+                  // we reuse their already-localized titles (Beginner→Başlangıç…).
+                  : Pack.byId(
+                      session.quote.difficulty.name,
+                    ).localizedTitle(l10n),
             ),
             actions: [
               if (settings.showTimer && !reviewing)
