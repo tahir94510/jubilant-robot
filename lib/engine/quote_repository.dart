@@ -55,6 +55,13 @@ class QuoteRepository {
   List<Quote> byCategory(String category) =>
       _quotes.where((q) => q.category == category).toList();
 
+  /// Every quote available in [locale] — the catalog the player can actually
+  /// reach in that language. The Home "packs solved" summary scopes to this so
+  /// it matches the locale-scoped Packs screen (a global all-language count
+  /// would show a denominator the player can never reach).
+  List<Quote> forLocale(String locale) =>
+      _quotes.where((q) => q.locale == locale).toList();
+
   List<Quote> byDifficulty(Difficulty difficulty) =>
       _quotes.where((q) => q.difficulty == difficulty).toList();
 

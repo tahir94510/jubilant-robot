@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'app.dart';
@@ -31,6 +32,14 @@ Future<void> main() async {
 
 Future<void> _start() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Lock to portrait: the board + custom on-screen keyboard are designed for a
+  // tall layout, and in landscape the keyboard squeezes the board. A no-op on
+  // desktop/web/TV (where this is ignored and a physical keyboard is used).
+  await SystemChrome.setPreferredOrientations(const [
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   // Don't let a single non-fatal framework/async error tear the app down in
   // release (the red screen only exists in debug anyway).

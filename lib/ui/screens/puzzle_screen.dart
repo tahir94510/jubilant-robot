@@ -249,7 +249,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                   children: [
                     Expanded(
                       child: SingleChildScrollView(
-                        padding: const EdgeInsets.fromLTRB(12, 18, 12, 8),
+                        padding: const EdgeInsets.fromLTRB(12, 18, 12, 20),
                         child: Column(
                           children: [
                             // The board only repaints when the game state actually
@@ -303,7 +303,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                       ),
                                     ),
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 24),
                             Text(
                               '— ${session.quote.author}',
                               style: TextStyle(

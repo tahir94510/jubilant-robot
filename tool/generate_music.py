@@ -177,7 +177,10 @@ def compose():
     # is exact and always leaves headroom under the UI sound effects.
     glued = [math.tanh(1.1 * v) / math.tanh(1.1) for v in mixbuf]
     peak = max(abs(v) for v in glued)
-    return [v * (0.55 / peak) for v in glued]
+    # Normalize to ~0.80 so the bed sits at roughly the same level as the UI
+    # sound effects (generate_sounds.py targets 0.82). The old 0.55 left it
+    # barely audible even at full user volume.
+    return [v * (0.80 / peak) for v in glued]
 
 
 def rms(samples):
@@ -214,7 +217,7 @@ def main():
         sys.exit(f"FAIL: not silence-bracketed (head {head:.5f}, tail {tail:.5f})")
 
     peak = max(abs(v) for v in samples)
-    if peak > 0.56:
+    if peak > 0.82:
         sys.exit(f"FAIL: clipping risk, peak {peak:.3f}")
 
     dc = abs(sum(samples) / len(samples))
