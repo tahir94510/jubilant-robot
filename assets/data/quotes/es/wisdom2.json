@@ -1,0 +1,242 @@
+[
+  {
+    "id": "es-w201",
+    "text": "Nada se pierde con probar; quizá lo que buscas lo encuentres donde menos lo esperas.",
+    "author": "Santa Teresa de Jesús",
+    "source": "Camino de perfección",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w202",
+    "text": "Quien a Dios tiene, nada le falta: solo Dios basta.",
+    "author": "Santa Teresa de Jesús",
+    "source": "Poesías",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w203",
+    "text": "La paciencia todo lo alcanza; quien a Dios tiene, nada le falta.",
+    "author": "Santa Teresa de Jesús",
+    "source": "Poesías",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w204",
+    "text": "Más vale acto que palabra, y más obran ejemplos que razones.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w205",
+    "text": "Saber y saberlo mostrar es valer dos veces.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w206",
+    "text": "El sabio lo lleva todo consigo, pues lleva su propia sabiduría.",
+    "author": "Baltasar Gracián",
+    "source": "El Criticón",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w207",
+    "text": "No hay desierto como vivir sin amigos.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w208",
+    "text": "Lo que no se comienza nunca tiene fin.",
+    "author": "Baltasar Gracián",
+    "source": "El Criticón",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w209",
+    "text": "Fe que no duda es fe muerta.",
+    "author": "Miguel de Unamuno",
+    "source": "Del sentimiento trágico de la vida",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w210",
+    "text": "El progreso consiste en renovarse, y vivir es ir muriendo y renaciendo.",
+    "author": "Miguel de Unamuno",
+    "source": "Ensayos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w211",
+    "text": "Cúrate de la afición a dar noticia de lo que ignoras.",
+    "author": "Miguel de Unamuno",
+    "source": "Cómo se hace una novela",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w212",
+    "text": "Solo el hombre que lo arriesga todo por una idea es capaz de transformar el mundo.",
+    "author": "Miguel de Unamuno",
+    "source": "Ensayos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w213",
+    "text": "Vivir es ir cayendo de un sueño en otro sueño.",
+    "author": "Miguel de Unamuno",
+    "source": "Ensayos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w214",
+    "text": "La vida es lo que hacemos de ella, y el destino se llama nuestro propio carácter.",
+    "author": "José Ortega y Gasset",
+    "source": "Meditaciones del Quijote",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w215",
+    "text": "Vivir es sentirse perdido; el que lo acepta ya ha empezado a encontrarse.",
+    "author": "José Ortega y Gasset",
+    "source": "La rebelión de las masas",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w216",
+    "text": "El esfuerzo inútil conduce a la melancolía.",
+    "author": "José Ortega y Gasset",
+    "source": "La rebelión de las masas",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w217",
+    "text": "La claridad es la cortesía del filósofo.",
+    "author": "José Ortega y Gasset",
+    "source": "¿Qué es filosofía?",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w218",
+    "text": "Las ideas se tienen; en las creencias se está.",
+    "author": "José Ortega y Gasset",
+    "source": "Ideas y creencias",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w219",
+    "text": "Solo cabe progresar cuando se piensa en grande, solo es posible avanzar cuando se mira lejos.",
+    "author": "José Ortega y Gasset",
+    "source": "La rebelión de las masas",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w220",
+    "text": "La verdad se nos da a través de los demás, y no solo en la soledad del propio pensamiento.",
+    "author": "María Zambrano",
+    "source": "Persona y democracia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w221",
+    "text": "La esperanza es la sustancia última de la vida, su raíz más honda.",
+    "author": "María Zambrano",
+    "source": "Hacia un saber sobre el alma",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w222",
+    "text": "Toda palabra verdadera reclama un silencio que la sostenga.",
+    "author": "María Zambrano",
+    "source": "Claros del bosque",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w223",
+    "text": "Hacer es la mejor manera de decir.",
+    "author": "José Martí",
+    "source": "Nuestra América",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w224",
+    "text": "Ser culto es el único modo de ser libre.",
+    "author": "José Martí",
+    "source": "Obras completas",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w225",
+    "text": "La libertad no es negociable, y un pueblo que no piensa por sí mismo nunca será libre.",
+    "author": "José Martí",
+    "source": "Nuestra América",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w226",
+    "text": "Los hombres van en dos bandos: los que aman y fundan, y los que odian y deshacen.",
+    "author": "José Martí",
+    "source": "Versos sencillos",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w227",
+    "text": "Honrar honra, y servir a la patria es deber de todo hombre.",
+    "author": "José Martí",
+    "source": "Obras completas",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w228",
+    "text": "El amor pone su esperanza en lo que cree, y por eso todo lo soporta.",
+    "author": "Santa Teresa de Jesús",
+    "source": "Las moradas",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w229",
+    "text": "Quien tiene tiempo y espera tiempo, tiempo viene que se arrepiente.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-w230",
+    "text": "El primer paso de la ignorancia es presumir de saber.",
+    "author": "Baltasar Gracián",
+    "source": "El Criticón",
+    "category": "wisdom",
+    "locale": "es"
+  }
+]

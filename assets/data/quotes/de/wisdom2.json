@@ -1,0 +1,242 @@
+[
+  {
+    "id": "de-w201",
+    "text": "Was mich nicht umbringt, macht mich stärker.",
+    "author": "Friedrich Nietzsche",
+    "source": "Götzen-Dämmerung",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w202",
+    "text": "Die Schlange, welche sich nicht häuten kann, geht zugrunde. Ebenso die Geister, welche man verhindert, ihre Meinungen zu wechseln.",
+    "author": "Friedrich Nietzsche",
+    "source": "Morgenröte",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w203",
+    "text": "Es ist nicht der Zweifel, es ist die Gewissheit, die wahnsinnig macht.",
+    "author": "Friedrich Nietzsche",
+    "source": "Ecce homo",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w204",
+    "text": "Der Glaube an die Wahrheit beginnt mit dem Zweifel an allen bisher geglaubten Wahrheiten.",
+    "author": "Friedrich Nietzsche",
+    "source": "Menschliches, Allzumenschliches",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w205",
+    "text": "Wer von seinem Tage nicht zwei Drittel für sich selbst hat, ist ein Sklave.",
+    "author": "Friedrich Nietzsche",
+    "source": "Menschliches, Allzumenschliches",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w206",
+    "text": "Wissenschaft ohne Religion ist lahm, Religion ohne Wissenschaft ist blind.",
+    "author": "Albert Einstein",
+    "source": "Aus meinen späten Jahren",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w207",
+    "text": "Das Schönste, was wir erleben können, ist das Geheimnisvolle.",
+    "author": "Albert Einstein",
+    "source": "Mein Weltbild",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w208",
+    "text": "Nicht alles, was zählt, ist zählbar, und nicht alles, was zählbar ist, zählt.",
+    "author": "Albert Einstein",
+    "source": "zugeschrieben",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w209",
+    "text": "Der gesunde Menschenverstand ist nichts anderes als eine Ansammlung von Vorurteilen, die man bis zum achtzehnten Lebensjahr erworben hat.",
+    "author": "Albert Einstein",
+    "source": "zugeschrieben",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w210",
+    "text": "Das Recht ist die Einschränkung der Freiheit eines jeden auf die Bedingung ihrer Zusammenstimmung mit der Freiheit von jedermann.",
+    "author": "Immanuel Kant",
+    "source": "Metaphysik der Sitten",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w211",
+    "text": "Der Mensch ist das einzige Geschöpf, das erzogen werden muss.",
+    "author": "Immanuel Kant",
+    "source": "Über Pädagogik",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w212",
+    "text": "Handle so, dass du die Menschheit niemals bloß als Mittel, sondern jederzeit zugleich als Zweck brauchst.",
+    "author": "Immanuel Kant",
+    "source": "Grundlegung zur Metaphysik der Sitten",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w213",
+    "text": "Das Leben ist eine fortgesetzte Lektion, die uns lehrt, dass wir wenig wissen.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen zur Lebensweisheit",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w214",
+    "text": "Das Leben schwingt wie ein Pendel hin und her zwischen dem Schmerz und der Langeweile.",
+    "author": "Arthur Schopenhauer",
+    "source": "Die Welt als Wille und Vorstellung",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w215",
+    "text": "Die Höflichkeit ist zur Natur, was die Wärme zum Wachs ist.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen zur Lebensweisheit",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w216",
+    "text": "Wer nichts weiß, muss alles glauben.",
+    "author": "Marie von Ebner-Eschenbach",
+    "source": "Aphorismen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w217",
+    "text": "Wenn ein Buch und ein Kopf zusammenstoßen und es klingt hohl, ist das allemal im Buche?",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w218",
+    "text": "Der Mensch liebt die Gesellschaft, und wäre es nur die einer brennenden Kerze.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w219",
+    "text": "Man kann nicht verlangen, dass die Vernunft alles beweise, was sie behauptet.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w220",
+    "text": "Die Banalität des Bösen liegt darin, dass es von Menschen ausgeht, die nicht denken.",
+    "author": "Hannah Arendt",
+    "source": "Eichmann in Jerusalem",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w221",
+    "text": "Macht und Gewalt sind nicht dasselbe, ja sie sind einander entgegengesetzt.",
+    "author": "Hannah Arendt",
+    "source": "Macht und Gewalt",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w222",
+    "text": "Mit jeder Geburt kommt etwas einzigartig Neues in die Welt.",
+    "author": "Hannah Arendt",
+    "source": "Vita activa",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w223",
+    "text": "Das Denken selbst ist gefährlich für jede Lehre, jede Überzeugung und jede Meinung.",
+    "author": "Hannah Arendt",
+    "source": "Vom Leben des Geistes",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w224",
+    "text": "Der Mut zur Wahrheit ist die erste Bedingung des philosophischen Studiums.",
+    "author": "Georg Wilhelm Friedrich Hegel",
+    "source": "Enzyklopädie der philosophischen Wissenschaften",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w225",
+    "text": "Was vernünftig ist, das ist wirklich; und was wirklich ist, das ist vernünftig.",
+    "author": "Georg Wilhelm Friedrich Hegel",
+    "source": "Grundlinien der Philosophie des Rechts",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w226",
+    "text": "Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt.",
+    "author": "Ludwig Wittgenstein",
+    "source": "Tractatus logico-philosophicus",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w227",
+    "text": "Wovon man nicht sprechen kann, darüber muss man schweigen.",
+    "author": "Ludwig Wittgenstein",
+    "source": "Tractatus logico-philosophicus",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w228",
+    "text": "Wer wirklich denkt, dem geht es nicht um Antworten, sondern um die rechten Fragen.",
+    "author": "Hannah Arendt",
+    "source": "Vom Leben des Geistes",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w229",
+    "text": "Alles Vergängliche ist nur ein Schein der ewigen Wahrheit, die dahinter ruht.",
+    "author": "Arthur Schopenhauer",
+    "source": "Die Welt als Wille und Vorstellung",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-w230",
+    "text": "Der Friede ist kein Naturzustand, sondern muss von den Menschen gestiftet werden.",
+    "author": "Immanuel Kant",
+    "source": "Zum ewigen Frieden",
+    "category": "wisdom",
+    "locale": "de"
+  }
+]

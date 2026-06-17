@@ -1,0 +1,242 @@
+[
+  {
+    "id": "pt-l201",
+    "text": "Tudo quanto cesso de imaginar, cumpre que o realize. Tudo quanto desejo, por o desejar já o perdi.",
+    "author": "Fernando Pessoa",
+    "source": "Livro do Desassossego",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l202",
+    "text": "O binómio de Newton é tão belo como a Vénus de Milo. O que há é pouca gente para dar por isso.",
+    "author": "Álvaro de Campos",
+    "source": "Poemas de Álvaro de Campos",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l203",
+    "text": "Quando vier a Primavera, se eu já estiver morto, as flores florirão da mesma maneira e as árvores não serão menos verdes.",
+    "author": "Alberto Caeiro",
+    "source": "O Guardador de Rebanhos",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l204",
+    "text": "O essencial é saber ver, saber ver sem estar a pensar, saber ver quando se vê.",
+    "author": "Alberto Caeiro",
+    "source": "O Guardador de Rebanhos",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l205",
+    "text": "Há metafísica bastante em não pensar em nada.",
+    "author": "Alberto Caeiro",
+    "source": "O Guardador de Rebanhos",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l206",
+    "text": "Sou do tamanho do que vejo e não do tamanho da minha altura.",
+    "author": "Alberto Caeiro",
+    "source": "O Guardador de Rebanhos",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l207",
+    "text": "Que mar é este, este mar todo de nós, este mar dentro do qual navegamos sem cessar?",
+    "author": "Sophia de Mello Breyner Andresen",
+    "source": "Mar Novo",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l208",
+    "text": "Esta é a madrugada que eu esperava, o dia inicial inteiro e limpo onde emergimos da noite e do silêncio.",
+    "author": "Sophia de Mello Breyner Andresen",
+    "source": "O Nome das Coisas",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l209",
+    "text": "Vejo as praias e as searas, vejo a coluna e a vela, e desejo de viver, de andar, de me perder.",
+    "author": "Sophia de Mello Breyner Andresen",
+    "source": "Coral",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l210",
+    "text": "Naquele tempo eu era bela e firme como as colunas de um templo.",
+    "author": "Sophia de Mello Breyner Andresen",
+    "source": "Dia do Mar",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l211",
+    "text": "Beijo-te os olhos, beijo-te o cabelo, e penso em ti como se tu não fosses.",
+    "author": "Florbela Espanca",
+    "source": "Charneca em Flor",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l212",
+    "text": "Volúpia da minha alma triste e doente, tu és a noite e eu sou a madrugada.",
+    "author": "Florbela Espanca",
+    "source": "Charneca em Flor",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l213",
+    "text": "Eu sou a que no mundo anda perdida, eu sou a que na vida não tem norte.",
+    "author": "Florbela Espanca",
+    "source": "Livro de Mágoas",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l214",
+    "text": "Há um trilho de luz na minha estrada, há névoas e pedras no meu caminho.",
+    "author": "Florbela Espanca",
+    "source": "Livro de Sóror Saudade",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l215",
+    "text": "Tenho dó das estrelas luzindo há tanto tempo, há tanto tempo. Tenho dó delas, sem dó.",
+    "author": "Carlos Drummond de Andrade",
+    "source": "Brejo das Almas",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l216",
+    "text": "Lutar com palavras é a luta mais vã. Entanto lutamos mal rompe a manhã.",
+    "author": "Carlos Drummond de Andrade",
+    "source": "O Lutador",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l217",
+    "text": "Quando nasci, um anjo torto desses que vivem na sombra disse: vai, Carlos! Ser gauche na vida.",
+    "author": "Carlos Drummond de Andrade",
+    "source": "Poema de Sete Faces",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l218",
+    "text": "O amor bate na aorta, bate na porta, bate no peito de quem ainda acredita.",
+    "author": "Carlos Drummond de Andrade",
+    "source": "Caso do Vestido",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l219",
+    "text": "Por enquanto não chove, mas o vento é de chuva, e eu ando de coração na boca.",
+    "author": "Cecília Meireles",
+    "source": "Viagem",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l220",
+    "text": "Não posso, não desejo, não consigo desfazer-me da pedra do meu canto.",
+    "author": "Cecília Meireles",
+    "source": "Vaga Música",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l221",
+    "text": "Ai, palavras, ai, palavras, que estranha potência a vossa! Tudo dizeis e não dizeis nada do que vossa alma supõe.",
+    "author": "Cecília Meireles",
+    "source": "Romanceiro da Inconfidência",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l222",
+    "text": "De tudo, ao meu amor serei atento antes, e com tal zelo, e sempre, e tanto.",
+    "author": "Vinicius de Moraes",
+    "source": "Soneto de Fidelidade",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l223",
+    "text": "Que não seja imortal, posto que é chama, mas que seja infinito enquanto dure.",
+    "author": "Vinicius de Moraes",
+    "source": "Soneto de Fidelidade",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l224",
+    "text": "De repente do riso fez-se o pranto, silencioso e branco como a bruma.",
+    "author": "Vinicius de Moraes",
+    "source": "Soneto da Separação",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l225",
+    "text": "Mulher, és o princípio e o fim de todas as coisas. Por ti me perco e por ti me encontro.",
+    "author": "Vinicius de Moraes",
+    "source": "A Mulher que Passa",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l226",
+    "text": "Eu, agora, que tristeza, perdi tudo quanto havia. Perdi a minha pobreza.",
+    "author": "Vinicius de Moraes",
+    "source": "Pátria Minha",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l227",
+    "text": "Pelo céu vai a lua tão cheia que parece de pão.",
+    "author": "Cecília Meireles",
+    "source": "Ou Isto ou Aquilo",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l228",
+    "text": "Antes de mim foi cantada esta terra que é meu canto, e antes do meu chão pisado outros pés sangrando tanto.",
+    "author": "Sophia de Mello Breyner Andresen",
+    "source": "O Nome das Coisas",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l229",
+    "text": "E descobri que tudo é mais sublime quando se sabe que se há de morrer.",
+    "author": "Florbela Espanca",
+    "source": "Charneca em Flor",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-l230",
+    "text": "No mar tão grande, tão pequenos somos, ondas e mais ondas sem cessar batendo.",
+    "author": "Sophia de Mello Breyner Andresen",
+    "source": "Coral",
+    "category": "literature",
+    "locale": "pt"
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "es-h201",
+    "text": "Las mujeres dan a los hombres los mejores años de su vida; los peores también.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h202",
+    "text": "El amor es lo único que crece cuando se reparte.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h203",
+    "text": "Cuando una mujer te dice que no, lo que quiere decir es que insistas.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h204",
+    "text": "La vida es aquello que nos pasa mientras estamos haciendo planes.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h205",
+    "text": "Si la montaña viene hacia ti, corre: es un alud.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h206",
+    "text": "El dinero no da la felicidad, pero procura una sensación tan parecida que casi no se nota.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h207",
+    "text": "Lo malo de ser puntual es que no hay nadie para apreciarlo.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h208",
+    "text": "Todas las mujeres tienen algo bonito, aunque sea una prima soltera.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h209",
+    "text": "El llanto de un heredero es una risa disfrazada.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h210",
+    "text": "Solo el necio confunde valor y precio.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h211",
+    "text": "Hay quien mira con la lengua y habla con los ojos.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h212",
+    "text": "Nada me desengaña; el mundo me ha hechizado.",
+    "author": "Francisco de Quevedo",
+    "source": "Sonetos",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h213",
+    "text": "Y la ambición de quien tener procura más que ninguno, y vive con cuidado.",
+    "author": "Francisco de Quevedo",
+    "source": "Sonetos morales",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h214",
+    "text": "Todo necio confunde lo que dice con lo que piensa.",
+    "author": "Ramón de Campoamor",
+    "source": "Doloras",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h215",
+    "text": "En guerra, en caza y en amores, por un placer mil dolores.",
+    "author": "Ramón de Campoamor",
+    "source": "Doloras",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h216",
+    "text": "Las hijas de las madres que amé tanto me besan hoy como se besa a un santo.",
+    "author": "Ramón de Campoamor",
+    "source": "Doloras",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h217",
+    "text": "Quien escucha su pecho, vencer puede al mundo entero.",
+    "author": "Ramón de Campoamor",
+    "source": "Humoradas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h218",
+    "text": "Sabe esperar, aguarda que la marea fluya; así en la costa un barco espera, sin que al partir te arguya.",
+    "author": "Ramón de Campoamor",
+    "source": "Humoradas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h219",
+    "text": "El bien y el mal a un tiempo profesando, vivo en eterna guerra conmigo mismo.",
+    "author": "Ramón de Campoamor",
+    "source": "Doloras",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h220",
+    "text": "Más vale callar y parecer tonto que hablar y disiparlo todo.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h221",
+    "text": "El necio hace al fin lo que el discreto al principio.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h222",
+    "text": "Hombre sin noticias, mundo a oscuras.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h223",
+    "text": "Saber jugar con el desaire es el mayor primor del trato.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h224",
+    "text": "No hay mayor desprecio que el no aprecio.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h225",
+    "text": "La verdad anda en penas, pero porfiada, y al fin se sale con la suya.",
+    "author": "Baltasar Gracián",
+    "source": "El Criticón",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h226",
+    "text": "El que no sabe gozar de la ventura cuando le viene, no se debe quejar si se le pasa.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h227",
+    "text": "Es el casarse acción tan principal que pide toda la vida de cordura.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h228",
+    "text": "Todo lo sabe, menos lo que importa; sabio en lo ajeno y necio en lo propio.",
+    "author": "Francisco de Quevedo",
+    "source": "Obras satíricas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h229",
+    "text": "El que enferma de amor no quiere médico.",
+    "author": "Ramón de Campoamor",
+    "source": "Humoradas",
+    "category": "wit",
+    "locale": "es"
+  },
+  {
+    "id": "es-h230",
+    "text": "Donde una se cierra, ciento se abren, decía el optimista cayendo por la escalera.",
+    "author": "Enrique Jardiel Poncela",
+    "source": "Máximas mínimas",
+    "category": "wit",
+    "locale": "es"
+  }
+]
