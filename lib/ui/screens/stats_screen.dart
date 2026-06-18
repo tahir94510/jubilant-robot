@@ -22,7 +22,10 @@ class StatsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final progress = context.watch<ProgressController>();
-    final stats = progress.stats;
+    // Stats are per content language: a player's Turkish profile is separate
+    // from their English one.
+    final locale = Localizations.localeOf(context).languageCode;
+    final stats = progress.statsFor(locale);
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
     final l10n = AppLocalizations.of(context);
@@ -129,10 +132,10 @@ class StatsScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     statCard(
-                      '${progress.displayStreak}',
+                      '${progress.displayStreakFor(locale)}',
                       l10n.statCurrentStreak,
                       Icons.local_fire_department_outlined,
-                      animateTo: progress.displayStreak,
+                      animateTo: progress.displayStreakFor(locale),
                     ),
                     const SizedBox(width: 10),
                     statCard(

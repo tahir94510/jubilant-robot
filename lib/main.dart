@@ -79,7 +79,19 @@ Future<void> _start() async {
     storage: storage,
     notifications: notifications,
   );
-  final progress = ProgressController(storage: storage);
+  // For the one-time stats.v1 -> stats.v2 migration: route each previously
+  // solved quote into its own language, and carry the non-splittable counters
+  // into the player's current language (clamped to a supported one).
+  const supportedLocales = {'en', 'tr', 'es', 'de', 'fr', 'it', 'pt'};
+  final deviceLang = PlatformDispatcher.instance.locale.languageCode;
+  final migrationLocale = settings.settings.languageCode ?? deviceLang;
+  final progress = ProgressController(
+    storage: storage,
+    quoteLocales: {for (final q in quotes.all) q.id: q.locale},
+    migrationLocale: supportedLocales.contains(migrationLocale)
+        ? migrationLocale
+        : 'en',
+  );
   final economy = EconomyController(
     storage: storage,
     purchases: purchases,

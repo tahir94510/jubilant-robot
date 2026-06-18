@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
     // player each get their own deterministic puzzle of the day.
     final contentLocale = Localizations.localeOf(context).languageCode;
     final daily = selectDaily(repo.dailyPoolFor(contentLocale), today);
-    final dailyDone = progress.dailySolvedToday;
+    final dailyDone = progress.dailySolvedTodayFor(contentLocale);
 
     // Packs progress is scoped to the active content language so the Home
     // summary matches the locale-scoped Packs screen — the player only ever
@@ -106,7 +106,11 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(width: 4),
-                                StreakBadge(streak: progress.displayStreak),
+                                StreakBadge(
+                                  streak: progress.displayStreakFor(
+                                    contentLocale,
+                                  ),
+                                ),
                                 const SizedBox(width: 4),
                                 IconButton(
                                   tooltip: l10n.settingsTooltip,

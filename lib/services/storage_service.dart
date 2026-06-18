@@ -34,7 +34,15 @@ class StorageService {
 
   // --- well-known keys ---
   static const String settingsKey = 'settings.v1';
+
+  /// Legacy single, all-languages stats blob. Read once at startup to migrate
+  /// into [statsByLocaleKey], then left untouched as a safety net.
   static const String statsKey = 'stats.v1';
+
+  /// Per-language stats: `{ "byLocale": { "en": {...}, "tr": {...} } }`. Each
+  /// language keeps its own solves, streak, daily history and pack progress;
+  /// premium, tokens, settings and achievements stay global.
+  static const String statsByLocaleKey = 'stats.v2';
   static const String economyKey = 'economy.v1';
   static const String achievementsKey = 'achievements.v1';
   static String puzzleStateKey(String quoteId) => 'puzzle_state.$quoteId';
