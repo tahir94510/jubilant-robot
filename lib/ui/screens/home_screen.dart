@@ -133,6 +133,7 @@ class HomeScreen extends StatelessWidget {
                             context.read<GameController>().start(
                               daily.quote,
                               daily: true,
+                              alreadySolved: progress.isSolved(daily.quote.id),
                             );
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -198,6 +199,9 @@ class HomeScreen extends StatelessWidget {
                                     context.read<GameController>().start(
                                       daily.quote,
                                       daily: true,
+                                      alreadySolved: progress.isSolved(
+                                        daily.quote.id,
+                                      ),
                                     );
                                     Navigator.of(context).push(
                                       MaterialPageRoute(

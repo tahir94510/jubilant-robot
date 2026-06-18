@@ -357,6 +357,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get puzzleAlreadySolved => 'Bunu zaten çözdün.';
 
   @override
+  String get showSolution => 'Çözümü göster';
+
+  @override
+  String get backToPuzzle => 'Denememe dön';
+
+  @override
   String get dailyPuzzleTitle => 'Günlük bulmaca';
 
   @override

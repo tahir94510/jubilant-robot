@@ -233,6 +233,17 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                     ).localizedTitle(l10n),
             ),
             actions: [
+              // A previously-solved puzzle starts blank and playable; the
+              // answer is only shown when the player explicitly asks for it.
+              if (game.previouslySolved && !reviewing && !game.completed)
+                IconButton(
+                  tooltip: l10n.showSolution,
+                  icon: const Icon(Icons.visibility_outlined),
+                  onPressed: () {
+                    context.read<HapticsService>().tap();
+                    game.showSolution();
+                  },
+                ),
               if (settings.showTimer && !reviewing)
                 _TimerText(elapsedListenable: game.elapsedListenable),
             ],
@@ -348,16 +359,34 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                     ],
                                   ),
                                   const SizedBox(height: 10),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: FilledButton.icon(
-                                      onPressed: () {
-                                        context.read<HapticsService>().tap();
-                                        game.replay();
-                                      },
-                                      icon: const Icon(Icons.refresh),
-                                      label: Text(l10n.replay),
-                                    ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: OutlinedButton.icon(
+                                          onPressed: () {
+                                            context
+                                                .read<HapticsService>()
+                                                .tap();
+                                            game.returnToAttempt();
+                                          },
+                                          icon: const Icon(Icons.arrow_back),
+                                          label: Text(l10n.backToPuzzle),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: FilledButton.icon(
+                                          onPressed: () {
+                                            context
+                                                .read<HapticsService>()
+                                                .tap();
+                                            game.replay();
+                                          },
+                                          icon: const Icon(Icons.refresh),
+                                          label: Text(l10n.replay),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

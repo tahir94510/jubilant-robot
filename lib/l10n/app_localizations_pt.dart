@@ -361,6 +361,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get puzzleAlreadySolved => 'Você já decifrou este.';
 
   @override
+  String get showSolution => 'Mostrar solução';
+
+  @override
+  String get backToPuzzle => 'Voltar à minha tentativa';
+
+  @override
   String get dailyPuzzleTitle => 'Criptograma diário';
 
   @override

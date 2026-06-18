@@ -708,6 +708,18 @@ abstract class AppLocalizations {
   /// **'You\'ve already cracked this one.'**
   String get puzzleAlreadySolved;
 
+  /// No description provided for @showSolution.
+  ///
+  /// In en, this message translates to:
+  /// **'Show solution'**
+  String get showSolution;
+
+  /// No description provided for @backToPuzzle.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to my attempt'**
+  String get backToPuzzle;
+
   /// No description provided for @dailyPuzzleTitle.
   ///
   /// In en, this message translates to:

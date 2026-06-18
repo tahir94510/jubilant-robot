@@ -96,14 +96,35 @@ class GameController extends ChangeNotifier {
   bool _completed = false;
   bool get completed => _completed;
 
-  /// True when the player re-opened an already-solved puzzle: the board shows
-  /// the finished solution read-only until they tap "Play again" ([replay]).
-  /// Distinct from [completed], which drives the one-time celebration flow.
+  /// True only while the player is viewing the full solution read-only (via
+  /// [showSolution]) for an already-solved puzzle. Distinct from [completed],
+  /// which drives the one-time celebration flow.
   bool _reviewingSolved = false;
   bool get reviewingSolved => _reviewingSolved;
 
+  /// True when this quote has been solved before (this attempt is a replay).
+  /// Re-entering a solved puzzle now starts a fresh, blank, fully playable
+  /// board — never a spoiler-filled one — and the UI offers an on-demand
+  /// "Show solution" affordance gated on this flag.
+  bool _previouslySolved = false;
+  bool get previouslySolved => _previouslySolved;
+
+  /// The player's in-progress attempt, snapshotted while the read-only
+  /// solution is shown so [returnToAttempt] can restore it untouched.
+  Map<String, String>? _attemptGuesses;
+  List<String>? _attemptRevealed;
+
   /// Starts (or resumes) a puzzle for [quote].
-  void start(Quote quote, {required bool daily, String? packId}) {
+  ///
+  /// [alreadySolved] (from [ProgressController.isSolved]) marks a replay: the
+  /// board still starts blank and fully playable, but the UI exposes an
+  /// on-demand "Show solution" button so the answer is never shown unbidden.
+  void start(
+    Quote quote, {
+    required bool daily,
+    String? packId,
+    bool alreadySolved = false,
+  }) {
     _originPackId = packId;
     _ticker?.cancel();
     final saved = _storage.readJson(StorageService.puzzleStateKey(quote.id));
@@ -151,24 +172,17 @@ class GameController extends ChangeNotifier {
 
     _isDaily = daily;
     _completed = false;
+    _reviewingSolved = false;
+    _attemptGuesses = null;
+    _attemptRevealed = null;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
 
-    // Re-opening a solved puzzle: fill the finished solution and show it
-    // read-only (a satisfying "you cracked this" view) until the player taps
-    // Play again. No clock, no auto-navigation to the completion screen.
-    _reviewingSolved = saved != null && saved['solved'] == true;
-    if (_reviewingSolved) {
-      final s = _session!;
-      for (final c in s.cipherLetters) {
-        s.guesses[c] = s.cipher.decryptLetter(c);
-      }
-      _elapsed = Duration.zero;
-      _selectedIndex = null;
-      elapsedListenable.value = _elapsed;
-      notifyListeners();
-      return;
-    }
+    // Re-opening a solved puzzle no longer spoils the answer: it starts as a
+    // blank, fully playable board exactly like a fresh attempt. The solution
+    // is available only on demand via [showSolution], gated on this flag.
+    _previouslySolved =
+        alreadySolved || (saved != null && saved['solved'] == true);
 
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
@@ -196,6 +210,40 @@ class GameController extends ChangeNotifier {
     _selectedIndex = _firstEmptyIndex();
     _persistState();
     _startTicker();
+    notifyListeners();
+  }
+
+  /// Fills the board with the full solution read-only for a previously-solved
+  /// puzzle, snapshotting the player's current attempt so [returnToAttempt]
+  /// can restore it untouched. The clock pauses while the answer is shown.
+  void showSolution() {
+    final s = _session;
+    if (s == null || _reviewingSolved || !_previouslySolved) return;
+    _attemptGuesses = Map.of(s.guesses);
+    _attemptRevealed = s.revealed.toList();
+    for (final c in s.cipherLetters) {
+      s.guesses[c] = s.cipher.decryptLetter(c);
+    }
+    _reviewingSolved = true; // set first so stopTimer won't persist the fill
+    stopTimer();
+    notifyListeners();
+  }
+
+  /// Leaves the read-only solution view and restores the player's saved
+  /// attempt, resuming the clock.
+  void returnToAttempt() {
+    final s = _session;
+    if (s == null || !_reviewingSolved) return;
+    s.guesses
+      ..clear()
+      ..addAll(_attemptGuesses ?? const {});
+    s.revealed
+      ..clear()
+      ..addAll(_attemptRevealed ?? const []);
+    _attemptGuesses = null;
+    _attemptRevealed = null;
+    _reviewingSolved = false;
+    if (!_completed) _startTicker();
     notifyListeners();
   }
 
@@ -324,7 +372,11 @@ class GameController extends ChangeNotifier {
     final s = _session;
     final target = selectedCipherLetter;
     if (s == null || target == null || _completed || _reviewingSolved) return;
-    if (s.revealed.contains(target)) return;
+    // Hint-revealed and confirmed-correct letters are locked: typing can't
+    // disturb a word the player already cracked.
+    if (s.revealed.contains(target) || s.confirmedLetters.contains(target)) {
+      return;
+    }
 
     _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
     final conflictsBefore = s.conflicts.length;
@@ -338,17 +390,60 @@ class GameController extends ChangeNotifier {
     _afterChange();
   }
 
+  /// Smart backspace, matching the crossword/cryptogram convention: if the
+  /// current cell holds an editable guess, clear it and stay put; otherwise
+  /// (the cell is empty or locked) step back to the previous editable cell and
+  /// clear that one. So repeated presses walk backwards through your entries.
   void clearGuess() {
     _lastInputCompletedWord = false;
     final s = _session;
-    final target = selectedCipherLetter;
-    if (s == null || target == null || _completed || _reviewingSolved) return;
-    if (s.revealed.contains(target)) return;
-    if (!s.guesses.containsKey(target)) return;
+    if (s == null || _completed || _reviewingSolved) return;
 
-    _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
-    s.guesses.remove(target);
+    final target = selectedCipherLetter;
+    final currentEditable =
+        target != null &&
+        !s.revealed.contains(target) &&
+        !s.confirmedLetters.contains(target);
+
+    if (currentEditable && s.guesses.containsKey(target)) {
+      // Current cell holds your own guess: clear it, keep the cursor here.
+      _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
+      s.guesses.remove(target);
+      _afterChange(advance: false);
+      return;
+    }
+
+    // Current cell is empty or locked: step back to the previous editable cell
+    // and clear it (or just land there when it is already empty).
+    final prev = _prevEditableIndex(_selectedIndex);
+    if (prev == null) return;
+    _selectedIndex = prev;
+    final t = selectedCipherLetter;
+    if (t != null && s.guesses.containsKey(t)) {
+      _undoStack.add(_Move(t, s.guesses[t], _selectedIndex));
+      s.guesses.remove(t);
+    }
     _afterChange(advance: false);
+  }
+
+  /// True when board cell [i] is an editable letter cell (a cipher letter that
+  /// is neither hint-revealed nor confirmed-correct).
+  bool _isEditableIndex(PuzzleSession s, int i) {
+    final ch = s.cipherText[i];
+    if (!s.cipherLetters.contains(ch)) return false;
+    return !s.revealed.contains(ch) && !s.confirmedLetters.contains(ch);
+  }
+
+  /// The nearest editable cell strictly BEFORE [from] in reading order (no
+  /// wrap — backspace stops at the start of the board).
+  int? _prevEditableIndex(int? from) {
+    final s = _session;
+    if (s == null) return null;
+    final start = (from ?? s.cipherText.length) - 1;
+    for (var i = start; i >= 0; i--) {
+      if (_isEditableIndex(s, i)) return i;
+    }
+    return null;
   }
 
   void undo() {

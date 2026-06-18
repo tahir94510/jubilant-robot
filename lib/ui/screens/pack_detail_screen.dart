@@ -54,6 +54,7 @@ class PackDetailScreen extends StatelessWidget {
                     quote,
                     daily: false,
                     packId: pack.id,
+                    alreadySolved: solved,
                   );
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (_) => const PuzzleScreen()),

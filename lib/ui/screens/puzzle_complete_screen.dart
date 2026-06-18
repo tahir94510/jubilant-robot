@@ -282,6 +282,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                       next,
                                       daily: false,
                                       packId: game.originPackId,
+                                      alreadySolved: progress.isSolved(next.id),
                                     );
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(

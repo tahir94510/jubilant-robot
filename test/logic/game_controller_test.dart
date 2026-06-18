@@ -75,7 +75,8 @@ void main() {
   );
 
   test(
-    'a solved puzzle re-opens in review, then Play again restarts clean',
+    're-opening a solved puzzle starts a fresh board; the answer is shown only '
+    'on demand',
     () async {
       final store = await storage();
       final game = GameController(storage: store);
@@ -88,20 +89,35 @@ void main() {
       expect(game.hintsUsed, greaterThan(0));
       expect(game.session!.isSolved, isTrue);
 
-      // Re-opening shows the finished solution read-only (review mode): the
-      // board is filled with the correct answer, the clock is parked, and edits
-      // are blocked so the solved save can't be clobbered.
+      // Re-opening NEVER spoils the answer: the board is blank and fully
+      // playable, just flagged as previously solved so the UI can offer a
+      // "Show solution" affordance.
       final review = GameController(storage: store);
       review.start(shortQuote, daily: false);
+      expect(review.reviewingSolved, isFalse);
+      expect(review.previouslySolved, isTrue);
+      expect(review.session!.guesses, isEmpty);
+      expect(review.session!.isSolved, isFalse);
+
+      // The player makes a partial guess, then peeks at the solution.
+      review.selectIndex(0);
+      final firstLetter = review.selectedCipherLetter!;
+      review.enterGuess('A');
+      final attempt = Map.of(review.session!.guesses);
+
+      review.showSolution();
       expect(review.reviewingSolved, isTrue);
       expect(review.session!.isSolved, isTrue);
-      expect(review.elapsed, Duration.zero);
-      review.enterGuess('A'); // ignored in review mode
-      expect(review.session!.isSolved, isTrue);
+
+      // Returning restores the exact in-progress attempt, untouched.
+      review.returnToAttempt();
+      expect(review.reviewingSolved, isFalse);
+      expect(review.session!.guesses, attempt);
+      expect(review.session!.guesses[firstLetter], 'A');
 
       // Play again wipes the board back to a fresh attempt.
       review.replay();
-      expect(review.reviewingSolved, isFalse);
+      expect(review.previouslySolved, isTrue);
       expect(review.hintsUsed, 0);
       expect(review.elapsed, Duration.zero);
       expect(review.session!.guesses, isEmpty);
@@ -109,6 +125,74 @@ void main() {
       review.stopTimer();
       game.dispose();
       review.dispose();
+    },
+  );
+
+  test('smart backspace: clears the current cell when filled, otherwise steps '
+      'back to the previous entry and clears that', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    game.selectIndex(0);
+    final c0 = game.selectedCipherLetter!;
+    game.enterGuess('X'); // fills c0, auto-advances to the next empty cell
+    expect(s.guesses[c0], 'X');
+    expect(game.selectedCipherLetter, isNot(c0));
+
+    // Cursor is on an empty cell: backspace steps back to c0 and clears it.
+    game.clearGuess();
+    expect(s.guesses.containsKey(c0), isFalse);
+    expect(game.selectedCipherLetter, c0);
+
+    // c0 is selected and filled again: backspace clears it in place.
+    game.enterGuess('Y');
+    game.selectCipherLetter(c0);
+    expect(s.guesses[c0], 'Y');
+    game.clearGuess();
+    expect(s.guesses.containsKey(c0), isFalse);
+    expect(game.selectedCipherLetter, c0);
+
+    game.stopTimer();
+    game.dispose();
+  });
+
+  test(
+    'completing a whole word locks its letters: they turn confirmed and resist '
+    'further edits',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      // "Less is more." — the 2-letter middle word "is" is the quickest to
+      // complete correctly. Fill both of its letters with the right answers.
+      final isWord = s.cipherText.split(' ')[1];
+      expect(isWord.length, 2);
+      for (final c in isWord.split('')) {
+        game.selectCipherLetter(c);
+        game.enterGuess(s.cipher.decryptLetter(c));
+      }
+
+      final lockedLetters = isWord.split('').toSet();
+      expect(s.confirmedLetters.containsAll(lockedLetters), isTrue);
+
+      // A confirmed letter is locked: typing over it is ignored.
+      final locked = isWord[0];
+      final before = s.guesses[locked];
+      game.selectCipherLetter(locked);
+      game.enterGuess('Z');
+      expect(s.guesses[locked], before);
+
+      // And backspace skips it too (steps past to an editable cell instead).
+      game.selectCipherLetter(locked);
+      game.clearGuess();
+      expect(s.guesses[locked], before);
+
+      game.stopTimer();
+      game.dispose();
     },
   );
 

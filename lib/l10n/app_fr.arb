@@ -100,6 +100,8 @@
   "statsDailyActivity": "Activité quotidienne",
   "statsHeatmapCaption": "{weeks} dernières semaines · {start} à {end}",
   "puzzleAlreadySolved": "Vous avez déjà résolu celui-ci.",
+  "showSolution": "Afficher la solution",
+  "backToPuzzle": "Revenir à ma grille",
   "dailyPuzzleTitle": "Énigme du jour",
   "achievementsCountTitle": "Succès ({unlocked}/{total})",
   "onbStep1Title": "Chaque lettre est remplacée",

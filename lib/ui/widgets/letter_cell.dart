@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../theme/palette.dart';
 
-enum CellState { normal, selected, related, conflict, revealed, error, solved }
+enum CellState {
+  normal,
+  selected,
+  related,
+  conflict,
+  revealed,
+  confirmed,
+  error,
+  solved,
+}
 
 /// One letter slot: player's guess on top, the cipher letter below an
 /// underline — the classic newspaper cryptogram layout.
@@ -43,6 +52,8 @@ class LetterCell extends StatelessWidget {
       CellState.conflict => palette.conflict,
       CellState.error => palette.error,
       CellState.revealed => palette.revealed,
+      // A word the player completed correctly: locked, in its own color.
+      CellState.confirmed => palette.confirmed,
       // The post-solve wave: letters light up in success green one by one.
       CellState.solved => palette.success,
       _ => palette.guessText,
@@ -60,6 +71,8 @@ class LetterCell extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected
               ? palette.boardCellSelectedBg
+              : state == CellState.confirmed
+              ? palette.boardCellConfirmedBg
               : playerFilled
               ? palette.boardCellFilledBg
               : palette.boardCellBg,
@@ -109,6 +122,7 @@ class LetterCell extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 2),
                   color: switch (state) {
                     CellState.selected => palette.revealed,
+                    CellState.confirmed => palette.confirmed,
                     CellState.solved => palette.success,
                     _ => palette.boardUnderline,
                   },

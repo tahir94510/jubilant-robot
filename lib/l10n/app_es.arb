@@ -100,6 +100,8 @@
   "statsDailyActivity": "Actividad diaria",
   "statsHeatmapCaption": "Últimas {weeks} semanas · {start} a {end}",
   "puzzleAlreadySolved": "Ya descifraste este.",
+  "showSolution": "Mostrar solución",
+  "backToPuzzle": "Volver a mi intento",
   "dailyPuzzleTitle": "Criptograma diario",
   "achievementsCountTitle": "Logros ({unlocked}/{total})",
   "onbStep1Title": "Cada letra está sustituida",
