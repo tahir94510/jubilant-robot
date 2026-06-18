@@ -177,12 +177,25 @@ class HomeScreen extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                Text(
-                                  '#${daily.number} · ${DateFormat.MMMMEEEEd().format(today)}',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: scheme.onSurface,
+                                // Localized, and kept to a single tidy line:
+                                // long locale dates (e.g. German) scale down to
+                                // fit instead of wrapping mid-phrase.
+                                Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    alignment: AlignmentDirectional.centerStart,
+                                    child: Text(
+                                      '#${daily.number} · '
+                                      '${DateFormat.MMMMEEEEd(contentLocale).format(today)}',
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        color: scheme.onSurface,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 6),

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
 import 'app.dart';
@@ -40,6 +41,11 @@ Future<void> _start() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Load date-formatting symbols for every locale so DateFormat renders the
+  // daily header (and heatmap captions) in the player's language — without
+  // this, intl silently falls back to English month/day names.
+  await initializeDateFormatting();
 
   // Don't let a single non-fatal framework/async error tear the app down in
   // release (the red screen only exists in debug anyway).
