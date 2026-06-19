@@ -1,11 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/engine/quote_repository.dart';
+import 'package:quotecrack/models/pack.dart';
 
 /// Verifies the REAL asset-manifest loading path (QuoteRepository.load), not
 /// just the in-memory fromQuotes used elsewhere: every bundled locale must be
 /// discovered, and the daily pool must stay English-only.
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
+  const supportedLocales = ['en', 'tr', 'es', 'de', 'fr', 'it', 'pt'];
 
   test(
     'load() discovers every bundled locale via the asset manifest',
@@ -15,7 +18,7 @@ void main() {
       final locales = repo.all.map((q) => q.locale).toSet();
       expect(
         locales,
-        containsAll(<String>{'en', 'tr', 'es', 'de', 'fr', 'it', 'pt'}),
+        containsAll(supportedLocales.toSet()),
         reason: 'a locale pack failed to load from the manifest',
       );
 
@@ -27,4 +30,40 @@ void main() {
       expect(repo.dailyPool.length, greaterThanOrEqualTo(366));
     },
   );
+
+  test('every language fills every pack — all four difficulty rungs, all four '
+      'themes, and the premium Classics pack', () async {
+    final repo = await QuoteRepository.load();
+
+    for (final locale in supportedLocales) {
+      for (final pack in Pack.catalog) {
+        final quotes = repo.forPack(pack, activeLocale: locale);
+        expect(
+          quotes,
+          isNotEmpty,
+          reason:
+              'locale "$locale" has no quotes in pack "${pack.id}" — a player '
+              'switching to that language would see an empty pack',
+        );
+        // Every quote actually belongs to this language and this pack.
+        expect(
+          quotes.every((q) => q.locale == locale),
+          isTrue,
+          reason: 'pack "${pack.id}" leaked a non-$locale quote',
+        );
+      }
+
+      // The premium Classics pack must be genuinely stocked, not a token
+      // one-off, in every language.
+      final classics = repo.forPack(
+        Pack.byId('classics'),
+        activeLocale: locale,
+      );
+      expect(
+        classics.length,
+        greaterThanOrEqualTo(20),
+        reason: 'locale "$locale" has a thin premium Classics pack',
+      );
+    }
+  });
 }
