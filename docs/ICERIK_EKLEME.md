@@ -35,7 +35,19 @@ kullanıcıya asla ulaşamaz.
    - Telif: yalnız kamu malı (1929 öncesi yayın/ölüm). Emin değilseniz
      yaşayan kişilerden veya modern eserlerden alıntı EKLEMEYİN.
    - `author` "Unknown" olamaz; halk malı için "Anonymous" veya "Proverb".
-   - `category` dosya adıyla aynı.
+   - `category` dosya adıyla aynı (kategori alanı belirleyicidir; depo dosya
+     adına değil bu alana bakar).
+   - **Dile özgü alfabe:** yerel sözler yalnız o dilin alfabe harflerini
+     kullanır (`quotes_validation_test` zorlar). Türkçe'de `â/î/û` ve `Q/W/X`
+     **yoktur** (ör. "kâr" yerine "kar"); Almanca'da yalnız `äöüß`; İspanyolca'da
+     `ñ` ayrı bir harftir; Fransızca/İtalyanca/Portekizce aksanları otomatik
+     katlanır. Emin değilseniz aksansız sade biçimi yazın.
+
+   > Toplu güvenli ekleme için pratik kalıp: her dilin klasörüne tek bir
+   > `expanded.json` koyup (kategoriler karışık olabilir, `category` alanı
+   > belirleyici) `<loc>-xNNN` önekli benzersiz id kullanın (ör. `tr-x001`).
+   > Mevcut yerel setler kanonik kamu malı sözleri büyük ölçüde içerdiğinden,
+   > eklemeden önce normalize-metin kopya denetimi şarttır (test zaten yakalar).
 3. Sürümü artırın (aşağıdaki "Sürüm ve içerik revizyonu" bölümü).
 4. Push edin. CI testleri içeriği denetler; yeşilse `quotecrack-release-aab`
    hazırdır. KALITE_KONTROL B turundan 2-3 madde, sonra Play Console.
