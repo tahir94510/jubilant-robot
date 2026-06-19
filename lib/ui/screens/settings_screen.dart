@@ -79,7 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               // (full width) so it never squeezes against a title on narrow
               // phones.
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
+                padding: const EdgeInsets.fromLTRB(20, 4, 20, 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -293,6 +293,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               ListTile(
+                leading: const Icon(Icons.settings_backup_restore),
+                title: Text(l10n.restoreDefaults),
+                onTap: () async {
+                  final messenger = ScaffoldMessenger.of(context);
+                  final sounds = context.read<SoundService>();
+                  final music = context.read<MusicService>();
+                  final confirmed = await showDialog<bool>(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      title: Text(l10n.restoreDefaults),
+                      content: Text(l10n.restoreDefaultsMessage),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(ctx, false),
+                          child: Text(
+                            MaterialLocalizations.of(ctx).cancelButtonLabel,
+                          ),
+                        ),
+                        FilledButton(
+                          onPressed: () => Navigator.pop(ctx, true),
+                          child: Text(l10n.restoreDefaults),
+                        ),
+                      ],
+                    ),
+                  );
+                  if (confirmed != true) return;
+                  await controller.resetToDefaults(
+                    sounds: sounds,
+                    music: music,
+                  );
+                  messenger.showSnackBar(
+                    SnackBar(content: Text(l10n.restoreDefaultsDone)),
+                  );
+                },
+              ),
+              ListTile(
                 leading: const Icon(Icons.info_outline),
                 title: Text(l10n.version),
                 subtitle: const Text(AppConfig.appVersion),
@@ -410,7 +446,9 @@ class _SliderTile extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final pct = displayPercent;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
+      // A consistent top+bottom rhythm so the slider never sticks to the
+      // control above it (the old top:0 made text-size/volume look glued on).
+      padding: const EdgeInsets.fromLTRB(20, 6, 20, 10),
       child: Row(
         children: [
           // A tinted, evenly-padded chip so the glyph reads as a deliberate

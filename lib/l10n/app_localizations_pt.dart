@@ -135,6 +135,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get checkingPurchases => 'Verificando compras anteriores…';
 
   @override
+  String get restoreDefaults => 'Restaurar configurações padrão';
+
+  @override
+  String get restoreDefaultsMessage =>
+      'Isso restaura aparência, som e configurações de jogo para os padrões. Seu progresso, estatísticas e premium não são afetados.';
+
+  @override
+  String get restoreDefaultsDone => 'Configurações restauradas.';
+
+  @override
   String get privacyOptions => 'Opções de privacidade';
 
   @override

@@ -132,6 +132,39 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  /// Resets every user preference to its default and re-applies the side
+  /// effects (audio levels/enable, cancels the daily reminder). Deliberately
+  /// PRESERVES progress-adjacent flags — onboardingDone, reminderNudgeDone and
+  /// seenContentVersion — so a settings reset never re-runs the tutorial,
+  /// re-nags the reminder invite, or re-flags content as "new".
+  Future<void> resetToDefaults({
+    required SoundService sounds,
+    required MusicService music,
+  }) async {
+    final d = AppSettings();
+    settings
+      ..themeMode = d.themeMode
+      ..languageCode = d.languageCode
+      ..textScale = d.textScale
+      ..colorblindMode = d.colorblindMode
+      ..errorChecking = d.errorChecking
+      ..showTimer = d.showTimer
+      ..haptics = d.haptics
+      ..soundEffects = d.soundEffects
+      ..soundVolume = d.soundVolume
+      ..music = d.music
+      ..musicVolume = d.musicVolume
+      ..reminderEnabled = d.reminderEnabled
+      ..reminderHour = d.reminderHour
+      ..reminderMinute = d.reminderMinute;
+
+    await _notifications.cancelAll();
+    sounds.setUserVolume(settings.soundVolume);
+    music.setUserVolume(settings.musicVolume);
+    await music.setEnabled(settings.music);
+    await _save();
+  }
+
   Future<void> markOnboardingDone() {
     settings.onboardingDone = true;
     return _save();
@@ -183,5 +216,24 @@ class SettingsController extends ChangeNotifier {
     }
     await _save();
     return true;
+  }
+
+  /// Re-arms the daily reminder on app startup when it is enabled. The OS boot
+  /// receiver restores alarms after a reboot, but a force-stop or app update can
+  /// drop them; re-scheduling here (without re-prompting for permission) keeps
+  /// an enabled reminder reliable. Never throws — a failure must not block
+  /// startup.
+  Future<void> rescheduleDailyIfEnabled() async {
+    if (!settings.reminderEnabled || !_notifications.supported) return;
+    try {
+      final l10n = _activeL10n();
+      await _notifications.scheduleDaily(
+        settings.reminderTime,
+        title: l10n.notificationDailyTitle,
+        body: l10n.notificationDailyBody,
+      );
+    } catch (_) {
+      // Best-effort: an enabled reminder simply won't re-arm this launch.
+    }
   }
 }
