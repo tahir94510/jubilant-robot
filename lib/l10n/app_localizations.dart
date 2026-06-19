@@ -414,6 +414,24 @@ abstract class AppLocalizations {
   /// **'A cipher by {author} awaits.'**
   String homeDailyAwaits(String author);
 
+  /// No description provided for @homeContinueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE'**
+  String get homeContinueLabel;
+
+  /// No description provided for @homeContinueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up where you left off'**
+  String get homeContinueSubtitle;
+
+  /// No description provided for @continuePlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continuePlaying;
+
   /// No description provided for @playNow.
   ///
   /// In en, this message translates to:
@@ -869,6 +887,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Short, sharp, unforgiving'**
   String get packTaglineExpert;
+
+  /// No description provided for @packTitleShortSweet.
+  ///
+  /// In en, this message translates to:
+  /// **'Short & Sweet'**
+  String get packTitleShortSweet;
+
+  /// No description provided for @packTaglineShortSweet.
+  ///
+  /// In en, this message translates to:
+  /// **'Bite-size quotes for a quick win'**
+  String get packTaglineShortSweet;
 
   /// No description provided for @packTitleProverbs.
   ///

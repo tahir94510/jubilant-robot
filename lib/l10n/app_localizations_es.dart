@@ -172,6 +172,15 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get homeContinueLabel => 'CONTINUAR';
+
+  @override
+  String get homeContinueSubtitle => 'Retoma donde lo dejaste';
+
+  @override
+  String get continuePlaying => 'Continuar';
+
+  @override
   String get playNow => 'Jugar ahora';
 
   @override
@@ -449,6 +458,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get packTaglineExpert => 'Corto, agudo, implacable';
+
+  @override
+  String get packTitleShortSweet => 'Cortas y al grano';
+
+  @override
+  String get packTaglineShortSweet => 'Frases breves para una victoria rápida';
 
   @override
   String get packTitleProverbs => 'Refranes';

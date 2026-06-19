@@ -97,7 +97,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get musicVolume => 'Müzik ses düzeyi';
 
   @override
-  String get remindMeDaily => 'Beni her gün hatırlat';
+  String get remindMeDaily => 'Bana her gün hatırlat';
 
   @override
   String reminderAt(String time) {
@@ -168,6 +168,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String homeDailyAwaits(String author) {
     return '$author imzalı bir şifre seni bekliyor.';
   }
+
+  @override
+  String get homeContinueLabel => 'DEVAM ET';
+
+  @override
+  String get homeContinueSubtitle => 'Kaldığın yerden devam et';
+
+  @override
+  String get continuePlaying => 'Devam et';
 
   @override
   String get playNow => 'Hemen oyna';
@@ -285,6 +294,7 @@ class AppLocalizationsTr extends AppLocalizations {
       count,
       locale: localeName,
       other: '$count günlük seri',
+      one: '1 günlük seri',
     );
     return '$_temp0';
   }
@@ -445,6 +455,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packTaglineExpert => 'Kısa, keskin, affetmez';
+
+  @override
+  String get packTitleShortSweet => 'Kısa ve Öz';
+
+  @override
+  String get packTaglineShortSweet => 'Hızlı bir zafer için minik sözler';
 
   @override
   String get packTitleProverbs => 'Atasözleri';

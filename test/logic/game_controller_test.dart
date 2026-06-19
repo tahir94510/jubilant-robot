@@ -500,4 +500,35 @@ void main() {
       },
     );
   });
+
+  group('per-language last-open (Continue card)', () {
+    test(
+      'a non-daily start records last_open for that quote\'s language',
+      () async {
+        final store = await storage();
+        final game = GameController(storage: store);
+        game.start(shortQuote, daily: false, packId: 'wisdom');
+
+        final last = game.lastOpen('en');
+        expect(last, isNotNull);
+        expect(last!.quoteId, shortQuote.id);
+        expect(last.packId, 'wisdom');
+        // Another language has nothing to continue.
+        expect(game.lastOpen('tr'), isNull);
+
+        game.stopTimer();
+        game.dispose();
+      },
+    );
+
+    test('the daily never participates in the Continue card', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: true);
+      expect(game.lastOpen('en'), isNull);
+
+      game.stopTimer();
+      game.dispose();
+    });
+  });
 }

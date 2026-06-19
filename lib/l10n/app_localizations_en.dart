@@ -169,6 +169,15 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get homeContinueLabel => 'CONTINUE';
+
+  @override
+  String get homeContinueSubtitle => 'Pick up where you left off';
+
+  @override
+  String get continuePlaying => 'Continue';
+
+  @override
   String get playNow => 'Play now';
 
   @override
@@ -443,6 +452,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packTaglineExpert => 'Short, sharp, unforgiving';
+
+  @override
+  String get packTitleShortSweet => 'Short & Sweet';
+
+  @override
+  String get packTaglineShortSweet => 'Bite-size quotes for a quick win';
 
   @override
   String get packTitleProverbs => 'Proverbs';

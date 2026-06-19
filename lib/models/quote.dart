@@ -45,4 +45,7 @@ class Quote {
   /// Distinct letters (in this quote's alphabet) used by the quote.
   Set<String> get usedLetters =>
       alphabet.lettersOnly(normalizedText).split('').toSet();
+
+  /// Total playable letters (drives the "Short & Sweet" length filter).
+  int get letterCount => alphabet.lettersOnly(normalizedText).length;
 }

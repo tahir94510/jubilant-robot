@@ -77,11 +77,19 @@ def mix(*tracks, target=0.82):
     return [v * (target / peak) for v in buf]
 
 
-def clean_edges(samples, *, fade_in=0.005, fade_out=0.045):
+def clean_edges(samples, *, fade_in=0.010, fade_out=0.080):
     """Force every clip to start and end at true silence with a raised-cosine
     ramp. Without this, a bell whose exponential tail is still audible when
     the buffer ends produces a hard step -> an audible click/crackle. This is
-    the single most important anti-crackle step, applied to every sound."""
+    the single most important anti-crackle step, applied to every sound.
+
+    The fade-in is 10ms: long enough to soften the hard attack transient (a
+    sharp step from silence to a sample at full amplitude clicks too), short
+    enough that the sound still feels immediate/punchy. The fade-out is a
+    generous 80ms: bells like word/success still carry ~10% of their amplitude
+    when the buffer ends, and a short ramp let that tail get cut off abruptly.
+    80ms resolves it to true silence smoothly. Short clips are unaffected —
+    [fo] is capped at half the buffer (tap stays ~30ms)."""
     out = list(samples)
     n = len(out)
     fi = min(int(RATE * fade_in), n // 2)

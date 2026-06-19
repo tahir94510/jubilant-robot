@@ -187,8 +187,28 @@ class GameController extends ChangeNotifier {
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
 
+    // Remember the last non-daily puzzle per language so Home can offer a
+    // "Continue" card for the active language profile. The daily has its own
+    // card, so it never participates here.
+    if (!daily) {
+      _storage.writeJson(StorageService.lastOpenKey(quote.locale), {
+        'quoteId': quote.id,
+        'packId': packId,
+      });
+    }
+
     _startTicker();
     notifyListeners();
+  }
+
+  /// The id (and origin pack) of the last non-daily puzzle opened in [locale],
+  /// or null if none — drives Home's per-language "Continue" card. The caller
+  /// should still confirm it is genuinely [hasInProgress] before offering it.
+  ({String quoteId, String? packId})? lastOpen(String locale) {
+    final j = _storage.readJson(StorageService.lastOpenKey(locale));
+    final id = j?['quoteId'];
+    if (id is! String) return null;
+    return (quoteId: id, packId: j?['packId'] as String?);
   }
 
   /// Clears a reviewed (or any) puzzle back to a blank board and starts a fresh
@@ -302,6 +322,16 @@ class GameController extends ChangeNotifier {
     final i = _firstEmptyIndex();
     if (s == null || i == null) return null;
     return s.cipherText[i];
+  }
+
+  /// True when [quoteId] has a saved, partially-filled attempt that has not
+  /// been solved — so list screens can show it as "in progress", distinct from
+  /// untouched and finished. Reads the lightweight saved state directly.
+  bool hasInProgress(String quoteId) {
+    final j = _storage.readJson(StorageService.puzzleStateKey(quoteId));
+    if (j == null || j['solved'] == true) return false;
+    final g = j['guesses'];
+    return g is Map && g.isNotEmpty;
   }
 
   /// Selects a board cell by its position in the cipher text. This is what the

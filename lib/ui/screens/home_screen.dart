@@ -56,6 +56,16 @@ class HomeScreen extends StatelessWidget {
         .where((q) => progress.isSolved(q.id))
         .length;
 
+    // Per-language "Continue" card: the last non-daily puzzle opened in this
+    // language, shown only if it still has a saved, unsolved attempt.
+    final game = context.watch<GameController>();
+    final lastOpen = game.lastOpen(contentLocale);
+    final resumeQuote = lastOpen != null ? repo.byId(lastOpen.quoteId) : null;
+    final canResume =
+        resumeQuote != null &&
+        !progress.isSolved(resumeQuote.id) &&
+        game.hasInProgress(resumeQuote.id);
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -105,13 +115,19 @@ class HomeScreen extends StatelessWidget {
                                         : Icons.music_off_outlined,
                                   ),
                                 ),
-                                const SizedBox(width: 4),
-                                StreakBadge(
-                                  streak: progress.displayStreakFor(
-                                    contentLocale,
+                                // The streak badge appears only once there is a
+                                // live streak (>=1); a "0" badge is meaningless
+                                // and just clutters the header.
+                                if (progress.displayStreakFor(contentLocale) >=
+                                    1) ...[
+                                  const SizedBox(width: 4),
+                                  StreakBadge(
+                                    streak: progress.displayStreakFor(
+                                      contentLocale,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 4),
+                                  const SizedBox(width: 4),
+                                ],
                                 IconButton(
                                   tooltip: l10n.settingsTooltip,
                                   visualDensity: VisualDensity.compact,
@@ -236,6 +252,81 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
+
+                      // --- Continue (resume) card, per language ---
+                      if (canResume) ...[
+                        Card(
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(16),
+                            onTap: () {
+                              context.read<GameController>().start(
+                                resumeQuote,
+                                daily: false,
+                                packId: lastOpen!.packId,
+                                alreadySolved: false,
+                              );
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const PuzzleScreen(),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.play_circle_outline,
+                                        size: 18,
+                                        color: scheme.primary,
+                                      ),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        l10n.homeContinueLabel,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: 1.2,
+                                          color: scheme.primary,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    l10n.homeContinueSubtitle,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: palette.textSecondary,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 14),
+                                  FilledButton.tonal(
+                                    onPressed: () {
+                                      context.read<GameController>().start(
+                                        resumeQuote,
+                                        daily: false,
+                                        packId: lastOpen!.packId,
+                                        alreadySolved: false,
+                                      );
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (_) => const PuzzleScreen(),
+                                        ),
+                                      );
+                                    },
+                                    child: Text(l10n.continuePlaying),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                      ],
 
                       // --- Menu tiles ---
                       _MenuTile(

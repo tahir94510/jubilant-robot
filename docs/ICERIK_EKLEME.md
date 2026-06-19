@@ -114,9 +114,12 @@ Ses ve raster görseller elle düzenlenmez; üreticilerden çıkar ve kendi kali
 - `python3 tool/generate_sounds.py`: efektler. Her dosya tam sessizlikte
   başlayıp biter; tepe seviyesi role göre dengelenir (kutlama en gür, tuş
   vuruşu en hafif).
-- `python3 tool/generate_music.py`: ~128 sn, iki bölümlü sakin müzik yatağı,
-  22.05 kHz mono. Döngü dikişi sessizlikten geçer; betik klip/DC/dikiş
-  kontrollerini kendi yapar ve hata varsa durur.
+- `python3 tool/generate_music.py`: altı farklı sakin müzik parçası
+  (`music_calm_1.wav` … `music_calm_6.wav`), her biri ~72–88 sn, 22.05 kHz
+  mono. Uygulama (MusicService) bunları karıştırıp her biri bir kez çalmadan
+  tekrar etmeden, parça sonlarında birbirine **crossfade** ile geçirir; her
+  parça sessizlikte başlayıp biter, betik klip/DC/sessizlik kontrollerini
+  kendi yapar ve hata varsa durur.
 - `python3 tool/generate_icons.py`: tüm ikonlar, splash, bildirim glifi, web
   ikonları, Play ikonu, feature graphic. `dart run flutter_launcher_icons`
   ÇALIŞTIRMAYIN.

@@ -18,6 +18,7 @@ class PackDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final repo = context.read<QuoteRepository>();
     final progress = context.watch<ProgressController>();
+    final game = context.watch<GameController>();
     final palette = Theme.of(context).extension<GamePalette>()!;
     final scheme = Theme.of(context).colorScheme;
     final locale = Localizations.localeOf(context).languageCode;
@@ -42,10 +43,20 @@ class PackDetailScreen extends StatelessWidget {
           itemBuilder: (context, i) {
             final quote = quotes[i];
             final solved = progress.isSolved(quote.id);
+            // Priority: solved > in-progress > untouched. An in-progress tile
+            // (a saved, partly-filled attempt) gets a primary tint so resuming
+            // is obvious, distinct from both finished and never-started.
+            final inProgress = !solved && game.hasInProgress(quote.id);
+            final Color bg;
+            if (solved) {
+              bg = palette.success.withValues(alpha: .14);
+            } else if (inProgress) {
+              bg = scheme.primary.withValues(alpha: .12);
+            } else {
+              bg = Theme.of(context).cardTheme.color ?? scheme.surface;
+            }
             return Material(
-              color: solved
-                  ? palette.success.withValues(alpha: .14)
-                  : Theme.of(context).cardTheme.color,
+              color: bg,
               borderRadius: BorderRadius.circular(14),
               child: InkWell(
                 borderRadius: BorderRadius.circular(14),
@@ -63,16 +74,35 @@ class PackDetailScreen extends StatelessWidget {
                 child: Center(
                   child: solved
                       ? Icon(Icons.check, color: palette.success, size: 26)
-                      : FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            '${i + 1}',
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                              color: scheme.onSurface.withValues(alpha: .75),
+                      : Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                '${i + 1}',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w600,
+                                  color: inProgress
+                                      ? scheme.primary
+                                      : scheme.onSurface.withValues(alpha: .75),
+                                ),
+                              ),
                             ),
-                          ),
+                            // A small "resume" dot marks a partly-filled attempt.
+                            if (inProgress) ...[
+                              const SizedBox(height: 3),
+                              Container(
+                                width: 5,
+                                height: 5,
+                                decoration: BoxDecoration(
+                                  color: scheme.primary,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                            ],
+                          ],
                         ),
                 ),
               ),

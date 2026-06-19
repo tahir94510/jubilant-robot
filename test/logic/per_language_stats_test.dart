@@ -166,4 +166,47 @@ void main() {
     expect(p2.statsFor('en').totalSolved, 2);
     expect(p2.statsFor('tr').totalSolved, 1);
   });
+
+  test(
+    'app updates preserve data: stats.v2 reloads identically across restarts',
+    () async {
+      // SharedPreferences survives a Play update (only uninstall/clear wipes
+      // it). This locks that reloading stats.v2 repeatedly never loses or
+      // mutates the per-language profile — the exact concern after an update.
+      final storage = await emptyStorage();
+      final p = ProgressController(
+        storage: storage,
+        clock: FakeClock(DateTime(2026, 6, 10, 9)),
+      );
+      await p.recordSolve(
+        quoteId: 'en-1',
+        solveTime: const Duration(seconds: 90),
+        hintsUsed: 0,
+        isDaily: true,
+        locale: 'en',
+      );
+      await p.recordSolve(
+        quoteId: 'tr-1',
+        solveTime: const Duration(seconds: 80),
+        hintsUsed: 2,
+        isDaily: false,
+        locale: 'tr',
+      );
+
+      // Simulate three "app launches" reading the SAME persisted store.
+      for (var launch = 0; launch < 3; launch++) {
+        final reloaded = ProgressController(
+          storage: storage,
+          clock: FakeClock(DateTime(2026, 6, 10, 9)),
+        );
+        expect(reloaded.statsFor('en').totalSolved, 1);
+        expect(reloaded.statsFor('tr').totalSolved, 1);
+        expect(reloaded.displayStreakFor('en'), 1);
+        expect(reloaded.statsFor('tr').hintsUsed, 2);
+        expect(reloaded.isSolved('en-1'), isTrue);
+        expect(reloaded.isSolved('tr-1'), isTrue);
+        expect(reloaded.aggregate.totalSolved, 2);
+      }
+    },
+  );
 }

@@ -65,6 +65,9 @@
       }
     }
   },
+  "homeContinueLabel": "CONTINUE",
+  "homeContinueSubtitle": "Pick up where you left off",
+  "continuePlaying": "Continue",
   "playNow": "Play now",
   "replay": "Replay",
   "puzzlePacks": "Puzzle packs",
@@ -216,6 +219,8 @@
   "packTaglineSkilled": "For practiced decoders",
   "packTitleExpert": "Expert",
   "packTaglineExpert": "Short, sharp, unforgiving",
+  "packTitleShortSweet": "Short & Sweet",
+  "packTaglineShortSweet": "Bite-size quotes for a quick win",
   "packTitleProverbs": "Proverbs",
   "packTaglineProverbs": "Folk wisdom of the world",
   "packTitleWisdom": "Wisdom",

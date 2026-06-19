@@ -6,6 +6,16 @@ import 'package:flutter_test/flutter_test.dart';
 /// WAV, and the music bed must stay inside its size budget (it is by far
 /// the largest asset in the bundle).
 void main() {
+  // The six shuffled, crossfading music beds (tool/generate_music.py).
+  const musicTracks = [
+    'music_calm_1.wav',
+    'music_calm_2.wav',
+    'music_calm_3.wav',
+    'music_calm_4.wav',
+    'music_calm_5.wav',
+    'music_calm_6.wav',
+  ];
+
   const effects = [
     'tap.wav',
     'hint.wav',
@@ -13,7 +23,7 @@ void main() {
     'success.wav',
     'achievement.wav',
     'word.wav',
-    'music_calm.wav',
+    ...musicTracks,
   ];
 
   test('every audio asset exists, is nonempty, and is RIFF/WAVE', () {
@@ -39,12 +49,18 @@ void main() {
     }
   });
 
-  test('the music bed stays within its size budget', () {
-    // ~128s mono 22.05kHz 16-bit (two sections, kept light on purpose). A
-    // jump past the ceiling means someone regenerated it at a higher
-    // rate/length and bloated the app size.
-    final length = File('assets/audio/music_calm.wav').lengthSync();
-    expect(length, greaterThan(4500 * 1024));
-    expect(length, lessThan(7000 * 1024));
+  test('the music playlist stays within its total size budget', () {
+    // Six ~72-88s mono 22.05kHz 16-bit beds (~3.4MB each), kept light on
+    // purpose. Each must be a real, non-trivial track, and the whole set must
+    // stay under a sane ceiling — a jump past it means someone regenerated at
+    // a higher rate/length (or added tracks) and bloated the app size.
+    var total = 0;
+    for (final name in musicTracks) {
+      final length = File('assets/audio/$name').lengthSync();
+      expect(length, greaterThan(2500 * 1024), reason: '$name is too small');
+      expect(length, lessThan(5000 * 1024), reason: '$name is too big');
+      total += length;
+    }
+    expect(total, lessThan(26 * 1024 * 1024), reason: 'playlist too large');
   });
 }
