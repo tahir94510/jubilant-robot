@@ -14,6 +14,7 @@ import 'services/music_service.dart';
 import 'services/notifications/notification_service.dart';
 import 'services/purchases/purchase_service.dart';
 import 'services/sound_service.dart';
+import 'services/update_service.dart';
 import 'services/storage_service.dart';
 import 'state/economy_controller.dart';
 import 'state/game_controller.dart';
@@ -136,6 +137,12 @@ Future<void> _start() async {
       await ads.initialize(premium: economy.premium);
     } catch (e) {
       debugPrint('Ads init failed (continuing): $e');
+    }
+    // Offer a Play in-app update if one is available (no-op off Play / on web).
+    try {
+      await UpdateService().maybePromptUpdate();
+    } catch (e) {
+      debugPrint('Update check failed (continuing): $e');
     }
   });
 
