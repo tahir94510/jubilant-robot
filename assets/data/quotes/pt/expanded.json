@@ -38,5 +38,69 @@
     "source": "Anônimo",
     "category": "proverbs",
     "locale": "pt"
+  },
+  {
+    "id": "pt-x300",
+    "text": "O valor das coisas não está no tempo que elas duram, mas na intensidade com que acontecem.",
+    "author": "Fernando Pessoa",
+    "source": "Livro do Desassossego",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x301",
+    "text": "Ninguém ama a justiça quando ela ameaça os próprios interesses.",
+    "author": "Eça de Queirós",
+    "source": "Ensaios",
+    "category": "wisdom",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x302",
+    "text": "Viver é a coisa mais rara do mundo; a maioria das pessoas apenas existe.",
+    "author": "Oscar Wilde",
+    "source": "Ensaios",
+    "category": "wit",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x305",
+    "text": "Mais vale um pássaro na mão que dois voando.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x308",
+    "text": "Quem não tem cão, caça como pode.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x309",
+    "text": "Filho de peixe sabe nadar.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x311",
+    "text": "A pressa é a inimiga da perfeição.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x314",
+    "text": "Cada um colhe o que planta.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
   }
 ]

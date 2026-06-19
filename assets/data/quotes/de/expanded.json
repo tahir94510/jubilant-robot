@@ -126,5 +126,61 @@
     "source": "Emilia Galotti",
     "category": "wisdom",
     "locale": "de"
+  },
+  {
+    "id": "de-x302",
+    "text": "Man reist nicht, um anzukommen, sondern um zu reisen.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Maximen und Reflexionen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x304",
+    "text": "In der Beschränkung zeigt sich erst der Meister.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Sonett",
+    "category": "classics",
+    "locale": "de"
+  },
+  {
+    "id": "de-x306",
+    "text": "Nicht weil es schwer ist, wagen wir es nicht; weil wir es nicht wagen, ist es schwer.",
+    "author": "Seneca",
+    "source": "Briefe",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x307",
+    "text": "Wie das Land, so das Sprichwort.",
+    "author": "Deutsches Sprichwort",
+    "source": "Anonym",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-x308",
+    "text": "Vorsicht ist die Mutter der Weisheit.",
+    "author": "Deutsches Sprichwort",
+    "source": "Anonym",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-x311",
+    "text": "Wo ein Wille ist, ist auch ein Weg.",
+    "author": "Deutsches Sprichwort",
+    "source": "Anonym",
+    "category": "proverbs",
+    "locale": "de"
+  },
+  {
+    "id": "de-x312",
+    "text": "Gut Ding will Weile haben.",
+    "author": "Deutsches Sprichwort",
+    "source": "Anonym",
+    "category": "proverbs",
+    "locale": "de"
   }
 ]

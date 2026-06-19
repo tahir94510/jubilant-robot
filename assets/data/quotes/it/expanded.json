@@ -78,5 +78,61 @@
     "source": "Anonimo",
     "category": "proverbs",
     "locale": "it"
+  },
+  {
+    "id": "it-x300",
+    "text": "La vita è come uno specchio: ti sorride se la guardi sorridendo.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
+  },
+  {
+    "id": "it-x301",
+    "text": "Anche il viaggio più lungo comincia con un solo passo.",
+    "author": "Lao Tzu",
+    "source": "Tao Te Ching",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-x303",
+    "text": "Volli, e volli sempre, e fortissimamente volli.",
+    "author": "Vittorio Alfieri",
+    "source": "Lettere",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-x304",
+    "text": "Sempre caro mi fu quest'ermo colle.",
+    "author": "Giacomo Leopardi",
+    "source": "L'infinito",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-x305",
+    "text": "La speranza è l'ultima a morire.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
+  },
+  {
+    "id": "it-x310",
+    "text": "Fidarsi è bene, non fidarsi è meglio.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
+  },
+  {
+    "id": "it-x312",
+    "text": "Ride bene chi ride ultimo.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
   }
 ]

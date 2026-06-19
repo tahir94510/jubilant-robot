@@ -118,5 +118,53 @@
     "source": "Anónimo",
     "category": "proverbs",
     "locale": "es"
+  },
+  {
+    "id": "es-x301",
+    "text": "Bien predica quien bien vive.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-x302",
+    "text": "Procura tener a Dios delante y en la memoria.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-x303",
+    "text": "Lo que poco cuesta, poco se estima.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-x306",
+    "text": "El sueño de la razón produce monstruos.",
+    "author": "Francisco de Goya",
+    "source": "Los Caprichos",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-x308",
+    "text": "Quien canta, sus males espanta.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  },
+  {
+    "id": "es-x313",
+    "text": "Cada oveja con su pareja.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
   }
 ]
