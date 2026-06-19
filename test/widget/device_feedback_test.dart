@@ -430,6 +430,11 @@ void main() {
     await tester.pump();
 
     await tester.scrollUntilVisible(find.text('Reminder time'), 150);
+    // Fully scroll the row into the viewport before tapping: scrollUntilVisible
+    // stops as soon as any pixel is visible, which can leave the tap target at
+    // the very bottom edge.
+    await tester.ensureVisible(find.text('Reminder time'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Reminder time'));
     await tester.pumpAndSettle();
 

@@ -108,19 +108,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ),
               ),
-              ListTile(
-                title: Text(l10n.textSize),
-                subtitle: Slider(
-                  value: settings.textScale,
-                  min: 0.85,
-                  max: 1.4,
-                  divisions: 11,
-                  label: '${(settings.textScale * 100).round()}%',
-                  // Preview every tick in memory only; persist once on release
-                  // (writing prefs per tick made the slider stutter).
-                  onChanged: controller.previewTextScale,
-                  onChangeEnd: controller.setTextScale,
-                ),
+              // Same icon · slider · value layout as the volume controls, for a
+              // consistent settings surface.
+              _SliderTile(
+                icon: Icons.format_size_rounded,
+                label: l10n.textSize,
+                value: settings.textScale,
+                displayPercent: (settings.textScale * 100).round(),
+                min: 0.85,
+                max: 1.4,
+                divisions: 11,
+                // Preview every tick in memory only; persist once on release
+                // (writing prefs per tick made the slider stutter).
+                onPreview: controller.previewTextScale,
+                onCommit: controller.setTextScale,
               ),
               SwitchListTile(
                 title: Text(l10n.colorblindTitle),
@@ -153,10 +154,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onChanged: controller.setSoundEffects,
               ),
               if (settings.soundEffects)
-                _VolumeTile(
+                _SliderTile(
                   icon: Icons.volume_up_rounded,
                   label: l10n.effectsVolume,
                   value: settings.soundVolume,
+                  displayPercent: (settings.soundVolume * 100).round(),
                   onPreview: (v) => controller.previewSoundVolume(
                     v,
                     context.read<SoundService>(),
@@ -176,10 +178,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               if (settings.music)
-                _VolumeTile(
+                _SliderTile(
                   icon: Icons.music_note_rounded,
                   label: l10n.musicVolume,
                   value: settings.musicVolume,
+                  displayPercent: (settings.musicVolume * 100).round(),
                   onPreview: (v) => controller.previewMusicVolume(
                     v,
                     context.read<MusicService>(),
@@ -374,25 +377,38 @@ class _LanguageTile extends StatelessWidget {
 
 /// A compact volume row: an icon, a label, and a percentage slider that
 /// previews live (audible while dragging) and commits to disk on release.
-class _VolumeTile extends StatelessWidget {
-  const _VolumeTile({
+/// One row in the consistent "icon · slider · value" family shared by the
+/// effects, music and text-size controls — same chrome everywhere, with the
+/// live percentage shown ONCE on the right (no redundant drag bubble).
+class _SliderTile extends StatelessWidget {
+  const _SliderTile({
     required this.icon,
     required this.label,
     required this.value,
+    required this.displayPercent,
     required this.onPreview,
     required this.onCommit,
+    this.min = 0.0,
+    this.max = 1.0,
+    this.divisions = 10,
   });
 
   final IconData icon;
   final String label;
   final double value;
+
+  /// The number shown in the right-hand readout (and announced for a11y).
+  final int displayPercent;
+  final double min;
+  final double max;
+  final int divisions;
   final ValueChanged<double> onPreview;
   final ValueChanged<double> onCommit;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final pct = (value * 100).round();
+    final pct = displayPercent;
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
       child: Row(
@@ -436,9 +452,12 @@ class _VolumeTile extends StatelessWidget {
               ),
               child: Slider(
                 value: value,
-                max: 1.0,
-                divisions: 10,
-                label: '$label · $pct%',
+                min: min,
+                max: max,
+                divisions: divisions,
+                // No floating value bubble: the right-hand readout already
+                // shows the live percentage, so a drag label would just repeat
+                // it. The semantic label keeps the control fully accessible.
                 semanticFormatterCallback: (v) =>
                     '$label ${(v * 100).round()} percent',
                 onChanged: onPreview,
