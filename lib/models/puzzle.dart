@@ -86,6 +86,25 @@ class PuzzleSession {
     return count;
   }
 
+  /// Cipher letters that belong to at least one fully-correct word (2+ letters).
+  ///
+  /// In a unique-solution cryptogram, once a whole word reads correctly its
+  /// letter mappings are definitively right, so these letters are LOCKED (the
+  /// player can't disturb them) and render in a distinct "confirmed" color —
+  /// keeping them from blending into the in-progress guesses around them.
+  /// Single-letter words (A, I) are one keystroke and stay editable. Uses the
+  /// same per-token, alphabet-aware tokenizing as [correctWordCount].
+  Set<String> get confirmedLetters {
+    final out = <String>{};
+    for (final word in cipherText.split(' ')) {
+      final letters = alphabet.lettersOnly(word);
+      if (letters.length < 2) continue;
+      final cells = letters.split('');
+      if (cells.every(isGuessCorrect)) out.addAll(cells);
+    }
+    return out;
+  }
+
   /// For persistence.
   Map<String, dynamic> toJson() => {
     'quoteId': quote.id,

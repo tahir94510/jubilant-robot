@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
     // player each get their own deterministic puzzle of the day.
     final contentLocale = Localizations.localeOf(context).languageCode;
     final daily = selectDaily(repo.dailyPoolFor(contentLocale), today);
-    final dailyDone = progress.dailySolvedToday;
+    final dailyDone = progress.dailySolvedTodayFor(contentLocale);
 
     // Packs progress is scoped to the active content language so the Home
     // summary matches the locale-scoped Packs screen — the player only ever
@@ -106,7 +106,11 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(width: 4),
-                                StreakBadge(streak: progress.displayStreak),
+                                StreakBadge(
+                                  streak: progress.displayStreakFor(
+                                    contentLocale,
+                                  ),
+                                ),
                                 const SizedBox(width: 4),
                                 IconButton(
                                   tooltip: l10n.settingsTooltip,
@@ -133,6 +137,7 @@ class HomeScreen extends StatelessWidget {
                             context.read<GameController>().start(
                               daily.quote,
                               daily: true,
+                              alreadySolved: progress.isSolved(daily.quote.id),
                             );
                             Navigator.of(context).push(
                               MaterialPageRoute(
@@ -172,12 +177,25 @@ class HomeScreen extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                Text(
-                                  '#${daily.number} · ${DateFormat.MMMMEEEEd().format(today)}',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
-                                    color: scheme.onSurface,
+                                // Localized, and kept to a single tidy line:
+                                // long locale dates (e.g. German) scale down to
+                                // fit instead of wrapping mid-phrase.
+                                Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    alignment: AlignmentDirectional.centerStart,
+                                    child: Text(
+                                      '#${daily.number} · '
+                                      '${DateFormat.MMMMEEEEd(contentLocale).format(today)}',
+                                      maxLines: 1,
+                                      softWrap: false,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        color: scheme.onSurface,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 6),
@@ -198,6 +216,9 @@ class HomeScreen extends StatelessWidget {
                                     context.read<GameController>().start(
                                       daily.quote,
                                       daily: true,
+                                      alreadySolved: progress.isSolved(
+                                        daily.quote.id,
+                                      ),
                                     );
                                     Navigator.of(context).push(
                                       MaterialPageRoute(

@@ -355,6 +355,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get puzzleAlreadySolved => 'You\'ve already cracked this one.';
 
   @override
+  String get showSolution => 'Show solution';
+
+  @override
+  String get backToPuzzle => 'Back to my attempt';
+
+  @override
   String get dailyPuzzleTitle => 'Daily puzzle';
 
   @override

@@ -10,12 +10,14 @@ class GamePalette extends ThemeExtension<GamePalette> {
     required this.boardCellSelectedBg,
     required this.boardCellRelatedBg,
     required this.boardCellFilledBg,
+    required this.boardCellConfirmedBg,
     required this.boardUnderline,
     required this.guessText,
     required this.cipherText,
     required this.conflict,
     required this.error,
     required this.revealed,
+    required this.confirmed,
     required this.keyBg,
     required this.keyUsedBg,
     required this.keyText,
@@ -35,12 +37,22 @@ class GamePalette extends ThemeExtension<GamePalette> {
   /// slots. Intentionally neutral — it marks "you typed here", never whether
   /// the guess is right (that would spoil the puzzle).
   final Color boardCellFilledBg;
+
+  /// Faint tint behind a cell whose letter is part of a fully-correct word —
+  /// a calm, on-brand backdrop for the [confirmed] state.
+  final Color boardCellConfirmedBg;
   final Color boardUnderline;
   final Color guessText;
   final Color cipherText;
   final Color conflict;
   final Color error;
   final Color revealed;
+
+  /// Letters the player has locked in by completing a whole word correctly.
+  /// Deliberately distinct from [revealed] (hint gold) and from [success] (the
+  /// transient solve wave), and kept colorblind-safe in that variant, so a
+  /// confirmed word never blends into surrounding guesses.
+  final Color confirmed;
   final Color keyBg;
   final Color keyUsedBg;
   final Color keyText;
@@ -69,12 +81,16 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellSelectedBg: const Color(0xFF936F1F).withValues(alpha: .16),
     boardCellRelatedBg: const Color(0xFF936F1F).withValues(alpha: .07),
     boardCellFilledBg: const Color(0xFF211E1A).withValues(alpha: .055),
+    boardCellConfirmedBg:
+        (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
+            .withValues(alpha: .10),
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
     cipherText: const Color(0xFF8A7E66),
     conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFF9E3B34),
     error: colorblind ? const Color(0xFFE69F00) : const Color(0xFF9E3B34),
     revealed: const Color(0xFF936F1F),
+    confirmed: colorblind ? const Color(0xFF008766) : const Color(0xFF1B6E60),
     keyBg: const Color(0xFFFFFDF8),
     keyUsedBg: const Color(0xFFECE6D9),
     keyText: const Color(0xFF211E1A),
@@ -90,12 +106,16 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellSelectedBg: const Color(0xFFD9B25A).withValues(alpha: .22),
     boardCellRelatedBg: const Color(0xFFD9B25A).withValues(alpha: .10),
     boardCellFilledBg: const Color(0xFFF2EDE2).withValues(alpha: .07),
+    boardCellConfirmedBg:
+        (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
+            .withValues(alpha: .14),
     boardUnderline: const Color(0xFF4A453B),
     guessText: const Color(0xFFF2EDE2),
     cipherText: const Color(0xFF968B79),
     conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFFD8836E),
     error: colorblind ? const Color(0xFFE69F00) : const Color(0xFFD8836E),
     revealed: const Color(0xFFD9B25A),
+    confirmed: colorblind ? const Color(0xFF4FD6B6) : const Color(0xFF6FC8B3),
     keyBg: const Color(0xFF262219),
     keyUsedBg: const Color(0xFF1A1712),
     keyText: const Color(0xFFF2EDE2),
@@ -111,12 +131,16 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellSelectedBg: const Color(0xFF9C7B33).withValues(alpha: .20),
     boardCellRelatedBg: const Color(0xFF9C7B33).withValues(alpha: .08),
     boardCellFilledBg: const Color(0xFF3A2E1C).withValues(alpha: .06),
+    boardCellConfirmedBg:
+        (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
+            .withValues(alpha: .10),
     boardUnderline: const Color(0xFFC4AE8E),
     guessText: const Color(0xFF3A2E1C),
     cipherText: const Color(0xFF755F3F),
     conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFFA4442F),
     error: colorblind ? const Color(0xFFE69F00) : const Color(0xFFA4442F),
     revealed: const Color(0xFF8A6A2A),
+    confirmed: colorblind ? const Color(0xFF00795C) : const Color(0xFF276E58),
     keyBg: const Color(0xFFFBF3E4),
     keyUsedBg: const Color(0xFFE8D8BC),
     keyText: const Color(0xFF3A2E1C),

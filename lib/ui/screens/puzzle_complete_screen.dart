@@ -65,6 +65,9 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       solveTime: game.elapsed,
       hintsUsed: game.hintsUsed,
       isDaily: game.isDaily,
+      // Record into the puzzle's own language so each language keeps its own
+      // solves, streak and pack progress.
+      locale: session.quote.locale,
     );
 
     if (mounted && fresh.isNotEmpty) {
@@ -78,7 +81,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       // and the review prompt exactly once after the Nth lifetime solve.
       await ads.maybeShowInterstitial(completedCount: economy.completedCount);
       await ReviewService().maybeRequestReview(
-        totalSolved: progress.stats.totalSolved,
+        totalSolved: progress.aggregate.totalSolved,
       );
     }
   }
@@ -113,11 +116,10 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     // A fresh achievement (or a weekly streak milestone) upgrades the
     // confetti; the key swap replays the burst when achievements land a
     // frame after entry.
+    final streak = progress.displayStreakFor(quote.locale);
     final bigCelebration =
         _newAchievements.isNotEmpty ||
-        (game.isDaily &&
-            progress.displayStreak > 0 &&
-            progress.displayStreak % 7 == 0);
+        (game.isDaily && streak > 0 && streak % 7 == 0);
 
     return Scaffold(
       appBar: AppBar(
@@ -214,9 +216,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                               if (game.isDaily)
                                 _StatChip(
                                   icon: Icons.local_fire_department_outlined,
-                                  label: l10n.solveStreak(
-                                    progress.displayStreak,
-                                  ),
+                                  label: l10n.solveStreak(streak),
                                 ),
                             ],
                           ),
@@ -282,6 +282,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                       next,
                                       daily: false,
                                       packId: game.originPackId,
+                                      alreadySolved: progress.isSolved(next.id),
                                     );
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
@@ -336,7 +337,9 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final solvedIn = l10n.shareSolvedIn(
       ShareService.formatSolveTime(game.elapsed),
     );
-    final streak = progress.displayStreak;
+    final streak = progress.displayStreakFor(
+      game.session?.quote.locale ?? 'en',
+    );
     final streakPart = streak >= 2
         ? '  \u{1F525} ${l10n.solveStreak(streak)}'
         : '';
@@ -352,7 +355,10 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     final packId = game.originPackId;
     if (packId == null) return null;
     final progress = context.read<ProgressController>();
-    final quotes = repo.forPack(Pack.byId(packId));
+    final quotes = repo.forPack(
+      Pack.byId(packId),
+      activeLocale: game.session?.quote.locale ?? 'en',
+    );
     for (final q in quotes) {
       if (!progress.isSolved(q.id) && q.id != game.session?.quote.id) {
         return q;

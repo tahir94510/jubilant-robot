@@ -100,6 +100,8 @@
   "statsDailyActivity": "Günlük etkinlik",
   "statsHeatmapCaption": "Son {weeks} hafta · {start} ile {end}",
   "puzzleAlreadySolved": "Bunu zaten çözdün.",
+  "showSolution": "Çözümü göster",
+  "backToPuzzle": "Denememe dön",
   "dailyPuzzleTitle": "Günlük bulmaca",
   "achievementsCountTitle": "Başarımlar ({unlocked}/{total})",
   "onbStep1Title": "Her harf yer değiştirir",

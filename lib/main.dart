@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
 import 'app.dart';
@@ -40,6 +41,11 @@ Future<void> _start() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Load date-formatting symbols for every locale so DateFormat renders the
+  // daily header (and heatmap captions) in the player's language — without
+  // this, intl silently falls back to English month/day names.
+  await initializeDateFormatting();
 
   // Don't let a single non-fatal framework/async error tear the app down in
   // release (the red screen only exists in debug anyway).
@@ -79,7 +85,19 @@ Future<void> _start() async {
     storage: storage,
     notifications: notifications,
   );
-  final progress = ProgressController(storage: storage);
+  // For the one-time stats.v1 -> stats.v2 migration: route each previously
+  // solved quote into its own language, and carry the non-splittable counters
+  // into the player's current language (clamped to a supported one).
+  const supportedLocales = {'en', 'tr', 'es', 'de', 'fr', 'it', 'pt'};
+  final deviceLang = PlatformDispatcher.instance.locale.languageCode;
+  final migrationLocale = settings.settings.languageCode ?? deviceLang;
+  final progress = ProgressController(
+    storage: storage,
+    quoteLocales: {for (final q in quotes.all) q.id: q.locale},
+    migrationLocale: supportedLocales.contains(migrationLocale)
+        ? migrationLocale
+        : 'en',
+  );
   final economy = EconomyController(
     storage: storage,
     purchases: purchases,

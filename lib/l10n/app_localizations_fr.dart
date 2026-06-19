@@ -359,6 +359,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get puzzleAlreadySolved => 'Vous avez déjà résolu celui-ci.';
 
   @override
+  String get showSolution => 'Afficher la solution';
+
+  @override
+  String get backToPuzzle => 'Revenir à ma grille';
+
+  @override
   String get dailyPuzzleTitle => 'Énigme du jour';
 
   @override

@@ -34,6 +34,7 @@ class CipherBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final conflicts = session.conflicts;
+    final confirmed = session.confirmedLetters;
     final boardFull = session.progress >= 1.0;
     final isLetter = session.alphabet.isLetter;
 
@@ -83,7 +84,7 @@ class CipherBoard extends StatelessWidget {
                   width: cellWidth,
                   state: inWave
                       ? CellState.solved
-                      : _stateFor(ch, conflicts, boardFull),
+                      : _stateFor(ch, conflicts, confirmed, boardFull),
                   onTap: () => onSelect(thisPos),
                 ),
               );
@@ -113,9 +114,14 @@ class CipherBoard extends StatelessWidget {
   CellState _stateFor(
     String cipherLetter,
     Set<String> conflicts,
+    Set<String> confirmed,
     bool boardFull,
   ) {
     if (session.revealed.contains(cipherLetter)) return CellState.revealed;
+    // A locked, fully-correct word: shown in its own confirmed color and never
+    // mistaken for an in-progress guess. Takes precedence over selection since
+    // the cell can't be edited anyway.
+    if (confirmed.contains(cipherLetter)) return CellState.confirmed;
     // Every instance of the selected cipher letter lights up together —
     // that's the "aha, these are all the same letter" cue.
     if (cipherLetter == selected) return CellState.selected;

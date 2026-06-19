@@ -172,6 +172,8 @@
     }
   },
   "puzzleAlreadySolved": "You've already cracked this one.",
+  "showSolution": "Show solution",
+  "backToPuzzle": "Back to my attempt",
   "dailyPuzzleTitle": "Daily puzzle",
   "achievementsCountTitle": "Achievements ({unlocked}/{total})",
   "@achievementsCountTitle": {
