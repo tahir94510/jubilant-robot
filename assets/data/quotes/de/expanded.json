@@ -1,0 +1,90 @@
+[
+  {
+    "id": "de-x001",
+    "text": "Es ist nicht genug zu wollen, man muss auch tun.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Maximen und Reflexionen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x002",
+    "text": "Man sieht nur das, was man weiß.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Maximen und Reflexionen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x005",
+    "text": "Früh übt sich, wer ein Meister werden will.",
+    "author": "Friedrich Schiller",
+    "source": "Wilhelm Tell",
+    "category": "classics",
+    "locale": "de"
+  },
+  {
+    "id": "de-x009",
+    "text": "Jeder Mensch hält die Grenzen seines Gesichtsfeldes für die Grenzen der Welt.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x010",
+    "text": "Dort, wo man Bücher verbrennt, verbrennt man am Ende auch Menschen.",
+    "author": "Heinrich Heine",
+    "source": "Almansor",
+    "category": "classics",
+    "locale": "de"
+  },
+  {
+    "id": "de-x011",
+    "text": "Ich kann nicht sagen, ob es besser wird, wenn es anders wird; aber es muss anders werden, wenn es gut werden soll.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
+    "category": "wit",
+    "locale": "de"
+  },
+  {
+    "id": "de-x021",
+    "text": "Edel sei der Mensch, hilfreich und gut.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Das Göttliche",
+    "category": "classics",
+    "locale": "de"
+  },
+  {
+    "id": "de-x022",
+    "text": "Wer fremde Sprachen nicht kennt, weiß nichts von seiner eigenen.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Maximen und Reflexionen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x023",
+    "text": "Der Gedanke ist frei, und das soll er bleiben.",
+    "author": "Friedrich Schiller",
+    "source": "Die Räuber",
+    "category": "classics",
+    "locale": "de"
+  },
+  {
+    "id": "de-x024",
+    "text": "Hoffnung ist der Regenbogen über dem herabstürzenden Bach des Lebens.",
+    "author": "Friedrich Nietzsche",
+    "source": "Der Wanderer und sein Schatten",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x025",
+    "text": "Wer ein Warum zu leben hat, erträgt fast jedes Wie.",
+    "author": "Friedrich Nietzsche",
+    "source": "Götzen-Dämmerung",
+    "category": "wisdom",
+    "locale": "de"
+  }
+]

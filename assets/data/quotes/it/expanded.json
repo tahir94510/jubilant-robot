@@ -1,0 +1,58 @@
+[
+  {
+    "id": "it-x002",
+    "text": "L'amor che move il sole e l'altre stelle.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-x003",
+    "text": "Il fine giustifica i mezzi.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-x004",
+    "text": "La semplicità è la massima sofisticazione.",
+    "author": "Leonardo da Vinci",
+    "source": "Codici",
+    "category": "wisdom",
+    "locale": "it"
+  },
+  {
+    "id": "it-x006",
+    "text": "Il naufragar m'è dolce in questo mare.",
+    "author": "Giacomo Leopardi",
+    "source": "L'infinito",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-x007",
+    "text": "Ai posteri l'ardua sentenza.",
+    "author": "Alessandro Manzoni",
+    "source": "Il cinque maggio",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-x012",
+    "text": "Non è tutto oro quel che luccica.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
+  },
+  {
+    "id": "it-x015",
+    "text": "Can che abbaia non morde.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
+  }
+]

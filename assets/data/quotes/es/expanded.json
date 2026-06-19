@@ -1,0 +1,66 @@
+[
+  {
+    "id": "es-x004",
+    "text": "Toda la vida es sueño, y los sueños, sueños son.",
+    "author": "Calderón de la Barca",
+    "source": "La vida es sueño",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-x005",
+    "text": "Lo bueno, si breve, dos veces bueno.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-x010",
+    "text": "Despacito y buena letra, que el hacer las cosas bien importa más que el hacerlas.",
+    "author": "Antonio Machado",
+    "source": "Juan de Mairena",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-x020",
+    "text": "La pluma es la lengua del alma.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-x021",
+    "text": "Todo necio confunde valor y precio.",
+    "author": "Antonio Machado",
+    "source": "Proverbios y cantares",
+    "category": "literature",
+    "locale": "es"
+  },
+  {
+    "id": "es-x022",
+    "text": "Nada te turbe, nada te espante; todo se pasa.",
+    "author": "Santa Teresa de Ávila",
+    "source": "Poesías",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-x024",
+    "text": "Quien madruga, Dios le ayuda.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  },
+  {
+    "id": "es-x028",
+    "text": "El hábito no hace al monje.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  }
+]
