@@ -75,7 +75,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   ortaktır (premium bir kez alınır, her dilde açık olur).
 - **Her dil kendi içerik evreni:** Dili değiştirince tüm katalog o kültürün
   özgün sözlerine döner. İngilizce 510 söz; Türkçe, İspanyolca, Almanca,
-  Fransızca, İtalyanca ve Portekizce için de yaklaşık 330–395 arası özgün,
+  Fransızca, İtalyanca ve Portekizce için de yaklaşık 335–400 arası özgün,
   doğru atıflı yerel söz (atasözleri, bilgelik, nükte, edebiyat ve klasikler).
   Her dil, dört zorluk basamağını, dört tematik paketi ve premium Klasikler
   paketini doldurur (`repository_load_test` ile güvence altında). Tamamı kamu

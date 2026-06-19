@@ -54,5 +54,29 @@
     "source": "Anonimo",
     "category": "proverbs",
     "locale": "it"
+  },
+  {
+    "id": "it-x202",
+    "text": "La gloria di colui che tutto move per l'universo penetra e risplende.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-x207",
+    "text": "L'ozio è il padre dei vizi.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
+  },
+  {
+    "id": "it-x211",
+    "text": "A buon intenditor poche parole.",
+    "author": "Proverbio italiano",
+    "source": "Anonimo",
+    "category": "proverbs",
+    "locale": "it"
   }
 ]

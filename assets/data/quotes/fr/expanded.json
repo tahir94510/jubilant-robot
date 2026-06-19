@@ -6,5 +6,21 @@
     "source": "Essais",
     "category": "wisdom",
     "locale": "fr"
+  },
+  {
+    "id": "fr-x205",
+    "text": "La vie est un sommeil, l'amour en est le rêve.",
+    "author": "Alfred de Musset",
+    "source": "Poésies",
+    "category": "literature",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-x207",
+    "text": "Le temps est un grand maître, il règle bien des choses.",
+    "author": "Pierre Corneille",
+    "source": "Sertorius",
+    "category": "classics",
+    "locale": "fr"
   }
 ]

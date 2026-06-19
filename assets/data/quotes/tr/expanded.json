@@ -126,5 +126,117 @@
     "source": "Söylev ve Demeçler",
     "category": "wisdom",
     "locale": "tr"
+  },
+  {
+    "id": "tr-x200",
+    "text": "Cennet cennet dedikleri birkaç köşkle birkaç huri; isteyene ver sen onları, bana seni gerek seni.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x201",
+    "text": "Dervişlik olaydı taç ile hırka, biz dahi alırdık otuza kırka.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "literature",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x202",
+    "text": "Mal sahibi, mülk sahibi; hani bunun ilk sahibi?",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "literature",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x203",
+    "text": "Söz ola kese savaşı, söz ola kestire başı.",
+    "author": "Yunus Emre",
+    "source": "Divan",
+    "category": "wisdom",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x205",
+    "text": "Nefsine ağır geleni kimseye uygulama.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Anonim",
+    "category": "wisdom",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x206",
+    "text": "Türkiye Cumhuriyeti'nin temeli kültürdür.",
+    "author": "Mustafa Kemal Atatürk",
+    "source": "Söylev ve Demeçler",
+    "category": "wisdom",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x207",
+    "text": "Sanatsız kalan bir milletin hayat damarlarından biri kopmuştur.",
+    "author": "Mustafa Kemal Atatürk",
+    "source": "Söylev ve Demeçler",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x208",
+    "text": "Benim manevi mirasım ilim ve akıldır.",
+    "author": "Mustafa Kemal Atatürk",
+    "source": "Söylev ve Demeçler",
+    "category": "wisdom",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x209",
+    "text": "Allah'a dayan, çalışmaya sarıl, hikmete uy; yol varsa budur, bilmiyorum başka çıkar yol.",
+    "author": "Mehmet Akif Ersoy",
+    "source": "Safahat",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x210",
+    "text": "Yeise düşmek yaraşır mı insana? Yeis öyle bir bataktır ki, düşersen boğulursun.",
+    "author": "Mehmet Akif Ersoy",
+    "source": "Safahat",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x211",
+    "text": "Felek her türlü sebebi cefasını toplasın gelsin; dönersem kahpeyim millet yolunda bir azimetten.",
+    "author": "Namık Kemal",
+    "source": "Hürriyet Kasidesi",
+    "category": "classics",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x216",
+    "text": "Ateş düştüğü yeri yakar.",
+    "author": "Türk Atasözü",
+    "source": "Anonim",
+    "category": "proverbs",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x217",
+    "text": "Ne ekersen onu biçersin.",
+    "author": "Türk Atasözü",
+    "source": "Anonim",
+    "category": "proverbs",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x220",
+    "text": "Son pişmanlık fayda etmez.",
+    "author": "Türk Atasözü",
+    "source": "Anonim",
+    "category": "proverbs",
+    "locale": "tr"
   }
 ]

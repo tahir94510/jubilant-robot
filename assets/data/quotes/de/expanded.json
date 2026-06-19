@@ -86,5 +86,45 @@
     "source": "Götzen-Dämmerung",
     "category": "wisdom",
     "locale": "de"
+  },
+  {
+    "id": "de-x200",
+    "text": "Behandle die Menschen so, als wären sie, was sie sein sollten.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Wilhelm Meister",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x201",
+    "text": "Es hört doch jeder nur, was er versteht.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Maximen und Reflexionen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x205",
+    "text": "Der bestirnte Himmel über mir und das moralische Gesetz in mir.",
+    "author": "Immanuel Kant",
+    "source": "Kritik der praktischen Vernunft",
+    "category": "classics",
+    "locale": "de"
+  },
+  {
+    "id": "de-x206",
+    "text": "Die Gesundheit ist nicht alles, aber ohne Gesundheit ist alles nichts.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen",
+    "category": "wisdom",
+    "locale": "de"
+  },
+  {
+    "id": "de-x208",
+    "text": "Der langsamste, der sein Ziel nicht aus den Augen verliert, geht noch geschwinder als jener, der ohne Ziel umherirrt.",
+    "author": "Gotthold Ephraim Lessing",
+    "source": "Emilia Galotti",
+    "category": "wisdom",
+    "locale": "de"
   }
 ]
