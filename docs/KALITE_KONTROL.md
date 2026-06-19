@@ -163,6 +163,14 @@ yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
 Play Console'a yükle.
 
+> **⚠️ ÜRETİM ÖNCESİ ZORUNLU ADIM — gelir koruması:** AdMob hesabı aktifleşip
+> gerçek reklam geliri başlayınca, `lib/config/app_config.dart` →
+> **`grantHintsWithoutAd = false`** yapın (şu an kapalı-test için `true`).
+> Böyle olunca ipucu ödülü **yalnız izlenen gerçek reklamla** verilir; hiçbir
+> kullanıcı reklam izlemeden ipucu kazanamaz. (`test/logic/economy_test.dart`
+> içindeki beklenti de `isFalse` olacak şekilde güncellenmeli.) Not: buton
+> zaten her zaman önce gerçek reklamı dener; bu adım fazladan güvencedir.
+
 **İçerik güncellemeleri:** yeni söz/paket ekleme tarifi ve otomatik uyum
 garantileri ayrı dokümanda: [ICERIK_EKLEME.md](ICERIK_EKLEME.md)
 (önerilen kadans: çeyrekte +50 söz, Aralık'ta sezonluk paket).
