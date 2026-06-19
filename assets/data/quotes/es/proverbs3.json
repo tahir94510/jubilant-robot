@@ -1,0 +1,986 @@
+[
+ {
+  "id": "es-x500",
+  "text": "El que ríe último ríe mejor.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x501",
+  "text": "Al mal tiempo, buena cara y mejor talante.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x502",
+  "text": "Quien bien te quiere te hará llorar.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x503",
+  "text": "Donde hay patrón no manda marinero.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x504",
+  "text": "No hay peor ciego que el que no quiere ver.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x505",
+  "text": "No todo el monte es orégano.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x506",
+  "text": "Quien tiene boca se equivoca.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x507",
+  "text": "Dios aprieta pero no ahoga.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x508",
+  "text": "Tanto va el cántaro a la fuente que al final se rompe.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x509",
+  "text": "La cabra siempre tira al monte.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x510",
+  "text": "Genio y figura hasta la sepultura.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x511",
+  "text": "Antes se pilla a un mentiroso que a un cojo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x512",
+  "text": "Cuando una puerta se cierra, otra se abre.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x513",
+  "text": "No se puede repicar y andar en la procesión.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x514",
+  "text": "A quien Dios se la dé, San Pedro se la bendiga.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x515",
+  "text": "Quien no llora no mama, y el que mama es porque llora.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x516",
+  "text": "No hay mal que cien años dure.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x517",
+  "text": "Quien parte y reparte se queda con la mejor parte.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x518",
+  "text": "Donde menos se piensa salta la liebre.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x519",
+  "text": "El que se fue a Sevilla perdió su silla.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x520",
+  "text": "Quien mucho habla mucho yerra.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x521",
+  "text": "La esperanza es lo último que se pierde.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x522",
+  "text": "Más vale buena fama que dorada cama.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x523",
+  "text": "El movimiento se demuestra andando.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x524",
+  "text": "No dejes camino viejo por sendero nuevo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x525",
+  "text": "Quien tiene un amigo tiene un tesoro.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x526",
+  "text": "Mal de muchos, consuelo de tontos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x527",
+  "text": "Cuentas claras, amistades largas.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x528",
+  "text": "Una golondrina no hace verano.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x529",
+  "text": "Quien fue a la villa perdió su silla.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x530",
+  "text": "Caras vemos, corazones no sabemos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x531",
+  "text": "Más vale doblarse que quebrarse.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x532",
+  "text": "No se ganó Zamora en una hora.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x533",
+  "text": "La cara es el espejo del alma.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x534",
+  "text": "El pez grande se come al chico.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x535",
+  "text": "Cuando seas padre comerás huevos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x536",
+  "text": "La propia alabanza envilece.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x537",
+  "text": "Cuanto más viejo, más pellejo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x538",
+  "text": "El que parte y comparte se lleva la mejor parte.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x539",
+  "text": "Quien mucho abarca poco aprieta y nada sujeta.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x540",
+  "text": "Cuando hay hambre no hay pan duro.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x541",
+  "text": "El ojo del amo engorda el caballo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x542",
+  "text": "Quien quiera peces que se moje el culo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x543",
+  "text": "A cada pájaro le gusta su nido.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x544",
+  "text": "El que da primero da dos veces.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x545",
+  "text": "La verdad siempre sale a flote.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x546",
+  "text": "El que mucho se agacha el culo enseña.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x547",
+  "text": "Más vale prevenir que tener que lamentar.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x548",
+  "text": "No por mucho correr se llega antes.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x549",
+  "text": "La ociosidad es la madre de todos los vicios.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x550",
+  "text": "El que tiene padrino se bautiza.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x551",
+  "text": "Quien siembra cizaña recoge espinas.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x552",
+  "text": "No firmes carta que no leas ni bebas agua que no veas.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x553",
+  "text": "La mentira tiene las patas cortas.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x554",
+  "text": "El perro del hortelano ni come ni deja comer.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x555",
+  "text": "Más vale callar que mal hablar.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x556",
+  "text": "No hay que vender la piel del oso antes de cazarlo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x557",
+  "text": "La práctica hace al maestro.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x558",
+  "text": "Cuando el hambre entra por la puerta, el amor salta por la ventana.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x559",
+  "text": "Quien hace un cesto hace ciento.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x560",
+  "text": "No hay bien ni mal que cien años dure.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x561",
+  "text": "La sangre sin fuego hierve.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x562",
+  "text": "De fuera vendrá quien de casa nos echará.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x563",
+  "text": "El que las cosas apura, las daña.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x564",
+  "text": "Más vale paso que dure y no trote que canse.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x565",
+  "text": "Quien no tiene memoria que tenga pies.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x566",
+  "text": "No hay sábado sin sol ni doncella sin amor.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x567",
+  "text": "De los amigos me guarde Dios que de los enemigos me guardo yo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x568",
+  "text": "Más ven cuatro ojos que dos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x569",
+  "text": "Quien presta al amigo cobra un enemigo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x570",
+  "text": "La caridad bien entendida empieza por uno mismo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x571",
+  "text": "Cuando marzo mayea, mayo marcea.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x572",
+  "text": "El que tiene hambre con pan sueña.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x573",
+  "text": "Más vale vergüenza en cara que mancilla en corazón.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x574",
+  "text": "La buena vida padre y madre olvida.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x575",
+  "text": "De casta le viene al galgo el ser rabilargo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x576",
+  "text": "El que canta sus males espanta.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x577",
+  "text": "Más vale poco y bueno que mucho y malo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x578",
+  "text": "Quien quita la ocasión quita el peligro.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x579",
+  "text": "No hay mejor salsa que el hambre.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x580",
+  "text": "La pereza es la madre de la pobreza.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x581",
+  "text": "De dinero y santidad, la mitad de la mitad.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x582",
+  "text": "El que tiene boca a Roma llega.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x583",
+  "text": "Más vale un por si acaso que un quién pensara.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x584",
+  "text": "Quien tiene arte va por todas partes.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x585",
+  "text": "La mujer y la sardina, de la mano a la cocina.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x586",
+  "text": "Más vale buena queja que mala paga.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x587",
+  "text": "Quien no llora, no mama, ni en la corte ni en la cama.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x588",
+  "text": "No hay olla sin tocino ni sermón sin agustino.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x589",
+  "text": "La necesidad hace maestros.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x590",
+  "text": "De grandes cenas están las sepulturas llenas.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x591",
+  "text": "El que parte como leal, para sí toma lo peor.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x592",
+  "text": "Más vale pan con amor que gallina con dolor.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x593",
+  "text": "No hay cuña peor que la del mismo palo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x594",
+  "text": "De músico, poeta y loco todos tenemos un poco.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x595",
+  "text": "El que adelante no mira, atrás se halla.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x596",
+  "text": "Quien mal empieza mal acaba.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x597",
+  "text": "No hay mayor desprecio que no hacer aprecio.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x598",
+  "text": "El mal escribano le echa la culpa a la pluma.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x599",
+  "text": "Más vale honra sin barcos que barcos sin honra.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x600",
+  "text": "Quien tiene el padre alcalde, seguro va a juicio.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x601",
+  "text": "No hay peor lucha que la que no se hace.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x602",
+  "text": "La esperanza no es pan, pero alimenta.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x603",
+  "text": "El buey suelto bien se lame.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x604",
+  "text": "Más vale ser pobre y honrado que rico y mal mirado.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x605",
+  "text": "La buena tierra, la mala hierba cría.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x606",
+  "text": "Cada uno habla de la feria según le va en ella.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x607",
+  "text": "El amor y el interés se fueron al campo un día.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x608",
+  "text": "Más vale ser pájaro de campo que de jaula.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x609",
+  "text": "Quien al cielo escupe, en la cara le cae.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x610",
+  "text": "No hay regla sin excepción.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x611",
+  "text": "La confianza mata al hombre.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x612",
+  "text": "Cada uno en su casa y Dios en la de todos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x613",
+  "text": "El bien no es conocido hasta que es perdido.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x614",
+  "text": "El que se quema con leche ve la vaca y llora.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x615",
+  "text": "Quien con lobos anda a aullar aprende.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x616",
+  "text": "No por mucho trigo es mal año.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x617",
+  "text": "El que se junta con lobos a aullar aprende.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x618",
+  "text": "Cada cosa a su tiempo y los nabos en adviento.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x619",
+  "text": "Quien quiera saber, que compre un viejo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x620",
+  "text": "No hay plazo que no se cumpla ni deuda que no se pague.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x621",
+  "text": "La ropa sucia se lava en casa.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ },
+ {
+  "id": "es-x622",
+  "text": "Año de nieves, año de bienes.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "es"
+ }
+]

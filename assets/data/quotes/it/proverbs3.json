@@ -1,0 +1,1330 @@
+[
+ {
+  "id": "it-x500",
+  "text": "Chi ha tempo non aspetti tempo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x501",
+  "text": "L'occasione fa l'uomo ladro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x502",
+  "text": "Il bue dice cornuto all'asino.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x503",
+  "text": "Chi sputa in cielo in faccia gli ritorna.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x504",
+  "text": "Chi dorme non piglia pesci ma chi veglia se li mangia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x505",
+  "text": "Gallina vecchia fa buon brodo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x506",
+  "text": "Chi ride il venerdì piange la domenica.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x507",
+  "text": "La gatta frettolosa fa i gattini ciechi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x508",
+  "text": "Chi lascia la via vecchia per la nuova sa quel che lascia ma non sa quel che trova.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x509",
+  "text": "Anno bisesto anno funesto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x510",
+  "text": "Chi beve birra campa cent'anni.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x511",
+  "text": "Le bugie hanno le gambe corte.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x512",
+  "text": "Chi vuol esser lieto sia di doman non c'è certezza.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x513",
+  "text": "Chi mangia solo crepa solo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x514",
+  "text": "Chi ha avuto ha avuto e chi ha dato ha dato.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x515",
+  "text": "Chi tace e chi sa fare la sua parte.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x516",
+  "text": "Chi guarda ogni piuma non fa mai letto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x517",
+  "text": "Botte piccola fa vino buono.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x518",
+  "text": "Chi compra il superfluo venderà il necessario.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x519",
+  "text": "Dimmi con chi vai e ti dirò chi sei.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x520",
+  "text": "Frutto proibito è il più gradito.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x521",
+  "text": "Chi ha il pane non ha i denti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x522",
+  "text": "La fortuna aiuta gli audaci.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x523",
+  "text": "Chi troppo in alto sal cade sovente precipitevolissimevolmente.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x524",
+  "text": "Chi vuol vada e chi non vuol mandi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x525",
+  "text": "Non dire gatto se non l'hai nel sacco.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x526",
+  "text": "Chi ha la lingua va in Sardegna.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x527",
+  "text": "Chi semina spine non vada scalzo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x528",
+  "text": "Ogni scarrafone è bello a mamma sua.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x529",
+  "text": "Chi bene incomincia bene finisce.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x530",
+  "text": "Chi offende scrive nella rena e chi è offeso nel marmo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x531",
+  "text": "Aiutati che il ciel ti aiuta.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x532",
+  "text": "Chi ha sospetti rari di rado erra.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x533",
+  "text": "Chi semina raccoglie e chi semina vento raccoglie tempesta.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x534",
+  "text": "La fame è il miglior condimento.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x535",
+  "text": "Chi tante male azioni fa una grossa ne aspetti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x536",
+  "text": "Chi pratica lo zoppo impara a zoppicare.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x537",
+  "text": "Chi pecca in fretta sconta a bell'agio.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x538",
+  "text": "Chi ha tempo non perda tempo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x539",
+  "text": "Chi non ha cuore abbia gambe.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x540",
+  "text": "Il diavolo fa le pentole ma non i coperchi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x541",
+  "text": "Chi semina con avarizia con avarizia raccoglie.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x542",
+  "text": "Errare è umano perseverare è diabolico.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x543",
+  "text": "Chi sa fa e chi non sa insegna.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x544",
+  "text": "Chi semina denari raccoglie spighe di miseria.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x545",
+  "text": "A goccia a goccia si scava la pietra.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x546",
+  "text": "Chi non vuol ascoltare gli converrà provare.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x547",
+  "text": "Chi semina cortesia raccoglie amicizia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x548",
+  "text": "Chi semina virtù fama raccoglie.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x549",
+  "text": "Chi non beve in compagnia o è un ladro o è una spia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x550",
+  "text": "La pazienza è la virtù dei forti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x551",
+  "text": "Chi semina amore raccoglie felicità.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x552",
+  "text": "Chi non ha denari non abbia voglie.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x553",
+  "text": "La gola è la rovina della borsa.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x554",
+  "text": "Chi pratica con i savi diventa savio.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x555",
+  "text": "Non è tutto oro quello che luccica.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x556",
+  "text": "Chi misura sé stesso misura bene.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x557",
+  "text": "Chi compra a credenza vende caro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x558",
+  "text": "Tristo è quel pulcino che nasce all'imbrunire.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x559",
+  "text": "Chi va per questi mari questi pesci piglia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x560",
+  "text": "Il mondo è fatto a scale chi le scende e chi le sale.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x561",
+  "text": "Chi dell'altrui prende della sua libertà rende.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x562",
+  "text": "Chi ha la rogna se la gratti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x563",
+  "text": "Meglio un asino vivo che un dottore morto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x564",
+  "text": "Chi semina in lacrime raccoglie in gioia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x565",
+  "text": "Il primo passo è quello che costa.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x566",
+  "text": "A pagar e a morire c'è sempre tempo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x567",
+  "text": "Chi serve al comune non serve a nessuno.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x568",
+  "text": "Chi cammina diritto campa afflitto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x569",
+  "text": "Ogni frutto vuole la sua stagione.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x570",
+  "text": "La miglior difesa è l'attacco.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x571",
+  "text": "Il buon vino non ha bisogno di frasca.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x572",
+  "text": "Chi rispetta sarà rispettato.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x573",
+  "text": "A nemico che fugge ponti d'oro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x574",
+  "text": "Chi compra terra compra guerra.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x575",
+  "text": "La parola è d'argento il silenzio è d'oro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x576",
+  "text": "Chi semina ortiche non raccoglie viole.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x577",
+  "text": "Chi vuol dell'acqua chiara vada alla fonte.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x578",
+  "text": "La verità viene sempre a galla.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x579",
+  "text": "Chi vuole i piaceri tutti suoi paghi cari i suoi guai.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x580",
+  "text": "A buon cavallo non manca sella.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x581",
+  "text": "Chi vuol la pace prepari la guerra.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x582",
+  "text": "La gallina canta dove vuole.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x583",
+  "text": "Chi non sa fare non sa comandare.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x584",
+  "text": "Il can che morde non abbaia invano.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x585",
+  "text": "Chi semina giusto raccoglie sicuro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x586",
+  "text": "A ogni uccello suo nido è bello.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x587",
+  "text": "Chi guarda alla luna casca nel fosso.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x588",
+  "text": "La fortuna è cieca ma la sfortuna ci vede benissimo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x589",
+  "text": "Chi non ha denari in borsa abbia miele in bocca.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x590",
+  "text": "Chi accarezza la mula buscherà dei calci.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x591",
+  "text": "L'avaro è come il porco utile dopo morto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x592",
+  "text": "Chi sparla degli altri sparlerà anche di te.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x593",
+  "text": "A chi fa male mai mancano scuse.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x594",
+  "text": "Chi cento ne fa una ne aspetti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x595",
+  "text": "Chi mangia troppo poco assapora.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x596",
+  "text": "A chi consiglia non duole il capo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x597",
+  "text": "Chi semina bontà raccoglie gratitudine.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x598",
+  "text": "Il giuoco non vale la candela.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x599",
+  "text": "Chi tardi si pente tardi si emenda.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x600",
+  "text": "A chi dài il dito si prende anche il braccio.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x601",
+  "text": "Chi semina discordia raccoglie rovina.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x602",
+  "text": "Il debito è un cattivo compagno.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x603",
+  "text": "Chi tutto abbraccia nulla stringe.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x604",
+  "text": "A chi ha fame ogni pane sa di buono.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x605",
+  "text": "Chi tiene il piede in due staffe cade.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x606",
+  "text": "La buona moglie fa il buon marito.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x607",
+  "text": "Chi semina spesso miete sicuro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x608",
+  "text": "A chi troppo dorme la testa duole.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x609",
+  "text": "Chi va a caccia senza cani torna a casa senza lepri.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x610",
+  "text": "Chi loda sé stesso si sputa in faccia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x611",
+  "text": "A nave rotta ogni vento è contrario.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x612",
+  "text": "Chi non risparmia non ammucchia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x613",
+  "text": "Chi indugia ogni dì peggiora.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x614",
+  "text": "A buona derrata pensaci su.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x615",
+  "text": "Il pane degli altri ha sette croste.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x616",
+  "text": "Chi compra a tempo compra a buon mercato.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x617",
+  "text": "A caval vecchio cavezza nuova.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x618",
+  "text": "Chi pratica con la pece s'imbratta.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x619",
+  "text": "La gallina che canta ha fatto l'uovo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x620",
+  "text": "Chi non ha pazienza non ha nulla.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x621",
+  "text": "A chi nasce sfortunato piove sul bagnato.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x622",
+  "text": "Chi guarda troppo non lavora mai.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x623",
+  "text": "Il buon mercato vuota la borsa.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x624",
+  "text": "Chi paga prima è mal servito.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x625",
+  "text": "A chi piace il bere parla sempre di vino.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x626",
+  "text": "Chi dorme con i cani si leva con le pulci.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x627",
+  "text": "Chi semina male nasce peggio.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x628",
+  "text": "Il primo a tavola e l'ultimo al lavoro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x629",
+  "text": "Chi tace e va per la sua via fa la miglior cosa che si sia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x630",
+  "text": "A donna di gran bellezza dà poca grandezza.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x631",
+  "text": "Chi compra il cavallo compra anche la cavezza.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x632",
+  "text": "Il troppo e il vano guastano il sano.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x633",
+  "text": "Chi presto desina presto cena.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x634",
+  "text": "Chi sa il giuoco non l'insegni.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x635",
+  "text": "La buona terra dà buon frutto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x636",
+  "text": "Chi vuole assai non domandi poco.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x637",
+  "text": "Il mal viene a cavallo e se ne va a piedi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x638",
+  "text": "Chi sta a vedere ha due terzi del giuoco.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x639",
+  "text": "A parole lorde orecchie sorde.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x640",
+  "text": "Chi fugge il giudizio si condanna.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x641",
+  "text": "La pratica vale più della scienza.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x642",
+  "text": "Chi semina pungoli non vada scalzo.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x643",
+  "text": "Il bisogno fa l'uomo industrioso.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x644",
+  "text": "Chi piglia leoni in assenza teme i topi in presenza.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x645",
+  "text": "A ogni santo la sua candela.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x646",
+  "text": "Chi semina tra le spine non raccoglie senza pena.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x647",
+  "text": "Il vino è il latte dei vecchi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x648",
+  "text": "Chi va al molino si infarina e chi fa il pane si annerisce.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x649",
+  "text": "A scuola di cortesia si impara la buona via.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x650",
+  "text": "Il riso abbonda sulla bocca degli sciocchi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x651",
+  "text": "Chi non onora il soldo non è degno dell'oro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x652",
+  "text": "A buon cavaliere non manca lancia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x653",
+  "text": "Chi sta sano ha più che un sultano.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x654",
+  "text": "La fortuna dei matti è proverbiale.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x655",
+  "text": "Chi tutto nega tutto confessa.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x656",
+  "text": "Chi non vede il fondo non passi l'acqua.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x657",
+  "text": "Il can vecchio non abbaia indarno.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x658",
+  "text": "Chi serve due padroni inganna l'uno o l'altro.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x659",
+  "text": "Chi semina baci raccoglie sospiri.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x660",
+  "text": "Il primo dovere è verso sé stessi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x661",
+  "text": "Chi più spende meno spende.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x662",
+  "text": "A goccia a goccia si riempie il secchio.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x663",
+  "text": "Chi vuol arricchire in un anno è impiccato in sei mesi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x664",
+  "text": "Il pane mangiato presto si dimentica.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ },
+ {
+  "id": "it-x665",
+  "text": "Chi ha buon vicino ha buon mattino.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "proverbs",
+  "locale": "it"
+ }
+]

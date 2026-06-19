@@ -77,15 +77,15 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   için ayrı bir profilde tutulur**; premium, jeton ve ayarlar tüm dillerde
   ortaktır (premium bir kez alınır, her dilde açık olur).
 - **Her dil kendi içerik evreni:** Dili değiştirince tüm katalog o kültürün
-  özgün sözlerine döner. İngilizce 510 söz; Türkçe, İspanyolca, Almanca,
-  Fransızca, İtalyanca ve Portekizce için de yaklaşık 335–400 arası özgün,
-  doğru atıflı yerel söz (atasözleri, bilgelik, nükte, edebiyat ve klasikler).
-  Her dil, dört zorluk basamağını, dört tematik paketi ve premium Klasikler
-  paketini doldurur (`repository_load_test` ile güvence altında). Tamamı kamu
-  malı ya da kültürel miras; telif riski sıfır.
-- **Her dil için 9 paket:** 4 zorluk (Başlangıç'tan Uzman'a) + 4 tema
-  (Atasözleri, Bilgelik, Nükte, Edebiyat) + 1 premium Klasikler; hepsi o dile
-  özgü ve zorluk algoritmasıyla otomatik derecelendirilmiş.
+  özgün sözlerine döner. **Yedi dilin her biri 510 özgün, doğru atıflı yerel
+  söz** içerir (atasözleri, bilgelik, nükte, edebiyat ve klasikler) — diller
+  arası içerik paritesi sağlanmıştır. Her dil, dört zorluk basamağını, dört
+  tematik paketi ve premium Klasikler paketini doldurur (`repository_load_test`
+  ile güvence altında). Tamamı kamu malı ya da kültürel miras; telif riski sıfır.
+- **Her dil için 10 paket:** 4 zorluk (Başlangıç'tan Uzman'a) + ücretsiz
+  "Kısa & Öz" hızlı paketi + 4 tema (Atasözleri, Bilgelik, Nükte, Edebiyat) +
+  1 premium Klasikler; hepsi o dile özgü ve zorluk algoritmasıyla otomatik
+  derecelendirilmiş.
 - **İpucu ekonomisi:** Başlangıçta 10 jeton, her çözümde +1, ödüllü
   reklamla +3, premium'da sınırsız.
 - **24 başarım, istatistikler, 30 saniyelik etkileşimli öğretici.**

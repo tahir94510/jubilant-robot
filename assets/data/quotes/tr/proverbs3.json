@@ -1,0 +1,850 @@
+[
+ {
+  "id": "tr-x500",
+  "text": "Akıl yaşta değil baştadır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x501",
+  "text": "Aslan yattığı yerden belli olur.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x502",
+  "text": "Ateş olmayan yerden duman çıkmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x503",
+  "text": "Bekara karı boşamak kolay.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x504",
+  "text": "Bükemediğin bileği öpeceksin.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x505",
+  "text": "Can çıkmayınca huy çıkmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x506",
+  "text": "Cömertten mal kıskançtan can gider.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x507",
+  "text": "Çıkmadık candan umut kesilmez.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x508",
+  "text": "Dağ dağa kavuşmaz insan insana kavuşur.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x509",
+  "text": "Düşmanın karınca ise hor bakma.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x510",
+  "text": "Gönülsüz yenen aş ya karın ağrıtır ya baş.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x511",
+  "text": "Horoz ölür gözü çöplükte kalır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x512",
+  "text": "İnsan ayaktan at tırnaktan kapar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x513",
+  "text": "Kaz gelecek yerden tavuk esirgenmez.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x514",
+  "text": "Keskin sirke küpüne zarar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x515",
+  "text": "Köpeksiz köy bulmuş değneksiz geziyor.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x516",
+  "text": "Söz gümüşse sükut altındır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x517",
+  "text": "Sürçen at bir kere sürçmez.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x518",
+  "text": "Terzi kendi söküğünü dikemez.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x519",
+  "text": "Zararın neresinden dönülürse kardır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x520",
+  "text": "Akıllı düşününceye kadar deli oğlunu everir.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x521",
+  "text": "Allah sabırlı kulunu sever.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x522",
+  "text": "Az tamah çok zarar getirir.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x523",
+  "text": "Borç vermekle düşman almakla çoğalır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x524",
+  "text": "Çalma elin kapısını çalarlar kapını.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x525",
+  "text": "Çobansız koyunu kurt kapar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x526",
+  "text": "Deli ile çıkma yola başına gelir türlü bela.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x527",
+  "text": "Dilenciye hıyar vermişler eğri diye beğenmemiş.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x528",
+  "text": "Dost başa düşman ayağa bakar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x529",
+  "text": "Eğri oturalım doğru konuşalım.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x530",
+  "text": "Elin ağzı torba değil ki büzesin.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x531",
+  "text": "Fakirlik ayıp değil tembellik ayıp.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x532",
+  "text": "Gönül kimi severse güzel odur.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x533",
+  "text": "Göz görmeyince gönül katlanır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x534",
+  "text": "Güvenme varlığa düşersin darlığa.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x535",
+  "text": "Hak deyince akan sular durur.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x536",
+  "text": "Hayvan koklaşa koklaşa insan konuşa konuşa anlaşır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x537",
+  "text": "Hızlı giden atın boku seyrek düşer.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x538",
+  "text": "İnsanın alacası içinde hayvanın alacası dışında.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x539",
+  "text": "İstedin verdi utandın aldı.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x540",
+  "text": "Kabahat ölende değil öldürende.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x541",
+  "text": "Kanaat tükenmez bir hazinedir.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x542",
+  "text": "Kaynayan kazan kapak tutmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x543",
+  "text": "Kırk yılda bir ölen eşeğin kuyruğu çıkar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x544",
+  "text": "Kork aprilin beşinden öküzü ayırır eşinden.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x545",
+  "text": "Köprüyü geçinceye kadar ayıya dayı derler.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x546",
+  "text": "Kurda neden boynun kalın demişler kendi işimi kendim görürüm demiş.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x547",
+  "text": "Lokması büyük olanın değil sözü büyük olanın belası vardır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x548",
+  "text": "Minareyi çalan kılıfını hazırlar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x549",
+  "text": "Perşembenin gelişi çarşambadan bellidir.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x550",
+  "text": "Rüşvet kapıdan girince insaf bacadan çıkar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x551",
+  "text": "Saç sefadan tırnak cefadan uzar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x552",
+  "text": "Şahin küçük et yer deve büyük ot yer.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x553",
+  "text": "Tencere yuvarlanmış kapağını bulmuş.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x554",
+  "text": "Vücut kocar gönül kocamaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x555",
+  "text": "Ya bu deveyi gütmeli ya bu diyardan gitmeli.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x556",
+  "text": "Yenilen pehlivan güreşe doymaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x557",
+  "text": "Yoğurdu üfleye üfleye yemek gerek.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x558",
+  "text": "Zaman sana uymazsa sen zamana uy.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x559",
+  "text": "Zenginin malı züğürdün çenesini yorar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x560",
+  "text": "Sürüden ayrılan koyunu kurt kapar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x561",
+  "text": "Adamın iyisi iş başında belli olur.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x562",
+  "text": "Dağ başından duman eksik olmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x563",
+  "text": "Görmemişin oğlu olmuş çekmiş kırbacı katı katı.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x564",
+  "text": "Her gönülde bir aslan yatar.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x565",
+  "text": "İki gönül bir olunca samanlık seyran olur.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x566",
+  "text": "Laf ile pilav pişerse deniz kadar yağ benden.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x567",
+  "text": "Ölme eşeğim ölme yaza yonca biter.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x568",
+  "text": "Sakla samanı gelir zamanı saman pahalanır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x569",
+  "text": "Taşı sıksa suyunu çıkarır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x570",
+  "text": "Vakitsiz öten horozun başını keserler.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x571",
+  "text": "Yorgana göre ayak uzatılır.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x572",
+  "text": "Damdan düşen damdan düşenin halini bilir.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x573",
+  "text": "Akacak kan damarda durmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x574",
+  "text": "Görünmeyen ölü için ağlanmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x575",
+  "text": "Bir ineğin tepmesi sütünü değersiz kılmaz.",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x576",
+  "text": "Bir baş soğan koca kaymakamı kapı dışarı eder",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x577",
+  "text": "Adam adama yük değil can gövdeye mülktür",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x578",
+  "text": "Aç ile dost olanın ekmeği önünde gerek",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x579",
+  "text": "Ağlamayan çocuğa meme vermezler",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x580",
+  "text": "Ağzı eğri olanı sözünden tanırlar",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x581",
+  "text": "Akıllı köprü arayıncaya kadar deli suyu geçer",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x582",
+  "text": "Alçak yerde tepecik kendini dağ sanır",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x583",
+  "text": "Anasına bak kızını al kenarına bak bezini al",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x584",
+  "text": "At ölür meydan kalır yiğit ölür şan kalır",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x585",
+  "text": "Ayağa değmeyen taş başa değer",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x586",
+  "text": "Bağdat'tan gelen serçeden korkar olmuş",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x587",
+  "text": "Bal bal demekle ağız tatlanmaz",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x588",
+  "text": "Bir fenalık bin nasihatten yeğdir",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x589",
+  "text": "Bir koltuğa iki karpuz sığmaz",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x590",
+  "text": "Çok söyleme arsız edersin aç bırakma hırsız edersin",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x591",
+  "text": "Dağdaki tavşanın suyu ocağa vurulmaz",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x592",
+  "text": "Davetsiz gelen döşeksiz oturur",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x593",
+  "text": "Ekmeği ekmekçiye ver bir ekmek de üste ver",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x594",
+  "text": "El için kuyu kazan evvela kendi düşer",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x595",
+  "text": "Görünmeyen dağın uzağı yakın olur",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x596",
+  "text": "Her horoz kendi çöplüğünde öter",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x597",
+  "text": "İnsan kıymeti insanla bilinir",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x598",
+  "text": "İşten artmaz dişten artar",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x599",
+  "text": "Korkunun ecele faydası yoktur",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x600",
+  "text": "Lafla peynir gemisi gitmez",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x601",
+  "text": "Misafir on kısmetle gelir birini yer dokuzunu bırakır",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x602",
+  "text": "Nene gerek el işi kendi başın kel işi",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x603",
+  "text": "Of demekle dağlar devrilmez",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x604",
+  "text": "Sakla samanı bir gün gerekli olur",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ },
+ {
+  "id": "tr-x605",
+  "text": "Söyleyene bakma söyletene bak",
+  "author": "Türk Atasözü",
+  "source": "Anonim",
+  "category": "proverbs",
+  "locale": "tr"
+ }
+]

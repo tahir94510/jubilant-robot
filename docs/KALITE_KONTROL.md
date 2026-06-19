@@ -28,8 +28,8 @@ geçmiş demektir:
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
-- **Veri seti:** İngilizce 510 söz + her dile özgün yerel paketler
-  (TR/ES/DE/FR/IT/PT). Benzersiz kimlik, dil içinde kopya metin yok,
+- **Veri seti:** yedi dilin her biri 510 özgün söz (içerik paritesi)
+  (EN + TR/ES/DE/FR/IT/PT). Benzersiz kimlik, dil içinde kopya metin yok,
   İngilizce ASCII, her sözün **kendi alfabesinde** 20-180 harf, atıf alanları
   dolu ve "Unknown" yasak (halk malı sözler "Anonymous"/"Atasözü" vb.).
   Yerel sözlerin yalnızca kendi alfabesinin harflerini kullanması (kaçak
