@@ -1,32 +1,37 @@
 #!/usr/bin/env python3
-"""Procedural background-music generator for Quotecrack (v2).
+"""Procedural background-music generator for Quotecrack (v4 — playlist).
 
 Pure stdlib (wave + math): no licensing, no "stock asset" feel — the same
 philosophy as tool/generate_sounds.py, scaled up from blips to a bed.
 
-v3 design notes (a longer, two-section bed so it doesn't feel repetitive):
-- The track is a ~128 s piece in two restful sections that share one key,
-  so they flow without a seam. Section A is the classic
-  C - Am - F - G - C - F - Dm - G; section B answers it with
-  F - C - Dm - Am - F - G - Am - G before the V (G) pulls back into A's
-  opening C. Three predictable layers throughout: warm pads, one gentle
-  melody note per chord, and a soft plucked arpeggio on a regular grid.
-  Predictability reads as calm; the second section gives the ear
-  somewhere new to go so a long session never feels looped.
-- The piece STARTS from silence (first chord fades in) and RESOLVES to
-  silence (every envelope is closed by ~127.3 s). The loop wrap therefore
-  falls inside a natural breath: Android MediaPlayer's looping is not
-  gapless, and this composition makes that gap musically invisible —
-  no seam crossfade math, no mid-blend start, no wrap click by design.
-- 22.05 kHz mono 16-bit: a soft pad/pluck bed has no energy near the old
-  22 kHz ceiling, so half the sample rate is inaudible here and keeps the
-  file small (~5.6 MB) AND lighter to decode, which removes the buffer
-  underrun crackle some low-end phones hit on a big 44.1 kHz asset.
+Why a playlist (v4):
+- v3 was a single ~128 s loop. Players reported "it's just one track and you
+  wait for it to come back". v4 generates SIX distinct ~80 s pieces. The app
+  (MusicService) shuffles them, plays each once before any repeat, and
+  CROSSFADES one into the next a few seconds before the end — so the bed
+  never loops audibly and never falls silent between tracks.
+- Each track is a calm pad + one-note melody + soft pluck arpeggio, in a
+  different key, with a different chord progression and a slightly different
+  tempo (chord span), so the six read as siblings, not clones.
+
+Per-track musical invariants (unchanged from v3, now enforced per track):
+- Every track STARTS from silence and ENDS in silence (raised-cosine fades),
+  so even an abrupt stop can't click, and a crossfade overlaps two quiet
+  edges.
+- Every progression starts on the tonic (I) and ends on the dominant (V):
+  the natural V->I pull makes the crossfade back into the next track's tonic
+  feel like a real cadence rather than a cut.
 - Every melody/arp pitch is a chord tone of the chord it sounds over,
-  enforced by a self-check: a wrong note is mathematically impossible.
+  enforced by a self-check below: a wrong note is mathematically impossible.
+
+Audio format: 22.05 kHz mono 16-bit. A soft pad/pluck bed has no energy near
+the old 22 kHz ceiling, so half the sample rate is inaudible here and keeps
+each file small (~3.4 MB) and light to decode (no buffer-underrun crackle on
+low-end phones). Six tracks land around ~20 MB total — acceptable for an
+offline game and far better UX than one repeating loop.
 
 Usage: python3 tool/generate_music.py
-Output (committed): assets/audio/music_calm.wav
+Output (committed): assets/audio/music_calm_1.wav .. music_calm_6.wav
 """
 
 import math
@@ -36,39 +41,54 @@ import wave
 from pathlib import Path
 
 RATE = 22050
-TOTAL_SECONDS = 128.0
-CHORD_SPAN = 8.0
 OUT = Path(__file__).resolve().parent.parent / "assets/audio"
 
-# Low-mid voicings, root first. The closing G pulling back to the opening
-# C is a plain V-I cadence across the loop's breath.
+# Base chord voicings in C, root first (low-mid range). Tracks transpose these
+# by a whole number of semitones to reach other keys while reusing the shapes.
 CHORDS = {
     "C": (130.81, 196.00, 261.63, 329.63),  # C3 G3 C4 E4
-    "Am": (110.00, 164.81, 220.00, 261.63),  # A2 E3 A3 C4
+    "Dm": (146.83, 220.00, 293.66, 349.23),  # D3 A3 D4 F4
+    "Em": (164.81, 246.94, 329.63, 392.00),  # E3 B3 E4 G4
     "F": (87.31, 174.61, 220.00, 261.63),  # F2 F3 A3 C4
     "G": (98.00, 146.83, 196.00, 246.94),  # G2 D3 G3 B3
-    "Dm": (146.83, 220.00, 293.66, 349.23),  # D3 A3 D4 F4
+    "Am": (110.00, 164.81, 220.00, 261.63),  # A2 E3 A3 C4
 }
-# Section A, then section B (a gentle answer in the same key). Concatenated,
-# they make one ~128 s piece; B's closing G is the V that resolves into A's
-# opening C, so the wrap is a real cadence, not a cut.
-PROGRESSION_A = ["C", "Am", "F", "G", "C", "F", "Dm", "G"]
-PROGRESSION_B = ["F", "C", "Dm", "Am", "F", "G", "Am", "G"]
-PROGRESSION = PROGRESSION_A + PROGRESSION_B
 
-# One whole note per chord, stepwise where possible, always a chord tone.
-MELODY_A = (329.63, 261.63, 261.63, 246.94, 261.63, 220.00, 349.23, 246.94)
-#            E4      C4      C4      B3      C4      A3      F4      B3
-MELODY_B = (220.00, 261.63, 293.66, 261.63, 220.00, 246.94, 220.00, 246.94)
-#            A3      C4      D4      C4      A3      B3      A3      B3
-MELODY = MELODY_A + MELODY_B
-
-# Soft plucked arpeggio beats (seconds within each 8 s chord); the note is
-# the chord tone at index beat/2, cycling low to high.
+# Soft plucked arpeggio beats (seconds within each chord); the note is the
+# chord tone at index beat_index, cycling low to high.
 ARP_BEATS = (0.0, 2.0, 4.0, 6.0)
 
 TWO_PI = 2.0 * math.pi
 DETUNE = 2.0 ** (3.0 / 1200.0)  # +/- 3 cents
+
+
+# Six sibling tracks: (filename, transpose_semitones, progression, chord_span).
+# Each progression starts on C (the I) and ends on G (the V) so transposition
+# preserves the tonic->dominant frame and the crossfade lands as a cadence.
+TRACKS = [
+    ("music_calm_1.wav", 0, ["C", "Am", "F", "G", "C", "F", "Dm", "G"], 10.0),
+    ("music_calm_2.wav", 3, ["C", "Em", "Am", "F", "Dm", "G", "C", "G"], 9.5),
+    ("music_calm_3.wav", 5, ["C", "F", "Am", "Em", "F", "C", "Dm", "G"], 10.5),
+    ("music_calm_4.wav", -2, ["C", "G", "Am", "F", "C", "Dm", "Em", "G"], 9.0),
+    ("music_calm_5.wav", 7, ["C", "Am", "Dm", "G", "Em", "Am", "F", "G"], 10.0),
+    ("music_calm_6.wav", -4, ["C", "F", "G", "Em", "Am", "Dm", "F", "G"], 11.0),
+]
+
+
+def transpose(chord, semitones):
+    factor = 2.0 ** (semitones / 12.0)
+    return tuple(f * factor for f in chord)
+
+
+def melody_for(prog, semitones):
+    """One gentle whole note per chord, alternating between two chord tones
+    (the octave-root and the color tone) for a little stepwise motion. Both
+    picks are chord members by construction, so the note can never clash."""
+    out = []
+    for idx, name in enumerate(prog):
+        chord = transpose(CHORDS[name], semitones)
+        out.append(chord[3] if idx % 2 == 0 else chord[2])
+    return out
 
 
 def _tone(freq, n, env):
@@ -117,8 +137,9 @@ def pluck(freq, *, volume=0.12, attack=0.009, decay=2.2, dur=2.0):
     return _tone(freq, n, env)
 
 
-def compose():
-    n = int(RATE * TOTAL_SECONDS)
+def compose(prog, semitones, chord_span):
+    total_seconds = len(prog) * chord_span
+    n = int(RATE * total_seconds)
     mixbuf = [0.0] * n
 
     def add(offset_s, samples, breathe=False):
@@ -136,20 +157,23 @@ def compose():
                 if j < n:
                     mixbuf[j] += v
 
-    last = len(PROGRESSION) - 1
-    for idx, name in enumerate(PROGRESSION):
-        chord = CHORDS[name]
-        offset = idx * CHORD_SPAN
+    melody = melody_for(prog, semitones)
+    last = len(prog) - 1
+    # Pad tail (overlap into next chord) scales with tempo so transitions stay
+    # seamless at every chord span.
+    tail = 3.0
+    for idx, name in enumerate(prog):
+        chord = transpose(CHORDS[name], semitones)
+        offset = idx * chord_span
 
-        # Pads: 3 s tail into the next chord keeps transitions seamless;
-        # the first chord rises out of silence, the last one closes fully
-        # at ~127.3 s so the loop wraps inside a quiet breath.
+        # The first chord rises out of silence; the last closes fully before
+        # the end so the track resolves to a quiet breath.
         if idx == last:
-            dur, attack, release = 7.3, 4.0, 3.3
+            dur, attack, release = chord_span - 0.7, 4.0, 3.3
         elif idx == 0:
-            dur, attack, release = 11.0, 2.5, 5.0
+            dur, attack, release = chord_span + tail, 2.5, 5.0
         else:
-            dur, attack, release = 11.0, 4.0, 5.0
+            dur, attack, release = chord_span + tail, 4.0, 5.0
         for note_i, f in enumerate(chord):
             vol = 0.15 if note_i == 0 else 0.105
             add(
@@ -159,27 +183,27 @@ def compose():
             )
 
         # Melody: one gentle note per chord, slightly behind the change.
-        melody_dur = 6.5 if idx == last else 7.0
-        add(offset + 0.5, melody_voice(MELODY[idx], melody_dur))
+        melody_dur = (chord_span - 1.5) if idx == last else (chord_span - 1.0)
+        add(offset + 0.5, melody_voice(melody[idx], melody_dur))
 
-        # Arpeggio on a regular grid (predictable = calm). The very first
-        # beat stays silent so the piece truly starts from nothing, and the
-        # final chord drops its last beat so every pluck dies before the
-        # ~127.3 s close.
+        # Arpeggio on a regular grid (predictable = calm). The first beat of
+        # the piece stays silent so it truly starts from nothing, and the last
+        # chord drops its final beat so every pluck dies before the close.
         for beat_i, beat in enumerate(ARP_BEATS):
+            if beat >= chord_span:
+                continue
             if idx == 0 and beat == 0.0:
                 continue
-            if idx == last and beat == 6.0:
+            if idx == last and beat == ARP_BEATS[-1]:
                 continue
             add(offset + beat, pluck(chord[beat_i]))
 
-    # Gentle saturation glues the layers; normalize LAST so the final peak
-    # is exact and always leaves headroom under the UI sound effects.
+    # Gentle saturation glues the layers; normalize LAST so the final peak is
+    # exact and always leaves headroom under the UI sound effects.
     glued = [math.tanh(1.1 * v) / math.tanh(1.1) for v in mixbuf]
     peak = max(abs(v) for v in glued)
-    # Normalize to ~0.80 so the bed sits at roughly the same level as the UI
-    # sound effects (generate_sounds.py targets 0.82). The old 0.55 left it
-    # barely audible even at full user volume.
+    # Normalize to ~0.80 so the bed sits roughly at the UI sound-effect level
+    # (generate_sounds.py targets 0.82).
     return [v * (0.80 / peak) for v in glued]
 
 
@@ -187,24 +211,20 @@ def rms(samples):
     return math.sqrt(sum(v * v for v in samples) / len(samples))
 
 
-def main():
+def build_track(filename, semitones, prog, chord_span):
     # A wrong note is impossible by construction — prove it anyway.
-    for idx, name in enumerate(PROGRESSION):
-        members = {round(f * 2.0 ** (-o)) for f in CHORDS[name] for o in (-1, 0, 1, 2)}
-        octaves = [MELODY[idx] * 2.0**o for o in (-2, -1, 0, 1, 2)]
+    melody = melody_for(prog, semitones)
+    for idx, name in enumerate(prog):
+        chord = transpose(CHORDS[name], semitones)
+        members = {round(f * 2.0**-o) for f in chord for o in (-1, 0, 1, 2)}
+        octaves = [melody[idx] * 2.0**o for o in (-2, -1, 0, 1, 2)]
         if not any(round(f) in members for f in octaves):
-            sys.exit(f"FAIL: melody note {MELODY[idx]} is not in chord {name}")
+            sys.exit(f"FAIL: {filename}: melody {melody[idx]} not in {name}")
 
-    samples = compose()
+    samples = compose(prog, semitones, chord_span)
 
-    expected = int(TOTAL_SECONDS * RATE)
-    if len(samples) != expected:
-        sys.exit(f"FAIL: length {len(samples)} != {expected}")
-
-    # Explicit raised-cosine fades guarantee the loop wraps through true
-    # silence: even though the composition already starts/ends quiet, this
-    # makes the seam mathematically click-free under MediaPlayer's
-    # non-gapless looping.
+    # Raised-cosine fades guarantee both edges are true silence: an abrupt
+    # stop can't click and a crossfade overlaps two quiet edges cleanly.
     fade = int(RATE * 0.08)
     for i in range(fade):
         ramp = 0.5 - 0.5 * math.cos(math.pi * i / fade)
@@ -214,18 +234,18 @@ def main():
     w = int(0.05 * RATE)
     head, tail = rms(samples[:w]), rms(samples[-w:])
     if head > 5e-4 or tail > 5e-4:
-        sys.exit(f"FAIL: not silence-bracketed (head {head:.5f}, tail {tail:.5f})")
+        sys.exit(f"FAIL: {filename}: not silence-bracketed ({head:.5f}/{tail:.5f})")
 
     peak = max(abs(v) for v in samples)
     if peak > 0.82:
-        sys.exit(f"FAIL: clipping risk, peak {peak:.3f}")
+        sys.exit(f"FAIL: {filename}: clipping risk, peak {peak:.3f}")
 
     dc = abs(sum(samples) / len(samples))
     if dc > 1e-3:
-        sys.exit(f"FAIL: DC offset {dc:.5f}")
+        sys.exit(f"FAIL: {filename}: DC offset {dc:.5f}")
 
     OUT.mkdir(parents=True, exist_ok=True)
-    path = OUT / "music_calm.wav"
+    path = OUT / filename
     with wave.open(str(path), "w") as f:
         f.setnchannels(1)
         f.setsampwidth(2)
@@ -241,6 +261,16 @@ def main():
         f"{len(samples) / RATE:.1f}s, peak {peak:.3f}, "
         f"head/tail RMS {head:.5f}/{tail:.5f}, DC {dc:.6f})"
     )
+
+
+def main():
+    # Remove the obsolete single-loop file if it lingers from v3.
+    old = OUT / "music_calm.wav"
+    if old.exists():
+        old.unlink()
+        print(f"removed obsolete {old}")
+    for filename, semitones, prog, chord_span in TRACKS:
+        build_track(filename, semitones, prog, chord_span)
 
 
 if __name__ == "__main__":
