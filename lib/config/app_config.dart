@@ -13,6 +13,14 @@ abstract final class AppConfig {
   /// Tokens granted for watching one rewarded ad.
   static const int tokensPerRewardedAd = 3;
 
+  /// Closed-test fallback for the rewarded-hint button. A freshly published
+  /// app gets little or no rewarded fill until AdMob approves and warms up the
+  /// unit, which would leave testers stuck on "no video available". While set
+  /// to `true`, the "+N hints" button grants the tokens directly (no ad), so
+  /// the hint loop stays smooth during closed testing. Flip back to `false`
+  /// for the production launch so the reward is gated by a real watched ad.
+  static const bool grantHintsWithoutAd = false;
+
   // --- Interstitial pacing ---
   /// Show an interstitial after every N completed puzzles...
   static const int interstitialEveryNSolves = 3;

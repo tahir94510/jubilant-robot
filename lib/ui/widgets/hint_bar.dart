@@ -45,16 +45,31 @@ class HintBar extends StatelessWidget {
                 : l10n.hintRevealLetterCount(economy.tokens),
           ),
         ),
-        if (!economy.premium && ads.supported)
+        // Closed-test fallback (AppConfig.grantHintsWithoutAd) keeps the hint
+        // loop usable before AdMob serves; in production (flag off) the reward
+        // stays gated by a real watched ad so revenue is never undermined.
+        if (!economy.premium &&
+            (ads.supported || AppConfig.grantHintsWithoutAd))
           ValueListenableBuilder<bool>(
             valueListenable: ads.canRequestAds,
             builder: (context, canAds, _) {
-              if (!canAds) return const SizedBox.shrink();
+              // Production requires consent before the button appears. With the
+              // closed-test fallback on, show it regardless so testers can top
+              // up even before the consent/ad pipeline is warm.
+              if (!canAds && !AppConfig.grantHintsWithoutAd) {
+                return const SizedBox.shrink();
+              }
               return OutlinedButton.icon(
                 onPressed: () async {
-                  final earned = await ads.showRewardedForHints();
+                  // Always try a real rewarded ad first when we can: this
+                  // captures every genuine impression (and its revenue) the
+                  // moment AdMob serves, so a forgotten test flag can never
+                  // hand out free hints while real ads are working.
+                  final earned = (ads.supported && canAds)
+                      ? await ads.showRewardedForHints()
+                      : false;
                   if (!context.mounted) return;
-                  if (earned) {
+                  if (earned || AppConfig.grantHintsWithoutAd) {
                     economy.grantRewardedTokens();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
