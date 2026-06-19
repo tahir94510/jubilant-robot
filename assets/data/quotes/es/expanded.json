@@ -62,5 +62,61 @@
     "source": "Anónimo",
     "category": "proverbs",
     "locale": "es"
+  },
+  {
+    "id": "es-x201",
+    "text": "Tanto monta cortar como desatar.",
+    "author": "Miguel de Cervantes",
+    "source": "Don Quijote de la Mancha",
+    "category": "classics",
+    "locale": "es"
+  },
+  {
+    "id": "es-x203",
+    "text": "Solo se pierde lo que se guarda; solo se gana lo que se da.",
+    "author": "Antonio Machado",
+    "source": "Proverbios y cantares",
+    "category": "wisdom",
+    "locale": "es"
+  },
+  {
+    "id": "es-x204",
+    "text": "Es de bien nacidos ser agradecidos.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  },
+  {
+    "id": "es-x206",
+    "text": "Más vale prevenir que curar.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  },
+  {
+    "id": "es-x207",
+    "text": "Quien mucho abarca, poco aprieta.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  },
+  {
+    "id": "es-x210",
+    "text": "El que la sigue, la consigue.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
+  },
+  {
+    "id": "es-x212",
+    "text": "No es oro todo lo que reluce.",
+    "author": "Refrán español",
+    "source": "Anónimo",
+    "category": "proverbs",
+    "locale": "es"
   }
 ]

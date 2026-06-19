@@ -14,5 +14,29 @@
     "source": "Anônimo",
     "category": "proverbs",
     "locale": "pt"
+  },
+  {
+    "id": "pt-x203",
+    "text": "A linguagem dos olhos é a mais difícil de fingir.",
+    "author": "Machado de Assis",
+    "source": "Dom Casmurro",
+    "category": "literature",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x204",
+    "text": "Quem desdenha quer comprar.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x206",
+    "text": "O seguro morreu de velho.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
   }
 ]
