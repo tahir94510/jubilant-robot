@@ -1,7 +1,7 @@
 # Store Listing: Ready-to-Paste English Texts
 
-Copy these into Play Console > Grow > Main store listing. Character limits
-are respected; do not exceed them when editing.
+Copy these into Play Console > Grow > Store presence > Main store listing.
+Character limits are respected; do not exceed them when editing.
 
 ---
 

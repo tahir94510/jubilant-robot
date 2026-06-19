@@ -144,8 +144,15 @@ Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
 
 ## §8: 12 testçi × 14 gün şartı ve üretime geçiş
 
-Kişisel hesabınız yeniyse Google şunu ister: kapalı testinizde **en az 12
-testçi, kesintisiz son 14 gün boyunca** kayıtlı (opt-in) kalmalı.
+13 Kasım 2023'ten sonra açılan **kişisel** geliştirici hesapları için Google
+şunu ister: kapalı testinizde **en az 12 testçi, kesintisiz 14 gün boyunca**
+kayıtlı (opt-in) kalmalı; ancak ondan sonra "Apply for production" açılır.
+
+> Tarihçe: Bu eşik Kasım 2023'te **20** testçi olarak başladı; Google
+> **11 Aralık 2024**'te bireysel geliştiricilerin testçi bulma zorluğu
+> nedeniyle **12**'ye düşürdü (14 gün süresi aynı kaldı). Kuruluş/şirket
+> hesaplarında bu şart **yoktur**. Google bu kuralları zaman zaman
+> güncelliyor; başlamadan önce Play Console'daki güncel gereksinimi teyit edin.
 
 **Testçi bulma stratejileri (ücretsiz):**
 - Aile + arkadaşlar + iş arkadaşları (WhatsApp grubunuz yeter).
