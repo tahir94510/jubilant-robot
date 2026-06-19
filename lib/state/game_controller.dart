@@ -290,22 +290,6 @@ class GameController extends ChangeNotifier {
     return null;
   }
 
-  /// The next empty cell strictly AFTER [from] in reading order, wrapping to
-  /// the first empty cell. Keyed off the cursor's real position so typing
-  /// always steps forward from the tapped cell instead of jumping to a
-  /// repeated letter's first occurrence.
-  int? _nextEmptyIndexAfter(int? from) {
-    final s = _session;
-    if (s == null) return null;
-    final t = s.cipherText;
-    final start = from == null ? 0 : from + 1;
-    for (var i = start; i < t.length; i++) {
-      final ch = t[i];
-      if (s.cipherLetters.contains(ch) && !s.guesses.containsKey(ch)) return i;
-    }
-    return _firstEmptyIndex();
-  }
-
   int? _indexOfLetter(String cipherLetter) {
     final s = _session;
     if (s == null) return null;
@@ -434,6 +418,25 @@ class GameController extends ChangeNotifier {
     return !s.revealed.contains(ch) && !s.confirmedLetters.contains(ch);
   }
 
+  /// The next editable cell strictly AFTER [from] in reading order, wrapping to
+  /// the first editable cell. Unlike [_nextEmptyIndexAfter] this stops on the
+  /// next editable letter whether it is filled or empty (only hint-revealed and
+  /// confirmed-correct cells are skipped) — so typing walks cell by cell and a
+  /// filled-but-unconfirmed letter can be revised in place.
+  int? _nextEditableIndexAfter(int? from) {
+    final s = _session;
+    if (s == null) return null;
+    final t = s.cipherText;
+    final start = from == null ? 0 : from + 1;
+    for (var i = start; i < t.length; i++) {
+      if (_isEditableIndex(s, i)) return i;
+    }
+    for (var i = 0; i < t.length; i++) {
+      if (_isEditableIndex(s, i)) return i;
+    }
+    return null;
+  }
+
   /// The nearest editable cell strictly BEFORE [from] in reading order (no
   /// wrap — backspace stops at the start of the board).
   int? _prevEditableIndex(int? from) {
@@ -452,7 +455,24 @@ class GameController extends ChangeNotifier {
     if (s == null || _undoStack.isEmpty || _completed || _reviewingSolved) {
       return;
     }
-    final move = _undoStack.removeLast();
+    // Undo must respect the lock: never revert a hint-revealed letter or one
+    // that belongs to a completed, confirmed word. Discard any such entries
+    // from the top of the stack and undo the first genuinely editable move.
+    _Move? move;
+    while (_undoStack.isNotEmpty) {
+      final m = _undoStack.removeLast();
+      if (s.revealed.contains(m.cipherLetter) ||
+          s.confirmedLetters.contains(m.cipherLetter)) {
+        continue;
+      }
+      move = m;
+      break;
+    }
+    if (move == null) {
+      _persistState(); // stack trimmed of stale locked entries
+      notifyListeners();
+      return;
+    }
     if (move.previousGuess == null) {
       s.guesses.remove(move.cipherLetter);
     } else {
@@ -503,7 +523,8 @@ class GameController extends ChangeNotifier {
       });
     } else {
       if (advance) {
-        _selectedIndex = _nextEmptyIndexAfter(_selectedIndex) ?? _selectedIndex;
+        _selectedIndex =
+            _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
       }
       _persistState();
     }

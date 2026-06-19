@@ -19,7 +19,7 @@
     "id": "it-x004",
     "text": "La semplicità è la massima sofisticazione.",
     "author": "Leonardo da Vinci",
-    "source": "Codici",
+    "source": "Attribuita",
     "category": "wisdom",
     "locale": "it"
   },
@@ -43,7 +43,7 @@
     "id": "it-x012",
     "text": "Non è tutto oro quel che luccica.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -51,7 +51,7 @@
     "id": "it-x015",
     "text": "Can che abbaia non morde.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -67,7 +67,7 @@
     "id": "it-x207",
     "text": "L'ozio è il padre dei vizi.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -75,7 +75,7 @@
     "id": "it-x211",
     "text": "A buon intenditor poche parole.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -83,7 +83,7 @@
     "id": "it-x300",
     "text": "La vita è come uno specchio: ti sorride se la guardi sorridendo.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -115,7 +115,7 @@
     "id": "it-x305",
     "text": "La speranza è l'ultima a morire.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -123,7 +123,7 @@
     "id": "it-x310",
     "text": "Fidarsi è bene, non fidarsi è meglio.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   },
@@ -131,7 +131,7 @@
     "id": "it-x312",
     "text": "Ride bene chi ride ultimo.",
     "author": "Proverbio italiano",
-    "source": "Anonimo",
+    "source": "Tradizione",
     "category": "proverbs",
     "locale": "it"
   }

@@ -233,15 +233,25 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                     ).localizedTitle(l10n),
             ),
             actions: [
-              // A previously-solved puzzle starts blank and playable; the
-              // answer is only shown when the player explicitly asks for it.
-              if (game.previouslySolved && !reviewing && !game.completed)
+              // A previously-solved puzzle starts blank and playable; the answer
+              // is only shown on demand. The eye is a toggle: tap to reveal the
+              // solution read-only, tap again to return to your attempt
+              // (progress preserved) — so no separate "back" button is needed.
+              if (game.previouslySolved && !game.completed)
                 IconButton(
-                  tooltip: l10n.showSolution,
-                  icon: const Icon(Icons.visibility_outlined),
+                  tooltip: reviewing ? l10n.backToPuzzle : l10n.showSolution,
+                  icon: Icon(
+                    reviewing
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                  ),
                   onPressed: () {
                     context.read<HapticsService>().tap();
-                    game.showSolution();
+                    if (reviewing) {
+                      game.returnToAttempt();
+                    } else {
+                      game.showSolution();
+                    }
                   },
                 ),
               if (settings.showTimer && !reviewing)
@@ -359,34 +369,19 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                     ],
                                   ),
                                   const SizedBox(height: 10),
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: OutlinedButton.icon(
-                                          onPressed: () {
-                                            context
-                                                .read<HapticsService>()
-                                                .tap();
-                                            game.returnToAttempt();
-                                          },
-                                          icon: const Icon(Icons.arrow_back),
-                                          label: Text(l10n.backToPuzzle),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      Expanded(
-                                        child: FilledButton.icon(
-                                          onPressed: () {
-                                            context
-                                                .read<HapticsService>()
-                                                .tap();
-                                            game.replay();
-                                          },
-                                          icon: const Icon(Icons.refresh),
-                                          label: Text(l10n.replay),
-                                        ),
-                                      ),
-                                    ],
+                                  // Single action: start a fresh attempt. Returning
+                                  // to the in-progress board is the eye toggle in
+                                  // the AppBar, so no redundant second button here.
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: FilledButton.icon(
+                                      onPressed: () {
+                                        context.read<HapticsService>().tap();
+                                        game.replay();
+                                      },
+                                      icon: const Icon(Icons.refresh),
+                                      label: Text(l10n.replay),
+                                    ),
                                   ),
                                 ],
                               ),

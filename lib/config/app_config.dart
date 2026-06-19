@@ -14,12 +14,18 @@ abstract final class AppConfig {
   static const int tokensPerRewardedAd = 3;
 
   /// Closed-test fallback for the rewarded-hint button. A freshly published
-  /// app gets little or no rewarded fill until AdMob approves and warms up the
-  /// unit, which would leave testers stuck on "no video available". While set
-  /// to `true`, the "+N hints" button grants the tokens directly (no ad), so
-  /// the hint loop stays smooth during closed testing. Flip back to `false`
-  /// for the production launch so the reward is gated by a real watched ad.
-  static const bool grantHintsWithoutAd = false;
+  /// app (or one whose AdMob account isn't active yet) gets no rewarded fill,
+  /// which would leave testers stuck on "no video available". While set to
+  /// `true`, the "+N hints" button still TRIES a real rewarded ad first and
+  /// only grants the tokens directly when the ad genuinely can't be shown — so
+  /// the hint loop stays smooth during closed testing, yet the moment AdMob
+  /// serves, the reward comes from the watched ad (no free hints while real ads
+  /// work).
+  ///
+  /// Currently TRUE because the AdMob account is not active yet. RELEASE STEP:
+  /// flip to `false` before the production launch so the reward is always gated
+  /// by a real watched ad (see docs/KALITE_KONTROL.md).
+  static const bool grantHintsWithoutAd = true;
 
   // --- Interstitial pacing ---
   /// Show an interstitial after every N completed puzzles...

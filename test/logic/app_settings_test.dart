@@ -83,6 +83,84 @@ void main() {
     expect(notifications.scheduledTitle, 'Your daily cryptogram is ready');
   });
 
+  test(
+    'rescheduleDailyIfEnabled re-arms an enabled reminder on startup',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final n1 = FakeNotificationService();
+      final c1 = SettingsController(storage: storage, notifications: n1);
+      await c1.setLanguage('en'); // pin locale so l10n lookup needs no binding
+      await c1.setReminder(enabled: true);
+      expect(n1.scheduledTitle, isNotNull);
+
+      // A fresh process (new controller + notification service) reads the saved
+      // "enabled" flag and re-schedules without re-prompting for permission.
+      final n2 = FakeNotificationService();
+      final c2 = SettingsController(storage: storage, notifications: n2);
+      expect(n2.scheduledTitle, isNull); // nothing scheduled yet
+      await c2.rescheduleDailyIfEnabled();
+      expect(n2.scheduledTitle, isNotNull);
+
+      // When the reminder is off, startup re-scheduling is a no-op.
+      await c2.setReminder(enabled: false);
+      final n3 = FakeNotificationService();
+      final c3 = SettingsController(storage: storage, notifications: n3);
+      await c3.rescheduleDailyIfEnabled();
+      expect(n3.scheduledTitle, isNull);
+    },
+  );
+
+  test(
+    'resetToDefaults restores preferences, cancels the reminder, persists',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final notifications = FakeNotificationService();
+      final controller = SettingsController(
+        storage: storage,
+        notifications: notifications,
+      );
+      final sounds = FakeSoundService(
+        isEnabled: () => controller.settings.soundEffects,
+      );
+      final music = FakeMusicService(
+        isEnabled: () => controller.settings.music,
+      );
+
+      // Diverge from defaults across several fields.
+      await controller.setThemeMode(AppThemeMode.dark);
+      await controller.setTextScale(1.3);
+      await controller.setColorblindMode(true);
+      await controller.setShowTimer(false);
+      await controller.setSoundVolume(0.2, sounds);
+      await controller.setLanguage('tr');
+      await controller.setReminder(enabled: true);
+      expect(controller.settings.reminderEnabled, isTrue);
+
+      await controller.resetToDefaults(sounds: sounds, music: music);
+
+      final d = AppSettings();
+      expect(controller.settings.themeMode, d.themeMode);
+      expect(controller.settings.textScale, d.textScale);
+      expect(controller.settings.colorblindMode, d.colorblindMode);
+      expect(controller.settings.showTimer, d.showTimer);
+      expect(controller.settings.soundVolume, d.soundVolume);
+      expect(controller.settings.languageCode, d.languageCode);
+      expect(controller.settings.reminderEnabled, isFalse);
+      expect(notifications.cancelCalls, greaterThan(0));
+
+      // Persisted: a fresh controller sees the restored defaults.
+      final reloaded = SettingsController(
+        storage: storage,
+        notifications: FakeNotificationService(),
+      );
+      expect(reloaded.settings.themeMode, d.themeMode);
+      expect(reloaded.settings.textScale, d.textScale);
+      expect(reloaded.settings.colorblindMode, d.colorblindMode);
+    },
+  );
+
   test('setMusic persists and survives a controller restart', () async {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();

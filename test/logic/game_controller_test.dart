@@ -196,6 +196,55 @@ void main() {
     },
   );
 
+  test('undo never reverts a confirmed (completed-word) letter', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    final isWord = s.cipherText.split(' ')[1]; // "is"
+    for (final c in isWord.split('')) {
+      game.selectCipherLetter(c);
+      game.enterGuess(s.cipher.decryptLetter(c));
+    }
+    final locked = isWord.split('').toSet();
+    expect(s.confirmedLetters.containsAll(locked), isTrue);
+
+    final before = Map.of(s.guesses);
+    game.undo(); // must leave the confirmed word intact
+    for (final c in locked) {
+      expect(s.guesses[c], before[c]);
+    }
+    expect(s.confirmedLetters.containsAll(locked), isTrue);
+
+    game.stopTimer();
+    game.dispose();
+  });
+
+  test(
+    'typing advances onto the next editable cell even when it is filled',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+      // "LESS IS MORE": cells 0 and 1 are distinct letters (L, E).
+      expect(s.cipherText[0], isNot(s.cipherText[1]));
+
+      game.selectIndex(1);
+      final c1 = game.selectedCipherLetter!;
+      game.enterGuess('Q'); // fill cell 1 with a wrong, non-completing letter
+      game.selectIndex(0);
+      game.enterGuess('W'); // fill cell 0; cursor should step onto cell 1
+
+      expect(game.selectedIndex, 1);
+      expect(game.selectedCipherLetter, c1);
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
   test('typing advances the cursor forward, never back to the start', () async {
     final store = await storage();
     final game = GameController(storage: store);
@@ -404,9 +453,14 @@ void main() {
       type('S'); // completes LESS
       expect(game.lastInputCompletedWord, isTrue);
 
+      // Undo disarms the one-shot cue; the completed word is locked, so undo
+      // leaves it intact (never reverts a confirmed word).
       game.undo();
       expect(game.lastInputCompletedWord, isFalse);
-      game.enterGuess('S'); // re-completes LESS
+      expect(s.correctWordCount, greaterThan(0));
+
+      // Re-arm on a DIFFERENT word: typing I completes IS.
+      type('I');
       expect(game.lastInputCompletedWord, isTrue);
       game.clearGuess();
       expect(game.lastInputCompletedWord, isFalse);

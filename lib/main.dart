@@ -85,6 +85,10 @@ Future<void> _start() async {
     storage: storage,
     notifications: notifications,
   );
+  // Re-arm an enabled daily reminder on startup: the OS boot receiver covers
+  // reboots, but a force-stop/app update can drop the alarm. Fire-and-forget so
+  // it never delays the first frame.
+  unawaited(settings.rescheduleDailyIfEnabled());
   // For the one-time stats.v1 -> stats.v2 migration: route each previously
   // solved quote into its own language, and carry the non-splittable counters
   // into the player's current language (clamped to a supported one).
