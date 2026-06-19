@@ -870,6 +870,18 @@ abstract class AppLocalizations {
   /// **'Short, sharp, unforgiving'**
   String get packTaglineExpert;
 
+  /// No description provided for @packTitleShortSweet.
+  ///
+  /// In en, this message translates to:
+  /// **'Short & Sweet'**
+  String get packTitleShortSweet;
+
+  /// No description provided for @packTaglineShortSweet.
+  ///
+  /// In en, this message translates to:
+  /// **'Bite-size quotes for a quick win'**
+  String get packTaglineShortSweet;
+
   /// No description provided for @packTitleProverbs.
   ///
   /// In en, this message translates to:

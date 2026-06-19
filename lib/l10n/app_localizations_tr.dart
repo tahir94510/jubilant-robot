@@ -285,6 +285,7 @@ class AppLocalizationsTr extends AppLocalizations {
       count,
       locale: localeName,
       other: '$count günlük seri',
+      one: '1 günlük seri',
     );
     return '$_temp0';
   }
@@ -445,6 +446,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packTaglineExpert => 'Kısa, keskin, affetmez';
+
+  @override
+  String get packTitleShortSweet => 'Kısa ve Öz';
+
+  @override
+  String get packTaglineShortSweet => 'Hızlı bir zafer için minik sözler';
 
   @override
   String get packTitleProverbs => 'Atasözleri';

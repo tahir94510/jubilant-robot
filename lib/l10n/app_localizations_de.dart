@@ -448,6 +448,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get packTaglineExpert => 'Kurz, scharf, gnadenlos';
 
   @override
+  String get packTitleShortSweet => 'Kurz & Knackig';
+
+  @override
+  String get packTaglineShortSweet =>
+      'Kleine Zitate für einen schnellen Erfolg';
+
+  @override
   String get packTitleProverbs => 'Sprichwörter';
 
   @override

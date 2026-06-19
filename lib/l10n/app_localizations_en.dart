@@ -445,6 +445,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get packTaglineExpert => 'Short, sharp, unforgiving';
 
   @override
+  String get packTitleShortSweet => 'Short & Sweet';
+
+  @override
+  String get packTaglineShortSweet => 'Bite-size quotes for a quick win';
+
+  @override
   String get packTitleProverbs => 'Proverbs';
 
   @override

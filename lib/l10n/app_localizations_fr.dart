@@ -449,6 +449,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get packTaglineExpert => 'Court, tranchant, impitoyable';
 
   @override
+  String get packTitleShortSweet => 'Court & Concis';
+
+  @override
+  String get packTaglineShortSweet =>
+      'De courtes citations pour une victoire rapide';
+
+  @override
   String get packTitleProverbs => 'Proverbes';
 
   @override

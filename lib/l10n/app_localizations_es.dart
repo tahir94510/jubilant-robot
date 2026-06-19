@@ -451,6 +451,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get packTaglineExpert => 'Corto, agudo, implacable';
 
   @override
+  String get packTitleShortSweet => 'Cortas y al grano';
+
+  @override
+  String get packTaglineShortSweet => 'Frases breves para una victoria rápida';
+
+  @override
   String get packTitleProverbs => 'Refranes';
 
   @override

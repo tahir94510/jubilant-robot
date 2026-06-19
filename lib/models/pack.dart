@@ -4,7 +4,7 @@ import '../engine/difficulty.dart';
 import '../l10n/app_localizations.dart';
 import 'quote.dart';
 
-enum PackKind { difficulty, themed, premium }
+enum PackKind { difficulty, themed, shortform, premium }
 
 /// A puzzle pack: a named, filtered slice of the quote dataset.
 class Pack {
@@ -16,6 +16,7 @@ class Pack {
     required this.kind,
     this.difficulty,
     this.category,
+    this.maxLetters,
   });
 
   final String id;
@@ -25,6 +26,10 @@ class Pack {
   final PackKind kind;
   final Difficulty? difficulty;
   final String? category;
+
+  /// Upper bound on a quote's playable letter count for a [PackKind.shortform]
+  /// pack (a cross-cutting "quick play" filter over the free pool).
+  final int? maxLetters;
 
   bool get premiumOnly => kind == PackKind.premium;
 
@@ -42,6 +47,11 @@ class Pack {
         // The free ladder never includes the premium Classics category.
         if (q.category == 'classics') return false;
         return q.difficulty == difficulty;
+      case PackKind.shortform:
+        // A free, cross-cutting "quick play" filter: the shortest quotes from
+        // the free pool (the premium Classics category stays locked).
+        if (q.category == 'classics') return false;
+        return q.letterCount <= (maxLetters ?? 40);
       case PackKind.themed:
       case PackKind.premium:
         return q.category == category;
@@ -84,6 +94,16 @@ class Pack {
       icon: Icons.whatshot_outlined,
       kind: PackKind.difficulty,
       difficulty: Difficulty.expert,
+    ),
+    // A free, cross-cutting quick-play pack: the shortest quotes from the
+    // free pool, perfect for a fast round. Drawn by length, not category.
+    Pack(
+      id: 'shortsweet',
+      title: 'Short & Sweet',
+      tagline: 'Bite-size quotes for a quick win',
+      icon: Icons.bolt_outlined,
+      kind: PackKind.shortform,
+      maxLetters: 40,
     ),
     // Themed — each language's own content under one shared taxonomy.
     Pack(
@@ -140,6 +160,7 @@ extension PackL10n on Pack {
     'casual' => l.packTitleCasual,
     'skilled' => l.packTitleSkilled,
     'expert' => l.packTitleExpert,
+    'shortsweet' => l.packTitleShortSweet,
     'proverbs' => l.packTitleProverbs,
     'wisdom' => l.packTitleWisdom,
     'wit' => l.packTitleWit,
@@ -153,6 +174,7 @@ extension PackL10n on Pack {
     'casual' => l.packTaglineCasual,
     'skilled' => l.packTaglineSkilled,
     'expert' => l.packTaglineExpert,
+    'shortsweet' => l.packTaglineShortSweet,
     'proverbs' => l.packTaglineProverbs,
     'wisdom' => l.packTaglineWisdom,
     'wit' => l.packTaglineWit,
