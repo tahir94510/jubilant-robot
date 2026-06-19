@@ -5,6 +5,83 @@ are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.4.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.4.0
+• Every language now keeps its own profile: separate stats, streaks, pack progress and daily history (Premium stays unlocked everywhere)
+• Re-open a solved puzzle on a fresh board, and reveal the solution any time you like
+• Smarter typing: backspace steps back as you'd expect, and words you complete lock in their own colour
+• The daily header now shows the date in your language
+• Tidier settings and many fixes
+Happy decoding!
+```
+
+Localized "What's new" (paste the matching block per language in Play Console):
+
+**Türkçe**
+```
+1.4.0 YENİLİKLER
+• Artık her dilin kendi profili var: ayrı istatistik, seri, paket ilerlemesi ve günlük geçmiş (Premium tüm dillerde açık kalır)
+• Çözülmüş bulmacayı tertemiz bir tahtayla yeniden oyna; çözümü istediğin an gör
+• Daha akıllı yazım: geri tuşu beklediğin gibi geri gider, tamamladığın kelimeler kendi rengiyle kilitlenir
+• Günlük başlığındaki tarih artık senin dilinde
+• Derli toplu ayarlar ve birçok iyileştirme
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 1.4.0
+• Cada idioma tiene ahora su propio perfil: estadísticas, rachas, progreso de paquetes e historial diario por separado (el Premium sigue desbloqueado en todos)
+• Vuelve a un puzle resuelto con un tablero limpio y revela la solución cuando quieras
+• Escritura más lista: el retroceso va hacia atrás como esperas y las palabras completas se fijan con su color
+• La fecha diaria ahora en tu idioma
+• Ajustes más ordenados y muchas correcciones
+```
+
+**Deutsch**
+```
+NEU in 1.4.0
+• Jede Sprache hat jetzt ihr eigenes Profil: getrennte Statistiken, Serien, Paketfortschritt und Tagesverlauf (Premium bleibt überall freigeschaltet)
+• Öffne ein gelöstes Rätsel mit leerem Brett neu und zeige die Lösung, wann du willst
+• Klügeres Tippen: die Rücktaste geht wie erwartet zurück, fertige Wörter rasten in eigener Farbe ein
+• Das Tagesdatum jetzt in deiner Sprache
+• Aufgeräumte Einstellungen und viele Korrekturen
+```
+
+**Français**
+```
+NOUVEAU dans 1.4.0
+• Chaque langue garde désormais son propre profil : statistiques, séries, progression des paquets et historique quotidien séparés (le Premium reste débloqué partout)
+• Rouvrez une énigme résolue sur une grille vierge et révélez la solution quand vous voulez
+• Saisie plus maligne : le retour arrière recule comme prévu, les mots terminés se verrouillent dans leur couleur
+• La date du jour dans votre langue
+• Réglages plus nets et de nombreux correctifs
+```
+
+**Italiano**
+```
+NOVITÀ nella 1.4.0
+• Ogni lingua ha ora il suo profilo: statistiche, serie, progressi dei pacchetti e cronologia giornaliera separati (il Premium resta sbloccato ovunque)
+• Riapri un enigma risolto con una griglia pulita e mostra la soluzione quando vuoi
+• Digitazione più intelligente: il backspace torna indietro come previsto e le parole completate si bloccano nel loro colore
+• La data del giorno ora nella tua lingua
+• Impostazioni più ordinate e molte correzioni
+```
+
+**Português**
+```
+NOVIDADES na 1.4.0
+• Cada idioma agora tem seu próprio perfil: estatísticas, sequências, progresso dos pacotes e histórico diário separados (o Premium continua desbloqueado em todos)
+• Reabra um desafio resolvido em um tabuleiro limpo e revele a solução quando quiser
+• Digitação mais esperta: o backspace volta como você espera e as palavras concluídas travam na sua cor
+• A data diária agora no seu idioma
+• Ajustes mais organizados e muitas correções
+```
+
+---
+
 ## Release notes: v1.3.0 (max 500 chars, paste into "What's new")
 
 ```
@@ -146,7 +223,7 @@ Decode famous quotes. A new cryptogram puzzle every day, free and offline.
 Reveal the quote, one letter at a time. Every puzzle in Quotecrack is a famous quote hidden behind a simple letter swap. You work it out letter by letter, and there's a real little thrill the moment the words fall into place.
 
 DAILY CRYPTOGRAM
-A fresh puzzle every day. Solve it, keep your streak going, and share your time with friends, Wordle style. Every language has its own daily, drawn from its own quotes.
+A fresh puzzle every day. Solve it, keep your streak going, and share your time with friends. Every language has its own daily, drawn from its own quotes.
 
 PLAYS IN YOUR LANGUAGE
 Choose from 7 languages (English, Türkçe, Español, Deutsch, Français, Italiano, Português) and the whole game speaks it. Every language has its own hand-picked packs of native quotes, played in its own alphabet and on its own keyboard. Switch language and the entire catalog becomes that culture's voices.
@@ -179,7 +256,7 @@ FAIR AND FREE TO PLAY
 The puzzle screen is always ad-free. A small banner and the occasional full-screen ad keep the lights on. Want to play without ads? Go Premium once to remove every ad for good, unlock unlimited hints, and get the exclusive Classics pack: your language's most timeless voices, hand-picked.
 
 WHAT IS A CRYPTOGRAM?
-A cryptogram (also called a cryptoquote or cipher puzzle) is a short message scrambled by swapping each letter for another. You break it with pattern recognition, letter frequency, and the shapes of words. It's the same fun as the cryptoquip in the Sunday paper, now in your pocket.
+A cryptogram (also called a cipher puzzle) is a short message scrambled by swapping each letter for another. You break it with pattern recognition, letter frequency, and the shapes of words. It's the same fun as the cipher puzzle in the Sunday paper, now in your pocket.
 
 If you love word games, brain teasers, logic puzzles, or just a good quote, Quotecrack gives your brain a satisfying daily workout. Download it free and solve your first cipher in about a minute.
 ```
@@ -252,7 +329,7 @@ Descifra frases célebres. Un criptograma nuevo cada día, gratis y sin conexió
 Revela la frase, letra a letra. Cada puzle de Quotecrack es una cita célebre oculta tras un sencillo cambio de letras; la resuelves poco a poco y sientes una pequeña emoción justo cuando las palabras encajan.
 
 CRIPTOGRAMA DIARIO
-Una frase nueva cada día. Resuélvela, mantén viva tu racha y comparte tu tiempo con tus amigos, al estilo Wordle. Cada idioma tiene su propio criptograma diario, sacado de sus propias citas.
+Una frase nueva cada día. Resuélvela, mantén viva tu racha y comparte tu tiempo con tus amigos. Cada idioma tiene su propio criptograma diario, sacado de sus propias citas.
 
 EN TU IDIOMA
 Elige entre 7 idiomas (español, inglés, turco, alemán, francés, italiano y portugués) y el juego entero habla esa lengua. Cada idioma tiene sus propios paquetes de citas nativas, en su alfabeto y con su teclado. Cambia de idioma y todo el catálogo se convierte en las voces de esa cultura.
@@ -302,7 +379,7 @@ Entschlüssle berühmte Zitate. Täglich ein neues Rätsel, gratis und offline.
 Enthülle das Zitat, Buchstabe für Buchstabe. Jedes Rätsel in Quotecrack ist ein berühmtes Zitat, versteckt hinter einer einfachen Buchstabenvertauschung – du knackst es Schritt für Schritt, und der Moment, in dem die Worte plötzlich passen, macht richtig Freude.
 
 TÄGLICHES KRYPTOGRAMM
-Jeden Tag ein frisches Rätsel. Löse es, halte deine Serie am Leben und teile deine Zeit mit Freunden, ganz im Wordle-Stil. Jede Sprache hat ihr eigenes Tagesrätsel, gezogen aus ihren eigenen Zitaten.
+Jeden Tag ein frisches Rätsel. Löse es, halte deine Serie am Leben und teile deine Zeit mit Freunden. Jede Sprache hat ihr eigenes Tagesrätsel, gezogen aus ihren eigenen Zitaten.
 
 IN DEINER SPRACHE
 Wähle aus 7 Sprachen – Deutsch, Englisch, Türkisch, Spanisch, Französisch, Italienisch und Portugiesisch – und das ganze Spiel spricht sie. Jede Sprache hat ihre eigenen, handverlesenen Pakete mit muttersprachlichen Zitaten, gespielt in ihrem eigenen Alphabet und auf ihrer eigenen Tastatur. Wechsle die Sprache, und der gesamte Katalog wird zu den Stimmen dieser Kultur.
@@ -352,7 +429,7 @@ Déchiffrez des citations célèbres. Une énigme par jour, gratuit et hors lign
 Révélez la citation, lettre par lettre. Chaque énigme de Quotecrack est une citation célèbre cachée derrière une simple substitution de lettres ; vous la résolvez peu à peu, et l'instant où les mots se mettent en place procure un vrai plaisir.
 
 CRYPTOGRAMME DU JOUR
-Une nouvelle énigme chaque jour. Résolvez-la, gardez votre série et partagez votre temps avec vos amis, à la manière de Wordle. Chaque langue a son propre cryptogramme quotidien, tiré de ses propres citations.
+Une nouvelle énigme chaque jour. Résolvez-la, gardez votre série et partagez votre temps avec vos amis. Chaque langue a son propre cryptogramme quotidien, tiré de ses propres citations.
 
 DANS VOTRE LANGUE
 Choisissez parmi 7 langues (français, anglais, turc, espagnol, allemand, italien et portugais) et tout le jeu la parle. Chaque langue possède ses propres paquets de citations natives, jouées dans son alphabet et sur son clavier. Changez de langue et tout le catalogue devient les voix de cette culture.
@@ -402,7 +479,7 @@ Decifra frasi celebri. Un nuovo crittogramma ogni giorno, gratis e offline.
 Svela la frase, lettera per lettera. Ogni enigma di Quotecrack è una frase celebre nascosta dietro un semplice scambio di lettere; la risolvi un po' alla volta e provi una piccola gioia proprio nel momento in cui le parole vanno al loro posto.
 
 CRITTOGRAMMA DEL GIORNO
-Un nuovo enigma ogni giorno. Risolvilo, mantieni viva la tua serie e condividi il tuo tempo con gli amici, in stile Wordle. Ogni lingua ha il proprio crittogramma quotidiano, tratto dalle sue stesse citazioni.
+Un nuovo enigma ogni giorno. Risolvilo, mantieni viva la tua serie e condividi il tuo tempo con gli amici. Ogni lingua ha il proprio crittogramma quotidiano, tratto dalle sue stesse citazioni.
 
 NELLA TUA LINGUA
 Scegli tra 7 lingue (italiano, inglese, turco, spagnolo, tedesco, francese e portoghese) e l'intero gioco la parla. Ogni lingua ha i suoi pacchetti di citazioni native, giocate nel proprio alfabeto e sulla propria tastiera. Cambia lingua e tutto il catalogo diventa le voci di quella cultura.
@@ -452,7 +529,7 @@ Decifre frases famosas. Um novo criptograma por dia, grátis e off-line.
 Revele a frase, letra por letra. Cada desafio do Quotecrack é uma frase famosa escondida por uma simples troca de letras; você resolve aos poucos e sente uma alegria de verdade no instante em que as palavras se encaixam.
 
 CRIPTOGRAMA DIÁRIO
-Um novo desafio todos os dias. Resolva, mantenha sua sequência viva e compartilhe seu tempo com os amigos, no estilo Wordle. Cada idioma tem seu próprio criptograma diário, tirado de suas próprias frases.
+Um novo desafio todos os dias. Resolva, mantenha sua sequência viva e compartilhe seu tempo com os amigos. Cada idioma tem seu próprio criptograma diário, tirado de suas próprias frases.
 
 NO SEU IDIOMA
 Escolha entre 7 idiomas (português, inglês, turco, espanhol, alemão, francês e italiano) e o jogo inteiro fala esse idioma. Cada idioma tem seus próprios pacotes de frases nativas, jogadas em seu alfabeto e com seu teclado. Troque de idioma e todo o catálogo se torna as vozes daquela cultura.
@@ -516,8 +593,8 @@ Suggested screenshot order (first two matter most):
 
 ## Keyword notes (ASO)
 
-Primary: cryptogram, cryptoquote, cipher puzzle. Secondary: word puzzle,
-quote game, daily puzzle, brain teaser, offline word game, cryptoquip.
+Primary: cryptogram, cipher puzzle, decrypt quotes. Secondary: word puzzle,
+quote game, daily puzzle, brain teaser, offline word game, letter puzzle.
 These already appear naturally in the description above. Google Play indexes
 title first, then short description, then full description. Revisit rankings
 after 4-6 weeks and consider seasonal updates (e.g. a "holiday quotes" pack

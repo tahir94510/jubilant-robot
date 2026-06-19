@@ -1,0 +1,18 @@
+[
+  {
+    "id": "pt-x001",
+    "text": "Mudam-se os tempos, mudam-se as vontades.",
+    "author": "Luís de Camões",
+    "source": "Sonetos",
+    "category": "classics",
+    "locale": "pt"
+  },
+  {
+    "id": "pt-x007",
+    "text": "Mais vale um pássaro na mão do que dois a voar.",
+    "author": "Provérbio português",
+    "source": "Anônimo",
+    "category": "proverbs",
+    "locale": "pt"
+  }
+]

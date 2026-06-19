@@ -1,6 +1,6 @@
 import 'package:share_plus/share_plus.dart';
 
-/// Sends the Wordle-style daily share text. The text itself is composed by
+/// Sends the daily result share text. The text itself is composed by
 /// the caller (which has a BuildContext) so it is localized to the player's
 /// UI language; this service owns only time formatting and the platform
 /// share sheet.

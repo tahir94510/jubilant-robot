@@ -66,8 +66,8 @@ class QuoteRepository {
       _quotes.where((q) => q.difficulty == difficulty).toList();
 
   /// The English daily pool: every player on Earth shares the same English
-  /// cipher to compare (Wordle-style) when playing in English. Free categories
-  /// only, sorted by id for platform-stable ordering.
+  /// cipher to compare when playing in English. Free categories only, sorted
+  /// by id for platform-stable ordering.
   List<Quote> get dailyPool {
     final pool =
         _quotes

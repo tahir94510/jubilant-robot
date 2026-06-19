@@ -1,7 +1,7 @@
 /// Deterministic daily puzzle selection.
 ///
 /// Same local date => same quote and same cipher for every player on every
-/// platform (Wordle convention). Selection is stateless: a Sattolo shuffle
+/// platform (shared-daily convention). Selection is stateless: a Sattolo shuffle
 /// of the eligible pool is seeded by the year, and the day-of-year indexes
 /// into it, so a quote can never repeat within a calendar year (pool size
 /// >= 366 is enforced by tests).

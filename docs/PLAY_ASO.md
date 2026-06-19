@@ -25,8 +25,8 @@ anahtar kelimeler, yükleme/çökme oranı, puan ve yorumlar, ve KALICILIK
 3. **Feature graphic + kısa tanıtım videosu.** Feature graphic hazır
    (store_assets/). 20-30 sn'lik bir video dönüşümü belirgin artırır
    (opsiyonel ama değerli).
-4. **Başlık ve kısa açıklama keyword'leri.** Yapıldı: cryptogram, cryptoquote,
-   cipher puzzle başlıkta/açıklamada doğal geçiyor. Başlık 30 karakter dolu
+4. **Başlık ve kısa açıklama keyword'leri.** Yapıldı: cryptogram, cipher puzzle,
+   decrypt quotes başlıkta/açıklamada doğal geçiyor. Başlık 30 karakter dolu
    kullanılmalı (şu an "Quotecrack: Cryptogram Puzzle").
 5. **Kategori ve etiketler.** Aşağıdaki "Mağaza ayarları" bölümünde kesin
    seçimler verildi (kategori = Word; doğru 5 etiket; kaçınılacaklar).
@@ -95,7 +95,7 @@ mekaniğidir; kriptogramla alakasız, yanlış kitle çeker. Seçme.
 
 - Günlük bulmaca + seri (streak) + isteğe bağlı hatırlatma bildirimi.
 - 24 achievement + yeni içerikte "NEW" etiketi (geri dönüş için kanca).
-- Wordle tarzı paylaşım metni (organik viral döngü).
+- Sonuç paylaşımı: süre + seri içeren metinle organik viral döngü.
 - Çevrim dışı, hesapsız, reklamsız çözüm ekranı (yüksek memnuniyet, iyi yorum).
 
 ## Ölçüm
