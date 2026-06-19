@@ -62,9 +62,12 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 | 6 | 12 testçi × 14 gün kapalı test → üretime geçiş | [docs/YAYINLAMA_REHBERI.md](docs/YAYINLAMA_REHBERI.md) §8 |
 
 > **Gerçekçi takvim:** Google, 13 Kasım 2023'ten sonra açılan bireysel
-> hesaplardan, üretime geçmeden önce **12 testçinin kesintisiz 14 gün**
-> uygulamayı kapalı testte kullanmasını ister. Yani "bugün yükle, yarın
-> yayında" değil; **~3 hafta** planlayın. Testçi bulma stratejileri rehberde.
+> hesaplardan, üretime geçmeden önce **en az 12 testçinin kesintisiz 14 gün**
+> uygulamayı kapalı testte kullanmasını ister (bu eşik Aralık 2024'te 20'den
+> 12'ye düşürüldü; kuruluş hesapları muaftır). Yani "bugün yükle, yarın
+> yayında" değil; **~3 hafta** planlayın. (Google kuralları güncelleyebilir;
+> Play Console'daki güncel sayıyı teyit edin.) Testçi bulma stratejileri
+> rehberde.
 
 ## Oyun ne içeriyor?
 
