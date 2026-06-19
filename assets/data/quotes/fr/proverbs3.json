@@ -1,0 +1,1114 @@
+[
+ {
+  "id": "fr-x500",
+  "text": "Quand le chat n'est pas là, les souris dansent.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x501",
+  "text": "C'est en forgeant qu'on devient forgeron.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x502",
+  "text": "Il vaut mieux être seul que mal accompagné.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x503",
+  "text": "Mieux vaut un bon voisin qu'un lointain parent.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x504",
+  "text": "Un homme averti en vaut deux.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x505",
+  "text": "Charbonnier est maître chez lui.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x506",
+  "text": "La faim chasse le loup hors du bois.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x507",
+  "text": "Il n'est si bon cheval qui ne bronche.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x508",
+  "text": "Mieux vaut s'adresser à Dieu qu'à ses saints.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x509",
+  "text": "Nul n'est prophète en son pays.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x510",
+  "text": "À l'impossible nul n'est tenu.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x511",
+  "text": "Contentement passe richesse.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x512",
+  "text": "Deux avis valent mieux qu'un.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x513",
+  "text": "En mai, fais ce qu'il te plaît.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x514",
+  "text": "Goutte à goutte, l'eau creuse la pierre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x515",
+  "text": "Il faut manger pour vivre et non vivre pour manger.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x516",
+  "text": "La fin justifie les moyens.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x517",
+  "text": "Le chat retombe toujours sur ses pattes.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x518",
+  "text": "Le malheur des uns fait le bonheur des autres.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x519",
+  "text": "Les apparences sont trompeuses.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x520",
+  "text": "Ne réveillez pas le chat qui dort.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x521",
+  "text": "Noël au balcon, Pâques au tison.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x522",
+  "text": "Paris ne s'est pas fait en un jour.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x523",
+  "text": "Prudence est mère de sûreté.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x524",
+  "text": "Qui casse les verres les paie.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x525",
+  "text": "Tout est bien qui finit bien.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x526",
+  "text": "Trop de cuisiniers gâtent la sauce.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x527",
+  "text": "Un malheur ne vient jamais seul.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x528",
+  "text": "Aux grands maux les grands remèdes.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x529",
+  "text": "Chat miauleur ne fut jamais bon chasseur.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x530",
+  "text": "Dis-moi qui tu hantes, je te dirai qui tu es.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x531",
+  "text": "En la demeure se découvre l'ami.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x532",
+  "text": "Il faut souffrir pour être belle.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x533",
+  "text": "Il n'y a si bonne compagnie qui ne se sépare.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x534",
+  "text": "La pelle se moque du fourgon.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x535",
+  "text": "Le chien aboie, la caravane passe.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x536",
+  "text": "Les loups ne se mangent pas entre eux.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x537",
+  "text": "L'enfer est pavé de bonnes intentions.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x538",
+  "text": "Mettre la charrue avant les bœufs.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x539",
+  "text": "Ne fais pas à autrui ce que tu ne voudrais pas qu'on te fît.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x540",
+  "text": "Pas de nouvelles, bonnes nouvelles.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x541",
+  "text": "Petite cause, grands effets.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x542",
+  "text": "Qui donne aux pauvres prête à Dieu.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x543",
+  "text": "Qui sème la discorde récolte la haine.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x544",
+  "text": "Qui veut tuer son chien l'accuse de la rage.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x545",
+  "text": "Rira bien qui rira le dernier.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x546",
+  "text": "Tout flatteur vit aux dépens de celui qui l'écoute.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x547",
+  "text": "Un bienfait n'est jamais perdu.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x548",
+  "text": "À chacun son métier, les vaches seront bien gardées.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x549",
+  "text": "À toute chose malheur est bon.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x550",
+  "text": "Au bout du fossé la culbute.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x551",
+  "text": "Ce qui est fait n'est plus à faire.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x552",
+  "text": "Coup de langue est pire que coup de lance.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x553",
+  "text": "De la discussion jaillit la lumière.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x554",
+  "text": "En forgeant on devient forgeron.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x555",
+  "text": "Faute avouée est à demi pardonnée.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x556",
+  "text": "Il faut que jeunesse se passe.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x557",
+  "text": "Il n'est pire sourd que celui qui ne veut pas entendre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x558",
+  "text": "La nécessité est mère de l'invention.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x559",
+  "text": "La patience vient à bout de tout.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x560",
+  "text": "Le diable n'est pas si noir qu'on le fait.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x561",
+  "text": "Le fruit défendu est le plus tentant.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x562",
+  "text": "Le savetier est toujours le plus mal chaussé.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x563",
+  "text": "L'exception confirme la règle.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x564",
+  "text": "L'oisiveté est la mère de tous les vices.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x565",
+  "text": "Petit poisson deviendra grand.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x566",
+  "text": "Pour vivre heureux, vivons cachés.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x567",
+  "text": "Promettre et tenir sont deux.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x568",
+  "text": "Qui a bon voisin a bon matin.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x569",
+  "text": "Qui menace beaucoup ne fait pas grand mal.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x570",
+  "text": "Qui prête à l'ami perd au double.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x571",
+  "text": "Qui trop se hâte reste en chemin.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x572",
+  "text": "Tout ce qui brille n'est pas or.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x573",
+  "text": "Vérité en deçà des Pyrénées, erreur au-delà.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x574",
+  "text": "À mauvais ouvrier point de bon outil.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x575",
+  "text": "Belles paroles ne font pas bouillir la marmite.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x576",
+  "text": "Bon avocat, mauvais voisin.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x577",
+  "text": "Ce n'est pas à un vieux singe qu'on apprend à faire la grimace.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x578",
+  "text": "De grand vent, petite pluie.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x579",
+  "text": "En la maison du forgeron, broche de bois.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x580",
+  "text": "Fais ce que dois, advienne que pourra.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x581",
+  "text": "Il vaut mieux tenir que courir.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x582",
+  "text": "La goutte d'eau fait déborder le vase.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x583",
+  "text": "Les grandes douleurs sont muettes.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x584",
+  "text": "L'habitude est une seconde nature.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x585",
+  "text": "Mieux vaut être marteau qu'enclume.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x586",
+  "text": "On ne badine pas avec l'amour.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x587",
+  "text": "On ne fait pas d'argent avec rien.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x588",
+  "text": "Plaie d'argent n'est pas mortelle.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x589",
+  "text": "Quand on n'a pas de tête, il faut avoir des jambes.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x590",
+  "text": "Tous les goûts sont dans la nature.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x591",
+  "text": "Tout soldat porte dans sa giberne le bâton de maréchal.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x592",
+  "text": "Un mauvais arrangement vaut mieux qu'un bon procès.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x593",
+  "text": "De deux maux il faut choisir le moindre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x594",
+  "text": "Il faut de tout pour faire un monde.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x595",
+  "text": "Mieux vaut bonne attente que mauvaise hâte.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x596",
+  "text": "Tant vaut l'homme, tant vaut sa terre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x597",
+  "text": "À chaque oiseau son nid est beau.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x598",
+  "text": "Bon repas doit commencer par la faim.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x599",
+  "text": "Chacun est l'artisan de sa fortune.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x600",
+  "text": "Il ne faut jamais remettre au lendemain ce qu'on peut faire le jour même.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x601",
+  "text": "La fortune vient en dormant.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x602",
+  "text": "Mieux vaut tenir que demander.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x603",
+  "text": "Ne crache pas dans la soupe.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x604",
+  "text": "Qui trop écoute la pendule ne fait jamais rien de bon.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x605",
+  "text": "La vérité sort de la bouche des enfants.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x606",
+  "text": "On ne peut pas avoir le beurre et l'argent du beurre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x607",
+  "text": "À chacun selon ses mérites.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x608",
+  "text": "Tel qui rit le matin pleurera le soir.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x609",
+  "text": "Qui veut faire l'ange fait la bête.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x610",
+  "text": "Mieux vaut un sage ennemi qu'un sot ami.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x611",
+  "text": "La beauté ne se mange pas en salade.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x612",
+  "text": "À méchant chien, court lien.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x613",
+  "text": "Bien danse à qui la fortune chante.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x614",
+  "text": "Chacun mène sa barque comme il l'entend.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x615",
+  "text": "Il faut prendre le temps comme il vient.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x616",
+  "text": "Les petites filles deviennent grandes.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x617",
+  "text": "On ne fait pas boire un âne qui n'a pas soif.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x618",
+  "text": "Qui aime le danger périra par le danger.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x619",
+  "text": "Tant qu'on a la santé, on a tout.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x620",
+  "text": "Tel brille au second rang qui s'éclipse au premier.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x621",
+  "text": "Vouloir le beurre et l'argent du beurre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x622",
+  "text": "Chercher midi à quatorze heures.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x623",
+  "text": "Il vaut mieux faire envie que pitié.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x624",
+  "text": "Les conseilleurs ne sont pas les payeurs en ce monde.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x625",
+  "text": "Mauvaise herbe pousse vite et toujours.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x626",
+  "text": "Qui aime bien se querelle bien.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x627",
+  "text": "Toujours pêche qui en prend un.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x628",
+  "text": "Tout vient à temps à qui sait attendre.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x629",
+  "text": "Un homme sans patrie est un corps sans âme.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x630",
+  "text": "Vouloir et pouvoir ne sont pas toujours d'accord.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x631",
+  "text": "Bouche close ne reçoit jamais mouche.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x632",
+  "text": "Il faut tendre la perche à celui qui se noie.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x633",
+  "text": "Les bons crus font les bonnes têtes.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x634",
+  "text": "Tant qu'il y a des hommes, il y aura des guerres.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x635",
+  "text": "Le pire n'est pas toujours certain.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x636",
+  "text": "Un mauvais quart d'heure est bientôt passé.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x637",
+  "text": "Vivre d'amour et d'eau fraîche.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ },
+ {
+  "id": "fr-x638",
+  "text": "Chacun son tour, comme à confesse.",
+  "author": "Proverbe français",
+  "source": "Tradition",
+  "category": "proverbs",
+  "locale": "fr"
+ }
+]
