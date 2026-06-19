@@ -238,5 +238,45 @@
     "source": "Anonim",
     "category": "proverbs",
     "locale": "tr"
+  },
+  {
+    "id": "tr-x300",
+    "text": "Sabır acıdır, meyvesi tatlıdır.",
+    "author": "Türk Atasözü",
+    "source": "Anonim",
+    "category": "proverbs",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x312",
+    "text": "Damlaya damlaya göl olur, düşe kalka yol alınır.",
+    "author": "Türk Atasözü",
+    "source": "Anonim",
+    "category": "proverbs",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x313",
+    "text": "İnsanların en hayırlısı, insanlara faydası dokunandır.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Anonim",
+    "category": "wisdom",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x314",
+    "text": "Düşünce karanlığına ışık tutanlara ne mutlu.",
+    "author": "Hacı Bektaş Veli",
+    "source": "Anonim",
+    "category": "wisdom",
+    "locale": "tr"
+  },
+  {
+    "id": "tr-x315",
+    "text": "Marifet iltifata tabidir, müşterisiz meta zayidir.",
+    "author": "Türk Atasözü",
+    "source": "Anonim",
+    "category": "wisdom",
+    "locale": "tr"
   }
 ]

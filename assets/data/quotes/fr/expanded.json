@@ -22,5 +22,53 @@
     "source": "Sertorius",
     "category": "classics",
     "locale": "fr"
+  },
+  {
+    "id": "fr-x300",
+    "text": "Le doute est le commencement de la sagesse.",
+    "author": "Aristote",
+    "source": "Métaphysique",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-x301",
+    "text": "Cogito, ergo sum: je pense, donc je suis.",
+    "author": "René Descartes",
+    "source": "Principes de la philosophie",
+    "category": "wisdom",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-x302",
+    "text": "La raison du plus fort n'est pas toujours la bonne.",
+    "author": "Proverbe français",
+    "source": "Anonyme",
+    "category": "proverbs",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-x304",
+    "text": "Le silence est la plus haute sagesse de l'homme.",
+    "author": "Proverbe français",
+    "source": "Anonyme",
+    "category": "proverbs",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-x305",
+    "text": "Il n'y a que les montagnes qui ne se rencontrent jamais.",
+    "author": "Proverbe français",
+    "source": "Anonyme",
+    "category": "proverbs",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-x312",
+    "text": "Le génie, c'est une longue patience.",
+    "author": "Buffon",
+    "source": "Discours",
+    "category": "wisdom",
+    "locale": "fr"
   }
 ]
