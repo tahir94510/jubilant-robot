@@ -158,10 +158,18 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.1.5+8` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.5.0+15` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
-güncelle → push → CI yeşil → `quotecrack-release-aab` indir → B turu →
-Play Console'a yükle.
+güncelle → `docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu (EN + 6
+dil, ≤500 krk) ekle → push → CI yeşil → `quotecrack-release-aab` indir →
+B turu → Play Console'a yükle.
+
+> **🔒 GÜNCELLEMELERDE VERİ KORUNUR:** SharedPreferences Play güncellemelerinde
+> silinmez (yalnız kaldırma/"veriyi temizle" siler). `stats.v2` migration
+> idempotenttir (v1'i bir kez okur, v2 yazar; sonraki açılışlar v2'yi yükler ve
+> hiçbir anahtarı silmez) → seri, istatistik, premium ve jeton güncellemede
+> korunur. Bu davranış testle kilitli:
+> `test/logic/per_language_stats_test.dart` → "app updates preserve data".
 
 > **⚠️ ÜRETİM ÖNCESİ ZORUNLU ADIM — gelir koruması:** AdMob hesabı aktifleşip
 > gerçek reklam geliri başlayınca, `lib/config/app_config.dart` →

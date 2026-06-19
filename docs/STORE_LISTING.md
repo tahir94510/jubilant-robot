@@ -5,6 +5,83 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.5.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.5.0
+• Fresh background music: a playlist of calm tracks that gently crossfade — no more waiting for one loop to come back
+• New free "Short & Sweet" pack for quick wins
+• Continue right where you left off, per language
+• Every completed word now chimes and locks — even one- and two-letter words
+• "Restore default settings", softer sound effects, and accuracy fixes
+Happy decoding!
+```
+
+Localized "What's new" (paste the matching block per language in Play Console):
+
+**Türkçe**
+```
+1.5.0 YENİLİKLER
+• Yeni arka plan müziği: sakin parçalardan oluşan, birbirine yumuşakça geçen bir liste — artık tek döngünün dönmesini beklemek yok
+• Yeni ücretsiz "Kısa ve Öz" paketi
+• Her dil için kaldığın yerden devam et
+• Tamamlanan her kelime artık tınlar ve kilitlenir — tek ve iki harfli kelimeler dahil
+• "Varsayılan ayarlara dön", daha yumuşak ses efektleri ve düzeltmeler
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 1.5.0
+• Nueva música de fondo: una lista de pistas tranquilas que se funden suavemente, sin esperar a que vuelva un bucle
+• Nuevo paquete gratis "Cortas y al grano"
+• Continúa justo donde lo dejaste, por idioma
+• Cada palabra completada suena y se fija, incluso las de una y dos letras
+• "Restaurar ajustes", efectos de sonido más suaves y correcciones
+```
+
+**Deutsch**
+```
+NEU in 1.5.0
+• Neue Hintergrundmusik: eine Playlist ruhiger Stücke, die sanft ineinander übergehen – kein Warten mehr auf eine Schleife
+• Neues kostenloses Paket „Kurz & Knackig“
+• Mach pro Sprache genau dort weiter, wo du aufgehört hast
+• Jedes fertige Wort klingt und rastet ein – auch ein- und zweibuchstabige
+• „Standard wiederherstellen“, sanftere Soundeffekte und Korrekturen
+```
+
+**Français**
+```
+NOUVEAU dans 1.5.0
+• Nouvelle musique de fond : une liste de morceaux calmes qui se fondent en douceur, fini d'attendre une boucle
+• Nouveau paquet gratuit « Court & Concis »
+• Reprenez là où vous vous êtes arrêté, par langue
+• Chaque mot terminé sonne et se verrouille, même d'une ou deux lettres
+• « Réglages par défaut », effets sonores plus doux et correctifs
+```
+
+**Italiano**
+```
+NOVITÀ nella 1.5.0
+• Nuova musica di sottofondo: una playlist di brani tranquilli che si fondono dolcemente, niente più attesa di un loop
+• Nuovo pacchetto gratuito "Brevi e Concise"
+• Riprendi da dove avevi lasciato, per lingua
+• Ogni parola completata suona e si blocca, anche di una e due lettere
+• "Ripristina impostazioni", effetti sonori più morbidi e correzioni
+```
+
+**Português**
+```
+NOVIDADES na 1.5.0
+• Nova música de fundo: uma lista de faixas calmas que se misturam suavemente, sem esperar por um loop
+• Novo pacote gratuito "Curtas e Diretas"
+• Continue de onde parou, por idioma
+• Cada palavra concluída soa e trava, mesmo as de uma e duas letras
+• "Restaurar padrões", efeitos sonoros mais suaves e correções
+```
+
+---
+
 ## Release notes: v1.4.0 (max 500 chars, paste into "What's new")
 
 ```
