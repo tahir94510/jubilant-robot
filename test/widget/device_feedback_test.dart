@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/app_settings.dart';
+import 'package:quotecrack/models/pack.dart';
 import 'package:quotecrack/models/quote.dart';
 import 'package:quotecrack/services/storage_service.dart';
 import 'package:quotecrack/ui/screens/achievements_screen.dart';
 import 'package:quotecrack/ui/screens/home_screen.dart';
 import 'package:quotecrack/ui/screens/onboarding_screen.dart';
+import 'package:quotecrack/ui/screens/pack_detail_screen.dart';
 import 'package:quotecrack/ui/screens/packs_screen.dart';
 import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
@@ -180,6 +182,53 @@ void main() {
 
     h.game.stopTimer();
   });
+
+  testWidgets('completion screen survives a LONG language (German) on a narrow '
+      'phone with huge text — action buttons never overflow', (tester) async {
+    // The original report was "buttons break in other languages": German
+    // labels ("Ergebnis teilen", "Zurück zum Menü") are much longer than the
+    // English ones, so this is the real regression guard for label overflow.
+    tester.view.physicalSize = const Size(320, 640);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: true);
+
+    await tester.pumpWidget(
+      h.app(const PuzzleScreen(), textScale: 1.6, locale: const Locale('de')),
+    );
+    await tester.pump();
+    await solveByTapping(tester, h);
+    await tester.pumpAndSettle();
+
+    // No RenderFlex overflow (or any) while laying out the German actions.
+    expect(tester.takeException(), isNull);
+    expect(find.text('Ergebnis teilen').hitTestable(), findsOneWidget);
+    expect(find.text('Zurück zum Menü').hitTestable(), findsOneWidget);
+
+    h.game.stopTimer();
+  });
+
+  testWidgets(
+    'pack detail grid lays out without overflow (huge text, German)',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+
+      final h = await Harness.create(quotes: loadRealQuotes());
+      await tester.pumpWidget(
+        h.app(
+          PackDetailScreen(pack: Pack.byId('beginner')),
+          textScale: 1.6,
+          locale: const Locale('de'),
+        ),
+      );
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('settings and packs survive narrow screens with huge text', (
     tester,
