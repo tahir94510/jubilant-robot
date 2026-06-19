@@ -105,13 +105,19 @@ class HomeScreen extends StatelessWidget {
                                         : Icons.music_off_outlined,
                                   ),
                                 ),
-                                const SizedBox(width: 4),
-                                StreakBadge(
-                                  streak: progress.displayStreakFor(
-                                    contentLocale,
+                                // The streak badge appears only once there is a
+                                // live streak (>=1); a "0" badge is meaningless
+                                // and just clutters the header.
+                                if (progress.displayStreakFor(contentLocale) >=
+                                    1) ...[
+                                  const SizedBox(width: 4),
+                                  StreakBadge(
+                                    streak: progress.displayStreakFor(
+                                      contentLocale,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 4),
+                                  const SizedBox(width: 4),
+                                ],
                                 IconButton(
                                   tooltip: l10n.settingsTooltip,
                                   visualDensity: VisualDensity.compact,

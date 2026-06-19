@@ -31,4 +31,14 @@ void main() {
     // "isn't" into ISN + T.
     expect(solved("It isn't over").correctWordCount, 3);
   });
+
+  test('single-letter words count too (every whole word earns the cue)', () {
+    // Tokens: "I"(1), "am"(2), "here"(4) -> all three count, including the
+    // single-letter "I" (was previously excluded).
+    final s = solved('I am here');
+    expect(s.correctWordCount, 3);
+    // ...and the single-letter word's cipher letter is locked/confirmed.
+    final iCipher = s.cipher.encryptLetter('I');
+    expect(s.confirmedLetters.contains(iCipher), isTrue);
+  });
 }

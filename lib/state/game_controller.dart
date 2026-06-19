@@ -304,6 +304,16 @@ class GameController extends ChangeNotifier {
     return s.cipherText[i];
   }
 
+  /// True when [quoteId] has a saved, partially-filled attempt that has not
+  /// been solved — so list screens can show it as "in progress", distinct from
+  /// untouched and finished. Reads the lightweight saved state directly.
+  bool hasInProgress(String quoteId) {
+    final j = _storage.readJson(StorageService.puzzleStateKey(quoteId));
+    if (j == null || j['solved'] == true) return false;
+    final g = j['guesses'];
+    return g is Map && g.isNotEmpty;
+  }
+
   /// Selects a board cell by its position in the cipher text. This is what the
   /// board taps call: it pins the cursor to the exact cell touched.
   void selectIndex(int index) {

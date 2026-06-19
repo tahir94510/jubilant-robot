@@ -97,7 +97,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get musicVolume => 'Müzik ses düzeyi';
 
   @override
-  String get remindMeDaily => 'Beni her gün hatırlat';
+  String get remindMeDaily => 'Bana her gün hatırlat';
 
   @override
   String reminderAt(String time) {

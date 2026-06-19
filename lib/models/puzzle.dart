@@ -66,10 +66,9 @@ class PuzzleSession {
   bool isGuessCorrect(String cipherLetter) =>
       guesses[cipherLetter] == cipher.decryptLetter(cipherLetter);
 
-  /// Number of real words (2+ letters) currently solved correctly — drives
-  /// the small "word done" progress cue. Single-letter words (A, I) are a
-  /// single keystroke, so they stay a plain tap; everything from two-letter
-  /// words up earns the brighter chime.
+  /// Number of words currently solved correctly — drives the "word done"
+  /// progress cue. EVERY whole word counts, including single-letter words
+  /// (A, I): finishing any word, whatever its length, earns the chime + lock.
   ///
   /// A "word" is a whitespace-delimited token (so a hyphenated word like
   /// "well-done" or a contraction like "isn't" counts once, not as its
@@ -80,25 +79,25 @@ class PuzzleSession {
     var count = 0;
     for (final word in cipherText.split(' ')) {
       final letters = alphabet.lettersOnly(word);
-      if (letters.length < 2) continue;
+      if (letters.isEmpty) continue;
       if (letters.split('').every(isGuessCorrect)) count++;
     }
     return count;
   }
 
-  /// Cipher letters that belong to at least one fully-correct word (2+ letters).
+  /// Cipher letters that belong to at least one fully-correct word (any length,
+  /// single-letter words included).
   ///
   /// In a unique-solution cryptogram, once a whole word reads correctly its
   /// letter mappings are definitively right, so these letters are LOCKED (the
   /// player can't disturb them) and render in a distinct "confirmed" color —
-  /// keeping them from blending into the in-progress guesses around them.
-  /// Single-letter words (A, I) are one keystroke and stay editable. Uses the
-  /// same per-token, alphabet-aware tokenizing as [correctWordCount].
+  /// keeping them from blending into the in-progress guesses around them. Uses
+  /// the same per-token, alphabet-aware tokenizing as [correctWordCount].
   Set<String> get confirmedLetters {
     final out = <String>{};
     for (final word in cipherText.split(' ')) {
       final letters = alphabet.lettersOnly(word);
-      if (letters.length < 2) continue;
+      if (letters.isEmpty) continue;
       final cells = letters.split('');
       if (cells.every(isGuessCorrect)) out.addAll(cells);
     }

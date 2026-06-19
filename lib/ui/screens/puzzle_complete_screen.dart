@@ -38,6 +38,12 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
   bool _recorded = false;
   List<Achievement> _newAchievements = const [];
 
+  /// The daily streak AFTER this solve is recorded. Captured post-record (the
+  /// screen reads controllers, so it would otherwise show the pre-solve value —
+  /// e.g. "0 day streak" on a first daily). Drives the streak chip, which is
+  /// hidden until this is >= 1 so a meaningless "0-day streak" never shows.
+  int _streak = 0;
+
   @override
   void initState() {
     super.initState();
@@ -70,9 +76,15 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
       locale: session.quote.locale,
     );
 
-    if (mounted && fresh.isNotEmpty) {
-      setState(() => _newAchievements = fresh);
-      context.read<SoundService>().achievement();
+    // Capture the streak AFTER recording so the chip shows the post-solve value
+    // (e.g. "1 day streak" on a first daily, never the pre-solve "0").
+    final streak = progress.displayStreakFor(session.quote.locale);
+    if (mounted) {
+      setState(() {
+        _newAchievements = fresh;
+        _streak = streak;
+      });
+      if (fresh.isNotEmpty) context.read<SoundService>().achievement();
     }
 
     if (firstSolve) {
@@ -116,7 +128,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     // A fresh achievement (or a weekly streak milestone) upgrades the
     // confetti; the key swap replays the burst when achievements land a
     // frame after entry.
-    final streak = progress.displayStreakFor(quote.locale);
+    final streak = _streak;
     final bigCelebration =
         _newAchievements.isNotEmpty ||
         (game.isDaily && streak > 0 && streak % 7 == 0);
@@ -213,7 +225,9 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                 icon: Icons.lightbulb_outline,
                                 label: l10n.solveHints(game.hintsUsed),
                               ),
-                              if (game.isDaily)
+                              // Only show the streak chip once there is a real
+                              // streak (>=1) — a "0 day streak" is meaningless.
+                              if (game.isDaily && streak >= 1)
                                 _StatChip(
                                   icon: Icons.local_fire_department_outlined,
                                   label: l10n.solveStreak(streak),
