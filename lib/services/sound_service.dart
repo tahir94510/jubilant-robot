@@ -95,11 +95,25 @@ class SoundService {
     return p;
   }
 
+  /// Last play time per discrete sound, for the spam guard below.
+  final Map<String, int> _lastPlayedMs = {};
+
+  /// Minimum gap before the SAME discrete sound may retrigger. Rapid repeats
+  /// (e.g. several words completing in a burst) would otherwise seek-restart
+  /// the clip mid-attack and click; dropping the extra retrigger keeps the
+  /// first play clean. Distinct sounds are unaffected (per-key).
+  static const int _minGapMs = 70;
+
   /// Replay a media-player sound from its start without a stop()/teardown.
   /// seek-to-zero repositions in place (no SoundPool stream rebuild), so the
   /// ringing tail of the previous play is never hard-cut into a click.
-  void _play(AudioPlayer? player) {
+  void _play(String key) {
+    final player = _players[key];
     if (!_ready || player == null || !isEnabled()) return;
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final last = _lastPlayedMs[key];
+    if (last != null && now - last < _minGapMs) return;
+    _lastPlayedMs[key] = now;
     unawaited(
       player
           .seek(Duration.zero)
@@ -117,16 +131,16 @@ class SoundService {
     unawaited(player.stop().then((_) => player.resume()).catchError((_) {}));
   }
 
-  void hint() => _play(_players['hint.wav']);
+  void hint() => _play('hint.wav');
 
-  void conflict() => _play(_players['conflict.wav']);
+  void conflict() => _play('conflict.wav');
 
   /// A single soft bell when a typed guess finishes a whole word.
-  void wordComplete() => _play(_players['word.wav']);
+  void wordComplete() => _play('word.wav');
 
-  void success() => _play(_players['success.wav']);
+  void success() => _play('success.wav');
 
-  void achievement() => _play(_players['achievement.wav']);
+  void achievement() => _play('achievement.wav');
 
   void dispose() {
     for (final p in [..._tapPool, ..._players.values]) {
