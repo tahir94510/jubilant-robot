@@ -170,6 +170,15 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get homeContinueLabel => 'DEVAM ET';
+
+  @override
+  String get homeContinueSubtitle => 'Kaldığın yerden devam et';
+
+  @override
+  String get continuePlaying => 'Devam et';
+
+  @override
   String get playNow => 'Hemen oyna';
 
   @override

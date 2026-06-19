@@ -46,4 +46,9 @@ class StorageService {
   static const String economyKey = 'economy.v1';
   static const String achievementsKey = 'achievements.v1';
   static String puzzleStateKey(String quoteId) => 'puzzle_state.$quoteId';
+
+  /// The last non-daily puzzle opened in a given content language, so Home can
+  /// offer a per-language "Continue" card. Per-locale by design: each language
+  /// profile resumes its own last puzzle.
+  static String lastOpenKey(String locale) => 'last_open.$locale';
 }

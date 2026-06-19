@@ -171,6 +171,15 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get homeContinueLabel => 'FORTSETZEN';
+
+  @override
+  String get homeContinueSubtitle => 'Mach dort weiter, wo du aufgehört hast';
+
+  @override
+  String get continuePlaying => 'Fortsetzen';
+
+  @override
   String get playNow => 'Jetzt spielen';
 
   @override

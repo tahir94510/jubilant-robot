@@ -414,6 +414,24 @@ abstract class AppLocalizations {
   /// **'A cipher by {author} awaits.'**
   String homeDailyAwaits(String author);
 
+  /// No description provided for @homeContinueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE'**
+  String get homeContinueLabel;
+
+  /// No description provided for @homeContinueSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick up where you left off'**
+  String get homeContinueSubtitle;
+
+  /// No description provided for @continuePlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continuePlaying;
+
   /// No description provided for @playNow.
   ///
   /// In en, this message translates to:

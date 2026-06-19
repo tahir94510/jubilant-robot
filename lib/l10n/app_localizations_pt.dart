@@ -172,6 +172,15 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get homeContinueLabel => 'CONTINUAR';
+
+  @override
+  String get homeContinueSubtitle => 'Continue de onde parou';
+
+  @override
+  String get continuePlaying => 'Continuar';
+
+  @override
   String get playNow => 'Jogar agora';
 
   @override

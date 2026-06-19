@@ -172,6 +172,15 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get homeContinueLabel => 'CONTINUAR';
+
+  @override
+  String get homeContinueSubtitle => 'Retoma donde lo dejaste';
+
+  @override
+  String get continuePlaying => 'Continuar';
+
+  @override
   String get playNow => 'Jugar ahora';
 
   @override

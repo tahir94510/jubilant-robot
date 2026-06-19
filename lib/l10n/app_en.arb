@@ -65,6 +65,9 @@
       }
     }
   },
+  "homeContinueLabel": "CONTINUE",
+  "homeContinueSubtitle": "Pick up where you left off",
+  "continuePlaying": "Continue",
   "playNow": "Play now",
   "replay": "Replay",
   "puzzlePacks": "Puzzle packs",
