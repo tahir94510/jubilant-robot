@@ -380,6 +380,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get backToPuzzle => 'Back to my attempt';
 
   @override
+  String get actionPrev => 'Previous letter';
+
+  @override
+  String get actionNext => 'Next letter';
+
+  @override
+  String get actionUndo => 'Undo';
+
+  @override
+  String get actionRedo => 'Redo';
+
+  @override
   String get dailyPuzzleTitle => 'Daily puzzle';
 
   @override

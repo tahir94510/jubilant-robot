@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../config/monetization_config.dart';
 import 'ads_service.dart';
@@ -27,6 +28,10 @@ class MobileAdsService extends AdsService {
   RewardedAd? _rewarded;
   DateTime? _lastInterstitialShown;
 
+  /// Sticky: once a real rewarded ad serves, free hints are off for good.
+  static const String _everServedKey = 'ads.rewarded_served';
+  bool _everServed = false;
+
   @override
   bool get supported => true;
 
@@ -34,8 +39,31 @@ class MobileAdsService extends AdsService {
   ValueListenable<bool> get canRequestAds => _canRequestAds;
 
   @override
+  bool get rewardedReady =>
+      !_disabled && _canRequestAds.value && _rewarded != null;
+
+  @override
+  bool get rewardedEverServed => _everServed;
+
+  Future<void> _markEverServed() async {
+    if (_everServed) return;
+    _everServed = true;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(_everServedKey, true);
+    } catch (_) {}
+  }
+
+  @override
   Future<void> initialize({required bool premium}) async {
     if (premium || _disabled) return;
+
+    // Restore the sticky "ads have served" flag first so a fresh launch in
+    // production never reopens the free-hint fallback window.
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      _everServed = prefs.getBool(_everServedKey) ?? false;
+    } catch (_) {}
 
     final params = ConsentRequestParameters();
     final consentDone = Completer<void>();
@@ -133,7 +161,11 @@ class MobileAdsService extends AdsService {
       adUnitId: MonetizationConfig.rewardedAdUnitId,
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) => _rewarded = ad,
+        onAdLoaded: (ad) {
+          _rewarded = ad;
+          // A real ad loaded -> AdMob is live; close the free-hint fallback.
+          unawaited(_markEverServed());
+        },
         onAdFailedToLoad: (_) => _rewarded = null,
       ),
     );

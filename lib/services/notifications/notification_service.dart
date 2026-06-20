@@ -14,9 +14,15 @@ abstract class NotificationService {
 
   Future<void> initialize();
 
-  /// Asks for POST_NOTIFICATIONS (Android 13+). Called from the settings
-  /// toggle — in context — not at app start, to maximize grant rate.
+  /// Asks for POST_NOTIFICATIONS (Android 13+) and exact-alarm permission.
+  /// Called from the settings toggle — in context — not at app start, to
+  /// maximize grant rate.
   Future<bool> requestPermission();
+
+  /// Whether the OS currently allows this app to post notifications. Used to
+  /// keep the in-app reminder toggle in sync when the user disables
+  /// notifications from system settings.
+  Future<bool> areEnabled();
 
   /// (Re)schedules the repeating daily reminder. Inexact by design: no
   /// SCHEDULE_EXACT_ALARM permission, and a few minutes of drift is fine

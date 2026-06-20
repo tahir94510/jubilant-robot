@@ -180,6 +180,10 @@
   "puzzleAlreadySolved": "You've already cracked this one.",
   "showSolution": "Show solution",
   "backToPuzzle": "Back to my attempt",
+  "actionPrev": "Previous letter",
+  "actionNext": "Next letter",
+  "actionUndo": "Undo",
+  "actionRedo": "Redo",
   "dailyPuzzleTitle": "Daily puzzle",
   "achievementsCountTitle": "Achievements ({unlocked}/{total})",
   "@achievementsCountTitle": {

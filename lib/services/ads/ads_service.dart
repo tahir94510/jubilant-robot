@@ -32,6 +32,15 @@ abstract class AdsService {
   /// Shows a rewarded ad; resolves `true` if the reward was earned.
   Future<bool> showRewardedForHints();
 
+  /// True when a rewarded ad is loaded and can be shown right now.
+  bool get rewardedReady;
+
+  /// True once a real rewarded ad has EVER served on this device (persisted).
+  /// The moment AdMob starts serving, this flips to `true` for good, so the
+  /// closed-test free-hint fallback turns itself off automatically — no one can
+  /// earn a hint without watching once ads are live.
+  bool get rewardedEverServed;
+
   /// Whether the UMP privacy-options entry point must be shown in settings.
   Future<bool> get privacyOptionsRequired;
 

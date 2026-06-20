@@ -756,6 +756,30 @@ abstract class AppLocalizations {
   /// **'Back to my attempt'**
   String get backToPuzzle;
 
+  /// No description provided for @actionPrev.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous letter'**
+  String get actionPrev;
+
+  /// No description provided for @actionNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next letter'**
+  String get actionNext;
+
+  /// No description provided for @actionUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get actionUndo;
+
+  /// No description provided for @actionRedo.
+  ///
+  /// In en, this message translates to:
+  /// **'Redo'**
+  String get actionRedo;
+
   /// No description provided for @dailyPuzzleTitle.
   ///
   /// In en, this message translates to:

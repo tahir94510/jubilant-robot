@@ -15,10 +15,16 @@ class HintBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final economy = context.watch<EconomyController>();
-    final game = context.read<GameController>();
+    // watch: the reveal button must disable the moment the last letter is
+    // revealed (canRevealMore flips false), so a token is never wasted.
+    final game = context.watch<GameController>();
     final ads = context.read<AdsService>();
     final sounds = context.read<SoundService>();
     final l10n = AppLocalizations.of(context);
+
+    // Reveal is allowed only when there is something left to uncover AND a
+    // token is available — filling the whole quote via hints disables it.
+    final canReveal = economy.canUseHint && game.canRevealMore;
 
     // Wrap, not Row: on narrow screens / large system text the two buttons
     // stack instead of overflowing (seen as "overflow by N px" on device).
@@ -29,7 +35,7 @@ class HintBar extends StatelessWidget {
       runSpacing: 10,
       children: [
         OutlinedButton.icon(
-          onPressed: economy.canUseHint
+          onPressed: canReveal
               ? () {
                   if (economy.spendHintToken()) {
                     game.revealSelected();
@@ -69,31 +75,64 @@ class _RewardedHintButton extends StatefulWidget {
 class _RewardedHintButtonState extends State<_RewardedHintButton> {
   bool _busy = false;
 
+  /// Timestamp gate (no Timer, so nothing dangles in tests): after a grant,
+  /// taps within this window are ignored, so rapid taps can't stack "added"
+  /// snackbars or farm tokens.
+  int _cooldownUntilMs = 0;
+
   Future<void> _onTap(bool canAds) async {
-    if (_busy) return;
+    final nowMs = DateTime.now().millisecondsSinceEpoch;
+    if (_busy || nowMs < _cooldownUntilMs) return;
     final ads = context.read<AdsService>();
     final economy = context.read<EconomyController>();
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     setState(() => _busy = true);
+    var granted = false;
     try {
-      // Always try a real rewarded ad first: the moment AdMob serves, the
-      // reward comes from the watched ad and the fallback below never runs.
-      final earned = (ads.supported && canAds)
-          ? await ads.showRewardedForHints()
-          : false;
-      if (!mounted) return;
-      // One message at a time — replace any visible snackbar instead of queuing.
-      messenger.hideCurrentSnackBar();
-      if (earned || AppConfig.grantHintsWithoutAd) {
+      if (ads.supported && canAds && ads.rewardedReady) {
+        // A real ad is loaded: the reward MUST be earned by watching it. The
+        // free fallback never runs here — declining the ad grants nothing.
+        final earned = await ads.showRewardedForHints();
+        if (!mounted) return;
+        messenger.hideCurrentSnackBar();
+        if (earned) {
+          economy.grantRewardedTokens();
+          messenger.showSnackBar(
+            SnackBar(
+              content: Text(
+                l10n.hintTokensAdded(AppConfig.tokensPerRewardedAd),
+              ),
+            ),
+          );
+          granted = true;
+        } else {
+          messenger.showSnackBar(SnackBar(content: Text(l10n.adNoVideo)));
+        }
+      } else if (!ads.rewardedEverServed && AppConfig.grantHintsWithoutAd) {
+        // Closed test only: AdMob has never served on this device, so allow the
+        // convenience grant. The moment real ads serve once, this path closes
+        // for good (rewardedEverServed sticks) — no free hints in production.
+        if (!mounted) return;
+        messenger.hideCurrentSnackBar();
         economy.grantRewardedTokens();
         messenger.showSnackBar(
           SnackBar(
             content: Text(l10n.hintTokensAdded(AppConfig.tokensPerRewardedAd)),
           ),
         );
+        granted = true;
       } else {
+        // Ads are live but none is loaded this instant: ask to try again, never
+        // grant for free.
+        if (!mounted) return;
+        messenger.hideCurrentSnackBar();
         messenger.showSnackBar(SnackBar(content: Text(l10n.adNoVideo)));
+      }
+      // Spam guard: open a short cooldown after a grant so rapid taps are
+      // ignored (no stacked snackbars, no token farming).
+      if (granted) {
+        _cooldownUntilMs = DateTime.now().millisecondsSinceEpoch + 1200;
       }
     } finally {
       if (mounted) setState(() => _busy = false);

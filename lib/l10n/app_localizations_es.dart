@@ -386,6 +386,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get backToPuzzle => 'Volver a mi intento';
 
   @override
+  String get actionPrev => 'Letra anterior';
+
+  @override
+  String get actionNext => 'Letra siguiente';
+
+  @override
+  String get actionUndo => 'Deshacer';
+
+  @override
+  String get actionRedo => 'Rehacer';
+
+  @override
   String get dailyPuzzleTitle => 'Criptograma diario';
 
   @override

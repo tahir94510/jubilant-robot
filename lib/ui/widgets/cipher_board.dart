@@ -14,11 +14,18 @@ class CipherBoard extends StatelessWidget {
     required this.selected,
     required this.errorChecking,
     required this.onSelect,
+    this.selectedIndex,
     this.solveWave,
   });
 
   final PuzzleSession session;
   final String? selected;
+
+  /// The exact focused cell position in [PuzzleSession.cipherText]. That cell
+  /// renders as the prominent [CellState.selected]; the other copies of the
+  /// same cipher letter render as the subtler [CellState.related], so the
+  /// player can feel which cell the cursor is actually on.
+  final int? selectedIndex;
   final bool errorChecking;
 
   /// Called with the tapped cell's POSITION in [PuzzleSession.cipherText], not
@@ -77,14 +84,23 @@ class CipherBoard extends StatelessWidget {
                   totalLetters > 0 &&
                   letterIndex / totalLetters <= solveWave!;
               letterIndex++;
+              var state = inWave
+                  ? CellState.solved
+                  : _stateFor(ch, conflicts, confirmed, boardFull);
+              // All copies of the selected letter come back as `selected`;
+              // demote every copy except the focused cell to `related` so the
+              // cursor's actual position stands out from its siblings.
+              if (state == CellState.selected &&
+                  selectedIndex != null &&
+                  thisPos != selectedIndex) {
+                state = CellState.related;
+              }
               cells.add(
                 LetterCell(
                   cipherLetter: ch,
                   guess: session.guesses[ch],
                   width: cellWidth,
-                  state: inWave
-                      ? CellState.solved
-                      : _stateFor(ch, conflicts, confirmed, boardFull),
+                  state: state,
                   onTap: () => onSelect(thisPos),
                 ),
               );

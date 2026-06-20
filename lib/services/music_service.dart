@@ -25,12 +25,12 @@ class MusicService with WidgetsBindingObserver {
 
   /// The shuffled-once-through playlist of bed assets.
   static const List<String> _tracks = [
-    'audio/music_calm_1.wav',
-    'audio/music_calm_2.wav',
-    'audio/music_calm_3.wav',
-    'audio/music_calm_4.wav',
-    'audio/music_calm_5.wav',
-    'audio/music_calm_6.wav',
+    'audio/music_calm_1.ogg',
+    'audio/music_calm_2.ogg',
+    'audio/music_calm_3.ogg',
+    'audio/music_calm_4.ogg',
+    'audio/music_calm_5.ogg',
+    'audio/music_calm_6.ogg',
   ];
 
   /// How long one track overlaps the next. Both tracks resolve to silence at
@@ -81,7 +81,8 @@ class MusicService with WidgetsBindingObserver {
   final Random _rng = Random();
 
   bool _ready = false;
-  bool _playing = false;
+  bool _started = false; // a track has been loaded on the active player
+  bool _playing = false; // currently sounding (not paused by toggle/lifecycle)
 
   Timer? _masterFade;
   Timer? _crossfadeTimer; // schedules the START of the next crossfade
@@ -153,7 +154,8 @@ class MusicService with WidgetsBindingObserver {
   /// retries from a global tap listener until one attempt sticks; every later
   /// call is a no-op.
   void ensureStarted() {
-    if (!_ready || _playing || _players.isEmpty || !isEnabled()) return;
+    if (!_ready || _started || _players.isEmpty || !isEnabled()) return;
+    _started = true;
     _playing = true; // optimistic; reverted if the play attempt is rejected
     unawaited(_startActive(_nextTrack()));
   }
@@ -169,10 +171,46 @@ class MusicService with WidgetsBindingObserver {
       await p.resume();
     } catch (_) {
       _playing = false;
+      _started = false;
       return;
     }
     _fadeMasterTo(_targetVolume);
     await _scheduleCrossfade(p);
+  }
+
+  /// Resumes the CURRENT track from where it was paused (toggle back on, or
+  /// returning from background) and re-arms the crossfade from the live
+  /// position — so the music continues instead of restarting from a new track.
+  Future<void> _resumeCurrent() async {
+    _playing = true;
+    try {
+      await _activePlayer.resume();
+      if (_xfade > 0) await _idlePlayer.resume(); // mid-crossfade
+    } catch (_) {
+      return;
+    }
+    _fadeMasterTo(_targetVolume, duration: const Duration(milliseconds: 600));
+    await _rearmCrossfadeFromPosition(_activePlayer);
+  }
+
+  /// Re-schedules the crossfade based on the player's CURRENT position, used
+  /// after a pause/resume cancelled the original one-shot timer.
+  Future<void> _rearmCrossfadeFromPosition(AudioPlayer p) async {
+    if (_xfade > 0) return; // a crossfade is already in flight
+    _crossfadeTimer?.cancel();
+    Duration total, pos;
+    try {
+      total = await p.getDuration() ?? _fallbackDuration;
+      pos = await p.getCurrentPosition() ?? Duration.zero;
+    } catch (_) {
+      total = _fallbackDuration;
+      pos = Duration.zero;
+    }
+    var lead = total - _crossfadeLead - pos;
+    if (lead < const Duration(milliseconds: 300)) {
+      lead = const Duration(milliseconds: 300);
+    }
+    _crossfadeTimer = Timer(lead, _beginCrossfade);
   }
 
   /// Reads the active track's real length and arms the timer that begins the
@@ -266,12 +304,19 @@ class MusicService with WidgetsBindingObserver {
     });
   }
 
-  /// Applies the Settings toggle immediately (fade in / fade out + pause).
+  /// Applies the Settings toggle immediately. Turning music back on RESUMES the
+  /// same track from where it paused (not a fresh track), so toggling feels
+  /// continuous rather than restarting the playlist.
   Future<void> setEnabled(bool on) async {
     if (!_ready || _players.isEmpty) return;
     if (on) {
-      ensureStarted();
-      _fadeMasterTo(_targetVolume);
+      if (!_started) {
+        ensureStarted();
+      } else if (!_playing) {
+        unawaited(_resumeCurrent());
+      } else {
+        _fadeMasterTo(_targetVolume);
+      }
     } else {
       _fadeMasterTo(
         0,
@@ -292,18 +337,16 @@ class MusicService with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (!_ready || _players.isEmpty) return;
     if (state == AppLifecycleState.resumed) {
-      if (_playing && isEnabled()) {
-        for (final p in _players) {
-          unawaited(p.resume().catchError((_) {}));
-        }
-        _fadeMasterTo(
-          _targetVolume,
-          duration: const Duration(milliseconds: 600),
-        );
+      // Resume the SAME track from its position and re-arm the crossfade — no
+      // restart-from-scratch when the app comes back to the foreground.
+      if (_started && _playing && isEnabled()) {
+        unawaited(_resumeCurrent());
       }
     } else {
       // Backgrounded / call / full-screen ad: fade out smoothly before pausing
-      // so the bed never gets chopped mid-note.
+      // so the bed never gets chopped mid-note. The crossfade timer is cancelled
+      // and re-armed from the live position on resume.
+      _crossfadeTimer?.cancel();
       _fadeMasterTo(
         0,
         duration: const Duration(milliseconds: 220),

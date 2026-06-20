@@ -201,6 +201,9 @@ write(
 # byte-identical.)
 write(
     "word.wav",
-    mix((0.00, air(bell(1318.5, 0.32, volume=0.24, decay=7), amount=0.04)),
+    # Longer (0.55s) and gentler decay so the bell rings out and settles to
+    # near-silence on its own before the edge fade — the old 0.32s/decay-7
+    # version still carried ~10% energy at the cut, which read as "abrupt".
+    mix((0.00, air(bell(1318.5, 0.55, volume=0.24, decay=5.0), amount=0.04)),
         target=0.42),
 )

@@ -13,8 +13,14 @@ class UpdateService {
   /// flexible download and installs it once ready. Safe to call fire-and-forget
   /// right after launch.
   Future<void> maybePromptUpdate() async {
-    // Only Play-distributed Android builds can use in-app updates.
-    if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return;
+    // Only Play-distributed RELEASE Android builds can use in-app updates.
+    // Skipping debug/profile avoids exercising the native Play flow during
+    // development/testing, where it can't succeed anyway.
+    if (kIsWeb ||
+        !kReleaseMode ||
+        defaultTargetPlatform != TargetPlatform.android) {
+      return;
+    }
     try {
       final info = await InAppUpdate.checkForUpdate();
       if (info.updateAvailability != UpdateAvailability.updateAvailable) {

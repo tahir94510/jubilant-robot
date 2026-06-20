@@ -24,21 +24,21 @@ Per-track musical invariants (unchanged from v3, now enforced per track):
 - Every melody/arp pitch is a chord tone of the chord it sounds over,
   enforced by a self-check below: a wrong note is mathematically impossible.
 
-Audio format: 22.05 kHz mono 16-bit. A soft pad/pluck bed has no energy near
-the old 22 kHz ceiling, so half the sample rate is inaudible here and keeps
-each file small (~3.4 MB) and light to decode (no buffer-underrun crackle on
-low-end phones). Six tracks land around ~20 MB total — acceptable for an
-offline game and far better UX than one repeating loop.
+Audio format: 22.05 kHz mono, encoded to OGG/Vorbis. A soft pad/pluck bed is
+band-limited, so Vorbis compresses it ~25x with no audible loss — six tracks
+land under ~1 MB total (16-bit WAV was ~20 MB, which Play flags as a large
+download). Requires `soundfile` + `numpy` at generation time (dev-only tool).
 
 Usage: python3 tool/generate_music.py
-Output (committed): assets/audio/music_calm_1.wav .. music_calm_6.wav
+Output (committed): assets/audio/music_calm_1.ogg .. music_calm_6.ogg
 """
 
 import math
-import struct
 import sys
-import wave
 from pathlib import Path
+
+import numpy as np
+import soundfile as sf
 
 RATE = 22050
 OUT = Path(__file__).resolve().parent.parent / "assets/audio"
@@ -66,13 +66,19 @@ DETUNE = 2.0 ** (3.0 / 1200.0)  # +/- 3 cents
 # Each progression starts on C (the I) and ends on G (the V) so transposition
 # preserves the tonic->dominant frame and the crossfade lands as a cadence.
 TRACKS = [
-    ("music_calm_1.wav", 0, ["C", "Am", "F", "G", "C", "F", "Dm", "G"], 10.0),
-    ("music_calm_2.wav", 3, ["C", "Em", "Am", "F", "Dm", "G", "C", "G"], 9.5),
-    ("music_calm_3.wav", 5, ["C", "F", "Am", "Em", "F", "C", "Dm", "G"], 10.5),
-    ("music_calm_4.wav", -2, ["C", "G", "Am", "F", "C", "Dm", "Em", "G"], 9.0),
-    ("music_calm_5.wav", 7, ["C", "Am", "Dm", "G", "Em", "Am", "F", "G"], 10.0),
-    ("music_calm_6.wav", -4, ["C", "F", "G", "Em", "Am", "Dm", "F", "G"], 11.0),
+    ("music_calm_1.ogg", 0, ["C", "Am", "F", "G", "C", "F", "Dm", "G"], 10.0),
+    ("music_calm_2.ogg", 3, ["C", "Em", "Am", "F", "Dm", "G", "C", "G"], 9.5),
+    ("music_calm_3.ogg", 5, ["C", "F", "Am", "Em", "F", "C", "Dm", "G"], 10.5),
+    ("music_calm_4.ogg", -2, ["C", "G", "Am", "F", "C", "Dm", "Em", "G"], 9.0),
+    ("music_calm_5.ogg", 7, ["C", "Am", "Dm", "G", "Em", "Am", "F", "G"], 10.0),
+    ("music_calm_6.ogg", -4, ["C", "F", "G", "Em", "Am", "Dm", "F", "G"], 11.0),
 ]
+
+# Every track is loudness-matched to this RMS so none plays louder/softer than
+# another (peak-normalizing alone left denser tracks sounding louder). A peak
+# ceiling keeps headroom; OGG/Vorbis encodes the result.
+TARGET_RMS = 0.14
+PEAK_CEILING = 0.92
 
 
 def transpose(chord, semitones):
@@ -166,10 +172,13 @@ def compose(prog, semitones, chord_span):
         chord = transpose(CHORDS[name], semitones)
         offset = idx * chord_span
 
-        # The first chord rises out of silence; the last closes fully before
-        # the end so the track resolves to a quiet breath.
+        # The first chord rises gently; the last SUSTAINS to the end (short
+        # release) instead of fading to a long silence. The track-to-track
+        # crossfade (MusicService) then overlaps two audible tails/heads, so
+        # there is no silent "wait" between tracks. An 80 ms edge fade still
+        # guarantees a click-free hard stop.
         if idx == last:
-            dur, attack, release = chord_span - 0.7, 4.0, 3.3
+            dur, attack, release = chord_span, 4.0, 1.2
         elif idx == 0:
             dur, attack, release = chord_span + tail, 2.5, 5.0
         else:
@@ -198,13 +207,17 @@ def compose(prog, semitones, chord_span):
                 continue
             add(offset + beat, pluck(chord[beat_i]))
 
-    # Gentle saturation glues the layers; normalize LAST so the final peak is
-    # exact and always leaves headroom under the UI sound effects.
+    # Gentle saturation glues the layers; then LOUDNESS-normalize to a shared
+    # RMS so every track sits at the same perceived level (peak-only
+    # normalization let denser tracks sound louder). Clamp the scale so the
+    # peak never exceeds the ceiling.
     glued = [math.tanh(1.1 * v) / math.tanh(1.1) for v in mixbuf]
-    peak = max(abs(v) for v in glued)
-    # Normalize to ~0.80 so the bed sits roughly at the UI sound-effect level
-    # (generate_sounds.py targets 0.82).
-    return [v * (0.80 / peak) for v in glued]
+    cur_rms = rms(glued)
+    peak = max(abs(v) for v in glued) or 1.0
+    scale = TARGET_RMS / (cur_rms or 1.0)
+    if peak * scale > PEAK_CEILING:
+        scale = PEAK_CEILING / peak
+    return [v * scale for v in glued]
 
 
 def rms(samples):
@@ -223,21 +236,24 @@ def build_track(filename, semitones, prog, chord_span):
 
     samples = compose(prog, semitones, chord_span)
 
-    # Raised-cosine fades guarantee both edges are true silence: an abrupt
-    # stop can't click and a crossfade overlaps two quiet edges cleanly.
+    # An 80 ms raised-cosine fade on each edge guarantees a click-free start and
+    # a click-free hard stop. The body stays at full level (no long silence) so
+    # the crossfade overlaps audible material.
     fade = int(RATE * 0.08)
     for i in range(fade):
         ramp = 0.5 - 0.5 * math.cos(math.pi * i / fade)
         samples[i] *= ramp
         samples[len(samples) - 1 - i] *= ramp
 
-    w = int(0.05 * RATE)
+    # The very edges (first/last 5 ms) must be effectively silent so neither an
+    # abrupt stop nor a crossfade can click.
+    w = int(0.005 * RATE)
     head, tail = rms(samples[:w]), rms(samples[-w:])
-    if head > 5e-4 or tail > 5e-4:
-        sys.exit(f"FAIL: {filename}: not silence-bracketed ({head:.5f}/{tail:.5f})")
+    if head > 2e-3 or tail > 2e-3:
+        sys.exit(f"FAIL: {filename}: edges not clean ({head:.5f}/{tail:.5f})")
 
     peak = max(abs(v) for v in samples)
-    if peak > 0.82:
+    if peak > 0.96:
         sys.exit(f"FAIL: {filename}: clipping risk, peak {peak:.3f}")
 
     dc = abs(sum(samples) / len(samples))
@@ -246,27 +262,21 @@ def build_track(filename, semitones, prog, chord_span):
 
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / filename
-    with wave.open(str(path), "w") as f:
-        f.setnchannels(1)
-        f.setsampwidth(2)
-        f.setframerate(RATE)
-        f.writeframes(
-            b"".join(
-                struct.pack("<h", int(max(-1.0, min(1.0, v)) * 32767))
-                for v in samples
-            )
-        )
+    # OGG/Vorbis: ~25x smaller than 16-bit WAV with no audible loss for this
+    # band-limited pad bed — keeps the bundle small (Play flags large APKs).
+    sf.write(str(path), np.asarray(samples, dtype=np.float32), RATE,
+             format="OGG", subtype="VORBIS")
     print(
         f"wrote {path} ({path.stat().st_size} bytes, "
         f"{len(samples) / RATE:.1f}s, peak {peak:.3f}, "
-        f"head/tail RMS {head:.5f}/{tail:.5f}, DC {dc:.6f})"
+        f"rms {rms(samples):.3f}, edges {head:.5f}/{tail:.5f})"
     )
 
 
 def main():
-    # Remove the obsolete single-loop file if it lingers from v3.
-    old = OUT / "music_calm.wav"
-    if old.exists():
+    # Remove any obsolete WAV music (v3 single loop, v4 per-track WAVs) that the
+    # OGG playlist replaces.
+    for old in OUT.glob("music_calm*.wav"):
         old.unlink()
         print(f"removed obsolete {old}")
     for filename, semitones, prog, chord_span in TRACKS:

@@ -383,6 +383,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get backToPuzzle => 'Zurück zu meinem Versuch';
 
   @override
+  String get actionPrev => 'Vorheriger Buchstabe';
+
+  @override
+  String get actionNext => 'Nächster Buchstabe';
+
+  @override
+  String get actionUndo => 'Rückgängig';
+
+  @override
+  String get actionRedo => 'Wiederholen';
+
+  @override
   String get dailyPuzzleTitle => 'Tägliches Rätsel';
 
   @override

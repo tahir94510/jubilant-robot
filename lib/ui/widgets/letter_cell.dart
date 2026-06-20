@@ -39,6 +39,9 @@ class LetterCell extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
     final selected = state == CellState.selected;
+    // A sibling copy of the focused letter: same-letter cue, but visibly
+    // quieter than the focused cell so the cursor position is unmistakable.
+    final related = state == CellState.related;
     // A letter the player typed (a plain guess, not a hint reveal or a
     // celebration cell): mark it with a faint fill so your own progress reads
     // at a glance. Never implies correctness.
@@ -71,15 +74,23 @@ class LetterCell extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected
               ? palette.boardCellSelectedBg
+              : related
+              ? palette.boardCellRelatedBg
               : state == CellState.confirmed
               ? palette.boardCellConfirmedBg
               : playerFilled
               ? palette.boardCellFilledBg
               : palette.boardCellBg,
           borderRadius: BorderRadius.circular(6),
+          // Focused cell: full accent border. Sibling copies: a faint accent
+          // so they read as "same letter" without competing with the cursor.
           border: Border.all(
-            color: selected ? palette.revealed : Colors.transparent,
-            width: 1.4,
+            color: selected
+                ? palette.revealed
+                : related
+                ? palette.revealed.withValues(alpha: 0.30)
+                : Colors.transparent,
+            width: selected ? 1.6 : 1.0,
           ),
         ),
         child: Column(

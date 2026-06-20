@@ -43,14 +43,29 @@ class MobileNotificationService extends NotificationService {
     _tzReady = true;
   }
 
+  AndroidFlutterLocalNotificationsPlugin? get _android => _plugin
+      .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin
+      >();
+
   @override
   Future<bool> requestPermission() async {
-    final android = _plugin
-        .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin
-        >();
-    final granted = await android?.requestNotificationsPermission();
+    final granted = await _android?.requestNotificationsPermission();
+    // Also ask for exact-alarm permission so the reminder fires on time. If the
+    // user declines, scheduleDaily falls back to an inexact alarm (no crash).
+    try {
+      await _android?.requestExactAlarmsPermission();
+    } catch (_) {}
     return granted ?? false;
+  }
+
+  @override
+  Future<bool> areEnabled() async {
+    try {
+      return (await _android?.areNotificationsEnabled()) ?? false;
+    } catch (_) {
+      return false;
+    }
   }
 
   @override
@@ -73,27 +88,46 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    await _plugin.zonedSchedule(
-      id: _dailyReminderId,
-      title: title,
-      body: body,
-      scheduledDate: next,
-      notificationDetails: NotificationDetails(
-        android: AndroidNotificationDetails(
-          'daily_reminder',
-          'Daily puzzle reminder',
-          channelDescription: 'One reminder per day for the daily cryptogram.',
-          importance: Importance.defaultImportance,
-          priority: Priority.defaultPriority,
-          // Brand accent tints the small icon + app name in the shade.
-          color: const Color(0xFF936F1F),
-          // Expands the longer body cleanly when the shade is pulled down.
-          styleInformation: BigTextStyleInformation(body, contentTitle: title),
-        ),
+    final details = NotificationDetails(
+      android: AndroidNotificationDetails(
+        'daily_reminder',
+        'Daily puzzle reminder',
+        channelDescription: 'One reminder per day for the daily cryptogram.',
+        importance: Importance.defaultImportance,
+        priority: Priority.defaultPriority,
+        // Brand accent tints the small icon + app name in the shade.
+        color: const Color(0xFF936F1F),
+        // Expands the longer body cleanly when the shade is pulled down.
+        styleInformation: BigTextStyleInformation(body, contentTitle: title),
       ),
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-      matchDateTimeComponents: DateTimeComponents.time,
     );
+
+    // Prefer an EXACT alarm so the reminder lands on time (an inexact alarm can
+    // be batched and delayed by many minutes — which made a "remind me in 1
+    // minute" test look broken). If the exact-alarm permission isn't granted,
+    // zonedSchedule throws; fall back to inexact so it still fires (approximately)
+    // and never crashes.
+    try {
+      await _plugin.zonedSchedule(
+        id: _dailyReminderId,
+        title: title,
+        body: body,
+        scheduledDate: next,
+        notificationDetails: details,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        matchDateTimeComponents: DateTimeComponents.time,
+      );
+    } catch (_) {
+      await _plugin.zonedSchedule(
+        id: _dailyReminderId,
+        title: title,
+        body: body,
+        scheduledDate: next,
+        notificationDetails: details,
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+        matchDateTimeComponents: DateTimeComponents.time,
+      );
+    }
   }
 
   @override

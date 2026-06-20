@@ -338,7 +338,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packsDifficultyHint =>
-      'Sezgiye aykırı ama gerçek: kısa sözler en zorudur. Daha az harf, üzerinde çalışacak daha az ipucu demektir.';
+      'Sezgiye aykırı ama gerçek: kısa sözler en zorudur. Daha az harf, üzerinde çalışacağın daha az ipucu demektir.';
 
   @override
   String get packsSectionThemed => 'Temalı';
@@ -381,6 +381,18 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get backToPuzzle => 'Denememe dön';
+
+  @override
+  String get actionPrev => 'Önceki harf';
+
+  @override
+  String get actionNext => 'Sonraki harf';
+
+  @override
+  String get actionUndo => 'Geri al';
+
+  @override
+  String get actionRedo => 'İleri al';
 
   @override
   String get dailyPuzzleTitle => 'Günlük bulmaca';

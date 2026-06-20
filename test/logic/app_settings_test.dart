@@ -111,6 +111,27 @@ void main() {
     },
   );
 
+  test('syncReminderWithOsPermission turns the toggle off when the OS disabled '
+      'notifications', () async {
+    SharedPreferences.setMockInitialValues({});
+    final storage = await StorageService.init();
+    final n = FakeNotificationService();
+    final c = SettingsController(storage: storage, notifications: n);
+    await c.setLanguage('en');
+    await c.setReminder(enabled: true);
+    expect(c.settings.reminderEnabled, isTrue);
+
+    // The user turns notifications off from system settings.
+    n.osEnabled = true; // still enabled -> no change
+    await c.syncReminderWithOsPermission();
+    expect(c.settings.reminderEnabled, isTrue);
+
+    n.osEnabled = false; // now disabled in the OS
+    await c.syncReminderWithOsPermission();
+    expect(c.settings.reminderEnabled, isFalse);
+    expect(n.cancelCalls, greaterThan(0));
+  });
+
   test(
     'resetToDefaults restores preferences, cancels the reminder, persists',
     () async {

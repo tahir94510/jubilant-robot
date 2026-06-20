@@ -5,6 +5,83 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.6.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.6.0
+• Much smaller download and smoother, evenly-balanced background music
+• New Undo/Redo and ◀ ▶ letter navigation; the focused letter now clearly stands out
+• Reliable daily reminders that arrive on time
+• Hints can't be wasted on a finished puzzle; tidier hint button
+• Stats no longer flicker when you open them, plus many quality fixes
+Happy decoding!
+```
+
+Localized "What's new" (paste the matching block per language in Play Console):
+
+**Türkçe**
+```
+1.6.0 YENİLİKLER
+• Çok daha küçük indirme ve dengeli, pürüzsüz arka plan müziği
+• Yeni Geri Al/İleri Al ve ◀ ▶ harf gezinmesi; odaklanılan harf artık belirgin
+• Tam zamanında gelen güvenilir günlük hatırlatmalar
+• Biten bulmacada ipucu boşa gitmez; daha derli toplu ipucu düğmesi
+• İstatistikler açılışta titremiyor, ayrıca birçok kalite düzeltmesi
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 1.6.0
+• Descarga mucho más pequeña y música de fondo suave y equilibrada
+• Nuevos Deshacer/Rehacer y navegación de letras ◀ ▶; la letra activa ahora destaca
+• Recordatorios diarios fiables y puntuales
+• Las pistas no se gastan en un puzle terminado; botón de pista más claro
+• Las estadísticas ya no parpadean al abrirlas, y muchas mejoras
+```
+
+**Deutsch**
+```
+NEU in 1.6.0
+• Viel kleinerer Download und sanfte, gleichmäßig abgestimmte Hintergrundmusik
+• Neu: Rückgängig/Wiederholen und ◀ ▶ Buchstaben-Navigation; der fokussierte Buchstabe hebt sich klar ab
+• Zuverlässige, pünktliche tägliche Erinnerungen
+• Tipps werden bei einem fertigen Rätsel nicht verschwendet; aufgeräumter Tipp-Button
+• Statistiken flackern beim Öffnen nicht mehr, plus viele Korrekturen
+```
+
+**Français**
+```
+NOUVEAU dans 1.6.0
+• Téléchargement bien plus léger et musique de fond douce et équilibrée
+• Nouveaux Annuler/Rétablir et navigation des lettres ◀ ▶ ; la lettre active ressort clairement
+• Rappels quotidiens fiables et à l'heure
+• Les indices ne se gaspillent plus sur une grille terminée ; bouton d'indice plus net
+• Les stats ne clignotent plus à l'ouverture, et de nombreux correctifs
+```
+
+**Italiano**
+```
+NOVITÀ nella 1.6.0
+• Download molto più piccolo e musica di sottofondo morbida e bilanciata
+• Nuovi Annulla/Ripeti e navigazione lettere ◀ ▶; la lettera attiva ora risalta
+• Promemoria giornalieri affidabili e puntuali
+• Gli aiuti non si sprecano su un enigma finito; pulsante aiuto più ordinato
+• Le statistiche non tremolano più all'apertura, più molte correzioni
+```
+
+**Português**
+```
+NOVIDADES na 1.6.0
+• Download muito menor e música de fundo suave e equilibrada
+• Novos Desfazer/Refazer e navegação de letras ◀ ▶; a letra em foco agora se destaca
+• Lembretes diários confiáveis e no horário
+• As dicas não são desperdiçadas em um desafio concluído; botão de dica mais limpo
+• As estatísticas não piscam mais ao abrir, além de muitas correções
+```
+
+---
+
 ## Release notes: v1.5.0 (max 500 chars, paste into "What's new")
 
 ```

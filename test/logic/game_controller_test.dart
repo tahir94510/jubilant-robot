@@ -531,4 +531,86 @@ void main() {
       game.dispose();
     });
   });
+
+  group('redo', () {
+    test(
+      'redo re-applies an undone guess; a new edit clears the redo future',
+      () async {
+        final store = await storage();
+        final game = GameController(storage: store);
+        game.start(shortQuote, daily: false);
+        final s = game.session!;
+
+        game.selectIndex(0);
+        final c0 = game.selectedCipherLetter!;
+        game.enterGuess('Q');
+        expect(s.guesses[c0], 'Q');
+        expect(game.canRedo, isFalse);
+
+        game.undo();
+        expect(s.guesses.containsKey(c0), isFalse);
+        expect(game.canRedo, isTrue);
+
+        game.redo();
+        expect(s.guesses[c0], 'Q');
+        expect(game.canRedo, isFalse);
+        expect(game.canUndo, isTrue);
+
+        // Undo again, then a NEW edit must invalidate the redo future.
+        game.undo();
+        expect(game.canRedo, isTrue);
+        game.selectIndex(0);
+        game.enterGuess('Z');
+        expect(game.canRedo, isFalse);
+
+        game.stopTimer();
+        game.dispose();
+      },
+    );
+
+    test('redo history survives leaving and re-entering the puzzle', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final c0 = game.session!.cipherLetters.first;
+      game.selectCipherLetter(c0);
+      game.enterGuess('Q');
+      game.undo();
+      expect(game.canRedo, isTrue);
+      game.stopTimer();
+
+      final resumed = GameController(storage: store);
+      resumed.start(shortQuote, daily: false);
+      expect(resumed.canRedo, isTrue, reason: 'redo stack must persist');
+      resumed.redo();
+      expect(resumed.session!.guesses[c0], 'Q');
+
+      resumed.stopTimer();
+      game.dispose();
+      resumed.dispose();
+    });
+  });
+
+  test(
+    'canRevealMore is false once every letter is correct (no wasted hint)',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      // A fresh board has letters to reveal.
+      expect(game.canRevealMore, isTrue);
+
+      // Reveal everything; the moment all letters are correct it flips false so
+      // the hint button disables and never spends a token on a finished board.
+      while (game.canRevealMore) {
+        game.revealSelected();
+      }
+      expect(s.isSolved, isTrue);
+      expect(game.canRevealMore, isFalse);
+
+      game.dispose();
+    },
+  );
 }
