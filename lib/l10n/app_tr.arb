@@ -34,6 +34,8 @@
   "neverMissStreak": "Serini hiç kaçırma",
   "reminderTime": "Hatırlatma saati",
   "reminderDenied": "Bildirim izni sistem ayarlarında reddedildi.",
+  "sendTestNotification": "Test bildirimi gönder",
+  "testNotificationSent": "Test bildirimi gönderildi.",
   "premiumActive": "Premium etkin",
   "premiumActiveSubtitle": "Quotecrack’i desteklediğin için teşekkürler!",
   "goPremium": "Premium’a geç",

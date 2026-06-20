@@ -46,7 +46,10 @@ abstract final class AppThemes {
   static ThemeData sepia({required bool colorblind}) {
     const surface = Color(0xFFF4EBDC);
     const onSurface = Color(0xFF3A2E1C);
-    const primary = Color(0xFF9C7B33);
+    // Deepened from 0xFF9C7B33 so off-white button text on the gold primary
+    // clears WCAG AA (4.95:1, was 3.90); also lifts every primary-on-surface
+    // accent's contrast in sepia.
+    const primary = Color(0xFF8A6A28);
     return _base(
       brightness: Brightness.light,
       surface: surface,

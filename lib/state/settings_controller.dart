@@ -232,9 +232,24 @@ class SettingsController extends ChangeNotifier {
         title: l10n.notificationDailyTitle,
         body: l10n.notificationDailyBody,
       );
-    } catch (_) {
+    } catch (e) {
       // Best-effort: an enabled reminder simply won't re-arm this launch.
+      debugPrint('rescheduleDailyIfEnabled failed: $e');
     }
+  }
+
+  /// Posts an immediate test notification so the player can confirm reminders
+  /// reach the device right now. Requests permission first if needed; returns
+  /// false when it wasn't granted (so the UI can prompt to enable them).
+  Future<bool> sendTestNotification() async {
+    final granted = await _notifications.requestPermission();
+    if (!granted && _notifications.supported) return false;
+    final l10n = _activeL10n();
+    await _notifications.showNow(
+      title: l10n.notificationDailyTitle,
+      body: l10n.notificationDailyBody,
+    );
+    return true;
   }
 
   /// Keeps the in-app reminder toggle honest when the user turns notifications

@@ -13,6 +13,7 @@ class MobileNotificationService extends NotificationService {
   MobileNotificationService() : super.base();
 
   static const int _dailyReminderId = 1001;
+  static const int _testNotificationId = 1002;
   static const String _channelId = 'daily_reminder';
   static const String _channelName = 'Daily puzzle reminder';
   static const String _channelDescription =
@@ -43,7 +44,11 @@ class MobileNotificationService extends NotificationService {
           _channelId,
           _channelName,
           description: _channelDescription,
-          importance: Importance.defaultImportance,
+          // HIGH so the reminder makes a sound and a heads-up banner — a
+          // default-importance channel queued silently into the shade, which
+          // read as "nothing arrived". (Channel importance is locked at first
+          // creation, so this applies to fresh installs.)
+          importance: Importance.high,
         ),
       );
     } catch (_) {
@@ -55,10 +60,14 @@ class MobileNotificationService extends NotificationService {
     if (_tzReady) return;
     tzdata.initializeTimeZones();
     try {
+      // flutter_timezone 5.x returns a TimezoneInfo whose .identifier is the
+      // IANA name (e.g. "Europe/Istanbul"); the local tz follows the DEVICE,
+      // not the app language (timezone is device-based by design).
       final name = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(name.identifier));
-    } catch (_) {
+    } catch (e) {
       // Fall back to the bundled default (UTC); reminder still fires daily.
+      debugPrint('NotificationService: timezone init failed: $e');
     }
     _tzReady = true;
   }
@@ -70,14 +79,29 @@ class MobileNotificationService extends NotificationService {
 
   @override
   Future<bool> requestPermission() async {
-    // Only POST_NOTIFICATIONS — enabling notifications is enough to use the
-    // reminder. We deliberately do NOT request SCHEDULE_EXACT_ALARM: that opens
-    // the intrusive "Alarms & reminders" special-access page, and a daily
-    // reminder doesn't need exact timing (an inexact alarm fires within
-    // Android's maintenance window, which is fine).
+    // We request ONLY POST_NOTIFICATIONS here. We never call
+    // requestExactAlarmsPermission(), which is what opens the intrusive
+    // "Alarms & reminders" special-access page. Exact timing is still used when
+    // the OS already allows it (see scheduleDaily) — a read-only check, no
+    // prompt — so enabling notifications stays the only step the user takes.
     final granted = await _android?.requestNotificationsPermission();
     return granted ?? false;
   }
+
+  AndroidNotificationDetails _androidDetails(String title, String body) =>
+      AndroidNotificationDetails(
+        _channelId,
+        _channelName,
+        channelDescription: _channelDescription,
+        // Match the HIGH channel so it actually alerts (sound + heads-up).
+        importance: Importance.high,
+        priority: Priority.high,
+        enableVibration: true,
+        // Brand accent tints the small icon + app name in the shade.
+        color: const Color(0xFF936F1F),
+        // Expands the longer body cleanly when the shade is pulled down.
+        styleInformation: BigTextStyleInformation(body, contentTitle: title),
+      );
 
   @override
   Future<bool> areEnabled() async {
@@ -108,32 +132,45 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    final details = NotificationDetails(
-      android: AndroidNotificationDetails(
-        _channelId,
-        _channelName,
-        channelDescription: _channelDescription,
-        importance: Importance.defaultImportance,
-        priority: Priority.defaultPriority,
-        // Brand accent tints the small icon + app name in the shade.
-        color: const Color(0xFF936F1F),
-        // Expands the longer body cleanly when the shade is pulled down.
-        styleInformation: BigTextStyleInformation(body, contentTitle: title),
-      ),
-    );
+    // Fire at the chosen minute when the OS already permits exact alarms
+    // (Android 12 grants SCHEDULE_EXACT_ALARM by default; the manifest declares
+    // it). canScheduleExactNotifications() is a READ-ONLY check — it never opens
+    // a settings page. When it's not allowed (e.g. Android 13+ until the user
+    // grants it), we fall back to inexact-allow-while-idle, which still delivers
+    // within the OS maintenance window. Either way: no intrusive redirect.
+    var exact = false;
+    try {
+      exact = await _android?.canScheduleExactNotifications() ?? false;
+    } catch (_) {
+      exact = false;
+    }
 
-    // Inexact, allow-while-idle: no SCHEDULE_EXACT_ALARM permission needed (so
-    // enabling notifications is all the user has to do), and a few minutes of
-    // drift is fine for a daily puzzle reminder. The OS still delivers it once
-    // per day at ~the chosen time within its maintenance window.
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
       body: body,
       scheduledDate: next,
-      notificationDetails: details,
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      notificationDetails: NotificationDetails(
+        android: _androidDetails(title, body),
+      ),
+      androidScheduleMode: exact
+          ? AndroidScheduleMode.exactAllowWhileIdle
+          : AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
+    );
+  }
+
+  @override
+  Future<void> showNow({required String title, required String body}) async {
+    // An immediate notification so the player can confirm reminders work right
+    // now, without waiting for the scheduled time or the OS maintenance window.
+    await _plugin.show(
+      id: _testNotificationId,
+      title: title,
+      body: body,
+      notificationDetails: NotificationDetails(
+        android: _androidDetails(title, body),
+      ),
     );
   }
 

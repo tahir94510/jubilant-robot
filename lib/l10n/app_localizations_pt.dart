@@ -116,6 +116,12 @@ class AppLocalizationsPt extends AppLocalizations {
       'A permissão de notificações foi negada nas configurações do sistema.';
 
   @override
+  String get sendTestNotification => 'Enviar uma notificação de teste';
+
+  @override
+  String get testNotificationSent => 'Notificação de teste enviada.';
+
+  @override
   String get premiumActive => 'Premium ativo';
 
   @override
