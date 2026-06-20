@@ -115,12 +115,6 @@ class AppLocalizationsFr extends AppLocalizations {
       'L’autorisation de notification a été refusée dans les réglages système.';
 
   @override
-  String get sendTestNotification => 'Envoyer une notification test';
-
-  @override
-  String get testNotificationSent => 'Notification test envoyée.';
-
-  @override
   String get premiumActive => 'Premium actif';
 
   @override

@@ -41,8 +41,6 @@
   "neverMissStreak": "Never miss your streak",
   "reminderTime": "Reminder time",
   "reminderDenied": "Notification permission was denied in system settings.",
-  "sendTestNotification": "Send a test notification",
-  "testNotificationSent": "Test notification sent.",
   "premiumActive": "Premium active",
   "premiumActiveSubtitle": "Thank you for supporting Quotecrack!",
   "goPremium": "Go Premium",

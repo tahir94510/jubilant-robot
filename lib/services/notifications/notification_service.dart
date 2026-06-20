@@ -35,9 +35,5 @@ abstract class NotificationService {
     required String body,
   });
 
-  /// Posts a notification immediately, so the player can verify reminders work
-  /// without waiting for the scheduled time. No-op on web/stub.
-  Future<void> showNow({required String title, required String body});
-
   Future<void> cancelAll();
 }

@@ -312,18 +312,6 @@ abstract class AppLocalizations {
   /// **'Notification permission was denied in system settings.'**
   String get reminderDenied;
 
-  /// No description provided for @sendTestNotification.
-  ///
-  /// In en, this message translates to:
-  /// **'Send a test notification'**
-  String get sendTestNotification;
-
-  /// No description provided for @testNotificationSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Test notification sent.'**
-  String get testNotificationSent;
-
   /// No description provided for @premiumActive.
   ///
   /// In en, this message translates to:

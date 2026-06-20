@@ -22,9 +22,11 @@ abstract final class AppConfig {
   /// serves, the reward comes from the watched ad (no free hints while real ads
   /// work).
   ///
-  /// Currently TRUE because the AdMob account is not active yet. RELEASE STEP:
-  /// flip to `false` before the production launch so the reward is always gated
-  /// by a real watched ad (see docs/KALITE_KONTROL.md).
+  /// Safe to ship as `true`: a persisted sticky flag (`ads.rewarded_served`)
+  /// records the first time a real rewarded ad is ever served, after which the
+  /// free fallback is permanently off — so revenue is never undercut once AdMob
+  /// is live, while brand-new installs (before the account fills) still get a
+  /// working hint button. No release-day toggle needed.
   static const bool grantHintsWithoutAd = true;
 
   // --- Interstitial pacing ---
@@ -61,7 +63,7 @@ abstract final class AppConfig {
 
   /// Shown in Settings. Bump together with `version:` in pubspec.yaml on
   /// every release.
-  static const String appVersion = '2.2.2';
+  static const String appVersion = '2.2.3';
 
   /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
   /// achievements ships; items tagged with this number show a "NEW" badge

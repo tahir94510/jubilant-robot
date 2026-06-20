@@ -114,12 +114,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderDenied => 'Bildirim izni sistem ayarlarında reddedildi.';
 
   @override
-  String get sendTestNotification => 'Test bildirimi gönder';
-
-  @override
-  String get testNotificationSent => 'Test bildirimi gönderildi.';
-
-  @override
   String get premiumActive => 'Premium etkin';
 
   @override

@@ -136,17 +136,6 @@ class FakeNotificationService extends NotificationService {
     scheduledBody = body;
   }
 
-  String? shownTitle;
-  String? shownBody;
-  int showNowCalls = 0;
-
-  @override
-  Future<void> showNow({required String title, required String body}) async {
-    showNowCalls += 1;
-    shownTitle = title;
-    shownBody = body;
-  }
-
   @override
   Future<void> cancelAll() async {
     cancelCalls += 1;
