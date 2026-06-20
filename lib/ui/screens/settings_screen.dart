@@ -446,9 +446,9 @@ class _SliderTile extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final pct = displayPercent;
     return Padding(
-      // A consistent top+bottom rhythm so the slider never sticks to the
-      // control above it (the old top:0 made text-size/volume look glued on).
-      padding: const EdgeInsets.fromLTRB(20, 6, 20, 10),
+      // A consistent, balanced top+bottom rhythm so the text-size / volume
+      // sliders never look glued to the switch or grid above them.
+      padding: const EdgeInsets.fromLTRB(20, 10, 20, 12),
       child: Row(
         children: [
           // A tinted, evenly-padded chip so the glyph reads as a deliberate

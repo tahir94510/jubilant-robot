@@ -15,16 +15,7 @@ class HintBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final economy = context.watch<EconomyController>();
-    // watch: the reveal button must disable the moment the last letter is
-    // revealed (canRevealMore flips false), so a token is never wasted.
-    final game = context.watch<GameController>();
     final ads = context.read<AdsService>();
-    final sounds = context.read<SoundService>();
-    final l10n = AppLocalizations.of(context);
-
-    // Reveal is allowed only when there is something left to uncover AND a
-    // token is available — filling the whole quote via hints disables it.
-    final canReveal = economy.canUseHint && game.canRevealMore;
 
     // Wrap, not Row: on narrow screens / large system text the two buttons
     // stack instead of overflowing (seen as "overflow by N px" on device).
@@ -34,22 +25,7 @@ class HintBar extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       children: [
-        OutlinedButton.icon(
-          onPressed: canReveal
-              ? () {
-                  if (economy.spendHintToken()) {
-                    game.revealSelected();
-                    sounds.hint();
-                  }
-                }
-              : null,
-          icon: const Icon(Icons.lightbulb_outline, size: 20),
-          label: Text(
-            economy.premium
-                ? l10n.hintRevealLetter
-                : l10n.hintRevealLetterCount(economy.tokens),
-          ),
-        ),
+        const _RevealHintButton(),
         // Shown as soon as ads are supported (no waiting for the consent
         // pipeline, so it never "appears late"); the closed-test fallback keeps
         // it usable before AdMob serves. In production (flag off) the reward
@@ -58,6 +34,54 @@ class HintBar extends StatelessWidget {
             (ads.supported || AppConfig.grantHintsWithoutAd))
           const _RewardedHintButton(),
       ],
+    );
+  }
+}
+
+/// The per-letter reveal button. Stateful for a short timer-free cooldown so
+/// rapid taps can't spend several tokens in a burst before the hint sound +
+/// reveal animation have played — keeping the feedback clean without blocking
+/// deliberate, paced multi-reveals.
+class _RevealHintButton extends StatefulWidget {
+  const _RevealHintButton();
+
+  @override
+  State<_RevealHintButton> createState() => _RevealHintButtonState();
+}
+
+class _RevealHintButtonState extends State<_RevealHintButton> {
+  int _cooldownUntilMs = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final economy = context.watch<EconomyController>();
+    // watch: the reveal button must disable the moment the last letter is
+    // revealed (canRevealMore flips false), so a token is never wasted.
+    final game = context.watch<GameController>();
+    final l10n = AppLocalizations.of(context);
+
+    // Reveal is allowed only when there is something left to uncover AND a
+    // token is available — filling the whole quote via hints disables it.
+    final canReveal = economy.canUseHint && game.canRevealMore;
+
+    return OutlinedButton.icon(
+      onPressed: canReveal
+          ? () {
+              final now = DateTime.now().millisecondsSinceEpoch;
+              if (now < _cooldownUntilMs) return; // brief anti-spam window
+              if (economy.spendHintToken()) {
+                game.revealSelected();
+                context.read<SoundService>().hint();
+                _cooldownUntilMs = now + 450;
+              }
+            }
+          : null,
+      icon: const Icon(Icons.lightbulb_outline, size: 20),
+      label: Text(
+        economy.premium
+            ? l10n.hintRevealLetter
+            : l10n.hintRevealLetterCount(economy.tokens),
+      ),
     );
   }
 }

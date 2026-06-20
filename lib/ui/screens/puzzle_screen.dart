@@ -407,7 +407,10 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 const HintBar(),
-                                const SizedBox(height: 2),
+                                // Breathing room so the hint row and the
+                                // undo/redo/navigation strip don't read as one
+                                // cramped cluster.
+                                const SizedBox(height: 10),
                                 BoardControls(
                                   onPrev: () {
                                     haptics.tap();
@@ -419,9 +422,12 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                   },
                                   onUndo: _onUndo,
                                   onRedo: _onRedo,
+                                  canPrev: game.canMovePrev,
+                                  canNext: game.canMoveNext,
                                   canUndo: game.canUndo,
                                   canRedo: game.canRedo,
                                 ),
+                                const SizedBox(height: 4),
                                 PuzzleKeyboard(
                                   rows: session.alphabet.keyboardRows,
                                   usedLetters: session.usedPlainLetters,
@@ -553,7 +559,9 @@ class _TimerText extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     return Center(
       child: Padding(
-        padding: const EdgeInsets.only(right: 16),
+        // Left gap keeps the clock from butting against the eye (show-solution)
+        // icon when both are present; right gap holds it off the screen edge.
+        padding: const EdgeInsets.only(left: 8, right: 16),
         child: ValueListenableBuilder<Duration>(
           valueListenable: elapsedListenable,
           builder: (context, elapsed, _) {

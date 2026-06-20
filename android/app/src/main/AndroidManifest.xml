@@ -5,9 +5,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- Gunluk hatirlatmanin tam zamaninda gelmesi icin (Android 12+). Kullanici
-         reddederse kod sessizce yaklasik (inexact) moda duser, cokme olmaz. -->
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
     <!-- AdMob reklam kimligi (Play Console "Veri guvenligi" formunda beyan edilir) -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 

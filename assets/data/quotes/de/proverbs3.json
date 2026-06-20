@@ -1,30 +1,6 @@
 [
  {
   "id": "de-x500",
-  "text": "Lügen haben kurze Beine, man holt sie schnell ein.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x501",
-  "text": "Gut Ding will Weile haben, sagt der Volksmund.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x502",
-  "text": "Der Ton macht die Musik, nicht die Lautstärke.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x503",
   "text": "Auch ein blindes Huhn findet mal ein Korn.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -32,7 +8,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x504",
+  "id": "de-x501",
   "text": "Was ich nicht weiß, macht mich nicht heiß.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -40,15 +16,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x505",
-  "text": "Aus den Augen, aus dem Sinn, sagt der Volksmund.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x506",
+  "id": "de-x502",
   "text": "In der Not frisst der Teufel Fliegen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -56,15 +24,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x507",
-  "text": "Der Mensch denkt, Gott lenkt.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x508",
+  "id": "de-x503",
   "text": "Pünktlichkeit ist die Höflichkeit der Könige.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -72,7 +32,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x509",
+  "id": "de-x504",
   "text": "Vertrauen ist gut, Kontrolle ist besser.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -80,7 +40,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x510",
+  "id": "de-x505",
   "text": "Ein voller Bauch studiert nicht gern.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -88,15 +48,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x511",
-  "text": "Der Zweck heiligt die Mittel.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x512",
+  "id": "de-x506",
   "text": "Kleine Geschenke erhalten die Freundschaft.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -104,15 +56,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x513",
-  "text": "Ausnahmen bestätigen die Regel.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x514",
+  "id": "de-x507",
   "text": "Glück und Glas, wie leicht bricht das.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -120,15 +64,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x515",
-  "text": "Mit Speck fängt man Mäuse, mit Geld die Leute.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x516",
+  "id": "de-x508",
   "text": "Frisch gewagt ist halb gewonnen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -136,7 +72,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x517",
+  "id": "de-x509",
   "text": "Wo gehobelt wird, da fallen Späne.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -144,23 +80,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x518",
-  "text": "Der Fisch stinkt vom Kopfe her.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x519",
-  "text": "Hunger ist der beste Koch, sagt der Volksmund.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x520",
+  "id": "de-x510",
   "text": "Einem geschenkten Gaul schaut man nicht ins Maul.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -168,7 +88,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x521",
+  "id": "de-x511",
   "text": "Nach Regen kommt Sonnenschein.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -176,7 +96,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x522",
+  "id": "de-x512",
   "text": "Lehrjahre sind keine Herrenjahre.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -184,7 +104,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x523",
+  "id": "de-x513",
   "text": "Wer nicht arbeitet, soll auch nicht essen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -192,15 +112,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x524",
-  "text": "Kommt Zeit, so kommt auch guter Rat.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x525",
+  "id": "de-x514",
   "text": "Mit den Wölfen muss man heulen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -208,15 +120,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x526",
-  "text": "Wer nicht fragt, bleibt dumm.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x527",
+  "id": "de-x515",
   "text": "Lachen ist die beste Medizin.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -224,7 +128,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x528",
+  "id": "de-x516",
   "text": "Wo viel Licht ist, ist auch viel Schatten.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -232,7 +136,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x529",
+  "id": "de-x517",
   "text": "Jeder Topf findet seinen Deckel.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -240,7 +144,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x530",
+  "id": "de-x518",
   "text": "Mit Geduld und Spucke fängt man eine Mucke.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -248,15 +152,15 @@
   "locale": "de"
  },
  {
-  "id": "de-x531",
-  "text": "Den Seinen gibt es der Herr im Schlaf.",
+  "id": "de-x519",
+  "text": "Den Seinen gibt's der Herr im Schlaf.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x532",
+  "id": "de-x520",
   "text": "Der Köder muss dem Fisch schmecken, nicht dem Angler.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -264,15 +168,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x533",
-  "text": "Aller guten Dinge sind drei.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x534",
+  "id": "de-x521",
   "text": "Hilf dir selbst, so hilft dir Gott.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -280,23 +176,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x535",
-  "text": "Wie der Herr, so das Gescherr.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x536",
-  "text": "Lieber arm und gesund als reich und krank.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x537",
+  "id": "de-x522",
   "text": "Vier Augen sehen mehr als zwei.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -304,7 +184,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x538",
+  "id": "de-x523",
   "text": "Der Schuster trägt die schlechtesten Schuhe.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -312,7 +192,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x539",
+  "id": "de-x524",
   "text": "Der Appetit kommt beim Essen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -320,31 +200,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x540",
-  "text": "Aus Schaden wird man klug, doch teuer ist die Lehre.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x541",
-  "text": "Übung macht den Meister, doch keiner fällt vom Himmel.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x542",
-  "text": "Wer rastet, der rostet, wer ruht, der rostet ein.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x543",
+  "id": "de-x525",
   "text": "Wer den Wein trinkt, muss auch die Hefe trinken.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -352,23 +208,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x544",
-  "text": "Wer das Feuer haben will, muss den Rauch leiden.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x545",
-  "text": "Wer im Schilf wohnt, muss das Rohr schneiden lernen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x546",
+  "id": "de-x526",
   "text": "Wer nicht für mich ist, der ist gegen mich.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -376,7 +216,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x547",
+  "id": "de-x527",
   "text": "Wer einmal lügt, dem glaubt man nicht, und wenn er auch die Wahrheit spricht.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -384,15 +224,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x548",
-  "text": "Wer den Hafer verdient, bekommt ihn nicht immer.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x549",
+  "id": "de-x528",
   "text": "Wer sich auf andere verlässt, ist verlassen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -400,23 +232,15 @@
   "locale": "de"
  },
  {
-  "id": "de-x550",
-  "text": "Wer einmal das Vertrauen verspielt, gewinnt es schwer zurück.",
+  "id": "de-x529",
+  "text": "Wer hoch steigt, der fällt tief.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x551",
-  "text": "Wer hoch steigt, der kann tief fallen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x552",
+  "id": "de-x530",
   "text": "Wer Pech anfasst, besudelt sich.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -424,15 +248,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x553",
-  "text": "Wer den Wagen schmiert, der fährt gut.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x554",
+  "id": "de-x531",
   "text": "Wer Augen hat zu sehen, der sehe.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -440,23 +256,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x555",
-  "text": "Wer im Sommer faulenzt, muss im Winter hungern.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x556",
-  "text": "Wer die Wahl hat, hat die Qual.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x557",
+  "id": "de-x532",
   "text": "Eigener Herd ist Goldes wert.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -464,15 +264,15 @@
   "locale": "de"
  },
  {
-  "id": "de-x558",
-  "text": "Ein gebranntes Kind scheut das offene Feuer.",
+  "id": "de-x533",
+  "text": "Ein gebranntes Kind scheut das Feuer.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x559",
+  "id": "de-x534",
   "text": "Ein räudiges Schaf steckt die ganze Herde an.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -480,23 +280,15 @@
   "locale": "de"
  },
  {
-  "id": "de-x560",
-  "text": "Ein blindes Huhn findet auch einmal ein Korn.",
+  "id": "de-x535",
+  "text": "Ein alter Baum lässt sich nicht verpflanzen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x561",
-  "text": "Ein alter Baum lässt sich nicht mehr verpflanzen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x562",
+  "id": "de-x536",
   "text": "Allzu scharf macht schartig.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -504,7 +296,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x563",
+  "id": "de-x537",
   "text": "Allzu straff gespannt, zerspringt der Bogen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -512,15 +304,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x564",
-  "text": "Voller Bauch lobt das Fasten.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x565",
+  "id": "de-x538",
   "text": "Hochmut und Stolz wachsen auf einem Holz.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -528,31 +312,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x566",
-  "text": "Geduld überwindet alles, sagt der Volksmund.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x567",
-  "text": "Wer rasten will, muss erst gearbeitet haben.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x568",
-  "text": "Wer das Ziel kennt, kann entscheiden.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x569",
+  "id": "de-x539",
   "text": "Geduld und Fleiß bricht alles Eis.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -560,31 +320,15 @@
   "locale": "de"
  },
  {
-  "id": "de-x570",
-  "text": "Wer den Tag nicht nutzt, verliert ihn für immer.",
+  "id": "de-x540",
+  "text": "Reden, ohne zu denken, heißt schießen, ohne zu zielen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x571",
-  "text": "Was du ererbt von deinen Vätern, erwirb es, um es zu besitzen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x572",
-  "text": "Reden, ohne zu denken, ist schießen, ohne zu zielen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x573",
+  "id": "de-x541",
   "text": "Versprechen und halten ist zweierlei.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -592,47 +336,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x574",
-  "text": "Wie der Vater, so der Sohn, wie die Mutter, so die Tochter.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x575",
-  "text": "Hochmut tut selten gut, sagt der Volksmund.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x576",
-  "text": "Wer nicht hören will, muss eben leiden.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x577",
-  "text": "Wer im Glück lebt, vergisst die Sorgen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x578",
-  "text": "Es geschehen noch Zeichen und Wunder.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x579",
+  "id": "de-x542",
   "text": "Wer den Schaden sucht, der findet ihn.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -640,31 +344,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x580",
-  "text": "Ende gut, alles gut, so sagt der Volksmund.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x581",
-  "text": "Wer das Glück hat, führt die Braut heim.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x582",
-  "text": "Wer hoch hinaus will, fällt tief herab.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x583",
+  "id": "de-x543",
   "text": "Wer ernten will, der muss auch säen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -672,7 +352,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x584",
+  "id": "de-x544",
   "text": "Wer das Kleine nicht ehrt, ist des Großen nicht wert.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -680,7 +360,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x585",
+  "id": "de-x545",
   "text": "Die dümmsten Bauern haben die dicksten Kartoffeln.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -688,23 +368,15 @@
   "locale": "de"
  },
  {
-  "id": "de-x586",
-  "text": "Mit Speck und Schmalz fängt man Mäuse.",
+  "id": "de-x546",
+  "text": "Stillstand ist Rückschritt.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x587",
-  "text": "Stillstand bedeutet Rückschritt.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x588",
+  "id": "de-x547",
   "text": "Der Krug geht so lange zum Wasser, bis er zerbricht.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -712,79 +384,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x589",
-  "text": "Auch kleine Steine bringen den Wagen zum Stehen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x590",
-  "text": "Wer zuviel will, erreicht oft nichts.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x591",
-  "text": "Aller Anfang ist schwer, doch das Ende krönt das Werk.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x592",
-  "text": "Eile mit Weile, dann kommst du am weitesten.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x593",
-  "text": "Wer Großes will, muss sich beschränken.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x594",
-  "text": "Der erste Eindruck zählt, der letzte bleibt.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x595",
-  "text": "Eigenlob stinkt, Freundes Lob hinkt, doch Feindes Lob klingt.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x596",
-  "text": "Geld regiert die Welt, doch Liebe regiert das Herz.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x597",
-  "text": "Wer nicht hören will, der muss es fühlen.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x598",
+  "id": "de-x548",
   "text": "Der Wolf verliert wohl die Haare, doch nicht die Tücken.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -792,23 +392,7 @@
   "locale": "de"
  },
  {
-  "id": "de-x599",
-  "text": "Wer im Sommer nicht erntet, der hungert im Winter.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x600",
-  "text": "Wer rastet, der rostet, und wer rostet, der vergeht.",
-  "author": "Deutsches Sprichwort",
-  "source": "Überliefert",
-  "category": "proverbs",
-  "locale": "de"
- },
- {
-  "id": "de-x601",
+  "id": "de-x549",
   "text": "Wer einen Freund ohne Fehler sucht, bleibt ohne Freund.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -816,15 +400,71 @@
   "locale": "de"
  },
  {
-  "id": "de-x602",
-  "text": "Wer gut schmiert, der gut fährt.",
+  "id": "de-x550",
+  "text": "Der Zweck heiligt die Mittel.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",
   "locale": "de"
  },
  {
-  "id": "de-x603",
+  "id": "de-x551",
+  "text": "Ausnahmen bestätigen die Regel.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x552",
+  "text": "Wenn der Berg nicht zum Propheten kommt, muss der Prophet zum Berg kommen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x553",
+  "text": "Der Apfel fällt nicht weit vom Stamm, doch manchmal rollt er weiter.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x554",
+  "text": "Wenn zwei sich streiten, freut sich der Dritte.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x555",
+  "text": "Ein Spatz in der Hand ist besser als die Taube auf dem Dach.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x556",
+  "text": "Es lebt der Mensch, solange er hofft.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x557",
+  "text": "Ein guter Nachbar ist besser als ein ferner Freund.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x558",
   "text": "Lügen, die das Herz erfreuen, bleiben dennoch Lügen.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
@@ -832,8 +472,368 @@
   "locale": "de"
  },
  {
+  "id": "de-x559",
+  "text": "Lügen haben kurze Beine und Eile hat Weile.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x560",
+  "text": "Wer den Hafer verdient, bekommt ihn nicht immer.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x561",
+  "text": "Wer im Sommer nicht erntet, der hungert im Winter.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x562",
+  "text": "Wer das Feuer haben will, muss den Rauch leiden.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x563",
+  "text": "Voller Bauch lobt das Fasten.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x564",
+  "text": "Hunger treibt den Wolf aus dem Wald.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x565",
+  "text": "Wer den Schaden hat, dem folgt der Spott auf dem Fuße.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x566",
+  "text": "Gegen den Tod ist kein Kraut gewachsen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x567",
+  "text": "Lügen und Stehlen sind Geschwister.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x568",
+  "text": "Wer im Sommer nicht sammelt, muss im Winter darben.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x569",
+  "text": "Wer den Honig lecken will, muss die Bienen ertragen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x570",
+  "text": "Geld verdirbt den Charakter.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x571",
+  "text": "Wer rastet, der rostet, und Müßiggang ist aller Laster Anfang.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x572",
+  "text": "Wer im Glashaus sitzt, werfe nicht mit Steinen nach anderen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x573",
+  "text": "Der Klügere gibt nach, doch der Dümmere bleibt im Vorteil.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x574",
+  "text": "Was sich liebt, das neckt sich.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x575",
+  "text": "Der Mensch denkt, und Gott lenkt am Ende doch alles.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x576",
+  "text": "Faulheit ist der Schlüssel zur Armut.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x577",
+  "text": "Das Bessere ist der Feind des Guten.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x578",
+  "text": "Der Apfel fällt nicht weit vom Birnbaum.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x579",
+  "text": "Der Ehrliche ist immer der Dumme.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x580",
+  "text": "Was lange gärt, wird endlich gut.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x581",
+  "text": "Wer den Teufel zum Freund haben will, zündet ihm ein Licht an.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x582",
+  "text": "Wer sein Kind liebt, der züchtigt es.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x583",
+  "text": "Wer Gott vertraut, hat gut gebaut.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x584",
+  "text": "Hochmut kommt vor dem Falle, das lehrt die alte Erfahrung.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x585",
+  "text": "Wer im Trüben fischt, fängt manchen guten Fisch.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x586",
+  "text": "Eigenlob stinkt, fremdes Lob klingt.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x587",
+  "text": "Der Teufel ist ein Eichhörnchen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x588",
+  "text": "Besser den Spatz in der Hand als die Taube auf dem Dach.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x589",
+  "text": "Wer im Frühling nicht sät, kann im Herbst nicht ernten.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x590",
+  "text": "Geduld ist der Schlüssel zur Freude.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x591",
+  "text": "Wer viel verspricht, hält wenig.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x592",
+  "text": "Eile bringt Weile, und Hast bringt Last.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x593",
+  "text": "Ein gutes Wort findet einen guten Ort.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x594",
+  "text": "Wer nicht sparen will, der wird nie reich.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x595",
+  "text": "Stolz und Hochmut bringen den Mann zu Fall.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x596",
+  "text": "Der Wein ist gut, doch Wasser ist gesünder.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x597",
+  "text": "Wer früh aufsteht, dem hilft das Glück.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x598",
+  "text": "Wer arbeitet, der hat selten Langeweile.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x599",
+  "text": "Wer das Glück sucht, findet oft den Verdruss.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x600",
+  "text": "Der Mensch denkt, Gott lenkt.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x601",
+  "text": "Mit Speck fängt man Mäuse, mit Geld die Leute.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x602",
+  "text": "Der Fisch stinkt vom Kopfe her.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
+  "id": "de-x603",
+  "text": "Kommt Zeit, so kommt auch guter Rat.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "proverbs",
+  "locale": "de"
+ },
+ {
   "id": "de-x604",
-  "text": "Wer sät, der erntet, was er gesät hat.",
+  "text": "Wer nicht fragt, bleibt dumm.",
   "author": "Deutsches Sprichwort",
   "source": "Überliefert",
   "category": "proverbs",

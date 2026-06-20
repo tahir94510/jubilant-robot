@@ -50,12 +50,12 @@ class MobileNotificationService extends NotificationService {
 
   @override
   Future<bool> requestPermission() async {
+    // Only POST_NOTIFICATIONS — enabling notifications is enough to use the
+    // reminder. We deliberately do NOT request SCHEDULE_EXACT_ALARM: that opens
+    // the intrusive "Alarms & reminders" special-access page, and a daily
+    // reminder doesn't need exact timing (an inexact alarm fires within
+    // Android's maintenance window, which is fine).
     final granted = await _android?.requestNotificationsPermission();
-    // Also ask for exact-alarm permission so the reminder fires on time. If the
-    // user declines, scheduleDaily falls back to an inexact alarm (no crash).
-    try {
-      await _android?.requestExactAlarmsPermission();
-    } catch (_) {}
     return granted ?? false;
   }
 
@@ -102,32 +102,19 @@ class MobileNotificationService extends NotificationService {
       ),
     );
 
-    // Prefer an EXACT alarm so the reminder lands on time (an inexact alarm can
-    // be batched and delayed by many minutes — which made a "remind me in 1
-    // minute" test look broken). If the exact-alarm permission isn't granted,
-    // zonedSchedule throws; fall back to inexact so it still fires (approximately)
-    // and never crashes.
-    try {
-      await _plugin.zonedSchedule(
-        id: _dailyReminderId,
-        title: title,
-        body: body,
-        scheduledDate: next,
-        notificationDetails: details,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-        matchDateTimeComponents: DateTimeComponents.time,
-      );
-    } catch (_) {
-      await _plugin.zonedSchedule(
-        id: _dailyReminderId,
-        title: title,
-        body: body,
-        scheduledDate: next,
-        notificationDetails: details,
-        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-        matchDateTimeComponents: DateTimeComponents.time,
-      );
-    }
+    // Inexact, allow-while-idle: no SCHEDULE_EXACT_ALARM permission needed (so
+    // enabling notifications is all the user has to do), and a few minutes of
+    // drift is fine for a daily puzzle reminder. The OS still delivers it once
+    // per day at ~the chosen time within its maintenance window.
+    await _plugin.zonedSchedule(
+      id: _dailyReminderId,
+      title: title,
+      body: body,
+      scheduledDate: next,
+      notificationDetails: details,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
   }
 
   @override

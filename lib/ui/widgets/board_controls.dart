@@ -14,6 +14,8 @@ class BoardControls extends StatelessWidget {
     required this.onNext,
     required this.onUndo,
     required this.onRedo,
+    required this.canPrev,
+    required this.canNext,
     required this.canUndo,
     required this.canRedo,
   });
@@ -22,6 +24,8 @@ class BoardControls extends StatelessWidget {
   final VoidCallback onNext;
   final VoidCallback onUndo;
   final VoidCallback onRedo;
+  final bool canPrev;
+  final bool canNext;
   final bool canUndo;
   final bool canRedo;
 
@@ -46,10 +50,10 @@ class BoardControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        btn(Icons.chevron_left, l10n.actionPrev, onPrev),
+        btn(Icons.chevron_left, l10n.actionPrev, canPrev ? onPrev : null),
         btn(Icons.undo, l10n.actionUndo, canUndo ? onUndo : null),
         btn(Icons.redo, l10n.actionRedo, canRedo ? onRedo : null),
-        btn(Icons.chevron_right, l10n.actionNext, onNext),
+        btn(Icons.chevron_right, l10n.actionNext, canNext ? onNext : null),
       ],
     );
   }
