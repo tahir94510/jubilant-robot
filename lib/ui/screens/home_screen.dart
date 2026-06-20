@@ -524,10 +524,7 @@ class _MenuTile extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 13, color: palette.textSecondary),
         ),
-        trailing: Icon(
-          Icons.chevron_right,
-          color: scheme.onSurface.withValues(alpha: .3),
-        ),
+        trailing: Icon(Icons.chevron_right, color: palette.textFaint),
       ),
     );
   }
