@@ -237,6 +237,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                   ),
+                if (settings.reminderEnabled)
+                  ListTile(
+                    leading: const Icon(Icons.notifications_active_outlined),
+                    title: Text(l10n.sendTestNotification),
+                    onTap: () async {
+                      final ok = await controller.sendTestNotification();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              ok
+                                  ? l10n.testNotificationSent
+                                  : l10n.reminderDenied,
+                            ),
+                          ),
+                        );
+                    },
+                  ),
               ],
               section(l10n.sectionPremium),
               if (economy.premium)
@@ -594,6 +614,7 @@ class _ThemeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     return Semantics(
       button: true,
       selected: selected,
@@ -625,9 +646,7 @@ class _ThemeCard extends StatelessWidget {
               Icon(
                 icon,
                 size: 18,
-                color: selected
-                    ? scheme.primary
-                    : scheme.onSurface.withValues(alpha: .6),
+                color: selected ? scheme.primary : palette.textSecondary,
               ),
               const SizedBox(width: 8),
               Flexible(

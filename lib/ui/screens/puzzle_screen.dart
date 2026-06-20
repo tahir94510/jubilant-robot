@@ -556,7 +556,7 @@ class _TimerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     return Center(
       child: Padding(
         // Left gap keeps the clock from butting against the eye (show-solution)
@@ -573,7 +573,9 @@ class _TimerText extends StatelessWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
                 fontFeatures: const [FontFeature.tabularFigures()],
-                color: scheme.onSurface.withValues(alpha: .6),
+                // textSecondary clears WCAG AA on every theme; the old
+                // onSurface@.6 dipped below 4.5:1 (worst in sepia).
+                color: palette.textSecondary,
               ),
             );
           },

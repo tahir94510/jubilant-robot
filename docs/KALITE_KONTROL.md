@@ -127,9 +127,15 @@ kurup şu listeyi işaretleyin:
         streak" kartı görünüyor; "Remind me daily" bildirimi planlıyor,
         "Not now" sessizce kapatıyor, her iki durumda da kart bir daha
         ASLA görünmüyor (paket çözümlerinde hiç görünmez).
-24. [ ] Hatırlatma dayanıklılığı: hatırlatma açıkken saati 2-3 dk sonraya
-        kur, bildirimin GELDİĞİNİ gör; sonra cihazı yeniden başlat ve
-        ertesi gün bildirimi yine geldiğini doğrula (boot receiver).
+24. [ ] Hatırlatma dayanıklılığı: hatırlatma açıkken "Test bildirimi gönder"e
+        bas → bildirim ANINDA gelmeli (kanal yüksek önemli, ses+heads-up).
+        Sonra saati 2-3 dk sonraya kur, bildirimin GELDİĞİNİ gör; cihazı
+        yeniden başlat ve ertesi gün yine geldiğini doğrula (boot receiver).
+        NOT (OEM): Xiaomi/Samsung/Huawei gibi cihazlar arka planı agresif
+        kapatabilir → bildirim gelmezse uygulamayı "otomatik başlat"a ekle ve
+        pil optimizasyonundan muaf tut. Zamanlama Android 12'de tam dakika
+        (SCHEDULE_EXACT_ALARM varsayılan izinli; YÖNLENDİRME yok), 13+'da OS
+        izin vermezse bakım penceresinde (birkaç dk sapma) teslim edilir.
 25. [ ] Ana ekran müzik ikonu: başlıktaki nota ikonuna dokununca müzik
         anında susuyor (ikon "müzik kapalı"ya dönüyor); tekrar dokununca
         geri geliyor, durumu Ayarlar → "Music" ile birebir aynı.

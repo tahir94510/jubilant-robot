@@ -55,7 +55,9 @@ class _ConfettiBurstState extends State<ConfettiBurst>
       palette.revealed,
       scheme.primary,
       scheme.tertiary,
-      const Color(0xFFE0B85A), // brand champagne gold
+      // A theme- and colorblind-aware accent for hue variety, instead of a
+      // hardcoded gold that ignored the theme and clashed after the rebrand.
+      palette.confirmed,
     ];
     final rng = math.Random(widget.seed);
     _particles = List.generate(

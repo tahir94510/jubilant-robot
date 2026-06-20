@@ -393,6 +393,7 @@ class _ReminderNudgeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     final l10n = AppLocalizations.of(context);
     return Card(
       child: Padding(
@@ -421,7 +422,8 @@ class _ReminderNudgeCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 13,
                 height: 1.4,
-                color: scheme.onSurface.withValues(alpha: .6),
+                // AA-compliant on every theme (replaces onSurface@.6).
+                color: palette.textSecondary,
               ),
             ),
             const SizedBox(height: 14),
@@ -467,6 +469,7 @@ class _StatChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
@@ -480,7 +483,7 @@ class _StatChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, size: 16, color: scheme.onSurface.withValues(alpha: .6)),
+            Icon(icon, size: 16, color: palette.textSecondary),
             const SizedBox(width: 5),
             Text(
               label,

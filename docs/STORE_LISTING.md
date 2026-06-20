@@ -5,6 +5,67 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.2.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.2.0
+• More reliable daily reminders (and a "Send a test notification" button to check instantly)
+• Crisp launch logo in dark mode
+• Polished colors and contrast across light, dark and sepia themes
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.2.0 YENİLİKLER
+• Daha güvenilir günlük hatırlatmalar (ve anında denemek için "Test bildirimi gönder" düğmesi)
+• Koyu modda net açılış logosu
+• Açık, koyu ve sepya temalarda incelikle ayarlanmış renk ve kontrast
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.2.0
+• Recordatorios diarios más fiables (y un botón "Enviar una notificación de prueba" para comprobarlo al instante)
+• Logo de inicio nítido en modo oscuro
+• Colores y contraste pulidos en los temas claro, oscuro y sepia
+```
+
+**Deutsch**
+```
+NEU in 2.2.0
+• Zuverlässigere tägliche Erinnerungen (und ein Button „Testbenachrichtigung senden" zum sofortigen Prüfen)
+• Klares Start-Logo im Dunkelmodus
+• Feinabgestimmte Farben und Kontraste in hellem, dunklem und Sepia-Design
+```
+
+**Français**
+```
+NOUVEAU dans 2.2.0
+• Rappels quotidiens plus fiables (et un bouton « Envoyer une notification test » pour vérifier aussitôt)
+• Logo de lancement net en mode sombre
+• Couleurs et contraste peaufinés dans les thèmes clair, sombre et sépia
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.2.0
+• Promemoria giornalieri più affidabili (e un pulsante "Invia una notifica di prova" per verificare subito)
+• Logo d'avvio nitido in modalità scura
+• Colori e contrasto rifiniti nei temi chiaro, scuro e seppia
+```
+
+**Português**
+```
+NOVIDADES na 2.2.0
+• Lembretes diários mais confiáveis (e um botão "Enviar uma notificação de teste" para verificar na hora)
+• Logotipo de abertura nítido no modo escuro
+• Cores e contraste ajustados nos temas claro, escuro e sépia
+```
+
+---
+
 ## Release notes: v2.1.0 (max 500 chars, paste into "What's new")
 
 ```
