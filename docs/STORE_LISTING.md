@@ -5,6 +5,69 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.8.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.8.0
+• The ◀ ▶ letter-navigation arrows now enable/disable smartly at the ends of a quote
+• Daily reminders need only the notification permission — no extra "alarms" prompt
+• More polish and fixes
+Happy decoding!
+```
+
+Localized "What's new":
+
+**Türkçe**
+```
+1.8.0 YENİLİKLER
+• ◀ ▶ harf gezinme okları, sözün uçlarında akıllıca aktifleşip pasifleşiyor
+• Günlük hatırlatma için yalnız bildirim izni yeter — ek "alarm" izni yok
+• Daha fazla cila ve düzeltme
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 1.8.0
+• Las flechas de navegación ◀ ▶ se activan/desactivan de forma inteligente en los extremos de la frase
+• Los recordatorios diarios solo necesitan el permiso de notificaciones, sin aviso extra de "alarmas"
+• Más pulido y correcciones
+```
+
+**Deutsch**
+```
+NEU in 1.8.0
+• Die ◀ ▶ Buchstaben-Pfeile aktivieren/deaktivieren sich klug an den Enden eines Zitats
+• Tägliche Erinnerungen brauchen nur die Benachrichtigungsberechtigung – keine zusätzliche „Wecker"-Abfrage
+• Mehr Feinschliff und Korrekturen
+```
+
+**Français**
+```
+NOUVEAU dans 1.8.0
+• Les flèches de navigation ◀ ▶ s'activent/se désactivent intelligemment aux extrémités d'une citation
+• Les rappels quotidiens ne demandent que l'autorisation de notifications, sans invite « alarmes »
+• Davantage de finitions et de correctifs
+```
+
+**Italiano**
+```
+NOVITÀ nella 1.8.0
+• Le frecce di navigazione ◀ ▶ si attivano/disattivano in modo intelligente agli estremi di una frase
+• I promemoria giornalieri richiedono solo il permesso di notifica, senza richiesta extra di "sveglie"
+• Altre rifiniture e correzioni
+```
+
+**Português**
+```
+NOVIDADES na 1.8.0
+• As setas de navegação ◀ ▶ ativam/desativam de forma inteligente nas extremidades de uma frase
+• Os lembretes diários precisam apenas da permissão de notificações, sem aviso extra de "alarmes"
+• Mais polimento e correções
+```
+
+---
+
 ## Release notes: v1.7.0 (max 500 chars, paste into "What's new")
 
 ```

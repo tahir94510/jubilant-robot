@@ -359,26 +359,38 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Moves the cursor to the next ([dir] > 0) or previous board letter,
-  /// wrapping around. Drives arrow-key navigation for physical keyboards,
-  /// TVs, and accessibility.
+  /// Moves the cursor to the next ([dir] > 0) or previous board letter, WITHOUT
+  /// wrapping: at the first/last letter it is a no-op (the on-screen ◀ ▶ keys
+  /// disable there via [canMovePrev]/[canMoveNext]). Drives arrow-key
+  /// navigation for physical keyboards, TVs, and accessibility.
   void moveSelection(int dir) {
-    final s = _session;
-    if (s == null) return;
-    final t = s.cipherText;
-    final n = t.length;
-    if (n == 0) return;
-    var i = _selectedIndex ?? (dir > 0 ? -1 : 0);
-    for (var step = 0; step < n; step++) {
-      i = (i + dir) % n;
-      if (i < 0) i += n;
-      if (s.cipherLetters.contains(t[i])) {
-        _selectedIndex = i;
-        notifyListeners();
-        return;
-      }
-    }
+    final i = _adjacentLetterIndex(dir);
+    if (i == null) return;
+    _selectedIndex = i;
+    notifyListeners();
   }
+
+  /// The nearest board-letter cell strictly after ([dir] > 0) / before
+  /// ([dir] < 0) the cursor, or null if there is none in that direction.
+  int? _adjacentLetterIndex(int dir) {
+    final s = _session;
+    if (s == null) return null;
+    final t = s.cipherText;
+    final from = _selectedIndex ?? (dir > 0 ? -1 : t.length);
+    for (var i = from + dir; i >= 0 && i < t.length; i += dir) {
+      if (s.cipherLetters.contains(t[i])) return i;
+    }
+    return null;
+  }
+
+  /// Whether the ◀ (previous letter) control should be enabled — true when a
+  /// board letter exists before the cursor.
+  bool get canMovePrev => _adjacentLetterIndex(-1) != null;
+
+  /// Whether the ▶ (next letter) control should be enabled — true when a board
+  /// letter exists after the cursor (false once the cursor is on the last
+  /// letter, e.g. after typing the final cell).
+  bool get canMoveNext => _adjacentLetterIndex(1) != null;
 
   /// Compatibility selector by cipher letter — focuses that letter's first
   /// occurrence. The UI selects by position via [selectIndex]; this remains

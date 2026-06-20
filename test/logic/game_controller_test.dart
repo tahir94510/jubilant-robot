@@ -532,6 +532,48 @@ void main() {
     });
   });
 
+  group('cursor navigation', () {
+    test(
+      'moveSelection does not wrap; canMovePrev/Next reflect the boundaries',
+      () async {
+        final store = await storage();
+        final game = GameController(storage: store);
+        game.start(shortQuote, daily: false);
+        final s = game.session!;
+        final t = s.cipherText;
+        final letterPositions = [
+          for (var i = 0; i < t.length; i++)
+            if (s.cipherLetters.contains(t[i])) i,
+        ];
+        final first = letterPositions.first;
+        final last = letterPositions.last;
+
+        // At the first letter: no previous, but a next exists.
+        game.selectIndex(first);
+        expect(game.canMovePrev, isFalse);
+        expect(game.canMoveNext, isTrue);
+        game.moveSelection(-1); // no-op (can't wrap to the end)
+        expect(game.selectedIndex, first);
+
+        // At the last letter: a previous exists, but no next.
+        game.selectIndex(last);
+        expect(game.canMoveNext, isFalse);
+        expect(game.canMovePrev, isTrue);
+        game.moveSelection(1); // no-op (can't wrap to the start)
+        expect(game.selectedIndex, last);
+
+        // Moving forward from the first lands on the next letter, not a wrap.
+        game.selectIndex(first);
+        game.moveSelection(1);
+        expect(game.selectedIndex, isNot(first));
+        expect(game.selectedIndex, greaterThan(first));
+
+        game.stopTimer();
+        game.dispose();
+      },
+    );
+  });
+
   group('redo', () {
     test(
       'redo re-applies an undone guess; a new edit clears the redo future',

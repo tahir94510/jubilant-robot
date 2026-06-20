@@ -422,6 +422,8 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                   },
                                   onUndo: _onUndo,
                                   onRedo: _onRedo,
+                                  canPrev: game.canMovePrev,
+                                  canNext: game.canMoveNext,
                                   canUndo: game.canUndo,
                                   canRedo: game.canRedo,
                                 ),
