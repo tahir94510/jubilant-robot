@@ -97,7 +97,10 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   için determinizm ve sabit-noktasızlık testiyle kanıtlı.
 - **"Ink & Gold" asil kimlik:** Sıcak mürekkep zemin + şampanya altını
   vurgular + zarif garnet (eski mavi-merkezli palet ve amatör logo elden
-  geçti; logo, ikon, splash, web ve mağaza görselleri tutarlı).
+  geçti; logo, ikon, splash, web ve mağaza görselleri tutarlı). Uygulama-içi
+  logo tamamen **vektör** (CustomPainter) — her DPI'da net, pikselleşme yok;
+  native splash 1152px'e kadar süper-örneklemeli üretilir. Play feature
+  graphic'in **7 dile özel** varyantı vardır (her dilin sloganı gömülü).
 - **Atmosfer & ses:** prosedürel üretilmiş (telifsiz) sakin akor döngüsü
   (C-Am-F-G…, sessizlikten başlayıp sessizliğe çözülerek dikişsiz döner;
   cızırtısız), **müzik ve efekt için ayrı ses kaydırıcıları**, arka plana

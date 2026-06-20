@@ -929,14 +929,34 @@ Se você curte jogos de palavras, quebra-cabeças, desafios de lógica ou simple
 | Asset | File | Spec |
 |---|---|---|
 | App icon | `store_assets/play_icon_512.png` (hazır, tam-kanama kare) | 512×512 PNG, <1MB |
-| Feature graphic | `store_assets/feature_graphic.png` | 1024×500 PNG |
+| Feature graphic (EN, varsayılan) | `store_assets/feature_graphic.png` | 1024×500 PNG |
+| Feature graphic (dile özel ×7) | `store_assets/feature_graphic_{en,tr,de,es,fr,it,pt}.png` | 1024×500 PNG |
 | Phone screenshots | take 4-6 on your device | 16:9 or 9:16, min 320px |
 
+> **Dile özel feature graphic (ASO):** Play Console her mağaza-girişi dili için
+> ayrı bir feature graphic kabul eder. Yedi dilin her biri için, o dilin sloganı
+> gömülü hazır bir görsel üretildi (`feature_graphic_<loc>.png`). Yükleme:
+> **Play Console → Mağaza girişi → (sağ üst) dili seç/ekle → Grafikler → Feature
+> graphic** altında ilgili dilin dosyasını yükleyin (örn. Türkçe girişe
+> `feature_graphic_tr.png`). Varsayılan/İngilizce giriş `feature_graphic.png`
+> kullanır. Sloganlar her dilin tam açıklamasının açılış cümlesiyle birebir
+> aynıdır; `tool/generate_icons.py` içindeki `FEATURE_TAGLINES` ile senkron tutun.
+
+> **Logo / tema kararı (kasıtlı):** Tek bir marka kimliği kullanılır — koyu
+> "Ink & Gold" mark (mürekkep gradyanı + şampanya altını). Ayrı bir *açık-zemin*
+> uygulama ikonu **bilinçli olarak EKLENMEZ**: cihazda/mağazada tek tutarlı ikon
+> tanınırlığı artırır ve "şifre/gece" temasıyla örtüşür; iki ikon kafa karıştırır.
+> Uygulama-içi logo zaten vektördür (`lib/ui/widgets/brand_mark.dart`,
+> CustomPainter) → her DPI'da net, pikselleşme yok; native splash 1152px'e kadar
+> süper-örneklemeli üretilir. (İleride istenirse açık-tema varyantı ayrı bir iş
+> olarak eklenebilir.)
+
 > Not: Tüm raster görseller (ikonlar, splash, bildirim glifi, web ikonları,
-> Play ikonu, feature graphic) tek komutla üretilir:
+> Play ikonu, feature graphic + dile özel varyantları) tek komutla üretilir:
 > `python3 tool/generate_icons.py`. `dart run flutter_launcher_icons`
 > ÇALIŞTIRMAYIN; araç çıktılarının üzerine düşük kaliteli ölçekleme yazar
 > (pubspec'teki blok yalnız adaptif ikon bağlantısını belgelemek için durur).
+> Üretilen varlıkların boyutu `test/data/brand_assets_test.dart` ile kilitlidir.
 
 Suggested screenshot order (first two matter most):
 1. Puzzle screen mid-solve (the main game screen)
