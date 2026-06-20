@@ -102,9 +102,15 @@ kurup şu listeyi işaretleyin:
 14. [ ] Tema seçici: varsayılan "Auto" seçili ve cihaz temasını izliyor;
         dört kartın da etiketi tam okunuyor (320dp + büyük yazıda bile),
         dört seçenek de anında uygulanıyor.
-15. [ ] Açılış: soğuk başlatmada markalı splash görünüyor (lacivert
-        gradyan + logo; Android 12+'da daire içinde logo), splash →
-        ilk kare geçişinde beyaz flaş YOK (koyu temada da dene).
+15. [ ] Açılış: soğuk başlatmada markalı splash görünüyor (AÇIK "paper"
+        zemin + koyu mürekkep logo; Android 12+'da daire içinde logo). Koyu
+        modda da açık zemin (Q siyaha gömülmüyor), splash → ilk kare
+        geçişinde flaş YOK.
+15b.[ ] Edge-to-edge (Android 15 / SDK 35+): içerik durum çubuğu VE alt
+        gezinme çubuğu arkasına çiziliyor ama hiçbir şey altlarında
+        gizlenmiyor (SafeArea/PageBody); çubuklar saydam, ikonları aktif
+        temaya göre okunaklı (açık/sepya'da koyu, koyu temada açık);
+        3-tuş ve jest navigasyonunda, üç temada da doğrula.
 16. [ ] Launcher ikonu ana ekranda net ve dolgun (Q? + alt çizgi); Android
         13+ temalı ikon modunda tek renkli varyant düzgün.
 17. [ ] Hatırlatma bildirimi durum çubuğunda BEYAZ "Q" glifi olarak

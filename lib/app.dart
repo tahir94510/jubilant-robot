@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'config/app_config.dart';
@@ -18,6 +19,28 @@ class QuotecrackApp extends StatelessWidget {
     final music = context.read<MusicService>();
     final platformBrightness = MediaQuery.platformBrightnessOf(context);
 
+    final theme = AppThemes.resolve(
+      settings.themeMode,
+      colorblind: settings.colorblindMode,
+      platformBrightness: platformBrightness,
+    );
+    // Edge-to-edge: transparent status + navigation bars with icon brightness
+    // matched to the active theme, so the system bars blend into the app and
+    // their icons stay legible in light, dark and sepia. Contrast enforcement
+    // is off so Android doesn't paint a grey scrim behind the nav bar.
+    final isLight = theme.brightness == Brightness.light;
+    final overlayStyle = SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
+      statusBarBrightness: isLight ? Brightness.light : Brightness.dark,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: isLight
+          ? Brightness.dark
+          : Brightness.light,
+      systemNavigationBarContrastEnforced: false,
+      systemStatusBarContrastEnforced: false,
+    );
+
     return MaterialApp(
       title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
@@ -27,11 +50,7 @@ class QuotecrackApp extends StatelessWidget {
       locale: settings.languageCode == null
           ? null
           : Locale(settings.languageCode!),
-      theme: AppThemes.resolve(
-        settings.themeMode,
-        colorblind: settings.colorblindMode,
-        platformBrightness: platformBrightness,
-      ),
+      theme: theme,
       builder: (context, child) {
         // Combine the user's in-app text-size choice with the OS setting,
         // clamped so the board always stays playable.
@@ -41,13 +60,20 @@ class QuotecrackApp extends StatelessWidget {
             .clamp(0.85, 1.6);
         return MediaQuery(
           data: mq.copyWith(textScaler: TextScaler.linear(combined)),
-          // Browsers only allow audio after a user gesture, so the music
-          // bed re-attempts on taps until one sticks (no-op once playing,
-          // and on Android, where the post-frame start already succeeded).
-          child: Listener(
-            behavior: HitTestBehavior.translucent,
-            onPointerDown: (_) => music.ensureStarted(),
-            child: child!,
+          // Apply the transparent, theme-matched system-bar style app-wide.
+          // Screens with an AppBar still set their own status-bar style; this
+          // governs the navigation bar everywhere and the status bar on
+          // AppBar-less screens (e.g. Home).
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: overlayStyle,
+            // Browsers only allow audio after a user gesture, so the music
+            // bed re-attempts on taps until one sticks (no-op once playing,
+            // and on Android, where the post-frame start already succeeded).
+            child: Listener(
+              behavior: HitTestBehavior.translucent,
+              onPointerDown: (_) => music.ensureStarted(),
+              child: child!,
+            ),
           ),
         );
       },
