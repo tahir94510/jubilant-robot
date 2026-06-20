@@ -31,13 +31,16 @@ class BrandMark extends StatelessWidget {
 }
 
 class _BrandPainter extends CustomPainter {
-  // "Ink & Gold" brand: a warm-ink gradient tile, an ivory serif Q, a
-  // champagne-gold question mark at its shoulder, and a slim gold underline.
-  static const _gradientTop = Color(0xFF1A1814);
-  static const _gradientBottom = Color(0xFF2E2A22);
-  static const _paper = Color(0xFFF3EEE2);
-  static const _gold = Color(0xFFE0B85A);
-  static const _underline = Color(0xFFCBA24E);
+  // "Ink & Gold" on a warm PAPER field: a light champagne-cream gradient tile,
+  // a dark-ink serif Q, a deepened bronze-gold question mark at its shoulder,
+  // and a slim deep-gold underline. Matches the light app icon
+  // (tool/generate_icons.py); the gold is deepened so it keeps contrast on the
+  // light field instead of washing out.
+  static const _gradientTop = Color(0xFFF7F4EC);
+  static const _gradientBottom = Color(0xFFEAE1CE);
+  static const _ink = Color(0xFF26221C);
+  static const _gold = Color(0xFFAA7C22);
+  static const _underline = Color(0xFF966E1E);
 
   TextPainter _glyph(String ch, double fontSize, int weight, Color color) {
     final tp = TextPainter(
@@ -80,7 +83,7 @@ class _BrandPainter extends CustomPainter {
 
     // Q: box centred at (0.44, 0.42) like the icon. Its box bottom lands near
     // 0.70s, comfortably above the underline at 0.80s.
-    final q = _glyph('Q', s * 0.56, 600, _paper);
+    final q = _glyph('Q', s * 0.56, 600, _ink);
     q.paint(canvas, Offset(s * 0.44 - q.width / 2, s * 0.42 - q.height / 2));
 
     // Question mark at the shoulder (no descender, so no clearance worry).

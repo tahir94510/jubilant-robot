@@ -5,6 +5,60 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.1.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.1.0
+• Fresh look: a brighter, cleaner app icon and launch screen — easier to spot, same elegant "Ink & Gold" style
+• Per-language store artwork
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.1.0 YENİLİKLER
+• Yeni görünüm: daha aydınlık, daha temiz uygulama ikonu ve açılış ekranı — gözden kaçmaz, aynı zarif "Ink & Gold" tarzı
+• Dile özel mağaza görselleri
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.1.0
+• Nuevo aspecto: un icono y una pantalla de inicio más claros y nítidos, fáciles de ver, con el mismo elegante estilo "Ink & Gold"
+• Gráficos de tienda por idioma
+```
+
+**Deutsch**
+```
+NEU in 2.1.0
+• Frischer Look: ein helleres, klareres App-Symbol und Startbildschirm – leichter zu erkennen, im selben eleganten „Ink & Gold"-Stil
+• Store-Grafiken pro Sprache
+```
+
+**Français**
+```
+NOUVEAU dans 2.1.0
+• Nouveau look : une icône et un écran de lancement plus clairs et nets, plus faciles à repérer, dans le même style élégant « Ink & Gold »
+• Visuels de la boutique par langue
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.1.0
+• Nuovo look: un'icona e una schermata d'avvio più chiare e pulite, più facili da notare, con lo stesso elegante stile "Ink & Gold"
+• Grafiche dello store per lingua
+```
+
+**Português**
+```
+NOVIDADES na 2.1.0
+• Visual novo: um ícone e uma tela de abertura mais claros e nítidos, fáceis de notar, no mesmo elegante estilo "Ink & Gold"
+• Imagens da loja por idioma
+```
+
+---
+
 ## Release notes: v2.0.0 (max 500 chars, paste into "What's new")
 
 ```
@@ -942,14 +996,17 @@ Se você curte jogos de palavras, quebra-cabeças, desafios de lógica ou simple
 > kullanır. Sloganlar her dilin tam açıklamasının açılış cümlesiyle birebir
 > aynıdır; `tool/generate_icons.py` içindeki `FEATURE_TAGLINES` ile senkron tutun.
 
-> **Logo / tema kararı (kasıtlı):** Tek bir marka kimliği kullanılır — koyu
-> "Ink & Gold" mark (mürekkep gradyanı + şampanya altını). Ayrı bir *açık-zemin*
-> uygulama ikonu **bilinçli olarak EKLENMEZ**: cihazda/mağazada tek tutarlı ikon
-> tanınırlığı artırır ve "şifre/gece" temasıyla örtüşür; iki ikon kafa karıştırır.
-> Uygulama-içi logo zaten vektördür (`lib/ui/widgets/brand_mark.dart`,
-> CustomPainter) → her DPI'da net, pikselleşme yok; native splash 1152px'e kadar
-> süper-örneklemeli üretilir. (İleride istenirse açık-tema varyantı ayrı bir iş
-> olarak eklenebilir.)
+> **Logo / tema kimliği (v2.1.0 — açık tema):** Marka kimliği **açık "paper"
+> zemine** taşındı: krem/şampanya gradyan tile + koyu mürekkep serif "Q" +
+> **derinleştirilmiş bronz-altın** aksan ve alt çizgi. Gerekçe: açık zeminli ikon
+> launcher ve mağaza ızgarasında daha çok öne çıkar (koyu ikon koyu duvar
+> kağıdı/koyu modda kaybolabilir); altın, açık zeminde solmaması için
+> derinleştirildi (düz çevirme altını okunmaz yapardı). Tek tutarlı kimlik tüm
+> yüzeylerde uygulanır: app ikonu, adaptive katman + arka plan rengi (paper),
+> native splash (paper zemin), uygulama-içi vektör logo (`brand_mark.dart`) ve
+> 7 dile özel feature graphic. Uygulama-içi logo vektördür → her DPI'da net,
+> pikselleşme yok; native splash 1152px'e kadar süper-örneklemeli. Bildirim
+> glifi monokromdur (sistem renklendirir) → değişmez.
 
 > Not: Tüm raster görseller (ikonlar, splash, bildirim glifi, web ikonları,
 > Play ikonu, feature graphic + dile özel varyantları) tek komutla üretilir:
