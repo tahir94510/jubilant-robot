@@ -1,7 +1,7 @@
 [
  {
   "id": "pt-x500",
-  "text": "Mais vale um pássaro na mão que dois a voar.",
+  "text": "Nem tudo o que reluz é ouro.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -9,7 +9,7 @@
  },
  {
   "id": "pt-x501",
-  "text": "Quem vê caras não vê corações.",
+  "text": "Não se faz omeleta sem partir ovos.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -17,7 +17,7 @@
  },
  {
   "id": "pt-x502",
-  "text": "Gato escaldado de água fria tem medo.",
+  "text": "Mais vale um burro vivo que um sábio morto.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -25,7 +25,7 @@
  },
  {
   "id": "pt-x503",
-  "text": "Em casa onde não há pão todos ralham e ninguém tem razão.",
+  "text": "Vão-se os anéis ficam os dedos.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -33,7 +33,7 @@
  },
  {
   "id": "pt-x504",
-  "text": "A galinha da vizinha é sempre melhor que a minha.",
+  "text": "Quem tem arte por toda a parte tem parte.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -41,7 +41,7 @@
  },
  {
   "id": "pt-x505",
-  "text": "Diz-me com quem andas e dir-te-ei quem és.",
+  "text": "O preço da liberdade é a eterna vigilância.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -49,7 +49,7 @@
  },
  {
   "id": "pt-x506",
-  "text": "Quem o feio ama bonito lhe parece.",
+  "text": "Quem tem telhado de vidro não atira pedras ao do vizinho.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -57,7 +57,7 @@
  },
  {
   "id": "pt-x507",
-  "text": "Quem parte e reparte fica com a melhor parte.",
+  "text": "Quem conta um conto acrescenta um ponto.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -65,7 +65,7 @@
  },
  {
   "id": "pt-x508",
-  "text": "Não deixes para amanhã o que podes fazer hoje.",
+  "text": "De boas intenções está o inferno cheio.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -73,7 +73,7 @@
  },
  {
   "id": "pt-x509",
-  "text": "Quem muito abarca pouco aperta.",
+  "text": "Mais depressa se apanha um mentiroso que um coxo.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -81,7 +81,7 @@
  },
  {
   "id": "pt-x510",
-  "text": "Quem tem unhas é que toca guitarra.",
+  "text": "Quem se mete em camisas de onze varas mal se sai.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -89,7 +89,7 @@
  },
  {
   "id": "pt-x511",
-  "text": "Mais vale um gosto na vida que três vinténs na algibeira.",
+  "text": "O comer e o coçar tudo está no começar.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -97,7 +97,7 @@
  },
  {
   "id": "pt-x512",
-  "text": "Quem nasceu para a forca não morre afogado.",
+  "text": "Quem o seu cão quer matar raiva lhe levanta.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -105,7 +105,7 @@
  },
  {
   "id": "pt-x513",
-  "text": "Quem muito fala pouco acerta.",
+  "text": "A noite é boa conselheira.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -113,7 +113,7 @@
  },
  {
   "id": "pt-x514",
-  "text": "Quem tem rabo de palha não chega ao lume.",
+  "text": "Quem semeia trigo colhe pão.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -121,7 +121,7 @@
  },
  {
   "id": "pt-x515",
-  "text": "Ao bom entendedor meia palavra basta.",
+  "text": "Quem espera por bota de defunto morre descalço.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -129,406 +129,6 @@
  },
  {
   "id": "pt-x516",
-  "text": "Cão que muito lambe tira sangue.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x517",
-  "text": "Quem feio nasce não embeleza.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x518",
-  "text": "Quem com cães se deita com pulgas se levanta.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x519",
-  "text": "A cada porco vem o seu São Martinho.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x520",
-  "text": "Quem muito quer saber depressa envelhece.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x521",
-  "text": "Mais vale uma boa fama que uma má cama.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x522",
-  "text": "Quem não tem pão não tem cão.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x523",
-  "text": "Quem espera por sapatos de defunto morre descalço.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x524",
-  "text": "Vale mais um amigo na praça que dinheiro na arca.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x525",
-  "text": "A árvore conhece-se pelos frutos.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x526",
-  "text": "Quem rio passa molha os pés.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x527",
-  "text": "Quem tem medo compra um cão.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x528",
-  "text": "Mau é o pão que falta na mesa.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x529",
-  "text": "Quem dá depressa dá duas vezes.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x530",
-  "text": "Quem nasce torto tarde ou nunca se endireita.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x531",
-  "text": "Mais sabe o tolo no seu do que o sábio no alheio.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x532",
-  "text": "Casamento e mortalha no céu se talha.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x533",
-  "text": "Quem espera no campo do alheio até a noite fica de noite.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x534",
-  "text": "Mais vale só do que mal acompanhado.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x535",
-  "text": "Quem tem boa língua a Roma vai.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x536",
-  "text": "A preguiça é a chave da pobreza.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x537",
-  "text": "Mais vale uma na mão do que duas a voar.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x538",
-  "text": "Quem brinca com fogo queima-se.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x539",
-  "text": "Cada qual com a sua cada qual.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x540",
-  "text": "Quem semeia trigo apanha pão.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x541",
-  "text": "Mais vale a saúde que o dinheiro.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x542",
-  "text": "Quem tarde chega mal aloja.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x543",
-  "text": "Quem cedo madruga Deus o ajuda.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x544",
-  "text": "Quem não tem vergonha todo o mundo é seu.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x545",
-  "text": "Quem cabritos vende e cabras não tem de algures lhe vêm.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x546",
-  "text": "A roupa suja lava-se em casa.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x547",
-  "text": "Quem muito escolhe pouco acerta.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x548",
-  "text": "Quem do alheio se veste na praça o despe.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x549",
-  "text": "A palavra é de prata e o silêncio é de ouro.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x550",
-  "text": "Quem foi rei nunca perde a majestade.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x551",
-  "text": "Caras vemos corações não sabemos.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x552",
-  "text": "A esmola grande faz o santo desconfiar.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x553",
-  "text": "Mais ajuda Deus que madruga.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x554",
-  "text": "Quem berra muito pouco assa.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x555",
-  "text": "Quem espera por bota de defunto descalço fica.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x556",
-  "text": "Quem semeia abrolhos não colha trigo.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x557",
-  "text": "A verdade é como o azeite vem sempre ao de cima.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x558",
-  "text": "Quem feio é a graça lhe baste.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x559",
-  "text": "Bocado comido não tem amigo.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x560",
-  "text": "Quem tem boca cala-se quem tem pés anda.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x561",
-  "text": "Águas mansas não fazem bom marinheiro.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x562",
-  "text": "Quem trabalha come quem não trabalha vive.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x563",
-  "text": "Quem não pode com o tacho não pega na colher.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x564",
-  "text": "Mais vale um pão com amor que uma galinha com dor.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x565",
-  "text": "Quem dá pão a cão alheio perde o pão e perde o cão.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x566",
   "text": "Cada um por si e Deus por todos.",
   "author": "Provérbio popular",
   "source": "Tradicional",
@@ -536,319 +136,23 @@
   "locale": "pt"
  },
  {
-  "id": "pt-x567",
-  "text": "Quem não tem cabeça tem pernas.",
+  "id": "pt-x517",
+  "text": "Diz-me com quem andas dir-te-ei quem és.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
   "locale": "pt"
  },
  {
-  "id": "pt-x568",
-  "text": "Quem ao perto não chega ao longe não alcança.",
+  "id": "pt-x518",
+  "text": "A boa palavra abre portas fechadas.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
   "locale": "pt"
  },
  {
-  "id": "pt-x569",
-  "text": "Quem trabalha e poupa amanhã tem sopa.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x570",
-  "text": "Quem casa por amores maus dias e boas noites.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x571",
-  "text": "A mulher e a sardinha querem-se da mais pequenina.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x572",
-  "text": "Quem é da panela lambe a tampa.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x573",
-  "text": "Quem muito apressa tarde acaba.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x574",
-  "text": "A galinha do vizinho põe mais ovos que a minha.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x575",
-  "text": "Quem ama o perigo nele perece.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x576",
-  "text": "Ninguém aprende por cabeça alheia.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x577",
-  "text": "Quem espera pelo calçado de defunto morre descalço.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x578",
-  "text": "Casa sem pão velho rico se torna pobre.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x579",
-  "text": "Quem dá e tira torna a porca ao chiqueiro.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x580",
-  "text": "A juventude é o tempo de aprender.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x581",
-  "text": "Quem semeia em terra alheia perde o trabalho e a semente.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x582",
-  "text": "A esperança alimenta mas não sustenta.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x583",
-  "text": "Quem ama feio formoso lhe parece.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x584",
-  "text": "Cabeça vazia oficina do diabo.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x585",
-  "text": "Quem com má gente se acompanha mal acaba.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x586",
-  "text": "A vingança é um prato que se come frio.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x587",
-  "text": "Quem feio compra caro paga.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x588",
-  "text": "Quem não tem competência não se estabeleça.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x589",
-  "text": "Antes que cases olha o que fazes.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x590",
-  "text": "Quem cala não diz nada mas tudo escuta.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x591",
-  "text": "A boa rês de raça nunca sai má.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x592",
-  "text": "Quem mente uma vez não merece crédito.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x593",
-  "text": "A noite a todos os gatos faz pardos.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x594",
-  "text": "Quem não tem que fazer arma navios.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x595",
-  "text": "Mais vale a paz do que a guerra.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x596",
-  "text": "Quem dá o seu antes de morrer merece com um maço bater.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x597",
-  "text": "Quem mau vizinho tem cedo se arrepende.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x598",
-  "text": "Quem tem medo do mar não embarca.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x599",
-  "text": "A formiga junta no verão para o inverno.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x600",
-  "text": "Mais vale calar que mal falar.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x601",
-  "text": "Quem trabalha de noite de dia descansa.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x602",
-  "text": "A todo o porco chega o seu Santo André.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x603",
-  "text": "Quem semeia favas tem favas e vagens.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x604",
-  "text": "A boa palavra abre porta cerrada.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x605",
-  "text": "Quem quer faz quem não quer manda.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x606",
+  "id": "pt-x519",
   "text": "Quem rouba um ovo rouba um boi.",
   "author": "Provérbio popular",
   "source": "Tradicional",
@@ -856,7 +160,7 @@
   "locale": "pt"
  },
  {
-  "id": "pt-x607",
+  "id": "pt-x520",
   "text": "Cada panela tem a sua tampa.",
   "author": "Provérbio popular",
   "source": "Tradicional",
@@ -864,39 +168,7 @@
   "locale": "pt"
  },
  {
-  "id": "pt-x608",
-  "text": "Quem não tem que fazer chama o gato pelo rabo.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x609",
-  "text": "Mais vale uma palavra a tempo que cem fora dele.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x610",
-  "text": "Quem trabalha tem pão quem folga tem fome.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x611",
-  "text": "Quem nasce para pobre nunca chega a rico.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x612",
+  "id": "pt-x521",
   "text": "Cesteiro que faz um cesto faz um cento.",
   "author": "Provérbio popular",
   "source": "Tradicional",
@@ -904,63 +176,7 @@
   "locale": "pt"
  },
  {
-  "id": "pt-x613",
-  "text": "Quem dá ao pobre aumenta o seu cabedal.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x614",
-  "text": "A bem fazer nunca te canses.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x615",
-  "text": "Não digas tudo o que sabes nem julgues tudo o que vês.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x616",
-  "text": "Quem com o demo cava com o demo arranca.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x617",
-  "text": "A burro velho cabeçada nova.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x618",
-  "text": "Quem mal ouve mal responde.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x619",
-  "text": "Por fora boa viola por dentro pão bolorento.",
-  "author": "Provérbio popular",
-  "source": "Tradicional",
-  "category": "proverbs",
-  "locale": "pt"
- },
- {
-  "id": "pt-x620",
+  "id": "pt-x522",
   "text": "Quem não trabalha não come.",
   "author": "Provérbio popular",
   "source": "Tradicional",
@@ -968,8 +184,792 @@
   "locale": "pt"
  },
  {
+  "id": "pt-x523",
+  "text": "Quem brinca com o fogo queima-se.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x524",
+  "text": "A roupa suja lava-se em casa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x525",
+  "text": "Mais vale só do que mal acompanhado.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x526",
+  "text": "Quem muito abarca pouco aperta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x527",
+  "text": "A árvore conhece-se pelos frutos.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x528",
+  "text": "Quem cedo madruga Deus o ajuda.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x529",
+  "text": "Quem com cães se deita com pulgas se levanta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x530",
+  "text": "Ao bom entendedor meia palavra basta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x531",
+  "text": "Quem parte e reparte fica com a melhor parte.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x532",
+  "text": "Quem dá depressa dá duas vezes.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x533",
+  "text": "Quem vê caras não vê corações.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x534",
+  "text": "Casamento e mortalha no céu se talha.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x535",
+  "text": "A preguiça é a chave da pobreza.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x536",
+  "text": "Quem ama o perigo nele perece.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x537",
+  "text": "Ninguém aprende por cabeça alheia.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x538",
+  "text": "A vingança é um prato que se serve frio.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x539",
+  "text": "Antes que cases olha o que fazes.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x540",
+  "text": "Quem tem medo compra um cão.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x541",
+  "text": "Quem nasceu para a forca não morre afogado.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x542",
+  "text": "A verdade é como o azeite vem sempre ao de cima.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x543",
+  "text": "Quem tem boa língua a Roma vai.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x544",
+  "text": "A bem fazer nunca te canses.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x545",
+  "text": "Quem dá pão a cão alheio perde o pão e perde o cão.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x546",
+  "text": "Mais vale a saúde que o dinheiro.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x547",
+  "text": "Quem nasce torto tarde se endireita.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x548",
+  "text": "Quem não tem cabeça tem pernas.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x549",
+  "text": "Quem não pode com o tacho não pega na colher.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x550",
+  "text": "O que é bom acaba depressa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x551",
+  "text": "O mentiroso é apanhado depressa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x552",
+  "text": "A galinha da vizinha é sempre melhor que a minha.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x553",
+  "text": "Mais vale um pássaro na mão que dois a voar.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x554",
+  "text": "Gato escaldado de água fria tem medo.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x555",
+  "text": "Em casa onde não há pão todos ralham e ninguém tem razão.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x556",
+  "text": "Diz-me com quem andas e dir-te-ei quem és.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x557",
+  "text": "Quem o feio ama bonito lhe parece.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x558",
+  "text": "Não deixes para amanhã o que podes fazer hoje.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x559",
+  "text": "Quem tem unhas é que toca guitarra.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x560",
+  "text": "Mais vale um gosto na vida que três vinténs na algibeira.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x561",
+  "text": "Quem muito fala pouco acerta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x562",
+  "text": "Quem tem rabo de palha não chega ao lume.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x563",
+  "text": "Cão que muito lambe tira sangue.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x564",
+  "text": "Quem feio nasce não embeleza.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x565",
+  "text": "A cada porco vem o seu São Martinho.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x566",
+  "text": "Quem muito quer saber depressa envelhece.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x567",
+  "text": "Mais vale uma boa fama que uma má cama.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x568",
+  "text": "Quem não tem pão não tem cão.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x569",
+  "text": "Quem espera por sapatos de defunto morre descalço.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x570",
+  "text": "Vale mais um amigo na praça que dinheiro na arca.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x571",
+  "text": "Quem rio passa molha os pés.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x572",
+  "text": "Mau é o pão que falta na mesa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x573",
+  "text": "Quem nasce torto tarde ou nunca se endireita.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x574",
+  "text": "Mais sabe o tolo no seu do que o sábio no alheio.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x575",
+  "text": "Quem espera no campo do alheio até a noite fica de noite.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x576",
+  "text": "Mais vale uma na mão do que duas a voar.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x577",
+  "text": "Quem brinca com fogo queima-se.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x578",
+  "text": "Cada qual com a sua cada qual.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x579",
+  "text": "Quem semeia trigo apanha pão.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x580",
+  "text": "Quem tarde chega mal aloja.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x581",
+  "text": "Quem não tem vergonha todo o mundo é seu.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x582",
+  "text": "Quem cabritos vende e cabras não tem de algures lhe vêm.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x583",
+  "text": "Quem muito escolhe pouco acerta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x584",
+  "text": "Quem do alheio se veste na praça o despe.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x585",
+  "text": "A palavra é de prata e o silêncio é de ouro.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x586",
+  "text": "Quem foi rei nunca perde a majestade.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x587",
+  "text": "Caras vemos corações não sabemos.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x588",
+  "text": "A esmola grande faz o santo desconfiar.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x589",
+  "text": "Mais ajuda Deus que madruga.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x590",
+  "text": "Quem berra muito pouco assa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x591",
+  "text": "Quem espera por bota de defunto descalço fica.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x592",
+  "text": "Quem semeia abrolhos não colha trigo.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x593",
+  "text": "Quem feio é a graça lhe baste.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x594",
+  "text": "Bocado comido não tem amigo.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x595",
+  "text": "Quem tem boca cala-se quem tem pés anda.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x596",
+  "text": "Águas mansas não fazem bom marinheiro.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x597",
+  "text": "Quem trabalha come quem não trabalha vive.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x598",
+  "text": "Mais vale um pão com amor que uma galinha com dor.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x599",
+  "text": "Quem ao perto não chega ao longe não alcança.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x600",
+  "text": "Quem trabalha e poupa amanhã tem sopa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x601",
+  "text": "Quem casa por amores maus dias e boas noites.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x602",
+  "text": "A mulher e a sardinha querem-se da mais pequenina.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x603",
+  "text": "Quem é da panela lambe a tampa.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x604",
+  "text": "Quem muito apressa tarde acaba.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x605",
+  "text": "A galinha do vizinho põe mais ovos que a minha.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x606",
+  "text": "Quem espera pelo calçado de defunto morre descalço.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x607",
+  "text": "Casa sem pão velho rico se torna pobre.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x608",
+  "text": "Quem dá e tira torna a porca ao chiqueiro.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x609",
+  "text": "A juventude é o tempo de aprender.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x610",
+  "text": "Quem semeia em terra alheia perde o trabalho e a semente.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x611",
+  "text": "A esperança alimenta mas não sustenta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x612",
+  "text": "Quem ama feio formoso lhe parece.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x613",
+  "text": "Cabeça vazia oficina do diabo.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x614",
+  "text": "Quem com má gente se acompanha mal acaba.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x615",
+  "text": "A vingança é um prato que se come frio.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x616",
+  "text": "Quem feio compra caro paga.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x617",
+  "text": "Quem não tem competência não se estabeleça.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x618",
+  "text": "Quem cala não diz nada mas tudo escuta.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x619",
+  "text": "A boa rês de raça nunca sai má.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
+  "id": "pt-x620",
+  "text": "Quem mente uma vez não merece crédito.",
+  "author": "Provérbio popular",
+  "source": "Tradicional",
+  "category": "proverbs",
+  "locale": "pt"
+ },
+ {
   "id": "pt-x621",
-  "text": "A bom amigo descobre o teu segredo.",
+  "text": "A noite a todos os gatos faz pardos.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
@@ -977,7 +977,7 @@
  },
  {
   "id": "pt-x622",
-  "text": "Quem quer a rosa não despreza os espinhos.",
+  "text": "Quem não tem que fazer arma navios.",
   "author": "Provérbio popular",
   "source": "Tradicional",
   "category": "proverbs",
