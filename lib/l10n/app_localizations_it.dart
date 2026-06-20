@@ -510,6 +510,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get packTaglineClassics => 'Voci senza tempo, scelte a mano';
 
   @override
+  String get packTitleInspire => 'Cuore e Coraggio';
+
+  @override
+  String get packTaglineInspire => 'Proverbi d\'amore, amicizia e tenacia';
+
+  @override
   String get achDescFirst => 'Risolvi il tuo primo crittogramma';
 
   @override

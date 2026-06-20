@@ -82,7 +82,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   arası içerik paritesi sağlanmıştır. Her dil, dört zorluk basamağını, dört
   tematik paketi ve premium Klasikler paketini doldurur (`repository_load_test`
   ile güvence altında). Tamamı kamu malı ya da kültürel miras; telif riski sıfır.
-- **Her dil için 10 paket:** 4 zorluk (Başlangıç'tan Uzman'a) + ücretsiz
+- **Her dil için 11 paket:** 4 zorluk (Başlangıç'tan Uzman'a) + ücretsiz
   "Kısa & Öz" hızlı paketi + 4 tema (Atasözleri, Bilgelik, Nükte, Edebiyat) +
   1 premium Klasikler; hepsi o dile özgü ve zorluk algoritmasıyla otomatik
   derecelendirilmiş.

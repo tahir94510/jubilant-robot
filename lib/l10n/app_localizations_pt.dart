@@ -508,6 +508,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get packTaglineClassics => 'Vozes atemporais, selecionadas a dedo';
 
   @override
+  String get packTitleInspire => 'Coração e Coragem';
+
+  @override
+  String get packTaglineInspire => 'Provérbios de amor, amizade e perseverança';
+
+  @override
   String get achDescFirst => 'Resolva seu primeiro criptograma';
 
   @override

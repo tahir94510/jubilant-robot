@@ -1,0 +1,322 @@
+[
+ {
+  "id": "de-cp100",
+  "text": "Alte Freunde und alter Wein sind am besten.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp101",
+  "text": "Ein Freund in der Not ist ein wahrer Freund.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp102",
+  "text": "Geteilte Freude ist doppelte Freude, geteiltes Leid ist halbes Leid.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp103",
+  "text": "Liebe und Husten lassen sich nicht verbergen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp104",
+  "text": "Wo die Liebe hinfällt, da bleibt sie liegen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp105",
+  "text": "Liebe kann man nicht erzwingen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp106",
+  "text": "Die Liebe geht seltsame Wege.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp107",
+  "text": "Was von Herzen kommt, das geht zu Herzen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp108",
+  "text": "Wo man liebt, da wohnt der Himmel.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp109",
+  "text": "Liebe ist blind, doch Eifersucht sieht zu viel.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp110",
+  "text": "Liebe vertreibt die Zeit, die Zeit vertreibt die Liebe.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp111",
+  "text": "Liebe lässt sich nicht erkaufen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp112",
+  "text": "Gute Freunde erkennt man in der Not.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp113",
+  "text": "Liebe ohne Gegenliebe ist eine Frage ohne Antwort.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp114",
+  "text": "Wer ein gutes Herz hat, dem fehlt es nie an Freunden.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp115",
+  "text": "Liebe und Verstand gehen selten Hand in Hand.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp116",
+  "text": "Wer andern eine Freude macht, hat selber Freude dran.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp117",
+  "text": "Freundschaft ist des Lebens Salz.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp118",
+  "text": "Mit Speck fängt man Mäuse, mit Liebe fängt man Herzen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp119",
+  "text": "Liebe und Hass liegen nahe beieinander.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp120",
+  "text": "Wo die Liebe wohnt, da ist der Himmel auf Erden.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp121",
+  "text": "Ein Freund ist einer, der dich kennt und trotzdem liebt.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp122",
+  "text": "Liebe braucht Zeit und Treue braucht Geduld.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp123",
+  "text": "Wahre Freundschaft besteht alle Stürme.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp124",
+  "text": "Wer Freunde sucht ohne Fehler, bleibt ohne Freunde.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp125",
+  "text": "Eine Hand wäscht die andere, sonst werden beide nicht rein.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp126",
+  "text": "Liebe und Treue sind Schwestern.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp127",
+  "text": "Wo Vertrauen wohnt, da blüht die Freundschaft.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp128",
+  "text": "Heute mir, morgen dir, so geht es unter Freunden.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp129",
+  "text": "Liebe deinen Nächsten wie dich selbst.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp130",
+  "text": "Ein treues Herz ist mehr wert als alles Gold der Welt.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp131",
+  "text": "Mühe und Fleiß bricht alles Eis.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp132",
+  "text": "Viele Hände machen der Arbeit bald ein Ende.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp133",
+  "text": "Arbeit bringt Brot, Faulenzen Hungersnot.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp134",
+  "text": "Nach Regen folgt Sonnenschein.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp135",
+  "text": "Wer den Berg umgeht, kommt auch ans Ziel.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp136",
+  "text": "Übung macht den Meister, doch der Anfang ist schwer.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp137",
+  "text": "Wer wagt, der gewinnt, wer zögert, verliert.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp138",
+  "text": "Es ist noch nichts so fein gesponnen, es kommt doch an die Sonnen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ },
+ {
+  "id": "de-cp139",
+  "text": "Wer hoch hinaus will, muss tief beginnen.",
+  "author": "Deutsches Sprichwort",
+  "source": "Überliefert",
+  "category": "inspire",
+  "locale": "de"
+ }
+]

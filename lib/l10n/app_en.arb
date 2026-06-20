@@ -235,6 +235,8 @@
   "packTaglineWit": "Sharp tongues and clever quips",
   "packTitleClassics": "Classics",
   "packTaglineClassics": "Timeless voices, hand-picked",
+  "packTitleInspire": "Heart & Courage",
+  "packTaglineInspire": "Proverbs of love, friendship and grit",
   "achDescFirst": "Solve your first cryptogram",
   "achDescSolve": "Solve {count} puzzles",
   "@achDescSolve": {

@@ -984,6 +984,18 @@ abstract class AppLocalizations {
   /// **'Timeless voices, hand-picked'**
   String get packTaglineClassics;
 
+  /// No description provided for @packTitleInspire.
+  ///
+  /// In en, this message translates to:
+  /// **'Heart & Courage'**
+  String get packTitleInspire;
+
+  /// No description provided for @packTaglineInspire.
+  ///
+  /// In en, this message translates to:
+  /// **'Proverbs of love, friendship and grit'**
+  String get packTaglineInspire;
+
   /// No description provided for @achDescFirst.
   ///
   /// In en, this message translates to:

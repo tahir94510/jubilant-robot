@@ -508,6 +508,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get packTaglineClassics => 'Voces eternas, elegidas a mano';
 
   @override
+  String get packTitleInspire => 'Corazón y Coraje';
+
+  @override
+  String get packTaglineInspire => 'Refranes de amor, amistad y constancia';
+
+  @override
   String get achDescFirst => 'Resuelve tu primer criptograma';
 
   @override

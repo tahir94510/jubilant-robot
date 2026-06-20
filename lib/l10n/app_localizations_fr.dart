@@ -507,6 +507,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get packTaglineClassics => 'Voix intemporelles, triées sur le volet';
 
   @override
+  String get packTitleInspire => 'Cœur & Courage';
+
+  @override
+  String get packTaglineInspire =>
+      'Proverbes d\'amour, d\'amitié et de ténacité';
+
+  @override
   String get achDescFirst => 'Résolvez votre premier cryptogramme';
 
   @override

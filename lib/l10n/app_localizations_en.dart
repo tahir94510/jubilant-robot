@@ -502,6 +502,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get packTaglineClassics => 'Timeless voices, hand-picked';
 
   @override
+  String get packTitleInspire => 'Heart & Courage';
+
+  @override
+  String get packTaglineInspire => 'Proverbs of love, friendship and grit';
+
+  @override
   String get achDescFirst => 'Solve your first cryptogram';
 
   @override

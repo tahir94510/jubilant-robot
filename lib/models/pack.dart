@@ -33,6 +33,12 @@ class Pack {
 
   bool get premiumOnly => kind == PackKind.premium;
 
+  /// Categories locked behind premium. Free packs (difficulty ladder, the
+  /// "Short & Sweet" filter) exclude ALL of these so premium content never
+  /// leaks into the free pool, and the daily pool skips them too. Centralized
+  /// here so [QuoteRepository] and [contains] share one source of truth.
+  static const Set<String> premiumCategories = {'classics', 'inspire'};
+
   /// Whether [q] belongs in this pack for a player whose active content
   /// language is [activeLocale].
   ///
@@ -44,13 +50,13 @@ class Pack {
     if (q.locale != activeLocale) return false;
     switch (kind) {
       case PackKind.difficulty:
-        // The free ladder never includes the premium Classics category.
-        if (q.category == 'classics') return false;
+        // The free ladder never includes any premium category.
+        if (premiumCategories.contains(q.category)) return false;
         return q.difficulty == difficulty;
       case PackKind.shortform:
         // A free, cross-cutting "quick play" filter: the shortest quotes from
-        // the free pool (the premium Classics category stays locked).
-        if (q.category == 'classics') return false;
+        // the free pool (premium categories stay locked).
+        if (premiumCategories.contains(q.category)) return false;
         return q.letterCount <= (maxLetters ?? 40);
       case PackKind.themed:
       case PackKind.premium:
@@ -147,6 +153,16 @@ class Pack {
       kind: PackKind.premium,
       category: 'classics',
     ),
+    // Premium concept pack — uplifting proverbs on love, friendship, courage
+    // and perseverance (the active language's own sayings).
+    Pack(
+      id: 'inspire',
+      title: 'Heart & Courage',
+      tagline: 'Proverbs of love, friendship and grit',
+      icon: Icons.favorite_outline,
+      kind: PackKind.premium,
+      category: 'inspire',
+    ),
   ];
 
   static Pack byId(String id) => catalog.firstWhere((p) => p.id == id);
@@ -166,6 +182,7 @@ extension PackL10n on Pack {
     'wit' => l.packTitleWit,
     'literature' => l.packTitleLiterature,
     'classics' => l.packTitleClassics,
+    'inspire' => l.packTitleInspire,
     _ => title,
   };
 
@@ -180,6 +197,7 @@ extension PackL10n on Pack {
     'wit' => l.packTaglineWit,
     'literature' => l.packTaglineLiterature,
     'classics' => l.packTaglineClassics,
+    'inspire' => l.packTaglineInspire,
     _ => tagline,
   };
 }

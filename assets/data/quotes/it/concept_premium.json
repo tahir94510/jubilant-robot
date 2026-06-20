@@ -1,0 +1,282 @@
+[
+ {
+  "id": "it-cp100",
+  "text": "L'amore non è bello se non è litigarello.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp101",
+  "text": "Amor che move il sole e l'altre stelle.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp102",
+  "text": "Chi ama me, ama anche il mio cane.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp103",
+  "text": "Sfortunato al gioco, fortunato in amore.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp104",
+  "text": "Vecchia amicizia non si scorda mai.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp105",
+  "text": "L'amore fa passare il tempo, il tempo fa passare l'amore.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp106",
+  "text": "Dove regna l'amore, non si sente il dolore.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp107",
+  "text": "Amore e tosse non si possono nascondere.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp108",
+  "text": "Chi ben ama, tardi dimentica del tutto.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp109",
+  "text": "Amare e non essere amato è tempo perso.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp110",
+  "text": "Non c'è amore senza un poco di gelosia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp111",
+  "text": "Cuore contento il cielo l'aiuta.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp112",
+  "text": "Lega l'asino dove vuole il padrone.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp113",
+  "text": "Chi ha l'amore nel petto, ha lo sprone nei fianchi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp114",
+  "text": "Amici e vino vogliono essere vecchi.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp115",
+  "text": "Amore non si compra né si vende.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp116",
+  "text": "Lontananza non sana cuore amato.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp117",
+  "text": "L'amore è una catena che lega due cuori.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp118",
+  "text": "Chi disprezza, compra volentieri.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp119",
+  "text": "Tale madre, tale figlia, tale è tutta la famiglia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp120",
+  "text": "Gli amici si vedono nel momento del bisogno.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp121",
+  "text": "Chi non ha cuore abbia gambe per fuggire.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp122",
+  "text": "Amore e signoria non vogliono compagnia.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp123",
+  "text": "Tutto il mondo è paese e si campa di stenti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp124",
+  "text": "Chi non risica non rosica niente.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp125",
+  "text": "Chi cerca trova e chi domanda intende.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp126",
+  "text": "L'unione fa la forza di tutti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp127",
+  "text": "Sbagliando s'impara a fare bene.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp128",
+  "text": "Acqua cheta rompe i ponti.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp129",
+  "text": "Finché c'è vita c'è speranza.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp130",
+  "text": "Chi si contenta gode davvero.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp131",
+  "text": "Can che abbaia non morde mai.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp132",
+  "text": "Chi non fa non falla mai nulla.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp133",
+  "text": "Chi la fa l'aspetti, e chi la dura la vince.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ },
+ {
+  "id": "it-cp134",
+  "text": "Chi nasce tondo non può morir quadrato.",
+  "author": "Proverbio italiano",
+  "source": "Tradizione",
+  "category": "inspire",
+  "locale": "it"
+ }
+]

@@ -506,6 +506,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get packTaglineClassics => 'Zeitlose Stimmen, handverlesen';
 
   @override
+  String get packTitleInspire => 'Herz & Mut';
+
+  @override
+  String get packTaglineInspire =>
+      'Sprichwörter über Liebe, Freundschaft und Ausdauer';
+
+  @override
   String get achDescFirst => 'Löse dein erstes Kryptogramm';
 
   @override

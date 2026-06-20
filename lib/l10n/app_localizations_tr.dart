@@ -505,6 +505,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get packTaglineClassics => 'Zamansız sesler, özenle seçildi';
 
   @override
+  String get packTitleInspire => 'Yürek & Cesaret';
+
+  @override
+  String get packTaglineInspire => 'Sevgi, dostluk ve azim atasözleri';
+
+  @override
   String get achDescFirst => 'İlk kriptogramını çöz';
 
   @override
