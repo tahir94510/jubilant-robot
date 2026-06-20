@@ -14,6 +14,8 @@ class FakeAdsService extends AdsService {
   final ValueNotifier<bool> canRequest = ValueNotifier(true);
   final List<int> interstitialRequests = [];
   bool rewardedResult = true;
+  bool rewardedReadyValue = true;
+  bool everServedValue = false;
   int rewardedShown = 0;
   bool disabled = false;
 
@@ -40,6 +42,12 @@ class FakeAdsService extends AdsService {
     rewardedShown += 1;
     return rewardedResult;
   }
+
+  @override
+  bool get rewardedReady => rewardedReadyValue;
+
+  @override
+  bool get rewardedEverServed => everServedValue;
 
   @override
   Future<bool> get privacyOptionsRequired async => false;

@@ -518,6 +518,16 @@ class GameController extends ChangeNotifier {
 
   /// Reveals the correct letter for the selected (or first empty) cell.
   /// Token accounting happens in EconomyController; this just mutates state.
+  /// True when at least one cipher letter is not yet guessed correctly — i.e. a
+  /// reveal hint would actually uncover something. Drives the hint button's
+  /// enabled state so a token is never spent on a finished/all-correct board
+  /// (e.g. after filling the whole quote with reveals).
+  bool get canRevealMore {
+    final s = _session;
+    if (s == null || _completed || _reviewingSolved) return false;
+    return s.cipherLetters.any((c) => !s.isGuessCorrect(c));
+  }
+
   void revealSelected() {
     _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;

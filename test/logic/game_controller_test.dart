@@ -531,4 +531,27 @@ void main() {
       game.dispose();
     });
   });
+
+  test(
+    'canRevealMore is false once every letter is correct (no wasted hint)',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      // A fresh board has letters to reveal.
+      expect(game.canRevealMore, isTrue);
+
+      // Reveal everything; the moment all letters are correct it flips false so
+      // the hint button disables and never spends a token on a finished board.
+      while (game.canRevealMore) {
+        game.revealSelected();
+      }
+      expect(s.isSolved, isTrue);
+      expect(game.canRevealMore, isFalse);
+
+      game.dispose();
+    },
+  );
 }

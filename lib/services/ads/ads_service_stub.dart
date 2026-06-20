@@ -30,6 +30,12 @@ class StubAdsService extends AdsService {
   Future<bool> showRewardedForHints() async => false;
 
   @override
+  bool get rewardedReady => false;
+
+  @override
+  bool get rewardedEverServed => false;
+
+  @override
   Future<bool> get privacyOptionsRequired async => false;
 
   @override
