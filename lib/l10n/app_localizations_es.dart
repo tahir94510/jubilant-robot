@@ -172,6 +172,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Pulsa atrás de nuevo para salir';
+
+  @override
   String get homeContinueLabel => 'CONTINUAR';
 
   @override

@@ -170,6 +170,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit =>
+      'Appuyez à nouveau sur retour pour quitter';
+
+  @override
   String get homeContinueLabel => 'CONTINUER';
 
   @override

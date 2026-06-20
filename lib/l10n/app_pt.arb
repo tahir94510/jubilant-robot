@@ -51,6 +51,7 @@
   "homeDailyLabel": "DESAFIO DIÁRIO",
   "homeDailySolved": "Resolvido! Volte amanhã para um novo.",
   "homeDailyAwaits": "Um texto cifrado de {author} espera por você.",
+  "pressBackAgainToExit": "Pressione voltar novamente para sair",
   "homeContinueLabel": "CONTINUAR",
   "homeContinueSubtitle": "Continue de onde parou",
   "continuePlaying": "Continuar",

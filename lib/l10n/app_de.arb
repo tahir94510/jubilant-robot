@@ -51,6 +51,7 @@
   "homeDailyLabel": "TÄGLICHES RÄTSEL",
   "homeDailySolved": "Gelöst! Komm morgen für ein neues wieder.",
   "homeDailyAwaits": "Ein Geheimtext von {author} wartet auf dich.",
+  "pressBackAgainToExit": "Zum Beenden erneut „Zurück“ drücken",
   "homeContinueLabel": "FORTSETZEN",
   "homeContinueSubtitle": "Mach dort weiter, wo du aufgehört hast",
   "continuePlaying": "Fortsetzen",

@@ -51,6 +51,7 @@
   "homeDailyLabel": "ENIGMA DEL GIORNO",
   "homeDailySolved": "Risolto! Torna domani per uno nuovo.",
   "homeDailyAwaits": "Ti aspetta un messaggio cifrato di {author}.",
+  "pressBackAgainToExit": "Premi di nuovo indietro per uscire",
   "homeContinueLabel": "CONTINUA",
   "homeContinueSubtitle": "Riprendi da dove avevi lasciato",
   "continuePlaying": "Continua",

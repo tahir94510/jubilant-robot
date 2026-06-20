@@ -65,6 +65,10 @@
       }
     }
   },
+  "pressBackAgainToExit": "Press back again to exit",
+  "@pressBackAgainToExit": {
+    "description": "Shown as a snackbar when the player presses the system back button once on the home screen; a second press within ~2s exits the app."
+  },
   "homeContinueLabel": "CONTINUE",
   "homeContinueSubtitle": "Pick up where you left off",
   "continuePlaying": "Continue",

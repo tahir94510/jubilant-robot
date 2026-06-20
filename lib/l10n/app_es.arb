@@ -51,6 +51,7 @@
   "homeDailyLabel": "PUZLE DIARIO",
   "homeDailySolved": "¡Resuelto! Vuelve mañana por uno nuevo.",
   "homeDailyAwaits": "Te espera un cifrado de {author}.",
+  "pressBackAgainToExit": "Pulsa atrás de nuevo para salir",
   "homeContinueLabel": "CONTINUAR",
   "homeContinueSubtitle": "Retoma donde lo dejaste",
   "continuePlaying": "Continuar",

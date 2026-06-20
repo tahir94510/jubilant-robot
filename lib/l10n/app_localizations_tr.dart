@@ -170,6 +170,9 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Çıkmak için tekrar geri\'ye bas';
+
+  @override
   String get homeContinueLabel => 'DEVAM ET';
 
   @override

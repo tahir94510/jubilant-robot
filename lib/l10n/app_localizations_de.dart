@@ -171,6 +171,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Zum Beenden erneut „Zurück“ drücken';
+
+  @override
   String get homeContinueLabel => 'FORTSETZEN';
 
   @override

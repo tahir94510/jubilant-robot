@@ -414,6 +414,12 @@ abstract class AppLocalizations {
   /// **'A cipher by {author} awaits.'**
   String homeDailyAwaits(String author);
 
+  /// Shown as a snackbar when the player presses the system back button once on the home screen; a second press within ~2s exits the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Press back again to exit'**
+  String get pressBackAgainToExit;
+
   /// No description provided for @homeContinueLabel.
   ///
   /// In en, this message translates to:

@@ -51,6 +51,7 @@
   "homeDailyLabel": "GÜNLÜK BULMACA",
   "homeDailySolved": "Çözüldü! Yarın yenisi için tekrar uğra.",
   "homeDailyAwaits": "{author} imzalı bir şifre seni bekliyor.",
+  "pressBackAgainToExit": "Çıkmak için tekrar geri'ye bas",
   "homeContinueLabel": "DEVAM ET",
   "homeContinueSubtitle": "Kaldığın yerden devam et",
   "continuePlaying": "Devam et",
