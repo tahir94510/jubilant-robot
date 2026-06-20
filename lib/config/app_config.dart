@@ -61,7 +61,7 @@ abstract final class AppConfig {
 
   /// Shown in Settings. Bump together with `version:` in pubspec.yaml on
   /// every release.
-  static const String appVersion = '2.2.0';
+  static const String appVersion = '2.2.1';
 
   /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
   /// achievements ships; items tagged with this number show a "NEW" badge

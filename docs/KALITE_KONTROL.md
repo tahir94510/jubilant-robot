@@ -133,9 +133,9 @@ kurup şu listeyi işaretleyin:
         yeniden başlat ve ertesi gün yine geldiğini doğrula (boot receiver).
         NOT (OEM): Xiaomi/Samsung/Huawei gibi cihazlar arka planı agresif
         kapatabilir → bildirim gelmezse uygulamayı "otomatik başlat"a ekle ve
-        pil optimizasyonundan muaf tut. Zamanlama Android 12'de tam dakika
-        (SCHEDULE_EXACT_ALARM varsayılan izinli; YÖNLENDİRME yok), 13+'da OS
-        izin vermezse bakım penceresinde (birkaç dk sapma) teslim edilir.
+        pil optimizasyonundan muaf tut. Zamanlama inexactAllowWhileIdle ile
+        OS bakım penceresinde teslim edilir (güne birkaç dk sapma normal;
+        Play-güvenlik için SCHEDULE_EXACT_ALARM/USE_EXACT_ALARM bilerek yok).
 25. [ ] Ana ekran müzik ikonu: başlıktaki nota ikonuna dokununca müzik
         anında susuyor (ikon "müzik kapalı"ya dönüyor); tekrar dokununca
         geri geliyor, durumu Ayarlar → "Music" ile birebir aynı.

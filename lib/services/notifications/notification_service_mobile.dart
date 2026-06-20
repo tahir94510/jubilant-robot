@@ -132,19 +132,13 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    // Fire at the chosen minute when the OS already permits exact alarms
-    // (Android 12 grants SCHEDULE_EXACT_ALARM by default; the manifest declares
-    // it). canScheduleExactNotifications() is a READ-ONLY check — it never opens
-    // a settings page. When it's not allowed (e.g. Android 13+ until the user
-    // grants it), we fall back to inexact-allow-while-idle, which still delivers
-    // within the OS maintenance window. Either way: no intrusive redirect.
-    var exact = false;
-    try {
-      exact = await _android?.canScheduleExactNotifications() ?? false;
-    } catch (_) {
-      exact = false;
-    }
-
+    // Inexact, allow-while-idle: NO SCHEDULE_EXACT_ALARM permission (which Google
+    // Play restricts to alarm-clock/calendar apps and could reject for a puzzle
+    // reminder), and never the "Alarms & reminders" redirect. The OS still
+    // delivers daily even in Doze, within its maintenance window (a few minutes
+    // of drift is fine for a reminder), and the HIGH-importance channel makes it
+    // sound + show a heads-up. Players can confirm delivery instantly with the
+    // "Send a test notification" button.
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
@@ -153,9 +147,7 @@ class MobileNotificationService extends NotificationService {
       notificationDetails: NotificationDetails(
         android: _androidDetails(title, body),
       ),
-      androidScheduleMode: exact
-          ? AndroidScheduleMode.exactAllowWhileIdle
-          : AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
