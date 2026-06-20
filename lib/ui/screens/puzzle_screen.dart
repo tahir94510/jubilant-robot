@@ -14,6 +14,7 @@ import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/cipher_board.dart';
+import '../widgets/board_controls.dart';
 import '../widgets/hint_bar.dart';
 import '../widgets/puzzle_keyboard.dart';
 import 'puzzle_complete_screen.dart';
@@ -92,6 +93,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     context.read<GameController>().undo();
   }
 
+  void _onRedo() {
+    context.read<HapticsService>().tap();
+    context.read<GameController>().redo();
+  }
+
   /// Routes physical-keyboard input: letters type, Backspace/Delete clears,
   /// arrows move the cursor, and Ctrl/Cmd+Z undoes.
   KeyEventResult _handleKey(FocusNode node, KeyEvent event) {
@@ -108,6 +114,16 @@ class _PuzzleScreenState extends State<PuzzleScreen>
         pressed.contains(LogicalKeyboardKey.controlRight) ||
         pressed.contains(LogicalKeyboardKey.metaLeft) ||
         pressed.contains(LogicalKeyboardKey.metaRight);
+    final shift =
+        pressed.contains(LogicalKeyboardKey.shiftLeft) ||
+        pressed.contains(LogicalKeyboardKey.shiftRight);
+    // Ctrl/Cmd+Y or Ctrl/Cmd+Shift+Z = redo; Ctrl/Cmd+Z = undo.
+    if (ctrlOrCmd &&
+        (key == LogicalKeyboardKey.keyY ||
+            (shift && key == LogicalKeyboardKey.keyZ))) {
+      if (game.canRedo) _onRedo();
+      return KeyEventResult.handled;
+    }
     if (ctrlOrCmd && key == LogicalKeyboardKey.keyZ) {
       if (game.canUndo) _onUndo();
       return KeyEventResult.handled;
@@ -391,12 +407,24 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 const HintBar(),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 2),
+                                BoardControls(
+                                  onPrev: () {
+                                    haptics.tap();
+                                    game.moveSelection(-1);
+                                  },
+                                  onNext: () {
+                                    haptics.tap();
+                                    game.moveSelection(1);
+                                  },
+                                  onUndo: _onUndo,
+                                  onRedo: _onRedo,
+                                  canUndo: game.canUndo,
+                                  canRedo: game.canRedo,
+                                ),
                                 PuzzleKeyboard(
                                   rows: session.alphabet.keyboardRows,
                                   usedLetters: session.usedPlainLetters,
-                                  canUndo: game.canUndo,
-                                  onUndo: _onUndo,
                                   onLetter: _onLetter,
                                   onBackspace: _onBackspace,
                                 ),

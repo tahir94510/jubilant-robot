@@ -72,6 +72,12 @@ class GameController extends ChangeNotifier {
   final List<_Move> _undoStack = [];
   bool get canUndo => _undoStack.isNotEmpty;
 
+  /// Redo mirror of [_undoStack]: undone moves land here so they can be
+  /// re-applied. Any fresh edit (via [_afterChange]) clears it — a new branch
+  /// invalidates the redo history. Persisted per puzzle like the undo stack.
+  final List<_Move> _redoStack = [];
+  bool get canRedo => _redoStack.isNotEmpty;
+
   /// True when the most recent [enterGuess] introduced a new conflict —
   /// lets the UI give distinct feedback for that one input.
   bool _lastInputCreatedConflict = false;
@@ -137,6 +143,7 @@ class GameController extends ChangeNotifier {
     var savedHints = 0;
     var savedElapsed = 0;
     final savedUndo = <_Move>[];
+    final savedRedo = <_Move>[];
     final resuming = saved != null && saved['solved'] != true;
     if (resuming) {
       try {
@@ -147,10 +154,13 @@ class GameController extends ChangeNotifier {
             .cast<String>();
         savedHints = saved['hintsUsed'] as int? ?? 0;
         savedElapsed = saved['elapsedSeconds'] as int? ?? 0;
-        // Undo history must survive leaving and re-entering the puzzle: the
-        // stack is checkpointed to storage, not held only in memory.
+        // Undo/redo history must survive leaving and re-entering the puzzle:
+        // both stacks are checkpointed to storage, not held only in memory.
         for (final m in (saved['undo'] as List<dynamic>?) ?? const []) {
           savedUndo.add(_Move.fromJson((m as Map).cast<String, dynamic>()));
+        }
+        for (final m in (saved['redo'] as List<dynamic>?) ?? const []) {
+          savedRedo.add(_Move.fromJson((m as Map).cast<String, dynamic>()));
         }
       } catch (_) {
         // Discard whatever was partially decoded and start fresh.
@@ -159,6 +169,7 @@ class GameController extends ChangeNotifier {
         savedHints = 0;
         savedElapsed = 0;
         savedUndo.clear();
+        savedRedo.clear();
       }
     }
 
@@ -166,6 +177,9 @@ class GameController extends ChangeNotifier {
     _undoStack
       ..clear()
       ..addAll(savedUndo);
+    _redoStack
+      ..clear()
+      ..addAll(savedRedo);
     _session!.revealed.addAll(savedRevealed);
     _hintsUsed = savedHints;
     _elapsed = Duration(seconds: savedElapsed);
@@ -220,6 +234,7 @@ class GameController extends ChangeNotifier {
     s.guesses.clear();
     s.revealed.clear();
     _undoStack.clear();
+    _redoStack.clear();
     _reviewingSolved = false;
     _completed = false;
     _hintsUsed = 0;
@@ -503,16 +518,66 @@ class GameController extends ChangeNotifier {
       notifyListeners();
       return;
     }
+    // Capture the current ("after") value so redo can re-apply it.
+    final redoValue = s.guesses[move.cipherLetter];
     if (move.previousGuess == null) {
       s.guesses.remove(move.cipherLetter);
     } else {
       s.guesses[move.cipherLetter] = move.previousGuess!;
     }
+    _redoStack.add(_Move(move.cipherLetter, redoValue, move.index));
     // Restore the cursor to the exact cell that was edited, falling back to the
     // letter's first occurrence only for legacy saves without a stored index.
     _selectedIndex =
         move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
     _persistState();
+    notifyListeners();
+  }
+
+  /// Re-applies the most recently undone move. Lock-aware like [undo]: skips
+  /// redo entries whose letter has since been confirmed/revealed. Re-applying
+  /// can complete the puzzle, so it runs the same completion check (without
+  /// clearing the redo stack, which only a fresh edit does).
+  void redo() {
+    _lastInputCompletedWord = false;
+    final s = _session;
+    if (s == null || _redoStack.isEmpty || _completed || _reviewingSolved) {
+      return;
+    }
+    _Move? move;
+    while (_redoStack.isNotEmpty) {
+      final m = _redoStack.removeLast();
+      if (s.revealed.contains(m.cipherLetter) ||
+          s.confirmedLetters.contains(m.cipherLetter)) {
+        continue;
+      }
+      move = m;
+      break;
+    }
+    if (move == null) {
+      _persistState();
+      notifyListeners();
+      return;
+    }
+    // The inverse goes back onto the undo stack so the move can be undone again.
+    final undoValue = s.guesses[move.cipherLetter];
+    if (move.previousGuess == null) {
+      s.guesses.remove(move.cipherLetter);
+    } else {
+      s.guesses[move.cipherLetter] = move.previousGuess!;
+    }
+    _undoStack.add(_Move(move.cipherLetter, undoValue, move.index));
+    _selectedIndex =
+        move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
+    if (s.isSolved) {
+      _completed = true;
+      stopTimer();
+      _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
+        'solved': true,
+      });
+    } else {
+      _persistState();
+    }
     notifyListeners();
   }
 
@@ -554,6 +619,8 @@ class GameController extends ChangeNotifier {
   }
 
   void _afterChange({bool advance = true}) {
+    // A fresh edit forks history: any redo future is no longer reachable.
+    _redoStack.clear();
     final s = _session!;
     if (s.isSolved) {
       _completed = true;
@@ -579,6 +646,7 @@ class GameController extends ChangeNotifier {
       'hintsUsed': _hintsUsed,
       'elapsedSeconds': _elapsed.inSeconds,
       'undo': _undoStack.map((m) => m.toJson()).toList(),
+      'redo': _redoStack.map((m) => m.toJson()).toList(),
       'solved': false,
     });
   }

@@ -384,6 +384,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get backToPuzzle => 'Revenir à ma grille';
 
   @override
+  String get actionPrev => 'Lettre précédente';
+
+  @override
+  String get actionNext => 'Lettre suivante';
+
+  @override
+  String get actionUndo => 'Annuler';
+
+  @override
+  String get actionRedo => 'Rétablir';
+
+  @override
   String get dailyPuzzleTitle => 'Énigme du jour';
 
   @override

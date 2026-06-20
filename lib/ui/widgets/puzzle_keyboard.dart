@@ -14,22 +14,19 @@ class PuzzleKeyboard extends StatelessWidget {
     required this.usedLetters,
     required this.onLetter,
     required this.onBackspace,
-    required this.onUndo,
-    required this.canUndo,
     this.rows = const ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'],
   });
 
-  /// Keyboard letter rows for the active alphabet. The undo/backspace action
-  /// keys attach to the last row.
+  /// Keyboard letter rows for the active alphabet. The backspace action key
+  /// attaches to the last row; undo/redo/navigation live in a separate strip
+  /// (BoardControls) above, so the letter rows stay roomy and never overflow.
   final List<String> rows;
 
   final Set<String> usedLetters;
   final void Function(String letter) onLetter;
   final VoidCallback onBackspace;
-  final VoidCallback onUndo;
-  final bool canUndo;
 
-  // Each action key (undo, backspace) is 1.4 letter-widths wide.
+  // The single action key (backspace) is 1.4 letter-widths wide.
   static const double _actionFactor = 1.4;
 
   @override
@@ -47,7 +44,7 @@ class PuzzleKeyboard extends StatelessWidget {
           var maxUnits = 1.0;
           for (var i = 0; i < rows.length; i++) {
             final double units =
-                rows[i].length + (i == lastRow ? _actionFactor * 2 : 0.0);
+                rows[i].length + (i == lastRow ? _actionFactor : 0.0);
             if (units > maxUnits) maxUnits = units;
           }
           final keyWidth = ((constraints.maxWidth - 12) / maxUnits).clamp(
@@ -80,18 +77,6 @@ class PuzzleKeyboard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (i == lastRow)
-                        key(
-                          child: Icon(
-                            Icons.undo,
-                            size: 22,
-                            color: canUndo
-                                ? palette.keyText
-                                : palette.keyUsedText,
-                          ),
-                          onTap: canUndo ? onUndo : null,
-                          widthFactor: _actionFactor,
-                        ),
                       for (final ch in row.split(''))
                         key(
                           child: Text(

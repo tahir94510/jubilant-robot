@@ -386,6 +386,18 @@ class AppLocalizationsPt extends AppLocalizations {
   String get backToPuzzle => 'Voltar à minha tentativa';
 
   @override
+  String get actionPrev => 'Letra anterior';
+
+  @override
+  String get actionNext => 'Próxima letra';
+
+  @override
+  String get actionUndo => 'Desfazer';
+
+  @override
+  String get actionRedo => 'Refazer';
+
+  @override
   String get dailyPuzzleTitle => 'Criptograma diário';
 
   @override

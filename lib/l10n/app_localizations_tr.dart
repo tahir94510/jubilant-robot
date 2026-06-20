@@ -383,6 +383,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get backToPuzzle => 'Denememe dön';
 
   @override
+  String get actionPrev => 'Önceki harf';
+
+  @override
+  String get actionNext => 'Sonraki harf';
+
+  @override
+  String get actionUndo => 'Geri al';
+
+  @override
+  String get actionRedo => 'İleri al';
+
+  @override
   String get dailyPuzzleTitle => 'Günlük bulmaca';
 
   @override
