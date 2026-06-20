@@ -80,6 +80,13 @@ class MusicService with WidgetsBindingObserver {
   final List<int> _bag = [];
   final Random _rng = Random();
 
+  /// The next track, decoded and parked (volume 0, NOT resumed) on the idle
+  /// player ahead of time so the crossfade only has to press play — no
+  /// `setSource` decode latency at the swap, which is what caused the audible
+  /// gap between tracks. -1 means nothing is preloaded.
+  int _preloadedIndex = -1;
+  bool _idlePreloaded = false;
+
   bool _ready = false;
   bool _started = false; // a track has been loaded on the active player
   bool _playing = false; // currently sounding (not paused by toggle/lifecycle)
@@ -163,6 +170,8 @@ class MusicService with WidgetsBindingObserver {
   Future<void> _startActive(int trackIndex) async {
     final p = _activePlayer;
     _xfade = 0;
+    _idlePreloaded = false;
+    _preloadedIndex = -1;
     try {
       await p.stop();
       await p.setReleaseMode(ReleaseMode.stop);
@@ -178,6 +187,26 @@ class MusicService with WidgetsBindingObserver {
     await _scheduleCrossfade(p);
   }
 
+  /// Decodes and parks the NEXT track on the idle player (volume 0, paused) so
+  /// the upcoming crossfade only needs to resume it — eliminating the decode
+  /// gap. No-op if a track is already parked or we shouldn't be playing.
+  Future<void> _preloadNext() async {
+    if (!_ready || _players.length < 2 || _idlePreloaded) return;
+    if (_xfade > 0 || (_xfadeRamp?.isActive ?? false)) return; // mid-crossfade
+    final idx = _nextTrack();
+    final idle = _idlePlayer;
+    try {
+      await idle.stop();
+      await idle.setReleaseMode(ReleaseMode.stop);
+      await idle.setSource(AssetSource(_tracks[idx]));
+      await idle.setVolume(0);
+    } catch (_) {
+      return;
+    }
+    _preloadedIndex = idx;
+    _idlePreloaded = true;
+  }
+
   /// Resumes the CURRENT track from where it was paused (toggle back on, or
   /// returning from background) and re-arms the crossfade from the live
   /// position — so the music continues instead of restarting from a new track.
@@ -187,6 +216,12 @@ class MusicService with WidgetsBindingObserver {
       await _activePlayer.resume();
       if (_xfade > 0) await _idlePlayer.resume(); // mid-crossfade
     } catch (_) {
+      // The prepared player was reclaimed while we were away (some devices
+      // release decoders when another app takes audio focus). Rather than stay
+      // silent, start the playlist fresh from a new track.
+      _started = false;
+      _xfade = 0;
+      ensureStarted();
       return;
     }
     _fadeMasterTo(_targetVolume, duration: const Duration(milliseconds: 600));
@@ -211,6 +246,8 @@ class MusicService with WidgetsBindingObserver {
       lead = const Duration(milliseconds: 300);
     }
     _crossfadeTimer = Timer(lead, _beginCrossfade);
+    // Re-park the next track in case the parked source was dropped while paused.
+    unawaited(_preloadNext());
   }
 
   /// Reads the active track's real length and arms the timer that begins the
@@ -226,6 +263,8 @@ class MusicService with WidgetsBindingObserver {
     var lead = total - _crossfadeLead;
     if (lead < const Duration(seconds: 1)) lead = const Duration(seconds: 1);
     _crossfadeTimer = Timer(lead, _beginCrossfade);
+    // Park the next track now so the swap is gapless when the timer fires.
+    unawaited(_preloadNext());
   }
 
   void _onTrackEndedEarly() {
@@ -241,14 +280,21 @@ class MusicService with WidgetsBindingObserver {
     if (!_ready || !_playing || !isEnabled()) return;
     if (_xfadeRamp?.isActive ?? false) return;
     final incoming = _idlePlayer;
-    final trackIndex = _nextTrack();
+    // Prefer the track parked by _preloadNext(): it's already decoded, so we
+    // only resume it (gapless). Fall back to a fresh load if nothing's parked.
+    final preloaded = _idlePreloaded && _preloadedIndex >= 0;
+    final trackIndex = preloaded ? _preloadedIndex : _nextTrack();
+    _idlePreloaded = false;
+    _preloadedIndex = -1;
 
     unawaited(() async {
       try {
-        await incoming.stop();
-        await incoming.setReleaseMode(ReleaseMode.stop);
-        await incoming.setSource(AssetSource(_tracks[trackIndex]));
-        await incoming.setVolume(0);
+        if (!preloaded) {
+          await incoming.stop();
+          await incoming.setReleaseMode(ReleaseMode.stop);
+          await incoming.setSource(AssetSource(_tracks[trackIndex]));
+          await incoming.setVolume(0);
+        }
         await incoming.resume();
       } catch (_) {
         return;
