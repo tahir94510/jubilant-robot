@@ -106,6 +106,7 @@ class FakeNotificationService extends NotificationService {
   FakeNotificationService() : super.base();
 
   bool permissionGranted = true;
+  bool osEnabled = true;
   TimeOfDay? scheduledAt;
   int cancelCalls = 0;
 
@@ -117,6 +118,9 @@ class FakeNotificationService extends NotificationService {
 
   @override
   Future<bool> requestPermission() async => permissionGranted;
+
+  @override
+  Future<bool> areEnabled() async => osEnabled;
 
   String? scheduledTitle;
   String? scheduledBody;

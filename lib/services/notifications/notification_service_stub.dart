@@ -18,6 +18,9 @@ class StubNotificationService extends NotificationService {
   Future<bool> requestPermission() async => false;
 
   @override
+  Future<bool> areEnabled() async => false;
+
+  @override
   Future<void> scheduleDaily(
     TimeOfDay time, {
     required String title,

@@ -236,4 +236,22 @@ class SettingsController extends ChangeNotifier {
       // Best-effort: an enabled reminder simply won't re-arm this launch.
     }
   }
+
+  /// Keeps the in-app reminder toggle honest when the user turns notifications
+  /// off from system settings: if the OS no longer allows notifications but the
+  /// app still thinks the reminder is on, switch it off and cancel. Safe to call
+  /// on every resume; never throws.
+  Future<void> syncReminderWithOsPermission() async {
+    if (!settings.reminderEnabled || !_notifications.supported) return;
+    try {
+      if (!await _notifications.areEnabled()) {
+        settings.reminderEnabled = false;
+        await _notifications.cancelAll();
+        await _save();
+        notifyListeners();
+      }
+    } catch (_) {
+      // Best-effort sync; a failure must never disrupt the app.
+    }
+  }
 }

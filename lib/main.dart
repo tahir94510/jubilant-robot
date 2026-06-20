@@ -90,6 +90,9 @@ Future<void> _start() async {
   // reboots, but a force-stop/app update can drop the alarm. Fire-and-forget so
   // it never delays the first frame.
   unawaited(settings.rescheduleDailyIfEnabled());
+  // If the user turned notifications off in system settings while away, reflect
+  // that in the in-app reminder toggle on next launch.
+  unawaited(settings.syncReminderWithOsPermission());
   // For the one-time stats.v1 -> stats.v2 migration: route each previously
   // solved quote into its own language, and carry the non-splittable counters
   // into the player's current language (clamped to a supported one).
