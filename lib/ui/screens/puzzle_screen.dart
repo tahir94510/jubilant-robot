@@ -315,6 +315,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                         child: CipherBoard(
                                           session: session,
                                           selected: game.selectedCipherLetter,
+                                          selectedIndex: game.selectedIndex,
                                           errorChecking: settings.errorChecking,
                                           onSelect: (index) {
                                             haptics.tap();
