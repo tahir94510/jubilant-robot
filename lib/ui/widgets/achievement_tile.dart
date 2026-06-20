@@ -49,9 +49,9 @@ class AchievementTile extends StatelessWidget {
           ),
           child: Icon(
             lit ? achievement.icon : Icons.lock_outline,
-            color: lit
-                ? scheme.primary
-                : scheme.onSurface.withValues(alpha: .3),
+            // textFaint stays clear of 3:1 in every theme, so the "locked"
+            // lock reads instead of nearly vanishing at onSurface@.3.
+            color: lit ? scheme.primary : palette.textFaint,
           ),
         ),
         title: Row(

@@ -43,6 +43,12 @@ Future<void> _start() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  // Draw behind the status + navigation bars. Android 15 (targetSdk 35+)
+  // enforces this anyway; enabling it explicitly keeps the look consistent on
+  // older versions too. Content stays clear of the bars via SafeArea/PageBody,
+  // and app.dart sets a transparent, theme-adaptive bar style.
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
   // Load date-formatting symbols for every locale so DateFormat renders the
   // daily header (and heatmap captions) in the player's language — without
   // this, intl silently falls back to English month/day names.
