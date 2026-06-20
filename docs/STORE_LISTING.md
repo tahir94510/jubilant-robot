@@ -5,6 +5,76 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v1.7.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 1.7.0
+• Hand-checked, authentic quotes and proverbs in every language
+• Cleaner puzzle layout: more breathing room around the hint and undo/redo controls
+• Smoother hint button with a gentle anti-spam pause
+• Tidier settings spacing and assorted polish
+Happy decoding!
+```
+
+Localized "What's new":
+
+**Türkçe**
+```
+1.7.0 YENİLİKLER
+• Her dilde elle denetlenmiş, özgün sözler ve atasözleri
+• Daha ferah bulmaca düzeni: ipucu ve geri/ileri al kontrolleri etrafında nefes payı
+• Hafif spam-önleyici duraklamayla daha akıcı ipucu düğmesi
+• Daha düzenli ayar boşlukları ve çeşitli cilalar
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 1.7.0
+• Frases y refranes auténticos y revisados a mano en cada idioma
+• Diseño más despejado: más espacio alrededor de la pista y de deshacer/rehacer
+• Botón de pista más fluido con una pausa suave anti-spam
+• Mejor espaciado en ajustes y varios retoques
+```
+
+**Deutsch**
+```
+NEU in 1.7.0
+• Handgeprüfte, authentische Zitate und Sprichwörter in jeder Sprache
+• Aufgeräumteres Layout: mehr Platz um Tipp- und Rückgängig/Wiederholen-Tasten
+• Flüssigerer Tipp-Button mit sanfter Anti-Spam-Pause
+• Sauberere Abstände in den Einstellungen und diverser Feinschliff
+```
+
+**Français**
+```
+NOUVEAU dans 1.7.0
+• Citations et proverbes authentiques, vérifiés à la main dans chaque langue
+• Mise en page plus aérée autour des indices et de annuler/rétablir
+• Bouton d'indice plus fluide avec une légère pause anti-spam
+• Espacement des réglages plus net et diverses finitions
+```
+
+**Italiano**
+```
+NOVITÀ nella 1.7.0
+• Citazioni e proverbi autentici, verificati a mano in ogni lingua
+• Layout più arioso intorno ai comandi aiuto e annulla/ripeti
+• Pulsante aiuto più fluido con una leggera pausa anti-spam
+• Spaziatura delle impostazioni più ordinata e varie rifiniture
+```
+
+**Português**
+```
+NOVIDADES na 1.7.0
+• Citações e provérbios autênticos, verificados à mão em cada idioma
+• Layout mais arejado em torno dos controles de dica e desfazer/refazer
+• Botão de dica mais fluido com uma leve pausa anti-spam
+• Espaçamento mais organizado nos ajustes e diversos retoques
+```
+
+---
+
 ## Release notes: v1.6.0 (max 500 chars, paste into "What's new")
 
 ```

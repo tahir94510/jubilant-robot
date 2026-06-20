@@ -18,12 +18,12 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **140 otomatik test** | Aşağıdaki döküm |
+| **223 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**140 testin dökümü:**
+**223 testin dökümü (özet):**
 - **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
@@ -35,8 +35,8 @@ geçmiş demektir:
   Yerel sözlerin yalnızca kendi alfabesinin harflerini kullanması (kaçak
   â/î/û yakalanır) ve **her sözün çözülebilirliği** doğrulanır; 17 paketin
   hepsi dolu, her İngilizce zorluk kovasında ≥40 söz, günlük havuz
-  İngilizce-only; ses varlıklarının (WAV) mevcut+RIFF imzalı olması ve müzik
-  dosyasının boyut bütçesi.
+  İngilizce-only; ses efektlerinin (WAV) RIFF imzalı, müzik parçalarının (OGG)
+  mevcut ve toplam boyut bütçesi içinde olması.
 - **Mantık (45):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
   kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
@@ -158,7 +158,7 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.6.0+16` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 1.7.0+17` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → `docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu (EN + 6
 dil, ≤500 krk) ekle → push → CI yeşil → `quotecrack-release-aab` indir →
