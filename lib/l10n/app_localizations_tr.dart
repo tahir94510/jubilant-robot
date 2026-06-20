@@ -170,6 +170,9 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Çıkmak için tekrar geri\'ye bas';
+
+  @override
   String get homeContinueLabel => 'DEVAM ET';
 
   @override
@@ -503,6 +506,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packTaglineClassics => 'Zamansız sesler, özenle seçildi';
+
+  @override
+  String get packTitleInspire => 'Yürek & Cesaret';
+
+  @override
+  String get packTaglineInspire => 'Sevgi, dostluk ve azim atasözleri';
 
   @override
   String get achDescFirst => 'İlk kriptogramını çöz';

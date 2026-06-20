@@ -13,6 +13,10 @@ class MobileNotificationService extends NotificationService {
   MobileNotificationService() : super.base();
 
   static const int _dailyReminderId = 1001;
+  static const String _channelId = 'daily_reminder';
+  static const String _channelName = 'Daily puzzle reminder';
+  static const String _channelDescription =
+      'One reminder per day for the daily cryptogram.';
 
   final FlutterLocalNotificationsPlugin _plugin =
       FlutterLocalNotificationsPlugin();
@@ -29,6 +33,22 @@ class MobileNotificationService extends NotificationService {
       android: AndroidInitializationSettings('@drawable/ic_stat_quotecrack'),
     );
     await _plugin.initialize(settings: settings);
+    // Create the channel explicitly at startup so it exists with the right
+    // importance the moment a reminder is scheduled (and so the OS shows it
+    // under app notification settings even before the first fire). Creating an
+    // existing channel again is a no-op, so this is safe on every launch.
+    try {
+      await _android?.createNotificationChannel(
+        const AndroidNotificationChannel(
+          _channelId,
+          _channelName,
+          description: _channelDescription,
+          importance: Importance.defaultImportance,
+        ),
+      );
+    } catch (_) {
+      // Older platforms / no-op contexts: scheduling still creates the channel.
+    }
   }
 
   Future<void> _ensureTimezone() async {
@@ -90,9 +110,9 @@ class MobileNotificationService extends NotificationService {
 
     final details = NotificationDetails(
       android: AndroidNotificationDetails(
-        'daily_reminder',
-        'Daily puzzle reminder',
-        channelDescription: 'One reminder per day for the daily cryptogram.',
+        _channelId,
+        _channelName,
+        channelDescription: _channelDescription,
         importance: Importance.defaultImportance,
         priority: Priority.defaultPriority,
         // Brand accent tints the small icon + app name in the shade.

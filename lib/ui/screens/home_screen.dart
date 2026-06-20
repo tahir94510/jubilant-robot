@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +24,38 @@ import 'settings_screen.dart';
 import 'stats_screen.dart';
 import '../widgets/scale_safe.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // Double-back-to-exit guard: the first back press on the root screen shows a
+  // hint and arms a ~2s window; a second press inside it actually leaves the
+  // app, so a stray tap never drops the player out mid-session.
+  DateTime? _lastBackPress;
+
+  void _handleBack(BuildContext context) {
+    final now = DateTime.now();
+    final last = _lastBackPress;
+    if (last != null && now.difference(last) < const Duration(seconds: 2)) {
+      SystemNavigator.pop();
+      return;
+    }
+    _lastBackPress = now;
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(l10n.pressBackAgainToExit),
+          duration: const Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,204 +97,107 @@ class HomeScreen extends StatelessWidget {
         !progress.isSolved(resumeQuote.id) &&
         game.hasInProgress(resumeQuote.id);
 
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: PageBody(
-                child: ScaleSafe(
-                  child: ListView(
-                    padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // Just the serif wordmark: the logo already greets
-                          // the player on the launch screen and the app icon,
-                          // so the home header stays clean and uncrowded. It
-                          // scales down rather than pushing the controls off a
-                          // narrow phone when large system text is on.
-                          const Flexible(
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              alignment: Alignment.centerLeft,
-                              child: BrandWordmark(fontSize: 26),
-                            ),
-                          ),
-                          // The controls keep a bounded text scale so a large
-                          // system font can't balloon the streak number and
-                          // squeeze the wordmark off a narrow phone. A little
-                          // space around the streak badge keeps the three
-                          // controls from reading as one cramped cluster.
-                          MediaQuery.withClampedTextScaling(
-                            maxScaleFactor: 1.1,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                // One-tap music mute, mirrored by Settings.
-                                IconButton(
-                                  tooltip: l10n.musicToggleTooltip,
-                                  visualDensity: VisualDensity.compact,
-                                  onPressed: () => settingsCtl.setMusicAndApply(
-                                    !musicOn,
-                                    context.read<MusicService>(),
-                                  ),
-                                  icon: Icon(
-                                    musicOn
-                                        ? Icons.music_note_outlined
-                                        : Icons.music_off_outlined,
-                                  ),
-                                ),
-                                // The streak badge appears only once there is a
-                                // live streak (>=1); a "0" badge is meaningless
-                                // and just clutters the header.
-                                if (progress.displayStreakFor(contentLocale) >=
-                                    1) ...[
-                                  const SizedBox(width: 4),
-                                  StreakBadge(
-                                    streak: progress.displayStreakFor(
-                                      contentLocale,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 4),
-                                ],
-                                IconButton(
-                                  tooltip: l10n.settingsTooltip,
-                                  visualDensity: VisualDensity.compact,
-                                  onPressed: () => Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) => const SettingsScreen(),
-                                    ),
-                                  ),
-                                  icon: const Icon(Icons.settings_outlined),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 18),
-
-                      // --- Daily puzzle card ---
-                      Card(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(16),
-                          onTap: () {
-                            context.read<GameController>().start(
-                              daily.quote,
-                              daily: true,
-                              alreadySolved: progress.isSolved(daily.quote.id),
-                            );
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const PuzzleScreen(),
+    return PopScope(
+      // Never let the framework pop the root route directly; route the back
+      // gesture through the double-press guard instead.
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (didPop) return;
+        _handleBack(context);
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                child: PageBody(
+                  child: ScaleSafe(
+                    child: ListView(
+                      padding: const EdgeInsets.fromLTRB(20, 12, 20, 12),
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Just the serif wordmark: the logo already greets
+                            // the player on the launch screen and the app icon,
+                            // so the home header stays clean and uncrowded. It
+                            // scales down rather than pushing the controls off a
+                            // narrow phone when large system text is on.
+                            const Flexible(
+                              child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerLeft,
+                                child: BrandWordmark(fontSize: 26),
                               ),
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.today_outlined,
-                                      size: 18,
-                                      color: scheme.primary,
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Text(
-                                      l10n.homeDailyLabel,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w700,
-                                        letterSpacing: 1.2,
-                                        color: scheme.primary,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    if (dailyDone)
-                                      Icon(
-                                        Icons.check_circle,
-                                        size: 20,
-                                        color: palette.success,
-                                      ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                // Localized, and kept to a single tidy line:
-                                // long locale dates (e.g. German) scale down to
-                                // fit instead of wrapping mid-phrase.
-                                Align(
-                                  alignment: AlignmentDirectional.centerStart,
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: Text(
-                                      '#${daily.number} · '
-                                      '${DateFormat.MMMMEEEEd(contentLocale).format(today)}',
-                                      maxLines: 1,
-                                      softWrap: false,
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w700,
-                                        color: scheme.onSurface,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  dailyDone
-                                      ? l10n.homeDailySolved
-                                      : l10n.homeDailyAwaits(
-                                          daily.quote.author,
-                                        ),
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: palette.textSecondary,
-                                  ),
-                                ),
-                                const SizedBox(height: 14),
-                                FilledButton(
-                                  onPressed: () {
-                                    context.read<GameController>().start(
-                                      daily.quote,
-                                      daily: true,
-                                      alreadySolved: progress.isSolved(
-                                        daily.quote.id,
-                                      ),
-                                    );
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (_) => const PuzzleScreen(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text(
-                                    dailyDone ? l10n.replay : l10n.playNow,
-                                  ),
-                                ),
-                              ],
                             ),
-                          ),
+                            // The controls keep a bounded text scale so a large
+                            // system font can't balloon the streak number and
+                            // squeeze the wordmark off a narrow phone. A little
+                            // space around the streak badge keeps the three
+                            // controls from reading as one cramped cluster.
+                            MediaQuery.withClampedTextScaling(
+                              maxScaleFactor: 1.1,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  // One-tap music mute, mirrored by Settings.
+                                  IconButton(
+                                    tooltip: l10n.musicToggleTooltip,
+                                    visualDensity: VisualDensity.compact,
+                                    onPressed: () =>
+                                        settingsCtl.setMusicAndApply(
+                                          !musicOn,
+                                          context.read<MusicService>(),
+                                        ),
+                                    icon: Icon(
+                                      musicOn
+                                          ? Icons.music_note_outlined
+                                          : Icons.music_off_outlined,
+                                    ),
+                                  ),
+                                  // The streak badge appears only once there is a
+                                  // live streak (>=1); a "0" badge is meaningless
+                                  // and just clutters the header.
+                                  if (progress.displayStreakFor(
+                                        contentLocale,
+                                      ) >=
+                                      1) ...[
+                                    const SizedBox(width: 4),
+                                    StreakBadge(
+                                      streak: progress.displayStreakFor(
+                                        contentLocale,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 4),
+                                  ],
+                                  IconButton(
+                                    tooltip: l10n.settingsTooltip,
+                                    visualDensity: VisualDensity.compact,
+                                    onPressed: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (_) => const SettingsScreen(),
+                                      ),
+                                    ),
+                                    icon: const Icon(Icons.settings_outlined),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(height: 12),
+                        const SizedBox(height: 18),
 
-                      // --- Continue (resume) card, per language ---
-                      if (canResume) ...[
+                        // --- Daily puzzle card ---
                         Card(
                           child: InkWell(
                             borderRadius: BorderRadius.circular(16),
                             onTap: () {
                               context.read<GameController>().start(
-                                resumeQuote,
-                                daily: false,
-                                packId: lastOpen!.packId,
-                                alreadySolved: false,
+                                daily.quote,
+                                daily: true,
+                                alreadySolved: progress.isSolved(
+                                  daily.quote.id,
+                                ),
                               );
                               Navigator.of(context).push(
                                 MaterialPageRoute(
@@ -279,13 +213,13 @@ class HomeScreen extends StatelessWidget {
                                   Row(
                                     children: [
                                       Icon(
-                                        Icons.play_circle_outline,
+                                        Icons.today_outlined,
                                         size: 18,
                                         color: scheme.primary,
                                       ),
                                       const SizedBox(width: 6),
                                       Text(
-                                        l10n.homeContinueLabel,
+                                        l10n.homeDailyLabel,
                                         style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w700,
@@ -293,24 +227,59 @@ class HomeScreen extends StatelessWidget {
                                           color: scheme.primary,
                                         ),
                                       ),
+                                      const Spacer(),
+                                      if (dailyDone)
+                                        Icon(
+                                          Icons.check_circle,
+                                          size: 20,
+                                          color: palette.success,
+                                        ),
                                     ],
                                   ),
-                                  const SizedBox(height: 8),
+                                  const SizedBox(height: 10),
+                                  // Localized, and kept to a single tidy line:
+                                  // long locale dates (e.g. German) scale down to
+                                  // fit instead of wrapping mid-phrase.
+                                  Align(
+                                    alignment: AlignmentDirectional.centerStart,
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      alignment:
+                                          AlignmentDirectional.centerStart,
+                                      child: Text(
+                                        '#${daily.number} · '
+                                        '${DateFormat.MMMMEEEEd(contentLocale).format(today)}',
+                                        maxLines: 1,
+                                        softWrap: false,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w700,
+                                          color: scheme.onSurface,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
                                   Text(
-                                    l10n.homeContinueSubtitle,
+                                    dailyDone
+                                        ? l10n.homeDailySolved
+                                        : l10n.homeDailyAwaits(
+                                            daily.quote.author,
+                                          ),
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: palette.textSecondary,
                                     ),
                                   ),
                                   const SizedBox(height: 14),
-                                  FilledButton.tonal(
+                                  FilledButton(
                                     onPressed: () {
                                       context.read<GameController>().start(
-                                        resumeQuote,
-                                        daily: false,
-                                        packId: lastOpen!.packId,
-                                        alreadySolved: false,
+                                        daily.quote,
+                                        daily: true,
+                                        alreadySolved: progress.isSolved(
+                                          daily.quote.id,
+                                        ),
                                       );
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
@@ -318,7 +287,9 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                       );
                                     },
-                                    child: Text(l10n.continuePlaying),
+                                    child: Text(
+                                      dailyDone ? l10n.replay : l10n.playNow,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -326,67 +297,173 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 12),
-                      ],
 
-                      // --- Menu tiles ---
-                      _MenuTile(
-                        icon: Icons.grid_view_rounded,
-                        title: l10n.puzzlePacks,
-                        subtitle: l10n.packsSolved(
-                          solvedHere,
-                          localeQuotes.length,
-                        ),
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const PacksScreen(),
+                        // --- Continue (resume) card, per language ---
+                        // On-brand "Ink & Gold" treatment: a soft gold-tinted
+                        // surface with a hairline accent border and a filled
+                        // play chip, so resuming reads as the warm, inviting
+                        // primary action without clashing with any of the three
+                        // themes (every color is pulled from the active scheme).
+                        if (canResume) ...[
+                          Builder(
+                            builder: (context) {
+                              void resume() {
+                                context.read<GameController>().start(
+                                  resumeQuote,
+                                  daily: false,
+                                  packId: lastOpen!.packId,
+                                  alreadySolved: false,
+                                );
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => const PuzzleScreen(),
+                                  ),
+                                );
+                              }
+
+                              return Card(
+                                clipBehavior: Clip.antiAlias,
+                                color: Color.alphaBlend(
+                                  scheme.primary.withValues(alpha: 0.08),
+                                  Theme.of(context).cardColor,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  side: BorderSide(
+                                    color: scheme.primary.withValues(
+                                      alpha: 0.28,
+                                    ),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(16),
+                                  onTap: resume,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(18),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 48,
+                                          height: 48,
+                                          decoration: BoxDecoration(
+                                            color: scheme.primary,
+                                            borderRadius: BorderRadius.circular(
+                                              14,
+                                            ),
+                                          ),
+                                          child: Icon(
+                                            Icons.play_arrow_rounded,
+                                            color: scheme.onPrimary,
+                                            size: 30,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                l10n.homeContinueLabel,
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w700,
+                                                  letterSpacing: 1.2,
+                                                  color: scheme.primary,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 4),
+                                              Text(
+                                                l10n.homeContinueSubtitle,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: scheme.onSurface,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Icon(
+                                          Icons.chevron_right,
+                                          color: scheme.primary.withValues(
+                                            alpha: 0.7,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      _MenuTile(
-                        icon: Icons.insights_outlined,
-                        title: l10n.statistics,
-                        subtitle: l10n.statisticsSubtitle,
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const StatsScreen(),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      _MenuTile(
-                        icon: Icons.emoji_events_outlined,
-                        title: l10n.achievements,
-                        subtitle: l10n.achievementsUnlocked(
-                          progress.unlockedAchievementIds.length,
-                        ),
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => const AchievementsScreen(),
-                          ),
-                        ),
-                      ),
-                      if (!economy.premium) ...[
-                        const SizedBox(height: 10),
+                          const SizedBox(height: 12),
+                        ],
+
+                        // --- Menu tiles ---
                         _MenuTile(
-                          icon: Icons.workspace_premium_outlined,
-                          title: l10n.goPremium,
-                          subtitle: l10n.goPremiumSubtitleHome,
-                          accent: true,
+                          icon: Icons.grid_view_rounded,
+                          title: l10n.puzzlePacks,
+                          subtitle: l10n.packsSolved(
+                            solvedHere,
+                            localeQuotes.length,
+                          ),
                           onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (_) => const PaywallScreen(),
+                              builder: (_) => const PacksScreen(),
                             ),
                           ),
                         ),
+                        const SizedBox(height: 10),
+                        _MenuTile(
+                          icon: Icons.insights_outlined,
+                          title: l10n.statistics,
+                          subtitle: l10n.statisticsSubtitle,
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const StatsScreen(),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        _MenuTile(
+                          icon: Icons.emoji_events_outlined,
+                          title: l10n.achievements,
+                          subtitle: l10n.achievementsUnlocked(
+                            progress.unlockedAchievementIds.length,
+                          ),
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const AchievementsScreen(),
+                            ),
+                          ),
+                        ),
+                        if (!economy.premium) ...[
+                          const SizedBox(height: 10),
+                          _MenuTile(
+                            icon: Icons.workspace_premium_outlined,
+                            title: l10n.goPremium,
+                            subtitle: l10n.goPremiumSubtitleHome,
+                            accent: true,
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const PaywallScreen(),
+                              ),
+                            ),
+                          ),
+                        ],
                       ],
-                    ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const BannerAdSlot(slotName: 'home'),
-          ],
+              const BannerAdSlot(slotName: 'home'),
+            ],
+          ),
         ),
       ),
     );

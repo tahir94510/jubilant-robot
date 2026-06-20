@@ -1,0 +1,322 @@
+[
+ {
+  "id": "es-cp100",
+  "text": "Amor con celos causa desvelos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp101",
+  "text": "Amor no respeta ley, ni obedece a rey.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp102",
+  "text": "Amores reñidos son los más queridos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp103",
+  "text": "Donde hubo fuego, cenizas quedan.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp104",
+  "text": "El amor y la fe, en las obras se ve.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp105",
+  "text": "Afortunado en el juego, desgraciado en amores.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp106",
+  "text": "El que tiene un amigo tiene un tesoro.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp107",
+  "text": "En el peligro se conoce al amigo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp108",
+  "text": "Amigo en la adversidad es amigo de verdad.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp109",
+  "text": "Más vale un amigo que pariente ni primo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp110",
+  "text": "Amistad que dice no, amistad que ya murió.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp111",
+  "text": "Quien no tiene amor, no tiene dolor.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp112",
+  "text": "Amor de lejos, felices los cuatro.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp113",
+  "text": "Casamiento y mortaja, del cielo bajan.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp114",
+  "text": "Amor primero, no le olvida el postrero.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp115",
+  "text": "Antes de casar, ten casas en que morar.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp116",
+  "text": "El amor es como el fuego, que no se ve por dónde viene.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp117",
+  "text": "La amistad sincera es un alma repartida en dos cuerpos.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp118",
+  "text": "Amor con interés se acaba en un dos por tres.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp119",
+  "text": "Quien tiene boca se equivoca, y quien tiene corazón se enamora.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp120",
+  "text": "El amor y los reyes no quieren compañeros.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp121",
+  "text": "El amor verdadero no conoce fronteras.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp122",
+  "text": "Cuando el amor no es locura, no es amor.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp123",
+  "text": "Amistades que del vino se hacen, en el vino se deshacen.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp124",
+  "text": "El amor y la tos no pueden encubrirse.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp125",
+  "text": "Los amigos verdaderos se cuentan con los dedos de una mano.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp126",
+  "text": "Donde hay mucha confianza, suele haber poco respeto.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp127",
+  "text": "Cariño verdadero, ni el tiempo ni la ausencia lo destruyen.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp128",
+  "text": "El que tiene amigos no se muere en la cárcel.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp129",
+  "text": "Quien no arriesga, no gana nada.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp130",
+  "text": "Poco a poco hila la vieja el copo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp131",
+  "text": "Gota a gota, el agua horada la piedra.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp132",
+  "text": "No se ganó Zamora en una hora, ni Roma se fundó luego toda.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp133",
+  "text": "Con paciencia se gana el cielo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp134",
+  "text": "La paciencia es la madre de la ciencia.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp135",
+  "text": "El que parte y reparte, se queda con la mejor parte.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp136",
+  "text": "El que la sigue la consigue, si no se cansa primero.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp137",
+  "text": "Al que quiere celeste, que le cueste.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp138",
+  "text": "No hay atajo sin trabajo, ni rodeo sin deseo.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ },
+ {
+  "id": "es-cp139",
+  "text": "El que no llora, no mama, dice el refrán.",
+  "author": "Refrán español",
+  "source": "Tradicional",
+  "category": "inspire",
+  "locale": "es"
+ }
+]

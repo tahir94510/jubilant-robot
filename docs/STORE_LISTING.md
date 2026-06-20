@@ -5,6 +5,74 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.0.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.0.0
+• New premium pack "Heart & Courage" — uplifting proverbs of love, friendship and grit, in every language
+• Hold the ◀ ▶ / undo / redo keys to repeat; smoother music transitions
+• Press back twice to exit; tidier "Continue" card
+• Steadier board (no jitter when selecting a letter) and more polish
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.0.0 YENİLİKLER
+• Yeni premium paket "Yürek & Cesaret" — her dilde sevgi, dostluk ve azim atasözleri
+• ◀ ▶ / geri / ileri tuşlarını basılı tutarak tekrarla; daha akıcı müzik geçişleri
+• Çıkmak için geriye iki kez bas; daha derli toplu "Devam et" kartı
+• Daha sabit tahta (harf seçince titreme yok) ve daha fazla cila
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.0.0
+• Nuevo paquete premium "Corazón y Coraje": refranes de amor, amistad y constancia, en cada idioma
+• Mantén pulsadas ◀ ▶ / deshacer / rehacer para repetir; transiciones de música más suaves
+• Pulsa atrás dos veces para salir; tarjeta "Continuar" más cuidada
+• Tablero más estable (sin temblor al elegir letra) y más mejoras
+```
+
+**Deutsch**
+```
+NEU in 2.0.0
+• Neues Premium-Paket „Herz & Mut" – Sprichwörter über Liebe, Freundschaft und Ausdauer, in jeder Sprache
+• ◀ ▶ / Rückgängig / Wiederholen gedrückt halten zum Wiederholen; sanftere Musikübergänge
+• Zum Beenden zweimal zurück; aufgeräumtere „Fortsetzen"-Karte
+• Ruhigeres Brett (kein Zittern bei Buchstabenwahl) und mehr Feinschliff
+```
+
+**Français**
+```
+NOUVEAU dans 2.0.0
+• Nouveau pack premium « Cœur & Courage » : proverbes d'amour, d'amitié et de ténacité, dans chaque langue
+• Maintenez ◀ ▶ / annuler / rétablir pour répéter ; transitions musicales plus douces
+• Appuyez deux fois sur retour pour quitter ; carte « Continuer » plus nette
+• Grille plus stable (pas de tremblement à la sélection) et plus de finitions
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.0.0
+• Nuovo pacchetto premium "Cuore e Coraggio": proverbi d'amore, amicizia e tenacia, in ogni lingua
+• Tieni premuti ◀ ▶ / annulla / ripeti per ripetere; transizioni musicali più fluide
+• Premi indietro due volte per uscire; scheda "Continua" più ordinata
+• Tavola più stabile (niente tremolio nella selezione) e altre rifiniture
+```
+
+**Português**
+```
+NOVIDADES na 2.0.0
+• Novo pacote premium "Coração e Coragem": provérbios de amor, amizade e perseverança, em todos os idiomas
+• Segure ◀ ▶ / desfazer / refazer para repetir; transições de música mais suaves
+• Pressione voltar duas vezes para sair; cartão "Continuar" mais elegante
+• Tabuleiro mais estável (sem tremor ao selecionar) e mais polimento
+```
+
+---
+
 ## Release notes: v1.8.0 (max 500 chars, paste into "What's new")
 
 ```

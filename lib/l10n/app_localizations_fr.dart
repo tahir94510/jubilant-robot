@@ -170,6 +170,10 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit =>
+      'Appuyez à nouveau sur retour pour quitter';
+
+  @override
   String get homeContinueLabel => 'CONTINUER';
 
   @override
@@ -505,6 +509,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get packTaglineClassics => 'Voix intemporelles, triées sur le volet';
+
+  @override
+  String get packTitleInspire => 'Cœur & Courage';
+
+  @override
+  String get packTaglineInspire =>
+      'Proverbes d\'amour, d\'amitié et de ténacité';
 
   @override
   String get achDescFirst => 'Résolvez votre premier cryptogramme';

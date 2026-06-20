@@ -169,6 +169,9 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Press back again to exit';
+
+  @override
   String get homeContinueLabel => 'CONTINUE';
 
   @override
@@ -500,6 +503,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get packTaglineClassics => 'Timeless voices, hand-picked';
+
+  @override
+  String get packTitleInspire => 'Heart & Courage';
+
+  @override
+  String get packTaglineInspire => 'Proverbs of love, friendship and grit';
 
   @override
   String get achDescFirst => 'Solve your first cryptogram';

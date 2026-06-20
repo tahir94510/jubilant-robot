@@ -174,6 +174,9 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Premi di nuovo indietro per uscire';
+
+  @override
   String get homeContinueLabel => 'CONTINUA';
 
   @override
@@ -508,6 +511,12 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get packTaglineClassics => 'Voci senza tempo, scelte a mano';
+
+  @override
+  String get packTitleInspire => 'Cuore e Coraggio';
+
+  @override
+  String get packTaglineInspire => 'Proverbi d\'amore, amicizia e tenacia';
 
   @override
   String get achDescFirst => 'Risolvi il tuo primo crittogramma';

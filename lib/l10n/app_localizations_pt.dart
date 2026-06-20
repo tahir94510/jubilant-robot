@@ -172,6 +172,9 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get pressBackAgainToExit => 'Pressione voltar novamente para sair';
+
+  @override
   String get homeContinueLabel => 'CONTINUAR';
 
   @override
@@ -506,6 +509,12 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get packTaglineClassics => 'Vozes atemporais, selecionadas a dedo';
+
+  @override
+  String get packTitleInspire => 'Coração e Coragem';
+
+  @override
+  String get packTaglineInspire => 'Provérbios de amor, amizade e perseverança';
 
   @override
   String get achDescFirst => 'Resolva seu primeiro criptograma';

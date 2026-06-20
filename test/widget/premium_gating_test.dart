@@ -97,6 +97,6 @@ void main() {
         .where((p) => p.premiumOnly)
         .map((p) => p.id)
         .toSet();
-    expect(premiumPacks, {'classics'});
+    expect(premiumPacks, {'classics', 'inspire'});
   });
 }

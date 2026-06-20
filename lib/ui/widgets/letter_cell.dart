@@ -84,13 +84,19 @@ class LetterCell extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           // Focused cell: full accent border. Sibling copies: a faint accent
           // so they read as "same letter" without competing with the cursor.
+          // CONSTANT width on every state: a BoxDecoration border is laid out
+          // as padding around the child, so a varying width would change the
+          // cell's size on selection and re-flow the word Row / Wrap (the
+          // "titreme" jitter). Only the COLOR changes between states now —
+          // unfocused cells keep a transparent 1.6px border so geometry is
+          // identical to the focused cell.
           border: Border.all(
             color: selected
                 ? palette.revealed
                 : related
                 ? palette.revealed.withValues(alpha: 0.30)
                 : Colors.transparent,
-            width: selected ? 1.6 : 1.0,
+            width: 1.6,
           ),
         ),
         child: Column(
