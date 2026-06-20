@@ -27,7 +27,8 @@ Outputs (committed to the repo):
   web/icons/Icon-{192,512}.png + maskable       PWA / social preview
   web/favicon.png                               48
   store_assets/play_icon_512.png                512   Play listing (full bleed)
-  store_assets/feature_graphic.png              1024x500
+  store_assets/feature_graphic.png              1024x500 (English, canonical)
+  store_assets/feature_graphic_<loc>.png        1024x500 per-language (7 locales)
   pages/og-image.png                            1200x630 social-share card
 """
 
@@ -234,8 +235,39 @@ def draw_decoded_tiles(draw, *, canvas_w, y, tile_w, tile_h, gap):
                   cipher[i], font=small, fill=UNDERLINE + (210,))
 
 
-def make_feature_graphic():
-    """Play feature graphic keeps the richer decoded-word motif."""
+# Per-language Play feature-graphic tagline. Each Play Console listing language
+# can carry its own feature graphic, so we render one per locale; the text is
+# the canonical opening line of that language's store description in
+# docs/STORE_LISTING.md. Keep these in sync if the store copy changes.
+FEATURE_TAGLINES = {
+    "en": "Decode famous quotes. One cipher a day.",
+    "tr": "Sözü harf harf çöz.",
+    "de": "Enthülle das Zitat, Buchstabe für Buchstabe.",
+    "es": "Revela la frase, letra a letra.",
+    "fr": "Révélez la citation, lettre par lettre.",
+    "it": "Svela la frase, lettera per lettera.",
+    "pt": "Revele a frase, letra por letra.",
+}
+
+
+def _fit_single_line(draw, text, max_width, start_px, font_path=FONT_UI,
+                     min_px=24):
+    """Largest font (<= start_px) at which `text` fits on one line within
+    max_width, never going below min_px. Long locale taglines auto-shrink
+    instead of overflowing the canvas."""
+    px = start_px
+    while px > min_px:
+        font = ImageFont.truetype(str(font_path), px)
+        bbox = draw.textbbox((0, 0), text, font=font)
+        if bbox[2] - bbox[0] <= max_width:
+            break
+        px -= 2
+    return ImageFont.truetype(str(font_path), px)
+
+
+def make_feature_graphic(tag, out_path):
+    """Play feature graphic keeps the richer decoded-word motif. `tag` is the
+    localized tagline; it auto-shrinks to stay within the 1024px width."""
     size = (1024, 500)
     img = vertical_gradient(size, BG_TOP, BG_BOTTOM).convert("RGBA")
     draw = ImageDraw.Draw(img)
@@ -243,13 +275,16 @@ def make_feature_graphic():
     draw_decoded_tiles(draw, canvas_w=size[0], y=105,
                        tile_w=76, tile_h=150, gap=12)
 
-    tag = "Decode famous quotes. One cipher a day."
-    tag_font = ImageFont.truetype(str(FONT_UI), 40)
+    tag_font = _fit_single_line(draw, tag, max_width=size[0] - 96,
+                                start_px=40)
     bbox = draw.textbbox((0, 0), tag, font=tag_font)
-    draw.text(((size[0] - (bbox[2] - bbox[0])) / 2, 330), tag,
+    # Vertically center the (possibly smaller) tagline in its band so shorter
+    # locales don't sit visibly higher than longer ones.
+    ty = 330 + (40 - tag_font.size) / 2
+    draw.text(((size[0] - (bbox[2] - bbox[0])) / 2, ty), tag,
               font=tag_font, fill=PAPER + (235,))
 
-    save(img.convert("RGB"), "store_assets/feature_graphic.png")
+    save(img.convert("RGB"), out_path)
 
 
 def make_og_image():
@@ -286,5 +321,9 @@ if __name__ == "__main__":
     make_notification_icons()
     make_web_icons()
     make_play_icon()
-    make_feature_graphic()
+    # English keeps the canonical filename; each locale also gets its own.
+    make_feature_graphic(FEATURE_TAGLINES["en"],
+                         "store_assets/feature_graphic.png")
+    for loc, tag in FEATURE_TAGLINES.items():
+        make_feature_graphic(tag, f"store_assets/feature_graphic_{loc}.png")
     make_og_image()
