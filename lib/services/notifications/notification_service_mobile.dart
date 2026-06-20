@@ -13,7 +13,6 @@ class MobileNotificationService extends NotificationService {
   MobileNotificationService() : super.base();
 
   static const int _dailyReminderId = 1001;
-  static const int _testNotificationId = 1002;
   static const String _channelId = 'daily_reminder';
   static const String _channelName = 'Daily puzzle reminder';
   static const String _channelDescription =
@@ -149,20 +148,6 @@ class MobileNotificationService extends NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
-    );
-  }
-
-  @override
-  Future<void> showNow({required String title, required String body}) async {
-    // An immediate notification so the player can confirm reminders work right
-    // now, without waiting for the scheduled time or the OS maintenance window.
-    await _plugin.show(
-      id: _testNotificationId,
-      title: title,
-      body: body,
-      notificationDetails: NotificationDetails(
-        android: _androidDetails(title, body),
-      ),
     );
   }
 

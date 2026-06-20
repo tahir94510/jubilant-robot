@@ -116,12 +116,6 @@ class AppLocalizationsDe extends AppLocalizations {
       'Benachrichtigungsberechtigung in den Systemeinstellungen verweigert.';
 
   @override
-  String get sendTestNotification => 'Testbenachrichtigung senden';
-
-  @override
-  String get testNotificationSent => 'Testbenachrichtigung gesendet.';
-
-  @override
   String get premiumActive => 'Premium aktiv';
 
   @override

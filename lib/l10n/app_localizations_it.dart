@@ -118,12 +118,6 @@ class AppLocalizationsIt extends AppLocalizations {
       'Autorizzazione alle notifiche negata nelle impostazioni di sistema.';
 
   @override
-  String get sendTestNotification => 'Invia una notifica di prova';
-
-  @override
-  String get testNotificationSent => 'Notifica di prova inviata.';
-
-  @override
   String get premiumActive => 'Premium attivo';
 
   @override

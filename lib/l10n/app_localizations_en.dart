@@ -115,12 +115,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Notification permission was denied in system settings.';
 
   @override
-  String get sendTestNotification => 'Send a test notification';
-
-  @override
-  String get testNotificationSent => 'Test notification sent.';
-
-  @override
   String get premiumActive => 'Premium active';
 
   @override

@@ -5,11 +5,11 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
-## Release notes: v2.2.2 (max 500 chars, paste into "What's new")
+## Release notes: v2.2.3 (max 500 chars, paste into "What's new")
 
 ```
-NEW in 2.2.2
-• More reliable daily reminders (and a "Send a test notification" button to check instantly)
+NEW in 2.2.3
+• More reliable daily reminders
 • Crisp launch logo in dark mode
 • Polished colors and contrast across light, dark and sepia themes
 Happy decoding!
@@ -17,8 +17,8 @@ Happy decoding!
 
 **Türkçe**
 ```
-2.2.2 YENİLİKLER
-• Daha güvenilir günlük hatırlatmalar (ve anında denemek için "Test bildirimi gönder" düğmesi)
+2.2.3 YENİLİKLER
+• Daha güvenilir günlük hatırlatmalar
 • Koyu modda net açılış logosu
 • Açık, koyu ve sepya temalarda incelikle ayarlanmış renk ve kontrast
 İyi çözmeler!
@@ -26,40 +26,40 @@ Happy decoding!
 
 **Español**
 ```
-NOVEDADES 2.2.2
-• Recordatorios diarios más fiables (y un botón "Enviar una notificación de prueba" para comprobarlo al instante)
+NOVEDADES 2.2.3
+• Recordatorios diarios más fiables
 • Logo de inicio nítido en modo oscuro
 • Colores y contraste pulidos en los temas claro, oscuro y sepia
 ```
 
 **Deutsch**
 ```
-NEU in 2.2.2
-• Zuverlässigere tägliche Erinnerungen (und ein Button „Testbenachrichtigung senden" zum sofortigen Prüfen)
+NEU in 2.2.3
+• Zuverlässigere tägliche Erinnerungen
 • Klares Start-Logo im Dunkelmodus
 • Feinabgestimmte Farben und Kontraste in hellem, dunklem und Sepia-Design
 ```
 
 **Français**
 ```
-NOUVEAU dans 2.2.2
-• Rappels quotidiens plus fiables (et un bouton « Envoyer une notification test » pour vérifier aussitôt)
+NOUVEAU dans 2.2.3
+• Rappels quotidiens plus fiables
 • Logo de lancement net en mode sombre
 • Couleurs et contraste peaufinés dans les thèmes clair, sombre et sépia
 ```
 
 **Italiano**
 ```
-NOVITÀ nella 2.2.2
-• Promemoria giornalieri più affidabili (e un pulsante "Invia una notifica di prova" per verificare subito)
+NOVITÀ nella 2.2.3
+• Promemoria giornalieri più affidabili
 • Logo d'avvio nitido in modalità scura
 • Colori e contrasto rifiniti nei temi chiaro, scuro e seppia
 ```
 
 **Português**
 ```
-NOVIDADES na 2.2.2
-• Lembretes diários mais confiáveis (e um botão "Enviar uma notificação de teste" para verificar na hora)
+NOVIDADES na 2.2.3
+• Lembretes diários mais confiáveis
 • Logotipo de abertura nítido no modo escuro
 • Cores e contraste ajustados nos temas claro, escuro e sépia
 ```
