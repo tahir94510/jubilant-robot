@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#1A1814</color>
+    <!-- Light "paper" brand field: the adaptive launcher icon sits on the warm
+         cream background that matches the icon artwork (dark-ink serif + gold). -->
+    <color name="ic_launcher_background">#F7F4EC</color>
     <!-- Matches AppThemes.light surface so the window behind the first
          Flutter frame never flashes a foreign color. -->
     <color name="app_surface">#F7F4EC</color>

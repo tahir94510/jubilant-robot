@@ -41,13 +41,17 @@ FONT_QUOTE = ROOT / "assets/fonts/Lora-Variable.ttf"
 FONT_UI = ROOT / "assets/fonts/Inter-Bold.ttf"
 ANDROID_RES = ROOT / "android/app/src/main/res"
 
-# Brand colors (match lib/ui/theme + brand_mark.dart): "Ink & Gold" — a warm
-# ink gradient with ivory + champagne-gold accents.
-BG_TOP = (26, 24, 20)        # #1A1814
-BG_BOTTOM = (46, 42, 34)     # #2E2A22
-PAPER = (243, 238, 226)      # #F3EEE2
-ACCENT = (224, 184, 90)      # #E0B85A
-UNDERLINE = (203, 162, 78)   # #CBA24E
+# Brand colors (match lib/ui/theme + brand_mark.dart): "Ink & Gold" on a warm
+# PAPER field — a light champagne-cream tile with a dark-ink serif and
+# deepened bronze-gold accents. The light field makes the icon stand out in the
+# launcher / store grid (a dark icon can vanish on dark wallpapers), and the
+# gold is deepened so it keeps strong contrast on the light background instead
+# of washing out (a naive dark->light flip kills the gold's legibility).
+BG_TOP = (247, 244, 236)     # #F7F4EC  (matches app_surface / light theme)
+BG_BOTTOM = (234, 225, 206)  # #EAE1CE  warm subtle gradient
+INK = (38, 34, 28)           # #26221C  dark serif glyph + decoded letters
+ACCENT = (170, 124, 34)      # #AA7C22  deepened gold for the ? and accents
+UNDERLINE = (150, 110, 30)   # #966E1E  deepened gold for the cipher underline
 
 SS = 2048  # supersample size: draw big, downscale Lanczos
 
@@ -109,7 +113,7 @@ def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
     ox = oy = (s - a) / 2
 
     white = (255, 255, 255, 255)
-    q_color = white if monochrome else PAPER + (255,)
+    q_color = white if monochrome else INK + (255,)
     mark_color = white if monochrome else ACCENT + (255,)
     line_color = white if monochrome else UNDERLINE + (255,)
 
@@ -224,7 +228,7 @@ def draw_decoded_tiles(draw, *, canvas_w, y, tile_w, tile_h, gap):
     big = lora(int(tile_h * 0.58))
     small = ImageFont.truetype(str(FONT_UI), int(tile_h * 0.15))
     for i, ch in enumerate(word):
-        color = ACCENT + (255,) if ch in "CK" and i >= 5 else PAPER + (255,)
+        color = ACCENT + (255,) if ch in "CK" and i >= 5 else INK + (255,)
         cx = x + i * (tile_w + gap) + tile_w / 2
         draw_glyph_centered(draw, ch, big, (cx, y + tile_h * 0.26), color)
         ly = y + tile_h * 0.62
@@ -282,7 +286,7 @@ def make_feature_graphic(tag, out_path):
     # locales don't sit visibly higher than longer ones.
     ty = 330 + (40 - tag_font.size) / 2
     draw.text(((size[0] - (bbox[2] - bbox[0])) / 2, ty), tag,
-              font=tag_font, fill=PAPER + (235,))
+              font=tag_font, fill=INK + (235,))
 
     save(img.convert("RGB"), out_path)
 
@@ -302,7 +306,7 @@ def make_og_image():
     tag_font = ImageFont.truetype(str(FONT_UI), 92)
     bbox = draw.textbbox((0, 0), tag, font=tag_font)
     draw.text(((w - (bbox[2] - bbox[0])) / 2, 810), tag,
-              font=tag_font, fill=PAPER + (235,))
+              font=tag_font, fill=INK + (235,))
 
     sub = "Free · Offline · Daily cryptogram puzzles"
     sub_font = ImageFont.truetype(str(FONT_UI), 56)
