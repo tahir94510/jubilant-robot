@@ -338,7 +338,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get packsDifficultyHint =>
-      'Sezgiye aykırı ama gerçek: kısa sözler en zorudur. Daha az harf, üzerinde çalışacak daha az ipucu demektir.';
+      'Sezgiye aykırı ama gerçek: kısa sözler en zorudur. Daha az harf, üzerinde çalışacağın daha az ipucu demektir.';
 
   @override
   String get packsSectionThemed => 'Temalı';
