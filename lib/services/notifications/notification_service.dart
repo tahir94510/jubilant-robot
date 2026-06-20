@@ -24,10 +24,11 @@ abstract class NotificationService {
   /// notifications from system settings.
   Future<bool> areEnabled();
 
-  /// (Re)schedules the repeating daily reminder. Uses exact timing when the OS
-  /// already permits it (no prompt) and falls back to inexact otherwise — a few
-  /// minutes of drift is fine for a puzzle reminder. [title]/[body] arrive
-  /// already localized to the user's chosen UI language.
+  /// (Re)schedules the repeating daily reminder. Inexact-allow-while-idle: no
+  /// SCHEDULE_EXACT_ALARM permission (Play-safe) and no settings redirect; the
+  /// OS still delivers daily within its maintenance window (a few minutes of
+  /// drift is fine for a puzzle reminder) and the HIGH-importance channel makes
+  /// it alert. [title]/[body] arrive already localized to the user's UI language.
   Future<void> scheduleDaily(
     TimeOfDay time, {
     required String title,

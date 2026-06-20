@@ -5,12 +5,12 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- Hatirlatmanin tam dakikasinda calmasi icin (yalnizca BEYAN edilir;
-         requestExactAlarmsPermission() CAGRILMAZ, dolayisiyla "Alarmlar ve
-         hatirlaticilar" sayfasina YONLENDIRME yok). Android 12 bu izni varsayilan
-         verir -> tam zamanli; Android 13+ vermezse kod sessizce inexact'e duser.
-         Play-guvenli: alarm-saati uygulamalarina ozel USE_EXACT_ALARM KULLANILMAZ. -->
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <!-- NOT: SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM BILEREK eklenmiyor. Google
+         Play bu izinleri yalnizca cekirdek islevi alarm-saati/takvim olan
+         uygulamalara verir; bir bulmaca hatirlaticisi icin beyan REDDE yol
+         acabilir. Gunluk hatirlatma inexactAllowWhileIdle ile kurulur: Doze'da
+         bile OS bakim penceresinde teslim edilir (gune birkac dk sapma normal),
+         kanal YUKSEK onemli oldugundan sesli/heads-up gelir. -->
     <!-- AdMob reklam kimligi (Play Console "Veri guvenligi" formunda beyan edilir) -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 
