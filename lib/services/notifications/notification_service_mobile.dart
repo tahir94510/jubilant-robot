@@ -94,12 +94,19 @@ class MobileNotificationService extends NotificationService {
 
   @override
   Future<bool> requestPermission() async {
-    // We request ONLY POST_NOTIFICATIONS here. We never call
-    // requestExactAlarmsPermission(), which is what opens the intrusive
-    // "Alarms & reminders" special-access page. Exact timing is still used when
-    // the OS already allows it (see scheduleDaily) — a read-only check, no
-    // prompt — so enabling notifications stays the only step the user takes.
     final granted = await _android?.requestNotificationsPermission();
+    // Also request exact-alarm permission so the daily reminder fires ON TIME
+    // even on aggressive OEM battery managers (Xiaomi/MIUI, Huawei, Samsung)
+    // that silently drop inexact alarms. This is the Play-ALLOWED
+    // SCHEDULE_EXACT_ALARM (USE_EXACT_ALARM stays removed from the manifest). On
+    // API<=32 it is already granted (no prompt); on API33 it is pre-granted; on
+    // API34+ it opens the "Alarms & reminders" page once, in context, right
+    // after the user turned the reminder on. If the user declines, scheduleDaily
+    // detects that and falls back to inexact — delivery still works, just with a
+    // few minutes of drift. Best-effort: never blocks enabling the reminder.
+    try {
+      await _android?.requestExactAlarmsPermission();
+    } catch (_) {}
     return granted ?? false;
   }
 
@@ -147,12 +154,13 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    // INEXACT delivery (inexactAllowWhileIdle): this is a puzzle game, not a
-    // calendar/clock, so USE_EXACT_ALARM is not Play-policy-eligible and is
-    // removed from the manifest. No SCHEDULE_EXACT_ALARM, no runtime prompt, no
-    // "Alarms & reminders" settings redirect. The OS still delivers daily within
-    // its maintenance window (a few minutes of drift is fine for a reminder) and
-    // the HIGH-importance channel makes it alert.
+    // EXACT delivery when the OS permits it (SCHEDULE_EXACT_ALARM — the
+    // Play-ALLOWED exact-alarm permission; USE_EXACT_ALARM stays removed). Exact
+    // is what makes the reminder actually arrive on aggressive OEMs that drop
+    // inexact alarms. We probe canScheduleExactNotifications (a read-only check,
+    // no prompt) and gracefully fall back to inexact where exact isn't granted
+    // (e.g. an Android 14+ user who declined), so scheduling NEVER throws.
+    final canExact = await _android?.canScheduleExactNotifications() ?? false;
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
@@ -161,7 +169,9 @@ class MobileNotificationService extends NotificationService {
       notificationDetails: NotificationDetails(
         android: _androidDetails(title, body),
       ),
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: canExact
+          ? AndroidScheduleMode.exactAllowWhileIdle
+          : AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
       // An explicit (non-null) payload keeps the plugin off any null-payload
       // serialization path when the daily reminder is delivered.

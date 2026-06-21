@@ -14,9 +14,9 @@ abstract class NotificationService {
 
   Future<void> initialize();
 
-  /// Asks for POST_NOTIFICATIONS (Android 13+). Called from the settings
-  /// toggle — in context — not at app start, to maximize grant rate. No
-  /// exact-alarm permission is requested (the daily reminder is inexact).
+  /// Asks for POST_NOTIFICATIONS (Android 13+) and the Play-allowed
+  /// SCHEDULE_EXACT_ALARM (so the reminder fires on time on aggressive OEMs).
+  /// Called from the settings toggle — in context — to maximize grant rate.
   Future<bool> requestPermission();
 
   /// Whether the OS currently allows this app to post notifications. Used to
@@ -24,11 +24,12 @@ abstract class NotificationService {
   /// notifications from system settings.
   Future<bool> areEnabled();
 
-  /// (Re)schedules the repeating daily reminder. Inexact-allow-while-idle: no
-  /// SCHEDULE_EXACT_ALARM permission (Play-safe) and no settings redirect; the
-  /// OS still delivers daily within its maintenance window (a few minutes of
-  /// drift is fine for a puzzle reminder) and the HIGH-importance channel makes
-  /// it alert. [title]/[body] arrive already localized to the user's UI language.
+  /// (Re)schedules the repeating daily reminder. Uses EXACT delivery
+  /// (exact-allow-while-idle) when the OS grants SCHEDULE_EXACT_ALARM — the
+  /// Play-allowed exact-alarm permission — so it arrives on time even on
+  /// aggressive OEMs; falls back to inexact where exact isn't granted. The
+  /// HIGH-importance channel makes it alert. [title]/[body] arrive already
+  /// localized to the user's UI language.
   Future<void> scheduleDaily(
     TimeOfDay time, {
     required String title,

@@ -5,6 +5,60 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.3.6 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.3.6
+• Daily reminders now arrive on time, reliably, on every device
+• Cleaner, consistent launch screen
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.3.6 YENİLİKLER
+• Günlük hatırlatmalar artık her cihazda zamanında ve güvenilir geliyor
+• Daha temiz, tutarlı açılış ekranı
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.3.6
+• Los recordatorios diarios ahora llegan a tiempo y con fiabilidad en todos los dispositivos
+• Pantalla de inicio más limpia y coherente
+```
+
+**Deutsch**
+```
+NEU in 2.3.6
+• Tägliche Erinnerungen kommen jetzt zuverlässig und pünktlich auf jedem Gerät
+• Sauberer, einheitlicher Startbildschirm
+```
+
+**Français**
+```
+NOUVEAU dans 2.3.6
+• Les rappels quotidiens arrivent désormais à l'heure et de façon fiable sur chaque appareil
+• Écran de lancement plus net et cohérent
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.3.6
+• I promemoria giornalieri ora arrivano puntuali e affidabili su ogni dispositivo
+• Schermata di avvio più pulita e coerente
+```
+
+**Português**
+```
+NOVIDADES na 2.3.6
+• Os lembretes diários agora chegam na hora e de forma confiável em todos os aparelhos
+• Tela de abertura mais limpa e consistente
+```
+
+---
+
 ## Release notes: v2.3.5 (max 500 chars, paste into "What's new")
 
 ```
