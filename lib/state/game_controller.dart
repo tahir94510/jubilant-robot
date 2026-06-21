@@ -429,6 +429,15 @@ class GameController extends ChangeNotifier {
       return;
     }
 
+    // Re-typing the letter the cell already holds is a no-op edit: don't rewrite
+    // it or push a redundant undo entry — just walk forward to the next editable
+    // cell (the natural "skip" the player expects).
+    if (s.guesses[target] == plainLetter) {
+      _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
+      notifyListeners();
+      return;
+    }
+
     _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
     final conflictsBefore = s.conflicts.length;
     final wordsBefore = s.correctWordCount;

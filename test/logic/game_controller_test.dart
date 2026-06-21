@@ -686,6 +686,66 @@ void main() {
     });
   });
 
+  group('same-letter retype', () {
+    test('retyping the cell\'s current letter skips ahead without a new undo '
+        'entry', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      game.selectIndex(0);
+      final c0 = game.selectedCipherLetter!;
+      game.enterGuess('X'); // fills c0, advances; one undo entry
+      expect(s.guesses[c0], 'X');
+
+      // Go back to c0 and type the SAME letter: no rewrite, no extra undo entry,
+      // and the cursor simply walks forward to the next editable cell.
+      game.selectCipherLetter(c0);
+      expect(game.canUndo, isTrue);
+      game.enterGuess('X');
+      expect(s.guesses[c0], 'X'); // unchanged
+      expect(game.selectedCipherLetter, isNot(c0)); // advanced past it
+
+      // Undo once returns to the only real edit (filling c0); nothing stacked
+      // up from the redundant re-type.
+      game.undo();
+      expect(s.guesses.containsKey(c0), isFalse);
+      expect(game.canUndo, isFalse);
+
+      game.stopTimer();
+      game.dispose();
+    });
+  });
+
+  group('conflict feedback', () {
+    test('a conflicting guess is flagged on the same keystroke', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      // "LESS IS MORE": cells 0 and 1 are distinct cipher letters (L, E).
+      final c0 = s.cipherText[0];
+      final c1 = s.cipherText[1];
+      expect(c0, isNot(c1));
+
+      game.selectIndex(0);
+      game.enterGuess('Z');
+      game.selectIndex(1);
+      game.enterGuess('Z'); // same plaintext on a different cipher letter
+
+      // The conflict is known immediately (drives the red cell + shake) — the UI
+      // no longer has to wait for the cursor to advance off the cell.
+      expect(game.lastInputCreatedConflict, isTrue);
+      expect(s.conflicts.contains(c0), isTrue);
+      expect(s.conflicts.contains(c1), isTrue);
+
+      game.stopTimer();
+      game.dispose();
+    });
+  });
+
   group('redo', () {
     test(
       'redo re-applies an undone guess; a new edit clears the redo future',

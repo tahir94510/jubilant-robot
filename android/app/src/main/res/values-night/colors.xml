@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Matches AppThemes.dark surface (see lib/ui/theme/app_themes.dart). -->
-    <color name="app_surface">#161512</color>
+    <!-- The pre-first-frame window background (NormalTheme). Deliberately the
+         LIGHT brand "paper" cream even in night mode: the splash is already
+         cream in every mode, and this used to be #161512, so on a dark device
+         the launch flashed a dark screen (logo nowhere to be seen) before
+         Flutter painted. Keeping it cream makes the whole launch one consistent
+         light brand field; Flutter then paints the user's chosen theme. -->
+    <color name="app_surface">#F7F4EC</color>
 </resources>
