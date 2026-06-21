@@ -211,14 +211,26 @@ class GamePalette extends ThemeExtension<GamePalette> {
     if (other is! GamePalette) return this;
     return GamePalette(
       boardCellBg: Color.lerp(boardCellBg, other.boardCellBg, t)!,
-      boardCellSelectedBg:
-          Color.lerp(boardCellSelectedBg, other.boardCellSelectedBg, t)!,
-      boardCellRelatedBg:
-          Color.lerp(boardCellRelatedBg, other.boardCellRelatedBg, t)!,
-      boardCellFilledBg:
-          Color.lerp(boardCellFilledBg, other.boardCellFilledBg, t)!,
-      boardCellConfirmedBg:
-          Color.lerp(boardCellConfirmedBg, other.boardCellConfirmedBg, t)!,
+      boardCellSelectedBg: Color.lerp(
+        boardCellSelectedBg,
+        other.boardCellSelectedBg,
+        t,
+      )!,
+      boardCellRelatedBg: Color.lerp(
+        boardCellRelatedBg,
+        other.boardCellRelatedBg,
+        t,
+      )!,
+      boardCellFilledBg: Color.lerp(
+        boardCellFilledBg,
+        other.boardCellFilledBg,
+        t,
+      )!,
+      boardCellConfirmedBg: Color.lerp(
+        boardCellConfirmedBg,
+        other.boardCellConfirmedBg,
+        t,
+      )!,
       boardUnderline: Color.lerp(boardUnderline, other.boardUnderline, t)!,
       guessText: Color.lerp(guessText, other.guessText, t)!,
       cipherText: Color.lerp(cipherText, other.cipherText, t)!,

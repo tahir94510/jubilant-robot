@@ -162,8 +162,7 @@ class ProgressController extends ChangeNotifier {
       stats.totalTimeSeconds += solveTime.inSeconds;
       final seconds = solveTime.inSeconds;
       if (seconds > 0 &&
-          (stats.bestTimeSeconds == null ||
-              seconds < stats.bestTimeSeconds!)) {
+          (stats.bestTimeSeconds == null || seconds < stats.bestTimeSeconds!)) {
         stats.bestTimeSeconds = seconds;
       }
     }
