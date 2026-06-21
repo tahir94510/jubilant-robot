@@ -17,8 +17,9 @@ class AppSettings {
     this.music = true,
     this.musicVolume = 0.80,
     this.reminderEnabled = false,
-    this.reminderHour = 9,
+    this.reminderHour = 20,
     this.reminderMinute = 0,
+    this.reminderCustomized = false,
     this.reminderNudgeDone = false,
     this.onboardingDone = false,
     this.seenContentVersion = 1,
@@ -39,8 +40,9 @@ class AppSettings {
     music: json['music'] as bool? ?? true,
     musicVolume: (json['musicVolume'] as num?)?.toDouble() ?? 0.80,
     reminderEnabled: json['reminderEnabled'] as bool? ?? false,
-    reminderHour: json['reminderHour'] as int? ?? 9,
+    reminderHour: json['reminderHour'] as int? ?? 20,
     reminderMinute: json['reminderMinute'] as int? ?? 0,
+    reminderCustomized: json['reminderCustomized'] as bool? ?? false,
     reminderNudgeDone: json['reminderNudgeDone'] as bool? ?? false,
     onboardingDone: json['onboardingDone'] as bool? ?? false,
     seenContentVersion: json['seenContentVersion'] as int? ?? 1,
@@ -77,6 +79,11 @@ class AppSettings {
   int reminderHour;
   int reminderMinute;
 
+  /// True once the player has personally picked a reminder time. Until then,
+  /// enabling the reminder uses a sensible per-language default hour instead of
+  /// a fixed global one.
+  bool reminderCustomized;
+
   /// The one-time "protect your streak" reminder invitation on the daily
   /// completion screen: shown once, then never again (either answer).
   bool reminderNudgeDone;
@@ -106,6 +113,7 @@ class AppSettings {
     'reminderEnabled': reminderEnabled,
     'reminderHour': reminderHour,
     'reminderMinute': reminderMinute,
+    'reminderCustomized': reminderCustomized,
     'reminderNudgeDone': reminderNudgeDone,
     'onboardingDone': onboardingDone,
     'seenContentVersion': seenContentVersion,

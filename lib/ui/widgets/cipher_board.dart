@@ -43,13 +43,18 @@ class CipherBoard extends StatefulWidget {
 }
 
 class _CipherBoardState extends State<CipherBoard> {
-  /// Attached to whichever cell currently holds the cursor so we can scroll it
-  /// into view inside the board's enclosing scroll viewport.
-  final GlobalKey _focusKey = GlobalKey();
+  /// One STABLE key per board position, attached to that position's cell so the
+  /// focused cell can be scrolled into view. Stable-per-position (never a single
+  /// key that migrates between cells) is essential: a migrating GlobalKey would
+  /// reparent the cell's AnimatedSwitcher onto a different slot and flash the
+  /// previous letter into it ("delete & rewrite" ghosting).
+  final Map<int, GlobalKey> _cellKeys = {};
 
   @override
   void didUpdateWidget(CipherBoard old) {
     super.didUpdateWidget(old);
+    // A new puzzle: positions no longer mean the same cells, drop stale keys.
+    if (widget.session != old.session) _cellKeys.clear();
     // When the cursor moves (◀ ▶, arrow keys, a tap, or typing auto-advance),
     // keep the focused letter comfortably on screen. The board sits in a scroll
     // viewport ABOVE the controls + keyboard, so centering it there never hides
@@ -62,8 +67,9 @@ class _CipherBoardState extends State<CipherBoard> {
 
   void _scrollFocusedIntoView() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final ctx = _focusKey.currentContext;
-      if (ctx == null || !mounted) return;
+      if (!mounted) return;
+      final ctx = _cellKeys[widget.selectedIndex]?.currentContext;
+      if (ctx == null) return;
       final reduceMotion = MediaQuery.of(context).disableAnimations;
       Scrollable.ensureVisible(
         ctx,
@@ -137,18 +143,18 @@ class _CipherBoardState extends State<CipherBoard> {
                   thisPos != selectedIndex) {
                 state = CellState.related;
               }
-              final cell = LetterCell(
-                cipherLetter: ch,
-                guess: session.guesses[ch],
-                width: cellWidth,
-                state: state,
-                onTap: () => widget.onSelect(thisPos),
-              );
-              // Tag the focused cell so it can be scrolled into view.
+              // Each cell carries its own stable key so the focused one can be
+              // found for auto-scroll without ever migrating a key between
+              // cells (which would ghost the previous letter on cursor moves).
               cells.add(
-                thisPos == selectedIndex
-                    ? KeyedSubtree(key: _focusKey, child: cell)
-                    : cell,
+                LetterCell(
+                  key: _cellKeys.putIfAbsent(thisPos, () => GlobalKey()),
+                  cipherLetter: ch,
+                  guess: session.guesses[ch],
+                  width: cellWidth,
+                  state: state,
+                  onTap: () => widget.onSelect(thisPos),
+                ),
               );
             } else {
               cells.add(
@@ -185,9 +191,9 @@ class _CipherBoardState extends State<CipherBoard> {
     // mistaken for an in-progress guess. Takes precedence over selection since
     // the cell can't be edited anyway.
     if (confirmed.contains(cipherLetter)) return CellState.confirmed;
-    // Every instance of the selected cipher letter lights up together —
-    // that's the "aha, these are all the same letter" cue.
-    if (cipherLetter == widget.selected) return CellState.selected;
+    // Error feedback OUTRANKS the selection cue: a conflicting (or, on a full
+    // board, a wrong) guess turns red the instant it is typed — even while it
+    // is the focused cell — instead of only reddening after the cursor advances.
     if (conflicts.contains(cipherLetter)) return CellState.conflict;
     // Error checking only marks wrong guesses once the board is fully
     // filled, so it nudges instead of spoiling the deduction.
@@ -197,6 +203,9 @@ class _CipherBoardState extends State<CipherBoard> {
         !session.isGuessCorrect(cipherLetter)) {
       return CellState.error;
     }
+    // Every instance of the selected cipher letter lights up together —
+    // that's the "aha, these are all the same letter" cue.
+    if (cipherLetter == widget.selected) return CellState.selected;
     return CellState.normal;
   }
 }
