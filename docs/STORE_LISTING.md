@@ -5,6 +5,74 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.3.3 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.3.3
+• Richer, fuller background music (now in stereo)
+• Better color contrast and colorblind readability on the board
+• Smoother theme switching and clearer Premium purchase feedback
+• Sharper app icon
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.3.3 YENİLİKLER
+• Daha zengin, dolgun arka plan müziği (artık stereo)
+• Tahtada daha iyi renk kontrastı ve renk körü okunabilirliği
+• Daha akıcı tema geçişleri ve net Premium satın alma geri bildirimi
+• Daha net uygulama simgesi
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.3.3
+• Música de fondo más rica y envolvente (ahora en estéreo)
+• Mejor contraste de color y legibilidad para daltónicos en el tablero
+• Cambios de tema más fluidos y avisos claros al comprar Premium
+• Icono de la app más nítido
+```
+
+**Deutsch**
+```
+NEU in 2.3.3
+• Vollere, reichere Hintergrundmusik (jetzt in Stereo)
+• Besserer Farbkontrast und Lesbarkeit bei Farbsehschwäche auf dem Brett
+• Sanftere Themenwechsel und klares Feedback beim Premium-Kauf
+• Schärferes App-Symbol
+```
+
+**Français**
+```
+NOUVEAU dans 2.3.3
+• Musique de fond plus riche et enveloppante (désormais en stéréo)
+• Meilleur contraste et lisibilité pour daltoniens sur la grille
+• Changements de thème plus fluides et retour clair à l'achat Premium
+• Icône de l'app plus nette
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.3.3
+• Musica di sottofondo più ricca e avvolgente (ora in stereo)
+• Contrasto dei colori e leggibilità per daltonici migliorati sulla griglia
+• Cambi di tema più fluidi e feedback chiaro all'acquisto Premium
+• Icona dell'app più nitida
+```
+
+**Português**
+```
+NOVIDADES na 2.3.3
+• Música de fundo mais rica e envolvente (agora em estéreo)
+• Melhor contraste de cores e legibilidade para daltônicos no tabuleiro
+• Transições de tema mais suaves e feedback claro na compra Premium
+• Ícone do app mais nítido
+```
+
+---
+
 ## Release notes: v2.2.3 (max 500 chars, paste into "What's new")
 
 ```
