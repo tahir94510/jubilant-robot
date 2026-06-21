@@ -70,7 +70,10 @@ flutter_launcher_icons:
   android: true
   ios: false
   image_path: "assets/icon/icon.png"
-  adaptive_icon_background: "#1A1814"
+  # Matches the actual committed adaptive background (@color/ic_launcher_background
+  # = #F7F4EC, the light "paper" field). The dark value here was misleading: the
+  # icon foreground is dark ink, designed to sit on the cream tile.
+  adaptive_icon_background: "#F7F4EC"
   adaptive_icon_foreground: "assets/icon/icon_foreground.png"
   adaptive_icon_monochrome: "assets/icon/icon_monochrome.png"
   min_sdk_android: 24

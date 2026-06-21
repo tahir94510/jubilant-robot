@@ -264,6 +264,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get paywallRestore => 'Önceki satın alımı geri yükle';
 
   @override
+  String get purchaseFailed =>
+      'Satın alma tamamlanamadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get purchaseRestoring => 'Satın alımınız geri yükleniyor…';
+
+  @override
   String get completeDailyTitle => 'Günlük çözüldü!';
 
   @override

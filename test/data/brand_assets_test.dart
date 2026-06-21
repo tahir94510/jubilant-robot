@@ -45,9 +45,10 @@ void main() {
   }
 
   test('app icon masters exist at the right size', () {
-    expectAsset('assets/icon/icon.png', 1024, 1024);
-    expectAsset('assets/icon/icon_foreground.png', 1024, 1024);
-    expectAsset('assets/icon/icon_monochrome.png', 1024, 1024);
+    // True 2K source masters (generate_icons.py draws at 4096 and downscales).
+    expectAsset('assets/icon/icon.png', 2048, 2048);
+    expectAsset('assets/icon/icon_foreground.png', 2048, 2048);
+    expectAsset('assets/icon/icon_monochrome.png', 2048, 2048);
   });
 
   test('Play listing icon is 512x512', () {

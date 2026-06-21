@@ -10,6 +10,8 @@ class StubPurchaseService extends PurchaseService {
 
   final ValueNotifier<bool> _owned = ValueNotifier(false);
   final ValueNotifier<String?> _price = ValueNotifier(null);
+  final ValueNotifier<bool> _inProgress = ValueNotifier(false);
+  final ValueNotifier<int> _errorTick = ValueNotifier(0);
 
   @override
   bool get supported => false;
@@ -19,6 +21,12 @@ class StubPurchaseService extends PurchaseService {
 
   @override
   ValueListenable<String?> get premiumPrice => _price;
+
+  @override
+  ValueListenable<bool> get purchaseInProgress => _inProgress;
+
+  @override
+  ValueListenable<int> get purchaseErrorTick => _errorTick;
 
   @override
   Future<void> initialize({required bool initialPremium}) async {

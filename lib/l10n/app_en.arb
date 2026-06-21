@@ -120,6 +120,8 @@
     }
   },
   "paywallRestore": "Restore previous purchase",
+  "purchaseFailed": "Purchase couldn't be completed. Please try again.",
+  "purchaseRestoring": "Restoring your purchase…",
   "completeDailyTitle": "Daily solved!",
   "completeTitle": "Solved!",
   "solveHints": "{count, plural, =0{No hints} =1{1 hint} other{{count} hints}}",

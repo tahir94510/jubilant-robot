@@ -19,6 +19,8 @@ class MobilePurchaseService extends PurchaseService {
   final InAppPurchase _iap = InAppPurchase.instance;
   final ValueNotifier<bool> _owned = ValueNotifier(false);
   final ValueNotifier<String?> _price = ValueNotifier(null);
+  final ValueNotifier<bool> _inProgress = ValueNotifier(false);
+  final ValueNotifier<int> _errorTick = ValueNotifier(0);
   StreamSubscription<List<PurchaseDetails>>? _sub;
   ProductDetails? _product;
 
@@ -30,6 +32,12 @@ class MobilePurchaseService extends PurchaseService {
 
   @override
   ValueListenable<String?> get premiumPrice => _price;
+
+  @override
+  ValueListenable<bool> get purchaseInProgress => _inProgress;
+
+  @override
+  ValueListenable<int> get purchaseErrorTick => _errorTick;
 
   @override
   Future<void> initialize({required bool initialPremium}) async {
@@ -57,10 +65,18 @@ class MobilePurchaseService extends PurchaseService {
         case PurchaseStatus.purchased:
         case PurchaseStatus.restored:
           _owned.value = true;
+          _inProgress.value = false;
         case PurchaseStatus.error:
+          // Surface store failures so the paywall can tell the user instead of
+          // leaving the button stuck "loading".
+          _errorTick.value++;
+          _inProgress.value = false;
         case PurchaseStatus.canceled:
+          // A user cancel is not an error — just clear the in-flight state.
+          _inProgress.value = false;
         case PurchaseStatus.pending:
-          break;
+          // Play will redeliver; keep showing progress until it resolves.
+          _inProgress.value = true;
       }
       if (purchase.pendingCompletePurchase) {
         await _iap.completePurchase(purchase);
@@ -72,13 +88,32 @@ class MobilePurchaseService extends PurchaseService {
   Future<void> buyPremium() async {
     final product = _product;
     if (product == null) return;
-    await _iap.buyNonConsumable(
-      purchaseParam: PurchaseParam(productDetails: product),
-    );
+    _inProgress.value = true;
+    try {
+      await _iap.buyNonConsumable(
+        purchaseParam: PurchaseParam(productDetails: product),
+      );
+    } catch (_) {
+      // Launch failure (e.g. billing unavailable): report and reset.
+      _errorTick.value++;
+      _inProgress.value = false;
+    }
   }
 
   @override
-  Future<void> restore() => _iap.restorePurchases();
+  Future<void> restore() async {
+    _inProgress.value = true;
+    try {
+      await _iap.restorePurchases();
+    } catch (_) {
+      _errorTick.value++;
+    } finally {
+      // restorePurchases re-delivers owned purchases via the stream (handled in
+      // _onPurchases); if nothing is owned, no event arrives, so clear here so
+      // the button never stays stuck.
+      _inProgress.value = false;
+    }
+  }
 
   @override
   void dispose() {

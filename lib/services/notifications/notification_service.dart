@@ -14,9 +14,9 @@ abstract class NotificationService {
 
   Future<void> initialize();
 
-  /// Asks for POST_NOTIFICATIONS (Android 13+) and exact-alarm permission.
-  /// Called from the settings toggle — in context — not at app start, to
-  /// maximize grant rate.
+  /// Asks for POST_NOTIFICATIONS (Android 13+). Called from the settings
+  /// toggle — in context — not at app start, to maximize grant rate. No
+  /// exact-alarm permission is requested (the daily reminder is inexact).
   Future<bool> requestPermission();
 
   /// Whether the OS currently allows this app to post notifications. Used to

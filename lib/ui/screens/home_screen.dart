@@ -312,7 +312,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   resumeQuote,
                                   daily: false,
                                   packId: lastOpen!.packId,
-                                  alreadySolved: false,
+                                  // The card only shows for an unsolved quote,
+                                  // but pass the live state rather than a hard
+                                  // false so the replay flag is always honest.
+                                  alreadySolved: progress.isSolved(
+                                    resumeQuote.id,
+                                  ),
                                 );
                                 Navigator.of(context).push(
                                   MaterialPageRoute(

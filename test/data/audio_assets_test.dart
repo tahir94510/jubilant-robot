@@ -65,9 +65,9 @@ void main() {
   });
 
   test('the music playlist stays within its total size budget', () {
-    // Six ~72-88s mono OGG/Vorbis beds (~0.13MB each). The whole set must stay
-    // well under 2MB — a jump past it means someone shipped WAV again or
-    // bloated the bitrate, which Play flags as a large download.
+    // Six ~72-88s 44.1kHz STEREO OGG/Vorbis beds (~0.2MB each). The whole set
+    // must stay well under 2MB — a jump past it means someone shipped WAV again
+    // or bloated the bitrate, which Play flags as a large download.
     var total = 0;
     for (final name in musicTracks) {
       final length = File('assets/audio/$name').lengthSync();

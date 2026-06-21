@@ -134,13 +134,12 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    // EXACT delivery so the reminder actually arrives at the chosen time. Inexact
-    // alarms were silently dropped by aggressive OEM battery managers ("it never
-    // comes"); the manifest grants exact-alarm use (pre-granted on API<=32,
-    // USE_EXACT_ALARM on API33+), so no runtime prompt or settings redirect is
-    // needed. We still probe canScheduleExactNotifications and fall back to
-    // inexact if a device/user has revoked it, so scheduling never throws.
-    final canExact = await _android?.canScheduleExactNotifications() ?? false;
+    // INEXACT delivery (inexactAllowWhileIdle): this is a puzzle game, not a
+    // calendar/clock, so USE_EXACT_ALARM is not Play-policy-eligible and is
+    // removed from the manifest. No SCHEDULE_EXACT_ALARM, no runtime prompt, no
+    // "Alarms & reminders" settings redirect. The OS still delivers daily within
+    // its maintenance window (a few minutes of drift is fine for a reminder) and
+    // the HIGH-importance channel makes it alert.
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
@@ -149,9 +148,7 @@ class MobileNotificationService extends NotificationService {
       notificationDetails: NotificationDetails(
         android: _androidDetails(title, body),
       ),
-      androidScheduleMode: canExact
-          ? AndroidScheduleMode.exactAllowWhileIdle
-          : AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }

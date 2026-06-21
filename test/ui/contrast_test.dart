@@ -69,6 +69,17 @@ void main() {
         atLeast('textFaint/surface', p.textFaint, cs.surface, 3.0);
         atLeast('cipherText/surface', p.cipherText, cs.surface, 3.0);
         atLeast('keyUsedText/keyUsedBg', p.keyUsedText, p.keyUsedBg, 3.0);
+
+        // Semantic state colors render as the board LETTER over the (near
+        // transparent) cell, i.e. over the surface — so they carry meaning as
+        // text and must clear full AA, in every theme AND the colorblind
+        // variant. This locks the fix for the orange colorblind conflict that
+        // read ~2:1 on the cream/sepia paper themes.
+        atLeast('conflict/surface', p.conflict, cs.surface, 4.5);
+        atLeast('error/surface', p.error, cs.surface, 4.5);
+        atLeast('revealed/surface', p.revealed, cs.surface, 4.5);
+        atLeast('confirmed/surface', p.confirmed, cs.surface, 4.5);
+        atLeast('success/surface', p.success, cs.surface, 4.5);
       });
     }
   }

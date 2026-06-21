@@ -48,8 +48,8 @@ class MusicService with WidgetsBindingObserver {
   static const Duration _fallbackDuration = Duration(seconds: 66);
 
   /// The bed's base level at full user volume; the mastered tracks are
-  /// normalized to ~0.80 (on par with the UI sounds), so full player volume
-  /// gives a present bed, not a whisper.
+  /// loudness-matched to a shared RMS (~0.14, on par with the UI sounds), so
+  /// full player volume gives a present bed, not a whisper.
   static const double _baseVolume = 1.0;
 
   /// Fraction of the playing level the bed dips to under the success fanfare.

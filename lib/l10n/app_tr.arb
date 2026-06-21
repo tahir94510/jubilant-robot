@@ -79,6 +79,8 @@
   "paywallLoadingPrice": "Fiyat yükleniyor…",
   "paywallUnlock": "Premium’u aç · {price}",
   "paywallRestore": "Önceki satın alımı geri yükle",
+  "purchaseFailed": "Satın alma tamamlanamadı. Lütfen tekrar deneyin.",
+  "purchaseRestoring": "Satın alımınız geri yükleniyor…",
   "completeDailyTitle": "Günlük çözüldü!",
   "completeTitle": "Çözüldü!",
   "solveHints": "{count, plural, =0{İpucu yok} =1{1 ipucu} other{{count} ipucu}}",
