@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/app_settings.dart';
 import 'package:quotecrack/services/storage_service.dart';
@@ -132,56 +133,6 @@ void main() {
     expect(n.cancelCalls, greaterThan(0));
   });
 
-  test(
-    'resetToDefaults restores preferences, cancels the reminder, persists',
-    () async {
-      SharedPreferences.setMockInitialValues({});
-      final storage = await StorageService.init();
-      final notifications = FakeNotificationService();
-      final controller = SettingsController(
-        storage: storage,
-        notifications: notifications,
-      );
-      final sounds = FakeSoundService(
-        isEnabled: () => controller.settings.soundEffects,
-      );
-      final music = FakeMusicService(
-        isEnabled: () => controller.settings.music,
-      );
-
-      // Diverge from defaults across several fields.
-      await controller.setThemeMode(AppThemeMode.dark);
-      await controller.setTextScale(1.3);
-      await controller.setColorblindMode(true);
-      await controller.setShowTimer(false);
-      await controller.setSoundVolume(0.2, sounds);
-      await controller.setLanguage('tr');
-      await controller.setReminder(enabled: true);
-      expect(controller.settings.reminderEnabled, isTrue);
-
-      await controller.resetToDefaults(sounds: sounds, music: music);
-
-      final d = AppSettings();
-      expect(controller.settings.themeMode, d.themeMode);
-      expect(controller.settings.textScale, d.textScale);
-      expect(controller.settings.colorblindMode, d.colorblindMode);
-      expect(controller.settings.showTimer, d.showTimer);
-      expect(controller.settings.soundVolume, d.soundVolume);
-      expect(controller.settings.languageCode, d.languageCode);
-      expect(controller.settings.reminderEnabled, isFalse);
-      expect(notifications.cancelCalls, greaterThan(0));
-
-      // Persisted: a fresh controller sees the restored defaults.
-      final reloaded = SettingsController(
-        storage: storage,
-        notifications: FakeNotificationService(),
-      );
-      expect(reloaded.settings.themeMode, d.themeMode);
-      expect(reloaded.settings.textScale, d.textScale);
-      expect(reloaded.settings.colorblindMode, d.colorblindMode);
-    },
-  );
-
   test('setMusic persists and survives a controller restart', () async {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();
@@ -201,4 +152,35 @@ void main() {
     );
     expect(reloaded.settings.music, isFalse);
   });
+
+  test(
+    'a scheduling failure leaves the reminder off and never throws',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final controller = SettingsController(
+        storage: storage,
+        notifications: _ThrowingNotificationService(),
+      );
+
+      // The OS grants permission, but scheduling blows up: the toggle must end
+      // up OFF and the call must complete normally (no crash bubbles to the UI).
+      final ok = await controller.setReminder(enabled: true);
+      expect(ok, isFalse);
+      expect(controller.settings.reminderEnabled, isFalse);
+    },
+  );
+}
+
+/// Grants permission but throws when scheduling, to prove the reminder path
+/// can never crash the app from the settings toggle.
+class _ThrowingNotificationService extends FakeNotificationService {
+  @override
+  Future<void> scheduleDaily(
+    TimeOfDay time, {
+    required String title,
+    required String body,
+  }) async {
+    throw StateError('simulated plugin failure');
+  }
 }

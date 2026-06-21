@@ -17,13 +17,33 @@ class BrandMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final radius = size * 0.22;
+    // The brand is a light "paper" tile. On the light and sepia themes that
+    // tile color is almost identical to the page surface, so without a frame the
+    // logo's edge vanishes and it reads as "broken/disappeared". A hairline
+    // border plus a soft shadow make the mark a distinct, high-contrast card on
+    // EVERY theme (and cleanly frame the bright tile on dark) — same brand,
+    // never blending into the background.
+    final borderColor = scheme.onSurface.withValues(alpha: 0.16);
     return Semantics(
       image: true,
       label: 'Quotecrack logo',
       child: ExcludeSemantics(
-        child: SizedBox.square(
-          dimension: size,
-          child: CustomPaint(painter: _BrandPainter()),
+        child: Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(radius),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.16),
+                blurRadius: size * 0.11,
+                offset: Offset(0, size * 0.045),
+              ),
+            ],
+          ),
+          child: CustomPaint(painter: _BrandPainter(borderColor: borderColor)),
         ),
       ),
     );
@@ -31,6 +51,11 @@ class BrandMark extends StatelessWidget {
 }
 
 class _BrandPainter extends CustomPainter {
+  _BrandPainter({required this.borderColor});
+
+  /// Theme-derived hairline frame color so the tile edge reads on any surface.
+  final Color borderColor;
+
   // "Ink & Gold" on a warm PAPER field: a light champagne-cream gradient tile,
   // a dark-ink serif Q, a deepened bronze-gold question mark at its shoulder,
   // and a slim deep-gold underline. Matches the light app icon
@@ -104,10 +129,25 @@ class _BrandPainter extends CustomPainter {
       Paint()..color = _underline,
     );
     canvas.restore();
+
+    // Hairline frame, drawn AFTER the clip is lifted so the stroke isn't halved
+    // — keeps the tile's rounded edge visible on light/sepia where tile ≈ page.
+    final stroke = s * 0.012;
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        (Offset.zero & size).deflate(stroke / 2),
+        Radius.circular(s * 0.22 - stroke / 2),
+      ),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = stroke
+        ..color = borderColor,
+    );
   }
 
   @override
-  bool shouldRepaint(_BrandPainter oldDelegate) => false;
+  bool shouldRepaint(_BrandPainter oldDelegate) =>
+      oldDelegate.borderColor != borderColor;
 }
 
 /// The serif wordmark. Kept as a literal Text('Quotecrack') — tests and

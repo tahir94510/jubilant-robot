@@ -77,7 +77,9 @@
     }
     .btn:hover { transform: translateY(-1px); }
     .btn:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
-    .btn.primary { background: var(--coral); color: #fff; box-shadow: 0 8px 24px rgba(238,108,77,.35); }
+    /* Dark ink on the light-gold button — white text on this gold failed
+       contrast. Shadow tinted to the brand gold, not a stray orange. */
+    .btn.primary { background: var(--coral); color: #1A1814; box-shadow: 0 8px 24px rgba(224,184,90,.30); }
     .btn.secondary { background: rgba(255,255,255,.12); color: var(--ink); border: 1px solid var(--card-border); }
 
     /* --- Decoded-tiles strip (the in-game board, in pure CSS) --- */
@@ -122,17 +124,20 @@
 <body>
   <main>
     <header>
-      <svg width="100" height="100" viewBox="0 0 96 96" role="img" aria-label="Quotecrack logo">
+      <!-- Light "paper" brand mark — identical to the app icon and in-app
+           BrandMark (cream tile, dark-ink serif Q, gold ? and underline) so the
+           logo is consistent everywhere and stands out on the dark page. -->
+      <svg width="116" height="116" viewBox="0 0 96 96" role="img" aria-label="Quotecrack logo">
         <defs>
           <linearGradient id="qc-bg" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#1A1814"/>
-            <stop offset="1" stop-color="#2E2A22"/>
+            <stop offset="0" stop-color="#F7F4EC"/>
+            <stop offset="1" stop-color="#EAE1CE"/>
           </linearGradient>
         </defs>
-        <rect width="96" height="96" rx="21" fill="url(#qc-bg)" stroke="rgba(224,184,90,.22)"/>
-        <text x="42" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="600" font-size="54" fill="#F3EEE2" text-anchor="middle" dominant-baseline="central">Q</text>
-        <text x="73" y="28" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="23" fill="#E0B85A" text-anchor="middle" dominant-baseline="central">?</text>
-        <rect x="19.2" y="74.4" width="57.6" height="4.8" rx="2.4" fill="#CBA24E"/>
+        <rect width="96" height="96" rx="21" fill="url(#qc-bg)" stroke="rgba(38,34,28,.14)"/>
+        <text x="42" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="600" font-size="54" fill="#26221C" text-anchor="middle" dominant-baseline="central">Q</text>
+        <text x="73" y="28" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="23" fill="#AA7C22" text-anchor="middle" dominant-baseline="central">?</text>
+        <rect x="19.2" y="74.4" width="57.6" height="4.8" rx="2.4" fill="#966E1E"/>
       </svg>
       <h1>Quotecrack</h1>
       <p class="tag">Decode famous quotes. One cipher a day.</p>

@@ -64,6 +64,13 @@ SPLASH_SIZES = {"mdpi": 288, "hdpi": 432, "xhdpi": 576, "xxhdpi": 864,
 STAT_SIZES = {"mdpi": 24, "hdpi": 36, "xhdpi": 48, "xxhdpi": 72,
               "xxxhdpi": 96}
 
+# Adaptive-icon foreground fill. The mark used to render at 0.72 and the
+# anydpi-v26 XML then inset it another 16%, so the logo occupied only ~half the
+# tile and looked undersized on the launcher. 0.90 here + an 8% XML inset gives
+# the mark real presence while its widest element (the underline) still sits
+# well inside the 66% circular safe zone on every OEM mask.
+LAUNCHER_FG_SCALE = 0.90
+
 
 def lora(px, weight=700):
     """Lora at a variable-font weight; bold gives the glyph shelf presence."""
@@ -159,11 +166,12 @@ def make_masters():
     # Squircle-ish rounding baked in for surfaces that show the raw PNG.
     rounded.putalpha(rounded_mask((1024, 1024), 225))
     save(rounded, "assets/icon/icon.png")
-    # Adaptive layers: launchers mask to a ~66% circle; 0.72 of the artwork
-    # stays inside the safe zone (the anydpi-v26 XML adds a 16% inset).
-    save(artwork(1024, transparent_bg=True, scale=0.72),
+    # Adaptive layers: launchers mask to a ~66% circle; LAUNCHER_FG_SCALE keeps
+    # the mark inside the safe zone (the anydpi-v26 XML adds a small inset).
+    save(artwork(1024, transparent_bg=True, scale=LAUNCHER_FG_SCALE),
          "assets/icon/icon_foreground.png")
-    save(artwork(1024, transparent_bg=True, monochrome=True, scale=0.72),
+    save(artwork(1024, transparent_bg=True, monochrome=True,
+                 scale=LAUNCHER_FG_SCALE),
          "assets/icon/icon_monochrome.png")
 
 
@@ -173,10 +181,11 @@ def make_android_launchers():
         save(rounded.resize((px, px), Image.LANCZOS),
              f"android/app/src/main/res/mipmap-{density}/ic_launcher.png")
     for density, px in ADAPTIVE_SIZES.items():
-        save(artwork(px, transparent_bg=True, scale=0.72),
+        save(artwork(px, transparent_bg=True, scale=LAUNCHER_FG_SCALE),
              f"android/app/src/main/res/drawable-{density}/"
              f"ic_launcher_foreground.png")
-        save(artwork(px, transparent_bg=True, monochrome=True, scale=0.72),
+        save(artwork(px, transparent_bg=True, monochrome=True,
+                     scale=LAUNCHER_FG_SCALE),
              f"android/app/src/main/res/drawable-{density}/"
              f"ic_launcher_monochrome.png")
 

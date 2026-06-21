@@ -7,7 +7,7 @@ import 'letter_cell.dart';
 /// The puzzle board: the cipher text laid out word by word, wrapping lines,
 /// each letter as a tappable [LetterCell]. Identical cipher letters render
 /// from one shared guess map, so auto-fill is free.
-class CipherBoard extends StatelessWidget {
+class CipherBoard extends StatefulWidget {
   const CipherBoard({
     super.key,
     required this.session,
@@ -39,7 +39,49 @@ class CipherBoard extends StatelessWidget {
   final double? solveWave;
 
   @override
+  State<CipherBoard> createState() => _CipherBoardState();
+}
+
+class _CipherBoardState extends State<CipherBoard> {
+  /// Attached to whichever cell currently holds the cursor so we can scroll it
+  /// into view inside the board's enclosing scroll viewport.
+  final GlobalKey _focusKey = GlobalKey();
+
+  @override
+  void didUpdateWidget(CipherBoard old) {
+    super.didUpdateWidget(old);
+    // When the cursor moves (◀ ▶, arrow keys, a tap, or typing auto-advance),
+    // keep the focused letter comfortably on screen. The board sits in a scroll
+    // viewport ABOVE the controls + keyboard, so centering it there never hides
+    // it behind them — a long quote no longer strands the cursor off-screen.
+    if (widget.selectedIndex != old.selectedIndex &&
+        widget.selectedIndex != null) {
+      _scrollFocusedIntoView();
+    }
+  }
+
+  void _scrollFocusedIntoView() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final ctx = _focusKey.currentContext;
+      if (ctx == null || !mounted) return;
+      final reduceMotion = MediaQuery.of(context).disableAnimations;
+      Scrollable.ensureVisible(
+        ctx,
+        alignment: 0.5, // center the active letter in the visible area
+        duration: reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 240),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final session = widget.session;
+    final selectedIndex = widget.selectedIndex;
+    final solveWave = widget.solveWave;
+
     final conflicts = session.conflicts;
     final confirmed = session.confirmedLetters;
     final boardFull = session.progress >= 1.0;
@@ -82,7 +124,7 @@ class CipherBoard extends StatelessWidget {
               final inWave =
                   solveWave != null &&
                   totalLetters > 0 &&
-                  letterIndex / totalLetters <= solveWave!;
+                  letterIndex / totalLetters <= solveWave;
               letterIndex++;
               var state = inWave
                   ? CellState.solved
@@ -95,14 +137,18 @@ class CipherBoard extends StatelessWidget {
                   thisPos != selectedIndex) {
                 state = CellState.related;
               }
+              final cell = LetterCell(
+                cipherLetter: ch,
+                guess: session.guesses[ch],
+                width: cellWidth,
+                state: state,
+                onTap: () => widget.onSelect(thisPos),
+              );
+              // Tag the focused cell so it can be scrolled into view.
               cells.add(
-                LetterCell(
-                  cipherLetter: ch,
-                  guess: session.guesses[ch],
-                  width: cellWidth,
-                  state: state,
-                  onTap: () => onSelect(thisPos),
-                ),
+                thisPos == selectedIndex
+                    ? KeyedSubtree(key: _focusKey, child: cell)
+                    : cell,
               );
             } else {
               cells.add(
@@ -133,6 +179,7 @@ class CipherBoard extends StatelessWidget {
     Set<String> confirmed,
     bool boardFull,
   ) {
+    final session = widget.session;
     if (session.revealed.contains(cipherLetter)) return CellState.revealed;
     // A locked, fully-correct word: shown in its own confirmed color and never
     // mistaken for an in-progress guess. Takes precedence over selection since
@@ -140,11 +187,11 @@ class CipherBoard extends StatelessWidget {
     if (confirmed.contains(cipherLetter)) return CellState.confirmed;
     // Every instance of the selected cipher letter lights up together —
     // that's the "aha, these are all the same letter" cue.
-    if (cipherLetter == selected) return CellState.selected;
+    if (cipherLetter == widget.selected) return CellState.selected;
     if (conflicts.contains(cipherLetter)) return CellState.conflict;
     // Error checking only marks wrong guesses once the board is fully
     // filled, so it nudges instead of spoiling the deduction.
-    if (errorChecking &&
+    if (widget.errorChecking &&
         boardFull &&
         session.guesses.containsKey(cipherLetter) &&
         !session.isGuessCorrect(cipherLetter)) {

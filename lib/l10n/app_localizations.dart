@@ -348,24 +348,6 @@ abstract class AppLocalizations {
   /// **'Checking previous purchases…'**
   String get checkingPurchases;
 
-  /// No description provided for @restoreDefaults.
-  ///
-  /// In en, this message translates to:
-  /// **'Restore default settings'**
-  String get restoreDefaults;
-
-  /// No description provided for @restoreDefaultsMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'This resets appearance, sound and gameplay settings to their defaults. Your progress, statistics and premium are not affected.'**
-  String get restoreDefaultsMessage;
-
-  /// No description provided for @restoreDefaultsDone.
-  ///
-  /// In en, this message translates to:
-  /// **'Settings restored to defaults.'**
-  String get restoreDefaultsDone;
-
   /// No description provided for @privacyOptions.
   ///
   /// In en, this message translates to:

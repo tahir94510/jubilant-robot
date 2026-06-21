@@ -132,39 +132,6 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
-  /// Resets every user preference to its default and re-applies the side
-  /// effects (audio levels/enable, cancels the daily reminder). Deliberately
-  /// PRESERVES progress-adjacent flags — onboardingDone, reminderNudgeDone and
-  /// seenContentVersion — so a settings reset never re-runs the tutorial,
-  /// re-nags the reminder invite, or re-flags content as "new".
-  Future<void> resetToDefaults({
-    required SoundService sounds,
-    required MusicService music,
-  }) async {
-    final d = AppSettings();
-    settings
-      ..themeMode = d.themeMode
-      ..languageCode = d.languageCode
-      ..textScale = d.textScale
-      ..colorblindMode = d.colorblindMode
-      ..errorChecking = d.errorChecking
-      ..showTimer = d.showTimer
-      ..haptics = d.haptics
-      ..soundEffects = d.soundEffects
-      ..soundVolume = d.soundVolume
-      ..music = d.music
-      ..musicVolume = d.musicVolume
-      ..reminderEnabled = d.reminderEnabled
-      ..reminderHour = d.reminderHour
-      ..reminderMinute = d.reminderMinute;
-
-    await _notifications.cancelAll();
-    sounds.setUserVolume(settings.soundVolume);
-    music.setUserVolume(settings.musicVolume);
-    await music.setEnabled(settings.music);
-    await _save();
-  }
-
   Future<void> markOnboardingDone() {
     settings.onboardingDone = true;
     return _save();
@@ -204,12 +171,23 @@ class SettingsController extends ChangeNotifier {
         settings.reminderHour = time.hour;
         settings.reminderMinute = time.minute;
       }
-      final l10n = _activeL10n();
-      await _notifications.scheduleDaily(
-        settings.reminderTime,
-        title: l10n.notificationDailyTitle,
-        body: l10n.notificationDailyBody,
-      );
+      // Scheduling talks to the OS alarm/timezone plugins, which can throw on
+      // some devices. A failure must NEVER crash the app from the settings
+      // toggle: swallow it, leave the toggle off, and report a soft denial so
+      // the user sees a snackbar instead of the app disappearing.
+      try {
+        final l10n = _activeL10n();
+        await _notifications.scheduleDaily(
+          settings.reminderTime,
+          title: l10n.notificationDailyTitle,
+          body: l10n.notificationDailyBody,
+        );
+      } catch (e) {
+        debugPrint('scheduleDaily failed: $e');
+        settings.reminderEnabled = false;
+        await _save();
+        return false;
+      }
     } else {
       settings.reminderEnabled = false;
       await _notifications.cancelAll();

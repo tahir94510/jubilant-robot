@@ -137,16 +137,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get checkingPurchases => 'Controllo degli acquisti precedenti…';
 
   @override
-  String get restoreDefaults => 'Ripristina impostazioni predefinite';
-
-  @override
-  String get restoreDefaultsMessage =>
-      'Ripristina aspetto, audio e impostazioni di gioco ai valori predefiniti. I tuoi progressi, le statistiche e il Premium non vengono modificati.';
-
-  @override
-  String get restoreDefaultsDone => 'Impostazioni ripristinate.';
-
-  @override
   String get privacyOptions => 'Opzioni sulla privacy';
 
   @override

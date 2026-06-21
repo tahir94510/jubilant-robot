@@ -133,16 +133,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get checkingPurchases => 'Vérification des achats précédents…';
 
   @override
-  String get restoreDefaults => 'Réinitialiser les réglages';
-
-  @override
-  String get restoreDefaultsMessage =>
-      'Réinitialise l\'apparence, le son et les réglages de jeu à leurs valeurs par défaut. Votre progression, vos statistiques et le Premium ne sont pas affectés.';
-
-  @override
-  String get restoreDefaultsDone => 'Réglages réinitialisés.';
-
-  @override
   String get privacyOptions => 'Options de confidentialité';
 
   @override

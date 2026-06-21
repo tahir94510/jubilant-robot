@@ -134,16 +134,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get checkingPurchases => 'Önceki satın alımlar denetleniyor…';
 
   @override
-  String get restoreDefaults => 'Varsayılan ayarlara dön';
-
-  @override
-  String get restoreDefaultsMessage =>
-      'Görünüm, ses ve oynanış ayarları varsayılana döner. İlerlemen, istatistiklerin ve premium etkilenmez.';
-
-  @override
-  String get restoreDefaultsDone => 'Ayarlar varsayılana döndürüldü.';
-
-  @override
   String get privacyOptions => 'Gizlilik seçenekleri';
 
   @override
