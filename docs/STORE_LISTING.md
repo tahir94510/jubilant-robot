@@ -5,6 +5,67 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.3.5 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.3.5
+• Fixed a rare crash when the daily reminder arrived
+• Fixed the launch screen logo
+• "Continue last puzzle" now appears reliably in every language
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.3.5 YENİLİKLER
+• Günlük hatırlatma geldiğinde nadiren oluşan çökme düzeltildi
+• Açılış ekranı logosu düzeltildi
+• "Son bulmacaya devam et" artık her dilde güvenilir biçimde görünüyor
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.3.5
+• Corregido un cierre inesperado al llegar el recordatorio diario
+• Corregido el logo de la pantalla de inicio
+• "Continuar último puzle" ahora aparece de forma fiable en todos los idiomas
+```
+
+**Deutsch**
+```
+NEU in 2.3.5
+• Seltener Absturz beim Eintreffen der täglichen Erinnerung behoben
+• Logo des Startbildschirms korrigiert
+• „Letztes Rätsel fortsetzen" erscheint nun zuverlässig in jeder Sprache
+```
+
+**Français**
+```
+NOUVEAU dans 2.3.5
+• Correction d'un plantage rare à l'arrivée du rappel quotidien
+• Correction du logo de l'écran de lancement
+• « Reprendre la dernière énigme » s'affiche désormais dans toutes les langues
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.3.5
+• Corretto un raro arresto all'arrivo del promemoria giornaliero
+• Corretto il logo della schermata di avvio
+• "Riprendi ultimo enigma" ora compare in modo affidabile in ogni lingua
+```
+
+**Português**
+```
+NOVIDADES na 2.3.5
+• Corrigida uma falha rara ao chegar o lembrete diário
+• Corrigido o logotipo da tela de abertura
+• "Continuar último desafio" agora aparece de forma confiável em todos os idiomas
+```
+
+---
+
 ## Release notes: v2.3.3 (max 500 chars, paste into "What's new")
 
 ```
