@@ -204,13 +204,19 @@ class GameController extends ChangeNotifier {
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
 
-    // Remember the last non-daily puzzle per language so Home can offer a
-    // "Continue" card for the active language profile. The daily has its own
-    // card, so it never participates here.
+    // Remember the last non-daily puzzle so Home can offer a "Continue" card.
+    // Written both per-language (legacy) and to a single GLOBAL record that Home
+    // actually reads — so the card shows the true last puzzle regardless of UI
+    // language. The daily has its own card, so it never participates here.
     if (!daily) {
       _storage.writeJson(StorageService.lastOpenKey(quote.locale), {
         'quoteId': quote.id,
         'packId': packId,
+      });
+      _storage.writeJson(StorageService.lastOpenGlobalKey, {
+        'quoteId': quote.id,
+        'packId': packId,
+        'locale': quote.locale,
       });
     }
 
@@ -219,10 +225,21 @@ class GameController extends ChangeNotifier {
   }
 
   /// The id (and origin pack) of the last non-daily puzzle opened in [locale],
-  /// or null if none — drives Home's per-language "Continue" card. The caller
-  /// should still confirm it is genuinely [hasInProgress] before offering it.
+  /// or null if none. Per-language; retained for callers/tests that reason by
+  /// locale. Home uses [lastOpenGlobal].
   ({String quoteId, String? packId})? lastOpen(String locale) {
     final j = _storage.readJson(StorageService.lastOpenKey(locale));
+    final id = j?['quoteId'];
+    if (id is! String) return null;
+    return (quoteId: id, packId: j?['packId'] as String?);
+  }
+
+  /// The single most-recently-opened non-daily puzzle across ALL languages —
+  /// drives Home's "Continue" card so it always reflects the real last puzzle,
+  /// not just one matching the UI language. The caller should still confirm it
+  /// is genuinely [hasInProgress] before offering it.
+  ({String quoteId, String? packId})? lastOpenGlobal() {
+    final j = _storage.readJson(StorageService.lastOpenGlobalKey);
     final id = j?['quoteId'];
     if (id is! String) return null;
     return (quoteId: id, packId: j?['packId'] as String?);

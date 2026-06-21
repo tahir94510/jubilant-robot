@@ -23,11 +23,26 @@ class BannerAdSlot extends StatelessWidget {
       valueListenable: ads.canRequestAds,
       builder: (context, canAds, _) {
         if (!canAds) return const SizedBox.shrink();
-        return ads.buildAdaptiveBanner(
-              context,
-              key: ValueKey('banner-$slotName'),
-            ) ??
-            const SizedBox.shrink();
+        final banner = ads.buildAdaptiveBanner(
+          context,
+          key: ValueKey('banner-$slotName'),
+        );
+        if (banner == null) return const SizedBox.shrink();
+        // A hairline above the ad gives it breathing room from the content so
+        // it reads as a distinct footer instead of crowding the last row. Only
+        // shown when an ad actually renders (never a floating divider).
+        return DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.08),
+              ),
+            ),
+          ),
+          child: banner,
+        );
       },
     );
   }

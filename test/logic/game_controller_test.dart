@@ -515,6 +515,12 @@ void main() {
         expect(last.packId, 'wisdom');
         // Another language has nothing to continue.
         expect(game.lastOpen('tr'), isNull);
+        // The GLOBAL record (what Home reads) points at the same quote,
+        // regardless of UI language.
+        final global = game.lastOpenGlobal();
+        expect(global, isNotNull);
+        expect(global!.quoteId, shortQuote.id);
+        expect(global.packId, 'wisdom');
 
         game.stopTimer();
         game.dispose();
@@ -526,6 +532,7 @@ void main() {
       final game = GameController(storage: store);
       game.start(shortQuote, daily: true);
       expect(game.lastOpen('en'), isNull);
+      expect(game.lastOpenGlobal(), isNull);
 
       game.stopTimer();
       game.dispose();

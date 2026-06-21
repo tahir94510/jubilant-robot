@@ -47,8 +47,14 @@ class StorageService {
   static const String achievementsKey = 'achievements.v1';
   static String puzzleStateKey(String quoteId) => 'puzzle_state.$quoteId';
 
-  /// The last non-daily puzzle opened in a given content language, so Home can
-  /// offer a per-language "Continue" card. Per-locale by design: each language
-  /// profile resumes its own last puzzle.
+  /// The last non-daily puzzle opened in a given content language. Kept for the
+  /// per-language stats model, but Home now uses [lastOpenGlobalKey].
   static String lastOpenKey(String locale) => 'last_open.$locale';
+
+  /// The single most-recently-opened non-daily puzzle across ALL content
+  /// languages. Home's "Continue" card reads this so it always shows the real
+  /// last puzzle regardless of UI language — the per-locale key missed whenever
+  /// the played content's locale differed from the UI language (e.g. the card
+  /// never appeared for non-Turkish UIs until a restart).
+  static const String lastOpenGlobalKey = 'last_open.global';
 }

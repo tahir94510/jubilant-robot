@@ -87,10 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
         .where((q) => progress.isSolved(q.id))
         .length;
 
-    // Per-language "Continue" card: the last non-daily puzzle opened in this
-    // language, shown only if it still has a saved, unsolved attempt.
+    // "Continue" card: the last non-daily puzzle opened in ANY language, shown
+    // only if it still has a saved, unsolved attempt. Global (not per-UI-locale)
+    // so it appears immediately on return for every language — the old
+    // per-locale lookup missed whenever the played content's locale differed
+    // from the UI language and only "came back" after an app restart.
     final game = context.watch<GameController>();
-    final lastOpen = game.lastOpen(contentLocale);
+    final lastOpen = game.lastOpenGlobal();
     final resumeQuote = lastOpen != null ? repo.byId(lastOpen.quoteId) : null;
     final canResume =
         resumeQuote != null &&
