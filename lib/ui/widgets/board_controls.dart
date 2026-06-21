@@ -154,19 +154,24 @@ class _HoldRepeatButtonState extends State<_HoldRepeatButton> {
     // A raw Listener (outside the gesture arena) drives the press/release so it
     // never competes with the IconButton's own ink response. The IconButton's
     // onPressed is a no-op when enabled — the pointer-down already fired the
-    // action — but keeps the ripple, tooltip and accessibility semantics.
+    // action — but keeps the ripple and accessibility semantics.
+    //
+    // No Tooltip: these buttons are hold-to-repeat, and a long-press tooltip
+    // popped up over the board every time the player held to traverse a word —
+    // distracting mid-play. The accessible name is kept via the icon's
+    // [semanticLabel] so screen readers still announce the action.
     return Listener(
       onPointerDown: (_) => _onTapDown(),
       onPointerUp: (_) => _stop(),
       onPointerCancel: (_) => _stop(),
       child: IconButton(
-        tooltip: widget.tooltip,
         onPressed: enabled ? () {} : null,
         visualDensity: VisualDensity.compact,
         icon: Icon(
           widget.icon,
           size: 24,
           color: enabled ? scheme.onSurface : palette.textFaint,
+          semanticLabel: widget.tooltip,
         ),
       ),
     );

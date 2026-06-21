@@ -293,42 +293,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
               ListTile(
-                leading: const Icon(Icons.settings_backup_restore),
-                title: Text(l10n.restoreDefaults),
-                onTap: () async {
-                  final messenger = ScaffoldMessenger.of(context);
-                  final sounds = context.read<SoundService>();
-                  final music = context.read<MusicService>();
-                  final confirmed = await showDialog<bool>(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                      title: Text(l10n.restoreDefaults),
-                      content: Text(l10n.restoreDefaultsMessage),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(ctx, false),
-                          child: Text(
-                            MaterialLocalizations.of(ctx).cancelButtonLabel,
-                          ),
-                        ),
-                        FilledButton(
-                          onPressed: () => Navigator.pop(ctx, true),
-                          child: Text(l10n.restoreDefaults),
-                        ),
-                      ],
-                    ),
-                  );
-                  if (confirmed != true) return;
-                  await controller.resetToDefaults(
-                    sounds: sounds,
-                    music: music,
-                  );
-                  messenger.showSnackBar(
-                    SnackBar(content: Text(l10n.restoreDefaultsDone)),
-                  );
-                },
-              ),
-              ListTile(
                 leading: const Icon(Icons.info_outline),
                 title: Text(l10n.version),
                 subtitle: const Text(AppConfig.appVersion),

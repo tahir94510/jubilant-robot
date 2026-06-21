@@ -321,40 +321,34 @@ class _HomeScreenState extends State<HomeScreen> {
                                 );
                               }
 
+                              // Uses the theme's own card surface + hairline
+                              // border (from cardTheme) so "Continue" reads as a
+                              // first-class card, consistent with the rest of
+                              // the app — the gold lives only in the play chip
+                              // and the small overline, not a faint full-card
+                              // wash. The title is normal weight so it never
+                              // looks heavy.
                               return Card(
                                 clipBehavior: Clip.antiAlias,
-                                color: Color.alphaBlend(
-                                  scheme.primary.withValues(alpha: 0.08),
-                                  Theme.of(context).cardColor,
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  side: BorderSide(
-                                    color: scheme.primary.withValues(
-                                      alpha: 0.28,
-                                    ),
-                                  ),
-                                ),
                                 child: InkWell(
-                                  borderRadius: BorderRadius.circular(16),
                                   onTap: resume,
                                   child: Padding(
-                                    padding: const EdgeInsets.all(18),
+                                    padding: const EdgeInsets.all(16),
                                     child: Row(
                                       children: [
                                         Container(
-                                          width: 48,
-                                          height: 48,
+                                          width: 46,
+                                          height: 46,
                                           decoration: BoxDecoration(
                                             color: scheme.primary,
                                             borderRadius: BorderRadius.circular(
-                                              14,
+                                              13,
                                             ),
                                           ),
                                           child: Icon(
                                             Icons.play_arrow_rounded,
                                             color: scheme.onPrimary,
-                                            size: 30,
+                                            size: 28,
                                           ),
                                         ),
                                         const SizedBox(width: 16),
@@ -365,22 +359,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Text(
-                                                l10n.homeContinueLabel,
+                                                l10n.homeContinueLabel
+                                                    .toUpperCase(),
                                                 style: TextStyle(
-                                                  fontSize: 12,
+                                                  fontSize: 11.5,
                                                   fontWeight: FontWeight.w700,
-                                                  letterSpacing: 1.2,
+                                                  letterSpacing: 1.1,
                                                   color: scheme.primary,
                                                 ),
                                               ),
-                                              const SizedBox(height: 4),
+                                              const SizedBox(height: 3),
                                               Text(
                                                 l10n.homeContinueSubtitle,
                                                 maxLines: 2,
                                                 overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 15.5,
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 1.25,
                                                   color: scheme.onSurface,
                                                 ),
                                               ),
@@ -390,8 +386,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                         const SizedBox(width: 8),
                                         Icon(
                                           Icons.chevron_right,
-                                          color: scheme.primary.withValues(
-                                            alpha: 0.7,
+                                          color: scheme.onSurface.withValues(
+                                            alpha: 0.4,
                                           ),
                                         ),
                                       ],

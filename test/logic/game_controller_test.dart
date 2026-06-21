@@ -572,6 +572,118 @@ void main() {
         game.dispose();
       },
     );
+
+    test(
+      'prev/next skip locked cells and the cursor only rests on editable ones',
+      () async {
+        final store = await storage();
+        final game = GameController(storage: store);
+        game.start(shortQuote, daily: false);
+        final s = game.session!;
+
+        // Reveal the first letter so all of its cells become locked.
+        game.selectIndex(0);
+        game.revealSelected();
+        expect(s.revealed, isNotEmpty);
+
+        bool editable(int i) =>
+            s.cipherLetters.contains(s.cipherText[i]) &&
+            !s.revealed.contains(s.cipherText[i]) &&
+            !s.confirmedLetters.contains(s.cipherText[i]);
+
+        final editablePositions = [
+          for (var i = 0; i < s.cipherText.length; i++)
+            if (editable(i)) i,
+        ];
+        final firstEditable = editablePositions.first;
+
+        // Walk forward across the whole board: every landing must be editable
+        // (locked cells are skipped, so the cursor never visually vanishes).
+        game.selectIndex(firstEditable);
+        expect(game.selectedCipherLetter, isNotNull);
+        while (game.canMoveNext) {
+          game.moveSelection(1);
+          expect(editable(game.selectedIndex!), isTrue);
+          expect(game.selectedCipherLetter, isNotNull);
+        }
+
+        // Walking all the way back returns to the first editable cell — prev and
+        // next are symmetric across the editable cells (no drift in memory).
+        while (game.canMovePrev) {
+          game.moveSelection(-1);
+          expect(editable(game.selectedIndex!), isTrue);
+        }
+        expect(game.selectedIndex, firstEditable);
+
+        game.stopTimer();
+        game.dispose();
+      },
+    );
+
+    test(
+      'canMoveNext is false when only locked cells remain ahead of the cursor',
+      () async {
+        final store = await storage();
+        final game = GameController(storage: store);
+        game.start(shortQuote, daily: false);
+        final s = game.session!;
+        final t = s.cipherText;
+        final letterPositions = [
+          for (var i = 0; i < t.length; i++)
+            if (s.cipherLetters.contains(t[i])) i,
+        ];
+
+        // Reveal the letter sitting in the LAST board position, locking it.
+        game.selectIndex(letterPositions.last);
+        game.revealSelected();
+        expect(s.revealed.contains(t[letterPositions.last]), isTrue);
+
+        bool editable(int i) =>
+            s.cipherLetters.contains(t[i]) &&
+            !s.revealed.contains(t[i]) &&
+            !s.confirmedLetters.contains(t[i]);
+        final lastEditable = letterPositions.where(editable).last;
+
+        // Sitting on the last editable cell, only a locked cell remains ahead,
+        // so the ▶ control must disable rather than strand the cursor.
+        game.selectIndex(lastEditable);
+        expect(game.canMoveNext, isFalse);
+
+        game.stopTimer();
+        game.dispose();
+      },
+    );
+
+    test('tapping a locked cell does not move the cursor onto it', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      // Reveal the first letter, then place the cursor on an editable cell.
+      game.selectIndex(0);
+      game.revealSelected();
+      final lockedPos = [
+        for (var i = 0; i < s.cipherText.length; i++)
+          if (s.revealed.contains(s.cipherText[i])) i,
+      ].first;
+      final editablePos = [
+        for (var i = 0; i < s.cipherText.length; i++)
+          if (s.cipherLetters.contains(s.cipherText[i]) &&
+              !s.revealed.contains(s.cipherText[i]) &&
+              !s.confirmedLetters.contains(s.cipherText[i]))
+            i,
+      ].first;
+      game.selectIndex(editablePos);
+
+      // A tap on a locked cell is ignored — the cursor stays put and visible.
+      game.selectIndex(lockedPos);
+      expect(game.selectedIndex, editablePos);
+      expect(game.selectedCipherLetter, isNotNull);
+
+      game.stopTimer();
+      game.dispose();
+    });
   });
 
   group('redo', () {

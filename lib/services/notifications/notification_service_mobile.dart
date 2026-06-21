@@ -57,18 +57,21 @@ class MobileNotificationService extends NotificationService {
 
   Future<void> _ensureTimezone() async {
     if (_tzReady) return;
-    tzdata.initializeTimeZones();
     try {
+      // initializeTimeZones must run before any tz lookup; keep it inside the
+      // guard so a (rare) database init failure can never propagate.
+      tzdata.initializeTimeZones();
       // flutter_timezone 5.x returns a TimezoneInfo whose .identifier is the
       // IANA name (e.g. "Europe/Istanbul"); the local tz follows the DEVICE,
       // not the app language (timezone is device-based by design).
       final name = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(name.identifier));
+      // Only latch ready on success, so a transient failure can retry next call.
+      _tzReady = true;
     } catch (e) {
       // Fall back to the bundled default (UTC); reminder still fires daily.
       debugPrint('NotificationService: timezone init failed: $e');
     }
-    _tzReady = true;
   }
 
   AndroidFlutterLocalNotificationsPlugin? get _android => _plugin

@@ -62,8 +62,11 @@ class GameController extends ChangeNotifier {
     if (s == null || i == null || i < 0 || i >= s.cipherText.length) {
       return null;
     }
-    final ch = s.cipherText[i];
-    return s.cipherLetters.contains(ch) ? ch : null;
+    // Only an EDITABLE cell counts as "selected": a cursor that ever rests on a
+    // locked (hint-revealed / confirmed) cell would otherwise light that letter
+    // up and confuse which letter is really being edited.
+    if (!_isEditableIndex(s, i)) return null;
+    return s.cipherText[i];
   }
 
   int _hintsUsed = 0;
@@ -354,7 +357,10 @@ class GameController extends ChangeNotifier {
   void selectIndex(int index) {
     final s = _session;
     if (s == null || index < 0 || index >= s.cipherText.length) return;
-    if (!s.cipherLetters.contains(s.cipherText[index])) return;
+    // Tapping a non-letter or a LOCKED cell must not move the cursor onto it
+    // (the selection highlight is suppressed on locked cells, so the cursor
+    // would appear to vanish). Editable cells only.
+    if (!_isEditableIndex(s, index)) return;
     _selectedIndex = index;
     notifyListeners();
   }
@@ -370,26 +376,30 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// The nearest board-letter cell strictly after ([dir] > 0) / before
+  /// The nearest EDITABLE board cell strictly after ([dir] > 0) / before
   /// ([dir] < 0) the cursor, or null if there is none in that direction.
+  /// Locked (hint-revealed / confirmed) cells are skipped so the ◀ ▶ arrows
+  /// always land on a cell the player can actually type into — and the
+  /// selection highlight never disappears under the cursor.
   int? _adjacentLetterIndex(int dir) {
     final s = _session;
     if (s == null) return null;
     final t = s.cipherText;
     final from = _selectedIndex ?? (dir > 0 ? -1 : t.length);
     for (var i = from + dir; i >= 0 && i < t.length; i += dir) {
-      if (s.cipherLetters.contains(t[i])) return i;
+      if (_isEditableIndex(s, i)) return i;
     }
     return null;
   }
 
-  /// Whether the ◀ (previous letter) control should be enabled — true when a
-  /// board letter exists before the cursor.
+  /// Whether the ◀ (previous letter) control should be enabled — true when an
+  /// editable cell exists before the cursor (disables once only locked cells
+  /// remain in that direction).
   bool get canMovePrev => _adjacentLetterIndex(-1) != null;
 
-  /// Whether the ▶ (next letter) control should be enabled — true when a board
-  /// letter exists after the cursor (false once the cursor is on the last
-  /// letter, e.g. after typing the final cell).
+  /// Whether the ▶ (next letter) control should be enabled — true when an
+  /// editable cell exists after the cursor (disables once only locked cells
+  /// remain in that direction).
   bool get canMoveNext => _adjacentLetterIndex(1) != null;
 
   /// Compatibility selector by cipher letter — focuses that letter's first
@@ -625,9 +635,12 @@ class GameController extends ChangeNotifier {
     _hintsUsed += 1;
     s.guesses[target] = s.cipher.decryptLetter(target);
     s.revealed.add(target);
-    _selectedIndex = _indexOfLetter(target) ?? _selectedIndex;
+    // The revealed cell is now LOCKED, so don't leave the cursor on it (the
+    // selection highlight is suppressed there). Move to the next editable cell.
+    _selectedIndex =
+        _nextEditableIndexAfter(_indexOfLetter(target)) ?? _selectedIndex;
     _undoStack.clear(); // reveals are permanent
-    _afterChange();
+    _afterChange(advance: false);
   }
 
   void _afterChange({bool advance = true}) {
