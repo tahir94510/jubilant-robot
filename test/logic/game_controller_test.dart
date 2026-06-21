@@ -746,6 +746,44 @@ void main() {
     });
   });
 
+  group('hint cursor direction', () {
+    test('revealing advances forward from the cursor, not back to an earlier '
+        'copy of the revealed letter', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+      final t = s.cipherText;
+
+      // A cipher letter with a later occurrence that still has editable cells
+      // after it (so "advance forward" is observable, not a wrap).
+      final repeated = s.cipherLetters.firstWhere((c) {
+        final positions = [
+          for (var i = 0; i < t.length; i++)
+            if (t[i] == c) i,
+        ];
+        return positions.length >= 2 &&
+            positions.last < t.length - 1 &&
+            [
+              for (var i = positions.last + 1; i < t.length; i++) i,
+            ].any((i) => s.cipherLetters.contains(t[i]) && t[i] != c);
+      });
+      final positions = [
+        for (var i = 0; i < t.length; i++)
+          if (t[i] == repeated) i,
+      ];
+
+      // Sit on the LAST copy and reveal it: the cursor must move FORWARD past
+      // it, never jump back toward the first copy.
+      game.selectIndex(positions.last);
+      game.revealSelected();
+      expect(game.selectedIndex, greaterThan(positions.last));
+
+      game.stopTimer();
+      game.dispose();
+    });
+  });
+
   group('redo', () {
     test(
       'redo re-applies an undone guess; a new edit clears the redo future',
