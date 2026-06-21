@@ -92,6 +92,10 @@ Future<void> _start() async {
     storage: storage,
     notifications: notifications,
   );
+  // Re-arm the reminder on every resume (not just launch): upgrades to exact
+  // after the user grants the Android 14+ exact-alarm permission, and re-arms an
+  // alarm an aggressive OEM dropped while backgrounded.
+  WidgetsBinding.instance.addObserver(settings);
   // Re-arm an enabled daily reminder on startup: the OS boot receiver covers
   // reboots, but a force-stop/app update can drop the alarm. Fire-and-forget so
   // it never delays the first frame.

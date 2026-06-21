@@ -146,11 +146,16 @@ def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
     return img
 
 
-def artwork(size, *, transparent_bg=False, monochrome=False, scale=1.0,
-            with_question=True):
+def artwork(size, *, transparent_bg=False, solid_bg=False, monochrome=False,
+            scale=1.0, with_question=True):
     """Renders the mark supersampled, then downscales to `size`."""
     if transparent_bg:
         big = Image.new("RGBA", (SS, SS), (0, 0, 0, 0))
+    elif solid_bg:
+        # A FLAT brand-cream fill (no gradient). Used for the splash so the icon
+        # tile is one solid color that matches the splash window background
+        # exactly — a gradient leaves a visible seam against the flat window.
+        big = Image.new("RGBA", (SS, SS), BG_TOP + (255,))
     else:
         big = vertical_gradient((SS, SS), BG_TOP, BG_BOTTOM).convert("RGBA")
     paint_artwork(big, monochrome=monochrome, scale=scale,
@@ -197,17 +202,15 @@ def make_android_launchers():
 
 
 def make_splash_icons():
-    # SELF-CONTAINED splash badge: the cream "paper" tile is baked IN (not
-    # transparent), so the dark-ink Q always has its cream backing and can never
-    # vanish. Before this, the icon was transparent and relied on the window's
-    # splash background being cream — but on a dimmed/closing window (e.g. the
-    # app being killed at launch) or a device that ignores
-    # windowSplashScreenBackground, the dark Q rendered dark-on-dark and only the
-    # gold ? + underline showed, looking broken. Android 12+ masks this to a
-    # circle (a clean cream disc + logo); the pre-12 launch_background centers it
-    # on a matching cream field. 0.64 keeps the mark inside the 2/3 circle mask.
+    # SELF-CONTAINED splash badge on a FLAT brand-cream tile (solid_bg, no
+    # gradient). Two guarantees: (1) the dark-ink Q always has its cream backing
+    # so it can never vanish — even on a dimmed/closing window or an OEM that
+    # ignores windowSplashScreenBackground (the original "only ? and bar show"
+    # bug); (2) the flat cream exactly matches the flat splash window background
+    # (#F7F4EC), so there is no visible seam or gradient. Android 12+ masks this
+    # to a clean cream disc + logo; pre-12 centers it on the matching flat field.
     for density, px in SPLASH_SIZES.items():
-        save(artwork(px, transparent_bg=False, scale=0.64),
+        save(artwork(px, solid_bg=True, scale=0.64),
              f"android/app/src/main/res/drawable-{density}/splash_icon.png")
 
 

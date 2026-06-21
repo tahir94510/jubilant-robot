@@ -7,15 +7,22 @@
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin
          (INEXACT alarmlar da reboot'ta dusuyor; boot receiver yeniden kurar). -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- EXACT-ALARM IZNI YOK. Bu bir bulmaca oyunu; cekirdek islevi takvim/calar
-         saat olmadigindan USE_EXACT_ALARM Google Play politikasina aykiri. Gunluk
-         hatirlatma INEXACT (inexactAllowWhileIdle) planlanir; HIGH-onemli kanal +
-         OS bakim penceresi birkac dakikalik kaymayla guvenilir teslim saglar.
-         flutter_local_notifications eklentisi kendi manifestinde
-         SCHEDULE_EXACT_ALARM bildirir; merge sonrasi birlesik manifestte hic
-         exact-alarm izni KALMAMASI icin ikisini de acikca kaldiriyoruz. -->
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
-        tools:node="remove"/>
+    <!-- TAM ZAMANLI gunluk hatirlatma teslimi icin SCHEDULE_EXACT_ALARM. Bu,
+         Google Play'in IZIN VERDIGI exact-alarm iznidir: USE_EXACT_ALARM'in
+         aksine "cekirdek islev alarm/takvim olmali" kisitina TABI DEGILDIR ve
+         kullanicinin kendi sectigi bir saatte hatirlatma mesru bir exact-zaman
+         ihtiyacidir. Agresif OEM pil yoneticileri (Xiaomi/Huawei/Samsung)
+         inexact alarmlari dusurup "bildirim hic gelmiyor" sorununu yaratiyordu;
+         exact bunu cozer.
+         - API<=32: on-tanimli verili (prompt yok).
+         - API33: verili, kullanici geri alabilir.
+         - API34+: kullanici "Alarmlar ve hatirlaticilar"dan bir kez verir;
+           vermezse kod otomatik INEXACT'e duser (canScheduleExactNotifications
+           ile yoklanir, asla cokmez/throw etmez).
+         USE_EXACT_ALARM ise yalnizca alarm/takvim uygulamalarina ozel ve Play
+         politikasina aykiri oldugundan, eklentinin enjekte ettigi dahil
+         birlesik manifestten KALDIRILIR. -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
     <uses-permission android:name="android.permission.USE_EXACT_ALARM"
         tools:node="remove"/>
     <!-- AdMob reklam kimligi (Play Console "Veri guvenligi" formunda beyan edilir) -->
