@@ -22,9 +22,10 @@ class CipherBoard extends StatefulWidget {
   final String? selected;
 
   /// The exact focused cell position in [PuzzleSession.cipherText]. That cell
-  /// renders as the prominent [CellState.selected]; the other copies of the
-  /// same cipher letter render as the subtler [CellState.related], so the
-  /// player can feel which cell the cursor is actually on.
+  /// gets the prominent focus frame; the other copies of the same cipher letter
+  /// get the subtler "related" cue, so the player can feel which cell the cursor
+  /// is actually on — layered ON TOP of the cell's color so a wrong/conflicting
+  /// cell still shows it's selected.
   final int? selectedIndex;
   final bool errorChecking;
 
@@ -132,17 +133,17 @@ class _CipherBoardState extends State<CipherBoard> {
                   totalLetters > 0 &&
                   letterIndex / totalLetters <= solveWave;
               letterIndex++;
-              var state = inWave
+              // Color (what the guess MEANS) and selection (WHERE the cursor is)
+              // are independent: a wrong/conflicting cell must read red AND still
+              // show the selection frame when it's tapped to be fixed. So the
+              // color state never encodes selection, and focus/related are passed
+              // as flags the cell composes on top of the color.
+              final colorState = inWave
                   ? CellState.solved
-                  : _stateFor(ch, conflicts, confirmed, boardFull);
-              // All copies of the selected letter come back as `selected`;
-              // demote every copy except the focused cell to `related` so the
-              // cursor's actual position stands out from its siblings.
-              if (state == CellState.selected &&
-                  selectedIndex != null &&
-                  thisPos != selectedIndex) {
-                state = CellState.related;
-              }
+                  : _colorStateFor(ch, conflicts, confirmed, boardFull);
+              final focused = thisPos == selectedIndex;
+              final related =
+                  !focused && widget.selected != null && ch == widget.selected;
               // Each cell carries its own stable key so the focused one can be
               // found for auto-scroll without ever migrating a key between
               // cells (which would ghost the previous letter on cursor moves).
@@ -152,7 +153,9 @@ class _CipherBoardState extends State<CipherBoard> {
                   cipherLetter: ch,
                   guess: session.guesses[ch],
                   width: cellWidth,
-                  state: state,
+                  state: colorState,
+                  focused: focused,
+                  related: related,
                   onTap: () => widget.onSelect(thisPos),
                 ),
               );
@@ -179,7 +182,10 @@ class _CipherBoardState extends State<CipherBoard> {
     );
   }
 
-  CellState _stateFor(
+  /// The pure COLOR meaning of a cell — independent of where the cursor is.
+  /// Selection (focused/related) is layered on top by [LetterCell], so a
+  /// conflicting/wrong cell can read red and still show the selection frame.
+  CellState _colorStateFor(
     String cipherLetter,
     Set<String> conflicts,
     Set<String> confirmed,
@@ -187,13 +193,9 @@ class _CipherBoardState extends State<CipherBoard> {
   ) {
     final session = widget.session;
     if (session.revealed.contains(cipherLetter)) return CellState.revealed;
-    // A locked, fully-correct word: shown in its own confirmed color and never
-    // mistaken for an in-progress guess. Takes precedence over selection since
-    // the cell can't be edited anyway.
+    // A locked, fully-correct word: its own confirmed color.
     if (confirmed.contains(cipherLetter)) return CellState.confirmed;
-    // Error feedback OUTRANKS the selection cue: a conflicting (or, on a full
-    // board, a wrong) guess turns red the instant it is typed — even while it
-    // is the focused cell — instead of only reddening after the cursor advances.
+    // A conflicting guess reads red immediately (even while focused).
     if (conflicts.contains(cipherLetter)) return CellState.conflict;
     // Error checking only marks wrong guesses once the board is fully
     // filled, so it nudges instead of spoiling the deduction.
@@ -203,9 +205,6 @@ class _CipherBoardState extends State<CipherBoard> {
         !session.isGuessCorrect(cipherLetter)) {
       return CellState.error;
     }
-    // Every instance of the selected cipher letter lights up together —
-    // that's the "aha, these are all the same letter" cue.
-    if (cipherLetter == widget.selected) return CellState.selected;
     return CellState.normal;
   }
 }

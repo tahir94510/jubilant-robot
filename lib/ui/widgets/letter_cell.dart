@@ -26,22 +26,32 @@ class LetterCell extends StatelessWidget {
     required this.guess,
     required this.state,
     required this.onTap,
+    this.focused = false,
+    this.related = false,
     this.width = 26,
   });
 
   final String cipherLetter;
   final String? guess;
+
+  /// The COLOR meaning of the cell (normal/conflict/error/revealed/confirmed/
+  /// solved) — independent of selection so a red cell can still look selected.
   final CellState state;
+
+  /// This exact cell holds the cursor (accent frame + thick underline).
+  final bool focused;
+
+  /// A sibling copy of the focused letter (quiet "same letter" cue).
+  final bool related;
   final VoidCallback? onTap;
   final double width;
 
   @override
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
-    final selected = state == CellState.selected;
-    // A sibling copy of the focused letter: same-letter cue, but visibly
-    // quieter than the focused cell so the cursor position is unmistakable.
-    final related = state == CellState.related;
+    // Selection is now a flag composed over the color state, so a wrong/
+    // conflicting cell still shows the cursor frame when tapped to be fixed.
+    final selected = focused;
     // A letter the player typed (a plain guess, not a hint reveal or a
     // celebration cell): mark it with a faint fill so your own progress reads
     // at a glance. Never implies correctness.
@@ -137,12 +147,13 @@ class LetterCell extends StatelessWidget {
                   duration: Duration(milliseconds: motion ? 120 : 0),
                   height: selected ? 2.4 : 1.6,
                   margin: const EdgeInsets.symmetric(horizontal: 2),
-                  color: switch (state) {
-                    CellState.selected => palette.revealed,
-                    CellState.confirmed => palette.confirmed,
-                    CellState.solved => palette.success,
-                    _ => palette.boardUnderline,
-                  },
+                  color: state == CellState.confirmed
+                      ? palette.confirmed
+                      : state == CellState.solved
+                      ? palette.success
+                      : selected
+                      ? palette.revealed
+                      : palette.boardUnderline,
                 ),
               ),
             ),

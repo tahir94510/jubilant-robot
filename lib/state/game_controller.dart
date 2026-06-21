@@ -645,10 +645,13 @@ class GameController extends ChangeNotifier {
     _hintsUsed += 1;
     s.guesses[target] = s.cipher.decryptLetter(target);
     s.revealed.add(target);
-    // The revealed cell is now LOCKED, so don't leave the cursor on it (the
-    // selection highlight is suppressed there). Move to the next editable cell.
+    // Advance the cursor forward from where the PLAYER was, not from the
+    // revealed letter's first occurrence — otherwise hinting late in the quote
+    // flung the cursor backward to an earlier copy. Fall back to the revealed
+    // letter's position only when there is no current selection.
     _selectedIndex =
-        _nextEditableIndexAfter(_indexOfLetter(target)) ?? _selectedIndex;
+        _nextEditableIndexAfter(_selectedIndex ?? _indexOfLetter(target)) ??
+        _selectedIndex;
     _undoStack.clear(); // reveals are permanent
     _afterChange(advance: false);
   }
