@@ -433,7 +433,8 @@ class GameController extends ChangeNotifier {
     // it or push a redundant undo entry — just walk forward to the next editable
     // cell (the natural "skip" the player expects).
     if (s.guesses[target] == plainLetter) {
-      _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
+      _selectedIndex =
+          _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
       notifyListeners();
       return;
     }

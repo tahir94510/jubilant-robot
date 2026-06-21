@@ -140,8 +140,7 @@ class MobileNotificationService extends NotificationService {
     // USE_EXACT_ALARM on API33+), so no runtime prompt or settings redirect is
     // needed. We still probe canScheduleExactNotifications and fall back to
     // inexact if a device/user has revoked it, so scheduling never throws.
-    final canExact =
-        await _android?.canScheduleExactNotifications() ?? false;
+    final canExact = await _android?.canScheduleExactNotifications() ?? false;
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
