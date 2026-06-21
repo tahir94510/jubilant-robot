@@ -27,4 +27,32 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  // The logo must never re-introduce the "dark glyph on a dark background" bug:
+  // BrandMark bakes its OWN opaque cream tile, so it renders as a visible card
+  // even on a pure-black surface in dark mode (e.g. the premium/paywall screen).
+  // This locks that a transparent backdrop can never make the logo disappear.
+  testWidgets('BrandMark renders on a black surface in dark mode', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppThemes.dark(colorblind: false),
+        home: const Scaffold(
+          backgroundColor: Colors.black,
+          body: Center(child: BrandMark(size: 72)),
+        ),
+      ),
+    );
+    expect(find.byType(BrandMark), findsOneWidget);
+    // The self-contained painter (its baked cream tile + glyphs) is present.
+    expect(
+      find.descendant(
+        of: find.byType(BrandMark),
+        matching: find.byType(CustomPaint),
+      ),
+      findsWidgets,
+    );
+    expect(tester.takeException(), isNull);
+  });
 }

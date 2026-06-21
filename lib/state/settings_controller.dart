@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' show PlatformDispatcher;
 
 import 'package:flutter/material.dart';
@@ -11,7 +12,21 @@ import '../services/sound_service.dart';
 import '../services/storage_service.dart';
 
 /// Owns [AppSettings]: persistence + applying side effects (reminders).
-class SettingsController extends ChangeNotifier {
+class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    // Re-arm the reminder every time the app returns to the foreground. This
+    // closes the Android 14+ gap where the user grants the exact-alarm
+    // permission in system settings and comes back (the schedule was set
+    // inexact a moment earlier — rescheduling now upgrades it to exact), and it
+    // also re-arms an alarm the OS may have dropped while backgrounded on
+    // aggressive OEMs. syncReminderWithOsPermission reflects a notifications-off
+    // change made from system settings. Both are best-effort and never throw.
+    unawaited(rescheduleDailyIfEnabled());
+    unawaited(syncReminderWithOsPermission());
+  }
+
   SettingsController({
     required StorageService storage,
     required NotificationService notifications,

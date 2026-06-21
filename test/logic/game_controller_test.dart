@@ -540,45 +540,42 @@ void main() {
   });
 
   group('cursor navigation', () {
-    test(
-      'moveSelection does not wrap; canMovePrev/Next reflect the boundaries',
-      () async {
-        final store = await storage();
-        final game = GameController(storage: store);
-        game.start(shortQuote, daily: false);
-        final s = game.session!;
-        final t = s.cipherText;
-        final letterPositions = [
-          for (var i = 0; i < t.length; i++)
-            if (s.cipherLetters.contains(t[i])) i,
-        ];
-        final first = letterPositions.first;
-        final last = letterPositions.last;
+    test('moveSelection wraps around the ends; ◀ ▶ stay enabled', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+      final t = s.cipherText;
+      final letterPositions = [
+        for (var i = 0; i < t.length; i++)
+          if (s.cipherLetters.contains(t[i])) i,
+      ];
+      final first = letterPositions.first;
+      final last = letterPositions.last;
 
-        // At the first letter: no previous, but a next exists.
-        game.selectIndex(first);
-        expect(game.canMovePrev, isFalse);
-        expect(game.canMoveNext, isTrue);
-        game.moveSelection(-1); // no-op (can't wrap to the end)
-        expect(game.selectedIndex, first);
+      // With >= 2 editable cells both controls stay enabled everywhere.
+      game.selectIndex(first);
+      expect(game.canMovePrev, isTrue);
+      expect(game.canMoveNext, isTrue);
+      // ◀ on the FIRST letter wraps to the LAST.
+      game.moveSelection(-1);
+      expect(game.selectedIndex, last);
 
-        // At the last letter: a previous exists, but no next.
-        game.selectIndex(last);
-        expect(game.canMoveNext, isFalse);
-        expect(game.canMovePrev, isTrue);
-        game.moveSelection(1); // no-op (can't wrap to the start)
-        expect(game.selectedIndex, last);
+      // ▶ on the LAST letter wraps back to the FIRST.
+      game.selectIndex(last);
+      expect(game.canMoveNext, isTrue);
+      expect(game.canMovePrev, isTrue);
+      game.moveSelection(1);
+      expect(game.selectedIndex, first);
 
-        // Moving forward from the first lands on the next letter, not a wrap.
-        game.selectIndex(first);
-        game.moveSelection(1);
-        expect(game.selectedIndex, isNot(first));
-        expect(game.selectedIndex, greaterThan(first));
+      // Moving forward from the first lands on the next letter (no wrap yet).
+      game.selectIndex(first);
+      game.moveSelection(1);
+      expect(game.selectedIndex, greaterThan(first));
 
-        game.stopTimer();
-        game.dispose();
-      },
-    );
+      game.stopTimer();
+      game.dispose();
+    });
 
     test(
       'prev/next skip locked cells and the cursor only rests on editable ones',
@@ -603,20 +600,30 @@ void main() {
             if (editable(i)) i,
         ];
         final firstEditable = editablePositions.first;
+        final lastEditable = editablePositions.last;
 
-        // Walk forward across the whole board: every landing must be editable
-        // (locked cells are skipped, so the cursor never visually vanishes).
+        // Walk forward across every editable cell: each landing must be editable
+        // (locked cells are skipped, so the cursor never visually vanishes). A
+        // BOUNDED loop — moveSelection now wraps, so `while (canMoveNext)` would
+        // never end.
         game.selectIndex(firstEditable);
         expect(game.selectedCipherLetter, isNotNull);
-        while (game.canMoveNext) {
+        for (var k = 0; k < editablePositions.length - 1; k++) {
           game.moveSelection(1);
           expect(editable(game.selectedIndex!), isTrue);
           expect(game.selectedCipherLetter, isNotNull);
         }
+        // ...now sitting on the last editable cell.
+        expect(game.selectedIndex, lastEditable);
 
-        // Walking all the way back returns to the first editable cell — prev and
-        // next are symmetric across the editable cells (no drift in memory).
-        while (game.canMovePrev) {
+        // ▶ on the last wraps to the first; ◀ on the first wraps back to last.
+        game.moveSelection(1);
+        expect(game.selectedIndex, firstEditable);
+        game.moveSelection(-1);
+        expect(game.selectedIndex, lastEditable);
+
+        // Walking back across every editable cell lands on the first again.
+        for (var k = 0; k < editablePositions.length - 1; k++) {
           game.moveSelection(-1);
           expect(editable(game.selectedIndex!), isTrue);
         }
@@ -628,7 +635,7 @@ void main() {
     );
 
     test(
-      'canMoveNext is false when only locked cells remain ahead of the cursor',
+      'forward from the last editable cell wraps past a locked tail to the first',
       () async {
         final store = await storage();
         final game = GameController(storage: store);
@@ -649,12 +656,18 @@ void main() {
             s.cipherLetters.contains(t[i]) &&
             !s.revealed.contains(t[i]) &&
             !s.confirmedLetters.contains(t[i]);
-        final lastEditable = letterPositions.where(editable).last;
+        final editablePositions = letterPositions.where(editable).toList();
+        final firstEditable = editablePositions.first;
+        final lastEditable = editablePositions.last;
 
-        // Sitting on the last editable cell, only a locked cell remains ahead,
-        // so the ▶ control must disable rather than strand the cursor.
+        // Sitting on the last editable cell, only a locked cell remains ahead.
+        // ▶ stays enabled and WRAPS past the locked tail onto the first editable
+        // cell — it never strands the cursor on a locked cell.
         game.selectIndex(lastEditable);
-        expect(game.canMoveNext, isFalse);
+        expect(game.canMoveNext, isTrue);
+        game.moveSelection(1);
+        expect(editable(game.selectedIndex!), isTrue);
+        expect(game.selectedIndex, firstEditable);
 
         game.stopTimer();
         game.dispose();

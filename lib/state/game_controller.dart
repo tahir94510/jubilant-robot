@@ -382,23 +382,25 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Moves the cursor to the next ([dir] > 0) or previous board letter, WITHOUT
-  /// wrapping: at the first/last letter it is a no-op (the on-screen ◀ ▶ keys
-  /// disable there via [canMovePrev]/[canMoveNext]). Drives arrow-key
-  /// navigation for physical keyboards, TVs, and accessibility.
+  /// Moves the cursor to the next ([dir] > 0) or previous board letter, WRAPPING
+  /// around at the ends: ▶ on the last letter jumps to the first, and ◀ on the
+  /// first jumps to the last. Locked cells are skipped. Drives the on-screen
+  /// ◀ ▶ keys and arrow-key navigation (physical keyboards, TVs, accessibility).
   void moveSelection(int dir) {
-    final i = _adjacentLetterIndex(dir);
+    final i = _adjacentLetterIndex(dir, wrap: true);
     if (i == null) return;
     _selectedIndex = i;
     notifyListeners();
   }
 
   /// The nearest EDITABLE board cell strictly after ([dir] > 0) / before
-  /// ([dir] < 0) the cursor, or null if there is none in that direction.
-  /// Locked (hint-revealed / confirmed) cells are skipped so the ◀ ▶ arrows
-  /// always land on a cell the player can actually type into — and the
-  /// selection highlight never disappears under the cursor.
-  int? _adjacentLetterIndex(int dir) {
+  /// ([dir] < 0) the cursor. Locked (hint-revealed / confirmed) cells are
+  /// skipped so the ◀ ▶ arrows always land on a cell the player can type into.
+  /// When [wrap] is true and no editable cell exists ahead in that direction,
+  /// it continues from the OPPOSITE edge so the cursor loops around the board
+  /// (excluding the current cell, so a board with a single editable letter
+  /// stays a no-op). Returns null only when there is no other editable cell.
+  int? _adjacentLetterIndex(int dir, {bool wrap = false}) {
     final s = _session;
     if (s == null) return null;
     final t = s.cipherText;
@@ -406,18 +408,27 @@ class GameController extends ChangeNotifier {
     for (var i = from + dir; i >= 0 && i < t.length; i += dir) {
       if (_isEditableIndex(s, i)) return i;
     }
+    if (!wrap) return null;
+    // Wrapped pass: scan from the opposite edge toward the cursor, skipping the
+    // current cell, so ▶ at the end lands on the first letter and ◀ at the
+    // start lands on the last.
+    final cur = _selectedIndex;
+    final start = dir > 0 ? 0 : t.length - 1;
+    for (var i = start; i >= 0 && i < t.length; i += dir) {
+      if (i != cur && _isEditableIndex(s, i)) return i;
+    }
     return null;
   }
 
-  /// Whether the ◀ (previous letter) control should be enabled — true when an
-  /// editable cell exists before the cursor (disables once only locked cells
-  /// remain in that direction).
-  bool get canMovePrev => _adjacentLetterIndex(-1) != null;
+  /// Whether the ◀ (previous letter) control should be enabled — true whenever
+  /// moving back (wrapping around the start) would land on a different editable
+  /// cell. Disabled only when one or zero editable cells remain.
+  bool get canMovePrev => _adjacentLetterIndex(-1, wrap: true) != null;
 
-  /// Whether the ▶ (next letter) control should be enabled — true when an
-  /// editable cell exists after the cursor (disables once only locked cells
-  /// remain in that direction).
-  bool get canMoveNext => _adjacentLetterIndex(1) != null;
+  /// Whether the ▶ (next letter) control should be enabled — true whenever
+  /// moving forward (wrapping around the end) would land on a different editable
+  /// cell. Disabled only when one or zero editable cells remain.
+  bool get canMoveNext => _adjacentLetterIndex(1, wrap: true) != null;
 
   /// Compatibility selector by cipher letter — focuses that letter's first
   /// occurrence. The UI selects by position via [selectIndex]; this remains
