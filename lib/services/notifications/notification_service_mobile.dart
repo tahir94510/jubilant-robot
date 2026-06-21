@@ -32,7 +32,20 @@ class MobileNotificationService extends NotificationService {
       // icons as a flat gray blob, the alpha-only mark stays crisp.
       android: AndroidInitializationSettings('@drawable/ic_stat_quotecrack'),
     );
-    await _plugin.initialize(settings: settings);
+    // Register BOTH response handlers. This is required setup for
+    // flutter_local_notifications: when the user TAPS a scheduled reminder that
+    // launched the app from a fully terminated state, the plugin invokes the
+    // background handler in a short-lived isolate — and if that entry point was
+    // never registered (and @pragma('vm:entry-point') kept it from being
+    // tree-shaken in release), the native side calls into a missing Dart
+    // function and the freshly-launched process crashes/closes immediately.
+    // The handlers are intentionally no-ops: tapping the reminder only needs to
+    // bring the app to the foreground, which the OS launcher intent already does.
+    await _plugin.initialize(
+      settings: settings,
+      onDidReceiveNotificationResponse: _onNotificationResponse,
+      onDidReceiveBackgroundNotificationResponse: notificationBackgroundHandler,
+    );
     // Create the channel explicitly at startup so it exists with the right
     // importance the moment a reminder is scheduled (and so the OS shows it
     // under app notification settings even before the first fire). Creating an
@@ -150,9 +163,24 @@ class MobileNotificationService extends NotificationService {
       ),
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
+      // An explicit (non-null) payload keeps the plugin off any null-payload
+      // serialization path when the daily reminder is delivered.
+      payload: 'daily_reminder',
     );
   }
+
+  /// Foreground / launch tap handler. The OS already brings the app forward;
+  /// a single daily reminder has nothing extra to route.
+  void _onNotificationResponse(NotificationResponse response) {}
 
   @override
   Future<void> cancelAll() => _plugin.cancelAll();
 }
+
+/// Background-isolate tap handler. MUST be a top-level function annotated with
+/// @pragma('vm:entry-point') so release tree-shaking never strips it: when a
+/// reminder is tapped after the app process was killed, flutter_local_
+/// notifications invokes this natively in a background isolate. A no-op — the
+/// reminder only needs to reopen the app.
+@pragma('vm:entry-point')
+void notificationBackgroundHandler(NotificationResponse response) {}

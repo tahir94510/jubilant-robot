@@ -197,12 +197,17 @@ def make_android_launchers():
 
 
 def make_splash_icons():
-    # Android 12+ masks the splash icon to a 2/3-diameter circle; 0.64 fills
-    # that circle with a little more presence at launch while still keeping
-    # the whole mark comfortably inside on every OEM. The same drawable is
-    # the centered logo of the pre-12 launch_background layer-list.
+    # SELF-CONTAINED splash badge: the cream "paper" tile is baked IN (not
+    # transparent), so the dark-ink Q always has its cream backing and can never
+    # vanish. Before this, the icon was transparent and relied on the window's
+    # splash background being cream — but on a dimmed/closing window (e.g. the
+    # app being killed at launch) or a device that ignores
+    # windowSplashScreenBackground, the dark Q rendered dark-on-dark and only the
+    # gold ? + underline showed, looking broken. Android 12+ masks this to a
+    # circle (a clean cream disc + logo); the pre-12 launch_background centers it
+    # on a matching cream field. 0.64 keeps the mark inside the 2/3 circle mask.
     for density, px in SPLASH_SIZES.items():
-        save(artwork(px, transparent_bg=True, scale=0.64),
+        save(artwork(px, transparent_bg=False, scale=0.64),
              f"android/app/src/main/res/drawable-{density}/splash_icon.png")
 
 
