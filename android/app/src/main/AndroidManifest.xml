@@ -5,12 +5,15 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- NOT: SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM BILEREK eklenmiyor. Google
-         Play bu izinleri yalnizca cekirdek islevi alarm-saati/takvim olan
-         uygulamalara verir; bir bulmaca hatirlaticisi icin beyan REDDE yol
-         acabilir. Gunluk hatirlatma inexactAllowWhileIdle ile kurulur: Doze'da
-         bile OS bakim penceresinde teslim edilir (gune birkac dk sapma normal),
-         kanal YUKSEK onemli oldugundan sesli/heads-up gelir. -->
+    <!-- TAM ZAMANLI (exact) gunluk hatirlatma. inexact alarmlar bircok OEM'in
+         (Xiaomi/Huawei/Samsung...) pil optimizasyonu tarafindan ertelenip
+         tamamen dusurulebiliyordu -> "bildirim hic gelmiyor". Hatirlaticinin
+         cekirdek islevi zamaninda gelmek oldugundan exact alarm kullaniyoruz:
+         - API <=32: SCHEDULE_EXACT_ALARM zaten on-tanimli verili (prompt yok).
+         - API 33+: USE_EXACT_ALARM otomatik verili (alarm/hatirlatici islevi). -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
+        android:maxSdkVersion="32"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
     <!-- AdMob reklam kimligi (Play Console "Veri guvenligi" formunda beyan edilir) -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 

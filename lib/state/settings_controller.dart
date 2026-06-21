@@ -1,3 +1,5 @@
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter/material.dart';
 
 import '../config/app_config.dart';
@@ -48,7 +50,7 @@ class SettingsController extends ChangeNotifier {
         .map((l) => l.languageCode)
         .toSet();
     var code = settings.languageCode;
-    code ??= WidgetsBinding.instance.platformDispatcher.locale.languageCode;
+    code ??= PlatformDispatcher.instance.locale.languageCode;
     if (!supported.contains(code)) code = 'en';
     return lookupAppLocalizations(Locale(code));
   }
@@ -157,6 +159,23 @@ class SettingsController extends ChangeNotifier {
     return _save();
   }
 
+  /// A sensible default reminder time for the active UI language — a relaxed
+  /// evening hour when people unwind with a puzzle, nudged later for cultures
+  /// with later evenings. Used until the player picks their own time.
+  TimeOfDay _defaultReminderTime() {
+    final supported = AppLocalizations.supportedLocales
+        .map((l) => l.languageCode)
+        .toSet();
+    // PlatformDispatcher.instance (dart:ui) needs no widget binding, so this is
+    // safe to call from controllers/tests outside a running app.
+    var code = settings.languageCode;
+    code ??= PlatformDispatcher.instance.locale.languageCode;
+    if (!supported.contains(code)) code = 'en';
+    // Later dinners / evenings in these locales -> a 21:00 nudge; 20:00 elsewhere.
+    const lateEvening = {'tr', 'es', 'it', 'pt'};
+    return TimeOfDay(hour: lateEvening.contains(code) ? 21 : 20, minute: 0);
+  }
+
   /// Returns false when the OS permission was denied.
   Future<bool> setReminder({required bool enabled, TimeOfDay? time}) async {
     if (enabled) {
@@ -168,8 +187,17 @@ class SettingsController extends ChangeNotifier {
       }
       settings.reminderEnabled = true;
       if (time != null) {
+        // The player picked their own time: honor it and stop overriding with
+        // the language default from here on.
         settings.reminderHour = time.hour;
         settings.reminderMinute = time.minute;
+        settings.reminderCustomized = true;
+      } else if (!settings.reminderCustomized) {
+        // First enable without a chosen time: pick a sensible evening hour for
+        // the player's language/community instead of a fixed global default.
+        final t = _defaultReminderTime();
+        settings.reminderHour = t.hour;
+        settings.reminderMinute = t.minute;
       }
       // Scheduling talks to the OS alarm/timezone plugins, which can throw on
       // some devices. A failure must NEVER crash the app from the settings
