@@ -264,6 +264,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get paywallRestore => 'Früheren Kauf wiederherstellen';
 
   @override
+  String get purchaseFailed =>
+      'Kauf konnte nicht abgeschlossen werden. Bitte erneut versuchen.';
+
+  @override
+  String get purchaseRestoring => 'Kauf wird wiederhergestellt…';
+
+  @override
   String get completeDailyTitle => 'Tagesrätsel gelöst!';
 
   @override

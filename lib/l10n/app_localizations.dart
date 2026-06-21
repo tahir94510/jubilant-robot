@@ -582,6 +582,18 @@ abstract class AppLocalizations {
   /// **'Restore previous purchase'**
   String get paywallRestore;
 
+  /// No description provided for @purchaseFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase couldn\'t be completed. Please try again.'**
+  String get purchaseFailed;
+
+  /// No description provided for @purchaseRestoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Restoring your purchase…'**
+  String get purchaseRestoring;
+
   /// No description provided for @completeDailyTitle.
   ///
   /// In en, this message translates to:

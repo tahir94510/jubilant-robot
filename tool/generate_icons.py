@@ -16,15 +16,15 @@ edges stay crisp at every density.
 Usage: python3 tool/generate_icons.py  (requires Pillow)
 
 Outputs (committed to the repo):
-  assets/icon/icon.png                          1024  full icon, rounded
-  assets/icon/icon_foreground.png               1024  adaptive foreground
-  assets/icon/icon_monochrome.png               1024  Android 13 themed layer
+  assets/icon/icon.png                          2048  full icon, rounded
+  assets/icon/icon_foreground.png               2048  adaptive foreground
+  assets/icon/icon_monochrome.png               2048  Android 13 themed layer
   android/.../mipmap-*/ic_launcher.png          48-192   legacy launcher
   android/.../drawable-*/ic_launcher_foreground.png 108-432 adaptive
   android/.../drawable-*/ic_launcher_monochrome.png 108-432 themed
   android/.../drawable-*/splash_icon.png        288-1152 launch screen logo
   android/.../drawable-*/ic_stat_quotecrack.png 24-96    notification glyph
-  web/icons/Icon-{192,512}.png + maskable       PWA / social preview
+  web/icons/Icon-{192,512,1024}.png + maskable  PWA / social preview
   web/favicon.png                               48
   store_assets/play_icon_512.png                512   Play listing (full bleed)
   store_assets/feature_graphic.png              1024x500 (English, canonical)
@@ -53,7 +53,12 @@ INK = (38, 34, 28)           # #26221C  dark serif glyph + decoded letters
 ACCENT = (170, 124, 34)      # #AA7C22  deepened gold for the ? and accents
 UNDERLINE = (150, 110, 30)   # #966E1E  deepened gold for the cipher underline
 
-SS = 2048  # supersample size: draw big, downscale Lanczos
+SS = 4096  # supersample size: draw big, downscale Lanczos. 4096 keeps a >=2x
+# supersample even for the 2048px master/web exports, so text edges stay crisp.
+
+# Master / web base resolution. The masters are a true 2K source and every web
+# icon is downscaled from this with Lanczos, so nothing is ever upscaled.
+MASTER = 2048
 
 MIPMAP_SIZES = {"mdpi": 48, "hdpi": 72, "xhdpi": 96, "xxhdpi": 144,
                 "xxxhdpi": 192}
@@ -161,16 +166,17 @@ def save(img, rel_path):
 
 
 def make_masters():
-    full = artwork(1024)
+    full = artwork(MASTER)
     rounded = full.copy()
-    # Squircle-ish rounding baked in for surfaces that show the raw PNG.
-    rounded.putalpha(rounded_mask((1024, 1024), 225))
+    # Squircle-ish rounding baked in for surfaces that show the raw PNG. The
+    # corner radius scales with the master so the squircle looks identical at 2K.
+    rounded.putalpha(rounded_mask((MASTER, MASTER), round(MASTER * 0.2197)))
     save(rounded, "assets/icon/icon.png")
     # Adaptive layers: launchers mask to a ~66% circle; LAUNCHER_FG_SCALE keeps
     # the mark inside the safe zone (the anydpi-v26 XML adds a small inset).
-    save(artwork(1024, transparent_bg=True, scale=LAUNCHER_FG_SCALE),
+    save(artwork(MASTER, transparent_bg=True, scale=LAUNCHER_FG_SCALE),
          "assets/icon/icon_foreground.png")
-    save(artwork(1024, transparent_bg=True, monochrome=True,
+    save(artwork(MASTER, transparent_bg=True, monochrome=True,
                  scale=LAUNCHER_FG_SCALE),
          "assets/icon/icon_monochrome.png")
 
@@ -210,12 +216,13 @@ def make_notification_icons():
 
 
 def make_web_icons():
-    full = artwork(1024)
-    for px in (192, 512):
+    full = artwork(MASTER)
+    # 1024 added for retina PWA install / hi-DPI social previews.
+    for px in (192, 512, 1024):
         save(full.resize((px, px), Image.LANCZOS).convert("RGB"),
              f"web/icons/Icon-{px}.png")
     # Maskable: artwork inside the 80%-diameter safe circle, full-bleed bg.
-    for px in (192, 512):
+    for px in (192, 512, 1024):
         save(artwork(px, scale=0.66), f"web/icons/Icon-maskable-{px}.png")
     rounded = Image.open(ROOT / "assets/icon/icon.png")
     save(rounded.resize((48, 48), Image.LANCZOS), "web/favicon.png")

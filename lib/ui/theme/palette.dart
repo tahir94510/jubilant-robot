@@ -87,15 +87,18 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
     cipherText: const Color(0xFF8A7E66),
-    conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFF9E3B34),
-    error: colorblind ? const Color(0xFFE69F00) : const Color(0xFF9E3B34),
-    revealed: const Color(0xFF936F1F),
-    confirmed: colorblind ? const Color(0xFF008766) : const Color(0xFF1B6E60),
+    // Colorblind conflict/error deepened (E69F00 read only 2.05:1 on this cream
+    // surface — below the large-text floor); A84B00 clears AA (5.20:1).
+    conflict: colorblind ? const Color(0xFFA84B00) : const Color(0xFF9E3B34),
+    error: colorblind ? const Color(0xFFA84B00) : const Color(0xFF9E3B34),
+    // Deepened from 936F1F (4.21:1) so the gold hint letters clear AA (4.99:1).
+    revealed: const Color(0xFF856414),
+    confirmed: colorblind ? const Color(0xFF00795C) : const Color(0xFF1B6E60),
     keyBg: const Color(0xFFFFFDF8),
     keyUsedBg: const Color(0xFFECE6D9),
     keyText: const Color(0xFF211E1A),
     keyUsedText: const Color(0xFF7C7263),
-    success: colorblind ? const Color(0xFF0072B2) : const Color(0xFF5E7B52),
+    success: colorblind ? const Color(0xFF0072B2) : const Color(0xFF55714A),
     streakFlame: const Color(0xFFB8791C),
     textSecondary: const Color(0xFF5C5849),
     textFaint: const Color(0xFF74705F),
@@ -137,24 +140,100 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardUnderline: const Color(0xFFC4AE8E),
     guessText: const Color(0xFF3A2E1C),
     cipherText: const Color(0xFF755F3F),
-    conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFFA4442F),
-    error: colorblind ? const Color(0xFFE69F00) : const Color(0xFFA4442F),
-    revealed: const Color(0xFF8A6A2A),
+    // Colorblind conflict/error deepened (E69F00 read only 1.91:1 on this paper
+    // surface); A84B00 clears AA (4.84:1).
+    conflict: colorblind ? const Color(0xFFA84B00) : const Color(0xFFA4442F),
+    error: colorblind ? const Color(0xFFA84B00) : const Color(0xFFA4442F),
+    // Deepened from 8A6A2A (3.92:1) so the gold hint letters clear AA (4.64:1).
+    revealed: const Color(0xFF846423),
     confirmed: colorblind ? const Color(0xFF00795C) : const Color(0xFF276E58),
     keyBg: const Color(0xFFFBF3E4),
     keyUsedBg: const Color(0xFFE8D8BC),
     keyText: const Color(0xFF3A2E1C),
     keyUsedText: const Color(0xFF7E6A4B),
-    success: colorblind ? const Color(0xFF0072B2) : const Color(0xFF5F7E46),
+    // Greens deepened so both variants clear AA on sepia (normal 4.85, cb 6.33).
+    success: colorblind ? const Color(0xFF00598C) : const Color(0xFF516E45),
     streakFlame: const Color(0xFFA9650F),
     textSecondary: const Color(0xFF5E5036),
     textFaint: const Color(0xFF756347),
   );
 
   @override
-  GamePalette copyWith() => this;
+  GamePalette copyWith({
+    Color? boardCellBg,
+    Color? boardCellSelectedBg,
+    Color? boardCellRelatedBg,
+    Color? boardCellFilledBg,
+    Color? boardCellConfirmedBg,
+    Color? boardUnderline,
+    Color? guessText,
+    Color? cipherText,
+    Color? conflict,
+    Color? error,
+    Color? revealed,
+    Color? confirmed,
+    Color? keyBg,
+    Color? keyUsedBg,
+    Color? keyText,
+    Color? keyUsedText,
+    Color? success,
+    Color? streakFlame,
+    Color? textSecondary,
+    Color? textFaint,
+  }) => GamePalette(
+    boardCellBg: boardCellBg ?? this.boardCellBg,
+    boardCellSelectedBg: boardCellSelectedBg ?? this.boardCellSelectedBg,
+    boardCellRelatedBg: boardCellRelatedBg ?? this.boardCellRelatedBg,
+    boardCellFilledBg: boardCellFilledBg ?? this.boardCellFilledBg,
+    boardCellConfirmedBg: boardCellConfirmedBg ?? this.boardCellConfirmedBg,
+    boardUnderline: boardUnderline ?? this.boardUnderline,
+    guessText: guessText ?? this.guessText,
+    cipherText: cipherText ?? this.cipherText,
+    conflict: conflict ?? this.conflict,
+    error: error ?? this.error,
+    revealed: revealed ?? this.revealed,
+    confirmed: confirmed ?? this.confirmed,
+    keyBg: keyBg ?? this.keyBg,
+    keyUsedBg: keyUsedBg ?? this.keyUsedBg,
+    keyText: keyText ?? this.keyText,
+    keyUsedText: keyUsedText ?? this.keyUsedText,
+    success: success ?? this.success,
+    streakFlame: streakFlame ?? this.streakFlame,
+    textSecondary: textSecondary ?? this.textSecondary,
+    textFaint: textFaint ?? this.textFaint,
+  );
 
+  // Real interpolation so theme/colorblind switches cross-fade cohesively:
+  // MaterialApp's AnimatedTheme drives this, and a no-op lerp snapped the board
+  // and keyboard colors while the Material surfaces faded (a ~200ms mismatch).
   @override
-  GamePalette lerp(ThemeExtension<GamePalette>? other, double t) =>
-      other is GamePalette ? other : this;
+  GamePalette lerp(ThemeExtension<GamePalette>? other, double t) {
+    if (other is! GamePalette) return this;
+    return GamePalette(
+      boardCellBg: Color.lerp(boardCellBg, other.boardCellBg, t)!,
+      boardCellSelectedBg:
+          Color.lerp(boardCellSelectedBg, other.boardCellSelectedBg, t)!,
+      boardCellRelatedBg:
+          Color.lerp(boardCellRelatedBg, other.boardCellRelatedBg, t)!,
+      boardCellFilledBg:
+          Color.lerp(boardCellFilledBg, other.boardCellFilledBg, t)!,
+      boardCellConfirmedBg:
+          Color.lerp(boardCellConfirmedBg, other.boardCellConfirmedBg, t)!,
+      boardUnderline: Color.lerp(boardUnderline, other.boardUnderline, t)!,
+      guessText: Color.lerp(guessText, other.guessText, t)!,
+      cipherText: Color.lerp(cipherText, other.cipherText, t)!,
+      conflict: Color.lerp(conflict, other.conflict, t)!,
+      error: Color.lerp(error, other.error, t)!,
+      revealed: Color.lerp(revealed, other.revealed, t)!,
+      confirmed: Color.lerp(confirmed, other.confirmed, t)!,
+      keyBg: Color.lerp(keyBg, other.keyBg, t)!,
+      keyUsedBg: Color.lerp(keyUsedBg, other.keyUsedBg, t)!,
+      keyText: Color.lerp(keyText, other.keyText, t)!,
+      keyUsedText: Color.lerp(keyUsedText, other.keyUsedText, t)!,
+      success: Color.lerp(success, other.success, t)!,
+      streakFlame: Color.lerp(streakFlame, other.streakFlame, t)!,
+      textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,
+      textFaint: Color.lerp(textFaint, other.textFaint, t)!,
+    );
+  }
 }

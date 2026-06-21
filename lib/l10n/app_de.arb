@@ -79,6 +79,8 @@
   "paywallLoadingPrice": "Preis wird geladen…",
   "paywallUnlock": "Premium freischalten · {price}",
   "paywallRestore": "Früheren Kauf wiederherstellen",
+  "purchaseFailed": "Kauf konnte nicht abgeschlossen werden. Bitte erneut versuchen.",
+  "purchaseRestoring": "Kauf wird wiederhergestellt…",
   "completeDailyTitle": "Tagesrätsel gelöst!",
   "completeTitle": "Gelöst!",
   "solveHints": "{count, plural, =0{Keine Hinweise} =1{1 Hinweis} other{{count} Hinweise}}",

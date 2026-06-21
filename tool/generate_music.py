@@ -24,10 +24,11 @@ Per-track musical invariants (unchanged from v3, now enforced per track):
 - Every melody/arp pitch is a chord tone of the chord it sounds over,
   enforced by a self-check below: a wrong note is mathematically impossible.
 
-Audio format: 22.05 kHz mono, encoded to OGG/Vorbis. A soft pad/pluck bed is
-band-limited, so Vorbis compresses it ~25x with no audible loss — six tracks
-land under ~1 MB total (16-bit WAV was ~20 MB, which Play flags as a large
-download). Requires `soundfile` + `numpy` at generation time (dev-only tool).
+Audio format: 44.1 kHz STEREO, encoded to OGG/Vorbis. A soft pad/pluck bed is
+band-limited, so Vorbis compresses it heavily with no audible loss — six tracks
+stay well under ~2 MB total (16-bit WAV was ~20 MB, which Play flags as a large
+download). The detuned voice pair is panned L/R for natural width. Requires
+`soundfile` + `numpy` at generation time (dev-only tool).
 
 Usage: python3 tool/generate_music.py
 Output (committed): assets/audio/music_calm_1.ogg .. music_calm_6.ogg
@@ -40,8 +41,21 @@ from pathlib import Path
 import numpy as np
 import soundfile as sf
 
-RATE = 22050
+RATE = 44100  # was 22050; full-rate so the bed has "air", on par with the SFX
 OUT = Path(__file__).resolve().parent.parent / "assets/audio"
+
+# OGG/Vorbis encode quality. soundfile maps compression_level 0.0 -> best
+# quality/largest, 1.0 -> smallest. This band-limited pad/pluck bed compresses
+# extremely well, so a fairly high compression level still sounds clean while
+# keeping each ~80s STEREO track inside the per-track size budget the audio test
+# enforces (Play flags large downloads).
+OGG_COMPRESSION = 0.65
+
+# Stereo width: the detuned voice pair is panned slightly L/R (mono-compatible,
+# their sum equals the old mono signal), so the bed feels spacious without any
+# new content.
+PAN_WIDE = 0.62
+PAN_NARROW = 0.38
 
 # Base chord voicings in C, root first (low-mid range). Tracks transpose these
 # by a whole number of semitones to reach other keys while reusing the shapes.
@@ -98,16 +112,25 @@ def melody_for(prog, semitones):
 
 
 def _tone(freq, n, env):
-    """sine + quiet 2nd partial, as a +/-3 cent detuned pair."""
+    """sine + quiet 2nd partial, as a +/-3 cent detuned pair, returned as a
+    STEREO (left, right) pair. The lower-detuned voice leans left and the
+    higher one leans right (a gentle, mono-compatible spread: left+right equals
+    the old mono tone), which gives the bed natural width with no new content."""
     sin = math.sin
-    out = [0.0] * n
-    for f in (freq / DETUNE, freq * DETUNE):
+    left = [0.0] * n
+    right = [0.0] * n
+    # voice 0 = -3 cents (leans left), voice 1 = +3 cents (leans right).
+    for idx, f in enumerate((freq / DETUNE, freq * DETUNE)):
+        lw = PAN_WIDE if idx == 0 else PAN_NARROW
+        rw = PAN_NARROW if idx == 0 else PAN_WIDE
         w1 = TWO_PI * f
         w2 = TWO_PI * 2.0 * f
         for i in range(n):
             t = i / RATE
-            out[i] += 0.5 * env(t) * (sin(w1 * t) + 0.3 * sin(w2 * t + 0.5))
-    return out
+            v = 0.5 * env(t) * (sin(w1 * t) + 0.3 * sin(w2 * t + 0.5))
+            left[i] += lw * v
+            right[i] += rw * v
+    return left, right
 
 
 def pad_voice(freq, dur, *, volume, attack=4.0, release=5.0):
@@ -146,22 +169,26 @@ def pluck(freq, *, volume=0.12, attack=0.009, decay=2.2, dur=2.0):
 def compose(prog, semitones, chord_span):
     total_seconds = len(prog) * chord_span
     n = int(RATE * total_seconds)
-    mixbuf = [0.0] * n
+    mix_l = [0.0] * n
+    mix_r = [0.0] * n
 
     def add(offset_s, samples, breathe=False):
+        sl, sr = samples  # every voice is now a (left, right) stereo pair
         start = int(offset_s * RATE)
         if breathe:
             # A slow amplitude LFO so the pad bed feels alive, not static.
-            for i, v in enumerate(samples):
+            for i in range(len(sl)):
                 j = start + i
                 if j < n:
-                    t = j / RATE
-                    mixbuf[j] += v * (1.0 + 0.08 * math.sin(TWO_PI * 0.08 * t))
+                    lfo = 1.0 + 0.08 * math.sin(TWO_PI * 0.08 * (j / RATE))
+                    mix_l[j] += sl[i] * lfo
+                    mix_r[j] += sr[i] * lfo
         else:
-            for i, v in enumerate(samples):
+            for i in range(len(sl)):
                 j = start + i
                 if j < n:
-                    mixbuf[j] += v
+                    mix_l[j] += sl[i]
+                    mix_r[j] += sr[i]
 
     melody = melody_for(prog, semitones)
     last = len(prog) - 1
@@ -211,13 +238,18 @@ def compose(prog, semitones, chord_span):
     # RMS so every track sits at the same perceived level (peak-only
     # normalization let denser tracks sound louder). Clamp the scale so the
     # peak never exceeds the ceiling.
-    glued = [math.tanh(1.1 * v) / math.tanh(1.1) for v in mixbuf]
-    cur_rms = rms(glued)
-    peak = max(abs(v) for v in glued) or 1.0
+    tanh_norm = math.tanh(1.1)
+    glued_l = [math.tanh(1.1 * v) / tanh_norm for v in mix_l]
+    glued_r = [math.tanh(1.1 * v) / tanh_norm for v in mix_r]
+    # Loudness-normalize on the combined (both-channel) signal so the shared RMS
+    # target still holds and the L/R balance is preserved.
+    cur_rms = rms(glued_l + glued_r)
+    peak = max(max((abs(v) for v in glued_l), default=0.0),
+               max((abs(v) for v in glued_r), default=0.0)) or 1.0
     scale = TARGET_RMS / (cur_rms or 1.0)
     if peak * scale > PEAK_CEILING:
         scale = PEAK_CEILING / peak
-    return [v * scale for v in glued]
+    return [v * scale for v in glued_l], [v * scale for v in glued_r]
 
 
 def rms(samples):
@@ -234,42 +266,56 @@ def build_track(filename, semitones, prog, chord_span):
         if not any(round(f) in members for f in octaves):
             sys.exit(f"FAIL: {filename}: melody {melody[idx]} not in {name}")
 
-    samples = compose(prog, semitones, chord_span)
+    left, right = compose(prog, semitones, chord_span)
+    channels = (left, right)
 
     # An 80 ms raised-cosine fade on each edge guarantees a click-free start and
-    # a click-free hard stop. The body stays at full level (no long silence) so
-    # the crossfade overlaps audible material.
+    # a click-free hard stop, applied identically to both channels. The body
+    # stays at full level (no long silence) so the crossfade overlaps audible
+    # material.
     fade = int(RATE * 0.08)
-    for i in range(fade):
-        ramp = 0.5 - 0.5 * math.cos(math.pi * i / fade)
-        samples[i] *= ramp
-        samples[len(samples) - 1 - i] *= ramp
+    for ch in channels:
+        for i in range(fade):
+            ramp = 0.5 - 0.5 * math.cos(math.pi * i / fade)
+            ch[i] *= ramp
+            ch[len(ch) - 1 - i] *= ramp
 
     # The very edges (first/last 5 ms) must be effectively silent so neither an
-    # abrupt stop nor a crossfade can click.
+    # abrupt stop nor a crossfade can click — verified on both channels.
     w = int(0.005 * RATE)
-    head, tail = rms(samples[:w]), rms(samples[-w:])
+    head = max(rms(left[:w]), rms(right[:w]))
+    tail = max(rms(left[-w:]), rms(right[-w:]))
     if head > 2e-3 or tail > 2e-3:
         sys.exit(f"FAIL: {filename}: edges not clean ({head:.5f}/{tail:.5f})")
 
-    peak = max(abs(v) for v in samples)
+    peak = max(max(abs(v) for v in left), max(abs(v) for v in right))
     if peak > 0.96:
         sys.exit(f"FAIL: {filename}: clipping risk, peak {peak:.3f}")
 
-    dc = abs(sum(samples) / len(samples))
+    dc = max(abs(sum(left) / len(left)), abs(sum(right) / len(right)))
     if dc > 1e-3:
         sys.exit(f"FAIL: {filename}: DC offset {dc:.5f}")
 
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / filename
-    # OGG/Vorbis: ~25x smaller than 16-bit WAV with no audible loss for this
-    # band-limited pad bed — keeps the bundle small (Play flags large APKs).
-    sf.write(str(path), np.asarray(samples, dtype=np.float32), RATE,
-             format="OGG", subtype="VORBIS")
+    # OGG/Vorbis, 44.1 kHz STEREO. A soft band-limited pad/pluck bed compresses
+    # extremely well, so OGG_COMPRESSION keeps each ~80s track small (Play flags
+    # large downloads) with no audible loss.
+    stereo = np.stack(
+        [np.asarray(left, dtype=np.float32), np.asarray(right, dtype=np.float32)],
+        axis=1,
+    )
+    # Write in 1s blocks: a single huge buffer segfaults the Vorbis encoder in
+    # libsndfile 1.2.2; streaming the frames in chunks sidesteps that bug.
+    with sf.SoundFile(str(path), "w", samplerate=RATE, channels=2,
+                      format="OGG", subtype="VORBIS",
+                      compression_level=OGG_COMPRESSION) as out:
+        for i in range(0, len(stereo), RATE):
+            out.write(stereo[i:i + RATE])
     print(
         f"wrote {path} ({path.stat().st_size} bytes, "
-        f"{len(samples) / RATE:.1f}s, peak {peak:.3f}, "
-        f"rms {rms(samples):.3f}, edges {head:.5f}/{tail:.5f})"
+        f"{len(left) / RATE:.1f}s, peak {peak:.3f}, "
+        f"rms {rms(left + right):.3f}, edges {head:.5f}/{tail:.5f})"
     )
 
 

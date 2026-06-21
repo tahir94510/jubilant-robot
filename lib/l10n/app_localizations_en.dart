@@ -261,6 +261,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paywallRestore => 'Restore previous purchase';
 
   @override
+  String get purchaseFailed =>
+      'Purchase couldn\'t be completed. Please try again.';
+
+  @override
+  String get purchaseRestoring => 'Restoring your purchase…';
+
+  @override
   String get completeDailyTitle => 'Daily solved!';
 
   @override

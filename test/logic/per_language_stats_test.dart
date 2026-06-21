@@ -61,6 +61,49 @@ void main() {
   );
 
   test(
+    'replaying a solved quote never inflates lifetime stats',
+    () async {
+      final storage = await emptyStorage();
+      final p = ProgressController(
+        storage: storage,
+        clock: FakeClock(DateTime(2026, 6, 10, 9)),
+      );
+
+      // First solve: a clean, hint-free 100s run sets the lifetime baseline.
+      await p.recordSolve(
+        quoteId: 'en-1',
+        solveTime: const Duration(seconds: 100),
+        hintsUsed: 0,
+        isDaily: false,
+        locale: 'en',
+      );
+      final en = p.statsFor('en');
+      expect(en.totalSolved, 1);
+      expect(en.noHintSolves, 1);
+      expect(en.hintsUsed, 0);
+      expect(en.totalTimeSeconds, 100);
+      expect(en.bestTimeSeconds, 100);
+
+      // Replay of the SAME quote: slower (300s) and with 4 hints. None of it
+      // counts — totalSolved/noHintSolves stay put (existing behavior) and now
+      // hintsUsed/totalTimeSeconds/bestTime do too (a replay is practice).
+      await p.recordSolve(
+        quoteId: 'en-1',
+        solveTime: const Duration(seconds: 300),
+        hintsUsed: 4,
+        isDaily: false,
+        locale: 'en',
+      );
+      final after = p.statsFor('en');
+      expect(after.totalSolved, 1);
+      expect(after.noHintSolves, 1);
+      expect(after.hintsUsed, 0);
+      expect(after.totalTimeSeconds, 100);
+      expect(after.bestTimeSeconds, 100);
+    },
+  );
+
+  test(
     'daily streak is per language: solving one language does not mark another',
     () async {
       final storage = await emptyStorage();

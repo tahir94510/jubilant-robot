@@ -79,6 +79,8 @@
   "paywallLoadingPrice": "Carregando preço…",
   "paywallUnlock": "Desbloquear Premium · {price}",
   "paywallRestore": "Restaurar compra anterior",
+  "purchaseFailed": "Não foi possível concluir a compra. Tente novamente.",
+  "purchaseRestoring": "Restaurando a sua compra…",
   "completeDailyTitle": "Desafio diário resolvido!",
   "completeTitle": "Resolvido!",
   "solveHints": "{count, plural, =0{Sem dicas} =1{1 dica} other{{count} dicas}}",

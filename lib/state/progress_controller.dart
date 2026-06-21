@@ -151,16 +151,21 @@ class ProgressController extends ChangeNotifier {
   }) async {
     final stats = _bucket(locale);
     final firstTimeSolve = stats.solvedIds.add(quoteId);
+    // Lifetime stats only count a quote's FIRST solve. Replaying an already
+    // solved puzzle is practice: it must not inflate the hint total, total time
+    // or best time (which would skew the per-solve averages on the stats
+    // screen), exactly as it never re-counts totalSolved/noHintSolves.
     if (firstTimeSolve) {
       stats.totalSolved += 1;
       if (hintsUsed == 0) stats.noHintSolves += 1;
-    }
-    stats.hintsUsed += hintsUsed;
-    stats.totalTimeSeconds += solveTime.inSeconds;
-    final seconds = solveTime.inSeconds;
-    if (seconds > 0 &&
-        (stats.bestTimeSeconds == null || seconds < stats.bestTimeSeconds!)) {
-      stats.bestTimeSeconds = seconds;
+      stats.hintsUsed += hintsUsed;
+      stats.totalTimeSeconds += solveTime.inSeconds;
+      final seconds = solveTime.inSeconds;
+      if (seconds > 0 &&
+          (stats.bestTimeSeconds == null ||
+              seconds < stats.bestTimeSeconds!)) {
+        stats.bestTimeSeconds = seconds;
+      }
     }
 
     if (isDaily) _recordDailySolve(stats);

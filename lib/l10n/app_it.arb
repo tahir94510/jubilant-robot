@@ -79,6 +79,8 @@
   "paywallLoadingPrice": "Caricamento prezzo…",
   "paywallUnlock": "Sblocca Premium · {price}",
   "paywallRestore": "Ripristina l’acquisto precedente",
+  "purchaseFailed": "Acquisto non riuscito. Riprova.",
+  "purchaseRestoring": "Ripristino dell’acquisto in corso…",
   "completeDailyTitle": "Enigma del giorno risolto!",
   "completeTitle": "Risolto!",
   "solveHints": "{count, plural, =0{Nessun indizio} =1{1 indizio} other{{count} indizi}}",

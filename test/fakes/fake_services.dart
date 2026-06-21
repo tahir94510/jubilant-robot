@@ -70,6 +70,8 @@ class FakePurchaseService extends PurchaseService {
 
   final ValueNotifier<bool> owned = ValueNotifier(false);
   final ValueNotifier<String?> price = ValueNotifier(r'$4.99');
+  final ValueNotifier<bool> inProgress = ValueNotifier(false);
+  final ValueNotifier<int> errorTick = ValueNotifier(0);
   int buyCalls = 0;
   int restoreCalls = 0;
 
@@ -81,6 +83,12 @@ class FakePurchaseService extends PurchaseService {
 
   @override
   ValueListenable<String?> get premiumPrice => price;
+
+  @override
+  ValueListenable<bool> get purchaseInProgress => inProgress;
+
+  @override
+  ValueListenable<int> get purchaseErrorTick => errorTick;
 
   @override
   Future<void> initialize({required bool initialPremium}) async {

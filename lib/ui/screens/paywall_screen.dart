@@ -8,8 +8,42 @@ import '../theme/palette.dart';
 import '../widgets/brand_mark.dart';
 
 /// One-time premium unlock pitch. Price comes live from the store.
-class PaywallScreen extends StatelessWidget {
+class PaywallScreen extends StatefulWidget {
   const PaywallScreen({super.key});
+
+  @override
+  State<PaywallScreen> createState() => _PaywallScreenState();
+}
+
+class _PaywallScreenState extends State<PaywallScreen> {
+  PurchaseService? _purchases;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Subscribe once to the store's failure signal so a stuck/declined purchase
+    // tells the user instead of leaving the button silently loading.
+    final purchases = context.read<PurchaseService>();
+    if (!identical(purchases, _purchases)) {
+      _purchases?.purchaseErrorTick.removeListener(_onPurchaseError);
+      _purchases = purchases;
+      purchases.purchaseErrorTick.addListener(_onPurchaseError);
+    }
+  }
+
+  @override
+  void dispose() {
+    _purchases?.purchaseErrorTick.removeListener(_onPurchaseError);
+    super.dispose();
+  }
+
+  void _onPurchaseError() {
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(l10n.purchaseFailed)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,23 +171,54 @@ class PaywallScreen extends StatelessWidget {
                         ),
                       )
                     else ...[
-                      ValueListenableBuilder<String?>(
-                        valueListenable: purchases.premiumPrice,
-                        builder: (context, price, _) => FilledButton(
-                          onPressed: price == null
-                              ? null
-                              : () => purchases.buyPremium(),
-                          child: Text(
-                            price == null
-                                ? l10n.paywallLoadingPrice
-                                : l10n.paywallUnlock(price),
-                          ),
-                        ),
+                      // The buy button reflects both the live price and whether
+                      // a purchase is in flight (spinner + disabled).
+                      AnimatedBuilder(
+                        animation: Listenable.merge([
+                          purchases.premiumPrice,
+                          purchases.purchaseInProgress,
+                        ]),
+                        builder: (context, _) {
+                          final price = purchases.premiumPrice.value;
+                          final busy = purchases.purchaseInProgress.value;
+                          return FilledButton(
+                            onPressed: (price == null || busy)
+                                ? null
+                                : () => purchases.buyPremium(),
+                            child: busy
+                                ? const SizedBox(
+                                    width: 20,
+                                    height: 20,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2.4,
+                                    ),
+                                  )
+                                : Text(
+                                    price == null
+                                        ? l10n.paywallLoadingPrice
+                                        : l10n.paywallUnlock(price),
+                                  ),
+                          );
+                        },
                       ),
                       const SizedBox(height: 8),
-                      TextButton(
-                        onPressed: () => purchases.restore(),
-                        child: Text(l10n.paywallRestore),
+                      ValueListenableBuilder<bool>(
+                        valueListenable: purchases.purchaseInProgress,
+                        builder: (context, busy, _) => TextButton(
+                          onPressed: busy
+                              ? null
+                              : () {
+                                  ScaffoldMessenger.of(context)
+                                    ..hideCurrentSnackBar()
+                                    ..showSnackBar(
+                                      SnackBar(
+                                        content: Text(l10n.purchaseRestoring),
+                                      ),
+                                    );
+                                  purchases.restore();
+                                },
+                          child: Text(l10n.paywallRestore),
+                        ),
                       ),
                     ],
                   ],

@@ -19,6 +19,15 @@ abstract class PurchaseService {
   /// product query completes.
   ValueListenable<String?> get premiumPrice;
 
+  /// True while a buy/restore flow is in flight (incl. a `pending` purchase),
+  /// so the paywall can show a spinner and disable the buttons.
+  ValueListenable<bool> get purchaseInProgress;
+
+  /// Bumps each time a purchase fails (store error). The paywall watches it to
+  /// surface a one-shot "couldn't complete" message; user cancellations do not
+  /// bump it (no error to report).
+  ValueListenable<int> get purchaseErrorTick;
+
   /// Attaches the purchase stream listener, then queries the product.
   /// [initialPremium] seeds the flag from the local cache so the UI is
   /// correct before the store responds.

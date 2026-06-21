@@ -268,6 +268,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get paywallRestore => 'Ripristina l’acquisto precedente';
 
   @override
+  String get purchaseFailed => 'Acquisto non riuscito. Riprova.';
+
+  @override
+  String get purchaseRestoring => 'Ripristino dell’acquisto in corso…';
+
+  @override
   String get completeDailyTitle => 'Enigma del giorno risolto!';
 
   @override
