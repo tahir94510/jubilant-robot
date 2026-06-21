@@ -5,56 +5,63 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
-## Release notes: v2.3.6 (max 500 chars, paste into "What's new")
+## Release notes: v2.3.7 (max 500 chars, paste into "What's new")
 
 ```
-NEW in 2.3.6
+NEW in 2.3.7
 • Daily reminders now arrive on time, reliably, on every device
 • Cleaner, consistent launch screen
+• Smoother letter navigation: the ◀ ▶ keys now wrap around the quote
 Happy decoding!
 ```
 
 **Türkçe**
 ```
-2.3.6 YENİLİKLER
+2.3.7 YENİLİKLER
 • Günlük hatırlatmalar artık her cihazda zamanında ve güvenilir geliyor
 • Daha temiz, tutarlı açılış ekranı
+• Daha akıcı harf gezinmesi: ◀ ▶ tuşları artık söz içinde başa/sona sarıyor
 İyi çözmeler!
 ```
 
 **Español**
 ```
-NOVEDADES 2.3.6
+NOVEDADES 2.3.7
 • Los recordatorios diarios ahora llegan a tiempo y con fiabilidad en todos los dispositivos
 • Pantalla de inicio más limpia y coherente
+• Navegación de letras más fluida: las teclas ◀ ▶ ahora dan la vuelta a la frase
 ```
 
 **Deutsch**
 ```
-NEU in 2.3.6
+NEU in 2.3.7
 • Tägliche Erinnerungen kommen jetzt zuverlässig und pünktlich auf jedem Gerät
 • Sauberer, einheitlicher Startbildschirm
+• Flüssigere Navigation: die ◀ ▶ Tasten springen am Zitatende wieder zum Anfang
 ```
 
 **Français**
 ```
-NOUVEAU dans 2.3.6
+NOUVEAU dans 2.3.7
 • Les rappels quotidiens arrivent désormais à l'heure et de façon fiable sur chaque appareil
 • Écran de lancement plus net et cohérent
+• Navigation plus fluide : les touches ◀ ▶ bouclent autour de la citation
 ```
 
 **Italiano**
 ```
-NOVITÀ nella 2.3.6
+NOVITÀ nella 2.3.7
 • I promemoria giornalieri ora arrivano puntuali e affidabili su ogni dispositivo
 • Schermata di avvio più pulita e coerente
+• Navigazione più fluida: i tasti ◀ ▶ ora scorrono in cerchio nella frase
 ```
 
 **Português**
 ```
-NOVIDADES na 2.3.6
+NOVIDADES na 2.3.7
 • Os lembretes diários agora chegam na hora e de forma confiável em todos os aparelhos
 • Tela de abertura mais limpa e consistente
+• Navegação de letras mais fluida: as teclas ◀ ▶ dão a volta na frase
 ```
 
 ---
