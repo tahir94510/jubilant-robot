@@ -9,6 +9,19 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String a11yLetterCellEmpty(String letter) {
+    return 'Letter $letter, empty';
+  }
+
+  @override
+  String a11yLetterCellFilled(String letter, String guess) {
+    return 'Letter $letter, answer $guess';
+  }
+
+  @override
+  String get a11yDismiss => 'Dismiss';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override

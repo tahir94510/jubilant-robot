@@ -1,5 +1,8 @@
 {
   "@@locale": "tr",
+  "a11yLetterCellEmpty": "{letter} harfi, boş",
+  "a11yLetterCellFilled": "{letter} harfi, cevap {guess}",
+  "a11yDismiss": "Kapat",
   "settingsTitle": "Ayarlar",
   "sectionAppearance": "Görünüm",
   "sectionLanguage": "Dil",

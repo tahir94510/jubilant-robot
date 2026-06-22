@@ -1,5 +1,8 @@
 {
   "@@locale": "de",
+  "a11yLetterCellEmpty": "Buchstabe {letter}, leer",
+  "a11yLetterCellFilled": "Buchstabe {letter}, Antwort {guess}",
+  "a11yDismiss": "Schließen",
   "settingsTitle": "Einstellungen",
   "sectionAppearance": "Darstellung",
   "sectionLanguage": "Sprache",

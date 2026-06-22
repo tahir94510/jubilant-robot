@@ -115,11 +115,18 @@ class PremiumCelebration extends StatelessWidget {
 
     return Stack(
       children: [
-        // Tap-anywhere-to-dismiss scrim that dims the paywall behind.
+        // Tap-anywhere-to-dismiss scrim that dims the paywall behind. Labelled
+        // so a screen reader can discover the dismiss affordance (sighted users
+        // also get the visible "Continue" button below).
         Positioned.fill(
-          child: GestureDetector(
+          child: Semantics(
+            label: l10n.a11yDismiss,
+            button: true,
             onTap: onDismiss,
-            child: ColoredBox(color: Colors.black.withValues(alpha: 0.55)),
+            child: GestureDetector(
+              onTap: onDismiss,
+              child: ColoredBox(color: Colors.black.withValues(alpha: 0.55)),
+            ),
           ),
         ),
         // Confetti ignores pointers, so taps fall through to the scrim.
