@@ -92,6 +92,15 @@ class GameController extends ChangeNotifier {
   bool _lastInputCompletedWord = false;
   bool get lastInputCompletedWord => _lastInputCompletedWord;
 
+  /// The cipher letter the player most recently placed a guess for. Drives the
+  /// board's "last entered letter" highlight — that letter and every copy glow
+  /// softly so the eye stays anchored on the just-placed answer. Set only by a
+  /// real [enterGuess]; cleared by any other change (delete, undo/redo, reveal),
+  /// when the puzzle is solved, and on (re)start — so a finished board reads
+  /// clean and the highlight never lingers on a stale letter.
+  String? _lastEnteredCipherLetter;
+  String? get lastEnteredCipherLetter => _lastEnteredCipherLetter;
+
   Timer? _ticker;
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
@@ -194,6 +203,7 @@ class GameController extends ChangeNotifier {
     _attemptRevealed = null;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
+    _lastEnteredCipherLetter = null;
 
     // Re-opening a solved puzzle no longer spoils the answer: it starts as a
     // blank, fully playable board exactly like a fresh attempt. The solution
@@ -261,6 +271,7 @@ class GameController extends ChangeNotifier {
     _elapsed = Duration.zero;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
+    _lastEnteredCipherLetter = null;
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
     _persistState();
@@ -280,6 +291,7 @@ class GameController extends ChangeNotifier {
       s.guesses[c] = s.cipher.decryptLetter(c);
     }
     _reviewingSolved = true; // set first so stopTimer won't persist the fill
+    _lastEnteredCipherLetter = null;
     stopTimer();
     notifyListeners();
   }
@@ -298,6 +310,7 @@ class GameController extends ChangeNotifier {
     _attemptGuesses = null;
     _attemptRevealed = null;
     _reviewingSolved = false;
+    _lastEnteredCipherLetter = null;
     if (!_completed) _startTicker();
     notifyListeners();
   }
@@ -462,11 +475,13 @@ class GameController extends ChangeNotifier {
     }
 
     // Re-typing the letter the cell already holds is a no-op edit: don't rewrite
-    // it or push a redundant undo entry — just walk forward to the next editable
+    // it or push a redundant undo entry — just walk forward to the next empty
     // cell (the natural "skip" the player expects).
     if (s.guesses[target] == plainLetter) {
       _selectedIndex =
-          _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
+          _nextEmptyEditableIndexAfter(_selectedIndex) ??
+          _nextEditableIndexAfter(_selectedIndex) ??
+          _selectedIndex;
       notifyListeners();
       return;
     }
@@ -475,6 +490,7 @@ class GameController extends ChangeNotifier {
     final conflictsBefore = s.conflicts.length;
     final wordsBefore = s.correctWordCount;
     s.guesses[target] = plainLetter;
+    _lastEnteredCipherLetter = target;
     _lastInputCreatedConflict = s.conflicts.length > conflictsBefore;
     _lastInputCompletedWord =
         !_lastInputCreatedConflict &&
@@ -489,6 +505,8 @@ class GameController extends ChangeNotifier {
   /// clear that one. So repeated presses walk backwards through your entries.
   void clearGuess() {
     _lastInputCompletedWord = false;
+    // Deleting a letter drops the last-entered highlight (nothing fresh placed).
+    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _completed || _reviewingSolved) return;
 
@@ -546,6 +564,26 @@ class GameController extends ChangeNotifier {
     return null;
   }
 
+  /// The next EMPTY editable cell strictly AFTER [from], wrapping to the first.
+  /// Skips cells whose cipher letter already holds a guess, so after typing a
+  /// letter (which auto-fills all its copies) the cursor jumps straight to the
+  /// next blank instead of pausing on a just-filled copy — the "smart cursor".
+  /// Returns null when every editable cell is already filled.
+  int? _nextEmptyEditableIndexAfter(int? from) {
+    final s = _session;
+    if (s == null) return null;
+    final t = s.cipherText;
+    bool empty(int i) => _isEditableIndex(s, i) && !s.guesses.containsKey(t[i]);
+    final start = from == null ? 0 : from + 1;
+    for (var i = start; i < t.length; i++) {
+      if (empty(i)) return i;
+    }
+    for (var i = 0; i < t.length; i++) {
+      if (empty(i)) return i;
+    }
+    return null;
+  }
+
   /// The nearest editable cell strictly BEFORE [from] in reading order (no
   /// wrap — backspace stops at the start of the board).
   int? _prevEditableIndex(int? from) {
@@ -560,6 +598,7 @@ class GameController extends ChangeNotifier {
 
   void undo() {
     _lastInputCompletedWord = false;
+    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _undoStack.isEmpty || _completed || _reviewingSolved) {
       return;
@@ -604,6 +643,7 @@ class GameController extends ChangeNotifier {
   /// clearing the redo stack, which only a fresh edit does).
   void redo() {
     _lastInputCompletedWord = false;
+    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _redoStack.isEmpty || _completed || _reviewingSolved) {
       return;
@@ -659,6 +699,9 @@ class GameController extends ChangeNotifier {
 
   void revealSelected() {
     _lastInputCompletedWord = false; // hints have their own chime
+    // A reveal has its own "revealed" cell color, so it never carries the
+    // last-entered highlight (which marks the player's own latest guess).
+    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _completed || _reviewingSolved) return;
     var target = selectedCipherLetter ?? _firstEmptyLetter();
@@ -681,8 +724,10 @@ class GameController extends ChangeNotifier {
     // revealed letter's first occurrence — otherwise hinting late in the quote
     // flung the cursor backward to an earlier copy. Fall back to the revealed
     // letter's position only when there is no current selection.
+    final revealFrom = _selectedIndex ?? _indexOfLetter(target);
     _selectedIndex =
-        _nextEditableIndexAfter(_selectedIndex ?? _indexOfLetter(target)) ??
+        _nextEmptyEditableIndexAfter(revealFrom) ??
+        _nextEditableIndexAfter(revealFrom) ??
         _selectedIndex;
     _undoStack.clear(); // reveals are permanent
     _afterChange(advance: false);
@@ -694,14 +739,21 @@ class GameController extends ChangeNotifier {
     final s = _session!;
     if (s.isSolved) {
       _completed = true;
+      // A finished board reads clean: drop the last-entered highlight.
+      _lastEnteredCipherLetter = null;
       stopTimer();
       _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
         'solved': true,
       });
     } else {
       if (advance) {
+        // Smart cursor: skip filled cells (including the copies just
+        // auto-filled) and land on the next empty one, falling back to the next
+        // editable cell only when every blank is gone (a full, unconfirmed board).
         _selectedIndex =
-            _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
+            _nextEmptyEditableIndexAfter(_selectedIndex) ??
+            _nextEditableIndexAfter(_selectedIndex) ??
+            _selectedIndex;
       }
       _persistState();
     }

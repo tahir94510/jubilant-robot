@@ -134,6 +134,35 @@ void main() {
 
     h.game.stopTimer();
   });
+
+  testWidgets('hint/confirmed answers lock the keyboard; merely-used stay '
+      'active', (tester) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    final session = h.game.session!;
+
+    // A WRONG guess is "used" but not locked — the player can still move it.
+    h.game.selectIndex(0);
+    h.game.enterGuess('Z');
+    await tester.pump();
+    var keyboard = tester.widget<PuzzleKeyboard>(find.byType(PuzzleKeyboard));
+    expect(keyboard.usedLetters, contains('Z'));
+    expect(keyboard.lockedLetters, isNot(contains('Z')));
+
+    // Revealing a letter LOCKS its correct answer on the keyboard (a known
+    // letter typed elsewhere could only ever be wrong).
+    final cipher = h.game.selectedCipherLetter!;
+    h.game.revealSelected();
+    await tester.pump();
+    final lockedPlain = session.cipher.decryptLetter(cipher);
+    keyboard = tester.widget<PuzzleKeyboard>(find.byType(PuzzleKeyboard));
+    expect(keyboard.lockedLetters, contains(lockedPlain));
+
+    h.game.stopTimer();
+  });
 }
 
 /// Maps a plain A-Z letter to its logical key (a-z logical ids are the

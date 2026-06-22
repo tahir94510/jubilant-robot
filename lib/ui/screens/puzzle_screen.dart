@@ -200,7 +200,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     // users skip the wave and navigate immediately.
     if (game.completed && !_navigatedToComplete) {
       _navigatedToComplete = true;
-      haptics.success();
+      haptics.celebrate();
       sounds.success();
       // The bed dips under the fanfare and swells back afterwards.
       context.read<MusicService>().duck();
@@ -332,6 +332,8 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                           session: session,
                                           selected: game.selectedCipherLetter,
                                           selectedIndex: game.selectedIndex,
+                                          lastEntered:
+                                              game.lastEnteredCipherLetter,
                                           errorChecking: settings.errorChecking,
                                           onSelect: (index) {
                                             haptics.tap();
@@ -431,6 +433,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                 PuzzleKeyboard(
                                   rows: session.alphabet.keyboardRows,
                                   usedLetters: session.usedPlainLetters,
+                                  lockedLetters: session.lockedLetters,
                                   onLetter: _onLetter,
                                   onBackspace: _onBackspace,
                                 ),

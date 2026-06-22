@@ -222,25 +222,59 @@ void main() {
   });
 
   test(
-    'typing advances onto the next editable cell even when it is filled',
+    'smart cursor: typing skips already-filled cells onto the next EMPTY one',
     () async {
       final store = await storage();
       final game = GameController(storage: store);
       game.start(shortQuote, daily: false);
       final s = game.session!;
-      // "LESS IS MORE": cells 0 and 1 are distinct letters (L, E).
+      // "LESS IS MORE": cells 0 (L), 1 (E), 2 (S) are three distinct letters.
       expect(s.cipherText[0], isNot(s.cipherText[1]));
+      expect(s.cipherText[1], isNot(s.cipherText[2]));
 
+      // Pre-fill cell 1 (E) so there is a filled cell for the cursor to skip.
       game.selectIndex(1);
-      final c1 = game.selectedCipherLetter!;
-      game.enterGuess('Q'); // fill cell 1 with a wrong, non-completing letter
-      game.selectIndex(0);
-      game.enterGuess('W'); // fill cell 0; cursor should step onto cell 1
+      game.enterGuess('Q');
 
-      expect(game.selectedIndex, 1);
-      expect(game.selectedCipherLetter, c1);
+      // Type into cell 0 (L): the cursor must SKIP the now-filled cell 1 and
+      // land on the next EMPTY cell (2, an S) — never pause on a filled copy.
+      game.selectIndex(0);
+      game.enterGuess('W');
+
+      expect(game.selectedIndex, 2);
+      expect(game.selectedCipherLetter, s.cipherText[2]);
 
       game.stopTimer();
+      game.dispose();
+    },
+  );
+
+  test(
+    'the last-entered cipher letter is tracked, then cleared on solve',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      final cipherS = s.cipher.encryptLetter('S');
+      game.selectCipherLetter(cipherS);
+      game.enterGuess('S');
+      // The just-typed letter is recorded (drives the last-letter highlight).
+      expect(game.lastEnteredCipherLetter, cipherS);
+
+      // Undo clears it — no fresh guess stands.
+      game.undo();
+      expect(game.lastEnteredCipherLetter, isNull);
+
+      // Solving the whole puzzle clears it so the finished board reads clean.
+      for (final plain in ['L', 'E', 'S', 'I', 'M', 'O', 'R']) {
+        game.selectCipherLetter(s.cipher.encryptLetter(plain));
+        game.enterGuess(plain);
+      }
+      expect(game.completed, isTrue);
+      expect(game.lastEnteredCipherLetter, isNull);
+
       game.dispose();
     },
   );
