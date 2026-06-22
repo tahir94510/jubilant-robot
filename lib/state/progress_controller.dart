@@ -160,13 +160,14 @@ class ProgressController extends ChangeNotifier {
       if (hintsUsed == 0) stats.noHintSolves += 1;
       stats.hintsUsed += hintsUsed;
       stats.totalTimeSeconds += solveTime.inSeconds;
-    }
-    // Best time is a personal record that ANY attempt can beat — a faster
-    // replay legitimately sets a new best even though it doesn't re-count.
-    final seconds = solveTime.inSeconds;
-    if (seconds > 0 &&
-        (stats.bestTimeSeconds == null || seconds < stats.bestTimeSeconds!)) {
-      stats.bestTimeSeconds = seconds;
+      // Best time counts ONLY a quote's first solve, like every other lifetime
+      // stat. Replaying an already-solved puzzle is practice ("Try again") and
+      // must never rewrite a personal record — or any stat.
+      final seconds = solveTime.inSeconds;
+      if (seconds > 0 &&
+          (stats.bestTimeSeconds == null || seconds < stats.bestTimeSeconds!)) {
+        stats.bestTimeSeconds = seconds;
+      }
     }
 
     if (isDaily) _recordDailySolve(stats);
