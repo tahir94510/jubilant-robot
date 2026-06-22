@@ -264,6 +264,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get paywallRestore => 'Önceki satın alımı geri yükle';
 
   @override
+  String get premiumUnlockedTitle => 'Premium açıldı!';
+
+  @override
+  String get premiumUnlockedBody =>
+      'Reklamlar tamamen kalktı, ipuçların artık sınırsız. Quotecrack\'e destek olduğun için teşekkürler!';
+
+  @override
+  String get premiumContinue => 'Oynamaya başla';
+
+  @override
   String get purchaseFailed =>
       'Satın alma tamamlanamadı. Lütfen tekrar deneyin.';
 

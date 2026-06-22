@@ -184,60 +184,75 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                   color: palette.success,
                                 ),
                               const SizedBox(height: 14),
-                              Text(
-                                '\u{201C}${quote.text}\u{201D}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Lora',
-                                  fontSize: 22,
-                                  height: 1.45,
-                                  color: scheme.onSurface,
+                              _StaggeredEntrance(
+                                index: 1,
+                                child: Text(
+                                  '\u{201C}${quote.text}\u{201D}',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontFamily: 'Lora',
+                                    fontSize: 22,
+                                    height: 1.45,
+                                    color: scheme.onSurface,
+                                  ),
                                 ),
                               ),
                               const SizedBox(height: 14),
-                              Text(
-                                '\u{2014} ${quote.author}',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontFamily: 'Lora',
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 16,
-                                  color: palette.textSecondary,
-                                ),
-                              ),
-                              Text(
-                                quote.source,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: palette.textFaint,
+                              _StaggeredEntrance(
+                                index: 2,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      '\u{2014} ${quote.author}',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontFamily: 'Lora',
+                                        fontStyle: FontStyle.italic,
+                                        fontSize: 16,
+                                        color: palette.textSecondary,
+                                      ),
+                                    ),
+                                    Text(
+                                      quote.source,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        color: palette.textFaint,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               const SizedBox(height: 18),
                               // Wrap, not Row: with three chips (daily) on a narrow
                               // phone the row overflowed; now extras flow to a new line.
-                              Wrap(
-                                alignment: WrapAlignment.center,
-                                spacing: 10,
-                                runSpacing: 8,
-                                children: [
-                                  _StatChip(
-                                    icon: Icons.timer_outlined,
-                                    label: '$minutes:$seconds',
-                                  ),
-                                  _StatChip(
-                                    icon: Icons.lightbulb_outline,
-                                    label: l10n.solveHints(game.hintsUsed),
-                                  ),
-                                  // Only show the streak chip once there is a real
-                                  // streak (>=1) — a "0 day streak" is meaningless.
-                                  if (game.isDaily && streak >= 1)
+                              _StaggeredEntrance(
+                                index: 3,
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  spacing: 10,
+                                  runSpacing: 8,
+                                  children: [
                                     _StatChip(
-                                      icon:
-                                          Icons.local_fire_department_outlined,
-                                      label: l10n.solveStreak(streak),
+                                      icon: Icons.timer_outlined,
+                                      label: '$minutes:$seconds',
                                     ),
-                                ],
+                                    _StatChip(
+                                      icon: Icons.lightbulb_outline,
+                                      label: l10n.solveHints(game.hintsUsed),
+                                    ),
+                                    // Only show the streak chip once there is a
+                                    // real streak (>=1) — a "0 day streak" is
+                                    // meaningless.
+                                    if (game.isDaily && streak >= 1)
+                                      _StatChip(
+                                        icon: Icons
+                                            .local_fire_department_outlined,
+                                        label: l10n.solveStreak(streak),
+                                      ),
+                                  ],
+                                ),
                               ),
                               if (_newAchievements.isNotEmpty) ...[
                                 const SizedBox(height: 16),
@@ -256,7 +271,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                 const SizedBox(height: 10),
                                 for (final e
                                     in _newAchievements.asMap().entries)
-                                  _AchievementEntrance(
+                                  _StaggeredEntrance(
                                     index: e.key,
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -510,11 +525,12 @@ class _StatChip extends StatelessWidget {
   }
 }
 
-/// A staggered fade-and-rise entrance for each freshly unlocked achievement
-/// tile, so they cascade in instead of popping. Honors the system
+/// A staggered fade-and-rise entrance: each indexed child cascades in (later
+/// indices start later) instead of popping — used for the celebration's quote
+/// block and for freshly unlocked achievement tiles. Honors the system
 /// "reduce motion" setting by rendering the child instantly.
-class _AchievementEntrance extends StatelessWidget {
-  const _AchievementEntrance({required this.index, required this.child});
+class _StaggeredEntrance extends StatelessWidget {
+  const _StaggeredEntrance({required this.index, required this.child});
 
   final int index;
   final Widget child;
