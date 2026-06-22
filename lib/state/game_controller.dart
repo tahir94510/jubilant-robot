@@ -303,6 +303,10 @@ class GameController extends ChangeNotifier {
   }
 
   void _startTicker() {
+    // Idempotent restart: cancel any live timer first so a caller that starts
+    // the clock without routing through stopTimer (e.g. replay()) can never
+    // leave a second periodic timer ticking against the same session.
+    _ticker?.cancel();
     _ticker = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!_completed) {
         _elapsed += const Duration(seconds: 1);

@@ -438,7 +438,12 @@ class MusicService with WidgetsBindingObserver {
     unawaited(_completeSubA?.cancel());
     unawaited(_completeSubB?.cancel());
     for (final p in _players) {
-      p.dispose();
+      // Dispose every player even if one throws on teardown (a native channel
+      // edge case) — otherwise a single failure would leak the remaining
+      // players' audio resources.
+      try {
+        p.dispose();
+      } catch (_) {}
     }
   }
 }
