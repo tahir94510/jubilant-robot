@@ -5,6 +5,81 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.3.8 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.3.8
+• Smart cursor: typing now jumps straight to the next empty letter
+• The letter you just placed stays gently highlighted, so you never lose your place
+• Smarter keyboard: solved letters lock, so taps never go to waste
+• A richer solve celebration — fuller confetti and a satisfying buzz
+• A VIP welcome the moment you go ad-free
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.3.8 YENİLİKLER
+• Akıllı imleç: harf girince imleç doğrudan sıradaki boş harfe atlar
+• En son koyduğun harf hafifçe vurgulanır, yerini asla kaybetmezsin
+• Daha akıllı klavye: çözülen harfler kilitlenir, boşa dokunma olmaz
+• Daha dolu konfeti ve tatmin edici titreşimle zenginleşen çözüm kutlaması
+• Reklamsıza geçtiğin an VIP karşılama
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.3.8
+• Cursor inteligente: al escribir, salta directo a la siguiente letra vacía
+• La última letra que colocaste queda resaltada para no perder el hilo
+• Teclado más listo: las letras resueltas se bloquean, sin toques en balde
+• Una celebración más rica al resolver: más confeti y una vibración satisfactoria
+• Una bienvenida VIP al pasar a sin anuncios
+```
+
+**Deutsch**
+```
+NEU in 2.3.8
+• Schlauer Cursor: Tippen springt direkt zum nächsten leeren Buchstaben
+• Der zuletzt gesetzte Buchstabe bleibt sanft hervorgehoben – du verlierst nie den Faden
+• Klügere Tastatur: gelöste Buchstaben werden gesperrt, kein Tipp ist vergebens
+• Ein reicheres Lösungs-Finale: mehr Konfetti und ein wohliges Vibrieren
+• Ein VIP-Empfang, sobald du werbefrei wirst
+```
+
+**Français**
+```
+NOUVEAU dans 2.3.8
+• Curseur intelligent : la saisie saute directement à la prochaine lettre vide
+• La dernière lettre posée reste discrètement mise en évidence : on ne perd jamais le fil
+• Clavier plus malin : les lettres résolues se verrouillent, aucun appui gâché
+• Une célébration plus riche : plus de confettis et une vibration satisfaisante
+• Un accueil VIP dès le passage sans pub
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.3.8
+• Cursore intelligente: digitando salti subito alla prossima lettera vuota
+• L'ultima lettera inserita resta evidenziata: non perdi mai il segno
+• Tastiera più sveglia: le lettere risolte si bloccano, nessun tocco sprecato
+• Una festa di soluzione più ricca: più coriandoli e una vibrazione appagante
+• Un benvenuto VIP appena passi senza pubblicità
+```
+
+**Português**
+```
+NOVIDADES na 2.3.8
+• Cursor inteligente: ao digitar, ele pula direto para a próxima letra vazia
+• A última letra que você colocou fica destacada para não perder o ritmo
+• Teclado mais esperto: letras resolvidas travam, sem toques desperdiçados
+• Uma comemoração mais rica ao resolver: mais confete e uma vibração satisfatória
+• Boas-vindas VIP assim que você fica sem anúncios
+```
+
+---
+
 ## Release notes: v2.3.7 (max 500 chars, paste into "What's new")
 
 ```
