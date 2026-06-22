@@ -69,6 +69,14 @@ void main() {
         atLeast('textFaint/surface', p.textFaint, cs.surface, 3.0);
         atLeast('cipherText/surface', p.cipherText, cs.surface, 3.0);
         atLeast('keyUsedText/keyUsedBg', p.keyUsedText, p.keyUsedBg, 3.0);
+        // Disabled (locked) key glyphs must stay legible too — the earlier
+        // translucent treatment read ~1.6:1.
+        atLeast(
+          'keyDisabledText/keyUsedBg',
+          p.keyDisabledText,
+          p.keyUsedBg,
+          3.0,
+        );
 
         // Semantic state colors render as the board LETTER over the (near
         // transparent) cell, i.e. over the surface — so they carry meaning as

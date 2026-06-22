@@ -9,6 +9,19 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
+  String a11yLetterCellEmpty(String letter) {
+    return 'Lettre $letter, vide';
+  }
+
+  @override
+  String a11yLetterCellFilled(String letter, String guess) {
+    return 'Lettre $letter, réponse $guess';
+  }
+
+  @override
+  String get a11yDismiss => 'Fermer';
+
+  @override
   String get settingsTitle => 'Paramètres';
 
   @override

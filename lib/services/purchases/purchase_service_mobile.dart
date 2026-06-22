@@ -43,6 +43,10 @@ class MobilePurchaseService extends PurchaseService {
   Future<void> initialize({required bool initialPremium}) async {
     _owned.value = initialPremium;
 
+    // Guard against a double initialize() leaking a second listener on the
+    // purchase stream (which would double-handle every purchase event): cancel
+    // any prior subscription before re-attaching.
+    await _sub?.cancel();
     _sub = _iap.purchaseStream.listen(_onPurchases, onError: (_) {});
 
     if (!await _iap.isAvailable()) return;

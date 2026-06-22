@@ -22,6 +22,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     required this.keyUsedBg,
     required this.keyText,
     required this.keyUsedText,
+    required this.keyDisabledText,
     required this.success,
     required this.streakFlame,
     required this.textSecondary,
@@ -57,6 +58,12 @@ class GamePalette extends ThemeExtension<GamePalette> {
   final Color keyUsedBg;
   final Color keyText;
   final Color keyUsedText;
+
+  /// Glyph color for a DISABLED key — a hint/confirmed answer the player can no
+  /// longer place. A solid token (not a translucent [keyUsedText]) so it stays
+  /// legible at ≥3:1 on [keyUsedBg] in every theme, locked by contrast_test;
+  /// the earlier `keyUsedText.withValues(alpha: .4)` read ~1.6:1.
+  final Color keyDisabledText;
   final Color success;
   final Color streakFlame;
 
@@ -98,6 +105,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: const Color(0xFFECE6D9),
     keyText: const Color(0xFF211E1A),
     keyUsedText: const Color(0xFF7C7263),
+    keyDisabledText: const Color(0xFF847A6B),
     success: colorblind ? const Color(0xFF0072B2) : const Color(0xFF55714A),
     streakFlame: const Color(0xFFB8791C),
     textSecondary: const Color(0xFF5C5849),
@@ -123,6 +131,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: const Color(0xFF1A1712),
     keyText: const Color(0xFFF2EDE2),
     keyUsedText: const Color(0xFF807969),
+    keyDisabledText: const Color(0xFF726A58),
     success: colorblind ? const Color(0xFF56B4E9) : const Color(0xFF9CB58A),
     streakFlame: const Color(0xFFE0A84A),
     textSecondary: const Color(0xFFB0A998),
@@ -151,6 +160,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: const Color(0xFFE8D8BC),
     keyText: const Color(0xFF3A2E1C),
     keyUsedText: const Color(0xFF7E6A4B),
+    keyDisabledText: const Color(0xFF836F53),
     // Greens deepened so both variants clear AA on sepia (normal 4.85, cb 6.33).
     success: colorblind ? const Color(0xFF00598C) : const Color(0xFF516E45),
     streakFlame: const Color(0xFFA9650F),
@@ -176,6 +186,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     Color? keyUsedBg,
     Color? keyText,
     Color? keyUsedText,
+    Color? keyDisabledText,
     Color? success,
     Color? streakFlame,
     Color? textSecondary,
@@ -197,6 +208,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: keyUsedBg ?? this.keyUsedBg,
     keyText: keyText ?? this.keyText,
     keyUsedText: keyUsedText ?? this.keyUsedText,
+    keyDisabledText: keyDisabledText ?? this.keyDisabledText,
     success: success ?? this.success,
     streakFlame: streakFlame ?? this.streakFlame,
     textSecondary: textSecondary ?? this.textSecondary,
@@ -242,6 +254,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
       keyUsedBg: Color.lerp(keyUsedBg, other.keyUsedBg, t)!,
       keyText: Color.lerp(keyText, other.keyText, t)!,
       keyUsedText: Color.lerp(keyUsedText, other.keyUsedText, t)!,
+      keyDisabledText: Color.lerp(keyDisabledText, other.keyDisabledText, t)!,
       success: Color.lerp(success, other.success, t)!,
       streakFlame: Color.lerp(streakFlame, other.streakFlame, t)!,
       textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,

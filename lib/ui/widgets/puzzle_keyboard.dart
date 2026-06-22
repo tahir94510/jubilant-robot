@@ -92,7 +92,7 @@ class PuzzleKeyboard extends StatelessWidget {
                               fontSize: 19,
                               fontWeight: FontWeight.w600,
                               color: lockedLetters.contains(ch)
-                                  ? palette.keyUsedText.withValues(alpha: 0.4)
+                                  ? palette.keyDisabledText
                                   : usedLetters.contains(ch)
                                   ? palette.keyUsedText
                                   : palette.keyText,

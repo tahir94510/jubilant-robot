@@ -1,5 +1,19 @@
 {
   "@@locale": "en",
+  "a11yLetterCellEmpty": "Letter {letter}, empty",
+  "@a11yLetterCellEmpty": {
+    "placeholders": {
+      "letter": { "type": "String" }
+    }
+  },
+  "a11yLetterCellFilled": "Letter {letter}, answer {guess}",
+  "@a11yLetterCellFilled": {
+    "placeholders": {
+      "letter": { "type": "String" },
+      "guess": { "type": "String" }
+    }
+  },
+  "a11yDismiss": "Dismiss",
   "settingsTitle": "Settings",
   "sectionAppearance": "Appearance",
   "sectionLanguage": "Language",

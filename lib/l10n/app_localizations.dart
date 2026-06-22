@@ -108,6 +108,24 @@ abstract class AppLocalizations {
     Locale('tr'),
   ];
 
+  /// No description provided for @a11yLetterCellEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter {letter}, empty'**
+  String a11yLetterCellEmpty(String letter);
+
+  /// No description provided for @a11yLetterCellFilled.
+  ///
+  /// In en, this message translates to:
+  /// **'Letter {letter}, answer {guess}'**
+  String a11yLetterCellFilled(String letter, String guess);
+
+  /// No description provided for @a11yDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismiss'**
+  String get a11yDismiss;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

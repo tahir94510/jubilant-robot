@@ -9,6 +9,19 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
+  String a11yLetterCellEmpty(String letter) {
+    return '$letter harfi, boş';
+  }
+
+  @override
+  String a11yLetterCellFilled(String letter, String guess) {
+    return '$letter harfi, cevap $guess';
+  }
+
+  @override
+  String get a11yDismiss => 'Kapat';
+
+  @override
   String get settingsTitle => 'Ayarlar';
 
   @override

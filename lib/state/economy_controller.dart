@@ -48,8 +48,11 @@ class EconomyController extends ChangeNotifier {
   void _onPremiumChanged() {
     if (_purchases.premiumOwned.value && !_premium) {
       _premium = true;
-      _ads.disable();
+      // Persist the entitlement BEFORE the async ad-disable so a crash in the
+      // gap can't lose it (which would re-show ads next launch); the cached flag
+      // also makes the next startup ad-free before the store even responds.
       _persist();
+      _ads.disable();
       notifyListeners();
     }
   }

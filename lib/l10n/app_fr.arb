@@ -1,5 +1,8 @@
 {
   "@@locale": "fr",
+  "a11yLetterCellEmpty": "Lettre {letter}, vide",
+  "a11yLetterCellFilled": "Lettre {letter}, réponse {guess}",
+  "a11yDismiss": "Fermer",
   "settingsTitle": "Paramètres",
   "sectionAppearance": "Apparence",
   "sectionLanguage": "Langue",
