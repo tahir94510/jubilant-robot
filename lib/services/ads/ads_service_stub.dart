@@ -33,6 +33,9 @@ class StubAdsService extends AdsService {
   bool get rewardedReady => false;
 
   @override
+  ValueListenable<bool> get rewardedAvailable => _never;
+
+  @override
   bool get rewardedEverServed => false;
 
   @override

@@ -35,6 +35,12 @@ abstract class AdsService {
   /// True when a rewarded ad is loaded and can be shown right now.
   bool get rewardedReady;
 
+  /// Reactive form of [rewardedReady]: flips true the moment a rewarded ad is
+  /// loaded, and false when it is shown, fails, or none is available (e.g.
+  /// offline). The hint button binds its enabled state to this so it greys out
+  /// when there is no ad to watch — a reward is never granted without one.
+  ValueListenable<bool> get rewardedAvailable;
+
   /// True once a real rewarded ad has EVER served on this device (persisted).
   /// The moment AdMob starts serving, this flips to `true` for good, so the
   /// closed-test free-hint fallback turns itself off automatically — no one can

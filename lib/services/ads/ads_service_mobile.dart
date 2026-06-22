@@ -26,6 +26,7 @@ class MobileAdsService extends AdsService {
 
   InterstitialAd? _interstitial;
   RewardedAd? _rewarded;
+  final ValueNotifier<bool> _rewardedAvailable = ValueNotifier(false);
   DateTime? _lastInterstitialShown;
 
   /// Sticky: once a real rewarded ad serves, free hints are off for good.
@@ -41,6 +42,11 @@ class MobileAdsService extends AdsService {
   @override
   bool get rewardedReady =>
       !_disabled && _canRequestAds.value && _rewarded != null;
+
+  @override
+  ValueListenable<bool> get rewardedAvailable => _rewardedAvailable;
+
+  void _updateRewardedAvailable() => _rewardedAvailable.value = rewardedReady;
 
   @override
   bool get rewardedEverServed => _everServed;
@@ -163,10 +169,14 @@ class MobileAdsService extends AdsService {
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
           _rewarded = ad;
+          _updateRewardedAvailable();
           // A real ad loaded -> AdMob is live; close the free-hint fallback.
           unawaited(_markEverServed());
         },
-        onAdFailedToLoad: (_) => _rewarded = null,
+        onAdFailedToLoad: (_) {
+          _rewarded = null;
+          _updateRewardedAvailable();
+        },
       ),
     );
   }
@@ -180,6 +190,7 @@ class MobileAdsService extends AdsService {
       return false;
     }
     _rewarded = null;
+    _updateRewardedAvailable();
 
     var earned = false;
     final closed = Completer<void>();
@@ -225,6 +236,7 @@ class MobileAdsService extends AdsService {
     _interstitial = null;
     _rewarded?.dispose();
     _rewarded = null;
+    _updateRewardedAvailable();
   }
 }
 

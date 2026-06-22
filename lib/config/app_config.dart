@@ -13,21 +13,16 @@ abstract final class AppConfig {
   /// Tokens granted for watching one rewarded ad.
   static const int tokensPerRewardedAd = 3;
 
-  /// Closed-test fallback for the rewarded-hint button. A freshly published
-  /// app (or one whose AdMob account isn't active yet) gets no rewarded fill,
-  /// which would leave testers stuck on "no video available". While set to
-  /// `true`, the "+N hints" button still TRIES a real rewarded ad first and
-  /// only grants the tokens directly when the ad genuinely can't be shown — so
-  /// the hint loop stays smooth during closed testing, yet the moment AdMob
-  /// serves, the reward comes from the watched ad (no free hints while real ads
-  /// work).
+  /// Economy policy: a hint is NEVER granted without a genuinely watched
+  /// rewarded ad. The "+N hints" button enables only while a rewarded ad is
+  /// loaded ([AdsService.rewardedAvailable]) and greys out otherwise — so an
+  /// offline player (ads can't load) sees a disabled button instead of a free
+  /// hint, and the rewarded economy is never undercut. Kept as a named,
+  /// test-pinned constant so the "no free hints" guarantee stays explicit.
   ///
-  /// Safe to ship as `true`: a persisted sticky flag (`ads.rewarded_served`)
-  /// records the first time a real rewarded ad is ever served, after which the
-  /// free fallback is permanently off — so revenue is never undercut once AdMob
-  /// is live, while brand-new installs (before the account fills) still get a
-  /// working hint button. No release-day toggle needed.
-  static const bool grantHintsWithoutAd = true;
+  /// (Earlier builds allowed `true` as a brief closed-test convenience before
+  /// AdMob first served; that fallback path has been removed.)
+  static const bool grantHintsWithoutAd = false;
 
   // --- Interstitial pacing ---
   /// Show an interstitial after every N completed puzzles...
@@ -63,7 +58,7 @@ abstract final class AppConfig {
 
   /// Shown in Settings. Bump together with `version:` in pubspec.yaml on
   /// every release.
-  static const String appVersion = '2.3.7';
+  static const String appVersion = '2.3.8';
 
   /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
   /// achievements ships; items tagged with this number show a "NEW" badge

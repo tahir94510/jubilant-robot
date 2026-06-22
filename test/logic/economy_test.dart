@@ -23,16 +23,12 @@ _setup() async {
 
 void main() {
   group('hint economy', () {
-    test('rewarded-hint fallback is a deliberate, reviewed switch', () {
-      // The hint flow ALWAYS tries a real rewarded ad first, so once AdMob
-      // serves, the reward comes from the watched ad and no free hints leak —
-      // this holds regardless of the flag. The flag only enables a fallback
-      // grant when the ad genuinely can't be shown (account not active yet).
-      //
-      // It is currently TRUE for the closed-test phase. RELEASE STEP: flip it
-      // to false before production and update this expectation — a deliberate
-      // checkpoint so the fallback is never shipped by accident.
-      expect(AppConfig.grantHintsWithoutAd, isTrue);
+    test('a hint is never granted without a watched ad (no free fallback)', () {
+      // Production economy policy: the rewarded button enables only while a real
+      // ad is loaded, so a reward is impossible without watching one — and
+      // offline shows a disabled button, never a free hint. This constant pins
+      // that guarantee so the old closed-test fallback can never ship by accident.
+      expect(AppConfig.grantHintsWithoutAd, isFalse);
     });
 
     test('starts with the configured stock', () async {
