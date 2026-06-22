@@ -5,6 +5,81 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.3.9 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.3.9
+• Full screen-reader support on the board — now playable with TalkBack
+• Chess-style "last move": the letter you just placed or revealed stays highlighted until the next one
+• Cleaner board & keyboard: a clearer cursor, and used vs locked keys are now easy to tell apart
+• The launch screen now matches your dark theme
+• Fix: replaying a solved puzzle never changes your best time
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.3.9 YENİLİKLER
+• Tahtada tam ekran okuyucu desteği — artık TalkBack ile oynanabilir
+• Satranç tarzı "son hamle": koyduğun ya da açtığın harf, sonraki gelene dek vurgulu kalır
+• Daha temiz tahta ve klavye: imleç netleşti, kullanılan ve kilitli tuşlar kolayca ayırt edilir
+• Açılış ekranı artık koyu temanla uyumlu
+• Düzeltme: çözülmüş bulmacayı tekrar oynamak en iyi süreni değiştirmez
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.3.9
+• Compatibilidad total con lectores de pantalla en el tablero: ya se juega con TalkBack
+• "Última jugada" tipo ajedrez: la letra que pones o revelas queda resaltada hasta la siguiente
+• Tablero y teclado más limpios: cursor más claro y teclas usadas vs. bloqueadas fáciles de distinguir
+• La pantalla de inicio ahora combina con tu tema oscuro
+• Corrección: repetir un puzle resuelto no cambia tu mejor tiempo
+```
+
+**Deutsch**
+```
+NEU in 2.3.9
+• Voller Screenreader-Support am Rätselbrett – jetzt mit TalkBack spielbar
+• „Letzter Zug" wie beim Schach: der zuletzt gesetzte oder aufgedeckte Buchstabe bleibt bis zum nächsten markiert
+• Klareres Brett & Tastatur: deutlicherer Cursor; benutzte und gesperrte Tasten gut unterscheidbar
+• Der Startbildschirm passt sich deinem dunklen Design an
+• Fix: Ein gelöstes Rätsel erneut zu spielen ändert nie deine Bestzeit
+```
+
+**Français**
+```
+NOUVEAU dans 2.3.9
+• Prise en charge complète des lecteurs d'écran sur la grille — jouable avec TalkBack
+• « Dernier coup » façon échecs : la lettre posée ou révélée reste mise en évidence jusqu'à la suivante
+• Grille et clavier plus nets : curseur plus clair, touches utilisées et verrouillées faciles à distinguer
+• L'écran de lancement s'accorde maintenant à votre thème sombre
+• Correction : rejouer une grille résolue ne change jamais votre meilleur temps
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.3.9
+• Supporto completo allo screen reader sulla griglia — ora giocabile con TalkBack
+• "Ultima mossa" come negli scacchi: la lettera inserita o rivelata resta evidenziata fino alla successiva
+• Griglia e tastiera più pulite: cursore più chiaro, tasti usati e bloccati facili da distinguere
+• La schermata di avvio ora si abbina al tuo tema scuro
+• Correzione: rigiocare un puzzle risolto non cambia mai il tuo tempo migliore
+```
+
+**Português**
+```
+NOVIDADES na 2.3.9
+• Suporte completo a leitor de tela no tabuleiro — agora jogável com TalkBack
+• "Último lance" estilo xadrez: a letra que você colocou ou revelou fica destacada até a próxima
+• Tabuleiro e teclado mais limpos: cursor mais claro, teclas usadas e bloqueadas fáceis de distinguir
+• A tela de abertura agora combina com o seu tema escuro
+• Correção: rejogar um quebra-cabeça resolvido nunca muda o seu melhor tempo
+```
+
+---
+
 ## Release notes: v2.3.8 (max 500 chars, paste into "What's new")
 
 ```
