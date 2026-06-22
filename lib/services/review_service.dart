@@ -14,13 +14,20 @@ class ReviewService {
     if (kIsWeb) return;
     if (totalSolved != AppConfig.reviewPromptAfterSolves) return;
 
-    final prefs = await SharedPreferences.getInstance();
-    if (prefs.getBool(_askedKey) ?? false) return;
-    await prefs.setBool(_askedKey, true);
+    // Called fire-and-forget right after a solve: a storage or plugin failure
+    // must never bubble into the gameplay flow. Guarding also stops a flaky
+    // setString from re-showing the one-time prompt at every later milestone.
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (prefs.getBool(_askedKey) ?? false) return;
+      await prefs.setBool(_askedKey, true);
 
-    final review = InAppReview.instance;
-    if (await review.isAvailable()) {
-      await review.requestReview();
+      final review = InAppReview.instance;
+      if (await review.isAvailable()) {
+        await review.requestReview();
+      }
+    } catch (e) {
+      debugPrint('ReviewService.maybeRequestReview failed: $e');
     }
   }
 }

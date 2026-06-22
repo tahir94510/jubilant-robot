@@ -49,6 +49,13 @@ class QuoteRepository {
   final List<Quote> _quotes;
   final Map<String, Quote> _byId = {};
 
+  /// Memoized [forPack] results. The dataset is immutable after [load], so each
+  /// (pack, locale) result is stable; the Packs screen otherwise re-filters and
+  /// re-sorts the whole catalog several times per build (three calls per tile).
+  /// Cached lists are unmodifiable — every call site is read-only — so the
+  /// shared entry can never be corrupted by a caller.
+  final Map<String, List<Quote>> _packCache = {};
+
   List<Quote> get all => List.unmodifiable(_quotes);
 
   Quote? byId(String id) => _byId[id];
@@ -102,14 +109,16 @@ class QuoteRepository {
   /// progress feels like a ramp. [activeLocale] steers the difficulty ladder
   /// to the player's language (English by default).
   List<Quote> forPack(Pack pack, {String activeLocale = 'en'}) {
-    final list =
-        _quotes
-            .where((q) => pack.contains(q, activeLocale: activeLocale))
-            .toList()
-          ..sort((a, b) {
-            final byScore = a.score.compareTo(b.score);
-            return byScore != 0 ? byScore : a.id.compareTo(b.id);
-          });
-    return list;
+    return _packCache.putIfAbsent('${pack.id}|$activeLocale', () {
+      final list =
+          _quotes
+              .where((q) => pack.contains(q, activeLocale: activeLocale))
+              .toList()
+            ..sort((a, b) {
+              final byScore = a.score.compareTo(b.score);
+              return byScore != 0 ? byScore : a.id.compareTo(b.id);
+            });
+      return List.unmodifiable(list);
+    });
   }
 }

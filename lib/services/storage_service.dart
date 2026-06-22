@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Thin wrapper over SharedPreferences storing versioned JSON blobs.
@@ -25,8 +26,18 @@ class StorageService {
     }
   }
 
-  Future<void> writeJson(String key, Map<String, dynamic> value) =>
-      _prefs.setString(key, jsonEncode(value));
+  Future<void> writeJson(String key, Map<String, dynamic> value) async {
+    // These writes are fire-and-forget on the gameplay hot path (every
+    // keystroke, every clock tick), so a failure must NEVER surface as an
+    // unhandled async error: a full disk (setString) or a non-serializable
+    // value (jsonEncode) degrades to a logged no-op, leaving the authoritative
+    // in-memory state untouched rather than crashing the app.
+    try {
+      await _prefs.setString(key, jsonEncode(value));
+    } catch (e) {
+      debugPrint('StorageService.writeJson($key) failed: $e');
+    }
+  }
 
   Future<void> remove(String key) async {
     await _prefs.remove(key);

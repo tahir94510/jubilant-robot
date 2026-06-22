@@ -28,9 +28,30 @@ class PuzzleSession {
   /// Cipher letters revealed via hints (locked, not editable).
   final Set<String> revealed = {};
 
-  /// Distinct cipher letters present on the board.
-  Set<String> get cipherLetters =>
-      alphabet.lettersOnly(cipherText).split('').toSet();
+  /// Distinct cipher letters present on the board. Memoized: it is a pure
+  /// function of the immutable [cipherText], yet it is read on nearly every
+  /// keystroke (selection, solved-check, hints), so computing it once and
+  /// reusing it removes the only real repeated scan on the input hot path.
+  /// Unmodifiable so the shared instance can never be mutated by a caller.
+  late final Set<String> cipherLetters = Set.unmodifiable(
+    alphabet.lettersOnly(cipherText).split('').toSet(),
+  );
+
+  /// Every whitespace-delimited token reduced to its alphabet letters (cells),
+  /// computed once. Drives [correctWordCount] and [confirmedLetters] so neither
+  /// re-tokenizes the whole quote on each keystroke. Identical tokenizing to the
+  /// previous inline logic — a "word" is one token (so "well-done"/"isn't"
+  /// count once), letters pulled with the quote's alphabet, empty tokens
+  /// dropped — just precomputed instead of rebuilt per call.
+  late final List<List<String>> _wordCells = () {
+    final out = <List<String>>[];
+    for (final word in cipherText.split(' ')) {
+      final letters = alphabet.lettersOnly(word);
+      if (letters.isEmpty) continue;
+      out.add(letters.split(''));
+    }
+    return out;
+  }();
 
   /// Plain letters already used as guesses (for keyboard dimming).
   Set<String> get usedPlainLetters => guesses.values.toSet();
@@ -77,10 +98,8 @@ class PuzzleSession {
   /// on the hyphen/apostrophe too.
   int get correctWordCount {
     var count = 0;
-    for (final word in cipherText.split(' ')) {
-      final letters = alphabet.lettersOnly(word);
-      if (letters.isEmpty) continue;
-      if (letters.split('').every(isGuessCorrect)) count++;
+    for (final cells in _wordCells) {
+      if (cells.every(isGuessCorrect)) count++;
     }
     return count;
   }
@@ -95,10 +114,7 @@ class PuzzleSession {
   /// the same per-token, alphabet-aware tokenizing as [correctWordCount].
   Set<String> get confirmedLetters {
     final out = <String>{};
-    for (final word in cipherText.split(' ')) {
-      final letters = alphabet.lettersOnly(word);
-      if (letters.isEmpty) continue;
-      final cells = letters.split('');
+    for (final cells in _wordCells) {
       if (cells.every(isGuessCorrect)) out.addAll(cells);
     }
     return out;
