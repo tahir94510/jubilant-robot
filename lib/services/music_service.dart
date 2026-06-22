@@ -110,6 +110,21 @@ class MusicService with WidgetsBindingObserver {
   }
 
   Future<void> initialize() async {
+    // Idempotent: a repeat call after a successful init must not stack a second
+    // pair of players or duplicate the onPlayerComplete listeners. After a
+    // FAILED init (_ready stays false) a retry is allowed, so first tear down
+    // whatever the previous attempt left behind.
+    if (_ready) return;
+    await _completeSubA?.cancel();
+    await _completeSubB?.cancel();
+    _completeSubA = null;
+    _completeSubB = null;
+    for (final p in _players) {
+      try {
+        await p.dispose();
+      } catch (_) {}
+    }
+    _players.clear();
     try {
       for (var i = 0; i < 2; i++) {
         final p = AudioPlayer();

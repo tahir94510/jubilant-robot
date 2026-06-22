@@ -117,7 +117,16 @@ class MobileAdsService extends AdsService {
       adUnitId: MonetizationConfig.interstitialAdUnitId,
       request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) => _interstitial = ad,
+        onAdLoaded: (ad) {
+          // A premium purchase may have called disable() while this was in
+          // flight; a disabled service must never retain an ad it can no longer
+          // show, so dispose it instead of leaking it until process death.
+          if (_disabled) {
+            ad.dispose();
+            return;
+          }
+          _interstitial = ad;
+        },
         onAdFailedToLoad: (_) => _interstitial = null,
       ),
     );
@@ -168,6 +177,12 @@ class MobileAdsService extends AdsService {
       request: const AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
         onAdLoaded: (ad) {
+          // Disabled (premium) while loading: drop the ad rather than hold a
+          // rewarded ad that can never be shown.
+          if (_disabled) {
+            ad.dispose();
+            return;
+          }
           _rewarded = ad;
           _updateRewardedAvailable();
           // A real ad loaded -> AdMob is live; close the free-hint fallback.
