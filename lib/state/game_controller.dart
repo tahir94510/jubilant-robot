@@ -94,10 +94,11 @@ class GameController extends ChangeNotifier {
 
   /// The cipher letter the player most recently placed a guess for. Drives the
   /// board's "last entered letter" highlight — that letter and every copy glow
-  /// softly so the eye stays anchored on the just-placed answer. Set only by a
-  /// real [enterGuess]; cleared by any other change (delete, undo/redo, reveal),
-  /// when the puzzle is solved, and on (re)start — so a finished board reads
-  /// clean and the highlight never lingers on a stale letter.
+  /// softly so the eye stays anchored on the latest answer. It is STABLE: it
+  /// moves only when the player types a DIFFERENT letter, and is otherwise
+  /// untouched by delete / undo / redo / reveal (the board simply stops drawing
+  /// the glow when the letter currently holds no guess). Cleared on solve and on
+  /// (re)start so a finished or fresh board reads clean.
   String? _lastEnteredCipherLetter;
   String? get lastEnteredCipherLetter => _lastEnteredCipherLetter;
 
@@ -505,8 +506,6 @@ class GameController extends ChangeNotifier {
   /// clear that one. So repeated presses walk backwards through your entries.
   void clearGuess() {
     _lastInputCompletedWord = false;
-    // Deleting a letter drops the last-entered highlight (nothing fresh placed).
-    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _completed || _reviewingSolved) return;
 
@@ -598,7 +597,6 @@ class GameController extends ChangeNotifier {
 
   void undo() {
     _lastInputCompletedWord = false;
-    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _undoStack.isEmpty || _completed || _reviewingSolved) {
       return;
@@ -643,7 +641,6 @@ class GameController extends ChangeNotifier {
   /// clearing the redo stack, which only a fresh edit does).
   void redo() {
     _lastInputCompletedWord = false;
-    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _redoStack.isEmpty || _completed || _reviewingSolved) {
       return;
@@ -699,9 +696,6 @@ class GameController extends ChangeNotifier {
 
   void revealSelected() {
     _lastInputCompletedWord = false; // hints have their own chime
-    // A reveal has its own "revealed" cell color, so it never carries the
-    // last-entered highlight (which marks the player's own latest guess).
-    _lastEnteredCipherLetter = null;
     final s = _session;
     if (s == null || _completed || _reviewingSolved) return;
     var target = selectedCipherLetter ?? _firstEmptyLetter();

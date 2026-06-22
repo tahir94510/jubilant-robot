@@ -135,6 +135,32 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('the last-typed letter highlights all its copies on the board', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    final session = h.game.session!;
+
+    // Type S (appears 3x): every S cell gets the "recent" highlight.
+    final cipherS = session.cipher.encryptLetter('S');
+    h.game.selectCipherLetter(cipherS);
+    h.game.enterGuess('S');
+    await tester.pump();
+
+    final recent = tester
+        .widgetList<LetterCell>(find.byType(LetterCell))
+        .where((c) => c.recent)
+        .toList();
+    expect(recent, isNotEmpty);
+    expect(recent.every((c) => c.cipherLetter == cipherS), isTrue);
+
+    h.game.stopTimer();
+  });
+
   testWidgets('hint/confirmed answers lock the keyboard; merely-used stay '
       'active', (tester) async {
     final h = await Harness.create();

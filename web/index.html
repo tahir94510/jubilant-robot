@@ -31,6 +31,11 @@
 
   <!-- Browser chrome matches the light "paper" brand splash while loading. -->
   <meta name="theme-color" content="#F7F4EC">
+  <!-- Force a LIGHT page canvas: without this, a dark-mode browser paints the
+       page (the area behind/around the Flutter view and during the splash
+       fade) BLACK, so first launch flashed a black background behind the logo.
+       The app still renders its own dark theme inside the Flutter canvas. -->
+  <meta name="color-scheme" content="light">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -61,6 +66,13 @@
   </script>
 
   <style>
+    /* Cream page canvas in every mode: the host page (behind the Flutter view,
+       during the splash fade, and on scroll-bounce) must never be the
+       dark-mode browser default (black) — that was the black flash behind the
+       launch logo. color-scheme:light keeps form controls/scrollbars light too;
+       Flutter still paints the user's chosen theme inside its own canvas. */
+    :root { color-scheme: light; }
+    html, body { margin: 0; padding: 0; background-color: #F7F4EC; }
     /* Branded splash while the engine loads: vector logo + serif wordmark,
        all inline (zero extra requests), crisp at any DPI. */
     #boot-splash {

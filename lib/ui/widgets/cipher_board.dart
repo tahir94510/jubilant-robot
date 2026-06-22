@@ -150,10 +150,14 @@ class _CipherBoardState extends State<CipherBoard> {
               final focused = thisPos == selectedIndex;
               final related =
                   !focused && widget.selected != null && ch == widget.selected;
-              // Every copy of the just-typed letter glows softly (the cursor has
-              // already moved on to the next blank).
+              // Every copy of the last-typed letter glows softly (the cursor has
+              // already moved on). Stable across delete/undo — but only drawn
+              // while that letter still holds a guess, so a cleared/undone letter
+              // never leaves a stray highlight on now-empty cells.
               final recent =
-                  widget.lastEntered != null && ch == widget.lastEntered;
+                  widget.lastEntered != null &&
+                  ch == widget.lastEntered &&
+                  session.guesses.containsKey(ch);
               // Each cell carries its own stable key so the focused one can be
               // found for auto-scroll without ever migrating a key between
               // cells (which would ghost the previous letter on cursor moves).

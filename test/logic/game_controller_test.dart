@@ -250,7 +250,8 @@ void main() {
   );
 
   test(
-    'the last-entered cipher letter is tracked, then cleared on solve',
+    'the last-entered highlight is stable: it survives delete/undo, moves only '
+    'on a new letter, and clears on solve',
     () async {
       final store = await storage();
       final game = GameController(storage: store);
@@ -258,14 +259,23 @@ void main() {
       final s = game.session!;
 
       final cipherS = s.cipher.encryptLetter('S');
+      final cipherL = s.cipher.encryptLetter('L');
+
       game.selectCipherLetter(cipherS);
       game.enterGuess('S');
-      // The just-typed letter is recorded (drives the last-letter highlight).
       expect(game.lastEnteredCipherLetter, cipherS);
 
-      // Undo clears it — no fresh guess stands.
+      // Delete and undo must NOT move the highlight off the last letter — it is
+      // anchored to the letter, not to the cursor or the edit history.
+      game.clearGuess();
+      expect(game.lastEnteredCipherLetter, cipherS);
       game.undo();
-      expect(game.lastEnteredCipherLetter, isNull);
+      expect(game.lastEnteredCipherLetter, cipherS);
+
+      // Typing a DIFFERENT letter moves the highlight to it.
+      game.selectCipherLetter(cipherL);
+      game.enterGuess('L');
+      expect(game.lastEnteredCipherLetter, cipherL);
 
       // Solving the whole puzzle clears it so the finished board reads clean.
       for (final plain in ['L', 'E', 'S', 'I', 'M', 'O', 'R']) {
