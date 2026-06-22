@@ -11,6 +11,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     required this.boardCellRelatedBg,
     required this.boardCellFilledBg,
     required this.boardCellConfirmedBg,
+    required this.boardCellLastMoveBg,
     required this.boardUnderline,
     required this.guessText,
     required this.cipherText,
@@ -23,6 +24,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     required this.keyText,
     required this.keyUsedText,
     required this.keyDisabledText,
+    required this.keyLockedBg,
     required this.success,
     required this.streakFlame,
     required this.textSecondary,
@@ -42,6 +44,12 @@ class GamePalette extends ThemeExtension<GamePalette> {
   /// Faint tint behind a cell whose letter is part of a fully-correct word —
   /// a calm, on-brand backdrop for the [confirmed] state.
   final Color boardCellConfirmedBg;
+
+  /// "Last move" fill (chess-style): the cell holding the most-recently-placed
+  /// letter — by typing OR by a hint reveal — until the next letter is placed.
+  /// Carried as a FILL with no border so it never blends into the cursor frame
+  /// or the faint "same-letter" sibling cue.
+  final Color boardCellLastMoveBg;
   final Color boardUnderline;
   final Color guessText;
   final Color cipherText;
@@ -64,6 +72,11 @@ class GamePalette extends ThemeExtension<GamePalette> {
   /// legible at ≥3:1 on [keyUsedBg] in every theme, locked by contrast_test;
   /// the earlier `keyUsedText.withValues(alpha: .4)` read ~1.6:1.
   final Color keyDisabledText;
+
+  /// Background for a LOCKED key, distinct from [keyUsedBg] so a locked
+  /// (confirmed/hint) letter never reads the same as a still-tappable USED one.
+  /// Three clear tiers: unused ([keyBg]) > used ([keyUsedBg]) > locked.
+  final Color keyLockedBg;
   final Color success;
   final Color streakFlame;
 
@@ -91,6 +104,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
             .withValues(alpha: .10),
+    boardCellLastMoveBg: const Color(0xFF936F1F).withValues(alpha: .15),
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
     cipherText: const Color(0xFF8A7E66),
@@ -105,7 +119,8 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: const Color(0xFFECE6D9),
     keyText: const Color(0xFF211E1A),
     keyUsedText: const Color(0xFF7C7263),
-    keyDisabledText: const Color(0xFF847A6B),
+    keyDisabledText: const Color(0xFF6B6150),
+    keyLockedBg: const Color(0xFFDCD3BF),
     success: colorblind ? const Color(0xFF0072B2) : const Color(0xFF55714A),
     streakFlame: const Color(0xFFB8791C),
     textSecondary: const Color(0xFF5C5849),
@@ -120,6 +135,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
             .withValues(alpha: .14),
+    boardCellLastMoveBg: const Color(0xFFD9B25A).withValues(alpha: .17),
     boardUnderline: const Color(0xFF4A453B),
     guessText: const Color(0xFFF2EDE2),
     cipherText: const Color(0xFF968B79),
@@ -131,7 +147,8 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: const Color(0xFF1A1712),
     keyText: const Color(0xFFF2EDE2),
     keyUsedText: const Color(0xFF807969),
-    keyDisabledText: const Color(0xFF726A58),
+    keyDisabledText: const Color(0xFF8E8473),
+    keyLockedBg: const Color(0xFF322B1D),
     success: colorblind ? const Color(0xFF56B4E9) : const Color(0xFF9CB58A),
     streakFlame: const Color(0xFFE0A84A),
     textSecondary: const Color(0xFFB0A998),
@@ -146,6 +163,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
             .withValues(alpha: .10),
+    boardCellLastMoveBg: const Color(0xFF9C7B33).withValues(alpha: .15),
     boardUnderline: const Color(0xFFC4AE8E),
     guessText: const Color(0xFF3A2E1C),
     cipherText: const Color(0xFF755F3F),
@@ -160,7 +178,8 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyUsedBg: const Color(0xFFE8D8BC),
     keyText: const Color(0xFF3A2E1C),
     keyUsedText: const Color(0xFF7E6A4B),
-    keyDisabledText: const Color(0xFF836F53),
+    keyDisabledText: const Color(0xFF6F5C3E),
+    keyLockedBg: const Color(0xFFD8C6A3),
     // Greens deepened so both variants clear AA on sepia (normal 4.85, cb 6.33).
     success: colorblind ? const Color(0xFF00598C) : const Color(0xFF516E45),
     streakFlame: const Color(0xFFA9650F),
@@ -175,6 +194,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     Color? boardCellRelatedBg,
     Color? boardCellFilledBg,
     Color? boardCellConfirmedBg,
+    Color? boardCellLastMoveBg,
     Color? boardUnderline,
     Color? guessText,
     Color? cipherText,
@@ -187,6 +207,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     Color? keyText,
     Color? keyUsedText,
     Color? keyDisabledText,
+    Color? keyLockedBg,
     Color? success,
     Color? streakFlame,
     Color? textSecondary,
@@ -197,6 +218,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellRelatedBg: boardCellRelatedBg ?? this.boardCellRelatedBg,
     boardCellFilledBg: boardCellFilledBg ?? this.boardCellFilledBg,
     boardCellConfirmedBg: boardCellConfirmedBg ?? this.boardCellConfirmedBg,
+    boardCellLastMoveBg: boardCellLastMoveBg ?? this.boardCellLastMoveBg,
     boardUnderline: boardUnderline ?? this.boardUnderline,
     guessText: guessText ?? this.guessText,
     cipherText: cipherText ?? this.cipherText,
@@ -209,6 +231,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     keyText: keyText ?? this.keyText,
     keyUsedText: keyUsedText ?? this.keyUsedText,
     keyDisabledText: keyDisabledText ?? this.keyDisabledText,
+    keyLockedBg: keyLockedBg ?? this.keyLockedBg,
     success: success ?? this.success,
     streakFlame: streakFlame ?? this.streakFlame,
     textSecondary: textSecondary ?? this.textSecondary,
@@ -243,6 +266,11 @@ class GamePalette extends ThemeExtension<GamePalette> {
         other.boardCellConfirmedBg,
         t,
       )!,
+      boardCellLastMoveBg: Color.lerp(
+        boardCellLastMoveBg,
+        other.boardCellLastMoveBg,
+        t,
+      )!,
       boardUnderline: Color.lerp(boardUnderline, other.boardUnderline, t)!,
       guessText: Color.lerp(guessText, other.guessText, t)!,
       cipherText: Color.lerp(cipherText, other.cipherText, t)!,
@@ -255,6 +283,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
       keyText: Color.lerp(keyText, other.keyText, t)!,
       keyUsedText: Color.lerp(keyUsedText, other.keyUsedText, t)!,
       keyDisabledText: Color.lerp(keyDisabledText, other.keyDisabledText, t)!,
+      keyLockedBg: Color.lerp(keyLockedBg, other.keyLockedBg, t)!,
       success: Color.lerp(success, other.success, t)!,
       streakFlame: Color.lerp(streakFlame, other.streakFlame, t)!,
       textSecondary: Color.lerp(textSecondary, other.textSecondary, t)!,

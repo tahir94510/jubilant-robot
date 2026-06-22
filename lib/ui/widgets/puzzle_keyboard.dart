@@ -98,9 +98,13 @@ class PuzzleKeyboard extends StatelessWidget {
                                   : palette.keyText,
                             ),
                           ),
-                          bg:
-                              lockedLetters.contains(ch) ||
-                                  usedLetters.contains(ch)
+                          // Three clear tiers: locked (a confirmed/hint answer,
+                          // not tappable) gets its own recessed background so it
+                          // never reads the same as a still-tappable USED key,
+                          // which in turn differs from an untouched key.
+                          bg: lockedLetters.contains(ch)
+                              ? palette.keyLockedBg
+                              : usedLetters.contains(ch)
                               ? palette.keyUsedBg
                               : palette.keyBg,
                           // Locked letters (a hint/confirmed answer) are

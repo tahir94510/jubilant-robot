@@ -92,13 +92,14 @@ class GameController extends ChangeNotifier {
   bool _lastInputCompletedWord = false;
   bool get lastInputCompletedWord => _lastInputCompletedWord;
 
-  /// The cipher letter the player most recently placed a guess for. Drives the
-  /// board's "last entered letter" highlight — that letter and every copy glow
-  /// softly so the eye stays anchored on the latest answer. It is STABLE: it
-  /// moves only when the player types a DIFFERENT letter, and is otherwise
-  /// untouched by delete / undo / redo / reveal (the board simply stops drawing
-  /// the glow when the letter currently holds no guess). Cleared on solve and on
-  /// (re)start so a finished or fresh board reads clean.
+  /// The cipher letter most recently PLACED — by typing OR by a hint reveal.
+  /// Drives the board's chess-style "last move" highlight: that letter and every
+  /// copy carry a distinct fill so the eye stays anchored on the latest answer.
+  /// It is STABLE: it moves only when a DIFFERENT letter is typed or revealed,
+  /// and is otherwise untouched by delete / undo / redo / cursor navigation (the
+  /// board simply stops drawing the fill when the letter currently holds no
+  /// guess). Cleared on solve and on (re)start so a finished/fresh board reads
+  /// clean.
   String? _lastEnteredCipherLetter;
   String? get lastEnteredCipherLetter => _lastEnteredCipherLetter;
 
@@ -714,6 +715,10 @@ class GameController extends ChangeNotifier {
     _hintsUsed += 1;
     s.guesses[target] = s.cipher.decryptLetter(target);
     s.revealed.add(target);
+    // A hint is also a "last found" letter: the chess-style last-move highlight
+    // lands on the just-revealed cell too (not only typed letters), and holds
+    // there until the next letter is placed.
+    _lastEnteredCipherLetter = target;
     // Advance the cursor forward from where the PLAYER was, not from the
     // revealed letter's first occurrence — otherwise hinting late in the quote
     // flung the cursor backward to an earlier copy. Fall back to the revealed

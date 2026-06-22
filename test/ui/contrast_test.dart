@@ -69,12 +69,12 @@ void main() {
         atLeast('textFaint/surface', p.textFaint, cs.surface, 3.0);
         atLeast('cipherText/surface', p.cipherText, cs.surface, 3.0);
         atLeast('keyUsedText/keyUsedBg', p.keyUsedText, p.keyUsedBg, 3.0);
-        // Disabled (locked) key glyphs must stay legible too — the earlier
-        // translucent treatment read ~1.6:1.
+        // Locked key glyphs sit on their OWN recessed background and must still
+        // stay legible (the earlier translucent treatment read ~1.6:1).
         atLeast(
-          'keyDisabledText/keyUsedBg',
+          'keyDisabledText/keyLockedBg',
           p.keyDisabledText,
-          p.keyUsedBg,
+          p.keyLockedBg,
           3.0,
         );
 
