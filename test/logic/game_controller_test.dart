@@ -312,6 +312,76 @@ void main() {
     game.dispose();
   });
 
+  test('a HINT reveal sets the last-move highlight, and cursor navigation never '
+      'disturbs it', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    // A hint counts as a "last found" letter (not only typing): the revealed
+    // letter becomes the last-move highlight.
+    game.revealSelected();
+    final revealed = s.revealed.first;
+    expect(game.lastEnteredCipherLetter, revealed);
+
+    // Prev/next-letter navigation must NOT move the highlight — it is anchored
+    // to the letter, never to the cursor.
+    game.moveSelection(1);
+    game.moveSelection(-1);
+    expect(game.lastEnteredCipherLetter, revealed);
+
+    // Typing a DIFFERENT letter then moves the highlight to it.
+    final other = s.cipherLetters.firstWhere(
+      (c) => c != revealed && !s.revealed.contains(c),
+    );
+    game.selectCipherLetter(other);
+    game.enterGuess('Z');
+    expect(game.lastEnteredCipherLetter, other);
+
+    game.stopTimer();
+    game.dispose();
+  });
+
+  test('with every editable cell filled (none locked), typing cycles the cursor '
+      'onto the next filled cell instead of sticking', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    // Fill every distinct cipher letter with a deliberately WRONG, distinct
+    // plain so no word ever completes (nothing locks): the board is full but
+    // fully editable.
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    final used = <String>{};
+    for (final c in s.cipherLetters) {
+      final correct = s.cipher.decryptLetter(c);
+      final plain = alphabet
+          .split('')
+          .firstWhere((p) => p != correct && !used.contains(p));
+      used.add(plain);
+      game.selectCipherLetter(c);
+      game.enterGuess(plain);
+    }
+    expect(game.completed, isFalse);
+    expect(s.confirmedLetters, isEmpty);
+    expect(s.guesses.length, s.cipherLetters.length);
+
+    // There is no empty cell left to jump to, so typing on cell 0 must advance
+    // to the NEXT editable (filled, non-locked) cell — it cycles, never sticks.
+    game.selectIndex(0);
+    final g0 = s.guesses[s.cipherText[0]]!;
+    game.enterGuess(
+      g0,
+    ); // re-type the same letter: a no-op edit that still walks
+    expect(game.selectedIndex, isNot(0));
+    expect(game.selectedCipherLetter, isNotNull);
+
+    game.stopTimer();
+    game.dispose();
+  });
+
   test(
     'typing into a repeated letter advances past THAT cell, not its first copy',
     () async {

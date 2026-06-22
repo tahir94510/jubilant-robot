@@ -38,6 +38,18 @@ class SoundService {
   }
 
   Future<void> initialize() async {
+    // Idempotent: a repeat call after a successful init must not stack a second
+    // tap pool / set of discrete players. After a FAILED init (_ready stays
+    // false) a retry is allowed, so first tear down anything a prior attempt
+    // left behind.
+    if (_ready) return;
+    for (final p in [..._tapPool, ..._players.values]) {
+      try {
+        await p.dispose();
+      } catch (_) {}
+    }
+    _tapPool.clear();
+    _players.clear();
     try {
       // Game/media stream, never the ringtone stream: volume keys must
       // control MEDIA volume. (The old AudioContextConfig(respectSilence:

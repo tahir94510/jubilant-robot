@@ -132,7 +132,9 @@ void main() {
         isDaily: false,
       );
       expect(p.stats.totalSolved, 1);
-      expect(p.stats.bestTimeSeconds, 50);
+      // A replay is practice — it must NOT rewrite the best time (or any stat),
+      // so the record stays at the first solve even though the replay was faster.
+      expect(p.stats.bestTimeSeconds, 90);
     });
 
     test('persists and reloads through storage', () async {

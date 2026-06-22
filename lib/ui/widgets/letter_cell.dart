@@ -111,34 +111,31 @@ class LetterCell extends StatelessWidget {
             decoration: BoxDecoration(
               color: selected
                   ? palette.boardCellSelectedBg
-                  : related
-                  ? palette.boardCellRelatedBg
+                  // A locked, fully-correct word keeps its own calm backdrop.
                   : state == CellState.confirmed
                   ? palette.boardCellConfirmedBg
-                  // The last-entered letter: a gold tint between "related" and the
-                  // live cursor, so the just-typed answer stays visible at a glance.
+                  // The last placed letter (typed OR hint-revealed): a distinct
+                  // "last move" fill that holds until the next letter lands — a
+                  // FILL, never a frame, so it can't be mistaken for the cursor.
                   : recent
-                  ? palette.revealed.withValues(alpha: 0.13)
+                  ? palette.boardCellLastMoveBg
+                  // Sibling copies of the focused letter: a faint "same letter"
+                  // wash, quieter than the last move.
+                  : related
+                  ? palette.boardCellRelatedBg
                   : playerFilled
                   ? palette.boardCellFilledBg
                   : palette.boardCellBg,
               borderRadius: BorderRadius.circular(6),
-              // Focused cell: full accent border. Sibling copies: a faint accent
-              // so they read as "same letter" without competing with the cursor.
-              // CONSTANT width on every state: a BoxDecoration border is laid out
-              // as padding around the child, so a varying width would change the
-              // cell's size on selection and re-flow the word Row / Wrap (the
-              // "titreme" jitter). Only the COLOR changes between states now —
-              // unfocused cells keep a transparent 1.6px border so geometry is
-              // identical to the focused cell.
+              // ONLY the focused cell carries a frame now: the last-move and
+              // sibling cues moved to fills (above), so a gold frame means
+              // exactly one thing — "the cursor is here" — and never competes
+              // with the last-move highlight or the copies. CONSTANT 1.6px width
+              // (transparent when unfocused): a BoxDecoration border is laid out
+              // as padding, so a varying width would resize the cell on selection
+              // and re-flow the word Row / Wrap (the "titreme" jitter).
               border: Border.all(
-                color: selected
-                    ? palette.revealed
-                    : related
-                    ? palette.revealed.withValues(alpha: 0.30)
-                    : recent
-                    ? palette.revealed.withValues(alpha: 0.50)
-                    : Colors.transparent,
+                color: selected ? palette.revealed : Colors.transparent,
                 width: 1.6,
               ),
             ),
