@@ -28,6 +28,7 @@ class LetterCell extends StatelessWidget {
     required this.onTap,
     this.focused = false,
     this.related = false,
+    this.recent = false,
     this.width = 26,
   });
 
@@ -43,6 +44,13 @@ class LetterCell extends StatelessWidget {
 
   /// A sibling copy of the focused letter (quiet "same letter" cue).
   final bool related;
+
+  /// This cell holds the player's most-recently-entered letter (that letter,
+  /// wherever it appears): a soft gold highlight — stronger than [related],
+  /// quieter than the live cursor — that keeps the eye anchored on the last
+  /// guess after the cursor auto-advances. The controller drops it the moment
+  /// the puzzle is solved, so a finished board reads clean.
+  final bool recent;
   final VoidCallback? onTap;
   final double width;
 
@@ -88,6 +96,10 @@ class LetterCell extends StatelessWidget {
               ? palette.boardCellRelatedBg
               : state == CellState.confirmed
               ? palette.boardCellConfirmedBg
+              // The last-entered letter: a gold tint between "related" and the
+              // live cursor, so the just-typed answer stays visible at a glance.
+              : recent
+              ? palette.revealed.withValues(alpha: 0.13)
               : playerFilled
               ? palette.boardCellFilledBg
               : palette.boardCellBg,
@@ -105,6 +117,8 @@ class LetterCell extends StatelessWidget {
                 ? palette.revealed
                 : related
                 ? palette.revealed.withValues(alpha: 0.30)
+                : recent
+                ? palette.revealed.withValues(alpha: 0.50)
                 : Colors.transparent,
             width: 1.6,
           ),

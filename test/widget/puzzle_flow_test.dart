@@ -184,4 +184,40 @@ void main() {
 
     h.game.stopTimer();
   });
+
+  testWidgets('rewarded +3 greys out when no ad is available (offline), and '
+      'grants nothing when tapped', (tester) async {
+    final h = await Harness.create();
+    // Offline / no fill: no rewarded ad is loaded.
+    h.ads.rewardedAvailableNotifier.value = false;
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    // The button is still shown, but disabled — never a free hint offline.
+    final label = find.text('+3');
+    expect(label, findsOneWidget);
+    OutlinedButton rewardedButton() => tester.widget<OutlinedButton>(
+      find.ancestor(of: label, matching: find.byType(OutlinedButton)).first,
+    );
+    expect(rewardedButton().enabled, isFalse);
+
+    final tokensBefore = h.economy.tokens;
+    await tester.tap(label, warnIfMissed: false);
+    await tester.pump();
+    expect(h.ads.rewardedShown, 0); // no ad shown
+    expect(h.economy.tokens, tokensBefore); // no tokens granted
+
+    // Once an ad loads, the button enables and a watch grants the reward.
+    h.ads.rewardedAvailableNotifier.value = true;
+    await tester.pump();
+    expect(rewardedButton().enabled, isTrue);
+    await tester.tap(label);
+    await tester.pump();
+    expect(h.ads.rewardedShown, 1);
+    expect(h.economy.tokens, tokensBefore + 3);
+
+    h.game.stopTimer();
+  });
 }

@@ -266,6 +266,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get paywallRestore => 'Restaurer l’achat précédent';
 
   @override
+  String get premiumUnlockedTitle => 'Premium débloqué !';
+
+  @override
+  String get premiumUnlockedBody =>
+      'Fini les pubs, et les indices sont illimités. Merci de soutenir Quotecrack !';
+
+  @override
+  String get premiumContinue => 'Commencer à jouer';
+
+  @override
   String get purchaseFailed =>
       'L’achat n’a pas pu être effectué. Veuillez réessayer.';
 

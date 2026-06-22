@@ -14,6 +14,7 @@ class PuzzleKeyboard extends StatelessWidget {
     required this.usedLetters,
     required this.onLetter,
     required this.onBackspace,
+    this.lockedLetters = const {},
     this.rows = const ['QWERTYUIOP', 'ASDFGHJKL', 'ZXCVBNM'],
   });
 
@@ -23,6 +24,12 @@ class PuzzleKeyboard extends StatelessWidget {
   final List<String> rows;
 
   final Set<String> usedLetters;
+
+  /// Plain letters locked by a hint reveal or a completed word: rendered
+  /// disabled (a known-correct letter could only ever be wrong elsewhere).
+  /// Distinct from [usedLetters], which stay tappable so an unconfirmed guess
+  /// can be moved.
+  final Set<String> lockedLetters;
   final void Function(String letter) onLetter;
   final VoidCallback onBackspace;
 
@@ -84,15 +91,24 @@ class PuzzleKeyboard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 19,
                               fontWeight: FontWeight.w600,
-                              color: usedLetters.contains(ch)
+                              color: lockedLetters.contains(ch)
+                                  ? palette.keyUsedText.withValues(alpha: 0.4)
+                                  : usedLetters.contains(ch)
                                   ? palette.keyUsedText
                                   : palette.keyText,
                             ),
                           ),
-                          bg: usedLetters.contains(ch)
+                          bg:
+                              lockedLetters.contains(ch) ||
+                                  usedLetters.contains(ch)
                               ? palette.keyUsedBg
                               : palette.keyBg,
-                          onTap: () => onLetter(ch),
+                          // Locked letters (a hint/confirmed answer) are
+                          // disabled; used-but-unconfirmed letters stay tappable
+                          // so the player can move a guess.
+                          onTap: lockedLetters.contains(ch)
+                              ? null
+                              : () => onLetter(ch),
                         ),
                       if (i == lastRow)
                         key(

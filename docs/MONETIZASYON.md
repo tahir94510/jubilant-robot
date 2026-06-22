@@ -76,29 +76,24 @@ v1.1.5'ten beri "+3 ipucu"na basıldığında reklam hazır değilse kullanıcı
 "şu an video yok, birazdan tekrar deneyin" mesajı gösterilir (eskiden hiçbir
 şey olmuyordu, bu yüzden bozuk gibi hissettiriyordu).
 
-#### Kapalı testte ipucu akışını sorunsuz tutmak (gelir güvenli)
+#### İpucu/ödüllü reklam: ödül yalnız izlenen reklamla (gelir zırhı)
 
-Onay/no-fill penceresinde kapalı test kullanıcıları ödüllü reklamla jeton
-kazanamaz. Bunun için **`AppConfig.grantHintsWithoutAd`** anahtarı var
-(`lib/config/app_config.dart`):
+"+3 ipucu" butonu **yalnızca ödüllü bir reklam gerçekten yüklüyken** etkin olur
+(`AdsService.rewardedAvailable` reaktif sinyali). Reklam yoksa — çevrimdışı,
+no-fill ya da henüz yüklenmemiş — buton **gri/pasif** görünür. Sonuç:
 
-- **`true`** (yalnız kapalı test): "+3 ipucu" butonu **önce gerçek ödüllü
-  reklamı dener**; reklam gösterilemiyorsa (no-fill) jetonları doğrudan verir.
-  Böylece ipucu döngüsü akıcı kalır.
-- **`false`** (production, **varsayılan**): yedek kapalı; ödül yalnız
-  **izlenen gerçek reklamla** verilir, no-fill'de "video yok" mesajı çıkar.
-
-Akıllı kısım: buton her durumda **önce gerçek reklamı dener**. AdMob reklam
-serve etmeye başladığı an `earned == true` olur ve ödül reklamdan gelir; yedek
-dal yalnız reklam GERÇEKTEN gösterilemediğinde devreye girer. Yani anahtarı
-kapatmayı unutsanız bile, **gerçek reklam çalışırken asla bedava ipucu
-verilmez** — gelir baltalanmaz, hiçbir gösterim fırsatı kaçmaz. Yine de
-production AAB'sini almadan önce anahtarı `false` yapın; bir koruma testi
-(`test/logic/economy_test.dart`) bunu CI'da zorunlu tutar.
+- **Reklam izlenmeden ASLA ödül verilmez.** Jeton yalnız `onUserEarnedReward`
+  tetiklendiğinde (reklam gerçekten tamamlandığında) eklenir.
+- **Çevrimdışı suistimal yok.** İnternet kapalıyken reklam yüklenemez → buton
+  pasif kalır; kimse interneti kapatıp bedava ipucu alamaz.
+- **Bedava yedek (fallback) yol KALDIRILDI.** `AppConfig.grantHintsWithoutAd`
+  artık `false` ve hiçbir bedava-jeton dalı yoktur; bir koruma testi
+  (`test/logic/economy_test.dart`) bunu CI'da kilitler.
 
 Not: Release derlemeleri (kapalı test dahil) **gerçek** reklam birimi ID'lerini
-kullanır; **test/sahte reklam yalnız debug derlemede** görünür. Bu yüzden bu
-yedek, test reklamı göstermez — sadece no-fill anında jetonu verir.
+kullanır; test/sahte reklam yalnız debug derlemede görünür. Kapalı testte AdMob
+gerçek reklam sunmaya başlayana kadar buton pasif görünebilir — bu, ekonomiyi
+koruyan bilinçli davranıştır.
 
 ### app-ads.txt (OPSİYONEL: yayından sonra, geliri %5-15 artırabilir)
 

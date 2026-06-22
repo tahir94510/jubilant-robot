@@ -56,6 +56,24 @@ class PuzzleSession {
   /// Plain letters already used as guesses (for keyboard dimming).
   Set<String> get usedPlainLetters => guesses.values.toSet();
 
+  /// Plain letters the player can no longer place freely: the correct answers to
+  /// cipher letters that are hint-revealed or locked by a completed word. The
+  /// keyboard disables these (a known-correct letter typed elsewhere could only
+  /// ever be wrong), while merely used-but-unconfirmed letters stay active so a
+  /// guess can still be moved.
+  Set<String> get lockedLetters {
+    final out = <String>{};
+    for (final c in revealed) {
+      final g = guesses[c];
+      if (g != null) out.add(g);
+    }
+    for (final c in confirmedLetters) {
+      final g = guesses[c];
+      if (g != null) out.add(g);
+    }
+    return out;
+  }
+
   /// Cipher letters whose guess collides with another cipher letter's guess.
   Set<String> get conflicts {
     final byPlain = <String, List<String>>{};

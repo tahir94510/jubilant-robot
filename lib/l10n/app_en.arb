@@ -120,6 +120,18 @@
     }
   },
   "paywallRestore": "Restore previous purchase",
+  "premiumUnlockedTitle": "Premium unlocked!",
+  "@premiumUnlockedTitle": {
+    "description": "Headline of the celebratory overlay shown the moment a premium purchase or restore completes."
+  },
+  "premiumUnlockedBody": "Ads are gone for good and hints are unlimited. Thank you for supporting Quotecrack!",
+  "@premiumUnlockedBody": {
+    "description": "Warm one-line reassurance under the premium-unlocked headline."
+  },
+  "premiumContinue": "Start playing",
+  "@premiumContinue": {
+    "description": "Button on the premium-unlocked overlay that dismisses it and returns to the game."
+  },
   "purchaseFailed": "Purchase couldn't be completed. Please try again.",
   "purchaseRestoring": "Restoring your purchase…",
   "completeDailyTitle": "Daily solved!",

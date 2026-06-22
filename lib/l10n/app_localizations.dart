@@ -582,6 +582,24 @@ abstract class AppLocalizations {
   /// **'Restore previous purchase'**
   String get paywallRestore;
 
+  /// Headline of the celebratory overlay shown the moment a premium purchase or restore completes.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium unlocked!'**
+  String get premiumUnlockedTitle;
+
+  /// Warm one-line reassurance under the premium-unlocked headline.
+  ///
+  /// In en, this message translates to:
+  /// **'Ads are gone for good and hints are unlimited. Thank you for supporting Quotecrack!'**
+  String get premiumUnlockedBody;
+
+  /// Button on the premium-unlocked overlay that dismisses it and returns to the game.
+  ///
+  /// In en, this message translates to:
+  /// **'Start playing'**
+  String get premiumContinue;
+
   /// No description provided for @purchaseFailed.
   ///
   /// In en, this message translates to:

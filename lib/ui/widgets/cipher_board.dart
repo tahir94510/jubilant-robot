@@ -16,6 +16,7 @@ class CipherBoard extends StatefulWidget {
     required this.onSelect,
     this.selectedIndex,
     this.solveWave,
+    this.lastEntered,
   });
 
   final PuzzleSession session;
@@ -38,6 +39,11 @@ class CipherBoard extends StatefulWidget {
   /// the text light up in success color, sweeping left to right. Null when
   /// the puzzle is still being solved.
   final double? solveWave;
+
+  /// The player's most-recently-entered cipher letter; every copy of it gets a
+  /// soft "recent" highlight so the eye stays on the last guess after the cursor
+  /// auto-advances. Null while reviewing or celebrating (no highlight then).
+  final String? lastEntered;
 
   @override
   State<CipherBoard> createState() => _CipherBoardState();
@@ -144,6 +150,14 @@ class _CipherBoardState extends State<CipherBoard> {
               final focused = thisPos == selectedIndex;
               final related =
                   !focused && widget.selected != null && ch == widget.selected;
+              // Every copy of the last-typed letter glows softly (the cursor has
+              // already moved on). Stable across delete/undo — but only drawn
+              // while that letter still holds a guess, so a cleared/undone letter
+              // never leaves a stray highlight on now-empty cells.
+              final recent =
+                  widget.lastEntered != null &&
+                  ch == widget.lastEntered &&
+                  session.guesses.containsKey(ch);
               // Each cell carries its own stable key so the focused one can be
               // found for auto-scroll without ever migrating a key between
               // cells (which would ghost the previous letter on cursor moves).
@@ -156,6 +170,7 @@ class _CipherBoardState extends State<CipherBoard> {
                   state: colorState,
                   focused: focused,
                   related: related,
+                  recent: recent,
                   onTap: () => widget.onSelect(thisPos),
                 ),
               );

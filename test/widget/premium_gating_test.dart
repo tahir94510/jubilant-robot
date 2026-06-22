@@ -5,6 +5,7 @@ import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/widgets/banner_ad_slot.dart';
 import 'package:quotecrack/ui/widgets/hint_bar.dart';
+import 'package:quotecrack/ui/widgets/premium_celebration.dart';
 
 import '../fakes/test_harness.dart';
 
@@ -90,6 +91,33 @@ void main() {
     expect(h.purchases.buyCalls, 1);
     expect(h.economy.premium, isTrue);
     expect(h.ads.disabled, isTrue);
+  });
+
+  testWidgets('a completed purchase shows the premium VIP celebration', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+
+    await tester.pumpWidget(h.app(const PaywallScreen()));
+    await tester.pump();
+
+    // Nothing celebratory before the purchase resolves.
+    expect(find.byType(PremiumCelebration), findsNothing);
+
+    // The store confirms ownership while the paywall is open (purchase/restore).
+    h.purchases.owned.value = true;
+    await tester.pump(); // listeners fire
+    await tester.pump(); // rebuild shows the overlay
+
+    expect(find.byType(PremiumCelebration), findsOneWidget);
+    // A sound cue marks the VIP moment.
+    expect(h.sounds.played, contains('achievement'));
+
+    // Dismissing the overlay clears it.
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Start playing'));
+    await tester.pump();
+    expect(find.byType(PremiumCelebration), findsNothing);
   });
 
   test('premium packs are flagged in the catalog', () {

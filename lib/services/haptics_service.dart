@@ -20,6 +20,14 @@ class HapticsService {
     if (isEnabled()) HapticFeedback.mediumImpact();
   }
 
+  /// The full-solve fanfare — the biggest beat in the game, so it lands the
+  /// hardest: a heavy impact, synced with the success chime, the green board
+  /// wave and the confetti. (A solve should never feel weaker than the error
+  /// buzz, which it did while this shared the medium [success] impact.)
+  void celebrate() {
+    if (isEnabled()) HapticFeedback.heavyImpact();
+  }
+
   void error() {
     if (isEnabled()) HapticFeedback.heavyImpact();
   }

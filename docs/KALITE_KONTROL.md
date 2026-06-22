@@ -183,13 +183,11 @@ B turu → Play Console'a yükle.
 > korunur. Bu davranış testle kilitli:
 > `test/logic/per_language_stats_test.dart` → "app updates preserve data".
 
-> **Gelir koruması (otomatik — elle adım GEREKMEZ):** `grantHintsWithoutAd`
-> `true` kalabilir. İpucu butonu HER ZAMAN önce gerçek ödüllü reklamı dener;
-> yalnızca reklam hiç gösterilemiyorsa jetonu doğrudan verir. İlk gerçek reklam
-> sunulduğu an, kalıcı yapışkan bayrak (`ads.rewarded_served`) ücretsiz geri-
-> dönüşü **kalıcı olarak kapatır** → AdMob canlıyken gelir asla baltalanmaz,
-> yeni kurulumlar ise (hesap dolmadan önce) çalışan bir ipucu butonu görür.
-> Üretim öncesi flip etmeye gerek yok.
+> **Gelir koruması (kesin):** Ödül **yalnız izlenen gerçek reklamla** verilir.
+> "+3" butonu yalnızca ödüllü bir reklam yüklüyken (`rewardedAvailable`) etkindir;
+> çevrimdışı/no-fill'de gri/pasif kalır, yani reklamsız ya da internet kapatarak
+> bedava ipucu imkânsızdır. `grantHintsWithoutAd` `false`'tur ve bedava yedek dal
+> kaldırılmıştır; `test/logic/economy_test.dart` bunu CI'da kilitler.
 
 **İçerik güncellemeleri:** yeni söz/paket ekleme tarifi ve otomatik uyum
 garantileri ayrı dokümanda: [ICERIK_EKLEME.md](ICERIK_EKLEME.md)
