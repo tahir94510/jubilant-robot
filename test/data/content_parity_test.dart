@@ -108,8 +108,8 @@ void main() {
     final enNotes = byLocale['en']!.where((q) => q.note != null).length;
     expect(
       enNotes,
-      greaterThanOrEqualTo(8),
-      reason: 'English should seed at least 8 "About this quote" notes',
+      greaterThanOrEqualTo(18),
+      reason: 'English should seed at least 18 "About this quote" notes',
     );
   });
 }
