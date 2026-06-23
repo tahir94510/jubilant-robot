@@ -141,6 +141,19 @@ void main() {
       'María Zambrano',
       'Gregorio Marañón',
       'José Luis Sampedro',
+      'Carlos Drummond de Andrade',
+      'Cecília Meireles',
+      'Clarice Lispector',
+      'Millôr Fernandes',
+      'Mário Quintana',
+      'Agostinho da Silva',
+      'Paulo Freire',
+      'Vinicius de Moraes',
+      'Sophia de Mello Breyner Andresen',
+      'Caetano Veloso',
+      'Raul Seixas',
+      'Charlie Chaplin',
+      'Bertrand Russell',
     };
     for (final q in byLocale.values.expand((e) => e)) {
       expect(
