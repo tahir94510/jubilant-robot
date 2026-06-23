@@ -169,33 +169,33 @@
   },
   {
     "id": "de-w022",
-    "text": "Niemand hat das Recht zu gehorchen.",
-    "author": "Hannah Arendt",
-    "source": "Eichmann in Jerusalem",
+    "text": "Der ist mein Feind, der mir die Wahrheit verbirgt.",
+    "author": "Gotthold Ephraim Lessing",
+    "source": "Nathan der Weise",
     "category": "wisdom",
     "locale": "de"
   },
   {
     "id": "de-w023",
-    "text": "Keiner hat das Recht zu befehlen und keiner die Pflicht zu gehorchen, wo die Freiheit fehlt.",
-    "author": "Hannah Arendt",
-    "source": "Über die Revolution",
+    "text": "Es muss anders werden, wenn es gut werden soll.",
+    "author": "Georg Christoph Lichtenberg",
+    "source": "Sudelbücher",
     "category": "wisdom",
     "locale": "de"
   },
   {
     "id": "de-w024",
-    "text": "Das Vergeben ist der Schlüssel zum Handeln und zur Freiheit.",
-    "author": "Hannah Arendt",
-    "source": "Vita activa",
+    "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit.",
+    "author": "Johann Wolfgang von Goethe",
+    "source": "Maximen und Reflexionen",
     "category": "wisdom",
     "locale": "de"
   },
   {
     "id": "de-w025",
-    "text": "Wer denken will, muss bereit sein, sich überraschen zu lassen.",
-    "author": "Hannah Arendt",
-    "source": "Vom Leben des Geistes",
+    "text": "Die Eule der Minerva beginnt erst mit der einbrechenden Dämmerung ihren Flug.",
+    "author": "Georg Wilhelm Friedrich Hegel",
+    "source": "Grundlinien der Philosophie des Rechts",
     "category": "wisdom",
     "locale": "de"
   },
@@ -241,9 +241,9 @@
   },
   {
     "id": "de-w031",
-    "text": "Das Böse ist banal, denn es entspringt oft nicht der Bosheit, sondern der Gedankenlosigkeit.",
-    "author": "Hannah Arendt",
-    "source": "Eichmann in Jerusalem",
+    "text": "Reichtum gleicht dem Meerwasser: je mehr man davon trinkt, desto durstiger wird man.",
+    "author": "Arthur Schopenhauer",
+    "source": "Aphorismen zur Lebensweisheit",
     "category": "wisdom",
     "locale": "de"
   }

@@ -134,6 +134,8 @@ void main() {
       'Jean-Paul Sartre',
       'Simone de Beauvoir',
       'Sacha Guitry',
+      'Bertolt Brecht',
+      'Hannah Arendt',
     };
     for (final q in byLocale.values.expand((e) => e)) {
       expect(
