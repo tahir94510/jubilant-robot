@@ -127,6 +127,9 @@ void main() {
       'Leo Longanesi',
       'Norberto Bobbio',
       'Danilo Dolci',
+      'Helen Keller',
+      'Will Durant',
+      'Robert Frost',
     };
     for (final q in byLocale.values.expand((e) => e)) {
       expect(
