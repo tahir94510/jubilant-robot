@@ -136,6 +136,11 @@ void main() {
       'Sacha Guitry',
       'Bertolt Brecht',
       'Hannah Arendt',
+      'Pablo Neruda',
+      'Gabriela Mistral',
+      'María Zambrano',
+      'Gregorio Marañón',
+      'José Luis Sampedro',
     };
     for (final q in byLocale.values.expand((e) => e)) {
       expect(
