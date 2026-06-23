@@ -49,9 +49,9 @@
   },
   {
     "id": "es-w007",
-    "text": "Vivir no es sólo existir, sino existir y crear, gozar y sufrir, y no dormir sin soñar.",
-    "author": "Gregorio Marañón",
-    "source": "Ensayos",
+    "text": "Más vale un grano de cordura que arrobas de sutileza.",
+    "author": "Baltasar Gracián",
+    "source": "Oráculo manual y arte de prudencia",
     "category": "wisdom",
     "locale": "es"
   },
@@ -65,9 +65,9 @@
   },
   {
     "id": "es-w009",
-    "text": "No hay camino para la paz, la paz es el camino.",
-    "author": "José Luis Sampedro",
-    "source": "Conferencias",
+    "text": "La fe que no duda es fe muerta.",
+    "author": "Miguel de Unamuno",
+    "source": "Del sentimiento trágico de la vida",
     "category": "wisdom",
     "locale": "es"
   },
@@ -129,17 +129,17 @@
   },
   {
     "id": "es-w017",
-    "text": "El arte de vivir consiste en hacer de la vida una obra de arte.",
-    "author": "María Zambrano",
-    "source": "Claros del bosque",
+    "text": "Odia el delito y compadece al delincuente.",
+    "author": "Concepción Arenal",
+    "source": "El visitador del preso",
     "category": "wisdom",
     "locale": "es"
   },
   {
     "id": "es-w018",
-    "text": "Pensar es conversar con uno mismo.",
-    "author": "María Zambrano",
-    "source": "El hombre y lo divino",
+    "text": "Que toda la vida humana es representación, y la vida es sueño.",
+    "author": "Pedro Calderón de la Barca",
+    "source": "La vida es sueño",
     "category": "wisdom",
     "locale": "es"
   },

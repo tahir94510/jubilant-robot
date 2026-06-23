@@ -1,33 +1,33 @@
 [
   {
     "id": "pt-l001",
-    "text": "No meio do caminho tinha uma pedra, tinha uma pedra no meio do caminho.",
-    "author": "Carlos Drummond de Andrade",
-    "source": "No Meio do Caminho",
+    "text": "As armas e os barões assinalados que da ocidental praia lusitana.",
+    "author": "Luís de Camões",
+    "source": "Os Lusíadas",
     "category": "literature",
     "locale": "pt"
   },
   {
     "id": "pt-l002",
-    "text": "E agora, José? A festa acabou, a luz apagou, o povo sumiu, a noite esfriou, e agora, José?",
-    "author": "Carlos Drummond de Andrade",
-    "source": "José",
+    "text": "Errei todo o discurso de meus anos; dei causa a que a Fortuna castigasse.",
+    "author": "Luís de Camões",
+    "source": "Sonetos",
     "category": "literature",
     "locale": "pt"
   },
   {
     "id": "pt-l003",
-    "text": "Mundo mundo vasto mundo, se eu me chamasse Raimundo seria uma rima, não seria uma solução.",
-    "author": "Carlos Drummond de Andrade",
-    "source": "Poema de Sete Faces",
+    "text": "Cantando espalharei por toda a parte, se a tanto me ajudar o engenho e arte.",
+    "author": "Luís de Camões",
+    "source": "Os Lusíadas",
     "category": "literature",
     "locale": "pt"
   },
   {
     "id": "pt-l004",
-    "text": "Tinha uma pedra no meio do caminho. Nunca me esquecerei desse acontecimento na vida de minhas retinas tão fatigadas.",
-    "author": "Carlos Drummond de Andrade",
-    "source": "No Meio do Caminho",
+    "text": "No mar tanta tormenta e tanto dano, tantas vezes a morte apercebida.",
+    "author": "Luís de Camões",
+    "source": "Os Lusíadas",
     "category": "literature",
     "locale": "pt"
   },
@@ -57,17 +57,17 @@
   },
   {
     "id": "pt-l008",
-    "text": "Liberdade, essa palavra que o sonho humano alimenta, que não há ninguém que explique e ninguém que não entenda.",
-    "author": "Cecília Meireles",
-    "source": "Romanceiro da Inconfidência",
+    "text": "Fraco rei faz fraca a forte gente.",
+    "author": "Luís de Camões",
+    "source": "Os Lusíadas",
     "category": "literature",
     "locale": "pt"
   },
   {
     "id": "pt-l009",
-    "text": "Eu canto porque o instante existe e a minha vida está completa. Não sou alegre nem sou triste: sou poeta.",
-    "author": "Cecília Meireles",
-    "source": "Motivo",
+    "text": "Cessa tudo quanto a Musa antiga canta, que outro valor mais alto se alevanta.",
+    "author": "Luís de Camões",
+    "source": "Os Lusíadas",
     "category": "literature",
     "locale": "pt"
   },

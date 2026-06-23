@@ -1,57 +1,57 @@
 [
   {
     "id": "pt-h001",
-    "text": "Cada um sabe a dor e a delícia de ser o que é.",
-    "author": "Caetano Veloso",
-    "source": "Dom de Iludir",
+    "text": "Quem semeia colhe, mais cedo ou mais tarde.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h002",
-    "text": "A vida é a arte de tirar conclusões insuficientes a partir de premissas falsas.",
-    "author": "Millôr Fernandes",
-    "source": "Pensamento",
+    "text": "Ladrão que rouba ladrão tem cem anos de perdão.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h003",
-    "text": "Casamento é a única guerra em que se dorme com o inimigo.",
-    "author": "Millôr Fernandes",
-    "source": "Pensamento",
+    "text": "A galinha da vizinha põe mais ovos que a minha.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h004",
-    "text": "A primeira metade da nossa vida é estragada pelos pais e a segunda pelos filhos.",
-    "author": "Millôr Fernandes",
-    "source": "Pensamento",
+    "text": "Em casa de enforcado não se fala em corda.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h005",
-    "text": "A democracia é a tirania da maioria. Bom mesmo é o despotismo esclarecido, desde que eu seja o déspota.",
-    "author": "Millôr Fernandes",
-    "source": "Pensamento",
+    "text": "Quem cala consente, dizem os atrevidos.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h006",
-    "text": "Pátria é onde menos se sofre.",
-    "author": "Millôr Fernandes",
-    "source": "Pensamento",
+    "text": "Mais sabe o tolo na sua casa que o sábio na alheia.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h007",
-    "text": "Sonho que se sonha só é só um sonho que se sonha só, mas sonho que se sonha junto é realidade.",
-    "author": "Raul Seixas",
-    "source": "Prelúdio",
+    "text": "Quem brinca com fogo acaba queimado.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
@@ -113,25 +113,25 @@
   },
   {
     "id": "pt-h015",
-    "text": "A preguiça é a mãe do progresso. Se o homem não tivesse preguiça de andar, não teria inventado a roda.",
-    "author": "Mário Quintana",
-    "source": "Caderno H",
+    "text": "Boi sonso dá marrada de longe.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h016",
-    "text": "Eles passarão, eu passarinho.",
-    "author": "Mário Quintana",
-    "source": "Poeminha do Contra",
+    "text": "Quem espera desespera, dizem os ansiosos.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
   {
     "id": "pt-h017",
-    "text": "Se as coisas são inatingíveis, ora, não é motivo para não querê-las.",
-    "author": "Mário Quintana",
-    "source": "Espelho Mágico",
+    "text": "Trocar seis por meia dúzia não vale a pena.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },
@@ -145,9 +145,9 @@
   },
   {
     "id": "pt-h019",
-    "text": "A matemática é a única ciência exata em que nunca se sabe do que se está a falar nem se o que se diz é verdade.",
-    "author": "Bertrand Russell",
-    "source": "Pensamento",
+    "text": "Casa de ferreiro, espeto de pau, eis a ironia.",
+    "author": "Provérbio popular",
+    "source": "Sabedoria popular",
     "category": "wit",
     "locale": "pt"
   },

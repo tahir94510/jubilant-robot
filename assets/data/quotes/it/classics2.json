@@ -1,0 +1,98 @@
+[
+  {
+    "id": "it-c201",
+    "text": "Umana cosa è aver compassione degli afflitti.",
+    "author": "Giovanni Boccaccio",
+    "source": "Decameron",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c202",
+    "text": "Ognuno vede quel che tu pari, pochi sentono quel che tu sei.",
+    "author": "Niccolò Machiavelli",
+    "source": "Il Principe",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c203",
+    "text": "Chi disse un popolo disse veramente un animale pazzo.",
+    "author": "Francesco Guicciardini",
+    "source": "Ricordi",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c204",
+    "text": "Sì come una giornata bene spesa dà lieto dormire, così una vita bene usata dà lieto morire.",
+    "author": "Leonardo da Vinci",
+    "source": "Codice Trivulziano",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c205",
+    "text": "La filosofia è scritta in questo grandissimo libro che continuamente ci sta aperto innanzi a gli occhi.",
+    "author": "Galileo Galilei",
+    "source": "Il Saggiatore",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c206",
+    "text": "Canto l'arme pietose e 'l capitano che 'l gran sepolcro liberò di Cristo.",
+    "author": "Torquato Tasso",
+    "source": "Gerusalemme liberata",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c207",
+    "text": "Natura il fece, e poi ruppe la stampa.",
+    "author": "Ludovico Ariosto",
+    "source": "Orlando Furioso",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c208",
+    "text": "Chi vuol veder quantunque pò Natura e 'l Ciel tra noi, venga a mirar costei.",
+    "author": "Francesco Petrarca",
+    "source": "Canzoniere",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c209",
+    "text": "La natura delle cose altro non è che il loro nascimento in certi tempi e con certe guise.",
+    "author": "Giambattista Vico",
+    "source": "La Scienza Nuova",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c210",
+    "text": "È meglio prevenire i delitti che punirli.",
+    "author": "Cesare Beccaria",
+    "source": "Dei delitti e delle pene",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c211",
+    "text": "Se a ciascun l'interno affanno si leggesse in fronte scritto, quanti mai, che invidia fanno, ci farebbero pietà!",
+    "author": "Pietro Metastasio",
+    "source": "Giuseppe riconosciuto",
+    "category": "classics",
+    "locale": "it"
+  },
+  {
+    "id": "it-c212",
+    "text": "Fugga quanto più si può l'affettazione, e usi in ogni cosa una certa sprezzatura.",
+    "author": "Baldassare Castiglione",
+    "source": "Il Cortegiano",
+    "category": "classics",
+    "locale": "it"
+  }
+]

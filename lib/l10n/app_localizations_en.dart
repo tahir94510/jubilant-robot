@@ -9,6 +9,9 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get aboutThisQuote => 'About this quote';
+
+  @override
   String a11yLetterCellEmpty(String letter) {
     return 'Letter $letter, empty';
   }

@@ -57,17 +57,17 @@
   },
   {
     "id": "es-l008",
-    "text": "Puedo escribir los versos más tristes esta noche.",
-    "author": "Pablo Neruda",
-    "source": "Veinte poemas de amor",
+    "text": "Por una mirada, un mundo; por una sonrisa, un cielo; por un beso, yo no sé qué te diera.",
+    "author": "Gustavo Adolfo Bécquer",
+    "source": "Rimas",
     "category": "literature",
     "locale": "es"
   },
   {
     "id": "es-l009",
-    "text": "Me gustas cuando callas porque estás como ausente.",
-    "author": "Pablo Neruda",
-    "source": "Veinte poemas de amor",
+    "text": "Caminante, son tus huellas el camino y nada más.",
+    "author": "Antonio Machado",
+    "source": "Proverbios y cantares",
     "category": "literature",
     "locale": "es"
   },
@@ -89,17 +89,17 @@
   },
   {
     "id": "es-l012",
-    "text": "La cuna de los pobres es la escuela primera del mundo.",
-    "author": "Gabriela Mistral",
-    "source": "Poema de Chile",
+    "text": "En cuestiones de cultura y de saber, solo se pierde lo que se guarda.",
+    "author": "Antonio Machado",
+    "source": "Juan de Mairena",
     "category": "literature",
     "locale": "es"
   },
   {
     "id": "es-l013",
-    "text": "Yo no quiero que a mi niña golondrina me la vuelvan.",
-    "author": "Gabriela Mistral",
-    "source": "Ternura",
+    "text": "La princesa está triste; qué tendrá la princesa.",
+    "author": "Rubén Darío",
+    "source": "Sonatina",
     "category": "literature",
     "locale": "es"
   },
@@ -113,9 +113,9 @@
   },
   {
     "id": "es-l015",
-    "text": "Es tan corto el amor, y es tan largo el olvido.",
-    "author": "Pablo Neruda",
-    "source": "Veinte poemas de amor",
+    "text": "En tanto que de rosa y de azucena se muestra la color en vuestro gesto.",
+    "author": "Garcilaso de la Vega",
+    "source": "Soneto XXIII",
     "category": "literature",
     "locale": "es"
   }

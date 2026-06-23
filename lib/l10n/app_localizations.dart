@@ -108,6 +108,12 @@ abstract class AppLocalizations {
     Locale('tr'),
   ];
 
+  /// No description provided for @aboutThisQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'About this quote'**
+  String get aboutThisQuote;
+
   /// No description provided for @a11yLetterCellEmpty.
   ///
   /// In en, this message translates to:

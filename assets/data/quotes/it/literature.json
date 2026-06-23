@@ -81,33 +81,33 @@
   },
   {
     "id": "it-l011",
-    "text": "Si sta come d'autunno sugli alberi le foglie.",
-    "author": "Giuseppe Ungaretti",
-    "source": "Soldati",
+    "text": "Vaghe stelle dell'Orsa, io non credea tornare ancor per uso a contemplarvi.",
+    "author": "Giacomo Leopardi",
+    "source": "Le ricordanze",
     "category": "literature",
     "locale": "it"
   },
   {
     "id": "it-l013",
-    "text": "Spesso il male di vivere ho incontrato: era il rivo strozzato che gorgoglia, era l'incartocciarsi della foglia riarsa.",
-    "author": "Eugenio Montale",
-    "source": "Ossi di seppia",
+    "text": "Forse perché della fatal quiete tu sei l'immago, a me sì cara vieni, o Sera!",
+    "author": "Ugo Foscolo",
+    "source": "Alla sera",
     "category": "literature",
     "locale": "it"
   },
   {
     "id": "it-l014",
-    "text": "Codesto solo oggi possiamo dirti, ciò che non siamo, ciò che non vogliamo.",
-    "author": "Eugenio Montale",
-    "source": "Ossi di seppia",
+    "text": "Puro e disposto a salire a le stelle.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Purgatorio",
     "category": "literature",
     "locale": "it"
   },
   {
     "id": "it-l015",
-    "text": "Ognuno sta solo sul cuor della terra trafitto da un raggio di sole: ed è subito sera.",
-    "author": "Salvatore Quasimodo",
-    "source": "Ed è subito sera",
+    "text": "E cielo e terra si mostrò qual era: la terra ansante, livida, in sussulto.",
+    "author": "Giovanni Pascoli",
+    "source": "Il lampo",
     "category": "literature",
     "locale": "it"
   }
