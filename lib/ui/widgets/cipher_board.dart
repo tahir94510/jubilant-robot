@@ -16,7 +16,7 @@ class CipherBoard extends StatefulWidget {
     required this.onSelect,
     this.selectedIndex,
     this.solveWave,
-    this.lastEntered,
+    this.lastLocked,
   });
 
   final PuzzleSession session;
@@ -40,10 +40,11 @@ class CipherBoard extends StatefulWidget {
   /// the puzzle is still being solved.
   final double? solveWave;
 
-  /// The player's most-recently-entered cipher letter; every copy of it gets a
-  /// soft "recent" highlight so the eye stays on the last guess after the cursor
-  /// auto-advances. Null while reviewing or celebrating (no highlight then).
-  final String? lastEntered;
+  /// The most-recently LOCKED cipher letter (found+locked by a hint or by
+  /// completing a word); every copy of it gets the chess-style "last move" fill
+  /// so the eye stays on the latest letter nailed down. It moves only when a new
+  /// letter locks. Null while reviewing or celebrating (no highlight then).
+  final String? lastLocked;
 
   @override
   State<CipherBoard> createState() => _CipherBoardState();
@@ -154,9 +155,12 @@ class _CipherBoardState extends State<CipherBoard> {
               // already moved on). Stable across delete/undo — but only drawn
               // while that letter still holds a guess, so a cleared/undone letter
               // never leaves a stray highlight on now-empty cells.
+              // A locked letter always holds its (correct) guess, so the
+              // containsKey guard is belt-and-suspenders — the highlight only
+              // ever sits on a letter that is genuinely locked.
               final recent =
-                  widget.lastEntered != null &&
-                  ch == widget.lastEntered &&
+                  widget.lastLocked != null &&
+                  ch == widget.lastLocked &&
                   session.guesses.containsKey(ch);
               // Each cell carries its own stable key so the focused one can be
               // found for auto-scroll without ever migrating a key between

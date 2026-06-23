@@ -92,16 +92,15 @@ class GameController extends ChangeNotifier {
   bool _lastInputCompletedWord = false;
   bool get lastInputCompletedWord => _lastInputCompletedWord;
 
-  /// The cipher letter most recently PLACED — by typing OR by a hint reveal.
-  /// Drives the board's chess-style "last move" highlight: that letter and every
-  /// copy carry a distinct fill so the eye stays anchored on the latest answer.
-  /// It is STABLE: it moves only when a DIFFERENT letter is typed or revealed,
-  /// and is otherwise untouched by delete / undo / redo / cursor navigation (the
-  /// board simply stops drawing the fill when the letter currently holds no
-  /// guess). Cleared on solve and on (re)start so a finished/fresh board reads
-  /// clean.
-  String? _lastEnteredCipherLetter;
-  String? get lastEnteredCipherLetter => _lastEnteredCipherLetter;
+  /// The cipher letter most recently LOCKED — found and locked either by a hint
+  /// reveal or by a typed guess that just completed a word (confirmed). Drives
+  /// the board's chess-style "last move" highlight: that letter and every copy
+  /// carry a distinct fill so the eye stays on the latest letter you nailed
+  /// down. It is STABLE by design: it moves ONLY when a new letter locks, and is
+  /// untouched by tentative typing, delete, undo, redo or cursor navigation.
+  /// Cleared on solve and on (re)start so a finished/fresh board reads clean.
+  String? _lastLockedCipherLetter;
+  String? get lastLockedCipherLetter => _lastLockedCipherLetter;
 
   Timer? _ticker;
   Duration _elapsed = Duration.zero;
@@ -205,7 +204,7 @@ class GameController extends ChangeNotifier {
     _attemptRevealed = null;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
-    _lastEnteredCipherLetter = null;
+    _lastLockedCipherLetter = null;
 
     // Re-opening a solved puzzle no longer spoils the answer: it starts as a
     // blank, fully playable board exactly like a fresh attempt. The solution
@@ -273,7 +272,7 @@ class GameController extends ChangeNotifier {
     _elapsed = Duration.zero;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
-    _lastEnteredCipherLetter = null;
+    _lastLockedCipherLetter = null;
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
     _persistState();
@@ -293,7 +292,7 @@ class GameController extends ChangeNotifier {
       s.guesses[c] = s.cipher.decryptLetter(c);
     }
     _reviewingSolved = true; // set first so stopTimer won't persist the fill
-    _lastEnteredCipherLetter = null;
+    _lastLockedCipherLetter = null;
     stopTimer();
     notifyListeners();
   }
@@ -312,7 +311,7 @@ class GameController extends ChangeNotifier {
     _attemptGuesses = null;
     _attemptRevealed = null;
     _reviewingSolved = false;
-    _lastEnteredCipherLetter = null;
+    _lastLockedCipherLetter = null;
     if (!_completed) _startTicker();
     notifyListeners();
   }
@@ -492,12 +491,18 @@ class GameController extends ChangeNotifier {
     final conflictsBefore = s.conflicts.length;
     final wordsBefore = s.correctWordCount;
     s.guesses[target] = plainLetter;
-    _lastEnteredCipherLetter = target;
     _lastInputCreatedConflict = s.conflicts.length > conflictsBefore;
     _lastInputCompletedWord =
         !_lastInputCreatedConflict &&
         !s.isSolved &&
         s.correctWordCount > wordsBefore;
+    // The "last move" highlight tracks the last letter that gets LOCKED, not
+    // every keystroke: it moves here only when this guess just completed a word
+    // (so [target] is now confirmed). A tentative guess leaves it on the
+    // previously locked letter — as do delete / undo / navigation.
+    if (s.confirmedLetters.contains(target)) {
+      _lastLockedCipherLetter = target;
+    }
     _afterChange();
   }
 
@@ -718,7 +723,7 @@ class GameController extends ChangeNotifier {
     // A hint is also a "last found" letter: the chess-style last-move highlight
     // lands on the just-revealed cell too (not only typed letters), and holds
     // there until the next letter is placed.
-    _lastEnteredCipherLetter = target;
+    _lastLockedCipherLetter = target;
     // Advance the cursor forward from where the PLAYER was, not from the
     // revealed letter's first occurrence — otherwise hinting late in the quote
     // flung the cursor backward to an earlier copy. Fall back to the revealed
@@ -739,7 +744,7 @@ class GameController extends ChangeNotifier {
     if (s.isSolved) {
       _completed = true;
       // A finished board reads clean: drop the last-entered highlight.
-      _lastEnteredCipherLetter = null;
+      _lastLockedCipherLetter = null;
       stopTimer();
       _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
         'solved': true,

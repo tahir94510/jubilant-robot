@@ -59,6 +59,34 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets(
+    'puzzle screen fits a narrow phone with huge text in long languages '
+    '(de/fr/pt) — the hint button label shrinks instead of breaking',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+
+      // German/French/Portuguese labels (e.g. "Buchstaben aufdecken") are far
+      // longer than English; at 1.6x on a 320dp phone the reveal button used to
+      // push the layout. The capped + scale-to-fit label keeps it intact.
+      for (final lang in ['de', 'fr', 'pt']) {
+        final h = await Harness.create();
+        h.game.start(shortQuote, daily: false);
+
+        await tester.pumpWidget(
+          h.app(const PuzzleScreen(), textScale: 1.6, locale: Locale(lang)),
+        );
+        await tester.pump();
+
+        expect(find.byType(PuzzleScreen), findsOneWidget, reason: lang);
+        expect(tester.takeException(), isNull, reason: 'overflow in $lang');
+
+        h.game.stopTimer();
+      }
+    },
+  );
+
   testWidgets('a 15-letter word fits a narrow phone with huge system text', (
     tester,
   ) async {

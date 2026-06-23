@@ -135,7 +135,7 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('the last-typed letter highlights all its copies on the board', (
+  testWidgets('the last LOCKED letter highlights all its copies on the board', (
     tester,
   ) async {
     final h = await Harness.create();
@@ -145,10 +145,18 @@ void main() {
     await tester.pump();
     final session = h.game.session!;
 
-    // Type S (appears 3x): every S cell gets the "recent" highlight.
-    final cipherS = session.cipher.encryptLetter('S');
+    // Complete the word "is" with S placed LAST so S becomes the last LOCKED
+    // letter (the highlight tracks locks, not tentative keystrokes). S appears
+    // 3x ("less", "is") — every S cell gets the "last move" highlight, nothing
+    // else does.
+    final isWord = session.cipherText.split(' ')[1]; // "is"
+    final cipherI = isWord[0];
+    final cipherS = isWord[1];
+    expect(session.cipher.decryptLetter(cipherS), 'S');
+    h.game.selectCipherLetter(cipherI);
+    h.game.enterGuess(session.cipher.decryptLetter(cipherI)); // no lock yet
     h.game.selectCipherLetter(cipherS);
-    h.game.enterGuess('S');
+    h.game.enterGuess(session.cipher.decryptLetter(cipherS)); // completes "is"
     await tester.pump();
 
     final recent = tester

@@ -20,19 +20,30 @@ class HintBar extends StatelessWidget {
 
     // Wrap, not Row: on narrow screens / large system text the two buttons
     // stack instead of overflowing (seen as "overflow by N px" on device).
-    return Wrap(
-      alignment: WrapAlignment.center,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 10,
-      runSpacing: 10,
-      children: [
-        const _RevealHintButton(),
-        // Shown on mobile for non-premium players. The button greys itself out
-        // until a rewarded ad is actually loaded (see _RewardedHintButton), so a
-        // reward is never granted without watching one — and an offline player
-        // simply sees a disabled button, never a free hint.
-        if (!economy.premium && ads.supported) const _RewardedHintButton(),
-      ],
+    // LayoutBuilder caps the reveal button (whose localized label is the long
+    // one) to the row width, and its label shrinks to fit — so even a long
+    // language at the largest text size can never push it past the edge.
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: constraints.maxWidth),
+              child: const _RevealHintButton(),
+            ),
+            // Shown on mobile for non-premium players. The button greys itself
+            // out until a rewarded ad is actually loaded (see
+            // _RewardedHintButton), so a reward is never granted without
+            // watching one — and an offline player simply sees a disabled
+            // button, never a free hint.
+            if (!economy.premium && ads.supported) const _RewardedHintButton(),
+          ],
+        );
+      },
     );
   }
 }
@@ -79,10 +90,16 @@ class _RevealHintButtonState extends State<_RevealHintButton> {
             }
           : null,
       icon: const Icon(Icons.lightbulb_outline, size: 20),
-      label: Text(
-        economy.premium
-            ? l10n.hintRevealLetter
-            : l10n.hintRevealLetterCount(economy.tokens),
+      // scaleDown keeps the full label but shrinks it to fit the capped button
+      // width in long languages, instead of overflowing or clipping.
+      label: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          economy.premium
+              ? l10n.hintRevealLetter
+              : l10n.hintRevealLetterCount(economy.tokens),
+          maxLines: 1,
+        ),
       ),
     );
   }

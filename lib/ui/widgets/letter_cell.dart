@@ -111,14 +111,17 @@ class LetterCell extends StatelessWidget {
             decoration: BoxDecoration(
               color: selected
                   ? palette.boardCellSelectedBg
-                  // A locked, fully-correct word keeps its own calm backdrop.
-                  : state == CellState.confirmed
-                  ? palette.boardCellConfirmedBg
-                  // The last placed letter (typed OR hint-revealed): a distinct
-                  // "last move" fill that holds until the next letter lands — a
-                  // FILL, never a frame, so it can't be mistaken for the cursor.
+                  // The last LOCKED letter (by a hint or by completing a word):
+                  // the chess-style "last move" fill, shown ABOVE the confirmed
+                  // backdrop so the latest locked letter stands out from the
+                  // other confirmed ones — and never as the cursor (it has no
+                  // frame).
                   : recent
                   ? palette.boardCellLastMoveBg
+                  // Other letters of a fully-correct word: their own calm
+                  // confirmed backdrop.
+                  : state == CellState.confirmed
+                  ? palette.boardCellConfirmedBg
                   // Sibling copies of the focused letter: a faint "same letter"
                   // wash, quieter than the last move.
                   : related

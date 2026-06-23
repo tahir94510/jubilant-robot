@@ -250,32 +250,46 @@ void main() {
   );
 
   test(
-    'the last-entered highlight is stable: it survives delete/undo, moves only '
-    'on a new letter, and clears on solve',
+    'the last-move highlight tracks the last LOCKED letter: tentative typing, '
+    'delete and undo never move it; only a new lock does; clears on solve',
     () async {
       final store = await storage();
       final game = GameController(storage: store);
       game.start(shortQuote, daily: false);
       final s = game.session!;
 
-      final cipherS = s.cipher.encryptLetter('S');
       final cipherL = s.cipher.encryptLetter('L');
 
-      game.selectCipherLetter(cipherS);
-      game.enterGuess('S');
-      expect(game.lastEnteredCipherLetter, cipherS);
-
-      // Delete and undo must NOT move the highlight off the last letter — it is
-      // anchored to the letter, not to the cursor or the edit history.
-      game.clearGuess();
-      expect(game.lastEnteredCipherLetter, cipherS);
-      game.undo();
-      expect(game.lastEnteredCipherLetter, cipherS);
-
-      // Typing a DIFFERENT letter moves the highlight to it.
+      // Nothing locked yet -> no highlight, even after a tentative (wrong) guess.
       game.selectCipherLetter(cipherL);
-      game.enterGuess('L');
-      expect(game.lastEnteredCipherLetter, cipherL);
+      game.enterGuess('Z');
+      expect(game.lastLockedCipherLetter, isNull);
+
+      // Completing the 2-letter word "is" correctly LOCKS its letters, and the
+      // highlight lands on the letter that completed it.
+      final isWord = s.cipherText.split(' ')[1]; // "is"
+      final cipherI = isWord[0];
+      final cipherIs = isWord[1];
+      game.selectCipherLetter(cipherI);
+      game.enterGuess(
+        s.cipher.decryptLetter(cipherI),
+      ); // correct, not yet a word
+      expect(game.lastLockedCipherLetter, isNull);
+      game.selectCipherLetter(cipherIs);
+      game.enterGuess(
+        s.cipher.decryptLetter(cipherIs),
+      ); // completes "is" -> locks
+      expect(s.confirmedLetters.contains(cipherIs), isTrue);
+      expect(game.lastLockedCipherLetter, cipherIs);
+
+      // Tentative typing elsewhere, delete and undo must NOT move it.
+      game.selectCipherLetter(cipherL);
+      game.enterGuess('Z');
+      expect(game.lastLockedCipherLetter, cipherIs);
+      game.clearGuess();
+      expect(game.lastLockedCipherLetter, cipherIs);
+      game.undo();
+      expect(game.lastLockedCipherLetter, cipherIs);
 
       // Solving the whole puzzle clears it so the finished board reads clean.
       for (final plain in ['L', 'E', 'S', 'I', 'M', 'O', 'R']) {
@@ -283,7 +297,7 @@ void main() {
         game.enterGuess(plain);
       }
       expect(game.completed, isTrue);
-      expect(game.lastEnteredCipherLetter, isNull);
+      expect(game.lastLockedCipherLetter, isNull);
 
       game.dispose();
     },
@@ -312,32 +326,36 @@ void main() {
     game.dispose();
   });
 
-  test('a HINT reveal sets the last-move highlight, and cursor navigation never '
-      'disturbs it', () async {
+  test('a HINT reveal locks a letter and sets the last-move highlight; '
+      'navigation and tentative typing never disturb it', () async {
     final store = await storage();
     final game = GameController(storage: store);
     game.start(shortQuote, daily: false);
     final s = game.session!;
 
-    // A hint counts as a "last found" letter (not only typing): the revealed
-    // letter becomes the last-move highlight.
+    // A hint LOCKS the revealed letter, so it becomes the last-move highlight.
     game.revealSelected();
     final revealed = s.revealed.first;
-    expect(game.lastEnteredCipherLetter, revealed);
+    expect(game.lastLockedCipherLetter, revealed);
 
-    // Prev/next-letter navigation must NOT move the highlight — it is anchored
-    // to the letter, never to the cursor.
+    // Prev/next navigation and a tentative (wrong) guess must NOT move it —
+    // only a new lock can.
     game.moveSelection(1);
     game.moveSelection(-1);
-    expect(game.lastEnteredCipherLetter, revealed);
-
-    // Typing a DIFFERENT letter then moves the highlight to it.
     final other = s.cipherLetters.firstWhere(
       (c) => c != revealed && !s.revealed.contains(c),
     );
     game.selectCipherLetter(other);
-    game.enterGuess('Z');
-    expect(game.lastEnteredCipherLetter, other);
+    game.enterGuess('Z'); // tentative, locks nothing
+    expect(game.lastLockedCipherLetter, revealed);
+
+    // A SECOND hint is a new lock: the highlight moves to the newly revealed
+    // letter.
+    game.revealSelected();
+    final newLocked = game.lastLockedCipherLetter;
+    expect(newLocked, isNotNull);
+    expect(newLocked, isNot(revealed));
+    expect(s.revealed.contains(newLocked), isTrue);
 
     game.stopTimer();
     game.dispose();
