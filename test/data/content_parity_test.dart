@@ -130,6 +130,10 @@ void main() {
       'Helen Keller',
       'Will Durant',
       'Robert Frost',
+      'Albert Camus',
+      'Jean-Paul Sartre',
+      'Simone de Beauvoir',
+      'Sacha Guitry',
     };
     for (final q in byLocale.values.expand((e) => e)) {
       expect(
