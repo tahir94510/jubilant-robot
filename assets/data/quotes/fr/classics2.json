@@ -30,5 +30,101 @@
     "source": "L'Art poétique",
     "category": "classics",
     "locale": "fr"
+  },
+  {
+    "id": "fr-c205",
+    "text": "Les vieillards aiment à donner de bons préceptes, pour se consoler de n'être plus en état de donner de mauvais exemples.",
+    "author": "François de La Rochefoucauld",
+    "source": "Maximes",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c206",
+    "text": "Il y a un goût dans la pure amitié où ne peuvent atteindre ceux qui sont nés médiocres.",
+    "author": "Jean de La Bruyère",
+    "source": "Les Caractères",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c207",
+    "text": "Tous les genres sont bons, hors le genre ennuyeux.",
+    "author": "Voltaire",
+    "source": "L'Enfant prodigue",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c208",
+    "text": "La patience est l'art d'espérer.",
+    "author": "Vauvenargues",
+    "source": "Réflexions et maximes",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c209",
+    "text": "Nul n'aura de l'esprit, hors nous et nos amis.",
+    "author": "Molière",
+    "source": "Les Femmes savantes",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c210",
+    "text": "Ô rage! ô désespoir! ô vieillesse ennemie!",
+    "author": "Pierre Corneille",
+    "source": "Le Cid",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c211",
+    "text": "J'embrasse mon rival, mais c'est pour l'étouffer.",
+    "author": "Jean Racine",
+    "source": "Britannicus",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c212",
+    "text": "Il n'y a que le méchant qui soit seul.",
+    "author": "Denis Diderot",
+    "source": "Le Fils naturel",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c213",
+    "text": "Je suis, j'existe: cela est certain.",
+    "author": "René Descartes",
+    "source": "Méditations métaphysiques",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c214",
+    "text": "Pour qu'on ne puisse abuser du pouvoir, il faut que le pouvoir arrête le pouvoir.",
+    "author": "Montesquieu",
+    "source": "De l'esprit des lois",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c215",
+    "text": "Renoncer à sa liberté, c'est renoncer à sa qualité d'homme.",
+    "author": "Jean-Jacques Rousseau",
+    "source": "Du contrat social",
+    "category": "classics",
+    "locale": "fr"
+  },
+  {
+    "id": "fr-c216",
+    "text": "Je me presse de rire de tout, de peur d'être obligé d'en pleurer.",
+    "author": "Beaumarchais",
+    "source": "Le Barbier de Séville",
+    "category": "classics",
+    "locale": "fr"
   }
 ]

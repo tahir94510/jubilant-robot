@@ -102,5 +102,85 @@
     "source": "Allegria di naufragi",
     "category": "literature",
     "locale": "it"
+  },
+  {
+    "id": "it-l214",
+    "text": "Nel mezzo del cammin di nostra vita mi ritrovai per una selva oscura, ché la diritta via era smarrita.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l215",
+    "text": "Per me si va ne la città dolente, per me si va ne l'etterno dolore.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Inferno",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l216",
+    "text": "Vergine Madre, figlia del tuo figlio, umile e alta più che creatura.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Paradiso",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l217",
+    "text": "D'in su la vetta della torre antica, passero solitario, alla campagna cantando vai finché non more il giorno.",
+    "author": "Giacomo Leopardi",
+    "source": "Il passero solitario",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l218",
+    "text": "La donzelletta vien dalla campagna in sul calar del sole, col suo fascio dell'erba.",
+    "author": "Giacomo Leopardi",
+    "source": "Il sabato del villaggio",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l219",
+    "text": "Il coraggio, uno non se lo può dare.",
+    "author": "Alessandro Manzoni",
+    "source": "I promessi sposi",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l220",
+    "text": "Libertà va cercando, ch'è sì cara, come sa chi per lei vita rifiuta.",
+    "author": "Dante Alighieri",
+    "source": "Divina Commedia, Purgatorio",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l221",
+    "text": "Sol chi non lascia eredità d'affetti poca gioia ha dell'urna.",
+    "author": "Ugo Foscolo",
+    "source": "Dei Sepolcri",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l222",
+    "text": "L'albero a cui tendevi la pargoletta mano, il verde melograno dai bei vermigli fior.",
+    "author": "Giosuè Carducci",
+    "source": "Pianto antico",
+    "category": "literature",
+    "locale": "it"
+  },
+  {
+    "id": "it-l223",
+    "text": "O cavallina, cavallina storna, che portavi colui che non ritorna.",
+    "author": "Giovanni Pascoli",
+    "source": "La cavalla storna",
+    "category": "literature",
+    "locale": "it"
   }
 ]
