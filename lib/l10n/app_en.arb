@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
+  "aboutThisQuote": "About this quote",
   "a11yLetterCellEmpty": "Letter {letter}, empty",
   "@a11yLetterCellEmpty": {
     "placeholders": {

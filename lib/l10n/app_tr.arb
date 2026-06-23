@@ -1,5 +1,6 @@
 {
   "@@locale": "tr",
+  "aboutThisQuote": "Bu söz hakkında",
   "a11yLetterCellEmpty": "{letter} harfi, boş",
   "a11yLetterCellFilled": "{letter} harfi, cevap {guess}",
   "a11yDismiss": "Kapat",

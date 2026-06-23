@@ -224,6 +224,19 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                   ],
                                 ),
                               ),
+                              // Optional "About this quote" context — rendered
+                              // only when the quote carries a note, so the screen
+                              // stays clean for the (current) majority without one.
+                              if (quote.note != null &&
+                                  quote.note!.trim().isNotEmpty) ...[
+                                const SizedBox(height: 16),
+                                _StaggeredEntrance(
+                                  index: 3,
+                                  child: _AboutQuoteCard(
+                                    note: quote.note!.trim(),
+                                  ),
+                                ),
+                              ],
                               const SizedBox(height: 18),
                               // Wrap, not Row: with three chips (daily) on a narrow
                               // phone the row overflowed; now extras flow to a new line.
@@ -520,6 +533,62 @@ class _StatChip extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// "About this quote": a quiet, optional context card shown after a solve when
+/// the quote carries a [Quote.note] — who said it, from where, why it matters.
+/// Absent for most quotes today, so the screen stays uncluttered until the
+/// dataset is enriched language by language.
+class _AboutQuoteCard extends StatelessWidget {
+  const _AboutQuoteCard({required this.note});
+
+  final String note;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
+      decoration: BoxDecoration(
+        color: scheme.onSurface.withValues(alpha: .04),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(Icons.info_outline, size: 15, color: palette.textSecondary),
+              const SizedBox(width: 6),
+              Flexible(
+                child: Text(
+                  l10n.aboutThisQuote,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1.0,
+                    color: palette.textSecondary,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Text(
+            note,
+            style: TextStyle(
+              fontSize: 14,
+              height: 1.45,
+              color: scheme.onSurface,
+            ),
+          ),
+        ],
       ),
     );
   }

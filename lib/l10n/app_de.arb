@@ -1,5 +1,6 @@
 {
   "@@locale": "de",
+  "aboutThisQuote": "Über dieses Zitat",
   "a11yLetterCellEmpty": "Buchstabe {letter}, leer",
   "a11yLetterCellFilled": "Buchstabe {letter}, Antwort {guess}",
   "a11yDismiss": "Schließen",

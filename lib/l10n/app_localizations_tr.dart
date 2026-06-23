@@ -9,6 +9,9 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
+  String get aboutThisQuote => 'Bu söz hakkında';
+
+  @override
   String a11yLetterCellEmpty(String letter) {
     return '$letter harfi, boş';
   }

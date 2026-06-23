@@ -4,14 +4,16 @@
     "text": "All the world's a stage, and all the men and women merely players.",
     "author": "William Shakespeare",
     "source": "As You Like It",
-    "category": "classics"
+    "category": "classics",
+    "note": "From Jaques's “seven ages of man” speech in As You Like It, casting every human life as a play in seven acts."
   },
   {
     "id": "shk-002",
     "text": "To be, or not to be, that is the question.",
     "author": "William Shakespeare",
     "source": "Hamlet",
-    "category": "classics"
+    "category": "classics",
+    "note": "The opening of Hamlet's most famous soliloquy (Act 3), where the prince weighs the pain of living against the fear of death."
   },
   {
     "id": "shk-003",
@@ -32,7 +34,8 @@
     "text": "The course of true love never did run smooth.",
     "author": "William Shakespeare",
     "source": "A Midsummer Night's Dream",
-    "category": "classics"
+    "category": "classics",
+    "note": "Lysander's line in A Midsummer Night's Dream, consoling Hermia that real love is rarely free of obstacles."
   },
   {
     "id": "shk-006",
@@ -74,7 +77,8 @@
     "text": "The fault, dear Brutus, is not in our stars, but in ourselves.",
     "author": "William Shakespeare",
     "source": "Julius Caesar",
-    "category": "classics"
+    "category": "classics",
+    "note": "Cassius presses Brutus to act, arguing our destiny lies in our own choices rather than in fate or the stars."
   },
   {
     "id": "shk-012",
@@ -88,7 +92,8 @@
     "text": "Brevity is the soul of wit.",
     "author": "William Shakespeare",
     "source": "Hamlet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Polonius claims that brevity is the essence of intelligence — ironically, in one of the play's most long-winded speeches."
   },
   {
     "id": "shk-014",
@@ -116,7 +121,8 @@
     "text": "What's in a name? That which we call a rose by any other name would smell as sweet.",
     "author": "William Shakespeare",
     "source": "Romeo and Juliet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Juliet reasons that a name means nothing — a rose would smell as sweet whatever we called it — as she longs for Romeo."
   },
   {
     "id": "shk-018",
@@ -130,7 +136,8 @@
     "text": "Parting is such sweet sorrow.",
     "author": "William Shakespeare",
     "source": "Romeo and Juliet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Juliet's farewell to Romeo in the balcony scene, capturing the bittersweet ache of saying goodnight to someone you love."
   },
   {
     "id": "shk-020",
@@ -165,7 +172,8 @@
     "text": "How far that little candle throws his beams! So shines a good deed in a weary world.",
     "author": "William Shakespeare",
     "source": "The Merchant of Venice",
-    "category": "classics"
+    "category": "classics",
+    "note": "Portia marvels how a small candle lights the dark — just as a single good deed shines out in a weary world."
   },
   {
     "id": "shk-025",

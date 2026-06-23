@@ -10,6 +10,7 @@ class Quote {
     required this.source,
     required this.category,
     this.locale = 'en',
+    this.note,
   }) : alphabet = Alphabets.forLocale(locale) {
     normalizedText = alphabet.normalize(text);
     score = difficultyScore(text, alphabet: alphabet);
@@ -23,6 +24,7 @@ class Quote {
     source: json['source'] as String,
     category: json['category'] as String,
     locale: json['locale'] as String? ?? 'en',
+    note: json['note'] as String?,
   );
 
   final String id;
@@ -33,6 +35,12 @@ class Quote {
 
   /// BCP-47-ish language code; selects the playable [alphabet].
   final String locale;
+
+  /// Optional one- or two-sentence context shown after a solve ("About this
+  /// quote") — who said it, from where, why it matters. Null for the vast
+  /// majority; the complete screen renders the section only when present, so
+  /// the dataset can be enriched gradually without any code change.
+  final String? note;
 
   /// The alphabet this quote's cryptogram plays on.
   final Alphabet alphabet;

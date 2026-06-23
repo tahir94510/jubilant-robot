@@ -77,4 +77,39 @@ void main() {
       });
     }
   });
+
+  test('Quote round-trips the optional "About this quote" note', () {
+    final withNote = Quote.fromJson(const {
+      'id': 't1',
+      'text': 'a test quote',
+      'author': 'A',
+      'source': 'S',
+      'category': 'classics',
+      'note': 'context here',
+    });
+    expect(withNote.note, 'context here');
+
+    final without = Quote.fromJson(const {
+      'id': 't2',
+      'text': 'a test quote',
+      'author': 'A',
+      'source': 'S',
+      'category': 'classics',
+    });
+    expect(without.note, isNull);
+  });
+
+  test('every About note is non-empty, and English seeds the feature', () {
+    for (final q in byLocale.values.expand((e) => e)) {
+      if (q.note != null) {
+        expect(q.note!.trim(), isNotEmpty, reason: '${q.id} has a blank note');
+      }
+    }
+    final enNotes = byLocale['en']!.where((q) => q.note != null).length;
+    expect(
+      enNotes,
+      greaterThanOrEqualTo(8),
+      reason: 'English should seed at least 8 "About this quote" notes',
+    );
+  });
 }
