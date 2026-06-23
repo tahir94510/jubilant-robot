@@ -17,9 +17,9 @@
   },
   {
     "id": "it-l203",
-    "text": "Meriggiare pallido e assorto presso un rovente muro d'orto, ascoltare tra i pruni e gli sterpi schiocchi di merli.",
-    "author": "Eugenio Montale",
-    "source": "Meriggiare pallido e assorto",
+    "text": "Dolce paese, onde portai conforme l'abito fiero e lo sdegnoso canto.",
+    "author": "Giosuè Carducci",
+    "source": "Traversando la Maremma toscana",
     "category": "literature",
     "locale": "it"
   },
@@ -73,9 +73,9 @@
   },
   {
     "id": "it-l210",
-    "text": "Amai trite parole che non uno osava. M'incantò la rima fiore amore, la più antica difficile del mondo.",
-    "author": "Umberto Saba",
-    "source": "Amai",
+    "text": "Fratelli, a un tempo stesso, Amore e Morte ingenerò la sorte.",
+    "author": "Giacomo Leopardi",
+    "source": "Amore e Morte",
     "category": "literature",
     "locale": "it"
   },
@@ -89,17 +89,17 @@
   },
   {
     "id": "it-l212",
-    "text": "M'è venuta l'idea di guardar l'acqua: i pesci dormono.",
-    "author": "Aldo Palazzeschi",
-    "source": "Poesie",
+    "text": "Un dì, s'io non andrò sempre fuggendo di gente in gente, me vedrai seduto su la tua pietra, o fratel mio.",
+    "author": "Ugo Foscolo",
+    "source": "In morte del fratello Giovanni",
     "category": "literature",
     "locale": "it"
   },
   {
     "id": "it-l213",
-    "text": "Soldati: si sta come d'autunno; il vento muove le foglie e le disperde.",
-    "author": "Giuseppe Ungaretti",
-    "source": "Allegria di naufragi",
+    "text": "Nel campo mezzo grigio e mezzo nero resta un aratro senza buoi, che pare dimenticato, tra il vapor leggero.",
+    "author": "Giovanni Pascoli",
+    "source": "Lavandare",
     "category": "literature",
     "locale": "it"
   },

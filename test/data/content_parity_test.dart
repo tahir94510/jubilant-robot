@@ -112,4 +112,28 @@ void main() {
       reason: 'English should seed at least 18 "About this quote" notes',
     );
   });
+
+  test('the dataset stays 100% public domain (no in-copyright authors)', () {
+    // Authors whose work is not yet public domain under life+70 (death after
+    // 1955). Removing them is a deliberate, locked decision (v2.4 copyright
+    // cleanup); extend this set if a new in-copyright name ever slips in.
+    const blocked = {
+      'Eugenio Montale',
+      'Giuseppe Ungaretti',
+      'Salvatore Quasimodo',
+      'Umberto Saba',
+      'Aldo Palazzeschi',
+      'Ennio Flaiano',
+      'Leo Longanesi',
+      'Norberto Bobbio',
+      'Danilo Dolci',
+    };
+    for (final q in byLocale.values.expand((e) => e)) {
+      expect(
+        blocked.contains(q.author),
+        isFalse,
+        reason: '${q.id} cites ${q.author}, who is not yet public domain',
+      );
+    }
+  });
 }
