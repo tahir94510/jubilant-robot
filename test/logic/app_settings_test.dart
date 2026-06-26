@@ -85,6 +85,27 @@ void main() {
   });
 
   test(
+    'sendTestNotification posts a localized test only when granted',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final n = FakeNotificationService();
+      final c = SettingsController(storage: storage, notifications: n);
+      await c.setLanguage('en');
+
+      n.permissionGranted = true;
+      expect(await c.sendTestNotification(), isTrue);
+      expect(n.testCalls, 1);
+      expect(n.testTitle, 'Your daily cryptogram is ready');
+
+      // Denied permission: nothing fires and the call reports failure.
+      n.permissionGranted = false;
+      expect(await c.sendTestNotification(), isFalse);
+      expect(n.testCalls, 1);
+    },
+  );
+
+  test(
     'rescheduleDailyIfEnabled re-arms an enabled reminder on startup',
     () async {
       SharedPreferences.setMockInitialValues({});

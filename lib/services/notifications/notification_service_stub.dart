@@ -28,5 +28,11 @@ class StubNotificationService extends NotificationService {
   }) async {}
 
   @override
+  Future<void> sendTestNotification({
+    required String title,
+    required String body,
+  }) async {}
+
+  @override
   Future<void> cancelAll() async {}
 }

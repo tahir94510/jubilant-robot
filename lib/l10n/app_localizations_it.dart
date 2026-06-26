@@ -130,6 +130,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get reminderTime => 'Ora del promemoria';
 
   @override
+  String get reminderTestSend => 'Invia una notifica di prova';
+
+  @override
+  String get reminderTestSent => 'Notifica di prova inviata';
+
+  @override
   String get reminderDenied =>
       'Autorizzazione alle notifiche negata nelle impostazioni di sistema.';
 

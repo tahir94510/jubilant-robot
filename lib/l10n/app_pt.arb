@@ -37,6 +37,8 @@
   "reminderAt": "Às {time}",
   "neverMissStreak": "Nunca perca sua sequência",
   "reminderTime": "Horário do lembrete",
+  "reminderTestSend": "Enviar uma notificação de teste",
+  "reminderTestSent": "Notificação de teste enviada",
   "reminderDenied": "A permissão de notificações foi negada nas configurações do sistema.",
   "premiumActive": "Premium ativo",
   "premiumActiveSubtitle": "Obrigado por apoiar o Quotecrack!",
