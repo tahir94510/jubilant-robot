@@ -162,7 +162,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final haptics = context.read<HapticsService>();
     final sounds = context.read<SoundService>();
     game.enterGuess(ch);
-    if (game.lastInputCreatedConflict) {
+    if (game.completed) {
+      // The keystroke that SOLVES the puzzle gets no per-key cue: the solve
+      // celebration (success chime + heavy haptic + green wave) owns this
+      // moment, so a stray tap/word blip under the fanfare would only muddy it.
+    } else if (game.lastInputCreatedConflict) {
       haptics.error();
       sounds.conflict();
       // enterGuess already notifies listeners (rebuild), which picks up the
@@ -350,11 +354,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
-            // Keep the action rhythm even on every device: the eye and the timer
-            // sit in one centered Row with consistent gaps, then a single
-            // trailing pad holds the cluster off the screen edge — instead of
-            // each action carrying its own ad-hoc padding (which read as
-            // misaligned spacing between the title, eye and clock).
+            // Consistent action rhythm on every device: the eye icon and the
+            // clock share the same ~12px inset from the screen edge (the icon's
+            // own optical inset), and the clock is vertically centred on the
+            // toolbar like the icon — so title, eye and clock read as one
+            // evenly-spaced row instead of the old ad-hoc per-widget padding.
             actions: [
               // A previously-solved puzzle starts blank and playable; the answer
               // is only shown on demand. The eye is a toggle: tap to reveal the
@@ -379,7 +383,6 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 ),
               if (settings.showTimer && !reviewing)
                 _TimerText(elapsedListenable: game.elapsedListenable),
-              const SizedBox(width: 4),
             ],
           ),
           body: SafeArea(
@@ -687,9 +690,11 @@ class _TimerText extends StatelessWidget {
     final palette = Theme.of(context).extension<GamePalette>()!;
     return Center(
       child: Padding(
-        // Left gap keeps the clock from butting against the eye (show-solution)
-        // icon when both are present; right gap holds it off the screen edge.
-        padding: const EdgeInsets.only(left: 8, right: 16),
+        // ~12px right inset matches the eye IconButton's own optical inset so
+        // the clock lines up with the icon rhythm at the screen edge; the small
+        // left gap keeps it off the eye when both are shown. Center (above)
+        // holds it on the toolbar's vertical midline, level with the icon.
+        padding: const EdgeInsets.only(left: 4, right: 12),
         child: ValueListenableBuilder<Duration>(
           valueListenable: elapsedListenable,
           builder: (context, elapsed, _) {
