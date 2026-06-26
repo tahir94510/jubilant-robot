@@ -80,6 +80,53 @@ void main() {
   });
 
   test(
+    'last-typed cue follows the latest editable guess (type/delete/undo/redo) '
+    'and stays independent of the last-locked cue',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false); // "Less is more." (no X or Z)
+      final s = game.session!;
+
+      game.selectIndex(0);
+      final c0 = game.selectedCipherLetter!;
+      game.enterGuess('X'); // X is never in the quote -> always a wrong guess
+      expect(game.lastTypedCipherLetter, c0);
+      expect(game.lastLockedCipherLetter, isNull); // nothing locked yet
+
+      final otherPos = [
+        for (var i = 0; i < s.cipherText.length; i++)
+          if (s.cipherLetters.contains(s.cipherText[i]) &&
+              s.cipherText[i] != c0 &&
+              !s.guesses.containsKey(s.cipherText[i]))
+            i,
+      ].first;
+      game.selectIndex(otherPos);
+      final c1 = game.selectedCipherLetter!;
+      game.enterGuess('Z'); // also never correct -> no conflict, no lock
+      expect(game.lastTypedCipherLetter, c1);
+
+      // Undo removes the c1 guess: the cue falls back to the previous letter.
+      game.undo();
+      expect(s.guesses.containsKey(c1), isFalse);
+      expect(game.lastTypedCipherLetter, c0);
+
+      // Redo re-applies it: the cue returns to c1.
+      game.redo();
+      expect(game.lastTypedCipherLetter, c1);
+
+      // Deleting c1 in place falls back to c0; the locked cue never moved.
+      game.selectIndex(otherPos);
+      game.clearGuess();
+      expect(game.lastTypedCipherLetter, c0);
+      expect(game.lastLockedCipherLetter, isNull);
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
+  test(
     'undo restores the cursor to the exact edited cell, not the first copy',
     () async {
       final store = await storage();

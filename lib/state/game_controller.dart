@@ -102,6 +102,15 @@ class GameController extends ChangeNotifier {
   String? _lastLockedCipherLetter;
   String? get lastLockedCipherLetter => _lastLockedCipherLetter;
 
+  /// The cipher letter most recently TYPED that is still on the board and still
+  /// EDITABLE (not yet locked by a hint or a completed word). Drives the board's
+  /// quiet "last typed" cue. Fully INDEPENDENT of [_lastLockedCipherLetter]:
+  /// typing, delete, undo and redo move it (recomputed from the undo history),
+  /// but it never touches the last-LOCKED highlight. Null when no editable typed
+  /// letter remains; cleared on solve and on (re)start like the locked cue.
+  String? _lastTypedCipherLetter;
+  String? get lastTypedCipherLetter => _lastTypedCipherLetter;
+
   Timer? _ticker;
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
@@ -205,6 +214,7 @@ class GameController extends ChangeNotifier {
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
 
     // Re-opening a solved puzzle no longer spoils the answer: it starts as a
     // blank, fully playable board exactly like a fresh attempt. The solution
@@ -273,6 +283,7 @@ class GameController extends ChangeNotifier {
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
     _persistState();
@@ -293,6 +304,7 @@ class GameController extends ChangeNotifier {
     }
     _reviewingSolved = true; // set first so stopTimer won't persist the fill
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
     stopTimer();
     notifyListeners();
   }
@@ -312,6 +324,7 @@ class GameController extends ChangeNotifier {
     _attemptRevealed = null;
     _reviewingSolved = false;
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
     if (!_completed) _startTicker();
     notifyListeners();
   }
@@ -382,6 +395,26 @@ class GameController extends ChangeNotifier {
     for (var i = 0; i < t.length; i++) {
       final ch = t[i];
       if (s.cipherLetters.contains(ch) && !s.isGuessCorrect(ch)) return ch;
+    }
+    return null;
+  }
+
+  /// The cipher letter of the most-recently-typed guess that is STILL present
+  /// and STILL editable (not locked by a hint or a completed word), found by
+  /// walking the undo history backwards. Drives the "last typed" cue and keeps
+  /// it correct through delete/undo/redo (a cleared or now-locked letter is
+  /// skipped, so the cue falls back to the previous typed letter). Independent
+  /// of the last-LOCKED highlight, which the undo path never touches.
+  String? _recomputeLastTyped() {
+    final s = _session;
+    if (s == null) return null;
+    for (var i = _undoStack.length - 1; i >= 0; i--) {
+      final ch = _undoStack[i].cipherLetter;
+      if (s.guesses.containsKey(ch) &&
+          !s.revealed.contains(ch) &&
+          !s.confirmedLetters.contains(ch)) {
+        return ch;
+      }
     }
     return null;
   }
@@ -646,6 +679,7 @@ class GameController extends ChangeNotifier {
     // letter's first occurrence only for legacy saves without a stored index.
     _selectedIndex =
         move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
+    _lastTypedCipherLetter = _recomputeLastTyped();
     _persistState();
     notifyListeners();
   }
@@ -685,6 +719,7 @@ class GameController extends ChangeNotifier {
     _undoStack.add(_Move(move.cipherLetter, undoValue, move.index));
     _selectedIndex =
         move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
+    _lastTypedCipherLetter = _recomputeLastTyped();
     if (s.isSolved) {
       _completed = true;
       stopTimer();
@@ -751,6 +786,7 @@ class GameController extends ChangeNotifier {
       _completed = true;
       // A finished board reads clean: drop the last-entered highlight.
       _lastLockedCipherLetter = null;
+      _lastTypedCipherLetter = null;
       stopTimer();
       _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
         'solved': true,
@@ -765,6 +801,7 @@ class GameController extends ChangeNotifier {
             _nextEditableIndexAfter(_selectedIndex) ??
             _selectedIndex;
       }
+      _lastTypedCipherLetter = _recomputeLastTyped();
       _persistState();
     }
     notifyListeners();

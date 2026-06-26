@@ -334,6 +334,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                           selectedIndex: game.selectedIndex,
                                           lastLocked:
                                               game.lastLockedCipherLetter,
+                                          lastTyped: game.lastTypedCipherLetter,
                                           errorChecking: settings.errorChecking,
                                           onSelect: (index) {
                                             haptics.tap();

@@ -17,6 +17,7 @@ class CipherBoard extends StatefulWidget {
     this.selectedIndex,
     this.solveWave,
     this.lastLocked,
+    this.lastTyped,
   });
 
   final PuzzleSession session;
@@ -45,6 +46,12 @@ class CipherBoard extends StatefulWidget {
   /// so the eye stays on the latest letter nailed down. It moves only when a new
   /// letter locks. Null while reviewing or celebrating (no highlight then).
   final String? lastLocked;
+
+  /// The most-recently TYPED still-editable cipher letter; every copy gets a
+  /// quiet neutral fill that tracks the player's last keystroke after the cursor
+  /// auto-advances. Independent of [lastLocked] (the gold last-LOCKED cue); null
+  /// while reviewing or celebrating.
+  final String? lastTyped;
 
   @override
   State<CipherBoard> createState() => _CipherBoardState();
@@ -151,16 +158,20 @@ class _CipherBoardState extends State<CipherBoard> {
               final focused = thisPos == selectedIndex;
               final related =
                   !focused && widget.selected != null && ch == widget.selected;
-              // Every copy of the last-typed letter glows softly (the cursor has
-              // already moved on). Stable across delete/undo — but only drawn
-              // while that letter still holds a guess, so a cleared/undone letter
-              // never leaves a stray highlight on now-empty cells.
-              // A locked letter always holds its (correct) guess, so the
-              // containsKey guard is belt-and-suspenders — the highlight only
-              // ever sits on a letter that is genuinely locked.
+              // The last LOCKED letter (and every copy): the chess-style "last
+              // move" cue (gold fill + ring). Drawn only while it still holds
+              // its correct guess, so a cleared cell never keeps a stray glow.
               final recent =
                   widget.lastLocked != null &&
                   ch == widget.lastLocked &&
+                  session.guesses.containsKey(ch);
+              // The last TYPED still-editable letter (and every copy): a quiet
+              // neutral cue, INDEPENDENT of the locked one. The controller only
+              // ever points this at an unlocked letter; we still guard on a
+              // present guess so a cleared/undone letter leaves no stray fill.
+              final lastTyped =
+                  widget.lastTyped != null &&
+                  ch == widget.lastTyped &&
                   session.guesses.containsKey(ch);
               // Each cell carries its own stable key so the focused one can be
               // found for auto-scroll without ever migrating a key between
@@ -175,6 +186,7 @@ class _CipherBoardState extends State<CipherBoard> {
                   focused: focused,
                   related: related,
                   recent: recent,
+                  lastTyped: lastTyped,
                   onTap: () => widget.onSelect(thisPos),
                 ),
               );
