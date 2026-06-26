@@ -132,6 +132,8 @@
   "onbNext": "Weiter",
   "onbTryOne": "Probier eins (30 Sekunden)",
   "onbSkip": "Überspringen",
+  "onbDone": "Fertig",
+  "replayTutorial": "Tutorial wiederholen",
   "notificationDailyTitle": "Dein Tagesrätsel ist bereit",
   "notificationDailyBody": "Ein neues Zitat wartet darauf, entschlüsselt zu werden. Halte deine Serie am Leben!",
   "shareSolvedIn": "gelöst in {time}",

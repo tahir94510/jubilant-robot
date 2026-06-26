@@ -13,7 +13,13 @@ import 'puzzle_screen.dart';
 /// 30-second interactive tutorial: three short explanation steps, then a
 /// real (tiny) cryptogram the player solves with the actual game UI.
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+  const OnboardingScreen({super.key, this.replay = false});
+
+  /// True when opened from Settings as a refresher ("Replay tutorial"): the
+  /// flow then layers onto the existing stack and returns the player to where
+  /// they came from, and NEVER touches saved progress or the onboarding flag —
+  /// versus the first-run flow, which marks onboarding done and rebuilds Home.
+  final bool replay;
 
   /// The tutorial puzzle, one per language. These are chosen for *repeated
   /// words* ("there is a", "damlaya", "va… va… va"), not brevity: in a
@@ -110,17 +116,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Future<void> _startTutorialPuzzle() async {
     final locale = Localizations.localeOf(context).languageCode;
-    await context.read<SettingsController>().markOnboardingDone();
-    if (!mounted) return;
+    if (!widget.replay) {
+      await context.read<SettingsController>().markOnboardingDone();
+      if (!mounted) return;
+    }
     context.read<GameController>().start(
       OnboardingScreen.tutorialQuoteFor(locale),
       daily: false,
     );
-    // Home slides UNDER the stack with no animation; the player sees one
-    // smooth transition straight into the puzzle (the old
+    final navigator = Navigator.of(context);
+    if (widget.replay) {
+      // Refresher from Settings: just layer the tutorial puzzle on top so
+      // backing out returns the player to where they came from, untouched.
+      navigator.push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
+      return;
+    }
+    // First run: Home slides UNDER the stack with no animation; the player sees
+    // one smooth transition straight into the puzzle (the old
     // pushReplacement+push pair ran two stacked animations — a visible
     // home-screen flash that read as a glitch).
-    final navigator = Navigator.of(context);
     navigator.pushAndRemoveUntil(
       PageRouteBuilder(
         pageBuilder: (_, _, _) => const HomeScreen(),
@@ -238,6 +252,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   TextButton(
                     onPressed: () async {
+                      // Refresher: just close back to where it was opened from;
+                      // never re-mark onboarding or rebuild Home.
+                      if (widget.replay) {
+                        Navigator.of(context).pop();
+                        return;
+                      }
                       await context
                           .read<SettingsController>()
                           .markOnboardingDone();
@@ -247,7 +267,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         );
                       }
                     },
-                    child: Text(l10n.onbSkip),
+                    child: Text(widget.replay ? l10n.onbDone : l10n.onbSkip),
                   ),
                 ],
               ),

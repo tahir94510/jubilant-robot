@@ -237,6 +237,8 @@
   "onbNext": "Next",
   "onbTryOne": "Try one (30 seconds)",
   "onbSkip": "Skip",
+  "onbDone": "Done",
+  "replayTutorial": "Replay tutorial",
   "notificationDailyTitle": "Your daily cryptogram is ready",
   "notificationDailyBody": "A fresh quote is waiting to be decoded. Keep your streak alive!",
   "shareSolvedIn": "solved in {time}",

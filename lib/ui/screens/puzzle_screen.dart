@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart' show ValueListenable;
@@ -7,9 +8,11 @@ import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../models/pack.dart';
+import '../../services/ads/ads_service.dart';
 import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../services/sound_service.dart';
+import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
@@ -48,6 +51,28 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   /// reward for steady progress).
   int _wordPulse = 0;
 
+  // --- Smart idle nudge (Görev 2b) ---------------------------------------
+  /// Fires after a stretch of no input to gently pulse the most useful next
+  /// action (Hint, or the rewarded "+N" when hints are spent) — a premium
+  /// "stuck? try this" cue, never a nag.
+  Timer? _idleTimer;
+
+  /// Bumped to pulse the Hint button; the rewarded button has its own counter
+  /// so a state flip (e.g. tokens hitting zero) never spuriously pulses either.
+  int _hintNudge = 0;
+  int _rewardedNudge = 0;
+
+  /// How many times we have nudged during the CURRENT idle stretch. Capped so a
+  /// player who simply paused to think isn't pestered; any input resets it.
+  int _nudgeCount = 0;
+
+  static const Duration _idleNudgeDelay = Duration(seconds: 12);
+  static const int _maxNudges = 3;
+
+  /// The GameController we are subscribed to for "activity" (any user input
+  /// notifies it). Held so the listener can be removed on dispose / swap.
+  GameController? _game;
+
   @override
   void initState() {
     super.initState();
@@ -55,10 +80,79 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Treat every GameController notification as "the player did something":
+    // typing, tapping a cell, undo/redo and navigation all notify, so one
+    // listener resets the idle countdown for every input path at once.
+    final game = context.read<GameController>();
+    if (!identical(game, _game)) {
+      _game?.removeListener(_onActivity);
+      _game = game;
+      _game!.addListener(_onActivity);
+    }
+    _restartIdleTimer();
+  }
+
+  @override
   void dispose() {
+    _idleTimer?.cancel();
+    _game?.removeListener(_onActivity);
     _keyboardFocus.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  /// Any user input happened (the controller notified): restart the idle clock.
+  void _onActivity() => _restartIdleTimer();
+
+  /// Cancels any pending nudge and re-arms the idle timer when the puzzle is
+  /// actively being solved. Also resets the per-stretch nudge budget.
+  void _restartIdleTimer() {
+    _idleTimer?.cancel();
+    _nudgeCount = 0;
+    final game = _game;
+    if (game == null ||
+        game.session == null ||
+        game.completed ||
+        game.reviewingSolved) {
+      return;
+    }
+    _idleTimer = Timer(_idleNudgeDelay, _onIdle);
+  }
+
+  /// The player has gone quiet: gently pulse the most useful next action, then
+  /// (up to [_maxNudges]) re-arm so a still-stuck player gets a second, calm
+  /// reminder. Points at the Hint button while hints are available/useful,
+  /// otherwise at the rewarded "+N" button when an ad is ready — and stays
+  /// silent if neither can help.
+  void _onIdle() {
+    if (!mounted) return;
+    final game = _game;
+    if (game == null ||
+        game.session == null ||
+        game.completed ||
+        game.reviewingSolved ||
+        _celebrating ||
+        game.session!.isSolved ||
+        _nudgeCount >= _maxNudges) {
+      return;
+    }
+    final economy = context.read<EconomyController>();
+    final ads = context.read<AdsService>();
+    final canReveal = economy.canUseHint && game.canRevealMore;
+    final rewardedReady =
+        !economy.premium && ads.supported && ads.rewardedAvailable.value;
+    if (!canReveal && !rewardedReady) return; // nothing helpful to point at
+    setState(() {
+      if (canReveal) {
+        _hintNudge++;
+      } else {
+        _rewardedNudge++;
+      }
+      _nudgeCount++;
+    });
+    _idleTimer = Timer(_idleNudgeDelay, _onIdle);
   }
 
   /// Shared input path for both the on-screen keyboard and physical keys, so
@@ -68,7 +162,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final haptics = context.read<HapticsService>();
     final sounds = context.read<SoundService>();
     game.enterGuess(ch);
-    if (game.lastInputCreatedConflict) {
+    if (game.completed) {
+      // The keystroke that SOLVES the puzzle gets no per-key cue: the solve
+      // celebration (success chime + heavy haptic + green wave) owns this
+      // moment, so a stray tap/word blip under the fanfare would only muddy it.
+    } else if (game.lastInputCreatedConflict) {
       haptics.error();
       sounds.conflict();
       // enterGuess already notifies listeners (rebuild), which picks up the
@@ -176,8 +274,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final game = context.read<GameController>();
     if (state == AppLifecycleState.resumed) {
       game.resumeTimer();
+      _restartIdleTimer();
     } else {
       game.stopTimer();
+      // Don't count time spent off-screen toward an idle nudge.
+      _idleTimer?.cancel();
     }
   }
 
@@ -240,6 +341,8 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 Navigator.of(context).maybePop();
               },
             ),
+            // A long difficulty title on a narrow device must never collide
+            // with the timer/eye actions: ellipsize rather than overflow.
             title: Text(
               game.isDaily
                   ? l10n.dailyPuzzleTitle
@@ -248,7 +351,14 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                   : Pack.byId(
                       session.quote.difficulty.name,
                     ).localizedTitle(l10n),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
+            // Consistent action rhythm on every device: the eye icon and the
+            // clock share the same ~12px inset from the screen edge (the icon's
+            // own optical inset), and the clock is vertically centred on the
+            // toolbar like the icon — so title, eye and clock read as one
+            // evenly-spaced row instead of the old ad-hoc per-widget padding.
             actions: [
               // A previously-solved puzzle starts blank and playable; the answer
               // is only shown on demand. The eye is a toggle: tap to reveal the
@@ -423,7 +533,10 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                           : Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const HintBar(),
+                                HintBar(
+                                  hintNudge: _hintNudge,
+                                  rewardedNudge: _rewardedNudge,
+                                ),
                                 // Breathing room so the hint row and the
                                 // undo/redo/navigation strip don't read as one
                                 // cramped cluster.
@@ -577,9 +690,11 @@ class _TimerText extends StatelessWidget {
     final palette = Theme.of(context).extension<GamePalette>()!;
     return Center(
       child: Padding(
-        // Left gap keeps the clock from butting against the eye (show-solution)
-        // icon when both are present; right gap holds it off the screen edge.
-        padding: const EdgeInsets.only(left: 8, right: 16),
+        // ~12px right inset matches the eye IconButton's own optical inset so
+        // the clock lines up with the icon rhythm at the screen edge; the small
+        // left gap keeps it off the eye when both are shown. Center (above)
+        // holds it on the toolbar's vertical midline, level with the icon.
+        padding: const EdgeInsets.only(left: 4, right: 12),
         child: ValueListenableBuilder<Duration>(
           valueListenable: elapsedListenable,
           builder: (context, elapsed, _) {

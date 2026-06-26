@@ -16,13 +16,13 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed) return;
-    // Re-arm the reminder every time the app returns to the foreground. This
-    // closes the Android 14+ gap where the user grants the exact-alarm
-    // permission in system settings and comes back (the schedule was set
-    // inexact a moment earlier — rescheduling now upgrades it to exact), and it
-    // also re-arms an alarm the OS may have dropped while backgrounded on
-    // aggressive OEMs. syncReminderWithOsPermission reflects a notifications-off
-    // change made from system settings. Both are best-effort and never throw.
+    // Re-arm the reminder every time the app returns to the foreground: an
+    // aggressive OEM (battery saver) can drop a scheduled alarm while the app is
+    // backgrounded, so rescheduling here keeps an enabled reminder reliable.
+    // syncReminderWithOsPermission also reflects a notifications-off change the
+    // user may have made from system settings. Both are best-effort and never
+    // throw. (Scheduling is always inexact / Play-safe — the app requests no
+    // exact-alarm permission, so there is nothing to "upgrade" on resume.)
     unawaited(rescheduleDailyIfEnabled());
     unawaited(syncReminderWithOsPermission());
   }

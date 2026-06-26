@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +13,14 @@ import '../../state/game_controller.dart';
 
 /// Hint button + token count + (mobile, non-premium) "watch ad for +3".
 class HintBar extends StatelessWidget {
-  const HintBar({super.key});
+  const HintBar({super.key, this.hintNudge = 0, this.rewardedNudge = 0});
+
+  /// Idle-nudge triggers from the puzzle screen: when one of these changes, the
+  /// matching button plays a gentle "try me" pulse (see [_NudgePulse]). They are
+  /// separate so a state flip (e.g. tokens hitting zero) never pulses a button
+  /// the player wasn't actually nudged toward.
+  final int hintNudge;
+  final int rewardedNudge;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +42,21 @@ class HintBar extends StatelessWidget {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints(maxWidth: constraints.maxWidth),
-              child: const _RevealHintButton(),
+              child: _NudgePulse(
+                trigger: hintNudge,
+                child: const _RevealHintButton(),
+              ),
             ),
             // Shown on mobile for non-premium players. The button greys itself
             // out until a rewarded ad is actually loaded (see
             // _RewardedHintButton), so a reward is never granted without
             // watching one — and an offline player simply sees a disabled
             // button, never a free hint.
-            if (!economy.premium && ads.supported) const _RewardedHintButton(),
+            if (!economy.premium && ads.supported)
+              _NudgePulse(
+                trigger: rewardedNudge,
+                child: const _RewardedHintButton(),
+              ),
           ],
         );
       },
@@ -173,6 +189,60 @@ class _RewardedHintButtonState extends State<_RewardedHintButton> {
           label: Text('+${AppConfig.tokensPerRewardedAd}'),
         );
       },
+    );
+  }
+}
+
+/// Plays two gentle scale "swells" whenever [trigger] changes — the idle-nudge
+/// cue that quietly draws the eye to a button ("stuck? try this") without the
+/// urgency of a shake. Honors the system "remove animations" setting by passing
+/// the child straight through, and rests at exactly 1.0 so an un-nudged button
+/// is pixel-identical to before.
+class _NudgePulse extends StatefulWidget {
+  const _NudgePulse({required this.trigger, required this.child});
+
+  final int trigger;
+  final Widget child;
+
+  @override
+  State<_NudgePulse> createState() => _NudgePulseState();
+}
+
+class _NudgePulseState extends State<_NudgePulse>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 900),
+  );
+
+  @override
+  void didUpdateWidget(_NudgePulse old) {
+    super.didUpdateWidget(old);
+    // trigger 0 is the "never nudged" rest value, so it never starts a pulse.
+    if (widget.trigger != old.trigger && widget.trigger != 0) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (MediaQuery.of(context).disableAnimations) return widget.child;
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        final t = _controller.value;
+        // Two smooth humps (raised-cosine, always >= 0) so it swells +4% twice
+        // and settles — never dips below rest, never reads as a glitch.
+        final scale = 1 + ((1 - math.cos(t * 4 * math.pi)) / 2) * 0.04;
+        return Transform.scale(scale: scale, child: child);
+      },
+      child: widget.child,
     );
   }
 }

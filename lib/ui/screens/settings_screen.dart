@@ -15,6 +15,7 @@ import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
 import '../widgets/page_body.dart';
 import '../widgets/scale_safe.dart';
+import 'onboarding_screen.dart';
 import 'paywall_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -130,6 +131,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onChanged: controller.setColorblindMode,
               ),
               section(l10n.sectionGameplay),
+              // A calm way back to the 30-second interactive tutorial for anyone
+              // who wants a refresher — never resets progress.
+              ListTile(
+                leading: const Icon(Icons.school_outlined),
+                title: Text(l10n.replayTutorial),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const OnboardingScreen(replay: true),
+                  ),
+                ),
+              ),
               SwitchListTile(
                 title: Text(l10n.errorCheckingTitle),
                 subtitle: Text(l10n.errorCheckingSubtitle),

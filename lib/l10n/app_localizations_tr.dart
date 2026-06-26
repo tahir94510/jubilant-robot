@@ -465,6 +465,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get onbSkip => 'Atla';
 
   @override
+  String get onbDone => 'Bitti';
+
+  @override
+  String get replayTutorial => 'Eğitimi tekrar oynat';
+
+  @override
   String get notificationDailyTitle => 'Günlük şifren hazır';
 
   @override

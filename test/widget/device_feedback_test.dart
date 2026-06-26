@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/app_settings.dart';
 import 'package:quotecrack/models/pack.dart';
 import 'package:quotecrack/models/quote.dart';
+import 'package:quotecrack/services/haptics_service.dart';
 import 'package:quotecrack/services/storage_service.dart';
 import 'package:quotecrack/ui/screens/achievements_screen.dart';
 import 'package:quotecrack/ui/screens/home_screen.dart';
@@ -15,6 +17,8 @@ import 'package:quotecrack/ui/screens/settings_screen.dart';
 import 'package:quotecrack/ui/screens/stats_screen.dart';
 import 'package:quotecrack/ui/widgets/cipher_board.dart';
 import 'package:quotecrack/ui/widgets/letter_cell.dart';
+import 'package:quotecrack/ui/theme/palette.dart';
+import 'package:quotecrack/ui/widgets/hint_bar.dart';
 import 'package:quotecrack/ui/widgets/page_body.dart';
 import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 
@@ -443,6 +447,186 @@ void main() {
     expect(h.sounds.played.where((s) => s == 'word').length, 1);
 
     h.game.stopTimer();
+  });
+
+  testWidgets(
+    'completing a word plays the WORD cue (not the error cue) even when the '
+    'correct letter collides with a wrong guess elsewhere',
+    (tester) async {
+      final h = await Harness.create();
+      h.game.start(shortQuote, daily: false); // LESS / IS / MORE
+      await tester.pumpWidget(h.app(const PuzzleScreen()));
+      await tester.pump();
+      final session = h.game.session!;
+
+      // Tap keyboard key [tapPlain] while the cursor sits on the cell whose
+      // CORRECT answer is [cellPlain] — lets us place a deliberately wrong
+      // letter on a specific cell.
+      Future<void> tapOn(String cellPlain, String tapPlain) async {
+        h.game.selectCipherLetter(session.cipher.encryptLetter(cellPlain));
+        await tester.pump();
+        await tester.tap(
+          find.descendant(
+            of: find.byType(PuzzleKeyboard),
+            matching: find.text(tapPlain),
+          ),
+        );
+        await tester.pump();
+      }
+
+      // Seed a WRONG 'S' on the cell that should hold 'M' (as if the player had
+      // filled blanks with random letters). No conflict yet: only one 'S'.
+      await tapOn('M', 'S');
+      expect(h.game.lastInputCreatedConflict, isFalse);
+
+      // Solve the word "IS": 'I' correct, then 'S' correct. Placing the second
+      // 'S' BOTH completes "IS" AND collides with the stray 'S' above.
+      await tapOn('I', 'I');
+      h.sounds.played.clear(); // isolate the assertion to the completing move
+      await tapOn('S', 'S');
+
+      // The completed (fully-correct) word wins: the word cue plays and the
+      // harsh conflict cue does not — even though a conflict now exists. This is
+      // the regression: previously the conflict flag suppressed the word cue.
+      expect(h.game.lastInputCompletedWord, isTrue);
+      expect(h.game.lastInputCreatedConflict, isFalse);
+      expect(h.sounds.played, contains('word'));
+      expect(h.sounds.played, isNot(contains('conflict')));
+      // The board still flags the stray wrong cell as a genuine conflict.
+      expect(session.conflicts, isNotEmpty);
+
+      h.game.stopTimer();
+    },
+  );
+
+  testWidgets('haptics reach the OS only while the setting is on', (
+    tester,
+  ) async {
+    // HapticFeedback.* all funnel through SystemChannels.platform with the
+    // method 'HapticFeedback.vibrate'; capture those calls to prove the gate.
+    final vibrations = <Object?>[];
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+      SystemChannels.platform,
+      (call) async {
+        if (call.method == 'HapticFeedback.vibrate') {
+          vibrations.add(call.arguments);
+        }
+        return null;
+      },
+    );
+    addTearDown(
+      () => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+        SystemChannels.platform,
+        null,
+      ),
+    );
+
+    var enabled = true;
+    final haptics = HapticsService(isEnabled: () => enabled);
+
+    // On: every cue reaches the platform channel.
+    haptics.tap();
+    haptics.wordComplete();
+    haptics.success();
+    haptics.error();
+    await tester.pump();
+    expect(vibrations, hasLength(4));
+
+    // Off: the same calls are swallowed before they ever reach the OS.
+    vibrations.clear();
+    enabled = false;
+    haptics.tap();
+    haptics.wordComplete();
+    haptics.success();
+    haptics.error();
+    haptics.celebrate();
+    await tester.pump();
+    expect(vibrations, isEmpty);
+  });
+
+  test(
+    'colorblind mode swaps the game-state palette to a colorblind-safe set',
+    () {
+      // The toggle must actually change the meaning-colors (red/green carry the
+      // conflict/success semantics that colorblind players can't separate), not
+      // just claim to. Checked on all three themes.
+      for (final pair in [
+        (
+          GamePalette.light(colorblind: false),
+          GamePalette.light(colorblind: true),
+        ),
+        (
+          GamePalette.dark(colorblind: false),
+          GamePalette.dark(colorblind: true),
+        ),
+        (
+          GamePalette.sepia(colorblind: false),
+          GamePalette.sepia(colorblind: true),
+        ),
+      ]) {
+        final (normal, cb) = pair;
+        expect(cb.conflict, isNot(normal.conflict));
+        expect(cb.success, isNot(normal.success));
+        expect(cb.confirmed, isNot(normal.confirmed));
+      }
+    },
+  );
+
+  testWidgets('an idle stretch nudges the hint button, and input resets it', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    HintBar bar() => tester.widget<HintBar>(find.byType(HintBar));
+    expect(bar().hintNudge, 0, reason: 'no nudge until the player goes quiet');
+
+    // Clock ticks alone are NOT activity (they do not notify the controller),
+    // so going quiet past the threshold fires the nudge on the hint button
+    // (tokens are available by default).
+    await tester.pump(const Duration(seconds: 13));
+    await tester.pump(); // apply the setState
+    expect(bar().hintNudge, 1);
+
+    // Typing a letter is activity: it resets the idle countdown, so the next
+    // quiet stretch fires a fresh nudge.
+    h.game.enterGuess('Z');
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 13));
+    await tester.pump();
+    expect(bar().hintNudge, 2);
+
+    await tester.pumpAndSettle(); // let the pulse animation finish cleanly
+    h.game.stopTimer();
+  });
+
+  testWidgets('Settings "Replay tutorial" opens the refresher and returns '
+      'without resetting progress', (tester) async {
+    final h = await Harness.create();
+    await h.settings.markOnboardingDone(); // an existing player
+    expect(h.settings.settings.onboardingDone, isTrue);
+
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Replay tutorial'), 150);
+    // scrollUntilVisible stops at the first visible pixel, which can leave the
+    // row flush against the bottom edge; fully seat it before tapping.
+    await tester.ensureVisible(find.text('Replay tutorial'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Replay tutorial'));
+    await tester.pumpAndSettle();
+    expect(find.byType(OnboardingScreen), findsOneWidget);
+
+    // The replay's secondary button reads "Done" and just closes back to
+    // Settings — it must NOT rebuild Home or touch the onboarding flag.
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+    expect(find.byType(SettingsScreen), findsOneWidget);
+    expect(find.byType(OnboardingScreen), findsNothing);
+    expect(h.settings.settings.onboardingDone, isTrue);
   });
 
   testWidgets('the music toggle applies immediately and persists', (
