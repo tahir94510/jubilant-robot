@@ -211,7 +211,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     }
                   },
                 ),
-                if (settings.reminderEnabled)
+                if (settings.reminderEnabled) ...[
                   ListTile(
                     title: Text(l10n.reminderTime),
                     trailing: Text(
@@ -237,6 +237,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                   ),
+                  // Lets the player confirm reminders actually arrive on their
+                  // device (OEM battery managers can silently delay them).
+                  ListTile(
+                    leading: const Icon(Icons.notifications_active_outlined),
+                    title: Text(l10n.reminderTestSend),
+                    onTap: () async {
+                      final ok = await controller.sendTestNotification();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            ok ? l10n.reminderTestSent : l10n.reminderDenied,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ],
               section(l10n.sectionPremium),
               if (economy.premium)

@@ -40,6 +40,92 @@ void main() {
     resumed.dispose();
   });
 
+  test('hint reveals the SELECTED editable cell even when its guess is already '
+      'correct (never skips to an alphabetical other)', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false); // "Less is more."
+    final s = game.session!;
+
+    // The cipher letter that decodes to plain 'M' (sits in the 4-letter word
+    // "MORE"). Typing its correct value leaves the word incomplete, so the
+    // letter is CORRECT but still UNLOCKED — the exact case the old reveal
+    // logic skipped (it fell back to the alphabetically-first unsolved cell).
+    final mLetter = s.cipherLetters.firstWhere(
+      (c) => s.cipher.decryptLetter(c) == 'M',
+    );
+    final pos = s.cipherText.indexOf(mLetter);
+
+    game.selectIndex(pos);
+    game.enterGuess('M');
+    expect(s.isGuessCorrect(mLetter), isTrue);
+    expect(
+      s.confirmedLetters.contains(mLetter),
+      isFalse,
+      reason: 'word "MORE" is not complete, so the cell stays editable',
+    );
+
+    // Re-select the (correct-but-unlocked) cell and ask for a hint.
+    game.selectIndex(pos);
+    game.revealSelected();
+
+    // The hint locks the SELECTED letter — it must not skip to another cell.
+    expect(
+      s.revealed.contains(mLetter),
+      isTrue,
+      reason: 'hint must reveal/lock the selected cell, never skip past it',
+    );
+    game.stopTimer();
+    game.dispose();
+  });
+
+  test(
+    'last-typed cue follows the latest editable guess (type/delete/undo/redo) '
+    'and stays independent of the last-locked cue',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false); // "Less is more." (no X or Z)
+      final s = game.session!;
+
+      game.selectIndex(0);
+      final c0 = game.selectedCipherLetter!;
+      game.enterGuess('X'); // X is never in the quote -> always a wrong guess
+      expect(game.lastTypedCipherLetter, c0);
+      expect(game.lastLockedCipherLetter, isNull); // nothing locked yet
+
+      final otherPos = [
+        for (var i = 0; i < s.cipherText.length; i++)
+          if (s.cipherLetters.contains(s.cipherText[i]) &&
+              s.cipherText[i] != c0 &&
+              !s.guesses.containsKey(s.cipherText[i]))
+            i,
+      ].first;
+      game.selectIndex(otherPos);
+      final c1 = game.selectedCipherLetter!;
+      game.enterGuess('Z'); // also never correct -> no conflict, no lock
+      expect(game.lastTypedCipherLetter, c1);
+
+      // Undo removes the c1 guess: the cue falls back to the previous letter.
+      game.undo();
+      expect(s.guesses.containsKey(c1), isFalse);
+      expect(game.lastTypedCipherLetter, c0);
+
+      // Redo re-applies it: the cue returns to c1.
+      game.redo();
+      expect(game.lastTypedCipherLetter, c1);
+
+      // Deleting c1 in place falls back to c0; the locked cue never moved.
+      game.selectIndex(otherPos);
+      game.clearGuess();
+      expect(game.lastTypedCipherLetter, c0);
+      expect(game.lastLockedCipherLetter, isNull);
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
   test(
     'undo restores the cursor to the exact edited cell, not the first copy',
     () async {
@@ -127,6 +213,61 @@ void main() {
       review.dispose();
     },
   );
+
+  test('a solve persists its stats; re-opening + showSolution restores the '
+      'original hint cells (revealed style) and the time/hint stats', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    // Solve with a MIX: hint-reveal ONE letter, type the rest correctly. The
+    // hinted letter is the only one that should read as "revealed" in review;
+    // everything else is a plain confirmed solve.
+    final hinted = s.cipherLetters.first;
+    game.selectIndex(s.cipherText.indexOf(hinted));
+    game.revealSelected();
+    expect(s.revealed, {hinted});
+    for (final c in s.cipherLetters) {
+      if (c == hinted) continue;
+      game.selectIndex(s.cipherText.indexOf(c));
+      game.enterGuess(s.cipher.decryptLetter(c));
+    }
+    expect(game.completed, isTrue);
+    expect(s.isSolved, isTrue);
+    game.dispose();
+
+    // A fresh process re-opens the puzzle: the live board is blank, but the
+    // solve metadata is loaded so the review can show real stats.
+    final review = GameController(storage: store);
+    review.start(shortQuote, daily: false);
+    expect(review.previouslySolved, isTrue);
+    expect(review.hasSolveStats, isTrue);
+    expect(review.solvedHintsUsed, 1);
+    expect(review.solvedRevealed, {hinted});
+    expect(review.session!.revealed, isEmpty); // fresh attempt: no hints yet
+
+    // Peeking restores the FINISHED board with ONLY the original hint cell
+    // marked revealed (rendered in the distinct revealed style) and every
+    // other letter confirmed — never one flat all-confirmed fill.
+    review.showSolution();
+    expect(review.reviewingSolved, isTrue);
+    expect(review.session!.isSolved, isTrue);
+    final rs = review.session!;
+    expect(rs.revealed, {hinted});
+    for (final c in rs.cipherLetters) {
+      if (c == hinted) continue;
+      expect(rs.revealed.contains(c), isFalse);
+      expect(rs.confirmedLetters.contains(c), isTrue);
+    }
+
+    // Returning to the attempt drops the review-only revealed fill again, so
+    // the live attempt (which used no hints) is restored untouched.
+    review.returnToAttempt();
+    expect(review.session!.revealed, isEmpty);
+    review.stopTimer();
+    review.dispose();
+  });
 
   test('smart backspace: clears the current cell when filled, otherwise steps '
       'back to the previous entry and clears that', () async {

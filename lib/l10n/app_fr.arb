@@ -37,6 +37,8 @@
   "reminderAt": "À {time}",
   "neverMissStreak": "Ne manquez jamais votre série",
   "reminderTime": "Heure du rappel",
+  "reminderTestSend": "Envoyer une notification test",
+  "reminderTestSent": "Notification test envoyée",
   "reminderDenied": "L’autorisation de notification a été refusée dans les réglages système.",
   "premiumActive": "Premium actif",
   "premiumActiveSubtitle": "Merci de soutenir Quotecrack !",

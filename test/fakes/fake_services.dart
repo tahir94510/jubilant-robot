@@ -149,6 +149,18 @@ class FakeNotificationService extends NotificationService {
     scheduledBody = body;
   }
 
+  int testCalls = 0;
+  String? testTitle;
+
+  @override
+  Future<void> sendTestNotification({
+    required String title,
+    required String body,
+  }) async {
+    testCalls += 1;
+    testTitle = title;
+  }
+
   @override
   Future<void> cancelAll() async {
     cancelCalls += 1;

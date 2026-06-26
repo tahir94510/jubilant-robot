@@ -4,7 +4,7 @@
      window background exactly with no visible seam. Android 12+ ignores this
      and uses the v31 splash attributes instead. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/app_surface" />
+    <item android:drawable="@color/splash_background" />
     <item>
         <bitmap
             android:gravity="center"

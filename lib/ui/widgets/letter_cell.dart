@@ -30,6 +30,7 @@ class LetterCell extends StatelessWidget {
     this.focused = false,
     this.related = false,
     this.recent = false,
+    this.lastTyped = false,
     this.width = 26,
   });
 
@@ -52,6 +53,12 @@ class LetterCell extends StatelessWidget {
   /// guess after the cursor auto-advances. The controller drops it the moment
   /// the puzzle is solved, so a finished board reads clean.
   final bool recent;
+
+  /// This cell holds the player's MOST-RECENT still-editable (unlocked) guess: a
+  /// quiet NEUTRAL fill marking the last letter you typed, deliberately distinct
+  /// from the gold [recent] last-LOCKED cue. Moves on type/delete/undo/redo and
+  /// is never shown once the letter locks — the two cues are independent.
+  final bool lastTyped;
   final VoidCallback? onTap;
   final double width;
 
@@ -126,6 +133,11 @@ class LetterCell extends StatelessWidget {
                   // wash, quieter than the last move.
                   : related
                   ? palette.boardCellRelatedBg
+                  // The most-recently TYPED (still-editable) letter: a neutral
+                  // fill, stronger than a plain filled cell but never gold, so it
+                  // never competes with the gold last-LOCKED cue.
+                  : lastTyped
+                  ? palette.boardCellFilledBg.withValues(alpha: 0.16)
                   : playerFilled
                   ? palette.boardCellFilledBg
                   : palette.boardCellBg,
@@ -137,8 +149,16 @@ class LetterCell extends StatelessWidget {
               // (transparent when unfocused): a BoxDecoration border is laid out
               // as padding, so a varying width would resize the cell on selection
               // and re-flow the word Row / Wrap (the "titreme" jitter).
+              // The focused cell gets the solid gold cursor frame. The last
+              // LOCKED letter gets a softer gold RING (over its gold fill) so it
+              // reads as "the latest letter you nailed down" — clearly apart
+              // from the other confirmed cells — without mimicking the cursor.
               border: Border.all(
-                color: selected ? palette.revealed : Colors.transparent,
+                color: selected
+                    ? palette.revealed
+                    : recent
+                    ? palette.boardCellLastMoveBg.withValues(alpha: 0.55)
+                    : Colors.transparent,
                 width: 1.6,
               ),
             ),

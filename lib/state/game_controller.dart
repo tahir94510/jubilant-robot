@@ -102,6 +102,15 @@ class GameController extends ChangeNotifier {
   String? _lastLockedCipherLetter;
   String? get lastLockedCipherLetter => _lastLockedCipherLetter;
 
+  /// The cipher letter most recently TYPED that is still on the board and still
+  /// EDITABLE (not yet locked by a hint or a completed word). Drives the board's
+  /// quiet "last typed" cue. Fully INDEPENDENT of [_lastLockedCipherLetter]:
+  /// typing, delete, undo and redo move it (recomputed from the undo history),
+  /// but it never touches the last-LOCKED highlight. Null when no editable typed
+  /// letter remains; cleared on solve and on (re)start like the locked cue.
+  String? _lastTypedCipherLetter;
+  String? get lastTypedCipherLetter => _lastTypedCipherLetter;
+
   Timer? _ticker;
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
@@ -127,6 +136,30 @@ class GameController extends ChangeNotifier {
   /// "Show solution" affordance gated on this flag.
   bool _previouslySolved = false;
   bool get previouslySolved => _previouslySolved;
+
+  /// Solve-time metadata captured the first time this quote was solved, so a
+  /// later read-only review (the eye toggle) can reproduce the EXACT finished
+  /// board — which letters were hint-revealed — and surface the original solve
+  /// time and hint count, even though re-entering starts a fresh blank attempt.
+  /// All empty/zero for puzzles solved before this data was recorded (old
+  /// saves), in which case the review falls back to the plain finished look.
+  Set<String> _solvedRevealed = const {};
+  int _solvedHintsUsed = 0;
+  int _solvedTimeSec = 0;
+
+  /// Cipher letters that were hint-revealed in the original solve — used by
+  /// [showSolution] so the review mirrors the in-game finished board.
+  Set<String> get solvedRevealed => _solvedRevealed;
+
+  /// Hint count and elapsed time of the original solve (the review stats row).
+  int get solvedHintsUsed => _solvedHintsUsed;
+  Duration get solvedTime => Duration(seconds: _solvedTimeSec);
+
+  /// True when the original solve recorded reviewable stats (newer saves). Old
+  /// solves predate this data, so the review panel hides the stats row rather
+  /// than show a misleading "0:00 / 0 hints".
+  bool get hasSolveStats =>
+      _solvedTimeSec > 0 || _solvedHintsUsed > 0 || _solvedRevealed.isNotEmpty;
 
   /// The player's in-progress attempt, snapshotted while the read-only
   /// solution is shown so [returnToAttempt] can restore it untouched.
@@ -205,12 +238,36 @@ class GameController extends ChangeNotifier {
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
 
     // Re-opening a solved puzzle no longer spoils the answer: it starts as a
     // blank, fully playable board exactly like a fresh attempt. The solution
     // is available only on demand via [showSolution], gated on this flag.
     _previouslySolved =
         alreadySolved || (saved != null && saved['solved'] == true);
+
+    // Load the original solve's metadata (hint letters, time, hint count) so a
+    // read-only review can mirror the exact finished board and show real stats.
+    // The live attempt above still starts blank; these fields feed [showSolution]
+    // and the review panel only. Defensive decode: a missing/old schema yields
+    // empties, and the review then shows the plain finished board with no stats.
+    _solvedRevealed = const {};
+    _solvedHintsUsed = 0;
+    _solvedTimeSec = 0;
+    if (saved != null && saved['solved'] == true) {
+      try {
+        _solvedRevealed =
+            ((saved['solvedRevealed'] as List<dynamic>?) ?? const [])
+                .cast<String>()
+                .toSet();
+        _solvedHintsUsed = saved['solvedHintsUsed'] as int? ?? 0;
+        _solvedTimeSec = saved['solvedTimeSec'] as int? ?? 0;
+      } catch (_) {
+        _solvedRevealed = const {};
+        _solvedHintsUsed = 0;
+        _solvedTimeSec = 0;
+      }
+    }
 
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
@@ -273,6 +330,7 @@ class GameController extends ChangeNotifier {
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
     _persistState();
@@ -291,8 +349,17 @@ class GameController extends ChangeNotifier {
     for (final c in s.cipherLetters) {
       s.guesses[c] = s.cipher.decryptLetter(c);
     }
+    // Restore the SAME hint cells the original solve had so the review mirrors
+    // the finished in-game board (hint letters keep their distinct "revealed"
+    // style instead of all blending into one flat confirmed fill). Old saves
+    // with no recorded metadata leave this empty → plain finished look.
+    // [returnToAttempt] restores _attemptRevealed, so the live attempt is safe.
+    s.revealed
+      ..clear()
+      ..addAll(_solvedRevealed);
     _reviewingSolved = true; // set first so stopTimer won't persist the fill
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
     stopTimer();
     notifyListeners();
   }
@@ -312,6 +379,7 @@ class GameController extends ChangeNotifier {
     _attemptRevealed = null;
     _reviewingSolved = false;
     _lastLockedCipherLetter = null;
+    _lastTypedCipherLetter = null;
     if (!_completed) _startTicker();
     notifyListeners();
   }
@@ -370,11 +438,40 @@ class GameController extends ChangeNotifier {
     return i >= 0 ? i : null;
   }
 
-  String? _firstEmptyLetter() {
+  /// The first cipher letter in reading order that is still unsolved (its guess
+  /// is not yet correct). The hint fallback when no editable cell is selected,
+  /// so a blind hint opens the earliest missing letter — predictable, unlike
+  /// the old alphabetical pick. Already-correct cells (revealed/confirmed) are
+  /// "solved" and skipped.
+  String? _firstUnsolvedLetterByPosition() {
     final s = _session;
-    final i = _firstEmptyIndex();
-    if (s == null || i == null) return null;
-    return s.cipherText[i];
+    if (s == null) return null;
+    final t = s.cipherText;
+    for (var i = 0; i < t.length; i++) {
+      final ch = t[i];
+      if (s.cipherLetters.contains(ch) && !s.isGuessCorrect(ch)) return ch;
+    }
+    return null;
+  }
+
+  /// The cipher letter of the most-recently-typed guess that is STILL present
+  /// and STILL editable (not locked by a hint or a completed word), found by
+  /// walking the undo history backwards. Drives the "last typed" cue and keeps
+  /// it correct through delete/undo/redo (a cleared or now-locked letter is
+  /// skipped, so the cue falls back to the previous typed letter). Independent
+  /// of the last-LOCKED highlight, which the undo path never touches.
+  String? _recomputeLastTyped() {
+    final s = _session;
+    if (s == null) return null;
+    for (var i = _undoStack.length - 1; i >= 0; i--) {
+      final ch = _undoStack[i].cipherLetter;
+      if (s.guesses.containsKey(ch) &&
+          !s.revealed.contains(ch) &&
+          !s.confirmedLetters.contains(ch)) {
+        return ch;
+      }
+    }
+    return null;
   }
 
   /// True when [quoteId] has a saved, partially-filled attempt that has not
@@ -637,6 +734,7 @@ class GameController extends ChangeNotifier {
     // letter's first occurrence only for legacy saves without a stored index.
     _selectedIndex =
         move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
+    _lastTypedCipherLetter = _recomputeLastTyped();
     _persistState();
     notifyListeners();
   }
@@ -676,12 +774,11 @@ class GameController extends ChangeNotifier {
     _undoStack.add(_Move(move.cipherLetter, undoValue, move.index));
     _selectedIndex =
         move.index ?? _indexOfLetter(move.cipherLetter) ?? _selectedIndex;
+    _lastTypedCipherLetter = _recomputeLastTyped();
     if (s.isSolved) {
       _completed = true;
       stopTimer();
-      _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
-        'solved': true,
-      });
+      _persistSolved();
     } else {
       _persistState();
     }
@@ -704,17 +801,14 @@ class GameController extends ChangeNotifier {
     _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;
     if (s == null || _completed || _reviewingSolved) return;
-    var target = selectedCipherLetter ?? _firstEmptyLetter();
-    // Prefer an unsolved cell: if the selected one is already correct,
-    // reveal the first wrong/empty one instead so the hint always helps.
-    if (target == null || s.isGuessCorrect(target)) {
-      target = s.cipherLetters
-          .where((c) => !s.isGuessCorrect(c))
-          .fold<String?>(
-            null,
-            (min, c) => min == null || c.compareTo(min) < 0 ? c : min,
-          );
-    }
+    // If the cursor rests on an editable (unlocked) cell, the hint reveals and
+    // locks EXACTLY that cell — even when its current guess happens to be
+    // correct: the player explicitly asked to lock THIS letter, so we never
+    // skip past it (the old alphabetical fallback did, which read as a bug).
+    // Only with no editable selection do we fall back to the first still-
+    // unsolved cell by board POSITION (left-to-right), so a blind hint opens
+    // the earliest missing letter instead of an arbitrary alphabetical one.
+    final target = selectedCipherLetter ?? _firstUnsolvedLetterByPosition();
     if (target == null) return;
 
     _hintsUsed += 1;
@@ -745,10 +839,9 @@ class GameController extends ChangeNotifier {
       _completed = true;
       // A finished board reads clean: drop the last-entered highlight.
       _lastLockedCipherLetter = null;
+      _lastTypedCipherLetter = null;
       stopTimer();
-      _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
-        'solved': true,
-      });
+      _persistSolved();
     } else {
       if (advance) {
         // Smart cursor: skip filled cells (including the copies just
@@ -759,6 +852,7 @@ class GameController extends ChangeNotifier {
             _nextEditableIndexAfter(_selectedIndex) ??
             _selectedIndex;
       }
+      _lastTypedCipherLetter = _recomputeLastTyped();
       _persistState();
     }
     notifyListeners();
@@ -774,6 +868,21 @@ class GameController extends ChangeNotifier {
       'undo': _undoStack.map((m) => m.toJson()).toList(),
       'redo': _redoStack.map((m) => m.toJson()).toList(),
       'solved': false,
+    });
+  }
+
+  /// Checkpoints a SOLVED puzzle: just the summary a later read-only review
+  /// needs — which letters were hint-revealed, the hint count and the solve
+  /// time — and never the live attempt blob, so re-entering still starts a
+  /// fresh blank board. Replaces the old bare `{'solved': true}` writes.
+  void _persistSolved() {
+    final s = _session;
+    if (s == null) return;
+    _storage.writeJson(StorageService.puzzleStateKey(s.quote.id), {
+      'solved': true,
+      'solvedRevealed': s.revealed.toList(),
+      'solvedHintsUsed': _hintsUsed,
+      'solvedTimeSec': _elapsed.inSeconds,
     });
   }
 

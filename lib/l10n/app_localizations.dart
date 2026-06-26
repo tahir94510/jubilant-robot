@@ -330,6 +330,18 @@ abstract class AppLocalizations {
   /// **'Reminder time'**
   String get reminderTime;
 
+  /// No description provided for @reminderTestSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test notification'**
+  String get reminderTestSend;
+
+  /// No description provided for @reminderTestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Test notification sent'**
+  String get reminderTestSent;
+
   /// No description provided for @reminderDenied.
   ///
   /// In en, this message translates to:

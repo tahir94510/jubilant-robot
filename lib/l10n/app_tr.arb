@@ -37,6 +37,8 @@
   "reminderAt": "Saat {time}",
   "neverMissStreak": "Serini hiç kaçırma",
   "reminderTime": "Hatırlatma saati",
+  "reminderTestSend": "Test bildirimi gönder",
+  "reminderTestSent": "Test bildirimi gönderildi",
   "reminderDenied": "Bildirim izni sistem ayarlarında reddedildi.",
   "premiumActive": "Premium etkin",
   "premiumActiveSubtitle": "Quotecrack’i desteklediğin için teşekkürler!",

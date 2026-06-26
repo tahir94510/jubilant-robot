@@ -127,6 +127,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderTime => 'Hatırlatma saati';
 
   @override
+  String get reminderTestSend => 'Test bildirimi gönder';
+
+  @override
+  String get reminderTestSent => 'Test bildirimi gönderildi';
+
+  @override
   String get reminderDenied => 'Bildirim izni sistem ayarlarında reddedildi.';
 
   @override

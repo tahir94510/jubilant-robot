@@ -6,4 +6,11 @@
     <!-- Matches AppThemes.light surface so the window behind the first
          Flutter frame never flashes a foreign color. -->
     <color name="app_surface">#F7F4EC</color>
+    <!-- Splash FIELD: always the light "paper" cream, in light AND dark mode
+         (intentionally NOT overridden in values-night). The splash badge
+         (@drawable/splash_icon) bakes the same #F7F4EC tile, so the badge
+         merges seamlessly into this field — just the dark-ink serif "Q" on
+         paper, with no dark border / "black background" around it. The
+         post-splash window keeps the theme-matched app_surface. -->
+    <color name="splash_background">#F7F4EC</color>
 </resources>

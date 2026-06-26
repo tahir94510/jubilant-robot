@@ -128,6 +128,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reminderTime => 'Hora del recordatorio';
 
   @override
+  String get reminderTestSend => 'Enviar una notificación de prueba';
+
+  @override
+  String get reminderTestSent => 'Notificación de prueba enviada';
+
+  @override
   String get reminderDenied =>
       'Se denegó el permiso de notificaciones en los ajustes del sistema.';
 

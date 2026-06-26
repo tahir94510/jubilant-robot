@@ -37,6 +37,8 @@
   "reminderAt": "Um {time}",
   "neverMissStreak": "Verpasse nie deine Serie",
   "reminderTime": "Erinnerungszeit",
+  "reminderTestSend": "Testbenachrichtigung senden",
+  "reminderTestSent": "Testbenachrichtigung gesendet",
   "reminderDenied": "Benachrichtigungsberechtigung in den Systemeinstellungen verweigert.",
   "premiumActive": "Premium aktiv",
   "premiumActiveSubtitle": "Danke, dass du Quotecrack unterstützt!",
