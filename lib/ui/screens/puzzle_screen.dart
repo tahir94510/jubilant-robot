@@ -240,6 +240,8 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 Navigator.of(context).maybePop();
               },
             ),
+            // A long difficulty title on a narrow device must never collide
+            // with the timer/eye actions: ellipsize rather than overflow.
             title: Text(
               game.isDaily
                   ? l10n.dailyPuzzleTitle
@@ -248,7 +250,14 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                   : Pack.byId(
                       session.quote.difficulty.name,
                     ).localizedTitle(l10n),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
+            // Keep the action rhythm even on every device: the eye and the timer
+            // sit in one centered Row with consistent gaps, then a single
+            // trailing pad holds the cluster off the screen edge — instead of
+            // each action carrying its own ad-hoc padding (which read as
+            // misaligned spacing between the title, eye and clock).
             actions: [
               // A previously-solved puzzle starts blank and playable; the answer
               // is only shown on demand. The eye is a toggle: tap to reveal the
@@ -273,6 +282,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 ),
               if (settings.showTimer && !reviewing)
                 _TimerText(elapsedListenable: game.elapsedListenable),
+              const SizedBox(width: 4),
             ],
           ),
           body: SafeArea(
