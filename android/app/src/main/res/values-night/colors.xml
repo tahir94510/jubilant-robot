@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Night-mode launch field + pre-first-frame window background. The splash
-         badge (@drawable/splash_icon) is SELF-CONTAINED: the dark-ink Q sits on
-         its own baked cream tile, so a dark field here can never bury the logo
-         (the very thing that forced cream-everywhere before). So in system dark
-         mode the launch field is the dark brand surface — matching the app's
-         dark theme — while light/sepia keep the cream field (values/colors.xml).
-         Matches AppThemes.dark surface so the splash -> first-frame handoff in
-         dark mode never flashes a foreign color. -->
+    <!-- Post-splash window background in dark mode (NormalTheme): matches
+         AppThemes.dark surface so the native-splash -> first-Flutter-frame
+         handoff never flashes. NOTE: the SPLASH field itself is now the light
+         "paper" cream in EVERY mode (see @color/splash_background) so the
+         self-contained cream badge merges seamlessly; this dark surface only
+         paints behind the app AFTER the splash dismisses. -->
     <color name="app_surface">#161512</color>
 </resources>
