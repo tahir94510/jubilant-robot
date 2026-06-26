@@ -588,11 +588,17 @@ class GameController extends ChangeNotifier {
     final conflictsBefore = s.conflicts.length;
     final wordsBefore = s.correctWordCount;
     s.guesses[target] = plainLetter;
-    _lastInputCreatedConflict = s.conflicts.length > conflictsBefore;
-    _lastInputCompletedWord =
-        !_lastInputCreatedConflict &&
-        !s.isSolved &&
-        s.correctWordCount > wordsBefore;
+    final createdConflict = s.conflicts.length > conflictsBefore;
+    final completedWord = !s.isSolved && s.correctWordCount > wordsBefore;
+    // A finished word is, by definition, fully CORRECT — so its little
+    // celebration wins even when the correct letter you just placed happens to
+    // collide with a WRONG guess sitting elsewhere on the board (e.g. after
+    // filling blanks with random letters). That other cell still reads red via
+    // [PuzzleSession.conflicts], but the player's good move is never punished
+    // with the error cue. The conflict cue is reserved for an input that
+    // introduced a clash WITHOUT completing a word.
+    _lastInputCompletedWord = completedWord;
+    _lastInputCreatedConflict = createdConflict && !completedWord;
     // The "last move" highlight tracks the last letter that gets LOCKED, not
     // every keystroke: it moves here only when this guess just completed a word
     // (so [target] is now confirmed). A tentative guess leaves it on the
