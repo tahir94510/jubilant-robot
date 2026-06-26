@@ -629,6 +629,73 @@ void main() {
     expect(h.settings.settings.onboardingDone, isTrue);
   });
 
+  testWidgets('first run: "Try one" lands on the puzzle with Home underneath '
+      '(no dead-end, onboarding marked done)', (tester) async {
+    final h = await Harness.create(quotes: loadRealQuotes());
+    await tester.pumpWidget(h.app(const OnboardingScreen()));
+    await tester.pump();
+
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Try one (30 seconds)'));
+    await tester.pumpAndSettle();
+
+    // Lands directly on the puzzle (the instant push leaves no onboarding/home
+    // flash), with onboarding marked done.
+    expect(find.byType(PuzzleScreen), findsOneWidget);
+    expect(find.byType(OnboardingScreen), findsNothing);
+    expect(h.settings.settings.onboardingDone, isTrue);
+
+    // Home IS in the stack underneath: backing out reveals it instead of
+    // dead-ending or exiting the app.
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    expect(find.byType(HomeScreen), findsOneWidget);
+  });
+
+  testWidgets('the solving keystroke plays the success cue, not a per-key '
+      'tap/word', (tester) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    final session = h.game.session!;
+
+    // Fill every cipher letter correctly EXCEPT one, directly (no UI cues).
+    final letters = session.cipherLetters.toList();
+    final last = letters.removeLast();
+    for (final c in letters) {
+      h.game.selectCipherLetter(c);
+      h.game.enterGuess(session.cipher.decryptLetter(c));
+    }
+    await tester.pump();
+    expect(h.game.completed, isFalse);
+
+    // Solve via the on-screen keyboard, isolating the final keystroke's cues.
+    h.game.selectCipherLetter(last);
+    await tester.pump();
+    h.sounds.played.clear();
+    await tester.tap(
+      find.descendant(
+        of: find.byType(PuzzleKeyboard),
+        matching: find.text(session.cipher.decryptLetter(last)),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // The solve celebration owns the moment: success fires, and the solving
+    // move adds no tap/word/conflict cue underneath the fanfare.
+    expect(h.game.completed, isTrue);
+    expect(h.sounds.played, contains('success'));
+    expect(h.sounds.played, isNot(contains('tap')));
+    expect(h.sounds.played, isNot(contains('word')));
+    expect(h.sounds.played, isNot(contains('conflict')));
+
+    h.game.stopTimer();
+  });
+
   testWidgets('the music toggle applies immediately and persists', (
     tester,
   ) async {
