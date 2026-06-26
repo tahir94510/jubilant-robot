@@ -17,6 +17,7 @@ import '../widgets/cipher_board.dart';
 import '../widgets/board_controls.dart';
 import '../widgets/hint_bar.dart';
 import '../widgets/puzzle_keyboard.dart';
+import '../widgets/stat_chip.dart';
 import 'puzzle_complete_screen.dart';
 
 /// The solving screen. Deliberately ad-free and chrome-light: just the
@@ -293,15 +294,17 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                             // changes — clock ticks repaint just the AppBar text.
                             RepaintBoundary(
                               child: reviewing
-                                  // Re-opened solved puzzle: the whole board
-                                  // shows the finished solution in success green,
-                                  // read-only.
+                                  // Re-opened solved puzzle: show the FINISHED
+                                  // in-game board read-only — letters the player
+                                  // had hint-revealed keep their distinct
+                                  // "revealed" style, the rest read as confirmed,
+                                  // exactly as the board looked when solved (no
+                                  // flat all-green wash, no cursor/last-move cue).
                                   ? CipherBoard(
                                       session: session,
                                       selected: null,
                                       errorChecking: false,
                                       onSelect: (_) {},
-                                      solveWave: 1.0,
                                     )
                                   : _celebrating
                                   // The wave drives navigation from onEnd:
@@ -388,6 +391,17 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                       ),
                                     ],
                                   ),
+                                  // The original solve's stats (time + hints),
+                                  // restored from the saved solve metadata. Hidden
+                                  // for puzzles solved before this data was
+                                  // recorded so it never shows a misleading 0:00.
+                                  if (game.hasSolveStats) ...[
+                                    const SizedBox(height: 12),
+                                    _ReviewStats(
+                                      solveTime: game.solvedTime,
+                                      hintsUsed: game.solvedHintsUsed,
+                                    ),
+                                  ],
                                   const SizedBox(height: 10),
                                   // Single action: start a fresh attempt. Returning
                                   // to the in-progress board is the eye toggle in
@@ -585,6 +599,35 @@ class _TimerText extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+/// The original solve's stats on the read-only review panel: solve time and
+/// hints used, shown as the same [StatChip] pills the completion screen uses so
+/// the two summaries read identically.
+class _ReviewStats extends StatelessWidget {
+  const _ReviewStats({required this.solveTime, required this.hintsUsed});
+
+  final Duration solveTime;
+  final int hintsUsed;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final minutes = solveTime.inMinutes;
+    final seconds = (solveTime.inSeconds % 60).toString().padLeft(2, '0');
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 10,
+      runSpacing: 8,
+      children: [
+        StatChip(icon: Icons.timer_outlined, label: '$minutes:$seconds'),
+        StatChip(
+          icon: Icons.lightbulb_outline,
+          label: l10n.solveHints(hintsUsed),
+        ),
+      ],
     );
   }
 }

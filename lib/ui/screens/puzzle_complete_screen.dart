@@ -22,6 +22,7 @@ import '../widgets/achievement_tile.dart';
 import '../widgets/banner_ad_slot.dart';
 import '../widgets/confetti_burst.dart';
 import '../widgets/scale_safe.dart';
+import '../widgets/stat_chip.dart';
 import 'puzzle_screen.dart';
 
 /// Post-solve celebration: full quote with attribution, solve stats, share
@@ -247,11 +248,11 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                   spacing: 10,
                                   runSpacing: 8,
                                   children: [
-                                    _StatChip(
+                                    StatChip(
                                       icon: Icons.timer_outlined,
                                       label: '$minutes:$seconds',
                                     ),
-                                    _StatChip(
+                                    StatChip(
                                       icon: Icons.lightbulb_outline,
                                       label: l10n.solveHints(game.hintsUsed),
                                     ),
@@ -259,7 +260,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                     // real streak (>=1) — a "0 day streak" is
                                     // meaningless.
                                     if (game.isDaily && streak >= 1)
-                                      _StatChip(
+                                      StatChip(
                                         icon: Icons
                                             .local_fire_department_outlined,
                                         label: l10n.solveStreak(streak),
@@ -494,42 +495,6 @@ class _ReminderNudgeCard extends StatelessWidget {
                 onPressed: () => controller.markReminderNudgeDone(),
                 child: Text(l10n.reminderNudgeNo),
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _StatChip extends StatelessWidget {
-  const _StatChip({required this.icon, required this.label});
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final palette = Theme.of(context).extension<GamePalette>()!;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: scheme.onSurface.withValues(alpha: .05),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      // The chip shrinks gracefully instead of overflowing when huge system
-      // text meets a narrow phone (the on-device "26 px" stripe).
-      child: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 16, color: palette.textSecondary),
-            const SizedBox(width: 5),
-            Text(
-              label,
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
             ),
           ],
         ),

@@ -214,6 +214,61 @@ void main() {
     },
   );
 
+  test('a solve persists its stats; re-opening + showSolution restores the '
+      'original hint cells (revealed style) and the time/hint stats', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false);
+    final s = game.session!;
+
+    // Solve with a MIX: hint-reveal ONE letter, type the rest correctly. The
+    // hinted letter is the only one that should read as "revealed" in review;
+    // everything else is a plain confirmed solve.
+    final hinted = s.cipherLetters.first;
+    game.selectIndex(s.cipherText.indexOf(hinted));
+    game.revealSelected();
+    expect(s.revealed, {hinted});
+    for (final c in s.cipherLetters) {
+      if (c == hinted) continue;
+      game.selectIndex(s.cipherText.indexOf(c));
+      game.enterGuess(s.cipher.decryptLetter(c));
+    }
+    expect(game.completed, isTrue);
+    expect(s.isSolved, isTrue);
+    game.dispose();
+
+    // A fresh process re-opens the puzzle: the live board is blank, but the
+    // solve metadata is loaded so the review can show real stats.
+    final review = GameController(storage: store);
+    review.start(shortQuote, daily: false);
+    expect(review.previouslySolved, isTrue);
+    expect(review.hasSolveStats, isTrue);
+    expect(review.solvedHintsUsed, 1);
+    expect(review.solvedRevealed, {hinted});
+    expect(review.session!.revealed, isEmpty); // fresh attempt: no hints yet
+
+    // Peeking restores the FINISHED board with ONLY the original hint cell
+    // marked revealed (rendered in the distinct revealed style) and every
+    // other letter confirmed — never one flat all-confirmed fill.
+    review.showSolution();
+    expect(review.reviewingSolved, isTrue);
+    expect(review.session!.isSolved, isTrue);
+    final rs = review.session!;
+    expect(rs.revealed, {hinted});
+    for (final c in rs.cipherLetters) {
+      if (c == hinted) continue;
+      expect(rs.revealed.contains(c), isFalse);
+      expect(rs.confirmedLetters.contains(c), isTrue);
+    }
+
+    // Returning to the attempt drops the review-only revealed fill again, so
+    // the live attempt (which used no hints) is restored untouched.
+    review.returnToAttempt();
+    expect(review.session!.revealed, isEmpty);
+    review.stopTimer();
+    review.dispose();
+  });
+
   test('smart backspace: clears the current cell when filled, otherwise steps '
       'back to the previous entry and clears that', () async {
     final store = await storage();
