@@ -40,6 +40,45 @@ void main() {
     resumed.dispose();
   });
 
+  test('hint reveals the SELECTED editable cell even when its guess is already '
+      'correct (never skips to an alphabetical other)', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false); // "Less is more."
+    final s = game.session!;
+
+    // The cipher letter that decodes to plain 'M' (sits in the 4-letter word
+    // "MORE"). Typing its correct value leaves the word incomplete, so the
+    // letter is CORRECT but still UNLOCKED — the exact case the old reveal
+    // logic skipped (it fell back to the alphabetically-first unsolved cell).
+    final mLetter = s.cipherLetters.firstWhere(
+      (c) => s.cipher.decryptLetter(c) == 'M',
+    );
+    final pos = s.cipherText.indexOf(mLetter);
+
+    game.selectIndex(pos);
+    game.enterGuess('M');
+    expect(s.isGuessCorrect(mLetter), isTrue);
+    expect(
+      s.confirmedLetters.contains(mLetter),
+      isFalse,
+      reason: 'word "MORE" is not complete, so the cell stays editable',
+    );
+
+    // Re-select the (correct-but-unlocked) cell and ask for a hint.
+    game.selectIndex(pos);
+    game.revealSelected();
+
+    // The hint locks the SELECTED letter — it must not skip to another cell.
+    expect(
+      s.revealed.contains(mLetter),
+      isTrue,
+      reason: 'hint must reveal/lock the selected cell, never skip past it',
+    );
+    game.stopTimer();
+    game.dispose();
+  });
+
   test(
     'undo restores the cursor to the exact edited cell, not the first copy',
     () async {

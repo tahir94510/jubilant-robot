@@ -370,11 +370,20 @@ class GameController extends ChangeNotifier {
     return i >= 0 ? i : null;
   }
 
-  String? _firstEmptyLetter() {
+  /// The first cipher letter in reading order that is still unsolved (its guess
+  /// is not yet correct). The hint fallback when no editable cell is selected,
+  /// so a blind hint opens the earliest missing letter — predictable, unlike
+  /// the old alphabetical pick. Already-correct cells (revealed/confirmed) are
+  /// "solved" and skipped.
+  String? _firstUnsolvedLetterByPosition() {
     final s = _session;
-    final i = _firstEmptyIndex();
-    if (s == null || i == null) return null;
-    return s.cipherText[i];
+    if (s == null) return null;
+    final t = s.cipherText;
+    for (var i = 0; i < t.length; i++) {
+      final ch = t[i];
+      if (s.cipherLetters.contains(ch) && !s.isGuessCorrect(ch)) return ch;
+    }
+    return null;
   }
 
   /// True when [quoteId] has a saved, partially-filled attempt that has not
@@ -704,17 +713,14 @@ class GameController extends ChangeNotifier {
     _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;
     if (s == null || _completed || _reviewingSolved) return;
-    var target = selectedCipherLetter ?? _firstEmptyLetter();
-    // Prefer an unsolved cell: if the selected one is already correct,
-    // reveal the first wrong/empty one instead so the hint always helps.
-    if (target == null || s.isGuessCorrect(target)) {
-      target = s.cipherLetters
-          .where((c) => !s.isGuessCorrect(c))
-          .fold<String?>(
-            null,
-            (min, c) => min == null || c.compareTo(min) < 0 ? c : min,
-          );
-    }
+    // If the cursor rests on an editable (unlocked) cell, the hint reveals and
+    // locks EXACTLY that cell — even when its current guess happens to be
+    // correct: the player explicitly asked to lock THIS letter, so we never
+    // skip past it (the old alphabetical fallback did, which read as a bug).
+    // Only with no editable selection do we fall back to the first still-
+    // unsolved cell by board POSITION (left-to-right), so a blind hint opens
+    // the earliest missing letter instead of an arbitrary alphabetical one.
+    final target = selectedCipherLetter ?? _firstUnsolvedLetterByPosition();
     if (target == null) return;
 
     _hintsUsed += 1;
