@@ -468,6 +468,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onbSkip => 'Omitir';
 
   @override
+  String get onbDone => 'Listo';
+
+  @override
+  String get replayTutorial => 'Repetir tutorial';
+
+  @override
   String get notificationDailyTitle => 'Tu criptograma diario está listo';
 
   @override

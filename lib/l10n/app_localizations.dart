@@ -900,6 +900,18 @@ abstract class AppLocalizations {
   /// **'Skip'**
   String get onbSkip;
 
+  /// No description provided for @onbDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get onbDone;
+
+  /// No description provided for @replayTutorial.
+  ///
+  /// In en, this message translates to:
+  /// **'Replay tutorial'**
+  String get replayTutorial;
+
   /// No description provided for @notificationDailyTitle.
   ///
   /// In en, this message translates to:

@@ -132,6 +132,8 @@
   "onbNext": "Avançar",
   "onbTryOne": "Experimente um (30 segundos)",
   "onbSkip": "Pular",
+  "onbDone": "Concluído",
+  "replayTutorial": "Repetir tutorial",
   "notificationDailyTitle": "Seu criptograma diário está pronto",
   "notificationDailyBody": "Uma nova frase espera para ser decifrada. Mantenha sua sequência viva!",
   "shareSolvedIn": "resolvido em {time}",

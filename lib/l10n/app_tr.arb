@@ -132,6 +132,8 @@
   "onbNext": "İleri",
   "onbTryOne": "Bir tane dene (30 saniye)",
   "onbSkip": "Atla",
+  "onbDone": "Bitti",
+  "replayTutorial": "Eğitimi tekrar oynat",
   "notificationDailyTitle": "Günlük şifren hazır",
   "notificationDailyBody": "Çözülmeyi bekleyen taze bir söz var. Serini canlı tut!",
   "shareSolvedIn": "{time} sürede çözüldü",

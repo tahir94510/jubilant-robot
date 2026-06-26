@@ -467,6 +467,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get onbSkip => 'Passer';
 
   @override
+  String get onbDone => 'Terminé';
+
+  @override
+  String get replayTutorial => 'Revoir le tutoriel';
+
+  @override
   String get notificationDailyTitle => 'Votre cryptogramme du jour est prêt';
 
   @override

@@ -132,6 +132,8 @@
   "onbNext": "Suivant",
   "onbTryOne": "Essayez-en une (30 secondes)",
   "onbSkip": "Passer",
+  "onbDone": "Terminé",
+  "replayTutorial": "Revoir le tutoriel",
   "notificationDailyTitle": "Votre cryptogramme du jour est prêt",
   "notificationDailyBody": "Une nouvelle citation attend d’être déchiffrée. Gardez votre série en vie !",
   "shareSolvedIn": "résolu en {time}",

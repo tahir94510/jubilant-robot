@@ -465,6 +465,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get onbSkip => 'Überspringen';
 
   @override
+  String get onbDone => 'Fertig';
+
+  @override
+  String get replayTutorial => 'Tutorial wiederholen';
+
+  @override
   String get notificationDailyTitle => 'Dein Tagesrätsel ist bereit';
 
   @override

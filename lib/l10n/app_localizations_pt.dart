@@ -468,6 +468,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get onbSkip => 'Pular';
 
   @override
+  String get onbDone => 'Concluído';
+
+  @override
+  String get replayTutorial => 'Repetir tutorial';
+
+  @override
   String get notificationDailyTitle => 'Seu criptograma diário está pronto';
 
   @override

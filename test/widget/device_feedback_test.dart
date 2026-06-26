@@ -602,6 +602,33 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('Settings "Replay tutorial" opens the refresher and returns '
+      'without resetting progress', (tester) async {
+    final h = await Harness.create();
+    await h.settings.markOnboardingDone(); // an existing player
+    expect(h.settings.settings.onboardingDone, isTrue);
+
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Replay tutorial'), 150);
+    // scrollUntilVisible stops at the first visible pixel, which can leave the
+    // row flush against the bottom edge; fully seat it before tapping.
+    await tester.ensureVisible(find.text('Replay tutorial'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Replay tutorial'));
+    await tester.pumpAndSettle();
+    expect(find.byType(OnboardingScreen), findsOneWidget);
+
+    // The replay's secondary button reads "Done" and just closes back to
+    // Settings — it must NOT rebuild Home or touch the onboarding flag.
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+    expect(find.byType(SettingsScreen), findsOneWidget);
+    expect(find.byType(OnboardingScreen), findsNothing);
+    expect(h.settings.settings.onboardingDone, isTrue);
+  });
+
   testWidgets('the music toggle applies immediately and persists', (
     tester,
   ) async {
