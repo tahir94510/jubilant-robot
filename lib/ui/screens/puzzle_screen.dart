@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart' show ValueListenable;
@@ -7,9 +8,11 @@ import 'package:provider/provider.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../../models/pack.dart';
+import '../../services/ads/ads_service.dart';
 import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../services/sound_service.dart';
+import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
 import '../theme/palette.dart';
@@ -48,6 +51,28 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   /// reward for steady progress).
   int _wordPulse = 0;
 
+  // --- Smart idle nudge (Görev 2b) ---------------------------------------
+  /// Fires after a stretch of no input to gently pulse the most useful next
+  /// action (Hint, or the rewarded "+N" when hints are spent) — a premium
+  /// "stuck? try this" cue, never a nag.
+  Timer? _idleTimer;
+
+  /// Bumped to pulse the Hint button; the rewarded button has its own counter
+  /// so a state flip (e.g. tokens hitting zero) never spuriously pulses either.
+  int _hintNudge = 0;
+  int _rewardedNudge = 0;
+
+  /// How many times we have nudged during the CURRENT idle stretch. Capped so a
+  /// player who simply paused to think isn't pestered; any input resets it.
+  int _nudgeCount = 0;
+
+  static const Duration _idleNudgeDelay = Duration(seconds: 12);
+  static const int _maxNudges = 3;
+
+  /// The GameController we are subscribed to for "activity" (any user input
+  /// notifies it). Held so the listener can be removed on dispose / swap.
+  GameController? _game;
+
   @override
   void initState() {
     super.initState();
@@ -55,10 +80,79 @@ class _PuzzleScreenState extends State<PuzzleScreen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Treat every GameController notification as "the player did something":
+    // typing, tapping a cell, undo/redo and navigation all notify, so one
+    // listener resets the idle countdown for every input path at once.
+    final game = context.read<GameController>();
+    if (!identical(game, _game)) {
+      _game?.removeListener(_onActivity);
+      _game = game;
+      _game!.addListener(_onActivity);
+    }
+    _restartIdleTimer();
+  }
+
+  @override
   void dispose() {
+    _idleTimer?.cancel();
+    _game?.removeListener(_onActivity);
     _keyboardFocus.dispose();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
+  }
+
+  /// Any user input happened (the controller notified): restart the idle clock.
+  void _onActivity() => _restartIdleTimer();
+
+  /// Cancels any pending nudge and re-arms the idle timer when the puzzle is
+  /// actively being solved. Also resets the per-stretch nudge budget.
+  void _restartIdleTimer() {
+    _idleTimer?.cancel();
+    _nudgeCount = 0;
+    final game = _game;
+    if (game == null ||
+        game.session == null ||
+        game.completed ||
+        game.reviewingSolved) {
+      return;
+    }
+    _idleTimer = Timer(_idleNudgeDelay, _onIdle);
+  }
+
+  /// The player has gone quiet: gently pulse the most useful next action, then
+  /// (up to [_maxNudges]) re-arm so a still-stuck player gets a second, calm
+  /// reminder. Points at the Hint button while hints are available/useful,
+  /// otherwise at the rewarded "+N" button when an ad is ready — and stays
+  /// silent if neither can help.
+  void _onIdle() {
+    if (!mounted) return;
+    final game = _game;
+    if (game == null ||
+        game.session == null ||
+        game.completed ||
+        game.reviewingSolved ||
+        _celebrating ||
+        game.session!.isSolved ||
+        _nudgeCount >= _maxNudges) {
+      return;
+    }
+    final economy = context.read<EconomyController>();
+    final ads = context.read<AdsService>();
+    final canReveal = economy.canUseHint && game.canRevealMore;
+    final rewardedReady =
+        !economy.premium && ads.supported && ads.rewardedAvailable.value;
+    if (!canReveal && !rewardedReady) return; // nothing helpful to point at
+    setState(() {
+      if (canReveal) {
+        _hintNudge++;
+      } else {
+        _rewardedNudge++;
+      }
+      _nudgeCount++;
+    });
+    _idleTimer = Timer(_idleNudgeDelay, _onIdle);
   }
 
   /// Shared input path for both the on-screen keyboard and physical keys, so
@@ -176,8 +270,11 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final game = context.read<GameController>();
     if (state == AppLifecycleState.resumed) {
       game.resumeTimer();
+      _restartIdleTimer();
     } else {
       game.stopTimer();
+      // Don't count time spent off-screen toward an idle nudge.
+      _idleTimer?.cancel();
     }
   }
 
@@ -433,7 +530,10 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                           : Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                const HintBar(),
+                                HintBar(
+                                  hintNudge: _hintNudge,
+                                  rewardedNudge: _rewardedNudge,
+                                ),
                                 // Breathing room so the hint row and the
                                 // undo/redo/navigation strip don't read as one
                                 // cramped cluster.

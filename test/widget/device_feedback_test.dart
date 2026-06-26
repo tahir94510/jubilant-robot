@@ -18,6 +18,7 @@ import 'package:quotecrack/ui/screens/stats_screen.dart';
 import 'package:quotecrack/ui/widgets/cipher_board.dart';
 import 'package:quotecrack/ui/widgets/letter_cell.dart';
 import 'package:quotecrack/ui/theme/palette.dart';
+import 'package:quotecrack/ui/widgets/hint_bar.dart';
 import 'package:quotecrack/ui/widgets/page_body.dart';
 import 'package:quotecrack/ui/widgets/puzzle_keyboard.dart';
 
@@ -570,6 +571,36 @@ void main() {
       }
     },
   );
+
+  testWidgets('an idle stretch nudges the hint button, and input resets it', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    HintBar bar() => tester.widget<HintBar>(find.byType(HintBar));
+    expect(bar().hintNudge, 0, reason: 'no nudge until the player goes quiet');
+
+    // Clock ticks alone are NOT activity (they do not notify the controller),
+    // so going quiet past the threshold fires the nudge on the hint button
+    // (tokens are available by default).
+    await tester.pump(const Duration(seconds: 13));
+    await tester.pump(); // apply the setState
+    expect(bar().hintNudge, 1);
+
+    // Typing a letter is activity: it resets the idle countdown, so the next
+    // quiet stretch fires a fresh nudge.
+    h.game.enterGuess('Z');
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 13));
+    await tester.pump();
+    expect(bar().hintNudge, 2);
+
+    await tester.pumpAndSettle(); // let the pulse animation finish cleanly
+    h.game.stopTimer();
+  });
 
   testWidgets('the music toggle applies immediately and persists', (
     tester,
