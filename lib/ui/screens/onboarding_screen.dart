@@ -131,10 +131,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       navigator.push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
       return;
     }
-    // First run: Home slides UNDER the stack with no animation; the player sees
-    // one smooth transition straight into the puzzle (the old
-    // pushReplacement+push pair ran two stacked animations — a visible
-    // home-screen flash that read as a glitch).
+    // First run: install Home under the stack instantly, then put the puzzle
+    // straight on top with NO forward transition. Both land in the same frame,
+    // and because the puzzle is opaque from frame one, Home never actually
+    // paints — eliminating the brief home-screen "flash" the old fade showed
+    // (a fading-in puzzle starts transparent, so Home bled through for ~150ms).
+    // A gentle reverse fade is kept so backing out of that first puzzle to Home
+    // still feels smooth rather than snapping.
     navigator.pushAndRemoveUntil(
       PageRouteBuilder(
         pageBuilder: (_, _, _) => const HomeScreen(),
@@ -143,7 +146,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       (_) => false,
     );
-    navigator.push(MaterialPageRoute(builder: (_) => const PuzzleScreen()));
+    navigator.push(
+      PageRouteBuilder(
+        pageBuilder: (_, _, _) => const PuzzleScreen(),
+        transitionDuration: Duration.zero,
+        reverseTransitionDuration: const Duration(milliseconds: 200),
+        transitionsBuilder: (_, animation, _, child) =>
+            FadeTransition(opacity: animation, child: child),
+      ),
+    );
   }
 
   @override
