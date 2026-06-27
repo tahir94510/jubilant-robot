@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/services.dart';
 import 'package:vibration/vibration.dart';
@@ -45,7 +47,16 @@ class HapticsService {
   void _buzz(int ms, int amplitude, void Function() fallback) {
     if (!isEnabled()) return;
     if (!kIsWeb && _hasVibrator) {
-      _safeVibrate(ms, amplitude);
+      // Defer the vibration to a microtask so its native call does not fire in
+      // the SAME synchronous frame as the sound effect dispatched right
+      // alongside it (puzzle input plays a cue and buzzes together). Letting the
+      // audio call go first, then the vibrate on the next microtask, eases the
+      // platform-channel contention — and the motor's current spike no longer
+      // lands at the exact instant the clip starts — which is an audible-click
+      // source on some devices. (The residual is hardware coupling between the
+      // motor and the speaker amp, which only the Haptics toggle can fully
+      // remove; this just minimises the software-induced part.)
+      scheduleMicrotask(() => _safeVibrate(ms, amplitude));
       return;
     }
     fallback();

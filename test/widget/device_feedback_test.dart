@@ -813,6 +813,56 @@ void main() {
     expect(h.notifications.scheduledAt, isNotNull);
   });
 
+  testWidgets('Settings exposes a "Send a test notification" action that posts '
+      'a test and confirms it (the on-device "no notifications" diagnostic)', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    // Deliberately leave the daily reminder OFF (the default): the test action
+    // must be reachable even then, so a player who "never gets notifications"
+    // can verify delivery without first enabling the reminder.
+    expect(h.settings.settings.reminderEnabled, isFalse);
+
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Send a test notification'), 200);
+    await tester.ensureVisible(find.text('Send a test notification'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Send a test notification'));
+    await tester.pump(); // run the async onTap
+    await tester.pump(); // let the SnackBar animate in
+
+    // The test notification was actually posted, and the user gets confirmation.
+    expect(h.notifications.testCalls, 1);
+    expect(find.text('Test notification sent'), findsOneWidget);
+  });
+
+  testWidgets('the test-notification action reports a denial instead of '
+      'silently doing nothing', (tester) async {
+    final h = await Harness.create();
+    h.notifications.permissionGranted = false; // OS will refuse
+
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    await tester.scrollUntilVisible(find.text('Send a test notification'), 200);
+    await tester.ensureVisible(find.text('Send a test notification'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Send a test notification'));
+    await tester.pump();
+    await tester.pump();
+
+    // Nothing was posted, and the player is told why (not left guessing).
+    expect(h.notifications.testCalls, 0);
+    expect(
+      find.text('Notification permission was denied in system settings.'),
+      findsOneWidget,
+    );
+  });
+
   testWidgets('the solve clock ticks the on-screen timer without rebuilding '
       'the board', (tester) async {
     final h = await Harness.create();

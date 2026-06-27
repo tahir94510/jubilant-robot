@@ -266,6 +266,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                 ],
+                // Always available (even with the daily reminder off): lets a
+                // player confirm notifications actually arrive on THIS device,
+                // and surfaces the OS permission prompt, without waiting for the
+                // scheduled time. The clearest way to diagnose "no reminder
+                // ever shows up" — if this arrives, delivery works and the
+                // issue is timing/battery; if not, it's permission/OEM-blocked.
+                ListTile(
+                  leading: const Icon(Icons.notifications_active_outlined),
+                  title: Text(l10n.reminderTestSend),
+                  onTap: () async {
+                    haptics.tap();
+                    final ok = await controller.sendTestNotification();
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            ok ? l10n.reminderTestSent : l10n.reminderDenied,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                ),
               ],
               section(l10n.sectionPremium),
               if (economy.premium)
