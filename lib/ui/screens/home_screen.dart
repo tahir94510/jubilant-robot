@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../engine/daily_puzzle.dart';
 import '../../engine/quote_repository.dart';
+import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
@@ -139,11 +140,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   IconButton(
                                     tooltip: l10n.musicToggleTooltip,
                                     visualDensity: VisualDensity.compact,
-                                    onPressed: () =>
-                                        settingsCtl.setMusicAndApply(
-                                          !musicOn,
-                                          context.read<MusicService>(),
-                                        ),
+                                    onPressed: () {
+                                      context.read<HapticsService>().tap();
+                                      settingsCtl.setMusicAndApply(
+                                        !musicOn,
+                                        context.read<MusicService>(),
+                                      );
+                                    },
                                     icon: Icon(
                                       musicOn
                                           ? Icons.music_note_outlined

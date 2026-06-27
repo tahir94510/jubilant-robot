@@ -3,7 +3,7 @@ description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram
 publish_to: 'none'
 
 # versionName+versionCode for Android. Bump +N for every Play Store upload.
-version: 2.4.3+38
+version: 2.4.4+39
 
 environment:
   sdk: ^3.12.1
@@ -26,6 +26,10 @@ dependencies:
   intl: ^0.20.2
   audioplayers: ^6.7.1
   in_app_update: ^4.2.5
+  # Real, amplitude-controlled vibration (Android VibrationEffect). Flutter's
+  # built-in HapticFeedback maps to near-imperceptible constants on most phones;
+  # HapticsService falls back to it when no controllable vibrator is present.
+  vibration: ^3.0.0
 
 dev_dependencies:
   flutter_test:

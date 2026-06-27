@@ -4,14 +4,29 @@ import 'package:provider/provider.dart';
 
 import 'config/app_config.dart';
 import 'l10n/app_localizations.dart';
+import 'services/haptics_service.dart';
 import 'services/music_service.dart';
 import 'state/settings_controller.dart';
 import 'ui/screens/home_screen.dart';
 import 'ui/screens/onboarding_screen.dart';
 import 'ui/theme/app_themes.dart';
+import 'ui/widgets/haptic_route_observer.dart';
 
-class QuotecrackApp extends StatelessWidget {
+class QuotecrackApp extends StatefulWidget {
   const QuotecrackApp({super.key});
+
+  @override
+  State<QuotecrackApp> createState() => _QuotecrackAppState();
+}
+
+class _QuotecrackAppState extends State<QuotecrackApp> {
+  // A single, stable observer for the app's lifetime: it gives every screen
+  // transition, bottom sheet and dialog the same settings-gated tap haptic the
+  // puzzle already has. Created once (not per build) so theme/locale rebuilds
+  // never churn the Navigator's observer list.
+  late final HapticRouteObserver _hapticObserver = HapticRouteObserver(
+    context.read<HapticsService>(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +59,7 @@ class QuotecrackApp extends StatelessWidget {
     return MaterialApp(
       title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
+      navigatorObservers: [_hapticObserver],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       // null follows the device locale; a saved choice overrides it.
