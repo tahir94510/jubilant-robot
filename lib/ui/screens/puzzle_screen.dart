@@ -161,12 +161,18 @@ class _PuzzleScreenState extends State<PuzzleScreen>
     final game = context.read<GameController>();
     final haptics = context.read<HapticsService>();
     final sounds = context.read<SoundService>();
+    // Error checking gates ALL conflict feedback (red tint, error buzz, conflict
+    // chime, shake) so the setting actually governs the whole "you reused a
+    // letter" cue, not just the board color. With it off, a duplicate letter is
+    // just a normal keystroke and gets the ordinary tap feedback.
+    final errorChecking =
+        context.read<SettingsController>().settings.errorChecking;
     game.enterGuess(ch);
     if (game.completed) {
       // The keystroke that SOLVES the puzzle gets no per-key cue: the solve
       // celebration (success chime + heavy haptic + green wave) owns this
       // moment, so a stray tap/word blip under the fanfare would only muddy it.
-    } else if (game.lastInputCreatedConflict) {
+    } else if (game.lastInputCreatedConflict && errorChecking) {
       haptics.error();
       sounds.conflict();
       // enterGuess already notifies listeners (rebuild), which picks up the

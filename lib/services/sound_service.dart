@@ -19,11 +19,20 @@ class SoundService {
   int _tapIndex = 0;
 
   /// The discrete event sounds (hint, conflict, word, success, achievement).
-  /// One media-player each: they never overlap themselves, and the media path
-  /// lets us replay with a clean seek-to-zero instead of a stop()/teardown,
-  /// which is what popped the ringing tail on the old build.
-  final Map<String, AudioPlayer> _players = {};
+  /// Each gets a SMALL ROUND-ROBIN POOL of media players. A quick retrigger
+  /// (several conflicts in a row, a burst of completed words) plays a fresh,
+  /// already-finished voice while the previous one rings out naturally —
+  /// instead of seek-cutting a still-ringing tail straight to silence, the
+  /// discontinuity that crackled on the old single-player-per-sound path.
+  final Map<String, List<AudioPlayer>> _players = {};
+
+  /// Round-robin cursor per discrete sound, so successive plays alternate
+  /// voices (giving each the most time to decay before it is reused).
+  final Map<String, int> _voiceIndex = {};
   bool _ready = false;
+
+  /// Every discrete voice across all pools — for volume changes and teardown.
+  Iterable<AudioPlayer> get _eventVoices => _players.values.expand((v) => v);
 
   /// 0..1 user multiplier (soundVolume from settings). The WAVs are already
   /// balanced against each other; this scales the whole family uniformly.
@@ -38,7 +47,7 @@ class SoundService {
     // sounds; silence and full stay exact (0 -> 0, 1 -> 1).
     _volume = audioTaper(value);
     if (!_ready) return;
-    for (final p in [..._tapPool, ..._players.values]) {
+    for (final p in [..._tapPool, ..._eventVoices]) {
       unawaited(p.setVolume(_volume).catchError((_) {}));
     }
   }
@@ -49,13 +58,14 @@ class SoundService {
     // false) a retry is allowed, so first tear down anything a prior attempt
     // left behind.
     if (_ready) return;
-    for (final p in [..._tapPool, ..._players.values]) {
+    for (final p in [..._tapPool, ..._eventVoices]) {
       try {
         await p.dispose();
       } catch (_) {}
     }
     _tapPool.clear();
     _players.clear();
+    _voiceIndex.clear();
     try {
       // Game/media stream, never the ringtone stream: volume keys must
       // control MEDIA volume. (The old AudioContextConfig(respectSilence:
@@ -93,7 +103,12 @@ class SoundService {
         'achievement.wav',
         'word.wav',
       ]) {
-        _players[name] = await _load(name, lowLatency: false);
+        // Two voices each: enough for a fresh voice to cover a quick retrigger
+        // while the previous one rings out, without spawning a player per sound.
+        _players[name] = [
+          await _load(name, lowLatency: false),
+          await _load(name, lowLatency: false),
+        ];
       }
       _ready = true;
     } catch (_) {
@@ -126,12 +141,19 @@ class SoundService {
   /// seek-to-zero repositions in place (no SoundPool stream rebuild), so the
   /// ringing tail of the previous play is never hard-cut into a click.
   void _play(String key) {
-    final player = _players[key];
-    if (!_ready || player == null || !isEnabled()) return;
+    final pool = _players[key];
+    if (!_ready || pool == null || pool.isEmpty || !isEnabled()) return;
     final now = DateTime.now().millisecondsSinceEpoch;
     final last = _lastPlayedMs[key];
     if (last != null && now - last < _minGapMs) return;
     _lastPlayedMs[key] = now;
+    // Advance to the NEXT voice so the previous play keeps ringing out on its
+    // own voice. The voice we pick has already finished (ReleaseMode.stop), so
+    // seek-to-zero + resume restarts it cleanly from silence — no tail to cut,
+    // no click.
+    final idx = _voiceIndex[key] ?? 0;
+    _voiceIndex[key] = (idx + 1) % pool.length;
+    final player = pool[idx];
     unawaited(
       player
           .seek(Duration.zero)
@@ -161,7 +183,7 @@ class SoundService {
   void achievement() => _play('achievement.wav');
 
   void dispose() {
-    for (final p in [..._tapPool, ..._players.values]) {
+    for (final p in [..._tapPool, ..._eventVoices]) {
       p.dispose();
     }
   }

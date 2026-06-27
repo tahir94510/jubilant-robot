@@ -26,6 +26,11 @@ class BrandMark extends StatelessWidget {
     // premium raised card on EVERY theme (and cleanly frame the bright tile on
     // dark) — same brand, never blending into the background.
     final borderColor = scheme.onSurface.withValues(alpha: 0.22);
+    // Warm, deep-brown shadow rather than pure black: on the cream light/sepia
+    // pages a black drop read as a hard grey smudge, the "problematic" look. A
+    // warm tint at low alpha melts into the paper as a gentle premium lift, and
+    // the hairline frame below does the actual edge separation.
+    const shadowColor = Color(0xFF2A2018);
     return Semantics(
       image: true,
       label: 'Quotecrack logo',
@@ -36,21 +41,21 @@ class BrandMark extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius),
             boxShadow: [
-              // A two-layer "lifted card" shadow: a wide, soft ambient halo plus
-              // a tighter, deeper key drop. Together they make the mark read as a
-              // premium, clearly raised card on EVERY surface — including the
-              // light/sepia pages whose color nearly matches the tile, where a
-              // single soft shadow was too faint to separate it.
+              // A soft two-layer "lifted card" shadow: a wide, diffuse ambient
+              // halo plus a slightly tighter contact shadow. Kept low-alpha and
+              // warm so it reads as a refined raised card on EVERY surface —
+              // including the light/sepia pages whose color nearly matches the
+              // tile — without the harsh hard-edged drop of the old version.
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.12),
-                blurRadius: size * 0.17,
-                offset: Offset(0, size * 0.03),
+                color: shadowColor.withValues(alpha: 0.10),
+                blurRadius: size * 0.20,
+                offset: Offset(0, size * 0.05),
               ),
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.22),
-                blurRadius: size * 0.09,
-                offset: Offset(0, size * 0.075),
-                spreadRadius: -size * 0.015,
+                color: shadowColor.withValues(alpha: 0.13),
+                blurRadius: size * 0.085,
+                offset: Offset(0, size * 0.04),
+                spreadRadius: -size * 0.02,
               ),
             ],
           ),

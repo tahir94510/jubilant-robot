@@ -225,10 +225,16 @@ class _CipherBoardState extends State<CipherBoard> {
     if (session.revealed.contains(cipherLetter)) return CellState.revealed;
     // A locked, fully-correct word: its own confirmed color.
     if (confirmed.contains(cipherLetter)) return CellState.confirmed;
-    // A conflicting guess reads red immediately (even while focused).
-    if (conflicts.contains(cipherLetter)) return CellState.conflict;
-    // Error checking only marks wrong guesses once the board is fully
-    // filled, so it nudges instead of spoiling the deduction.
+    // Error checking governs ALL mistake feedback. A same-letter conflict reads
+    // red immediately, but ONLY while error checking is on — turning it off
+    // returns conflicting cells to normal (and re-enabling restores them). The
+    // board rebuilds when the setting changes, so this flips live, including on
+    // resumed / half-finished saved games.
+    if (widget.errorChecking && conflicts.contains(cipherLetter)) {
+      return CellState.conflict;
+    }
+    // Error checking also marks wrong guesses once the board is fully filled,
+    // so it nudges instead of spoiling the deduction.
     if (widget.errorChecking &&
         boardFull &&
         session.guesses.containsKey(cipherLetter) &&

@@ -416,6 +416,43 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('with error checking off, a duplicate letter is a plain tap — '
+      'no conflict cue and no red tint', (tester) async {
+    final h = await Harness.create();
+    await h.settings.setErrorChecking(false);
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    final session = h.game.session!;
+    // The same duplicate-letter sequence as the conflict test, but with error
+    // checking disabled the reuse must surface as an ordinary keystroke.
+    h.game.enterGuess('Z');
+    h.game.selectCipherLetter(session.cipher.encryptLetter('M'));
+    await tester.pump();
+    await tester.tap(
+      find.descendant(
+        of: find.byType(PuzzleKeyboard),
+        matching: find.text('Z'),
+      ),
+    );
+    await tester.pump();
+
+    // The game still detects the conflict internally...
+    expect(h.game.lastInputCreatedConflict, isTrue);
+    // ...but no harsh conflict cue fires — it plays the plain tap instead...
+    expect(h.sounds.played, contains('tap'));
+    expect(h.sounds.played, isNot(contains('conflict')));
+    // ...and no cell turns red.
+    final reds = tester
+        .widgetList<LetterCell>(find.byType(LetterCell))
+        .where((c) => c.state == CellState.conflict);
+    expect(reds, isEmpty);
+
+    h.game.stopTimer();
+  });
+
   testWidgets('completing a word plays the word cue instead of a tap', (
     tester,
   ) async {
