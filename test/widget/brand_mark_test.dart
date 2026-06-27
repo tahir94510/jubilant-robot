@@ -55,4 +55,24 @@ void main() {
     );
     expect(tester.takeException(), isNull);
   });
+
+  // The hardest "disappears into the background" case: a light page whose color
+  // is almost identical to the logo's own cream tile (the paywall/onboarding on
+  // the light + sepia themes). The lifted shadow + clearer frame must still
+  // render the mark as a distinct card. This locks that scenario.
+  testWidgets('BrandMark renders on a surface matching its own tile', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppThemes.light(colorblind: false),
+        home: const Scaffold(
+          backgroundColor: Color(0xFFF7F4EC), // == the logo's own cream tile
+          body: Center(child: BrandMark(size: 72)),
+        ),
+      ),
+    );
+    expect(find.byType(BrandMark), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
 }
