@@ -58,8 +58,10 @@ class MusicService with WidgetsBindingObserver {
   /// Deliberately not near-zero: the fanfare rides *over* the bed.
   static const double _duckFactor = 0.38;
 
-  /// 0..1 user multiplier from settings (musicVolume).
-  double _userVolume = 0.70;
+  /// 0..1 user multiplier from settings (musicVolume). Set from the persisted
+  /// setting at startup; this initial value only matters until that runs, so it
+  /// mirrors the AppSettings default (0.65) for consistency.
+  double _userVolume = 0.65;
 
   double get _targetVolume => _baseVolume * _userVolume;
   double get _duckVolume => _targetVolume * _duckFactor;
@@ -139,6 +141,7 @@ class MusicService with WidgetsBindingObserver {
         await p.setPlayerMode(PlayerMode.mediaPlayer);
         await p.setReleaseMode(ReleaseMode.stop);
         await p.setVolume(0);
+        _lastVolume[_players.length] = 0; // index this player will occupy
         _players.add(p);
       }
       // Defensive: if a track ends before its scheduled crossfade (timing
@@ -197,6 +200,7 @@ class MusicService with WidgetsBindingObserver {
       await p.setReleaseMode(ReleaseMode.stop);
       await p.setSource(AssetSource(_tracks[trackIndex]));
       await p.setVolume(0);
+      _lastVolume[_active] = 0;
       await p.resume();
     } catch (_) {
       _playing = false;
@@ -220,6 +224,7 @@ class MusicService with WidgetsBindingObserver {
       await idle.setReleaseMode(ReleaseMode.stop);
       await idle.setSource(AssetSource(_tracks[idx]));
       await idle.setVolume(0);
+      _lastVolume[1 - _active] = 0;
     } catch (_) {
       return;
     }
@@ -314,6 +319,7 @@ class MusicService with WidgetsBindingObserver {
           await incoming.setReleaseMode(ReleaseMode.stop);
           await incoming.setSource(AssetSource(_tracks[trackIndex]));
           await incoming.setVolume(0);
+          _lastVolume[1 - _active] = 0;
         }
         await incoming.resume();
       } catch (_) {
@@ -325,7 +331,7 @@ class MusicService with WidgetsBindingObserver {
 
   void _runXfadeRamp() {
     _xfadeRamp?.cancel();
-    const stepMs = 16;
+    const stepMs = 25;
     final steps = (_crossfade.inMilliseconds / stepMs).ceil().clamp(1, 100000);
     var i = 0;
     _xfadeRamp = Timer.periodic(const Duration(milliseconds: stepMs), (t) {
@@ -350,15 +356,36 @@ class MusicService with WidgetsBindingObserver {
     await _scheduleCrossfade(_activePlayer);
   }
 
+  /// Last volume actually pushed to the native side, per player INDEX (0/1).
+  /// Tracking by index (not active/idle role) stays correct across swaps.
+  /// Skipping sub-perceptual / no-op changes is what kills the "zipper"
+  /// crackle: a ramp would otherwise hammer setVolume across the platform
+  /// channel (~tens of calls/s per player), and the idle player would get a
+  /// stream of redundant setVolume(0) on every fade tick outside a crossfade.
+  /// -1 forces the first real write through.
+  final List<double> _lastVolume = [-1, -1];
+
+  /// Threshold below which a volume change is inaudible, so we skip the
+  /// platform-channel call. ~0.4% of full scale.
+  static const double _volumeEpsilon = 0.004;
+
+  /// Pushes [v] to player [index] only when it differs audibly from the last
+  /// value we sent, coalescing the ramp's high-frequency updates.
+  void _setVolume(int index, double v) {
+    if ((v - _lastVolume[index]).abs() < _volumeEpsilon) return;
+    _lastVolume[index] = v;
+    unawaited(_players[index].setVolume(v).catchError((_) {}));
+  }
+
   /// Pushes the current master level onto both players, split by the crossfade
   /// progress. Reads live state each call so a duck or volume change mid-fade
   /// adapts automatically.
   void _applyGains() {
     if (_players.length < 2) return;
-    final act = _master * (1 - _xfade);
-    final inc = _master * _xfade;
-    unawaited(_activePlayer.setVolume(act.clamp(0.0, 1.0)).catchError((_) {}));
-    unawaited(_idlePlayer.setVolume(inc.clamp(0.0, 1.0)).catchError((_) {}));
+    final act = (_master * (1 - _xfade)).clamp(0.0, 1.0);
+    final inc = (_master * _xfade).clamp(0.0, 1.0);
+    _setVolume(_active, act);
+    _setVolume(1 - _active, inc);
   }
 
   /// Briefly dips the bed under the success fanfare, then restores it.
@@ -438,7 +465,7 @@ class MusicService with WidgetsBindingObserver {
   }) {
     _masterFade?.cancel();
     if (_players.isEmpty) return;
-    const stepMs = 16;
+    const stepMs = 25;
     final steps = (duration.inMilliseconds / stepMs).ceil().clamp(1, 100000);
     final start = _master;
     var i = 0;

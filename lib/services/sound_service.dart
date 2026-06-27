@@ -96,6 +96,11 @@ class SoundService {
       for (var i = 0; i < 5; i++) {
         _tapPool.add(await _load('tap.wav', lowLatency: true));
       }
+      // The long fanfares (success ~2s, achievement) can still be ringing when
+      // they are asked to play again, so they get a THIRD voice: the round-robin
+      // then always lands on a finished voice and seek-to-zero never has to cut
+      // a live tail into a click. The short cues are fine with two.
+      const longVoices = {'success.wav', 'achievement.wav'};
       for (final name in [
         'hint.wav',
         'conflict.wav',
@@ -103,11 +108,9 @@ class SoundService {
         'achievement.wav',
         'word.wav',
       ]) {
-        // Two voices each: enough for a fresh voice to cover a quick retrigger
-        // while the previous one rings out, without spawning a player per sound.
+        final voices = longVoices.contains(name) ? 3 : 2;
         _players[name] = [
-          await _load(name, lowLatency: false),
-          await _load(name, lowLatency: false),
+          for (var i = 0; i < voices; i++) await _load(name, lowLatency: false),
         ];
       }
       _ready = true;
