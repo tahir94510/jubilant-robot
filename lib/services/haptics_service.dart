@@ -29,13 +29,9 @@ class HapticsService {
   Future<void> _detectCapabilities() async {
     if (kIsWeb) return; // browsers: the HapticFeedback path only
     try {
-      // Typed as nullable so this compiles whether the plugin returns bool or
-      // bool? across versions, and never trips a dead-null-aware lint.
-      final bool? has = await Vibration.hasVibrator();
-      _hasVibrator = has == true;
+      _hasVibrator = await Vibration.hasVibrator();
       if (_hasVibrator) {
-        final bool? amp = await Vibration.hasAmplitudeControl();
-        _hasAmplitude = amp == true;
+        _hasAmplitude = await Vibration.hasAmplitudeControl();
       }
     } catch (_) {
       // No plugin / unsupported platform: stay on the framework-haptic path.
@@ -56,9 +52,8 @@ class HapticsService {
   }
 
   /// Fire-and-forget vibration that swallows any error (missing plugin,
-  /// transient native failure) so a hiccup never bubbles up. Returns a
-  /// Future<void> regardless of the plugin's return type, so the caller can
-  /// discard it cleanly.
+  /// transient native failure) so a hiccup never bubbles up. Always returns a
+  /// `Future<void>` so the caller can discard it cleanly.
   Future<void> _safeVibrate(int ms, int amplitude) async {
     try {
       if (_hasAmplitude) {
