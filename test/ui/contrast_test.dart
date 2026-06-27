@@ -67,7 +67,9 @@ void main() {
 
         // Secondary / de-emphasised text + meaningful icons: large-text AA.
         atLeast('textFaint/surface', p.textFaint, cs.surface, 3.0);
-        atLeast('cipherText/surface', p.cipherText, cs.surface, 3.0);
+        // The small cipher letter under each cell is genuinely SMALL text, so it
+        // must clear full normal-text AA (4.5:1), not just the large-text floor.
+        atLeast('cipherText/surface', p.cipherText, cs.surface, 4.5);
         atLeast('keyUsedText/keyUsedBg', p.keyUsedText, p.keyUsedBg, 3.0);
         // Locked key glyphs sit on their OWN recessed background and must still
         // stay legible (the earlier translucent treatment read ~1.6:1).
