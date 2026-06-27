@@ -5,6 +5,53 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.4.3 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.4.3
+• Broader device compatibility and behind-the-scenes stability improvements
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.4.3 YENİLİKLER
+• Daha geniş cihaz uyumluluğu ve arka planda kararlılık iyileştirmeleri
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.4.3
+• Mayor compatibilidad con dispositivos y mejoras de estabilidad internas
+```
+
+**Deutsch**
+```
+NEU in 2.4.3
+• Breitere Gerätekompatibilität und Stabilitätsverbesserungen im Hintergrund
+```
+
+**Français**
+```
+NOUVEAU dans 2.4.3
+• Compatibilité étendue avec les appareils et améliorations de stabilité internes
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.4.3
+• Maggiore compatibilità con i dispositivi e miglioramenti di stabilità interni
+```
+
+**Português**
+```
+NOVIDADES na 2.4.3
+• Maior compatibilidade com dispositivos e melhorias internas de estabilidade
+```
+
+---
+
 ## Release notes: v2.4.2 (max 500 chars, paste into "What's new")
 
 ```
