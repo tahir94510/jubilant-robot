@@ -61,7 +61,8 @@
     "author": "Orhan Veli Kanık",
     "source": "Kitabe-i Seng-i Mezar",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Orhan Veli'nin 'Kitâbe-i Seng-i Mezar' şiiri: sıradan bir adamın nasırını mizahla anan bu dize, sade halk dilini savunan Garip akımının simgesi oldu."
   },
   {
     "id": "tr-l209",
@@ -69,7 +70,8 @@
     "author": "Orhan Veli Kanık",
     "source": "Bedava",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Orhan Veli'nin 'Bedava' şiiri: havayı, bulutu, yaşamayı 'bedava' sayan, hayatın yalın güzelliğine buruk bir övgü."
   },
   {
     "id": "tr-l210",
@@ -157,7 +159,8 @@
     "author": "Karacaoğlan",
     "source": "Şiirler",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "17. yüzyılın büyük halk ozanı Karacaoğlan'dan: saz eşliğinde sevgiyi ve doğayı anlatan Anadolu âşık geleneğinin lirik bir örneği."
   },
   {
     "id": "tr-l221",

@@ -37,7 +37,8 @@
     "author": "Miguel de Cervantes",
     "source": "Don Quijote de la Mancha",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De Don Quijote: 'no hay libro tan malo que no tenga algo bueno', proverbial elogio de la lectura."
   },
   {
     "id": "es-c206",
@@ -45,7 +46,8 @@
     "author": "Miguel de Cervantes",
     "source": "Don Quijote de la Mancha",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De Don Quijote: 'donde hay música no puede haber cosa mala'."
   },
   {
     "id": "es-c207",
@@ -149,7 +151,8 @@
     "author": "Jorge Manrique",
     "source": "Coplas a la muerte de su padre",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De las Coplas de Manrique: 'cualquiera tiempo pasado fue mejor', uno de los versos más citados en español."
   },
   {
     "id": "es-c220",
@@ -165,7 +168,8 @@
     "author": "Francisco de Quevedo",
     "source": "Definición del amor",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De la 'Definición del amor' de Quevedo: el amor como 'hielo abrasador' y 'fuego helado', pura paradoja barroca."
   },
   {
     "id": "es-c222",

@@ -544,12 +544,17 @@ class _AboutQuoteCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
+          // A hairline separates the label from the context, giving the card a
+          // quiet "card within the card" structure without a heavy border.
+          Container(height: 1, color: scheme.onSurface.withValues(alpha: .07)),
+          const SizedBox(height: 10),
           Text(
             note,
             style: TextStyle(
-              fontSize: 14,
-              height: 1.45,
+              fontFamily: 'Lora', // echo the quote's own literary serif voice
+              fontSize: 14.5,
+              height: 1.5,
               color: scheme.onSurface,
             ),
           ),

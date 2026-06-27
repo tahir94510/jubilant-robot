@@ -803,10 +803,13 @@ class GameController extends ChangeNotifier {
     return s.cipherLetters.any((c) => !s.isGuessCorrect(c));
   }
 
-  void revealSelected() {
+  /// Reveals and locks one letter. Returns true only when a cell was actually
+  /// uncovered, so the caller can charge the hint token strictly on success
+  /// (never spend for a no-op — e.g. a board that just completed).
+  bool revealSelected() {
     _lastInputCompletedWord = false; // hints have their own chime
     final s = _session;
-    if (s == null || _completed || _reviewingSolved) return;
+    if (s == null || _completed || _reviewingSolved) return false;
     // If the cursor rests on an editable (unlocked) cell, the hint reveals and
     // locks EXACTLY that cell — even when its current guess happens to be
     // correct: the player explicitly asked to lock THIS letter, so we never
@@ -815,7 +818,7 @@ class GameController extends ChangeNotifier {
     // unsolved cell by board POSITION (left-to-right), so a blind hint opens
     // the earliest missing letter instead of an arbitrary alphabetical one.
     final target = selectedCipherLetter ?? _firstUnsolvedLetterByPosition();
-    if (target == null) return;
+    if (target == null) return false;
 
     _hintsUsed += 1;
     s.guesses[target] = s.cipher.decryptLetter(target);
@@ -835,6 +838,7 @@ class GameController extends ChangeNotifier {
         _selectedIndex;
     _undoStack.clear(); // reveals are permanent
     _afterChange(advance: false);
+    return true;
   }
 
   void _afterChange({bool advance = true}) {

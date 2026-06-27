@@ -5,7 +5,8 @@
     "author": "Dante Alighieri",
     "source": "Divina Commedia, Inferno",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "L'ultimo verso dell'Inferno di Dante: risaliti dall'abisso, 'e quindi uscimmo a riveder le stelle'."
   },
   {
     "id": "it-c002",
@@ -13,7 +14,8 @@
     "author": "Dante Alighieri",
     "source": "Divina Commedia, Inferno",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dall'orazione di Ulisse (Inferno XXVI): 'fatti non foste a viver come bruti, ma per seguir virtute e canoscenza'."
   },
   {
     "id": "it-c003",
@@ -21,7 +23,8 @@
     "author": "Dante Alighieri",
     "source": "Divina Commedia, Inferno",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Inferno V: Francesca racconta come un libro fu 'galeotto', complice del suo amore con Paolo."
   },
   {
     "id": "it-c004",
@@ -29,7 +32,8 @@
     "author": "Dante Alighieri",
     "source": "Divina Commedia, Paradiso",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Paradiso XVII: la profezia dell'esilio di Dante, 'come sa di sale lo pane altrui'."
   },
   {
     "id": "it-c005",
@@ -45,7 +49,8 @@
     "author": "Dante Alighieri",
     "source": "Divina Commedia, Inferno",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Inferno XXVI: l'appello di Ulisse ai compagni a varcare ogni limite per conoscenza."
   },
   {
     "id": "it-c007",
@@ -53,7 +58,8 @@
     "author": "Dante Alighieri",
     "source": "Vita Nuova",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dalla 'Vita Nuova' di Dante: il sonetto 'Tanto gentile e tanto onesta pare', dedicato a Beatrice."
   },
   {
     "id": "it-c008",
@@ -61,7 +67,8 @@
     "author": "Leonardo da Vinci",
     "source": "Codice Atlantico",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Da Leonardo da Vinci: 'studia prima la scienza, e poi seguita la pratica' — teoria e pratica unite."
   },
   {
     "id": "it-c009",
@@ -93,7 +100,8 @@
     "author": "Leonardo da Vinci",
     "source": "Codice Atlantico",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Da Leonardo da Vinci: 'l'acqua che tocchi de' fiumi è l'ultima di quella che andò', immagine del tempo che fugge."
   },
   {
     "id": "it-c013",
@@ -101,7 +109,8 @@
     "author": "Niccolò Machiavelli",
     "source": "Il Principe",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dal 'Principe' di Machiavelli: meglio essere temuto che amato, quando non si possono avere entrambi."
   },
   {
     "id": "it-c014",
@@ -109,7 +118,8 @@
     "author": "Niccolò Machiavelli",
     "source": "Il Principe",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dal 'Principe' di Machiavelli: il principe deve 'imparare a non essere buono' quando serve — il realismo politico."
   },
   {
     "id": "it-c015",
@@ -133,7 +143,8 @@
     "author": "Francesco Petrarca",
     "source": "Canzoniere",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dal 'Canzoniere' di Petrarca: 'Erano i capei d'oro a l'aura sparsi', ritratto di Laura."
   },
   {
     "id": "it-c018",
@@ -149,7 +160,8 @@
     "author": "Francesco Petrarca",
     "source": "Canzoniere",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dal 'Canzoniere' di Petrarca: 'La vita fugge, et non s'arresta una hora', sul tempo che scorre."
   },
   {
     "id": "it-c020",
@@ -157,7 +169,8 @@
     "author": "Francesco Petrarca",
     "source": "Canzoniere",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "Dal 'Canzoniere' di Petrarca: 'Pace non trovo, et non ò da far guerra', il sonetto degli opposti dell'amore."
   },
   {
     "id": "it-c021",
@@ -165,7 +178,8 @@
     "author": "Lorenzo de' Medici",
     "source": "Canzona di Bacco",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "La canzone di Lorenzo de' Medici: 'Quant'è bella giovinezza, che si fugge tuttavia' — invito al carpe diem."
   },
   {
     "id": "it-c022",
@@ -173,6 +187,7 @@
     "author": "Ludovico Ariosto",
     "source": "Orlando Furioso",
     "category": "classics",
-    "locale": "it"
+    "locale": "it",
+    "note": "L'incipit dell'Orlando Furioso di Ariosto: 'Le donne, i cavallier, l'arme, gli amori'."
   }
 ]

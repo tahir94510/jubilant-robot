@@ -20,14 +20,16 @@
     "text": "This above all: to thine own self be true.",
     "author": "William Shakespeare",
     "source": "Hamlet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Polonius's parting advice to his son Laertes in Hamlet: above all, be true to yourself."
   },
   {
     "id": "shk-004",
     "text": "Though she be but little, she is fierce.",
     "author": "William Shakespeare",
     "source": "A Midsummer Night's Dream",
-    "category": "classics"
+    "category": "classics",
+    "note": "Helena on the small but formidable Hermia in A Midsummer Night's Dream."
   },
   {
     "id": "shk-005",
@@ -63,14 +65,16 @@
     "text": "Some are born great, some achieve greatness, and some have greatness thrust upon them.",
     "author": "William Shakespeare",
     "source": "Twelfth Night",
-    "category": "classics"
+    "category": "classics",
+    "note": "From the letter scene in Twelfth Night: greatness is born, achieved, or thrust upon us."
   },
   {
     "id": "shk-010",
     "text": "Cowards die many times before their deaths; the valiant never taste of death but once.",
     "author": "William Shakespeare",
     "source": "Julius Caesar",
-    "category": "classics"
+    "category": "classics",
+    "note": "Caesar to Calpurnia in Julius Caesar, brushing aside fear: the brave taste death but once."
   },
   {
     "id": "shk-011",
@@ -85,7 +89,8 @@
     "text": "There is nothing either good or bad, but thinking makes it so.",
     "author": "William Shakespeare",
     "source": "Hamlet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Hamlet to Rosencrantz and Guildenstern: nothing is good or bad until thinking makes it so."
   },
   {
     "id": "shk-013",
@@ -100,7 +105,8 @@
     "text": "Uneasy lies the head that wears a crown.",
     "author": "William Shakespeare",
     "source": "Henry IV, Part 2",
-    "category": "classics"
+    "category": "classics",
+    "note": "From Henry IV, Part 2: the sleepless burden of power, 'uneasy lies the head that wears a crown.'"
   },
   {
     "id": "shk-015",
@@ -114,7 +120,8 @@
     "text": "If music be the food of love, play on.",
     "author": "William Shakespeare",
     "source": "Twelfth Night",
-    "category": "classics"
+    "category": "classics",
+    "note": "The opening line of Twelfth Night, spoken by the lovesick Duke Orsino."
   },
   {
     "id": "shk-017",
@@ -129,7 +136,8 @@
     "text": "Wisely and slow; they stumble that run fast.",
     "author": "William Shakespeare",
     "source": "Romeo and Juliet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Friar Laurence's caution to Romeo in Romeo and Juliet: those who run fast stumble."
   },
   {
     "id": "shk-019",
@@ -158,14 +166,16 @@
     "text": "Be not afraid of greatness.",
     "author": "William Shakespeare",
     "source": "Twelfth Night",
-    "category": "classics"
+    "category": "classics",
+    "note": "From the forged letter that gulls Malvolio in Twelfth Night: 'be not afraid of greatness.'"
   },
   {
     "id": "shk-023",
     "text": "Give every man thy ear, but few thy voice.",
     "author": "William Shakespeare",
     "source": "Hamlet",
-    "category": "classics"
+    "category": "classics",
+    "note": "Polonius's worldly counsel in Hamlet: listen to many, but speak to few."
   },
   {
     "id": "shk-024",
@@ -188,7 +198,8 @@
     "text": "All that glisters is not gold.",
     "author": "William Shakespeare",
     "source": "The Merchant of Venice",
-    "category": "classics"
+    "category": "classics",
+    "note": "The Prince of Morocco's casket lesson in The Merchant of Venice: all that glitters is not gold."
   },
   {
     "id": "shk-027",
@@ -203,7 +214,8 @@
     "text": "What's done cannot be undone.",
     "author": "William Shakespeare",
     "source": "Macbeth",
-    "category": "classics"
+    "category": "classics",
+    "note": "Lady Macbeth in Macbeth, insisting that what is done cannot be undone."
   },
   {
     "id": "shk-029",

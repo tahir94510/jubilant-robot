@@ -113,6 +113,22 @@ void main() {
     );
   });
 
+  test('every language stocks "About this quote" context notes', () {
+    // The completion screen surfaces a cultural-context card whenever a quote
+    // carries a note. Enrichment landed language by language; this floor keeps
+    // every culture stocked so the feature can never silently regress to empty
+    // for non-English players. Languages may (and do) exceed it.
+    const minNotesPerLocale = 12;
+    for (final loc in allLocales) {
+      final n = byLocale[loc]!.where((q) => q.note != null).length;
+      expect(
+        n,
+        greaterThanOrEqualTo(minNotesPerLocale),
+        reason: '$loc has only $n "About this quote" notes',
+      );
+    }
+  });
+
   test('the dataset stays 100% public domain (no in-copyright authors)', () {
     // Authors whose work is not yet public domain under life+70 (death after
     // 1955). Removing them is a deliberate, locked decision (v2.4 copyright

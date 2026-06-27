@@ -5,7 +5,8 @@
     "author": "Johann Wolfgang von Goethe",
     "source": "Faust",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Fausts Klage zu Beginn von Goethes 'Faust': der Gelehrte hat alles studiert und erkennt doch, dass er nichts weiß."
   },
   {
     "id": "de-c002",
@@ -13,7 +14,8 @@
     "author": "Johann Wolfgang von Goethe",
     "source": "Faust",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Mephistos Selbstvorstellung in Goethes 'Faust': der 'Geist, der stets verneint'."
   },
   {
     "id": "de-c003",
@@ -21,7 +23,8 @@
     "author": "Johann Wolfgang von Goethe",
     "source": "Faust",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Fausts berühmter Studierzimmer-Monolog über Philosophie, Recht und Medizin in Goethes 'Faust'."
   },
   {
     "id": "de-c004",
@@ -29,7 +32,8 @@
     "author": "Johann Wolfgang von Goethe",
     "source": "Faust",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Mephisto in 'Faust': 'ein Teil von jener Kraft, die stets das Böse will und stets das Gute schafft'."
   },
   {
     "id": "de-c005",
@@ -37,7 +41,8 @@
     "author": "Johann Wolfgang von Goethe",
     "source": "Faust",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Fausts Wette mit Mephisto: sagt er je zum Augenblick 'Verweile doch! Du bist so schön!', ist seine Seele verloren."
   },
   {
     "id": "de-c006",
@@ -45,7 +50,8 @@
     "author": "Johann Wolfgang von Goethe",
     "source": "Faust",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Fausts Wort zur Osterbotschaft in Goethes 'Faust': 'Die Botschaft hör ich wohl, allein mir fehlt der Glaube'."
   },
   {
     "id": "de-c007",
@@ -85,7 +91,8 @@
     "author": "Friedrich Schiller",
     "source": "An die Freude",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Schillers Ode 'An die Freude', von Beethoven in der 9. Sinfonie vertont und heute Europahymne."
   },
   {
     "id": "de-c012",
@@ -93,7 +100,8 @@
     "author": "Friedrich Schiller",
     "source": "Wilhelm Tell",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Schillers 'Wilhelm Tell': Tells Worte im Hinterhalt der hohlen Gasse."
   },
   {
     "id": "de-c013",
@@ -101,7 +109,8 @@
     "author": "Friedrich Schiller",
     "source": "Wilhelm Tell",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Schillers 'Wilhelm Tell': 'Verbunden werden auch die Schwachen mächtig' — Einheit macht stark."
   },
   {
     "id": "de-c014",
@@ -109,7 +118,8 @@
     "author": "Friedrich Schiller",
     "source": "Das Lied von der Glocke",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Schillers 'Das Lied von der Glocke': 'Der Wahn ist kurz, die Reu ist lang'."
   },
   {
     "id": "de-c015",
@@ -141,7 +151,8 @@
     "author": "Friedrich Schiller",
     "source": "Don Karlos",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Schillers 'Don Karlos': 'Die Sonne geht in meinem Staat nicht unter' — das Weltreich Philipps II."
   },
   {
     "id": "de-c019",
@@ -149,7 +160,8 @@
     "author": "Friedrich Schiller",
     "source": "Don Karlos",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Marquis Posas Bitte an den König in Schillers 'Don Karlos': 'Geben Sie Gedankenfreiheit!'"
   },
   {
     "id": "de-c020",
@@ -157,7 +169,8 @@
     "author": "Gotthold Ephraim Lessing",
     "source": "Nathan der Weise",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Lessings 'Nathan der Weise': 'Kein Mensch muss müssen', ein Wort für die Freiheit des Gewissens."
   },
   {
     "id": "de-c021",
@@ -181,6 +194,7 @@
     "author": "Gotthold Ephraim Lessing",
     "source": "Emilia Galotti",
     "category": "classics",
-    "locale": "de"
+    "locale": "de",
+    "note": "Aus Lessings 'Emilia Galotti': 'Der gerade Weg ist immer der kürzeste'."
   }
 ]
