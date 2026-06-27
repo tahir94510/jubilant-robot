@@ -5,7 +5,8 @@
     "author": "Yunus Emre",
     "source": "Divan",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yûnus Emre'nin 'Gel gör beni aşk neyledi' nakaratıyla bilinen şiiri: ilahî aşkın insanı dertle olgunlaştıran gücünü anlatır."
   },
   {
     "id": "tr-l002",
@@ -13,7 +14,8 @@
     "author": "Yunus Emre",
     "source": "Divan",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yûnus Emre'nin ünlü dizesi: 'Bir ben vardır bende benden içeru' — insanın derinliğindeki asıl benliğe işaret eder."
   },
   {
     "id": "tr-l003",
@@ -21,7 +23,8 @@
     "author": "Yunus Emre",
     "source": "Divan",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yûnus Emre'nin en meşhur ilkesi: 'Yaratılanı severiz, Yaradan'dan ötürü' — insana ve tüm varlığa sevgiyle bakan Anadolu irfanının özeti."
   },
   {
     "id": "tr-l004",
@@ -29,7 +32,8 @@
     "author": "Nazım Hikmet",
     "source": "Davet",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Nâzım Hikmet'in 'Davet' şiirinden: hem birey gibi 'tek ve hür', hem orman gibi 'kardeşçesine' yaşamayı diler."
   },
   {
     "id": "tr-l005",
@@ -37,7 +41,8 @@
     "author": "Nazım Hikmet",
     "source": "Bugün Pazar",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Nâzım Hikmet'ten: en güzelin hep 'henüz yaşanmamış' olduğunu söyleyen, geleceğe umutla bakan ünlü dizeler."
   },
   {
     "id": "tr-l006",
@@ -93,7 +98,8 @@
     "author": "Yahya Kemal Beyatlı",
     "source": "Kendi Gök Kubbemiz",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yahya Kemal'in 'Sessiz Gemi' şiirinden: ölümü, limandan sessizce ayrılan bir gemiye benzeten sevilen veda dizeleri."
   },
   {
     "id": "tr-l013",

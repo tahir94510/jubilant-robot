@@ -37,7 +37,8 @@
     "author": "Yunus Emre",
     "source": "Divan",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yûnus Emre'nin en bilinen dizelerinden: gerçek ilmin, insanın kendini bilmesi olduğunu söyler — Anadolu irfanının özü."
   },
   {
     "id": "tr-x012",
@@ -53,7 +54,8 @@
     "author": "Yunus Emre",
     "source": "Divan",
     "category": "literature",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yûnus Emre'den: 'Sevelim sevilelim, bu dünya kimseye kalmaz' — sevgiyi ve faniliği bir arada anan, halka mal olmuş bir dize."
   },
   {
     "id": "tr-x015",
@@ -181,7 +183,8 @@
     "author": "Mustafa Kemal Atatürk",
     "source": "Söylev ve Demeçler",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Mustafa Kemal Atatürk'ün özlü sözü: sanatın bir millet için hayatî olduğunu vurgular."
   },
   {
     "id": "tr-x208",

@@ -5,7 +5,8 @@
     "author": "Voltaire",
     "source": "Candide",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "De 'Candide' de Voltaire: l'ironie féroce sur l'exécution d'un amiral 'pour encourager les autres'."
   },
   {
     "id": "fr-c002",
@@ -13,7 +14,8 @@
     "author": "Voltaire",
     "source": "Attribué",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Formule résumant l'esprit de tolérance de Voltaire — en réalité forgée par sa biographe E. B. Hall, et non par lui."
   },
   {
     "id": "fr-c003",
@@ -21,7 +23,8 @@
     "author": "Voltaire",
     "source": "Épître à l'auteur du livre des trois imposteurs",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Le mot fameux de Voltaire: 'Si Dieu n'existait pas, il faudrait l'inventer'."
   },
   {
     "id": "fr-c005",
@@ -29,7 +32,8 @@
     "author": "Jean de La Fontaine",
     "source": "Fables",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "De La Fontaine: 'l'amour est de tous les âges'."
   },
   {
     "id": "fr-c006",
@@ -37,7 +41,8 @@
     "author": "Jean de La Fontaine",
     "source": "Fables",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Morale d'une fable de La Fontaine: 'en toute chose il faut considérer la fin'."
   },
   {
     "id": "fr-c007",
@@ -53,7 +58,8 @@
     "author": "Jean de La Fontaine",
     "source": "Fables",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "De 'Le Lion et le Rat' de La Fontaine: 'patience et longueur de temps font plus que force ni que rage'."
   },
   {
     "id": "fr-c009",
@@ -61,7 +67,8 @@
     "author": "Pierre Corneille",
     "source": "Le Cid",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Attribué à Corneille: à défaut d'avoir ce que l'on aime, il faut aimer ce que l'on a."
   },
   {
     "id": "fr-c011",
@@ -93,7 +100,8 @@
     "author": "Molière",
     "source": "Le Misanthrope",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Du 'Misanthrope' de Molière: Alceste, l'homme qui ne supporte plus l'hypocrisie du monde."
   },
   {
     "id": "fr-c015",
@@ -101,7 +109,8 @@
     "author": "Jean Racine",
     "source": "Andromaque",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "De l'Andromaque de Racine, tragédie de la passion et de la jalousie."
   },
   {
     "id": "fr-c016",
@@ -117,7 +126,8 @@
     "author": "Jean Racine",
     "source": "Phèdre",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "De 'Phèdre' de Racine: 'C'est Vénus tout entière à sa proie attachée' — la passion comme fatalité."
   },
   {
     "id": "fr-c018",
@@ -125,7 +135,8 @@
     "author": "Blaise Pascal",
     "source": "Pensées",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Des 'Pensées' de Pascal: 'l'homme n'est ni ange ni bête', et qui veut faire l'ange fait la bête."
   },
   {
     "id": "fr-c020",
@@ -141,7 +152,8 @@
     "author": "René Descartes",
     "source": "Discours de la méthode",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Du 'Discours de la méthode' de Descartes, acte de naissance de la philosophie rationaliste moderne."
   },
   {
     "id": "fr-c022",
@@ -149,6 +161,7 @@
     "author": "René Descartes",
     "source": "Discours de la méthode",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Descartes, 'Discours de la méthode': l'essentiel n'est pas d'avoir l'esprit bon, mais de l'appliquer bien."
   }
 ]

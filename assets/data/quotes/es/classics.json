@@ -5,7 +5,8 @@
     "author": "Miguel de Cervantes",
     "source": "Don Quijote de la Mancha",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "El célebre comienzo de Don Quijote (1605) de Cervantes, quizá la frase inicial más reconocible de la literatura española."
   },
   {
     "id": "es-c002",
@@ -13,7 +14,8 @@
     "author": "Miguel de Cervantes",
     "source": "Don Quijote de la Mancha",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De Don Quijote, parodiando con gracia el estilo enrevesado de los libros de caballerías."
   },
   {
     "id": "es-c003",
@@ -21,7 +23,8 @@
     "author": "Miguel de Cervantes",
     "source": "Don Quijote de la Mancha",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De Don Quijote: 'bien predica quien bien vive' — el mejor sermón es el buen ejemplo."
   },
   {
     "id": "es-c004",
@@ -29,7 +32,8 @@
     "author": "Miguel de Cervantes",
     "source": "Don Quijote de la Mancha",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De Don Quijote: 'cada uno es artífice de su propia ventura' — cada cual forja su suerte."
   },
   {
     "id": "es-c005",
@@ -45,7 +49,8 @@
     "author": "Pedro Calderón de la Barca",
     "source": "La vida es sueño",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "Del gran monólogo de Segismundo en La vida es sueño de Calderón, cumbre del teatro barroco español."
   },
   {
     "id": "es-c007",
@@ -69,7 +74,8 @@
     "author": "Pedro Calderón de la Barca",
     "source": "La vida es sueño",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "El verso que cierra el monólogo de Calderón: 'toda la vida es sueño, y los sueños, sueños son'."
   },
   {
     "id": "es-c010",
@@ -85,7 +91,8 @@
     "author": "Jorge Manrique",
     "source": "Coplas a la muerte de su padre",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De las Coplas a la muerte de su padre de Jorge Manrique: nuestras vidas son ríos que van a dar a la mar, que es el morir."
   },
   {
     "id": "es-c012",
@@ -93,7 +100,8 @@
     "author": "Fray Luis de León",
     "source": "Oda a la vida retirada",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "De fray Luis de León: el ideal del 'beatus ille', la vida retirada lejos del 'mundanal ruido'."
   },
   {
     "id": "es-c013",
@@ -125,7 +133,8 @@
     "author": "Lope de Vega",
     "source": "Soneto: Desmayarse, atreverse",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "Soneto de Lope de Vega que define el amor con una ráfaga de contrarios: 'desmayarse, atreverse, estar furioso'."
   },
   {
     "id": "es-c017",
@@ -141,7 +150,8 @@
     "author": "Francisco de Quevedo",
     "source": "Amor constante más allá de la muerte",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "Del soneto 'Amor constante más allá de la muerte' de Quevedo: un amor que perdura aun después de morir."
   },
   {
     "id": "es-c019",
@@ -165,7 +175,8 @@
     "author": "Francisco de Quevedo",
     "source": "Salmo XVII",
     "category": "classics",
-    "locale": "es"
+    "locale": "es",
+    "note": "Del 'Salmo XVII' de Quevedo: ante los muros ya ruinosos de la patria, una meditación sobre el paso del tiempo."
   },
   {
     "id": "es-c022",

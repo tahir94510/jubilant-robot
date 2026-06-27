@@ -29,7 +29,8 @@
     "author": "Nicolas Boileau",
     "source": "L'Art poétique",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "De 'L'Art poétique' de Boileau: 'ce que l'on conçoit bien s'énonce clairement' — clarté de pensée, clarté du style."
   },
   {
     "id": "fr-c205",
@@ -37,7 +38,8 @@
     "author": "François de La Rochefoucauld",
     "source": "Maximes",
     "category": "classics",
-    "locale": "fr"
+    "locale": "fr",
+    "note": "Maxime de La Rochefoucauld, maître français de l'aphorisme lucide sur l'amour-propre."
   },
   {
     "id": "fr-c206",

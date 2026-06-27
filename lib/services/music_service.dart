@@ -94,6 +94,7 @@ class MusicService with WidgetsBindingObserver {
   Timer? _masterFade;
   Timer? _crossfadeTimer; // schedules the START of the next crossfade
   Timer? _xfadeRamp; // runs the crossfade volume ramp
+  Timer? _duckTimer; // restores the bed after a success-fanfare duck
   StreamSubscription<void>? _completeSubA;
   StreamSubscription<void>? _completeSubB;
 
@@ -360,7 +361,11 @@ class MusicService with WidgetsBindingObserver {
   void duck({Duration hold = const Duration(milliseconds: 2000)}) {
     if (!_ready || _players.isEmpty || !_playing || !isEnabled()) return;
     _fadeMasterTo(_duckVolume, duration: const Duration(milliseconds: 250));
-    Timer(hold, () {
+    // Track the restore timer like every other timer in this service: back-to-
+    // back solves (or a duck landing right before teardown) must never leave an
+    // orphaned one-shot that later fires _fadeMasterTo on disposed players.
+    _duckTimer?.cancel();
+    _duckTimer = Timer(hold, () {
       if (_playing && isEnabled()) _fadeMasterTo(_targetVolume);
     });
   }
@@ -450,6 +455,7 @@ class MusicService with WidgetsBindingObserver {
     _masterFade?.cancel();
     _crossfadeTimer?.cancel();
     _xfadeRamp?.cancel();
+    _duckTimer?.cancel();
     unawaited(_completeSubA?.cancel());
     unawaited(_completeSubB?.cancel());
     for (final p in _players) {

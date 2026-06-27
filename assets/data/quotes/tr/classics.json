@@ -45,7 +45,8 @@
     "author": "Mevlana Celaleddin Rumi",
     "source": "Mesnevi",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Mevlânâ'nın Mesnevî'sinden: ışık saçmak için önce yanmayı göze almak gerektiğini söyleyen bu söz, olgunlaşmanın çileyle geldiği tasavvuf anlayışını özetler."
   },
   {
     "id": "tr-c008",
@@ -77,7 +78,8 @@
     "author": "Yunus Emre",
     "source": "Divan",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Yûnus Emre'ye göre cennet de cehennem de insanın kendi içindedir; 13. yüzyıl Anadolu tasavvufunun insanı merkeze alan bakışını yansıtır."
   },
   {
     "id": "tr-c012",
@@ -149,7 +151,8 @@
     "author": "Hacı Bektaş Veli",
     "source": "Makalat",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Hacı Bektâş-ı Velî'nin birlik çağrısı: 'Bir olalım, iri (güçlü) olalım, diri olalım' — Anadolu'da kardeşliğin özlü ifadesi olmuştur."
   },
   {
     "id": "tr-c021",
@@ -165,7 +168,8 @@
     "author": "Hacı Bektaş Veli",
     "source": "Makalat",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Hacı Bektâş-ı Velî'den: kendine yapılmasını istemediğini başkasına yapmama ilkesini özetleyen, Bektaşî ahlakının temel düsturu."
   },
   {
     "id": "tr-c023",
@@ -173,6 +177,7 @@
     "author": "Hacı Bektaş Veli",
     "source": "Makalat",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Hacı Bektâş-ı Velî'nin hümanist öğretisi: okunacak en büyük kitabın insanın kendisi olduğunu söyler."
   }
 ]

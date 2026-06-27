@@ -95,8 +95,11 @@ class _RevealHintButtonState extends State<_RevealHintButton> {
           ? () {
               final now = DateTime.now().millisecondsSinceEpoch;
               if (now < _cooldownUntilMs) return; // brief anti-spam window
-              if (economy.spendHintToken()) {
-                game.revealSelected();
+              // Reveal FIRST, then charge: the token is spent strictly when a
+              // cell is actually uncovered (the short-circuit skips the spend on
+              // a no-op reveal), making the long-standing "never waste a token"
+              // promise structural rather than only enforced by the gate above.
+              if (game.revealSelected() && economy.spendHintToken()) {
                 context.read<SoundService>().hint();
                 // A light tactile tick in sync with the hint chime, so the
                 // reveal feels deliberate instead of silent under the thumb.

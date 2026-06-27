@@ -29,7 +29,8 @@
     "author": "Mevlana Celaleddin Rumi",
     "source": "Mesnevi",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Mevlânâ'dan: gerçek anlaşmanın ortak dilde değil, ortak duyguda olduğunu söyleyen, Mesnevî'nin gönül birliği temasını taşıyan ünlü söz."
   },
   {
     "id": "tr-c206",
@@ -37,7 +38,8 @@
     "author": "Mevlana Celaleddin Rumi",
     "source": "Divan-ı Kebir",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Mevlânâ'ya atfedilen meşhur 'Gel, yine gel' çağrısı: tövbe ve bağışlanma kapısının herkese her zaman açık olduğunu anlatır."
   },
   {
     "id": "tr-c207",
@@ -53,7 +55,8 @@
     "author": "Mevlana Celaleddin Rumi",
     "source": "Divan-ı Kebir",
     "category": "classics",
-    "locale": "tr"
+    "locale": "tr",
+    "note": "Mevlânâ'ya atfedilen ünlü söz: 'Yara, ışığın sana girdiği yerdir' — her acının bir aydınlanma kapısı olabileceğini anlatır."
   },
   {
     "id": "tr-c209",

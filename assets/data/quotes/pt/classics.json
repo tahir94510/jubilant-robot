@@ -5,7 +5,8 @@
     "author": "Luís de Camões",
     "source": "Os Lusíadas",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "Da abertura de 'Os Lusíadas' de Camões, a epopeia das navegações portuguesas."
   },
   {
     "id": "pt-c002",
@@ -13,7 +14,8 @@
     "author": "Luís de Camões",
     "source": "Os Lusíadas",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Os Lusíadas' de Camões: 'um fraco rei faz fraca a forte gente' — o povo vale quem o governa."
   },
   {
     "id": "pt-c003",
@@ -21,7 +23,8 @@
     "author": "Luís de Camões",
     "source": "Os Lusíadas",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Os Lusíadas': 'quem não sabe arte, não na estima' — só desdenha o saber quem o ignora."
   },
   {
     "id": "pt-c004",
@@ -37,7 +40,8 @@
     "author": "Luís de Camões",
     "source": "Sonetos",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "Do soneto de Camões 'Erros meus, má fortuna, amor ardente', balanço amargo de uma vida."
   },
   {
     "id": "pt-c006",
@@ -45,7 +49,8 @@
     "author": "Luís de Camões",
     "source": "Sonetos",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "Do soneto de Camões 'Transforma-se o amador na cousa amada', sobre o amor que funde quem ama e quem é amado."
   },
   {
     "id": "pt-c007",
@@ -61,7 +66,8 @@
     "author": "Fernando Pessoa",
     "source": "Livro do Desassossego",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "Do 'Livro do Desassossego' de Fernando Pessoa (Bernardo Soares), diário da inquietação moderna."
   },
   {
     "id": "pt-c009",
@@ -69,7 +75,8 @@
     "author": "Fernando Pessoa",
     "source": "Livro do Desassossego",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De Fernando Pessoa: 'a literatura é a maneira mais agradável de ignorar a vida'."
   },
   {
     "id": "pt-c010",
@@ -77,7 +84,8 @@
     "author": "Álvaro de Campos",
     "source": "Poemas de Álvaro de Campos",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De Álvaro de Campos, heterónimo de Pessoa: 'sentir tudo de todas as maneiras', o desejo de viver tudo."
   },
   {
     "id": "pt-c011",
@@ -85,7 +93,8 @@
     "author": "Fernando Pessoa",
     "source": "Cancioneiro",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De Fernando Pessoa: 'o que em mim sente está pensando' — razão e emoção inseparáveis."
   },
   {
     "id": "pt-c012",
@@ -109,7 +118,8 @@
     "author": "Machado de Assis",
     "source": "Dom Casmurro",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Dom Casmurro' de Machado de Assis: os olhos de Capitu, 'de cigana oblíqua e dissimulada'."
   },
   {
     "id": "pt-c015",
@@ -117,7 +127,8 @@
     "author": "Machado de Assis",
     "source": "Dom Casmurro",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Dom Casmurro': os 'olhos de ressaca' de Capitu, que puxam como a maré — imagem célebre da literatura brasileira."
   },
   {
     "id": "pt-c016",
@@ -125,7 +136,8 @@
     "author": "Machado de Assis",
     "source": "Memórias Póstumas de Brás Cubas",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Memórias Póstumas de Brás Cubas' de Machado de Assis, romance narrado por um defunto autor."
   },
   {
     "id": "pt-c017",
@@ -133,7 +145,8 @@
     "author": "Machado de Assis",
     "source": "Memórias Póstumas de Brás Cubas",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Memórias Póstumas de Brás Cubas': o narrador morto conta a própria morte com humor e ironia."
   },
   {
     "id": "pt-c018",
@@ -149,7 +162,8 @@
     "author": "Eça de Queirós",
     "source": "Os Maias",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'Os Maias' de Eça de Queirós, retrato da sociedade lisboeta do século XIX."
   },
   {
     "id": "pt-c020",
@@ -165,7 +179,8 @@
     "author": "Eça de Queirós",
     "source": "O Crime do Padre Amaro",
     "category": "classics",
-    "locale": "pt"
+    "locale": "pt",
+    "note": "De 'O Crime do Padre Amaro' de Eça de Queirós, crítica mordaz à hipocrisia social e clerical."
   },
   {
     "id": "pt-c022",

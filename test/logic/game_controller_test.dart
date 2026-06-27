@@ -40,6 +40,33 @@ void main() {
     resumed.dispose();
   });
 
+  test(
+    'revealSelected reports success, and a no-op reveal returns false so a '
+    'hint token is charged strictly when a cell is actually uncovered',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false); // "Less is more."
+
+      // A reveal that genuinely uncovers a cell reports success.
+      expect(game.revealSelected(), isTrue);
+
+      // Uncover the rest of the board (bounded — the quote has only a handful of
+      // distinct letters); each real reveal keeps reporting success.
+      for (var i = 0; i < 50 && game.canRevealMore; i++) {
+        expect(game.revealSelected(), isTrue);
+      }
+
+      // Board solved: nothing left to uncover, so a further reveal is a no-op and
+      // returns false. The hint bar relies on this to skip spending a token.
+      expect(game.canRevealMore, isFalse);
+      expect(game.revealSelected(), isFalse);
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
   test('hint reveals the SELECTED editable cell even when its guess is already '
       'correct (never skips to an alphabetical other)', () async {
     final store = await storage();
