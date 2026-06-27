@@ -43,5 +43,11 @@ abstract class NotificationService {
     required String body,
   });
 
+  /// Opens the OS's notification settings for this app. The recovery path when
+  /// POST_NOTIFICATIONS was denied: on Android 13+ a permanent denial makes
+  /// [requestPermission] return false WITHOUT a prompt, so the only way back is
+  /// the system settings page. No-op on web/stub.
+  Future<void> openSystemSettings();
+
   Future<void> cancelAll();
 }

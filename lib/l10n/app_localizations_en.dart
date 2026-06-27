@@ -133,6 +133,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reminderTestSent => 'Test notification sent';
 
   @override
+  String get openSettings => 'Open settings';
+
+  @override
+  String get notificationsBlockedTitle => 'Notifications are off';
+
+  @override
+  String get notificationsBlockedBody =>
+      'Quotecrack can\'t show notifications until you turn them on in system settings.';
+
+  @override
   String get reminderDenied =>
       'Notification permission was denied in system settings.';
 

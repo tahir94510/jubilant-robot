@@ -77,19 +77,28 @@ class HapticsService {
     }
   }
 
-  /// A crisp per-keystroke tick.
-  void tap() => _buzz(12, 90, HapticFeedback.lightImpact);
+  // A deliberate weight ladder, each step clearly distinct from the next so the
+  // hand can tell a keystroke from a word-lock from a full solve. The baseline
+  // tap was bumped from 12ms/90 — too faint to feel next to the much heavier
+  // error buzz, which read as "only errors vibrate". Now every interaction is
+  // noticeably felt while staying proportional to its meaning:
+  //   tap 18/130  <  word 30/180  <  success 42/215  <  error 48/235  <  solve 60/255
+  // (ms duration / 0-255 amplitude on devices with amplitude control; devices
+  // without it still get a real buzz of that DURATION, so the ladder survives.)
+
+  /// A crisp per-keystroke / navigation tick — light but clearly felt.
+  void tap() => _buzz(18, 130, HapticFeedback.lightImpact);
 
   /// A soft, distinct buzz when a whole word falls into place: more than a key
   /// tap, lighter than a full solve.
-  void wordComplete() => _buzz(28, 165, HapticFeedback.mediumImpact);
+  void wordComplete() => _buzz(30, 180, HapticFeedback.mediumImpact);
 
-  void success() => _buzz(38, 200, HapticFeedback.mediumImpact);
+  void success() => _buzz(42, 215, HapticFeedback.mediumImpact);
 
   /// The full-solve fanfare — the biggest beat in the game, so it lands the
   /// hardest, synced with the success chime, the green board wave and confetti.
-  void celebrate() => _buzz(55, 255, HapticFeedback.heavyImpact);
+  void celebrate() => _buzz(60, 255, HapticFeedback.heavyImpact);
 
   /// A firm error buzz for a conflicting guess (only when error checking is on).
-  void error() => _buzz(45, 230, HapticFeedback.heavyImpact);
+  void error() => _buzz(48, 235, HapticFeedback.heavyImpact);
 }

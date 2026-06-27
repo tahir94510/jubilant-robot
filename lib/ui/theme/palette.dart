@@ -45,10 +45,11 @@ class GamePalette extends ThemeExtension<GamePalette> {
   /// a calm, on-brand backdrop for the [confirmed] state.
   final Color boardCellConfirmedBg;
 
-  /// "Last move" fill (chess-style): the cell holding the most-recently-placed
-  /// letter — by typing OR by a hint reveal — until the next letter is placed.
-  /// Carried as a FILL with no border so it never blends into the cursor frame
-  /// or the faint "same-letter" sibling cue.
+  /// "Just locked" fill: the cells of the word a guess just completed, or the
+  /// cells a hint just revealed, until the next letter is placed. Same green
+  /// family as [boardCellConfirmedBg] but a gentle step stronger, so the freshest
+  /// letters read calmly above the older confirmed ones. A fill with NO border,
+  /// so it never mimics the cursor frame or the faint "same-letter" cue.
   final Color boardCellLastMoveBg;
   final Color boardUnderline;
   final Color guessText;
@@ -104,7 +105,13 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
             .withValues(alpha: .10),
-    boardCellLastMoveBg: const Color(0xFF936F1F).withValues(alpha: .15),
+    // Just-locked = the SAME confirmed green, a gentle step stronger (.20 vs .10)
+    // so the freshest letters read calmly above the older confirmed ones — no
+    // jarring gold, fully on the confirmed family, distinct from the neutral
+    // last-typed cue.
+    boardCellLastMoveBg:
+        (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
+            .withValues(alpha: .20),
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
     cipherText: const Color(0xFF6B614D),
@@ -135,7 +142,11 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
             .withValues(alpha: .14),
-    boardCellLastMoveBg: const Color(0xFFD9B25A).withValues(alpha: .17),
+    // Just-locked = the confirmed teal-green, a gentle step stronger (.26 vs .14)
+    // — calm, on the confirmed family, no jarring gold.
+    boardCellLastMoveBg:
+        (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
+            .withValues(alpha: .26),
     boardUnderline: const Color(0xFF4A453B),
     guessText: const Color(0xFFF2EDE2),
     cipherText: const Color(0xFF968B79),
@@ -163,7 +174,11 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
             .withValues(alpha: .10),
-    boardCellLastMoveBg: const Color(0xFF9C7B33).withValues(alpha: .15),
+    // Just-locked = the confirmed green, a gentle step stronger (.20 vs .10) —
+    // calm, on the confirmed family, no jarring gold.
+    boardCellLastMoveBg:
+        (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
+            .withValues(alpha: .20),
     boardUnderline: const Color(0xFFC4AE8E),
     guessText: const Color(0xFF3A2E1C),
     cipherText: const Color(0xFF755F3F),

@@ -783,34 +783,30 @@ void main() {
     expect(find.byIcon(Icons.music_note_outlined), findsOneWidget);
   });
 
-  testWidgets('reminder time picker opens keyboard-entry, no buggy dial', (
-    tester,
-  ) async {
+  testWidgets('the daily reminder is on/off only (no time picker — time is '
+      'auto per-locale), and a blocked test notification routes to system '
+      'settings', (tester) async {
     final h = await Harness.create();
-    // Enable the reminder first so the "Reminder time" row is visible; the
-    // picker UI is what this test exercises.
-    await h.settings.setReminder(enabled: true);
-    h.notifications.scheduledAt = null; // reset so the re-schedule is visible
     await tester.pumpWidget(h.app(const SettingsScreen()));
     await tester.pump();
 
-    await tester.scrollUntilVisible(find.text('Reminder time'), 150);
-    // Fully scroll the row into the viewport before tapping: scrollUntilVisible
-    // stops as soon as any pixel is visible, which can leave the tap target at
-    // the very bottom edge.
-    await tester.ensureVisible(find.text('Reminder time'));
+    await tester.scrollUntilVisible(find.text('Send a test notification'), 150);
+    // No in-app time picker row anymore: the reminder time is chosen
+    // automatically per language, so there's nothing to fiddle with.
+    expect(find.text('Reminder time'), findsNothing);
+
+    // With notifications blocked by the OS, the test action must not dead-end:
+    // it offers a one-tap route to the system notification settings.
+    h.notifications.permissionGranted = false;
+    await tester.ensureVisible(find.text('Send a test notification'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Reminder time'));
+    await tester.tap(find.text('Send a test notification'));
     await tester.pumpAndSettle();
 
-    // input-only mode = text fields, never the dial (the source of the
-    // overlapping-dot artifact on device).
-    expect(find.byType(TextField), findsNWidgets(2));
-
-    await tester.tap(find.text('OK'));
+    expect(find.text('Notifications are off'), findsOneWidget);
+    await tester.tap(find.text('Open settings'));
     await tester.pumpAndSettle();
-    // A reschedule happened (the fake records the time it was handed).
-    expect(h.notifications.scheduledAt, isNotNull);
+    expect(h.notifications.openSettingsCalls, 1);
   });
 
   testWidgets('Settings exposes a "Send a test notification" action that posts '
@@ -852,15 +848,13 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.tap(find.text('Send a test notification'));
-    await tester.pump();
-    await tester.pump();
+    await tester.pumpAndSettle();
 
-    // Nothing was posted, and the player is told why (not left guessing).
+    // Nothing was posted, and the player isn't left guessing: the blocked dialog
+    // explains why and offers a one-tap route to system settings.
     expect(h.notifications.testCalls, 0);
-    expect(
-      find.text('Notification permission was denied in system settings.'),
-      findsOneWidget,
-    );
+    expect(find.text('Notifications are off'), findsOneWidget);
+    expect(find.text('Open settings'), findsOneWidget);
   });
 
   testWidgets('the solve clock ticks the on-screen timer without rebuilding '

@@ -235,7 +235,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(settings.reminderEnabled, isTrue);
     expect(h.notifications.scheduledAt, isNotNull);
-    expect(find.text('Reminder time'), findsOneWidget);
+    // The reminder is on/off only now — the time is chosen automatically per
+    // language, so there is no in-app "Reminder time" picker row.
+    expect(find.text('Reminder time'), findsNothing);
 
     // Disabling cancels it.
     await tester.tap(find.text('Remind me daily'));
@@ -267,7 +269,10 @@ void main() {
 
     expect(h.settings.settings.reminderEnabled, isFalse);
     expect(h.notifications.scheduledAt, isNull);
-    expect(find.textContaining('permission was denied'), findsOneWidget);
+    // A denied toggle no longer dead-ends in a snackbar: it offers a route to
+    // the OS notification settings (the only Android 13+ recovery).
+    expect(find.text('Notifications are off'), findsOneWidget);
+    expect(find.text('Open settings'), findsOneWidget);
   });
 
   testWidgets('onboarding walks through and starts the tutorial puzzle', (

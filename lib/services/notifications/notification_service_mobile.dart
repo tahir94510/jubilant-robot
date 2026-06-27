@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
@@ -14,6 +15,17 @@ class MobileNotificationService extends NotificationService {
 
   static const int _dailyReminderId = 1001;
   static const int _testNotificationId = 1002;
+
+  /// The notification small-icon drawable (alpha-only status-bar mark). Passed
+  /// EXPLICITLY on every post as well as at init, so a notification never falls
+  /// back to a missing/launcher icon on stricter OEMs.
+  static const String _smallIcon = 'ic_stat_quotecrack';
+
+  /// Platform channel to the host Activity for opening the OS notification
+  /// settings page (the recovery path for a permanently-denied permission).
+  static const MethodChannel _platform = MethodChannel(
+    'quotecrack/notifications',
+  );
   // v2: an Android channel's importance is LOCKED at first creation. Installs
   // that created the original 'daily_reminder' channel at default importance
   // were stuck silent / no heads-up forever (reminders dropped invisibly into
@@ -117,20 +129,26 @@ class MobileNotificationService extends NotificationService {
     return granted ?? false;
   }
 
-  AndroidNotificationDetails _androidDetails(String title, String body) =>
-      AndroidNotificationDetails(
-        _channelId,
-        _channelName,
-        channelDescription: _channelDescription,
-        // Match the HIGH channel so it actually alerts (sound + heads-up).
-        importance: Importance.high,
-        priority: Priority.high,
-        enableVibration: true,
-        // Brand accent tints the small icon + app name in the shade.
-        color: const Color(0xFF936F1F),
-        // Expands the longer body cleanly when the shade is pulled down.
-        styleInformation: BigTextStyleInformation(body, contentTitle: title),
-      );
+  AndroidNotificationDetails _androidDetails(
+    String title,
+    String body,
+  ) => AndroidNotificationDetails(
+    _channelId,
+    _channelName,
+    channelDescription: _channelDescription,
+    // Set the small icon EXPLICITLY (not just at init): some OEMs drop a
+    // notification whose details carry no icon, falling back to the launcher
+    // icon (a gray blob) at best.
+    icon: _smallIcon,
+    // Match the HIGH channel so it actually alerts (sound + heads-up).
+    importance: Importance.high,
+    priority: Priority.high,
+    enableVibration: true,
+    // Brand accent tints the small icon + app name in the shade.
+    color: const Color(0xFF936F1F),
+    // Expands the longer body cleanly when the shade is pulled down.
+    styleInformation: BigTextStyleInformation(body, contentTitle: title),
+  );
 
   @override
   Future<bool> areEnabled() async {
@@ -202,6 +220,16 @@ class MobileNotificationService extends NotificationService {
       ),
       payload: 'test_notification',
     );
+  }
+
+  @override
+  Future<void> openSystemSettings() async {
+    // The host Activity opens Settings.ACTION_APP_NOTIFICATION_SETTINGS (with a
+    // fallback to the app details page). Best-effort: a missing handler or OEM
+    // quirk must never throw into the settings screen.
+    try {
+      await _platform.invokeMethod('openNotificationSettings');
+    } catch (_) {}
   }
 
   /// Foreground / launch tap handler. The OS already brings the app forward;

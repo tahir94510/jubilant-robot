@@ -37,6 +37,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  /// Offers a one-tap route to the OS notification settings when notifications
+  /// are blocked (permission denied / turned off) — the only recovery on
+  /// Android 13+, where a denial can't be re-prompted in-app.
+  Future<void> _showNotificationsBlocked(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
+    final open = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.notificationsBlockedTitle),
+        content: Text(l10n.notificationsBlockedBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n.reminderNudgeNo),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.openSettings),
+          ),
+        ],
+      ),
+    );
+    if (open == true && context.mounted) {
+      await context.read<NotificationService>().openSystemSettings();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<SettingsController>();
@@ -232,60 +261,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   onChanged: (enabled) async {
                     haptics.tap();
                     final ok = await controller.setReminder(enabled: enabled);
-                    if (!ok && context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.reminderDenied)),
-                      );
+                    // Turning it ON but ending up off means the OS blocked us
+                    // (permission denied / notifications off). On Android 13+ a
+                    // denial can't be re-prompted, so offer a one-tap route to
+                    // system settings instead of a dead-end snackbar.
+                    if (enabled && !ok && context.mounted) {
+                      await _showNotificationsBlocked(context, l10n);
                     }
                   },
                 ),
-                if (settings.reminderEnabled) ...[
-                  ListTile(
-                    title: Text(l10n.reminderTime),
-                    trailing: Text(
-                      settings.reminderTime.format(context),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    onTap: () async {
-                      final picked = await showTimePicker(
-                        context: context,
-                        initialTime: settings.reminderTime,
-                        // Keyboard entry only: faster for the audience, and
-                        // it sidesteps the M3 dial's overlapping-dot visuals.
-                        initialEntryMode: TimePickerEntryMode.inputOnly,
-                      );
-                      if (picked != null) {
-                        await controller.setReminder(
-                          enabled: true,
-                          time: picked,
-                        );
-                      }
-                    },
-                  ),
-                ],
+                // The reminder time is chosen automatically per language (a calm
+                // evening hour) — no in-app time picker to fiddle with. The
+                // subtitle above shows the chosen time when the reminder is on.
+                //
                 // Always available (even with the daily reminder off): lets a
                 // player confirm notifications actually arrive on THIS device,
-                // and surfaces the OS permission prompt, without waiting for the
-                // scheduled time. The clearest way to diagnose "no reminder
-                // ever shows up" — if this arrives, delivery works and the
-                // issue is timing/battery; if not, it's permission/OEM-blocked.
+                // without waiting for the scheduled time. The clearest way to
+                // diagnose "no reminder ever shows up" — if this arrives,
+                // delivery works (the issue is timing/battery); if not, it's
+                // permission/OEM-blocked, so we route to system settings.
                 ListTile(
                   leading: const Icon(Icons.notifications_active_outlined),
                   title: Text(l10n.reminderTestSend),
                   onTap: () async {
                     haptics.tap();
                     final ok = await controller.sendTestNotification();
-                    if (context.mounted) {
+                    if (!context.mounted) return;
+                    if (ok) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            ok ? l10n.reminderTestSent : l10n.reminderDenied,
-                          ),
-                        ),
+                        SnackBar(content: Text(l10n.reminderTestSent)),
                       );
+                    } else {
+                      await _showNotificationsBlocked(context, l10n);
                     }
                   },
                 ),
