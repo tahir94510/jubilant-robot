@@ -6,6 +6,7 @@ import '../../config/app_config.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/app_settings.dart';
 import '../../services/ads/ads_service.dart';
+import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../services/notifications/notification_service.dart';
 import '../../services/purchases/purchase_service.dart';
@@ -47,6 +48,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         .supported;
     final palette = Theme.of(context).extension<GamePalette>()!;
     final l10n = AppLocalizations.of(context);
+    final haptics = context.read<HapticsService>();
+
+    // Wraps a toggle/select callback with a confirming tap haptic, so every
+    // Settings control gives the same feedback as the rest of the app.
+    ValueChanged<T> withHaptic<T>(ValueChanged<T> onChanged) {
+      return (value) {
+        haptics.tap();
+        onChanged(value);
+      };
+    }
 
     Widget section(String title) => Padding(
       padding: const EdgeInsets.fromLTRB(20, 22, 20, 8),
@@ -128,7 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: Text(l10n.colorblindTitle),
                 subtitle: Text(l10n.colorblindSubtitle),
                 value: settings.colorblindMode,
-                onChanged: controller.setColorblindMode,
+                onChanged: withHaptic(controller.setColorblindMode),
               ),
               section(l10n.sectionGameplay),
               // A calm way back to the 30-second interactive tutorial for anyone
@@ -147,24 +158,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: Text(l10n.errorCheckingTitle),
                 subtitle: Text(l10n.errorCheckingSubtitle),
                 value: settings.errorChecking,
-                onChanged: controller.setErrorChecking,
+                onChanged: withHaptic(controller.setErrorChecking),
               ),
               SwitchListTile(
                 title: Text(l10n.showTimerTitle),
                 subtitle: Text(l10n.showTimerSubtitle),
                 value: settings.showTimer,
-                onChanged: controller.setShowTimer,
+                onChanged: withHaptic(controller.setShowTimer),
               ),
               SwitchListTile(
                 title: Text(l10n.hapticsTitle),
                 value: settings.haptics,
-                onChanged: controller.setHaptics,
+                onChanged: withHaptic(controller.setHaptics),
               ),
               SwitchListTile(
                 title: Text(l10n.soundEffectsTitle),
                 subtitle: Text(l10n.soundEffectsSubtitle),
                 value: settings.soundEffects,
-                onChanged: controller.setSoundEffects,
+                onChanged: withHaptic(controller.setSoundEffects),
               ),
               if (settings.soundEffects)
                 _SliderTile(
@@ -185,10 +196,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: Text(l10n.musicTitle),
                 subtitle: Text(l10n.musicSubtitle),
                 value: settings.music,
-                onChanged: (value) => controller.setMusicAndApply(
-                  value,
-                  context.read<MusicService>(),
-                ),
+                onChanged: (value) {
+                  haptics.tap();
+                  controller.setMusicAndApply(
+                    value,
+                    context.read<MusicService>(),
+                  );
+                },
               ),
               if (settings.music)
                 _SliderTile(
@@ -216,6 +230,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   value: settings.reminderEnabled,
                   onChanged: (enabled) async {
+                    haptics.tap();
                     final ok = await controller.setReminder(enabled: enabled);
                     if (!ok && context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -248,23 +263,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           time: picked,
                         );
                       }
-                    },
-                  ),
-                  // Lets the player confirm reminders actually arrive on their
-                  // device (OEM battery managers can silently delay them).
-                  ListTile(
-                    leading: const Icon(Icons.notifications_active_outlined),
-                    title: Text(l10n.reminderTestSend),
-                    onTap: () async {
-                      final ok = await controller.sendTestNotification();
-                      if (!context.mounted) return;
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            ok ? l10n.reminderTestSent : l10n.reminderDenied,
-                          ),
-                        ),
-                      );
                     },
                   ),
                 ],
@@ -597,7 +595,10 @@ class _ThemeCard extends StatelessWidget {
       // an English "theme" suffix would be inconsistent under other locales.
       label: label,
       child: InkWell(
-        onTap: onTap,
+        onTap: () {
+          context.read<HapticsService>().tap();
+          onTap();
+        },
         borderRadius: BorderRadius.circular(14),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 150),

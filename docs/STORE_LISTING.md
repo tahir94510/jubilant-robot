@@ -5,6 +5,74 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.4.4 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.4.4
+• Real, stronger vibration you can actually feel — typing, mistakes and wins
+• Error-checking off now fully silences duplicate-letter alerts (sound, color, buzz)
+• Smoother, click-free sound effects, plus a more usable volume slider
+• Refined contrast and a polished logo across every theme
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.4.4 YENİLİKLER
+• Gerçekten hissedilen, daha güçlü titreşim — yazarken, hatada ve kazanırken
+• Hata denetimi kapalıyken aynı harf uyarıları (ses, renk, titreşim) tamamen susar
+• Daha yumuşak, cızırtısız ses efektleri ve daha kullanışlı ses ayarı
+• Her temada iyileştirilmiş kontrast ve cilalı logo
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.4.4
+• Vibración real y más intensa que se siente de verdad: al escribir, en errores y al ganar
+• Con la verificación de errores desactivada se silencian del todo los avisos de letra repetida (sonido, color, vibración)
+• Efectos de sonido más suaves y sin clics
+• Contraste mejorado y logo pulido en cada tema
+```
+
+**Deutsch**
+```
+NEU in 2.4.4
+• Echte, stärkere Vibration, die man wirklich spürt – beim Tippen, bei Fehlern und Siegen
+• Bei deaktivierter Fehlerprüfung verstummen Warnungen für doppelte Buchstaben ganz (Ton, Farbe, Vibration)
+• Weichere, knackfreie Soundeffekte
+• Verbesserter Kontrast und ein poliertes Logo in jedem Theme
+```
+
+**Français**
+```
+NOUVEAU dans 2.4.4
+• Une vibration réelle et plus forte, vraiment perceptible : saisie, erreurs et victoires
+• Vérification des erreurs désactivée : les alertes de lettre répétée (son, couleur, vibration) sont entièrement coupées
+• Effets sonores plus doux, sans clic
+• Contraste affiné et logo soigné sur chaque thème
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.4.4
+• Vibrazione reale e più intensa, davvero percepibile: digitazione, errori e vittorie
+• Con il controllo errori disattivato gli avvisi di lettera ripetuta (suono, colore, vibrazione) si silenziano del tutto
+• Effetti sonori più morbidi e senza scatti
+• Contrasto migliorato e logo rifinito in ogni tema
+```
+
+**Português**
+```
+NOVIDADES na 2.4.4
+• Vibração real e mais forte, que você sente de verdade: ao digitar, nos erros e nas vitórias
+• Com a verificação de erros desligada, os avisos de letra repetida (som, cor, vibração) ficam totalmente em silêncio
+• Efeitos sonoros mais suaves e sem estalos
+• Contraste aprimorado e logo refinado em todos os temas
+```
+
+---
+
 ## Release notes: v2.4.3 (max 500 chars, paste into "What's new")
 
 ```

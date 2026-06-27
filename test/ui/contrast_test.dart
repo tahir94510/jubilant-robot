@@ -90,6 +90,18 @@ void main() {
         atLeast('revealed/surface', p.revealed, cs.surface, 4.5);
         atLeast('confirmed/surface', p.confirmed, cs.surface, 4.5);
         atLeast('success/surface', p.success, cs.surface, 4.5);
+
+        // Text on CARD surfaces (home/settings tiles, paywall, completion).
+        // The card fill differs from the scaffold surface on every theme — on
+        // the dark theme a lighter card LOWERS contrast for the light text — so
+        // the readable text colors must clear their floor over the card too, not
+        // only over the surface.
+        final card = t.cardTheme.color!;
+        atLeast('onSurface/card', cs.onSurface, card, 4.5);
+        atLeast('textSecondary/card', p.textSecondary, card, 4.5);
+        atLeast('textFaint/card', p.textFaint, card, 3.0);
+        // The small cipher letter also appears on card-backed surfaces.
+        atLeast('cipherText/card', p.cipherText, card, 4.5);
       });
     }
   }
