@@ -5,6 +5,142 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.4.1 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.4.1
+• Vibration (haptics) now works on Android
+• Daily reminder notifications alert with sound again
+• The launch screen no longer flashes sideways
+• Completing a word now highlights every letter it just locked
+• Sharper board text in Light theme, and a more natural volume slider
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.4.1 YENİLİKLER
+• Titreşim (dokunsal geri bildirim) artık Android'de çalışıyor
+• Günlük hatırlatma bildirimi yeniden sesli uyarıyor
+• Açılış ekranı artık yana dönük görünmüyor
+• Bir kelimeyi tamamlayınca kilitlenen tüm harfler vurgulanıyor
+• Açık temada tahta yazısı daha keskin ve ses kaydırıcısı daha doğal
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.4.1
+• La vibración (respuesta táctil) ya funciona en Android
+• Las notificaciones de recordatorio diario vuelven a sonar
+• La pantalla de inicio ya no aparece de lado
+• Al completar una palabra se resaltan todas las letras que se bloquean
+• Texto del tablero más nítido en el tema claro y volumen más natural
+```
+
+**Deutsch**
+```
+NEU in 2.4.1
+• Vibration (haptisches Feedback) funktioniert jetzt unter Android
+• Die tägliche Erinnerung meldet sich wieder mit Ton
+• Der Startbildschirm erscheint nicht mehr seitlich gedreht
+• Ein vollständiges Wort hebt jetzt alle gerade gesperrten Buchstaben hervor
+• Schärferer Bretttext im hellen Design und ein natürlicherer Lautstärkeregler
+```
+
+**Français**
+```
+NOUVEAU dans 2.4.1
+• La vibration (retour haptique) fonctionne désormais sur Android
+• Les rappels quotidiens alertent de nouveau avec le son
+• L'écran de lancement ne s'affiche plus de travers
+• Compléter un mot met en évidence toutes les lettres qu'il verrouille
+• Texte de la grille plus net en thème clair et curseur de volume plus naturel
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.4.1
+• La vibrazione (feedback aptico) ora funziona su Android
+• Le notifiche del promemoria giornaliero avvisano di nuovo con il suono
+• La schermata di avvio non appare più ruotata di lato
+• Completando una parola si evidenziano tutte le lettere che si bloccano
+• Testo della griglia più nitido nel tema chiaro e volume più naturale
+```
+
+**Português**
+```
+NOVIDADES na 2.4.1
+• A vibração (resposta tátil) agora funciona no Android
+• As notificações do lembrete diário voltam a avisar com som
+• A tela de abertura não aparece mais virada de lado
+• Ao completar uma palavra, todas as letras que travam ficam destacadas
+• Texto do tabuleiro mais nítido no tema claro e volume mais natural
+```
+
+---
+
+## Release notes: v2.4.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.4.0
+• "About this quote": after you solve, discover the story behind famous lines and proverbs — in your language
+• More cultural depth across all 7 languages
+• Smoother audio and a few quiet fixes under the hood
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.4.0 YENİLİKLER
+• "Söz hakkında": çözdükten sonra ünlü sözlerin ve atasözlerinin hikâyesini kendi dilinde keşfet
+• 7 dilin hepsinde daha fazla kültürel derinlik
+• Daha pürüzsüz ses ve birkaç sessiz iç düzeltme
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.4.0
+• "Sobre esta cita": al resolver, descubre la historia tras frases célebres y refranes, en tu idioma
+• Más profundidad cultural en los 7 idiomas
+• Audio más fluido y algunas correcciones internas
+```
+
+**Deutsch**
+```
+NEU in 2.4.0
+• „Über dieses Zitat": Entdecke nach dem Lösen die Geschichte hinter berühmten Sätzen und Sprichwörtern – in deiner Sprache
+• Mehr kulturelle Tiefe in allen 7 Sprachen
+• Flüssigerer Klang und einige stille Fehlerbehebungen
+```
+
+**Français**
+```
+NOUVEAU dans 2.4.0
+• « À propos de cette citation » : après résolution, découvrez l'histoire des phrases célèbres et proverbes, dans votre langue
+• Plus de profondeur culturelle dans les 7 langues
+• Audio plus fluide et quelques corrections discrètes
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.4.0
+• "Informazioni sulla citazione": dopo aver risolto, scopri la storia dietro frasi celebri e proverbi, nella tua lingua
+• Più profondità culturale in tutte e 7 le lingue
+• Audio più fluido e alcune correzioni interne
+```
+
+**Português**
+```
+NOVIDADES na 2.4.0
+• "Sobre esta citação": ao resolver, descubra a história por trás de frases famosas e provérbios, no seu idioma
+• Mais profundidade cultural nos 7 idiomas
+• Áudio mais fluido e algumas correções internas
+```
+
+---
+
 ## Release notes: v2.3.9 (max 500 chars, paste into "What's new")
 
 ```
