@@ -135,7 +135,7 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('the last LOCKED letter highlights all its copies on the board', (
+  testWidgets('completing a word highlights every letter it locks (all copies)', (
     tester,
   ) async {
     final h = await Harness.create();
@@ -145,18 +145,22 @@ void main() {
     await tester.pump();
     final session = h.game.session!;
 
-    // Complete the word "is" with S placed LAST so S becomes the last LOCKED
-    // letter (the highlight tracks locks, not tentative keystrokes). S appears
-    // 3x ("less", "is") — every S cell gets the "last move" highlight, nothing
-    // else does.
+    // Completing the word "is" LOCKS both its letters (I and S) at the same
+    // moment, so every copy of BOTH carries the "last move" highlight — the
+    // simultaneous-lock behavior players expect, not just the final keystroke's
+    // letter. S appears 3x ("less", "is") and I once ("is"); all of them light up.
     final isWord = session.cipherText.split(' ')[1]; // "is"
     final cipherI = isWord[0];
     final cipherS = isWord[1];
     expect(session.cipher.decryptLetter(cipherS), 'S');
     h.game.selectCipherLetter(cipherI);
-    h.game.enterGuess(session.cipher.decryptLetter(cipherI)); // no lock yet
+    h.game.enterGuess(
+      session.cipher.decryptLetter(cipherI),
+    ); // correct, no lock yet
     h.game.selectCipherLetter(cipherS);
-    h.game.enterGuess(session.cipher.decryptLetter(cipherS)); // completes "is"
+    h.game.enterGuess(
+      session.cipher.decryptLetter(cipherS),
+    ); // completes "is" -> locks I and S
     await tester.pump();
 
     final recent = tester
@@ -164,7 +168,15 @@ void main() {
         .where((c) => c.recent)
         .toList();
     expect(recent, isNotEmpty);
-    expect(recent.every((c) => c.cipherLetter == cipherS), isTrue);
+    // Only the two just-locked letters light up...
+    expect(
+      recent.every(
+        (c) => c.cipherLetter == cipherI || c.cipherLetter == cipherS,
+      ),
+      isTrue,
+    );
+    // ...and BOTH of them do (every copy of each).
+    expect(recent.map((c) => c.cipherLetter).toSet(), {cipherI, cipherS});
 
     h.game.stopTimer();
   });

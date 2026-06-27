@@ -119,7 +119,7 @@ void main() {
       final c0 = game.selectedCipherLetter!;
       game.enterGuess('X'); // X is never in the quote -> always a wrong guess
       expect(game.lastTypedCipherLetter, c0);
-      expect(game.lastLockedCipherLetter, isNull); // nothing locked yet
+      expect(game.lastLockedCipherLetters, isEmpty); // nothing locked yet
 
       final otherPos = [
         for (var i = 0; i < s.cipherText.length; i++)
@@ -146,7 +146,7 @@ void main() {
       game.selectIndex(otherPos);
       game.clearGuess();
       expect(game.lastTypedCipherLetter, c0);
-      expect(game.lastLockedCipherLetter, isNull);
+      expect(game.lastLockedCipherLetters, isEmpty);
 
       game.stopTimer();
       game.dispose();
@@ -431,7 +431,7 @@ void main() {
       // Nothing locked yet -> no highlight, even after a tentative (wrong) guess.
       game.selectCipherLetter(cipherL);
       game.enterGuess('Z');
-      expect(game.lastLockedCipherLetter, isNull);
+      expect(game.lastLockedCipherLetters, isEmpty);
 
       // Completing the 2-letter word "is" correctly LOCKS its letters, and the
       // highlight lands on the letter that completed it.
@@ -442,22 +442,23 @@ void main() {
       game.enterGuess(
         s.cipher.decryptLetter(cipherI),
       ); // correct, not yet a word
-      expect(game.lastLockedCipherLetter, isNull);
+      expect(game.lastLockedCipherLetters, isEmpty);
       game.selectCipherLetter(cipherIs);
       game.enterGuess(
         s.cipher.decryptLetter(cipherIs),
       ); // completes "is" -> locks
       expect(s.confirmedLetters.contains(cipherIs), isTrue);
-      expect(game.lastLockedCipherLetter, cipherIs);
+      // Completing the word locks BOTH its letters at once -> both light up.
+      expect(game.lastLockedCipherLetters, containsAll([cipherI, cipherIs]));
 
       // Tentative typing elsewhere, delete and undo must NOT move it.
       game.selectCipherLetter(cipherL);
       game.enterGuess('Z');
-      expect(game.lastLockedCipherLetter, cipherIs);
+      expect(game.lastLockedCipherLetters, contains(cipherIs));
       game.clearGuess();
-      expect(game.lastLockedCipherLetter, cipherIs);
+      expect(game.lastLockedCipherLetters, contains(cipherIs));
       game.undo();
-      expect(game.lastLockedCipherLetter, cipherIs);
+      expect(game.lastLockedCipherLetters, contains(cipherIs));
 
       // Solving the whole puzzle clears it so the finished board reads clean.
       for (final plain in ['L', 'E', 'S', 'I', 'M', 'O', 'R']) {
@@ -465,7 +466,7 @@ void main() {
         game.enterGuess(plain);
       }
       expect(game.completed, isTrue);
-      expect(game.lastLockedCipherLetter, isNull);
+      expect(game.lastLockedCipherLetters, isEmpty);
 
       game.dispose();
     },
@@ -504,7 +505,7 @@ void main() {
     // A hint LOCKS the revealed letter, so it becomes the last-move highlight.
     game.revealSelected();
     final revealed = s.revealed.first;
-    expect(game.lastLockedCipherLetter, revealed);
+    expect(game.lastLockedCipherLetters, contains(revealed));
 
     // Prev/next navigation and a tentative (wrong) guess must NOT move it —
     // only a new lock can.
@@ -515,15 +516,22 @@ void main() {
     );
     game.selectCipherLetter(other);
     game.enterGuess('Z'); // tentative, locks nothing
-    expect(game.lastLockedCipherLetter, revealed);
+    expect(game.lastLockedCipherLetters, contains(revealed));
 
     // A SECOND hint is a new lock: the highlight moves to the newly revealed
     // letter.
     game.revealSelected();
-    final newLocked = game.lastLockedCipherLetter;
-    expect(newLocked, isNotNull);
-    expect(newLocked, isNot(revealed));
-    expect(s.revealed.contains(newLocked), isTrue);
+    final newLocked = game.lastLockedCipherLetters;
+    expect(newLocked, isNotEmpty);
+    // The highlight moved off a lone first-reveal: a fresh letter locked.
+    expect(newLocked, isNot(equals({revealed})));
+    // Everything highlighted is genuinely locked on the board.
+    expect(
+      newLocked.every(
+        (c) => s.revealed.contains(c) || s.confirmedLetters.contains(c),
+      ),
+      isTrue,
+    );
 
     game.stopTimer();
     game.dispose();

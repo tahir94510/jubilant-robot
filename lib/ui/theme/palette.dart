@@ -107,7 +107,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellLastMoveBg: const Color(0xFF936F1F).withValues(alpha: .15),
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
-    cipherText: const Color(0xFF8A7E66),
+    cipherText: const Color(0xFF6B614D),
     // Colorblind conflict/error deepened (E69F00 read only 2.05:1 on this cream
     // surface — below the large-text floor); A84B00 clears AA (5.20:1).
     conflict: colorblind ? const Color(0xFFA84B00) : const Color(0xFF9E3B34),

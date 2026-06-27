@@ -446,7 +446,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                                           selected: game.selectedCipherLetter,
                                           selectedIndex: game.selectedIndex,
                                           lastLocked:
-                                              game.lastLockedCipherLetter,
+                                              game.lastLockedCipherLetters,
                                           lastTyped: game.lastTypedCipherLetter,
                                           errorChecking: settings.errorChecking,
                                           onSelect: (index) {

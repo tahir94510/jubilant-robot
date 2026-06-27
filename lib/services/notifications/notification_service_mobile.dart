@@ -14,7 +14,13 @@ class MobileNotificationService extends NotificationService {
 
   static const int _dailyReminderId = 1001;
   static const int _testNotificationId = 1002;
-  static const String _channelId = 'daily_reminder';
+  // v2: an Android channel's importance is LOCKED at first creation. Installs
+  // that created the original 'daily_reminder' channel at default importance
+  // were stuck silent / no heads-up forever (reminders dropped invisibly into
+  // the shade — "no sound, not visible"). A new channel id forces a fresh HIGH
+  // channel for everyone; the old one is deleted in [initialize].
+  static const String _channelId = 'daily_reminder_v2';
+  static const String _legacyChannelId = 'daily_reminder';
   static const String _channelName = 'Daily puzzle reminder';
   static const String _channelDescription =
       'One reminder per day for the daily cryptogram.';
@@ -67,6 +73,12 @@ class MobileNotificationService extends NotificationService {
     } catch (_) {
       // Older platforms / no-op contexts: scheduling still creates the channel.
     }
+    // Drop the pre-v2 channel so a user who once had the silent/low-importance
+    // version doesn't keep a stale, muted duplicate under app notification
+    // settings (and never hears the reminder). No-op if it never existed.
+    try {
+      await _android?.deleteNotificationChannel(channelId: _legacyChannelId);
+    } catch (_) {}
   }
 
   Future<void> _ensureTimezone() async {

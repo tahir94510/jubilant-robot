@@ -2,6 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Reklamlar (AdMob) ve Play Faturalandirma icin ag erisimi -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Dokunsal geri bildirim (titresim): HapticFeedback'in Android'de
+         gercekten titresmesi icin VIBRATE gerekir; olmadan sessizce no-op. -->
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <!-- Android 13+ gunluk hatirlatma bildirimi izni (uygulama icinden istenir) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin
@@ -48,6 +51,7 @@
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:taskAffinity=""
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

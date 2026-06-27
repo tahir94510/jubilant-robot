@@ -16,7 +16,7 @@ class CipherBoard extends StatefulWidget {
     required this.onSelect,
     this.selectedIndex,
     this.solveWave,
-    this.lastLocked,
+    this.lastLocked = const <String>{},
     this.lastTyped,
   });
 
@@ -41,11 +41,11 @@ class CipherBoard extends StatefulWidget {
   /// the puzzle is still being solved.
   final double? solveWave;
 
-  /// The most-recently LOCKED cipher letter (found+locked by a hint or by
-  /// completing a word); every copy of it gets the chess-style "last move" fill
-  /// so the eye stays on the latest letter nailed down. It moves only when a new
-  /// letter locks. Null while reviewing or celebrating (no highlight then).
-  final String? lastLocked;
+  /// The cipher letters LOCKED by the most recent action (a hint reveal, or the
+  /// several letters a completed word locks at once); every copy of each gets the
+  /// chess-style "last move" fill so the eye stays on the latest letters nailed
+  /// down. Empty while reviewing or celebrating (no highlight then).
+  final Set<String> lastLocked;
 
   /// The most-recently TYPED still-editable cipher letter; every copy gets a
   /// quiet neutral fill that tracks the player's last keystroke after the cursor
@@ -162,8 +162,7 @@ class _CipherBoardState extends State<CipherBoard> {
               // move" cue (gold fill + ring). Drawn only while it still holds
               // its correct guess, so a cleared cell never keeps a stray glow.
               final recent =
-                  widget.lastLocked != null &&
-                  ch == widget.lastLocked &&
+                  widget.lastLocked.contains(ch) &&
                   session.guesses.containsKey(ch);
               // The last TYPED still-editable letter (and every copy): a quiet
               // neutral cue, INDEPENDENT of the locked one. The controller only
