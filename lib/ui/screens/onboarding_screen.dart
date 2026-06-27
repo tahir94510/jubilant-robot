@@ -261,6 +261,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       _page < _icons.length - 1 ? l10n.onbNext : l10n.onbTryOne,
                     ),
                   ),
+                  // Breathing room so the primary action and the quieter
+                  // skip/done button read as two distinct controls, not one
+                  // stuck-together block.
+                  const SizedBox(height: 8),
                   TextButton(
                     onPressed: () async {
                       // Refresher: just close back to where it was opened from;

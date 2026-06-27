@@ -290,7 +290,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get premiumUnlockedBody =>
-      'Reklamlar tamamen kalktı, ipuçların artık sınırsız. Quotecrack\'e destek olduğun için teşekkürler!';
+      'Reklamlar tamamen kalktı, ipuçların artık sınırsız. Quotecrack’e destek olduğun için teşekkürler!';
 
   @override
   String get premiumContinue => 'Oynamaya başla';
