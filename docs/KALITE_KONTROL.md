@@ -170,7 +170,7 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.4.1+36` (sondaki sayı her
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.4.2+37` (sondaki sayı her
 yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle → `docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu (EN + 6
 dil, ≤500 krk) ekle → push → CI yeşil → `quotecrack-release-aab` indir →

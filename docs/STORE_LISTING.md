@@ -5,6 +5,60 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.4.2 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.4.2
+• A crisper, more premium logo — it now stands out cleanly on every screen instead of blending in
+• Small visual polish
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.4.2 YENİLİKLER
+• Daha keskin, daha premium bir logo — artık her ekranda silikleşmeden net biçimde öne çıkıyor
+• Küçük görsel cilalar
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.4.2
+• Un logotipo más nítido y premium: ahora destaca con claridad en cada pantalla en vez de difuminarse
+• Pequeños retoques visuales
+```
+
+**Deutsch**
+```
+NEU in 2.4.2
+• Ein schärferes, edleres Logo – es hebt sich jetzt auf jedem Bildschirm klar ab, statt zu verschwimmen
+• Kleiner optischer Feinschliff
+```
+
+**Français**
+```
+NOUVEAU dans 2.4.2
+• Un logo plus net et plus premium : il ressort désormais clairement sur chaque écran au lieu de se fondre
+• Petites retouches visuelles
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.4.2
+• Un logo più nitido e premium: ora risalta con chiarezza su ogni schermata invece di confondersi
+• Piccole rifiniture visive
+```
+
+**Português**
+```
+NOVIDADES na 2.4.2
+• Um logotipo mais nítido e premium: agora se destaca com clareza em cada tela em vez de se misturar
+• Pequenos retoques visuais
+```
+
+---
+
 ## Release notes: v2.4.1 (max 500 chars, paste into "What's new")
 
 ```

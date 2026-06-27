@@ -21,11 +21,11 @@ class BrandMark extends StatelessWidget {
     final radius = size * 0.22;
     // The brand is a light "paper" tile. On the light and sepia themes that
     // tile color is almost identical to the page surface, so without a frame the
-    // logo's edge vanishes and it reads as "broken/disappeared". A hairline
-    // border plus a soft shadow make the mark a distinct, high-contrast card on
-    // EVERY theme (and cleanly frame the bright tile on dark) — same brand,
-    // never blending into the background.
-    final borderColor = scheme.onSurface.withValues(alpha: 0.16);
+    // logo's edge vanishes and it reads as "broken/disappeared". A clearer
+    // hairline border plus a two-layer lifted shadow make the mark a distinct,
+    // premium raised card on EVERY theme (and cleanly frame the bright tile on
+    // dark) — same brand, never blending into the background.
+    final borderColor = scheme.onSurface.withValues(alpha: 0.22);
     return Semantics(
       image: true,
       label: 'Quotecrack logo',
@@ -36,10 +36,21 @@ class BrandMark extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius),
             boxShadow: [
+              // A two-layer "lifted card" shadow: a wide, soft ambient halo plus
+              // a tighter, deeper key drop. Together they make the mark read as a
+              // premium, clearly raised card on EVERY surface — including the
+              // light/sepia pages whose color nearly matches the tile, where a
+              // single soft shadow was too faint to separate it.
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.16),
-                blurRadius: size * 0.11,
-                offset: Offset(0, size * 0.045),
+                color: Colors.black.withValues(alpha: 0.12),
+                blurRadius: size * 0.17,
+                offset: Offset(0, size * 0.03),
+              ),
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.22),
+                blurRadius: size * 0.09,
+                offset: Offset(0, size * 0.075),
+                spreadRadius: -size * 0.015,
               ),
             ],
           ),
@@ -61,6 +72,7 @@ class _BrandPainter extends CustomPainter {
   // and a slim deep-gold underline. Matches the light app icon
   // (tool/generate_icons.py); the gold is deepened so it keeps contrast on the
   // light field instead of washing out.
+  static const _gradientSheen = Color(0xFFFCFAF3);
   static const _gradientTop = Color(0xFFF7F4EC);
   static const _gradientBottom = Color(0xFFEAE1CE);
   static const _ink = Color(0xFF26221C);
@@ -100,9 +112,12 @@ class _BrandPainter extends CustomPainter {
       Offset.zero & size,
       Paint()
         ..shader = const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [_gradientTop, _gradientBottom],
+          // A subtle near-white sheen at the top fading into the warm cream:
+          // soft "light from above" that gives the tile premium dimension.
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [_gradientSheen, _gradientTop, _gradientBottom],
+          stops: [0.0, 0.4, 1.0],
         ).createShader(Offset.zero & size),
     );
 
