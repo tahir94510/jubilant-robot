@@ -166,6 +166,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get version => 'Versão';
 
   @override
+  String get startupErrorTitle => 'O Quotecrack não conseguiu iniciar';
+
+  @override
+  String get startupErrorBody =>
+      'Feche o aplicativo completamente e abra-o novamente. Se o problema continuar, reinstalar irá resolvê-lo.';
+
+  @override
   String get homeDailyLabel => 'DESAFIO DIÁRIO';
 
   @override

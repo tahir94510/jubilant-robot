@@ -165,6 +165,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get version => 'Version';
 
   @override
+  String get startupErrorTitle => 'Quotecrack konnte nicht starten';
+
+  @override
+  String get startupErrorBody =>
+      'Bitte schließe die App vollständig und öffne sie erneut. Falls das Problem weiterhin auftritt, behebt eine Neuinstallation es.';
+
+  @override
   String get homeDailyLabel => 'TÄGLICHES RÄTSEL';
 
   @override

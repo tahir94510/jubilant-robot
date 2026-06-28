@@ -166,6 +166,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get version => 'Versión';
 
   @override
+  String get startupErrorTitle => 'Quotecrack no pudo iniciarse';
+
+  @override
+  String get startupErrorBody =>
+      'Cierra la aplicación por completo y vuelve a abrirla. Si el problema continúa, reinstalarla lo solucionará.';
+
+  @override
   String get homeDailyLabel => 'PUZLE DIARIO';
 
   @override

@@ -165,6 +165,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get version => 'Sürüm';
 
   @override
+  String get startupErrorTitle => 'Quotecrack başlatılamadı';
+
+  @override
+  String get startupErrorBody =>
+      'Lütfen uygulamayı tamamen kapatıp yeniden açın. Sorun sürerse, yeniden yüklemek çözecektir.';
+
+  @override
   String get homeDailyLabel => 'GÜNLÜK BULMACA';
 
   @override

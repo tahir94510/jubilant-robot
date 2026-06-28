@@ -67,6 +67,8 @@
   "privacyPolicy": "Privacy policy",
   "openSourceLicenses": "Open-source licenses",
   "version": "Version",
+  "startupErrorTitle": "Quotecrack couldn't start",
+  "startupErrorBody": "Please close the app fully and open it again. If this keeps happening, reinstalling will fix it.",
   "homeDailyLabel": "DAILY PUZZLE",
   "homeDailySolved": "Solved! Come back tomorrow for a new one.",
   "homeDailyAwaits": "A cipher by {author} awaits.",

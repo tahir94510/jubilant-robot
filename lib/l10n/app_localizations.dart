@@ -402,6 +402,18 @@ abstract class AppLocalizations {
   /// **'Version'**
   String get version;
 
+  /// No description provided for @startupErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quotecrack couldn\'t start'**
+  String get startupErrorTitle;
+
+  /// No description provided for @startupErrorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Please close the app fully and open it again. If this keeps happening, reinstalling will fix it.'**
+  String get startupErrorBody;
+
   /// No description provided for @homeDailyLabel.
   ///
   /// In en, this message translates to:

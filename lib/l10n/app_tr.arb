@@ -49,6 +49,8 @@
   "privacyPolicy": "Gizlilik politikası",
   "openSourceLicenses": "Açık kaynak lisansları",
   "version": "Sürüm",
+  "startupErrorTitle": "Quotecrack başlatılamadı",
+  "startupErrorBody": "Lütfen uygulamayı tamamen kapatıp yeniden açın. Sorun sürerse, yeniden yüklemek çözecektir.",
   "homeDailyLabel": "GÜNLÜK BULMACA",
   "homeDailySolved": "Çözüldü! Yarın yenisi için tekrar uğra.",
   "homeDailyAwaits": "{author} imzalı bir şifre seni bekliyor.",

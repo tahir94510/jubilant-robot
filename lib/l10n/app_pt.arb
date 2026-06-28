@@ -49,6 +49,8 @@
   "privacyPolicy": "Política de privacidade",
   "openSourceLicenses": "Licenças de código aberto",
   "version": "Versão",
+  "startupErrorTitle": "O Quotecrack não conseguiu iniciar",
+  "startupErrorBody": "Feche o aplicativo completamente e abra-o novamente. Se o problema continuar, reinstalar irá resolvê-lo.",
   "homeDailyLabel": "DESAFIO DIÁRIO",
   "homeDailySolved": "Resolvido! Volte amanhã para um novo.",
   "homeDailyAwaits": "Um texto cifrado de {author} espera por você.",

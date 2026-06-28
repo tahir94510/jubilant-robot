@@ -49,6 +49,8 @@
   "privacyPolicy": "Política de privacidad",
   "openSourceLicenses": "Licencias de código abierto",
   "version": "Versión",
+  "startupErrorTitle": "Quotecrack no pudo iniciarse",
+  "startupErrorBody": "Cierra la aplicación por completo y vuelve a abrirla. Si el problema continúa, reinstalarla lo solucionará.",
   "homeDailyLabel": "PUZLE DIARIO",
   "homeDailySolved": "¡Resuelto! Vuelve mañana por uno nuevo.",
   "homeDailyAwaits": "Te espera un cifrado de {author}.",

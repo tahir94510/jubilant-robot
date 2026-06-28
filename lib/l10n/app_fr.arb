@@ -49,6 +49,8 @@
   "privacyPolicy": "Politique de confidentialité",
   "openSourceLicenses": "Licences open source",
   "version": "Version",
+  "startupErrorTitle": "Quotecrack n'a pas pu démarrer",
+  "startupErrorBody": "Veuillez fermer complètement l'application puis la rouvrir. Si le problème persiste, une réinstallation le corrigera.",
   "homeDailyLabel": "ÉNIGME DU JOUR",
   "homeDailySolved": "Résolu ! Revenez demain pour une nouvelle.",
   "homeDailyAwaits": "Un message chiffré de {author} vous attend.",

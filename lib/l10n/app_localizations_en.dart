@@ -163,6 +163,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get version => 'Version';
 
   @override
+  String get startupErrorTitle => 'Quotecrack couldn\'t start';
+
+  @override
+  String get startupErrorBody =>
+      'Please close the app fully and open it again. If this keeps happening, reinstalling will fix it.';
+
+  @override
   String get homeDailyLabel => 'DAILY PUZZLE';
 
   @override

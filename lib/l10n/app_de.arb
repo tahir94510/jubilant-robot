@@ -49,6 +49,8 @@
   "privacyPolicy": "Datenschutzerklärung",
   "openSourceLicenses": "Open-Source-Lizenzen",
   "version": "Version",
+  "startupErrorTitle": "Quotecrack konnte nicht starten",
+  "startupErrorBody": "Bitte schließe die App vollständig und öffne sie erneut. Falls das Problem weiterhin auftritt, behebt eine Neuinstallation es.",
   "homeDailyLabel": "TÄGLICHES RÄTSEL",
   "homeDailySolved": "Gelöst! Komm morgen für ein neues wieder.",
   "homeDailyAwaits": "Ein Geheimtext von {author} wartet auf dich.",
