@@ -137,10 +137,30 @@ class MusicService with WidgetsBindingObserver {
   /// often: browsers reject autoplay until the first user gesture, so the app
   /// retries from a global tap listener until one attempt sticks.
   void ensureStarted() {
-    if (!_ready || _started || !isEnabled()) return;
+    if (!isEnabled()) return;
+    if (!_ready) {
+      _ensureInit(); // self-heal a failed/cold init; retry start when it lands
+      return;
+    }
+    if (_started) return;
     _started = true;
     _playing = true; // optimistic; reverted if the play attempt is rejected
     _startTrack(_nextTrack());
+  }
+
+  bool _initRetrying = false;
+
+  /// Self-heals a failed/cold engine: ensureStarted is called on every pointer
+  /// down (app.dart), so if the one-shot startup init failed we kick a single
+  /// re-init in the background and start once it succeeds — instead of the bed
+  /// staying silent forever. Guarded so only one retry is ever in flight.
+  void _ensureInit() {
+    if (_ready || _initRetrying) return;
+    _initRetrying = true;
+    initialize().whenComplete(() {
+      _initRetrying = false;
+      ensureStarted();
+    });
   }
 
   void _startTrack(int index) {

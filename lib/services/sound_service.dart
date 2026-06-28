@@ -29,6 +29,18 @@ class SoundService {
   final Map<String, AudioSource> _sources = {};
 
   bool _ready = false;
+  bool _initRetrying = false;
+
+  /// Self-heals a failed/cold engine: if a cue is requested while not ready
+  /// (e.g. the one-shot startup init lost the audio device), kick a single
+  /// re-init in the background so the NEXT cue works instead of staying silent
+  /// forever (which read as "the sound settings do nothing"). Guarded so only
+  /// one retry is ever in flight.
+  void _ensureReady() {
+    if (_ready || _initRetrying) return;
+    _initRetrying = true;
+    initialize().whenComplete(() => _initRetrying = false);
+  }
 
   /// 0..1 user multiplier (soundVolume from settings), perceptually tapered.
   /// Applied per play() — one-shots are fire-and-forget so there is no live
@@ -110,7 +122,11 @@ class SoundService {
   /// source). The voice frees itself when it finishes. Discrete cues are
   /// throttled (see [_minGapMs]); long cues are protected from culling.
   void _play(String key, {bool throttle = true}) {
-    if (!_ready || !isEnabled()) return;
+    if (!isEnabled()) return;
+    if (!_ready) {
+      _ensureReady(); // self-heal for the next cue; this one stays silent
+      return;
+    }
     final source = _sources[key];
     if (source == null) return;
     if (throttle) {
