@@ -5,6 +5,81 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.4.6 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.4.6
+• Rock-steady board — letters no longer shimmer or drift while you scroll a long quote
+• Calmer, clearer highlight for the word you just solved, with restful colors in every theme
+• Stronger, better-tuned vibration on every action
+• Simpler, more reliable daily reminder, with a quick fix if notifications are blocked
+• Tablet & foldable rotation, plus a logo and splash that match your theme
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.4.6 YENİLİKLER
+• Sapasağlam tahta — uzun bir sözü kaydırırken harfler artık titremiyor, kaymıyor
+• Az önce çözdüğün kelime için daha sakin, daha net vurgu; her temada dinlendirici renkler
+• Her etkileşimde daha güçlü, daha iyi ayarlı titreşim
+• Daha basit ve güvenilir günlük hatırlatma; bildirim engelliyse hızlı çözüm
+• Tablet ve katlanabilir cihazlarda dönüş; temanla uyumlu logo ve açılış ekranı
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.4.6
+• Tablero firme: las letras ya no vibran ni se desplazan al recorrer una cita larga
+• Resalte más suave y claro de la palabra recién resuelta, con colores relajados en cada tema
+• Vibración más intensa y mejor ajustada en cada acción
+• Recordatorio diario más simple y fiable, con solución rápida si las notificaciones están bloqueadas
+• Rotación en tabletas y plegables; logo y pantalla de inicio acordes a tu tema
+```
+
+**Deutsch**
+```
+NEU in 2.4.6
+• Ruhiges Spielfeld – Buchstaben flackern und verrutschen beim Scrollen langer Zitate nicht mehr
+• Sanftere, klarere Hervorhebung des gerade gelösten Worts, mit ruhigen Farben in jedem Theme
+• Stärkere, besser abgestimmte Vibration bei jeder Aktion
+• Einfachere, zuverlässige Tageserinnerung, mit schneller Lösung bei blockierten Benachrichtigungen
+• Rotation auf Tablets und Foldables; Logo und Startbildschirm passend zum Theme
+```
+
+**Français**
+```
+NOUVEAU dans 2.4.6
+• Plateau stable : plus de tremblement ni de décalage des lettres en faisant défiler une longue citation
+• Surbrillance plus douce et claire du mot résolu, couleurs apaisées sur chaque thème
+• Vibration plus forte et mieux réglée à chaque action
+• Rappel quotidien plus simple et fiable, avec solution rapide si les notifications sont bloquées
+• Rotation sur tablettes et pliables ; logo et écran de démarrage assortis au thème
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.4.6
+• Griglia stabile: le lettere non tremolano e non si spostano più scorrendo una citazione lunga
+• Evidenziazione più morbida e chiara della parola appena risolta, con colori riposanti in ogni tema
+• Vibrazione più intensa e meglio calibrata a ogni azione
+• Promemoria giornaliero più semplice e affidabile, con soluzione rapida se le notifiche sono bloccate
+• Rotazione su tablet e pieghevoli; logo e schermata d'avvio in tinta col tema
+```
+
+**Português**
+```
+NOVIDADES na 2.4.6
+• Tabuleiro firme: as letras não tremem nem deslizam ao rolar uma citação longa
+• Destaque mais suave e claro da palavra recém-resolvida, com cores tranquilas em todos os temas
+• Vibração mais forte e melhor ajustada em cada ação
+• Lembrete diário mais simples e confiável, com solução rápida se as notificações estiverem bloqueadas
+• Rotação em tablets e dobráveis; logo e tela de abertura combinando com seu tema
+```
+
+---
+
 ## Release notes: v2.4.4 (max 500 chars, paste into "What's new")
 
 ```

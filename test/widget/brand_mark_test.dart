@@ -28,10 +28,10 @@ void main() {
     });
   }
 
-  // The logo must never re-introduce the "dark glyph on a dark background" bug:
-  // BrandMark bakes its OWN opaque cream tile, so it renders as a visible card
-  // even on a pure-black surface in dark mode (e.g. the premium/paywall screen).
-  // This locks that a transparent backdrop can never make the logo disappear.
+  // The logo must never re-introduce the "logo disappears" bug. BrandMark is
+  // transparent and colors its glyphs from the ACTIVE theme, so on the dark
+  // theme it draws a LIGHT Q (onSurface) that stays visible even on a pure-black
+  // surface (e.g. the premium/paywall screen) — no baked tile required.
   testWidgets('BrandMark renders on a black surface in dark mode', (
     tester,
   ) async {
@@ -56,13 +56,10 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  // The hardest "disappears into the background" case: a light page whose color
-  // is almost identical to the logo's own cream tile (the paywall/onboarding on
-  // the light + sepia themes). The lifted shadow + clearer frame must still
-  // render the mark as a distinct card. This locks that scenario.
-  testWidgets('BrandMark renders on a surface matching its own tile', (
-    tester,
-  ) async {
+  // The light-theme case: on a cream page the transparent mark draws a DARK Q
+  // (onSurface) plus the brand-gold accents, all clearly legible on the paper —
+  // adaptive color, not a baked card. Locks that the light variant stays visible.
+  testWidgets('BrandMark renders on a light cream surface', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         theme: AppThemes.light(colorblind: false),

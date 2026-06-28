@@ -1,7 +1,10 @@
 package io.github.tahir94510.quotecrack
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -65,5 +68,43 @@ class MainActivity : FlutterActivity() {
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
         super.onCreate(savedInstanceState)
+        // Paint the post-splash window to match the APP's chosen theme, not the
+        // device's. The cream system splash hands off to this window while Flutter
+        // initialises; NormalTheme's windowBackground follows the DEVICE theme, so
+        // a light-themed app on a dark device (or vice versa) used to flash the
+        // wrong background here before the first frame. Best-effort: any failure
+        // leaves the theme's device-based surface untouched.
+        try {
+            window.setBackgroundDrawable(
+                ColorDrawable(if (appPrefersDark()) 0xFF161512.toInt() else 0xFFF7F4EC.toInt()),
+            )
+        } catch (_: Exception) {
+        }
+    }
+
+    /// Reads the app's saved theme preference (shared_preferences' legacy store)
+    /// to decide whether the launch window should be dark. "dark" -> dark;
+    /// "light"/"sepia" -> light; "system"/absent/unreadable -> follow the device.
+    /// Deliberately tolerant (regex over the settings JSON, broad catch): a parse
+    /// miss simply falls back to the device theme, never crashes the launch.
+    private fun appPrefersDark(): Boolean {
+        val deviceDark = (resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        return try {
+            val prefs = getSharedPreferences(
+                "FlutterSharedPreferences",
+                Context.MODE_PRIVATE,
+            )
+            val json = prefs.getString("flutter.settings.v1", null) ?: return deviceDark
+            val mode = Regex("\"themeMode\"\\s*:\\s*\"(\\w+)\"")
+                .find(json)?.groupValues?.getOrNull(1)
+            when (mode) {
+                "dark" -> true
+                "light", "sepia" -> false
+                else -> deviceDark
+            }
+        } catch (_: Exception) {
+            deviceDark
+        }
     }
 }
