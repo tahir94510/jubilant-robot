@@ -29,6 +29,18 @@ class SoundService {
   final Map<String, AudioSource> _sources = {};
 
   bool _ready = false;
+  bool _initRetrying = false;
+
+  /// Self-heals a failed/cold engine: if a cue is requested while not ready
+  /// (e.g. the one-shot startup init lost the audio device), kick a single
+  /// re-init in the background so the NEXT cue works instead of staying silent
+  /// forever (which read as "the sound settings do nothing"). Guarded so only
+  /// one retry is ever in flight.
+  void _ensureReady() {
+    if (_ready || _initRetrying) return;
+    _initRetrying = true;
+    initialize().whenComplete(() => _initRetrying = false);
+  }
 
   /// 0..1 user multiplier (soundVolume from settings), perceptually tapered.
   /// Applied per play() — one-shots are fire-and-forget so there is no live
@@ -45,6 +57,28 @@ class SoundService {
     'achievement.wav',
     'word.wav',
   ];
+
+  /// Master output headroom. SoLoud SUMS all voices, so overlapping loud cues
+  /// (a ~2 s success fanfare + key taps + the music bed) can sum past full scale
+  /// and hard-clip — the reported "patlama". Scaling the whole mix down leaves
+  /// room for those overlaps to add cleanly. It is set on the shared engine, so
+  /// it is the master headroom for music too (the correct place for it).
+  static const double _globalHeadroom = 0.7;
+
+  /// A generous simultaneous-voice cap so a burst never culls a still-playing
+  /// cue; with the per-cue throttle below the real count stays well under this.
+  static const int _maxVoices = 24;
+
+  /// Long cues that must ring out fully — PROTECTED from voice-culling so a
+  /// later tap/cue can never cut the fanfare off mid-play ("yarıda kesilme").
+  static const Set<String> _longCues = {'success.wav', 'achievement.wav'};
+
+  /// Minimum gap before the SAME discrete cue retriggers. A wrong-letter spam or
+  /// a repeated letter would otherwise spawn a dozen overlapping voices that both
+  /// flood the mix (clipping) and hit the voice cap (culling). Distinct cues are
+  /// unaffected; the per-keystroke tap is exempt so it tracks every key.
+  static const int _minGapMs = 60;
+  final Map<String, int> _lastPlayedMs = {};
 
   /// Applies the user's effect-volume preference. Cheap and idempotent, so
   /// Settings can call it on every change; takes effect on the next cue.
@@ -63,6 +97,12 @@ class SoundService {
       if (!_soloud.isInitialized) {
         await _soloud.init();
       }
+      // Master headroom + a roomy voice cap so overlapping cues neither clip
+      // (summed past full scale) nor cull a still-playing fanfare.
+      try {
+        _soloud.setGlobalVolume(_globalHeadroom);
+        _soloud.setMaxActiveVoiceCount(_maxVoices);
+      } catch (_) {}
       for (final name in _assets) {
         _sources[name] = await _soloud.loadAsset(
           'assets/audio/$name',
@@ -79,19 +119,34 @@ class SoundService {
 
   /// Spawns a fresh voice for [key]. SoLoud mixes it with any still-ringing
   /// copies, so a rapid retrigger never stops/seeks a live voice (the old click
-  /// source). The voice frees itself when it finishes.
-  void _play(String key) {
-    if (!_ready || !isEnabled()) return;
+  /// source). The voice frees itself when it finishes. Discrete cues are
+  /// throttled (see [_minGapMs]); long cues are protected from culling.
+  void _play(String key, {bool throttle = true}) {
+    if (!isEnabled()) return;
+    if (!_ready) {
+      _ensureReady(); // self-heal for the next cue; this one stays silent
+      return;
+    }
     final source = _sources[key];
     if (source == null) return;
+    if (throttle) {
+      final now = DateTime.now().millisecondsSinceEpoch;
+      final last = _lastPlayedMs[key];
+      if (last != null && now - last < _minGapMs) return;
+      _lastPlayedMs[key] = now;
+    }
     try {
-      _soloud.play(source, volume: _volume);
+      final handle = _soloud.play(source, volume: _volume);
+      // Keep the long fanfares alive against a later burst of cues.
+      if (_longCues.contains(key)) _soloud.setProtectVoice(handle, true);
     } catch (_) {
       // A single failed cue must never surface to the player.
     }
   }
 
-  void tap() => _play('tap.wav');
+  // The per-keystroke tap must track every key, so it is exempt from the
+  // throttle; it is the quietest cue, so un-throttled overlap can't clip.
+  void tap() => _play('tap.wav', throttle: false);
 
   void hint() => _play('hint.wav');
 

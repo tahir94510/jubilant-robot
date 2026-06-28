@@ -197,10 +197,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   label: l10n.effectsVolume,
                   value: settings.soundVolume,
                   displayPercent: (settings.soundVolume * 100).round(),
-                  onPreview: (v) => controller.previewSoundVolume(
-                    v,
-                    context.read<SoundService>(),
-                  ),
+                  // Play a short cue at the new level on each drag tick so the
+                  // change is AUDIBLE live (SFX volume otherwise only affects the
+                  // next cue, which made the slider feel like it did nothing).
+                  onPreview: (v) {
+                    final s = context.read<SoundService>();
+                    controller.previewSoundVolume(v, s);
+                    s.tap();
+                  },
                   onCommit: (v) => controller.setSoundVolume(
                     v,
                     context.read<SoundService>(),

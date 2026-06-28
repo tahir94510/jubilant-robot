@@ -763,6 +763,27 @@ void main() {
     expect(find.byType(HomeScreen), findsOneWidget);
   });
 
+  testWidgets('completing a puzzle then "Back to menu" lands on Home with no '
+      'leftover panels (one clean transition)', (tester) async {
+    final h = await Harness.create(quotes: loadRealQuotes());
+    h.game.start(shortQuote, daily: false);
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+    await solveByTapping(tester, h);
+    await tester.pumpAndSettle();
+
+    // The completion screen is up with its "Back to menu" action.
+    expect(find.text('Back to menu'), findsOneWidget);
+    await tester.tap(find.text('Back to menu'));
+    await tester.pumpAndSettle();
+
+    // One destination: Home — the puzzle and the completion panel are gone (no
+    // intermediate route left to flash through).
+    expect(find.byType(HomeScreen), findsOneWidget);
+    expect(find.byType(PuzzleScreen), findsNothing);
+    expect(find.text('Back to menu'), findsNothing);
+  });
+
   testWidgets('the solving keystroke plays the success cue, not a per-key '
       'tap/word', (tester) async {
     final h = await Harness.create();

@@ -167,6 +167,13 @@ class _KeyButtonState extends State<_KeyButton> {
       if (enabled && motion) setState(() => _down = v);
     }
 
+    // A faint outline so adjacent keys (and same-tier keys whose fill is close
+    // to the surface) read as distinct tappable tiles instead of blending into
+    // one another or the background — a legibility win independent of the
+    // (already AA-locked) text/fill contrast.
+    final border = Theme.of(
+      context,
+    ).colorScheme.onSurface.withValues(alpha: 0.12);
     return Padding(
       padding: const EdgeInsets.all(2.5),
       child: AnimatedScale(
@@ -175,7 +182,11 @@ class _KeyButtonState extends State<_KeyButton> {
         curve: Curves.easeOut,
         child: Material(
           color: widget.bg,
-          borderRadius: BorderRadius.circular(9),
+          clipBehavior: Clip.antiAlias,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(9),
+            side: BorderSide(color: border, width: 1),
+          ),
           child: InkWell(
             borderRadius: BorderRadius.circular(9),
             onTap: widget.onTap,

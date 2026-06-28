@@ -260,7 +260,8 @@ void main() {
   });
 
   test(
-    'a scheduling failure leaves the reminder off and never throws',
+    'a scheduling failure keeps the reminder ON (permission granted) and never '
+    'throws — it retries instead of reverting the toggle',
     () async {
       SharedPreferences.setMockInitialValues({});
       final storage = await StorageService.init();
@@ -269,13 +270,51 @@ void main() {
         notifications: _ThrowingNotificationService(),
       );
 
-      // The OS grants permission, but scheduling blows up: the toggle must end
-      // up OFF and the call must complete normally (no crash bubbles to the UI).
+      // The OS grants permission, but scheduling blows up. The toggle reflects
+      // PERMISSION, not the alarm call, so it must stay ON; the call completes
+      // normally (no crash) and the failed schedule is retried later. This is
+      // the fix for "permission granted but the switch never turns on".
       final ok = await controller.setReminder(enabled: true);
-      expect(ok, isFalse);
-      expect(controller.settings.reminderEnabled, isFalse);
+      expect(ok, isTrue);
+      expect(controller.settings.reminderEnabled, isTrue);
     },
   );
+
+  test(
+    'enables even when the permission request under-reports the grant '
+    '(returns false) — setReminder trusts the OS state, not the return value',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final n = _UnderReportingNotificationService();
+      final c = SettingsController(storage: storage, notifications: n);
+      await c.setLanguage('en');
+
+      // Fresh install: not granted, never asked. The request returns false even
+      // though the user tapped Allow (the real Android 13 quirk); the OS recheck
+      // sees the grant, so the reminder turns ON.
+      final ok = await c.setReminder(enabled: true);
+      expect(ok, isTrue);
+      expect(c.settings.reminderEnabled, isTrue);
+      expect(n.scheduledAt, isNotNull);
+    },
+  );
+}
+
+/// Mimics the Android 13 quirk where the permission REQUEST returns false even
+/// though the user tapped Allow (the grant lands out-of-band); [areEnabled] then
+/// reports true. Proves setReminder trusts the OS state, not the request return.
+class _UnderReportingNotificationService extends FakeNotificationService {
+  _UnderReportingNotificationService() {
+    permissionGranted = false;
+    osEnabled = false;
+  }
+
+  @override
+  Future<bool> requestPermission() async {
+    osEnabled = true; // the user actually granted it...
+    return false; // ...but the plugin under-reports the result
+  }
 }
 
 /// Grants permission but throws when scheduling, to prove the reminder path

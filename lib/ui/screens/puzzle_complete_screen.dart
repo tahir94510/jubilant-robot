@@ -23,6 +23,7 @@ import '../widgets/banner_ad_slot.dart';
 import '../widgets/confetti_burst.dart';
 import '../widgets/scale_safe.dart';
 import '../widgets/stat_chip.dart';
+import 'home_screen.dart';
 import 'puzzle_screen.dart';
 
 /// Post-solve celebration: full quote with attribution, solve stats, share
@@ -99,6 +100,21 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
     }
   }
 
+  /// Returns to Home with ONE clean transition from any flow (normal play,
+  /// first-run or replay tutorial). The old `popUntil((r) => r.isFirst)` revealed
+  /// whatever sat under the complete screen first — e.g. the Settings page under
+  /// the replay tutorial — flashing it before Home ("another panel opens, then
+  /// closes"). pushAndRemoveUntil fades a fresh Home in via the app's page
+  /// transition and removes everything beneath, so there is no intermediate
+  /// flash. Home rebuilds from the controllers (via watch), so the post-solve
+  /// state (daily "Solved!", streak) is up to date.
+  void _goHome() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+      (route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final game = context.read<GameController>();
@@ -140,7 +156,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.close),
-              onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+              onPressed: _goHome,
             ),
             title: Text(
               game.isDaily ? l10n.completeDailyTitle : l10n.completeTitle,
@@ -354,9 +370,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                 SizedBox(
                                   width: double.infinity,
                                   child: OutlinedButton(
-                                    onPressed: () => Navigator.of(
-                                      context,
-                                    ).popUntil((r) => r.isFirst),
+                                    onPressed: _goHome,
                                     child: Text(l10n.backToMenu),
                                   ),
                                 ),

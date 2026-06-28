@@ -26,20 +26,36 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     unawaited(_reconcileReminderOnResume());
   }
 
-  /// One-shot resume reconciliation (see [didChangeAppLifecycleState]). Runs the
-  /// pending-enable completion first; only if that doesn't enable does it fall
-  /// through to the re-arm + turn-off sync.
+  /// One-shot resume reconciliation (see [didChangeAppLifecycleState]). Completes
+  /// a pending enable first (the authoritative path: the OS grant may only become
+  /// visible now), then retries a failed schedule, then the turn-off sync.
   Future<void> _reconcileReminderOnResume() async {
-    if (_pendingEnableAfterSettings) {
-      _pendingEnableAfterSettings = false; // one-shot, whatever the outcome
-      if (_notifications.supported && await _notifications.areEnabled()) {
+    if (_pendingEnable && _notifications.supported) {
+      if (await _notifications.areEnabled()) {
+        _pendingEnable = false;
         await _enableAndSchedule(null);
         notifyListeners();
         return; // now on and scheduled — nothing more to reconcile
       }
+      // Still not granted after returning: the user declined. Drop the intent so
+      // we don't surprise-enable later, and fall through to the off-sync.
+      _pendingEnable = false;
     }
+    // Re-arm an enabled reminder (also retries a previously failed schedule).
     await rescheduleDailyIfEnabled();
     await syncReminderWithOsPermission();
+  }
+
+  /// Polls the OS permission a few times so a grant that propagates just after
+  /// the system dialog/settings page closes is not missed. The plugin's request
+  /// return is unreliable on Android 13+, so [areNotificationsEnabled] is the
+  /// authority — we just give it a moment to reflect a fresh grant.
+  Future<bool> _areEnabledWithRetry() async {
+    for (var i = 0; i < 6; i++) {
+      if (await _notifications.areEnabled()) return true;
+      await Future<void>.delayed(const Duration(milliseconds: 100));
+    }
+    return _notifications.areEnabled();
   }
 
   SettingsController({
@@ -56,11 +72,13 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
 
   final AppSettings settings;
 
-  /// Session-only intent: the user tapped "turn on reminders" while the OS had
-  /// notifications blocked, so we routed them to system settings. If they grant
-  /// the permission there, the next resume completes the enable. Not persisted —
-  /// a one-shot tied to that specific round-trip.
-  bool _pendingEnableAfterSettings = false;
+  /// Session-only intent: the user tapped "turn on reminders" but the OS had not
+  /// granted notifications yet (we showed the prompt, or routed them to system
+  /// settings). The grant can land asynchronously — the system prompt's result
+  /// is unreliable and arrives around a pause/resume — so on the NEXT resume, if
+  /// the OS now allows notifications, we finish enabling. Covers BOTH the prompt
+  /// and the settings-redirect paths. Not persisted; cleared once resolved.
+  bool _pendingEnable = false;
 
   Future<void> _save() async {
     await _storage.writeJson(StorageService.settingsKey, settings.toJson());
@@ -243,7 +261,7 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   Future<bool> setReminder({required bool enabled, TimeOfDay? time}) async {
     if (!enabled) {
       settings.reminderEnabled = false;
-      _pendingEnableAfterSettings = false;
+      _pendingEnable = false;
       await _notifications.cancelAll();
       await _save();
       return true;
@@ -252,14 +270,26 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     // Web/stub has no OS permission concept: just flip it on and schedule.
     if (!_notifications.supported) return _enableAndSchedule(time);
 
+    // OS already allows it: enable straight away.
     if (await _notifications.areEnabled()) return _enableAndSchedule(time);
 
     if (!settings.reminderPermissionAsked) {
-      // First ever ask: this is the one time Android shows its system prompt.
+      // First ever ask: the one time Android shows its system prompt. Its return
+      // value is unreliable (it can report false even when the user tapped
+      // Allow), so we IGNORE it and re-check the real OS state with a short
+      // retry — that is what makes "say yes -> toggle turns on" actually work.
       settings.reminderPermissionAsked = true;
-      final granted = await _notifications.requestPermission();
-      if (granted) return _enableAndSchedule(time);
-      // Explicit "No": honor it — leave the toggle off, do not redirect.
+      _pendingEnable =
+          true; // resume will also finish this if the grant is late
+      await _save();
+      await _notifications.requestPermission();
+      if (await _areEnabledWithRetry()) {
+        _pendingEnable = false;
+        return _enableAndSchedule(time);
+      }
+      // Genuinely declined: honor the "No" — leave it off (resume won't enable
+      // because the intent is cleared), no redirect.
+      _pendingEnable = false;
       settings.reminderEnabled = false;
       await _save();
       return false;
@@ -267,21 +297,24 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
 
     // Asked before and still blocked: the system prompt won't reappear, so the
     // only way back on is the OS settings page. Route there and remember to
-    // finish enabling on resume if the permission gets granted.
-    _pendingEnableAfterSettings = true;
+    // finish enabling on the next resume if the permission gets granted.
+    _pendingEnable = true;
     settings.reminderEnabled = false;
     await _save();
     await _notifications.openSystemSettings();
     return false;
   }
 
-  /// Marks the reminder on, applies the chosen/default time, and schedules it.
-  /// Scheduling talks to the OS alarm/timezone plugins, which can throw on some
-  /// devices; a failure must never crash the app, so it leaves the toggle off
-  /// and reports false instead.
+  /// Marks the reminder ON (reflecting the user's choice + OS permission), saves
+  /// so the toggle updates immediately, THEN schedules. A scheduling failure does
+  /// NOT revert the toggle — the reminder stays on and we retry on the next
+  /// resume/launch ([_needsReschedule]). This is the fix for "permission is
+  /// granted but the switch never turns on": the switch tracks permission, not
+  /// the success of an alarm call that can transiently fail.
   Future<bool> _enableAndSchedule(TimeOfDay? time) async {
     settings.reminderEnabled = true;
     _applyReminderTime(time);
+    await _save(); // toggle reflects ON right away
     try {
       final l10n = _activeL10n();
       await _notifications.scheduleDaily(
@@ -290,12 +323,10 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
         body: l10n.notificationDailyBody,
       );
     } catch (e) {
-      debugPrint('scheduleDaily failed: $e');
-      settings.reminderEnabled = false;
-      await _save();
-      return false;
+      // The toggle stays ON (it reflects permission); the unconditional
+      // rescheduleDailyIfEnabled() on the next resume/launch retries the alarm.
+      debugPrint('scheduleDaily failed (will retry on resume): $e');
     }
-    await _save();
     return true;
   }
 
