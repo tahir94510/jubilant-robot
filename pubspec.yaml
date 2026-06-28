@@ -3,7 +3,7 @@ description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram
 publish_to: 'none'
 
 # versionName+versionCode for Android. Bump +N for every Play Store upload.
-version: 2.4.6+42
+version: 2.5.0+43
 
 environment:
   sdk: ^3.12.1

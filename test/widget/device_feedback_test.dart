@@ -581,6 +581,45 @@ void main() {
     expect(vibrations, isEmpty);
   });
 
+  testWidgets('framework-haptic fallback maps each cue to its weight', (
+    tester,
+  ) async {
+    // In tests there is no `vibration` plugin, so HapticsService takes the
+    // framework fallback — the same path iOS (Taptic engine) and web/desktop
+    // use. This pins the cue -> feedback-type ladder so a regression in the
+    // mapping (e.g. a keystroke buzzing like a full solve) is caught.
+    final types = <Object?>[];
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+      SystemChannels.platform,
+      (call) async {
+        if (call.method == 'HapticFeedback.vibrate') types.add(call.arguments);
+        return null;
+      },
+    );
+    addTearDown(
+      () => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+        SystemChannels.platform,
+        null,
+      ),
+    );
+
+    final haptics = HapticsService(isEnabled: () => true);
+    haptics.tap();
+    haptics.wordComplete();
+    haptics.success();
+    haptics.celebrate();
+    haptics.error();
+    await tester.pump();
+
+    expect(types, [
+      'HapticFeedbackType.selectionClick', // tap: lightest tick
+      'HapticFeedbackType.mediumImpact', // word complete
+      'HapticFeedbackType.mediumImpact', // success
+      'HapticFeedbackType.heavyImpact', // full-solve celebration
+      'HapticFeedbackType.heavyImpact', // error
+    ]);
+  });
+
   test(
     'colorblind mode swaps the game-state palette to a colorblind-safe set',
     () {
@@ -781,80 +820,6 @@ void main() {
     await tester.pumpAndSettle();
     expect(h.settings.settings.music, isTrue);
     expect(find.byIcon(Icons.music_note_outlined), findsOneWidget);
-  });
-
-  testWidgets('the daily reminder is on/off only (no time picker — time is '
-      'auto per-locale), and a blocked test notification routes to system '
-      'settings', (tester) async {
-    final h = await Harness.create();
-    await tester.pumpWidget(h.app(const SettingsScreen()));
-    await tester.pump();
-
-    await tester.scrollUntilVisible(find.text('Send a test notification'), 150);
-    // No in-app time picker row anymore: the reminder time is chosen
-    // automatically per language, so there's nothing to fiddle with.
-    expect(find.text('Reminder time'), findsNothing);
-
-    // With notifications blocked by the OS, the test action must not dead-end:
-    // it offers a one-tap route to the system notification settings.
-    h.notifications.permissionGranted = false;
-    await tester.ensureVisible(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-
-    expect(find.text('Notifications are off'), findsOneWidget);
-    await tester.tap(find.text('Open settings'));
-    await tester.pumpAndSettle();
-    expect(h.notifications.openSettingsCalls, 1);
-  });
-
-  testWidgets('Settings exposes a "Send a test notification" action that posts '
-      'a test and confirms it (the on-device "no notifications" diagnostic)', (
-    tester,
-  ) async {
-    final h = await Harness.create();
-    // Deliberately leave the daily reminder OFF (the default): the test action
-    // must be reachable even then, so a player who "never gets notifications"
-    // can verify delivery without first enabling the reminder.
-    expect(h.settings.settings.reminderEnabled, isFalse);
-
-    await tester.pumpWidget(h.app(const SettingsScreen()));
-    await tester.pump();
-
-    await tester.scrollUntilVisible(find.text('Send a test notification'), 200);
-    await tester.ensureVisible(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('Send a test notification'));
-    await tester.pump(); // run the async onTap
-    await tester.pump(); // let the SnackBar animate in
-
-    // The test notification was actually posted, and the user gets confirmation.
-    expect(h.notifications.testCalls, 1);
-    expect(find.text('Test notification sent'), findsOneWidget);
-  });
-
-  testWidgets('the test-notification action reports a denial instead of '
-      'silently doing nothing', (tester) async {
-    final h = await Harness.create();
-    h.notifications.permissionGranted = false; // OS will refuse
-
-    await tester.pumpWidget(h.app(const SettingsScreen()));
-    await tester.pump();
-
-    await tester.scrollUntilVisible(find.text('Send a test notification'), 200);
-    await tester.ensureVisible(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-
-    // Nothing was posted, and the player isn't left guessing: the blocked dialog
-    // explains why and offers a one-tap route to system settings.
-    expect(h.notifications.testCalls, 0);
-    expect(find.text('Notifications are off'), findsOneWidget);
-    expect(find.text('Open settings'), findsOneWidget);
   });
 
   testWidgets('the solve clock ticks the on-screen timer without rebuilding '

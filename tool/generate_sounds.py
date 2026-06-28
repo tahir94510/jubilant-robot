@@ -138,14 +138,15 @@ def mix(*tracks):
     return buf
 
 
-def clean_edges(samples, *, fade_in=0.010, fade_out=0.080):
+def clean_edges(samples, *, fade_in=0.010, fade_out=0.120):
     """Force a channel to start and end at true silence with a raised-cosine
     ramp. Without this, a tail still audible when the buffer ends produces a
     hard step -> an audible click. Applied to both channels of every sound.
 
-    The 10ms fade-in softens the hard attack transient; the generous 80ms
-    fade-out resolves long bell tails to true silence smoothly. The ramps are
-    capped at half the buffer, so very short clips (the tap) are unaffected."""
+    The 10ms fade-in softens the hard attack transient; the generous 120ms
+    fade-out resolves long bell tails to true silence smoothly (longer than the
+    old 80ms so even the deepest cues settle gently, never abruptly). The ramps
+    are capped at half the buffer, so very short clips (the tap) are unaffected."""
     out = list(samples)
     n = len(out)
     fi = min(int(RATE * fade_in), n // 2)
@@ -155,6 +156,22 @@ def clean_edges(samples, *, fade_in=0.010, fade_out=0.080):
     for i in range(fo):
         out[n - 1 - i] *= 0.5 - 0.5 * math.cos(math.pi * i / fo)
     return out
+
+
+def pad_silence(samples, *, lead=0.004, tail=0.060):
+    """Bracket a channel with absolute digital silence (zeros).
+
+    The trailing runway is the key one: the discrete cues are played with the
+    media player's ReleaseMode.stop, so the native MediaPlayer calls stop() the
+    instant it reaches end-of-file. If the very last frames still carry signal
+    (or even the decoder's own ring-out), that stop() lands on a non-silent
+    sample -> a hard step the speaker reproduces as a click/crackle at the END
+    of the effect. A short silent tail guarantees stop() always fires while the
+    buffer is already at zero, so the clip resolves cleanly every time. A tiny
+    lead of silence likewise gives a clean run-in."""
+    li = int(RATE * lead)
+    ti = int(RATE * tail)
+    return [0.0] * li + list(samples) + [0.0] * ti
 
 
 def render(name, mono, *, target=0.7, wet=0.16, cutoff=7000, space=True):
@@ -175,8 +192,10 @@ def render(name, mono, *, target=0.7, wet=0.16, cutoff=7000, space=True):
         max((abs(v) for v in right), default=0.0),
     ) or 1.0
     scale = target / peak
-    left = clean_edges([v * scale for v in left])
-    right = clean_edges([v * scale for v in right])
+    # Fade the edges to silence, THEN bracket with absolute-zero padding so the
+    # media player's stop-at-EOF always lands on pure silence (no end click).
+    left = pad_silence(clean_edges([v * scale for v in left]))
+    right = pad_silence(clean_edges([v * scale for v in right]))
     _write_stereo(name, left, right)
 
 

@@ -35,14 +35,6 @@ abstract class NotificationService {
     required String body,
   });
 
-  /// Posts an immediate notification so the user can verify delivery on their
-  /// device right now (and clear the OS permission prompt). [title]/[body]
-  /// arrive already localized.
-  Future<void> sendTestNotification({
-    required String title,
-    required String body,
-  });
-
   /// Opens the OS's notification settings for this app. The recovery path when
   /// POST_NOTIFICATIONS was denied: on Android 13+ a permanent denial makes
   /// [requestPermission] return false WITHOUT a prompt, so the only way back is

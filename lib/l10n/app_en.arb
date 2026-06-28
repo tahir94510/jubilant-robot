@@ -55,8 +55,6 @@
   },
   "neverMissStreak": "Never miss your streak",
   "reminderTime": "Reminder time",
-  "reminderTestSend": "Send a test notification",
-  "reminderTestSent": "Test notification sent",
   "openSettings": "Open settings",
   "notificationsBlockedTitle": "Notifications are off",
   "notificationsBlockedBody": "Quotecrack can't show notifications until you turn them on in system settings.",

@@ -69,7 +69,10 @@ void main() {
     tester,
   ) async {
     final h = await solveDaily(tester);
+    // A genuine block: the OS refuses and reports notifications off (no real
+    // grant to fall back to), so the invite must report denial, not enable.
     h.notifications.permissionGranted = false;
+    h.notifications.osEnabled = false;
 
     await revealNudge(tester);
     await tester.tap(find.text('Remind me daily'));

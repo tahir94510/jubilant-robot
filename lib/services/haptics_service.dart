@@ -1,18 +1,28 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:flutter/services.dart';
 import 'package:vibration/vibration.dart';
 
-/// Centralized haptic feedback.
+/// Centralized, platform-aware haptic feedback.
 ///
-/// Prefers a REAL, amplitude-controlled vibration (Android's `VibrationEffect`,
-/// driven by the `vibration` plugin) so a cue is actually *felt* — Flutter's
-/// built-in [HapticFeedback] maps to the near-imperceptible CLOCK_TICK /
-/// keyboard-tap constants on most Android devices, which is why "nothing
-/// vibrates" was reported. Falls back to [HapticFeedback] when there is no
-/// controllable vibrator, on web, in tests, or if the plugin call fails — and
-/// every cue stays gated by the user's Haptics setting. Never throws.
+/// One cue API for the whole app; the *delivery* is chosen per platform so each
+/// device gets the feedback that actually feels right there:
+///
+///  * **iOS / macOS** → Flutter's [HapticFeedback] (the Taptic engine:
+///    light/medium/heavy impacts). The `vibration` plugin on iOS maps to a
+///    coarse ~0.5s system buzz that is wrong for a per-keystroke tick, so we
+///    never use it there.
+///  * **Android** → a REAL, amplitude-controlled vibration via the `vibration`
+///    plugin (Android's `VibrationEffect`) so a cue is genuinely *felt* —
+///    Flutter's built-in [HapticFeedback] maps to the near-imperceptible
+///    CLOCK_TICK / keyboard-tap constants on most Android devices, which is why
+///    "nothing vibrates" was reported. Falls back to [HapticFeedback] when the
+///    device exposes no controllable vibrator.
+///  * **Web / other desktop** → [HapticFeedback] (a graceful no-op on most).
+///
+/// Every cue is gated by the user's Haptics setting and never throws.
 class HapticsService {
   HapticsService({required this.isEnabled}) {
     // Probe the vibrator ONCE, asynchronously, and cache the result so each cue
@@ -23,13 +33,20 @@ class HapticsService {
 
   bool Function() isEnabled;
 
+  /// True only on a platform where we drive the `vibration` plugin directly
+  /// (Android). iOS/macOS use the Taptic engine; web/other desktop have no
+  /// motor we manage, so they take the framework-haptic path.
+  static bool get _usesVibrationPlugin =>
+      !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+
   /// Whether the device exposes a vibrator the plugin can drive, and whether it
-  /// supports per-call amplitude. Cached from a one-time async probe.
+  /// supports per-call amplitude. Cached from a one-time async probe; only ever
+  /// true on the [_usesVibrationPlugin] path.
   bool _hasVibrator = false;
   bool _hasAmplitude = false;
 
   Future<void> _detectCapabilities() async {
-    if (kIsWeb) return; // browsers: the HapticFeedback path only
+    if (!_usesVibrationPlugin) return; // iOS/web/desktop: HapticFeedback only
     try {
       _hasVibrator = await Vibration.hasVibrator();
       if (_hasVibrator) {
@@ -42,21 +59,23 @@ class HapticsService {
     }
   }
 
-  /// Plays [ms]/[amplitude] as a real vibration when one is available, else runs
-  /// the framework-haptic [fallback]. All gated by the user's Haptics setting.
+  /// Plays [ms]/[amplitude] as a real vibration when one is available (Android
+  /// with a controllable motor), else runs the framework-haptic [fallback]
+  /// (iOS Taptic engine, web/desktop). All gated by the user's Haptics setting.
   void _buzz(int ms, int amplitude, void Function() fallback) {
     if (!isEnabled()) return;
-    if (!kIsWeb && _hasVibrator) {
-      // Defer the vibration to a microtask so its native call does not fire in
-      // the SAME synchronous frame as the sound effect dispatched right
-      // alongside it (puzzle input plays a cue and buzzes together). Letting the
-      // audio call go first, then the vibrate on the next microtask, eases the
-      // platform-channel contention — and the motor's current spike no longer
-      // lands at the exact instant the clip starts — which is an audible-click
-      // source on some devices. (The residual is hardware coupling between the
-      // motor and the speaker amp, which only the Haptics toggle can fully
-      // remove; this just minimises the software-induced part.)
-      scheduleMicrotask(() => _safeVibrate(ms, amplitude));
+    if (_usesVibrationPlugin && _hasVibrator) {
+      // Decouple the motor from any sound effect dispatched in the SAME frame
+      // (puzzle input plays a cue and buzzes together). A bare microtask still
+      // landed the motor's current spike during the clip's attack/decay, which
+      // couples into the speaker amp and reads as a click/crackle on the wrong-
+      // letter cue. A short fixed delay moves the spike clear of the clip's
+      // body so the software-induced part of that crackle is gone. (The residual
+      // is pure hardware coupling, which only the Haptics toggle fully removes.)
+      Timer(
+        const Duration(milliseconds: 20),
+        () => _safeVibrate(ms, amplitude),
+      );
       return;
     }
     fallback();
@@ -83,11 +102,12 @@ class HapticsService {
   // error buzz, which read as "only errors vibrate". Now every interaction is
   // noticeably felt while staying proportional to its meaning:
   //   tap 18/130  <  word 30/180  <  success 42/215  <  error 48/235  <  solve 60/255
-  // (ms duration / 0-255 amplitude on devices with amplitude control; devices
-  // without it still get a real buzz of that DURATION, so the ladder survives.)
+  // (ms duration / 0-255 amplitude on Android devices with amplitude control;
+  // devices without it still get a real buzz of that DURATION, so the ladder
+  // survives. iOS maps each step to the matching Taptic impact weight below.)
 
   /// A crisp per-keystroke / navigation tick — light but clearly felt.
-  void tap() => _buzz(18, 130, HapticFeedback.lightImpact);
+  void tap() => _buzz(18, 130, HapticFeedback.selectionClick);
 
   /// A soft, distinct buzz when a whole word falls into place: more than a key
   /// tap, lighter than a full solve.

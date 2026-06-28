@@ -19,6 +19,7 @@ class PremiumCelebration extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
     final motion = !MediaQuery.of(context).disableAnimations;
 
     final card = ConstrainedBox(
@@ -30,79 +31,107 @@ class PremiumCelebration extends StatelessWidget {
           // not the heavy all-sides black halo a high Material elevation casts
           // over the dim scrim.
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(28),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.28),
-                blurRadius: 30,
-                offset: const Offset(0, 14),
+                color: Colors.black.withValues(alpha: 0.30),
+                blurRadius: 34,
+                offset: const Offset(0, 16),
               ),
             ],
           ),
-          child: Material(
-            color: scheme.surface,
-            elevation: 0,
-            borderRadius: BorderRadius.circular(24),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(24, 28, 24, 20),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(28),
+            child: ColoredBox(
+              color: scheme.surface,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Gold-to-primary crown medallion: the visual badge of VIP.
+                  // Champagne header band: a soft gold wash carrying the VIP
+                  // crown medallion, so the unlock reads as a premium moment the
+                  // instant it appears (instead of a plain dialog with an icon).
                   Container(
-                    width: 78,
-                    height: 78,
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(top: 30, bottom: 24),
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
                       gradient: LinearGradient(
-                        colors: [scheme.tertiary, scheme.primary],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          scheme.primary.withValues(alpha: .20),
+                          scheme.primary.withValues(alpha: .02),
+                        ],
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: scheme.tertiary.withValues(alpha: 0.45),
-                          blurRadius: 24,
-                          spreadRadius: 1,
+                    ),
+                    child: Center(
+                      // The crown medallion is built from the app's REAL brand
+                      // golds (streak flame -> primary), not Material's seed-
+                      // derived `tertiary`, which resolved to an off-brand hue
+                      // and made the badge look out of place.
+                      child: Container(
+                        width: 84,
+                        height: 84,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: LinearGradient(
+                            colors: [palette.streakFlame, scheme.primary],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: scheme.primary.withValues(alpha: 0.45),
+                              blurRadius: 26,
+                              spreadRadius: 1,
+                            ),
+                          ],
+                        ),
+                        child: Icon(
+                          Icons.workspace_premium,
+                          size: 46,
+                          color: scheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 22),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          l10n.premiumUnlockedTitle,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.2,
+                            color: scheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          l10n.premiumUnlockedBody,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 14.5,
+                            height: 1.45,
+                            color: palette.textSecondary,
+                          ),
+                        ),
+                        const SizedBox(height: 22),
+                        _Benefit(l10n.paywallNoAdsTitle),
+                        _Benefit(l10n.paywallHintsTitle),
+                        _Benefit(l10n.paywallPacksTitle),
+                        const SizedBox(height: 24),
+                        SizedBox(
+                          width: double.infinity,
+                          child: FilledButton(
+                            onPressed: onDismiss,
+                            child: Text(l10n.premiumContinue),
+                          ),
                         ),
                       ],
-                    ),
-                    child: Icon(
-                      Icons.workspace_premium,
-                      size: 44,
-                      color: scheme.onPrimary,
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    l10n.premiumUnlockedTitle,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.w800,
-                      color: scheme.onSurface,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    l10n.premiumUnlockedBody,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14.5,
-                      height: 1.4,
-                      color: scheme.onSurfaceVariant,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  _Benefit(l10n.paywallNoAdsTitle),
-                  _Benefit(l10n.paywallHintsTitle),
-                  _Benefit(l10n.paywallPacksTitle),
-                  const SizedBox(height: 22),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FilledButton(
-                      onPressed: onDismiss,
-                      child: Text(l10n.premiumContinue),
                     ),
                   ),
                 ],
@@ -160,7 +189,7 @@ class _Benefit extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Row(
         children: [
           Icon(Icons.check_circle, size: 20, color: palette.success),

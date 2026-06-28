@@ -273,29 +273,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 // The reminder time is chosen automatically per language (a calm
                 // evening hour) — no in-app time picker to fiddle with. The
                 // subtitle above shows the chosen time when the reminder is on.
-                //
-                // Always available (even with the daily reminder off): lets a
-                // player confirm notifications actually arrive on THIS device,
-                // without waiting for the scheduled time. The clearest way to
-                // diagnose "no reminder ever shows up" — if this arrives,
-                // delivery works (the issue is timing/battery); if not, it's
-                // permission/OEM-blocked, so we route to system settings.
-                ListTile(
-                  leading: const Icon(Icons.notifications_active_outlined),
-                  title: Text(l10n.reminderTestSend),
-                  onTap: () async {
-                    haptics.tap();
-                    final ok = await controller.sendTestNotification();
-                    if (!context.mounted) return;
-                    if (ok) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(l10n.reminderTestSent)),
-                      );
-                    } else {
-                      await _showNotificationsBlocked(context, l10n);
-                    }
-                  },
-                ),
               ],
               section(l10n.sectionPremium),
               if (economy.premium)

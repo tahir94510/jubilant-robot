@@ -14,7 +14,6 @@ class MobileNotificationService extends NotificationService {
   MobileNotificationService() : super.base();
 
   static const int _dailyReminderId = 1001;
-  static const int _testNotificationId = 1002;
 
   /// The notification small-icon drawable (alpha-only status-bar mark). Passed
   /// EXPLICITLY on every post as well as at init, so a notification never falls
@@ -125,8 +124,22 @@ class MobileNotificationService extends NotificationService {
     // (users read it as a bug), and Play scrutinises exact-alarm as a
     // core-function-only permission. Both exact-alarm permissions are stripped
     // in the manifest; scheduling uses inexact-allow-while-idle.
+    //
+    // Already allowed? Return true WITHOUT prompting. This is the fix for the
+    // "keeps sending me to Settings" loop: on Android 13+ once the user grants
+    // POST_NOTIFICATIONS from the system settings page,
+    // requestNotificationsPermission() returns false/null (it reports "did I
+    // just show a dialog / newly grant", not "is it allowed"), so the app never
+    // saw the grant and re-routed to Settings forever. Trusting the real OS
+    // state (areEnabled) breaks that cycle.
+    if (await areEnabled()) return true;
     final granted = await _android?.requestNotificationsPermission();
-    return granted ?? false;
+    // The request's own return can be false even when the permission ends up
+    // granted (e.g. it was granted out-of-band while the dialog was up, or the
+    // OS reported the dialog result rather than the final state). Fall back to
+    // the authoritative OS state so a real grant is never missed.
+    if (granted == true) return true;
+    return areEnabled();
   }
 
   AndroidNotificationDetails _androidDetails(
@@ -200,25 +213,6 @@ class MobileNotificationService extends NotificationService {
       // An explicit (non-null) payload keeps the plugin off any null-payload
       // serialization path when the daily reminder is delivered.
       payload: 'daily_reminder',
-    );
-  }
-
-  @override
-  Future<void> sendTestNotification({
-    required String title,
-    required String body,
-  }) async {
-    // Fires immediately on the same HIGH channel as the daily reminder so the
-    // user can confirm notifications actually arrive on THIS device (and clear
-    // the OS prompt) without waiting for the scheduled time.
-    await _plugin.show(
-      id: _testNotificationId,
-      title: title,
-      body: body,
-      notificationDetails: NotificationDetails(
-        android: _androidDetails(title, body),
-      ),
-      payload: 'test_notification',
     );
   }
 

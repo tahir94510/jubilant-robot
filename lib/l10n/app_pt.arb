@@ -37,8 +37,6 @@
   "reminderAt": "Às {time}",
   "neverMissStreak": "Nunca perca sua sequência",
   "reminderTime": "Horário do lembrete",
-  "reminderTestSend": "Enviar uma notificação de teste",
-  "reminderTestSent": "Notificação de teste enviada",
   "openSettings": "Abrir configurações",
   "notificationsBlockedTitle": "As notificações estão desativadas",
   "notificationsBlockedBody": "O Quotecrack não pode mostrar notificações até você ativá-las nas configurações do sistema.",

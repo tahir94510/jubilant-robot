@@ -37,8 +37,6 @@
   "reminderAt": "A las {time}",
   "neverMissStreak": "No pierdas tu racha",
   "reminderTime": "Hora del recordatorio",
-  "reminderTestSend": "Enviar una notificación de prueba",
-  "reminderTestSent": "Notificación de prueba enviada",
   "openSettings": "Abrir ajustes",
   "notificationsBlockedTitle": "Las notificaciones están desactivadas",
   "notificationsBlockedBody": "Quotecrack no puede mostrar notificaciones hasta que las actives en los ajustes del sistema.",
