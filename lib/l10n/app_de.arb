@@ -27,6 +27,7 @@
   "showTimerTitle": "Timer anzeigen",
   "showTimerSubtitle": "Für ein ganz entspanntes Erlebnis ausschalten",
   "hapticsTitle": "Haptisches Feedback",
+  "vibrationStrength": "Vibrationsstärke",
   "soundEffectsTitle": "Soundeffekte",
   "soundEffectsSubtitle": "Sanfte Tastentöne und feine Klänge",
   "effectsVolume": "Effektlautstärke",

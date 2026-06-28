@@ -30,7 +30,8 @@
     <application
         android:label="Quotecrack"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokedCallback="true">
 
         <!-- AdMob uygulama kimligi; degeri android/app/build.gradle.kts icindeki
              manifestPlaceholders["admobAppId"] satirindan gelir. -->

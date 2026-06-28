@@ -27,6 +27,7 @@
   "showTimerTitle": "Mostra timer",
   "showTimerSubtitle": "Disattivalo per un’esperienza totalmente zen",
   "hapticsTitle": "Feedback aptico",
+  "vibrationStrength": "Intensità vibrazione",
   "soundEffectsTitle": "Effetti sonori",
   "soundEffectsSubtitle": "Tocchi dei tasti delicati e suoni gentili",
   "effectsVolume": "Volume effetti",

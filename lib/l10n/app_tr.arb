@@ -27,6 +27,7 @@
   "showTimerTitle": "Süreyi göster",
   "showTimerSubtitle": "Tamamen sakin bir deneyim için kapat",
   "hapticsTitle": "Dokunsal geri bildirim",
+  "vibrationStrength": "Titreşim gücü",
   "soundEffectsTitle": "Ses efektleri",
   "soundEffectsSubtitle": "Yumuşak tuş sesleri ve nazik tınılar",
   "effectsVolume": "Efekt ses düzeyi",

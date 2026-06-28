@@ -95,6 +95,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get hapticsTitle => 'Dokunsal geri bildirim';
 
   @override
+  String get vibrationStrength => 'Titreşim gücü';
+
+  @override
   String get soundEffectsTitle => 'Ses efektleri';
 
   @override

@@ -96,6 +96,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get hapticsTitle => 'Respuesta háptica';
 
   @override
+  String get vibrationStrength => 'Intensidad de vibración';
+
+  @override
   String get soundEffectsTitle => 'Efectos de sonido';
 
   @override

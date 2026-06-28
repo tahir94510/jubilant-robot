@@ -119,11 +119,20 @@ class _CipherBoardState extends State<CipherBoard> {
     // (words render as non-wrapping Rows inside the Wrap below).
     return LayoutBuilder(
       builder: (context, constraints) {
-        final screenWidth = MediaQuery.sizeOf(context).width;
-        final preferred = (screenWidth / 13.5).clamp(22.0, 34.0);
+        // Derive ALL cell geometry from the stable layout viewport
+        // (constraints.maxWidth), never from MediaQuery.sizeOf. With
+        // edge-to-edge, the system bars can show/hide during a scroll, which
+        // changes MediaQuery's size and used to (a) rebuild the board and
+        // (b) recompute the cell width mid-scroll — re-centering the Wrap and
+        // drifting every letter sideways. constraints.maxWidth is fixed for the
+        // board's slot in a vertical scroll, so the geometry is now fully
+        // deterministic and scroll-stable. MediaQuery is only the last-resort
+        // fallback for an (unexpected) unbounded width, and is read lazily so
+        // the common path registers no size dependency at all.
         final available = constraints.maxWidth.isFinite
             ? constraints.maxWidth
-            : screenWidth;
+            : MediaQuery.sizeOf(context).width;
+        final preferred = (available / 13.5).clamp(22.0, 34.0);
         // Snap the rendered cell width to a whole logical pixel. A fractional
         // width put every letter (and the word Row + centered Wrap built on it)
         // at sub-pixel x-offsets, so the glyphs shimmered ("titreme") and the

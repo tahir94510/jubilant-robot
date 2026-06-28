@@ -140,7 +140,10 @@ Future<void> _start() async {
     ads: ads,
   );
   final game = GameController(storage: storage);
-  final haptics = HapticsService(isEnabled: () => settings.settings.haptics);
+  final haptics = HapticsService(
+    isEnabled: () => settings.settings.haptics,
+    intensity: () => settings.settings.hapticIntensity,
+  );
   final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
   await sounds.initialize(); // already internally guarded
   sounds.setUserVolume(settings.settings.soundVolume);

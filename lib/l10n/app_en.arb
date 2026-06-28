@@ -38,6 +38,7 @@
   "showTimerTitle": "Show timer",
   "showTimerSubtitle": "Turn off for a fully zen experience",
   "hapticsTitle": "Haptic feedback",
+  "vibrationStrength": "Vibration strength",
   "soundEffectsTitle": "Sound effects",
   "soundEffectsSubtitle": "Soft key taps and gentle chimes",
   "effectsVolume": "Effects volume",

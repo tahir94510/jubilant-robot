@@ -65,12 +65,14 @@ void main() {
     h.game.stopTimer();
   });
 
-  testWidgets('a denied permission shows guidance and never re-nags', (
+  testWidgets('a denied first request leaves it off and never re-nags', (
     tester,
   ) async {
     final h = await solveDaily(tester);
     // A genuine block: the OS refuses and reports notifications off (no real
-    // grant to fall back to), so the invite must report denial, not enable.
+    // grant to fall back to). The first tap shows the system prompt (denied
+    // here), so the reminder stays off — no custom dialog, the invite is just
+    // dismissed. An explicit "No" is respected, not redirected to settings.
     h.notifications.permissionGranted = false;
     h.notifications.osEnabled = false;
 
@@ -80,7 +82,9 @@ void main() {
 
     expect(h.settings.settings.reminderEnabled, isFalse);
     expect(h.settings.settings.reminderNudgeDone, isTrue);
-    expect(find.textContaining('permission was denied'), findsOneWidget);
+    // First denial respects the "No": no system-settings redirect.
+    expect(h.notifications.openSettingsCalls, 0);
+    expect(find.text('Protect your streak'), findsNothing);
 
     h.game.stopTimer();
   });

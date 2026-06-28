@@ -27,6 +27,7 @@
   "showTimerTitle": "Afficher le chrono",
   "showTimerSubtitle": "Désactivez-le pour une expérience zen",
   "hapticsTitle": "Retour haptique",
+  "vibrationStrength": "Intensité des vibrations",
   "soundEffectsTitle": "Effets sonores",
   "soundEffectsSubtitle": "Touches douces et carillons délicats",
   "effectsVolume": "Volume des effets",

@@ -95,6 +95,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get hapticsTitle => 'Retour haptique';
 
   @override
+  String get vibrationStrength => 'Intensité des vibrations';
+
+  @override
   String get soundEffectsTitle => 'Effets sonores';
 
   @override

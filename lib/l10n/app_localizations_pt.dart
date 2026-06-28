@@ -96,6 +96,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get hapticsTitle => 'Resposta tátil';
 
   @override
+  String get vibrationStrength => 'Intensidade da vibração';
+
+  @override
   String get soundEffectsTitle => 'Efeitos sonoros';
 
   @override

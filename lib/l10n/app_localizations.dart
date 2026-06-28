@@ -270,6 +270,12 @@ abstract class AppLocalizations {
   /// **'Haptic feedback'**
   String get hapticsTitle;
 
+  /// No description provided for @vibrationStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration strength'**
+  String get vibrationStrength;
+
   /// No description provided for @soundEffectsTitle.
   ///
   /// In en, this message translates to:

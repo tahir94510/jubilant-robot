@@ -27,6 +27,7 @@
   "showTimerTitle": "Mostrar cronômetro",
   "showTimerSubtitle": "Desative para uma experiência totalmente zen",
   "hapticsTitle": "Resposta tátil",
+  "vibrationStrength": "Intensidade da vibração",
   "soundEffectsTitle": "Efeitos sonoros",
   "soundEffectsSubtitle": "Toques de tecla suaves e sons delicados",
   "effectsVolume": "Volume dos efeitos",
