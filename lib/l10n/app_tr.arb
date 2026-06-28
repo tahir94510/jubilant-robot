@@ -37,8 +37,6 @@
   "reminderAt": "Saat {time}",
   "neverMissStreak": "Serini hiç kaçırma",
   "reminderTime": "Hatırlatma saati",
-  "reminderTestSend": "Test bildirimi gönder",
-  "reminderTestSent": "Test bildirimi gönderildi",
   "openSettings": "Ayarları aç",
   "notificationsBlockedTitle": "Bildirimler kapalı",
   "notificationsBlockedBody": "Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.",

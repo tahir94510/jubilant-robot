@@ -258,7 +258,10 @@ void main() {
     tester,
   ) async {
     final h = await Harness.create(quotes: realQuotes);
+    // A genuine block: the OS refuses the request AND reports notifications
+    // off, so there is no real grant to fall back to.
     h.notifications.permissionGranted = false;
+    h.notifications.osEnabled = false;
 
     await tester.pumpWidget(h.app(const SettingsScreen()));
     await tester.pump();

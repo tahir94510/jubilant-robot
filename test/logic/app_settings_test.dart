@@ -88,7 +88,7 @@ void main() {
   });
 
   test(
-    'sendTestNotification posts a localized test only when granted',
+    'a grant made from system settings enables the reminder (no Settings loop)',
     () async {
       SharedPreferences.setMockInitialValues({});
       final storage = await StorageService.init();
@@ -96,17 +96,39 @@ void main() {
       final c = SettingsController(storage: storage, notifications: n);
       await c.setLanguage('en');
 
-      n.permissionGranted = true;
-      expect(await c.sendTestNotification(), isTrue);
-      expect(n.testCalls, 1);
-      expect(n.testTitle, 'Your daily cryptogram is ready');
+      // Reproduce the Android 13+ trap that caused the "keeps sending me back
+      // to Settings" loop: the in-app permission REQUEST reports failure (no
+      // dialog is shown for an already-decided permission), yet the user has
+      // turned notifications ON from the system settings page.
+      n.permissionGranted = false; // requestNotificationsPermission() -> false
+      n.osEnabled = true; // ...but the OS actually allows them now
 
-      // Denied permission: nothing fires and the call reports failure.
-      n.permissionGranted = false;
-      expect(await c.sendTestNotification(), isFalse);
-      expect(n.testCalls, 1);
+      final ok = await c.setReminder(enabled: true);
+
+      // The reminder enables instead of dead-ending: the request falls back to
+      // the real OS state, so the grant is finally honored.
+      expect(ok, isTrue);
+      expect(c.settings.reminderEnabled, isTrue);
+      expect(n.scheduledAt, isNotNull);
     },
   );
+
+  test('a genuinely blocked permission keeps the reminder off', () async {
+    SharedPreferences.setMockInitialValues({});
+    final storage = await StorageService.init();
+    final n = FakeNotificationService();
+    final c = SettingsController(storage: storage, notifications: n);
+    await c.setLanguage('en');
+
+    // Truly blocked: the OS refuses AND reports notifications off.
+    n.permissionGranted = false;
+    n.osEnabled = false;
+
+    final ok = await c.setReminder(enabled: true);
+    expect(ok, isFalse);
+    expect(c.settings.reminderEnabled, isFalse);
+    expect(n.scheduledAt, isNull);
+  });
 
   test(
     'rescheduleDailyIfEnabled re-arms an enabled reminder on startup',

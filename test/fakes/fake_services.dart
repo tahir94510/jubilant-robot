@@ -130,7 +130,20 @@ class FakeNotificationService extends NotificationService {
   Future<void> initialize() async {}
 
   @override
-  Future<bool> requestPermission() async => permissionGranted;
+  Future<bool> requestPermission() async {
+    // Faithfully mirrors the real service's robust contract: an already-enabled
+    // permission (e.g. the user turned notifications ON from the system settings
+    // page) counts as granted WITHOUT re-prompting — the fix for the "keeps
+    // sending me to Settings" loop. Otherwise the prompt result decides, and a
+    // fresh grant flips the OS state on. A genuine block therefore needs BOTH
+    // permissionGranted=false AND osEnabled=false.
+    if (osEnabled) return true;
+    if (permissionGranted) {
+      osEnabled = true;
+      return true;
+    }
+    return false;
+  }
 
   @override
   Future<bool> areEnabled() async => osEnabled;
@@ -147,18 +160,6 @@ class FakeNotificationService extends NotificationService {
     scheduledAt = time;
     scheduledTitle = title;
     scheduledBody = body;
-  }
-
-  int testCalls = 0;
-  String? testTitle;
-
-  @override
-  Future<void> sendTestNotification({
-    required String title,
-    required String body,
-  }) async {
-    testCalls += 1;
-    testTitle = title;
   }
 
   int openSettingsCalls = 0;

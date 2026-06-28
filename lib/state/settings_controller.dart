@@ -259,21 +259,6 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
-  /// Posts an immediate test notification so the player can confirm reminders
-  /// actually arrive on their device. Requests permission first (the reminder
-  /// may never have been enabled). Returns false if unsupported or denied.
-  Future<bool> sendTestNotification() async {
-    if (!_notifications.supported) return false;
-    final granted = await _notifications.requestPermission();
-    if (!granted) return false;
-    final l10n = _activeL10n();
-    await _notifications.sendTestNotification(
-      title: l10n.notificationDailyTitle,
-      body: l10n.notificationDailyBody,
-    );
-    return true;
-  }
-
   /// Keeps the in-app reminder toggle honest when the user turns notifications
   /// off from system settings: if the OS no longer allows notifications but the
   /// app still thinks the reminder is on, switch it off and cancel. Safe to call

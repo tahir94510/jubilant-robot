@@ -437,68 +437,134 @@ class _ReminderNudgeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final cardColor = Theme.of(context).cardColor;
     final l10n = AppLocalizations.of(context);
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 14, 18, 12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Icon(Icons.alarm_outlined, size: 20, color: scheme.primary),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    l10n.reminderNudgeTitle,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Text(
-              l10n.reminderNudgeBody,
-              style: TextStyle(
-                fontSize: 13,
-                height: 1.4,
-                // AA-compliant on every theme (replaces onSurface@.6).
-                color: palette.textSecondary,
-              ),
-            ),
-            const SizedBox(height: 14),
-            // Full-width stacked actions: the primary choice is prominent and
-            // both buttons share one clean alignment at any text size (the old
-            // right-wrapped pair stacked unevenly on some devices).
-            SizedBox(
-              width: double.infinity,
-              child: FilledButton(
-                onPressed: () async {
-                  final ok = await controller.setReminder(enabled: true);
-                  await controller.markReminderNudgeDone();
-                  if (!ok && context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(l10n.reminderNudgeDenied)),
-                    );
-                  }
-                },
-                child: Text(l10n.remindMeDaily),
-              ),
-            ),
-            const SizedBox(height: 4),
-            SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                onPressed: () => controller.markReminderNudgeDone(),
-                child: Text(l10n.reminderNudgeNo),
-              ),
-            ),
+    return Container(
+      // A branded, on-"Ink & Gold" card: a faint gold sheen over the card
+      // surface and a soft gold hairline, so the invite reads as a crafted
+      // moment instead of the plain grey panel it used to be.
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: scheme.primary.withValues(alpha: .28),
+          width: 1.2,
+        ),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.alphaBlend(scheme.primary.withValues(alpha: .08), cardColor),
+            cardColor,
           ],
         ),
       ),
+      padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const _GoldMedallion(
+                icon: Icons.notifications_active_rounded,
+                size: 46,
+                iconSize: 24,
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Text(
+                  l10n.reminderNudgeTitle,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 17,
+                    color: scheme.onSurface,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            l10n.reminderNudgeBody,
+            style: TextStyle(
+              fontSize: 13.5,
+              height: 1.45,
+              // AA-compliant on every theme (replaces onSurface@.6).
+              color: palette.textSecondary,
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Full-width stacked actions: the primary choice is prominent and
+          // both buttons share one clean alignment at any text size (the old
+          // right-wrapped pair stacked unevenly on some devices).
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton.icon(
+              onPressed: () async {
+                final ok = await controller.setReminder(enabled: true);
+                await controller.markReminderNudgeDone();
+                if (!ok && context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(l10n.reminderNudgeDenied)),
+                  );
+                }
+              },
+              icon: const Icon(Icons.check_rounded, size: 20),
+              label: Text(l10n.remindMeDaily),
+            ),
+          ),
+          const SizedBox(height: 4),
+          SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              onPressed: () => controller.markReminderNudgeDone(),
+              child: Text(l10n.reminderNudgeNo),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A circular champagne-gold medallion built from the app's REAL brand golds
+/// (the streak flame + the primary accent), not Material's seed-derived
+/// `tertiary` — which resolves to an off-brand hue and made the old crown/icon
+/// gradients look inconsistent. Shared by the reminder invite and the premium
+/// celebration so both wear the same badge.
+class _GoldMedallion extends StatelessWidget {
+  const _GoldMedallion({
+    required this.icon,
+    required this.size,
+    required this.iconSize,
+  });
+
+  final IconData icon;
+  final double size;
+  final double iconSize;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final palette = Theme.of(context).extension<GamePalette>()!;
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [palette.streakFlame, scheme.primary],
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: scheme.primary.withValues(alpha: .32),
+            blurRadius: size * 0.3,
+            offset: Offset(0, size * 0.08),
+          ),
+        ],
+      ),
+      child: Icon(icon, size: iconSize, color: scheme.onPrimary),
     );
   }
 }
