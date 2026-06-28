@@ -133,6 +133,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderTestSent => 'Test bildirimi gönderildi';
 
   @override
+  String get openSettings => 'Ayarları aç';
+
+  @override
+  String get notificationsBlockedTitle => 'Bildirimler kapalı';
+
+  @override
+  String get notificationsBlockedBody =>
+      'Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.';
+
+  @override
   String get reminderDenied => 'Bildirim izni sistem ayarlarında reddedildi.';
 
   @override

@@ -119,7 +119,7 @@ void main() {
       final c0 = game.selectedCipherLetter!;
       game.enterGuess('X'); // X is never in the quote -> always a wrong guess
       expect(game.lastTypedCipherLetter, c0);
-      expect(game.lastLockedCipherLetters, isEmpty); // nothing locked yet
+      expect(game.lastLockedPositions, isEmpty); // nothing locked yet
 
       final otherPos = [
         for (var i = 0; i < s.cipherText.length; i++)
@@ -146,7 +146,7 @@ void main() {
       game.selectIndex(otherPos);
       game.clearGuess();
       expect(game.lastTypedCipherLetter, c0);
-      expect(game.lastLockedCipherLetters, isEmpty);
+      expect(game.lastLockedPositions, isEmpty);
 
       game.stopTimer();
       game.dispose();
@@ -427,14 +427,16 @@ void main() {
       final s = game.session!;
 
       final cipherL = s.cipher.encryptLetter('L');
+      // The exact cells of the word "is" (index 1) — what completing it locks.
+      final isPositions = s.wordCellPositions(1).toSet();
 
       // Nothing locked yet -> no highlight, even after a tentative (wrong) guess.
       game.selectCipherLetter(cipherL);
       game.enterGuess('Z');
-      expect(game.lastLockedCipherLetters, isEmpty);
+      expect(game.lastLockedPositions, isEmpty);
 
-      // Completing the 2-letter word "is" correctly LOCKS its letters, and the
-      // highlight lands on the letter that completed it.
+      // Completing the 2-letter word "is" correctly LOCKS its two cells, and the
+      // highlight lands on EXACTLY those positions.
       final isWord = s.cipherText.split(' ')[1]; // "is"
       final cipherI = isWord[0];
       final cipherIs = isWord[1];
@@ -442,23 +444,24 @@ void main() {
       game.enterGuess(
         s.cipher.decryptLetter(cipherI),
       ); // correct, not yet a word
-      expect(game.lastLockedCipherLetters, isEmpty);
+      expect(game.lastLockedPositions, isEmpty);
       game.selectCipherLetter(cipherIs);
       game.enterGuess(
         s.cipher.decryptLetter(cipherIs),
       ); // completes "is" -> locks
       expect(s.confirmedLetters.contains(cipherIs), isTrue);
-      // Completing the word locks BOTH its letters at once -> both light up.
-      expect(game.lastLockedCipherLetters, containsAll([cipherI, cipherIs]));
+      // The cue lands on exactly the two cells of "is" — and NOT on the other
+      // copies of 'S' over in "less" (position-scoped, no spread).
+      expect(game.lastLockedPositions, equals(isPositions));
 
       // Tentative typing elsewhere, delete and undo must NOT move it.
       game.selectCipherLetter(cipherL);
       game.enterGuess('Z');
-      expect(game.lastLockedCipherLetters, contains(cipherIs));
+      expect(game.lastLockedPositions, equals(isPositions));
       game.clearGuess();
-      expect(game.lastLockedCipherLetters, contains(cipherIs));
+      expect(game.lastLockedPositions, equals(isPositions));
       game.undo();
-      expect(game.lastLockedCipherLetters, contains(cipherIs));
+      expect(game.lastLockedPositions, equals(isPositions));
 
       // Solving the whole puzzle clears it so the finished board reads clean.
       for (final plain in ['L', 'E', 'S', 'I', 'M', 'O', 'R']) {
@@ -466,11 +469,54 @@ void main() {
         game.enterGuess(plain);
       }
       expect(game.completed, isTrue);
-      expect(game.lastLockedCipherLetters, isEmpty);
+      expect(game.lastLockedPositions, isEmpty);
 
       game.dispose();
     },
   );
+
+  test('completing a word locks ONLY its genuinely-new cells: a letter already '
+      'locked by another word is not re-locked, and the cue never spreads to its '
+      'copies elsewhere', () async {
+    final store = await storage();
+    final game = GameController(storage: store);
+    game.start(shortQuote, daily: false); // LESS / IS / MORE — 'S' is shared
+    final s = game.session!;
+
+    final lessCells = s.wordCellPositions(0); // L E S S
+    final isCells = s.wordCellPositions(1); //  I S
+
+    // 1) Solve "is" first → it locks exactly its own two cells. (Entering the
+    //    correct 'S' here also fills the 'S' cells inside "less" via the shared
+    //    guess, but those belong to an unfinished word and must NOT light up.)
+    for (final p in isCells) {
+      final c = s.cipherText[p];
+      game.selectCipherLetter(c);
+      game.enterGuess(s.cipher.decryptLetter(c));
+    }
+    expect(game.lastLockedPositions, equals(isCells.toSet()));
+
+    // 2) Finish "less" by entering its first two cells (L, E). Its 'S' cells are
+    //    ALREADY locked via "is", so completing "less" must light up ONLY the
+    //    genuinely-new L and E cells — never re-light the already-locked 'S's.
+    for (final p in [lessCells[0], lessCells[1]]) {
+      final c = s.cipherText[p];
+      game.selectCipherLetter(c);
+      game.enterGuess(s.cipher.decryptLetter(c));
+    }
+
+    expect(game.lastLockedPositions, equals({lessCells[0], lessCells[1]}));
+    expect(game.lastLockedPositions, isNot(contains(lessCells[2]))); // shared S
+    expect(game.lastLockedPositions, isNot(contains(lessCells[3]))); // shared S
+    // The whole word is still confirmed even though only the new cells lit.
+    expect(
+      lessCells.every((p) => s.confirmedLetters.contains(s.cipherText[p])),
+      isTrue,
+    );
+
+    game.stopTimer();
+    game.dispose();
+  });
 
   test('typing advances the cursor forward, never back to the start', () async {
     final store = await storage();
@@ -502,10 +548,16 @@ void main() {
     game.start(shortQuote, daily: false);
     final s = game.session!;
 
-    // A hint LOCKS the revealed letter, so it becomes the last-move highlight.
+    // Every cell holding cipher letter [c].
+    Set<int> positionsOf(String c) => {
+      for (var i = 0; i < s.cipherText.length; i++)
+        if (s.cipherText[i] == c) i,
+    };
+
+    // A hint LOCKS the revealed letter, so every cell of it becomes the cue.
     game.revealSelected();
     final revealed = s.revealed.first;
-    expect(game.lastLockedCipherLetters, contains(revealed));
+    expect(game.lastLockedPositions, containsAll(positionsOf(revealed)));
 
     // Prev/next navigation and a tentative (wrong) guess must NOT move it —
     // only a new lock can.
@@ -516,19 +568,23 @@ void main() {
     );
     game.selectCipherLetter(other);
     game.enterGuess('Z'); // tentative, locks nothing
-    expect(game.lastLockedCipherLetters, contains(revealed));
+    expect(game.lastLockedPositions, containsAll(positionsOf(revealed)));
 
     // A SECOND hint is a new lock: the highlight moves to the newly revealed
-    // letter.
+    // letter's cells.
+    final before = game.lastLockedPositions;
     game.revealSelected();
-    final newLocked = game.lastLockedCipherLetters;
+    final newLocked = game.lastLockedPositions;
     expect(newLocked, isNotEmpty);
-    // The highlight moved off a lone first-reveal: a fresh letter locked.
-    expect(newLocked, isNot(equals({revealed})));
-    // Everything highlighted is genuinely locked on the board.
+    // The highlight changed off the first reveal: a fresh letter locked.
+    expect(newLocked, isNot(equals(before)));
+    // Every highlighted CELL is genuinely locked on the board (revealed or
+    // confirmed).
     expect(
       newLocked.every(
-        (c) => s.revealed.contains(c) || s.confirmedLetters.contains(c),
+        (p) =>
+            s.revealed.contains(s.cipherText[p]) ||
+            s.confirmedLetters.contains(s.cipherText[p]),
       ),
       isTrue,
     );

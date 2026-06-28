@@ -401,78 +401,90 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                 child: Column(
                   children: [
                     Expanded(
-                      child: SingleChildScrollView(
-                        padding: const EdgeInsets.fromLTRB(12, 18, 12, 20),
-                        child: Column(
-                          children: [
-                            // The board only repaints when the game state actually
-                            // changes — clock ticks repaint just the AppBar text.
-                            RepaintBoundary(
-                              child: reviewing
-                                  // Re-opened solved puzzle: show the FINISHED
-                                  // in-game board read-only — letters the player
-                                  // had hint-revealed keep their distinct
-                                  // "revealed" style, the rest read as confirmed,
-                                  // exactly as the board looked when solved (no
-                                  // flat all-green wash, no cursor/last-move cue).
-                                  ? CipherBoard(
-                                      session: session,
-                                      selected: null,
-                                      errorChecking: false,
-                                      onSelect: (_) {},
-                                    )
-                                  : _celebrating
-                                  // The wave drives navigation from onEnd:
-                                  // animation frames keep the test clock alive (a
-                                  // bare Future.delayed would stall pumpAndSettle).
-                                  ? TweenAnimationBuilder<double>(
-                                      tween: Tween(begin: 0, end: 1),
-                                      duration: const Duration(
-                                        milliseconds: 620,
-                                      ),
-                                      curve: Curves.easeOut,
-                                      onEnd: _goToComplete,
-                                      builder: (context, wave, _) =>
-                                          CipherBoard(
+                      // No scrollbar: the cursor auto-scrolls into view, and on
+                      // platforms that DO reserve a scrollbar gutter (web/desktop)
+                      // its appear/disappear changed the board's available width
+                      // mid-scroll, re-centering the Wrap and nudging the board
+                      // sideways. Removing it keeps the board width rock-stable.
+                      child: ScrollConfiguration(
+                        behavior: ScrollConfiguration.of(
+                          context,
+                        ).copyWith(scrollbars: false),
+                        child: SingleChildScrollView(
+                          padding: const EdgeInsets.fromLTRB(12, 18, 12, 20),
+                          child: Column(
+                            children: [
+                              // The board only repaints when the game state actually
+                              // changes — clock ticks repaint just the AppBar text.
+                              RepaintBoundary(
+                                child: reviewing
+                                    // Re-opened solved puzzle: show the FINISHED
+                                    // in-game board read-only — letters the player
+                                    // had hint-revealed keep their distinct
+                                    // "revealed" style, the rest read as confirmed,
+                                    // exactly as the board looked when solved (no
+                                    // flat all-green wash, no cursor/last-move cue).
+                                    ? CipherBoard(
+                                        session: session,
+                                        selected: null,
+                                        errorChecking: false,
+                                        onSelect: (_) {},
+                                      )
+                                    : _celebrating
+                                    // The wave drives navigation from onEnd:
+                                    // animation frames keep the test clock alive (a
+                                    // bare Future.delayed would stall pumpAndSettle).
+                                    ? TweenAnimationBuilder<double>(
+                                        tween: Tween(begin: 0, end: 1),
+                                        duration: const Duration(
+                                          milliseconds: 620,
+                                        ),
+                                        curve: Curves.easeOut,
+                                        onEnd: _goToComplete,
+                                        builder: (context, wave, _) =>
+                                            CipherBoard(
+                                              session: session,
+                                              selected: null,
+                                              errorChecking:
+                                                  settings.errorChecking,
+                                              onSelect: (_) {},
+                                              solveWave: wave,
+                                            ),
+                                      )
+                                    : _Pulse(
+                                        trigger: _wordPulse,
+                                        child: _Shaker(
+                                          trigger: _conflictPulse,
+                                          child: CipherBoard(
                                             session: session,
-                                            selected: null,
+                                            selected: game.selectedCipherLetter,
+                                            selectedIndex: game.selectedIndex,
+                                            lastLockedPositions:
+                                                game.lastLockedPositions,
+                                            lastTyped:
+                                                game.lastTypedCipherLetter,
                                             errorChecking:
                                                 settings.errorChecking,
-                                            onSelect: (_) {},
-                                            solveWave: wave,
+                                            onSelect: (index) {
+                                              haptics.tap();
+                                              game.selectIndex(index);
+                                            },
                                           ),
-                                    )
-                                  : _Pulse(
-                                      trigger: _wordPulse,
-                                      child: _Shaker(
-                                        trigger: _conflictPulse,
-                                        child: CipherBoard(
-                                          session: session,
-                                          selected: game.selectedCipherLetter,
-                                          selectedIndex: game.selectedIndex,
-                                          lastLocked:
-                                              game.lastLockedCipherLetters,
-                                          lastTyped: game.lastTypedCipherLetter,
-                                          errorChecking: settings.errorChecking,
-                                          onSelect: (index) {
-                                            haptics.tap();
-                                            game.selectIndex(index);
-                                          },
                                         ),
                                       ),
-                                    ),
-                            ),
-                            const SizedBox(height: 24),
-                            Text(
-                              '— ${session.quote.author}',
-                              style: TextStyle(
-                                fontFamily: 'Lora',
-                                fontStyle: FontStyle.italic,
-                                fontSize: 15,
-                                color: palette.textSecondary,
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 24),
+                              Text(
+                                '— ${session.quote.author}',
+                                style: TextStyle(
+                                  fontFamily: 'Lora',
+                                  fontStyle: FontStyle.italic,
+                                  fontSize: 15,
+                                  color: palette.textSecondary,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

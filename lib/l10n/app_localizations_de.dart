@@ -134,6 +134,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get reminderTestSent => 'Testbenachrichtigung gesendet';
 
   @override
+  String get openSettings => 'Einstellungen öffnen';
+
+  @override
+  String get notificationsBlockedTitle => 'Benachrichtigungen sind aus';
+
+  @override
+  String get notificationsBlockedBody =>
+      'Quotecrack kann keine Benachrichtigungen anzeigen, bis du sie in den Systemeinstellungen aktivierst.';
+
+  @override
   String get reminderDenied =>
       'Benachrichtigungsberechtigung in den Systemeinstellungen verweigert.';
 

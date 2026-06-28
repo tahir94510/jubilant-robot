@@ -118,11 +118,11 @@ class LetterCell extends StatelessWidget {
             decoration: BoxDecoration(
               color: selected
                   ? palette.boardCellSelectedBg
-                  // The last LOCKED letter (by a hint or by completing a word):
-                  // the chess-style "last move" fill, shown ABOVE the confirmed
-                  // backdrop so the latest locked letter stands out from the
-                  // other confirmed ones — and never as the cursor (it has no
-                  // frame).
+                  // The just-locked cells (a hint, or the word you just completed):
+                  // a CALM fill in the same green confirmed family, just a gentle
+                  // step stronger than the older confirmed cells — so the latest
+                  // letters read as "freshly locked" without the old jarring gold
+                  // highlight, and never as the cursor (no frame).
                   : recent
                   ? palette.boardCellLastMoveBg
                   // Other letters of a fully-correct word: their own calm
@@ -142,23 +142,15 @@ class LetterCell extends StatelessWidget {
                   ? palette.boardCellFilledBg
                   : palette.boardCellBg,
               borderRadius: BorderRadius.circular(6),
-              // ONLY the focused cell carries a frame now: the last-move and
-              // sibling cues moved to fills (above), so a gold frame means
-              // exactly one thing — "the cursor is here" — and never competes
-              // with the last-move highlight or the copies. CONSTANT 1.6px width
-              // (transparent when unfocused): a BoxDecoration border is laid out
-              // as padding, so a varying width would resize the cell on selection
-              // and re-flow the word Row / Wrap (the "titreme" jitter).
-              // The focused cell gets the solid gold cursor frame. The last
-              // LOCKED letter gets a softer gold RING (over its gold fill) so it
-              // reads as "the latest letter you nailed down" — clearly apart
-              // from the other confirmed cells — without mimicking the cursor.
+              // ONLY the focused cell carries a frame: a border now means exactly
+              // one thing — "the cursor is here". The just-locked cue is a calm
+              // fill alone (no ring), so it never competes with the cursor or
+              // strains the eye. CONSTANT 1.6px width (transparent when
+              // unfocused): a BoxDecoration border is laid out as padding, so a
+              // varying width would resize the cell on selection and re-flow the
+              // word Row / Wrap (the "titreme" jitter).
               border: Border.all(
-                color: selected
-                    ? palette.revealed
-                    : recent
-                    ? palette.boardCellLastMoveBg.withValues(alpha: 0.55)
-                    : Colors.transparent,
+                color: selected ? palette.revealed : Colors.transparent,
                 width: 1.6,
               ),
             ),

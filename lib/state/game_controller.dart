@@ -92,16 +92,17 @@ class GameController extends ChangeNotifier {
   bool _lastInputCompletedWord = false;
   bool get lastInputCompletedWord => _lastInputCompletedWord;
 
-  /// The cipher letter most recently LOCKED — found and locked either by a hint
-  /// reveal or by a typed guess that just completed a word (confirmed). Drives
-  /// the board's chess-style "last move" highlight: that letter and every copy
-  /// carry a distinct fill so the eye stays on the latest letters you nailed
-  /// down. STABLE by design: it changes ONLY when letters lock — and completing a
-  /// word locks ALL of its letters at once, so they share the cue together. It is
-  /// untouched by tentative typing, delete, undo, redo or cursor navigation.
-  /// Cleared on solve and on (re)start so a finished/fresh board reads clean.
-  Set<String> _lastLockedCipherLetters = <String>{};
-  Set<String> get lastLockedCipherLetters => _lastLockedCipherLetters;
+  /// Board POSITIONS (cipherText indices) most recently LOCKED — the cells of the
+  /// word a typed guess just completed, or the cells a hint just revealed. Drives
+  /// the board's calm "just locked" cue. POSITION-based (not letter-based) on
+  /// purpose: completing a word lights up only THAT word's genuinely-new cells —
+  /// never the copies of its letters in other (already-locked or unfinished)
+  /// words, and never a letter another word already locked ("a locked letter
+  /// can't be re-locked"). STABLE: changes only when cells lock; untouched by
+  /// tentative typing, delete, undo, redo or navigation. Cleared on solve and on
+  /// (re)start so a finished/fresh board reads clean.
+  Set<int> _lastLockedPositions = <int>{};
+  Set<int> get lastLockedPositions => _lastLockedPositions;
 
   /// The cipher letter most recently TYPED that is still on the board and still
   /// EDITABLE (not yet locked by a hint or a completed word). Drives the board's
@@ -238,7 +239,7 @@ class GameController extends ChangeNotifier {
     _attemptRevealed = null;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
-    _lastLockedCipherLetters = <String>{};
+    _lastLockedPositions = <int>{};
     _lastTypedCipherLetter = null;
 
     // Re-opening a solved puzzle no longer spoils the answer: it starts as a
@@ -330,7 +331,7 @@ class GameController extends ChangeNotifier {
     _elapsed = Duration.zero;
     _lastInputCreatedConflict = false;
     _lastInputCompletedWord = false;
-    _lastLockedCipherLetters = <String>{};
+    _lastLockedPositions = <int>{};
     _lastTypedCipherLetter = null;
     elapsedListenable.value = _elapsed;
     _selectedIndex = _firstEmptyIndex();
@@ -359,7 +360,7 @@ class GameController extends ChangeNotifier {
       ..clear()
       ..addAll(_solvedRevealed);
     _reviewingSolved = true; // set first so stopTimer won't persist the fill
-    _lastLockedCipherLetters = <String>{};
+    _lastLockedPositions = <int>{};
     _lastTypedCipherLetter = null;
     stopTimer();
     notifyListeners();
@@ -379,7 +380,7 @@ class GameController extends ChangeNotifier {
     _attemptGuesses = null;
     _attemptRevealed = null;
     _reviewingSolved = false;
-    _lastLockedCipherLetters = <String>{};
+    _lastLockedPositions = <int>{};
     _lastTypedCipherLetter = null;
     if (!_completed) _startTicker();
     notifyListeners();
@@ -591,13 +592,17 @@ class GameController extends ChangeNotifier {
 
     _undoStack.add(_Move(target, s.guesses[target], _selectedIndex));
     final conflictsBefore = s.conflicts.length;
-    final wordsBefore = s.correctWordCount;
-    // Snapshot the locked set BEFORE the edit so we can light up exactly the
-    // letters this keystroke locks (completing a word locks several at once).
+    // Snapshot which words are already correct AND which letters are already
+    // locked, BEFORE the edit, so we can light up EXACTLY the cells this move
+    // newly locks — and never re-light a letter another word already locked.
+    final correctWordsBefore = s.correctWordIndices;
     final confirmedBefore = s.confirmedLetters;
     s.guesses[target] = plainLetter;
     final createdConflict = s.conflicts.length > conflictsBefore;
-    final completedWord = !s.isSolved && s.correctWordCount > wordsBefore;
+    final newlyCorrectWords = s.correctWordIndices.difference(
+      correctWordsBefore,
+    );
+    final completedWord = !s.isSolved && newlyCorrectWords.isNotEmpty;
     // A finished word is, by definition, fully CORRECT — so its little
     // celebration wins even when the correct letter you just placed happens to
     // collide with a WRONG guess sitting elsewhere on the board (e.g. after
@@ -607,13 +612,21 @@ class GameController extends ChangeNotifier {
     // introduced a clash WITHOUT completing a word.
     _lastInputCompletedWord = completedWord;
     _lastInputCreatedConflict = createdConflict && !completedWord;
-    // The "last move" highlight tracks every letter that LOCKED on this edit, not
-    // just the keystroke: completing a word confirms ALL of its letters at once,
-    // so they light up together. A tentative guess locks nothing and leaves the
-    // previous highlight in place — as do delete / undo / navigation.
-    final newlyLocked = s.confirmedLetters.difference(confirmedBefore);
-    if (newlyLocked.isNotEmpty) {
-      _lastLockedCipherLetters = newlyLocked;
+    // Position-based "just locked" highlight: ONLY the cells of the word(s) this
+    // edit just completed, and ONLY those whose letter wasn't already locked via
+    // another word (a locked letter can't be re-locked). So finishing a word
+    // never spills the cue onto copies of its letters elsewhere on the board, and
+    // letters found earlier through other words keep their calm confirmed look. A
+    // tentative guess completes no word and leaves the previous highlight in
+    // place — as do delete / undo / navigation.
+    if (newlyCorrectWords.isNotEmpty) {
+      final positions = <int>{};
+      for (final wi in newlyCorrectWords) {
+        for (final p in s.wordCellPositions(wi)) {
+          if (!confirmedBefore.contains(s.cipherText[p])) positions.add(p);
+        }
+      }
+      if (positions.isNotEmpty) _lastLockedPositions = positions;
     }
     _afterChange();
   }
@@ -829,17 +842,25 @@ class GameController extends ChangeNotifier {
     final target = selectedCipherLetter ?? _firstUnsolvedLetterByPosition();
     if (target == null) return false;
 
+    final correctWordsBefore = s.correctWordIndices;
     final confirmedBefore = s.confirmedLetters;
     _hintsUsed += 1;
     s.guesses[target] = s.cipher.decryptLetter(target);
     s.revealed.add(target);
-    // A hint is also a "last found" letter: the last-move highlight lands on the
-    // just-revealed cell — plus any letters a now-completed word locked with it —
-    // and holds there until the next letter is placed.
-    _lastLockedCipherLetters = {
-      target,
-      ...s.confirmedLetters.difference(confirmedBefore),
-    };
+    // A hint's "just locked" cue (position-based): every cell of the letter the
+    // player explicitly revealed, PLUS the genuinely-new cells of any word the
+    // reveal completed (excluding letters already locked elsewhere). Holds until
+    // the next letter is placed.
+    final positions = <int>{};
+    for (var p = 0; p < s.cipherText.length; p++) {
+      if (s.cipherText[p] == target) positions.add(p);
+    }
+    for (final wi in s.correctWordIndices.difference(correctWordsBefore)) {
+      for (final p in s.wordCellPositions(wi)) {
+        if (!confirmedBefore.contains(s.cipherText[p])) positions.add(p);
+      }
+    }
+    _lastLockedPositions = positions;
     // Advance the cursor forward from where the PLAYER was, not from the
     // revealed letter's first occurrence — otherwise hinting late in the quote
     // flung the cursor backward to an earlier copy. Fall back to the revealed
@@ -861,7 +882,7 @@ class GameController extends ChangeNotifier {
     if (s.isSolved) {
       _completed = true;
       // A finished board reads clean: drop the last-entered highlight.
-      _lastLockedCipherLetters = <String>{};
+      _lastLockedPositions = <int>{};
       _lastTypedCipherLetter = null;
       stopTimer();
       _persistSolved();

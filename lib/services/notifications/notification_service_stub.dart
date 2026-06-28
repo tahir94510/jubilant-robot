@@ -34,5 +34,8 @@ class StubNotificationService extends NotificationService {
   }) async {}
 
   @override
+  Future<void> openSystemSettings() async {}
+
+  @override
   Future<void> cancelAll() async {}
 }

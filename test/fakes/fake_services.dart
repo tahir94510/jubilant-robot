@@ -161,6 +161,13 @@ class FakeNotificationService extends NotificationService {
     testTitle = title;
   }
 
+  int openSettingsCalls = 0;
+
+  @override
+  Future<void> openSystemSettings() async {
+    openSettingsCalls += 1;
+  }
+
   @override
   Future<void> cancelAll() async {
     cancelCalls += 1;

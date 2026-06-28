@@ -90,6 +90,10 @@ void main() {
         atLeast('revealed/surface', p.revealed, cs.surface, 4.5);
         atLeast('confirmed/surface', p.confirmed, cs.surface, 4.5);
         atLeast('success/surface', p.success, cs.surface, 4.5);
+        // The streak flame accent renders as an icon + large number on the
+        // surface and on cards (home/stats), so it must clear the large/icon
+        // floor in every theme, not just look good on one.
+        atLeast('streakFlame/surface', p.streakFlame, cs.surface, 3.0);
 
         // Text on CARD surfaces (home/settings tiles, paywall, completion).
         // The card fill differs from the scaffold surface on every theme — on
@@ -102,6 +106,8 @@ void main() {
         atLeast('textFaint/card', p.textFaint, card, 3.0);
         // The small cipher letter also appears on card-backed surfaces.
         atLeast('cipherText/card', p.cipherText, card, 4.5);
+        // The streak flame also sits on cards (home streak tile, stats).
+        atLeast('streakFlame/card', p.streakFlame, card, 3.0);
       });
     }
   }

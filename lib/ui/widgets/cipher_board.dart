@@ -16,7 +16,7 @@ class CipherBoard extends StatefulWidget {
     required this.onSelect,
     this.selectedIndex,
     this.solveWave,
-    this.lastLocked = const <String>{},
+    this.lastLockedPositions = const <int>{},
     this.lastTyped,
   });
 
@@ -41,11 +41,12 @@ class CipherBoard extends StatefulWidget {
   /// the puzzle is still being solved.
   final double? solveWave;
 
-  /// The cipher letters LOCKED by the most recent action (a hint reveal, or the
-  /// several letters a completed word locks at once); every copy of each gets the
-  /// chess-style "last move" fill so the eye stays on the latest letters nailed
-  /// down. Empty while reviewing or celebrating (no highlight then).
-  final Set<String> lastLocked;
+  /// Board POSITIONS (cipherText indices) LOCKED by the most recent action: the
+  /// cells of the word a guess just completed, or the cells a hint just revealed.
+  /// Position-based so the calm "just locked" cue lands ONLY on those cells —
+  /// never on copies of the same letters in other (already-locked or unfinished)
+  /// words. Empty while reviewing or celebrating (no highlight then).
+  final Set<int> lastLockedPositions;
 
   /// The most-recently TYPED still-editable cipher letter; every copy gets a
   /// quiet neutral fill that tracks the player's last keystroke after the cursor
@@ -123,12 +124,17 @@ class _CipherBoardState extends State<CipherBoard> {
         final available = constraints.maxWidth.isFinite
             ? constraints.maxWidth
             : screenWidth;
+        // Snap the rendered cell width to a whole logical pixel. A fractional
+        // width put every letter (and the word Row + centered Wrap built on it)
+        // at sub-pixel x-offsets, so the glyphs shimmered ("titreme") and the
+        // board appeared to drift sideways while scrolling. Flooring only shrinks
+        // cells, so the fit guarantee from fitCellWidth still holds.
         final cellWidth = fitCellWidth(
           preferred: preferred,
           availableWidth: available,
           words: words,
           isLetter: isLetter,
-        );
+        ).floorToDouble();
 
         var letterIndex = 0;
         // Absolute position in cipherText. words come from split(' '), which
@@ -158,12 +164,11 @@ class _CipherBoardState extends State<CipherBoard> {
               final focused = thisPos == selectedIndex;
               final related =
                   !focused && widget.selected != null && ch == widget.selected;
-              // The last LOCKED letter (and every copy): the chess-style "last
-              // move" cue (gold fill + ring). Drawn only while it still holds
-              // its correct guess, so a cleared cell never keeps a stray glow.
-              final recent =
-                  widget.lastLocked.contains(ch) &&
-                  session.guesses.containsKey(ch);
+              // The just-locked cells (this exact position only): the calm "just
+              // locked" cue. Position-based, so completing a word highlights only
+              // that word's genuinely-new cells — not copies of its letters
+              // elsewhere, and not letters already locked by another word.
+              final recent = widget.lastLockedPositions.contains(thisPos);
               // The last TYPED still-editable letter (and every copy): a quiet
               // neutral cue, INDEPENDENT of the locked one. The controller only
               // ever points this at an unlocked letter; we still guard on a
@@ -193,7 +198,9 @@ class _CipherBoardState extends State<CipherBoard> {
               cells.add(
                 PunctuationCell(
                   char: ch,
-                  width: cellWidth * kPunctuationCellFactor,
+                  // Whole pixels: a fractional punctuation slot shifted the rest
+                  // of the row off the pixel grid (the scroll shimmer/drift).
+                  width: (cellWidth * kPunctuationCellFactor).floorToDouble(),
                 ),
               );
             }
@@ -205,7 +212,9 @@ class _CipherBoardState extends State<CipherBoard> {
         return Wrap(
           alignment: WrapAlignment.center,
           runSpacing: 14,
-          spacing: cellWidth * 0.45,
+          // Whole-pixel word gap so the centered Wrap lays every word row out on
+          // the pixel grid — a fractional gap was part of the scroll shimmer.
+          spacing: (cellWidth * 0.45).floorToDouble(),
           children: wordRows,
         );
       },

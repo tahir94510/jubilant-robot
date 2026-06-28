@@ -35,13 +35,31 @@ Future<void> main() async {
 Future<void> _start() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Lock to portrait: the board + custom on-screen keyboard are designed for a
-  // tall layout, and in landscape the keyboard squeezes the board. A no-op on
-  // desktop/web/TV (where this is ignored and a physical keyboard is used).
-  await SystemChrome.setPreferredOrientations(const [
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
+  // Phones lock to portrait (the board + custom on-screen keyboard are designed
+  // for a tall layout; landscape would squeeze the board). Large screens
+  // (tablets, foldables: >= 600dp smallest width) are left FREE to rotate and
+  // resize — Google Play's large-screen quality checks penalise a hard
+  // orientation lock, and on those devices the short side is always >= 600dp so
+  // the board never gets cramped. The native MainActivity applies the same rule;
+  // if the early window metrics aren't readable yet we DON'T restrict here and
+  // let the native side (which reads a reliable config) govern phone portrait.
+  final views = WidgetsBinding.instance.platformDispatcher.views;
+  final view = views.isNotEmpty ? views.first : null;
+  final dpr = view?.devicePixelRatio ?? 0;
+  final shortestDp = (view != null && dpr > 0)
+      ? view.physicalSize.shortestSide / dpr
+      : 0.0;
+  final isPhone = shortestDp > 0 && shortestDp < 600;
+  await SystemChrome.setPreferredOrientations(
+    isPhone
+        ? const [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]
+        : const [
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+            DeviceOrientation.landscapeLeft,
+            DeviceOrientation.landscapeRight,
+          ],
+  );
 
   // Draw behind the status + navigation bars. Android 15 (targetSdk 35+)
   // enforces this anyway; enabling it explicitly keeps the look consistent on

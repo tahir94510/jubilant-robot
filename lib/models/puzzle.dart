@@ -53,6 +53,31 @@ class PuzzleSession {
     return out;
   }();
 
+  /// The absolute [cipherText] indices of every letter cell, grouped by word —
+  /// PARALLEL to [_wordCells] (same order/length). Lets callers highlight the
+  /// exact cells of a just-completed word (position-based) instead of every copy
+  /// of its letters across the board. Walks the string the same way the board
+  /// does (split on ' ', skip the dropped separator), so indices line up with
+  /// the board's cell positions.
+  late final List<List<int>> _wordCellPositions = () {
+    final out = <List<int>>[];
+    var pos = 0;
+    for (final word in cipherText.split(' ')) {
+      final positions = <int>[];
+      for (final ch in word.split('')) {
+        if (alphabet.isLetter(ch)) positions.add(pos);
+        pos++;
+      }
+      pos++; // the single space separator that split(' ') removed
+      if (positions.isNotEmpty) out.add(positions);
+    }
+    return out;
+  }();
+
+  /// Cell positions (cipherText indices) of word [wordIndex] — pairs with
+  /// [correctWordIndices] so a caller can light up exactly that word's cells.
+  List<int> wordCellPositions(int wordIndex) => _wordCellPositions[wordIndex];
+
   /// Plain letters already used as guesses (for keyboard dimming).
   Set<String> get usedPlainLetters => guesses.values.toSet();
 
@@ -134,6 +159,17 @@ class PuzzleSession {
     final out = <String>{};
     for (final cells in _wordCells) {
       if (cells.every(isGuessCorrect)) out.addAll(cells);
+    }
+    return out;
+  }
+
+  /// Indices (into [_wordCells]/[wordCellPositions]) of words that are currently
+  /// fully correct. Snapshotted before/after an edit so the controller can find
+  /// exactly the word(s) a move just completed and highlight only their cells.
+  Set<int> get correctWordIndices {
+    final out = <int>{};
+    for (var i = 0; i < _wordCells.length; i++) {
+      if (_wordCells[i].every(isGuessCorrect)) out.add(i);
     }
     return out;
   }
