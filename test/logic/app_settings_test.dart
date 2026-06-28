@@ -130,51 +130,57 @@ void main() {
     expect(n.scheduledAt, isNull);
   });
 
-  test('first denial is respected; a later attempt routes to system settings', () async {
-    SharedPreferences.setMockInitialValues({});
-    final storage = await StorageService.init();
-    final n = FakeNotificationService();
-    final c = SettingsController(storage: storage, notifications: n);
-    await c.setLanguage('en');
+  test(
+    'first denial is respected; a later attempt routes to system settings',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final n = FakeNotificationService();
+      final c = SettingsController(storage: storage, notifications: n);
+      await c.setLanguage('en');
 
-    // Blocked at the OS. The first enable shows the system prompt (denied here),
-    // so the toggle stays off and we DON'T redirect — the "No" is honored.
-    n.permissionGranted = false;
-    n.osEnabled = false;
-    expect(await c.setReminder(enabled: true), isFalse);
-    expect(c.settings.reminderPermissionAsked, isTrue);
-    expect(n.openSettingsCalls, 0);
+      // Blocked at the OS. The first enable shows the system prompt (denied here),
+      // so the toggle stays off and we DON'T redirect — the "No" is honored.
+      n.permissionGranted = false;
+      n.osEnabled = false;
+      expect(await c.setReminder(enabled: true), isFalse);
+      expect(c.settings.reminderPermissionAsked, isTrue);
+      expect(n.openSettingsCalls, 0);
 
-    // A second attempt: Android won't show the prompt again, so the only path
-    // back on is the OS settings page — open it directly (no custom modal).
-    expect(await c.setReminder(enabled: true), isFalse);
-    expect(c.settings.reminderEnabled, isFalse);
-    expect(n.openSettingsCalls, 1);
-  });
+      // A second attempt: Android won't show the prompt again, so the only path
+      // back on is the OS settings page — open it directly (no custom modal).
+      expect(await c.setReminder(enabled: true), isFalse);
+      expect(c.settings.reminderEnabled, isFalse);
+      expect(n.openSettingsCalls, 1);
+    },
+  );
 
-  test('granting in system settings completes a pending enable on resume', () async {
-    SharedPreferences.setMockInitialValues({});
-    final storage = await StorageService.init();
-    final n = FakeNotificationService();
-    final c = SettingsController(storage: storage, notifications: n);
-    await c.setLanguage('en');
+  test(
+    'granting in system settings completes a pending enable on resume',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final n = FakeNotificationService();
+      final c = SettingsController(storage: storage, notifications: n);
+      await c.setLanguage('en');
 
-    n.permissionGranted = false;
-    n.osEnabled = false;
-    await c.setReminder(enabled: true); // first: denied, records the ask
-    await c.setReminder(enabled: true); // second: routed to system settings
-    expect(n.openSettingsCalls, 1);
-    expect(c.settings.reminderEnabled, isFalse);
+      n.permissionGranted = false;
+      n.osEnabled = false;
+      await c.setReminder(enabled: true); // first: denied, records the ask
+      await c.setReminder(enabled: true); // second: routed to system settings
+      expect(n.openSettingsCalls, 1);
+      expect(c.settings.reminderEnabled, isFalse);
 
-    // The user grants notifications in system settings, then returns to the app.
-    n.osEnabled = true;
-    c.didChangeAppLifecycleState(AppLifecycleState.resumed);
-    // Let the fire-and-forget resume reconciliation finish.
-    await Future<void>.delayed(const Duration(milliseconds: 20));
+      // The user grants notifications in system settings, then returns to the app.
+      n.osEnabled = true;
+      c.didChangeAppLifecycleState(AppLifecycleState.resumed);
+      // Let the fire-and-forget resume reconciliation finish.
+      await Future<void>.delayed(const Duration(milliseconds: 20));
 
-    expect(c.settings.reminderEnabled, isTrue);
-    expect(n.scheduledAt, isNotNull);
-  });
+      expect(c.settings.reminderEnabled, isTrue);
+      expect(n.scheduledAt, isNotNull);
+    },
+  );
 
   test('hapticIntensity round-trips and defaults to full strength', () {
     expect(AppSettings().hapticIntensity, 1.0);
