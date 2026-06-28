@@ -130,19 +130,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderTime => 'Hatırlatma saati';
 
   @override
-  String get openSettings => 'Ayarları aç';
-
-  @override
-  String get notificationsBlockedTitle => 'Bildirimler kapalı';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.';
-
-  @override
-  String get reminderDenied => 'Bildirim izni sistem ayarlarında reddedildi.';
-
-  @override
   String get premiumActive => 'Premium etkin';
 
   @override
@@ -367,10 +354,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Şimdi değil';
-
-  @override
-  String get reminderNudgeDenied =>
-      'Bildirim izni reddedildi. İstediğin zaman Ayarlar’dan açabilirsin.';
 
   @override
   String get packsSectionByDifficulty => 'Zorluğa göre';

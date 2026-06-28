@@ -131,21 +131,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reminderTime => 'Hora del recordatorio';
 
   @override
-  String get openSettings => 'Abrir ajustes';
-
-  @override
-  String get notificationsBlockedTitle =>
-      'Las notificaciones están desactivadas';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack no puede mostrar notificaciones hasta que las actives en los ajustes del sistema.';
-
-  @override
-  String get reminderDenied =>
-      'Se denegó el permiso de notificaciones en los ajustes del sistema.';
-
-  @override
   String get premiumActive => 'Premium activo';
 
   @override
@@ -371,10 +356,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Ahora no';
-
-  @override
-  String get reminderNudgeDenied =>
-      'Se denegó el permiso de notificaciones. Puedes activarlo cuando quieras en Ajustes.';
 
   @override
   String get packsSectionByDifficulty => 'Por dificultad';

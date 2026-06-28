@@ -336,30 +336,6 @@ abstract class AppLocalizations {
   /// **'Reminder time'**
   String get reminderTime;
 
-  /// No description provided for @openSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open settings'**
-  String get openSettings;
-
-  /// No description provided for @notificationsBlockedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications are off'**
-  String get notificationsBlockedTitle;
-
-  /// No description provided for @notificationsBlockedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Quotecrack can\'t show notifications until you turn them on in system settings.'**
-  String get notificationsBlockedBody;
-
-  /// No description provided for @reminderDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification permission was denied in system settings.'**
-  String get reminderDenied;
-
   /// No description provided for @premiumActive.
   ///
   /// In en, this message translates to:
@@ -725,12 +701,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not now'**
   String get reminderNudgeNo;
-
-  /// No description provided for @reminderNudgeDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification permission was denied. You can enable it anytime in Settings.'**
-  String get reminderNudgeDenied;
 
   /// No description provided for @packsSectionByDifficulty.
   ///

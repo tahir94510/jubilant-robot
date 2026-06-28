@@ -131,20 +131,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get reminderTime => 'Horário do lembrete';
 
   @override
-  String get openSettings => 'Abrir configurações';
-
-  @override
-  String get notificationsBlockedTitle => 'As notificações estão desativadas';
-
-  @override
-  String get notificationsBlockedBody =>
-      'O Quotecrack não pode mostrar notificações até você ativá-las nas configurações do sistema.';
-
-  @override
-  String get reminderDenied =>
-      'A permissão de notificações foi negada nas configurações do sistema.';
-
-  @override
   String get premiumActive => 'Premium ativo';
 
   @override
@@ -370,10 +356,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Agora não';
-
-  @override
-  String get reminderNudgeDenied =>
-      'A permissão de notificações foi negada. Você pode ativá-la quando quiser nas Configurações.';
 
   @override
   String get packsSectionByDifficulty => 'Por dificuldade';

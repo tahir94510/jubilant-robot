@@ -130,20 +130,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reminderTime => 'Reminder time';
 
   @override
-  String get openSettings => 'Open settings';
-
-  @override
-  String get notificationsBlockedTitle => 'Notifications are off';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack can\'t show notifications until you turn them on in system settings.';
-
-  @override
-  String get reminderDenied =>
-      'Notification permission was denied in system settings.';
-
-  @override
   String get premiumActive => 'Premium active';
 
   @override
@@ -364,10 +350,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Not now';
-
-  @override
-  String get reminderNudgeDenied =>
-      'Notification permission was denied. You can enable it anytime in Settings.';
 
   @override
   String get packsSectionByDifficulty => 'By difficulty';
