@@ -270,6 +270,12 @@ abstract class AppLocalizations {
   /// **'Haptic feedback'**
   String get hapticsTitle;
 
+  /// No description provided for @vibrationStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration strength'**
+  String get vibrationStrength;
+
   /// No description provided for @soundEffectsTitle.
   ///
   /// In en, this message translates to:
@@ -329,30 +335,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reminder time'**
   String get reminderTime;
-
-  /// No description provided for @openSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open settings'**
-  String get openSettings;
-
-  /// No description provided for @notificationsBlockedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications are off'**
-  String get notificationsBlockedTitle;
-
-  /// No description provided for @notificationsBlockedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Quotecrack can\'t show notifications until you turn them on in system settings.'**
-  String get notificationsBlockedBody;
-
-  /// No description provided for @reminderDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification permission was denied in system settings.'**
-  String get reminderDenied;
 
   /// No description provided for @premiumActive.
   ///
@@ -419,6 +401,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Version'**
   String get version;
+
+  /// No description provided for @startupErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quotecrack couldn\'t start'**
+  String get startupErrorTitle;
+
+  /// No description provided for @startupErrorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Please close the app fully and open it again. If this keeps happening, reinstalling will fix it.'**
+  String get startupErrorBody;
 
   /// No description provided for @homeDailyLabel.
   ///
@@ -719,12 +713,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not now'**
   String get reminderNudgeNo;
-
-  /// No description provided for @reminderNudgeDenied.
-  ///
-  /// In en, this message translates to:
-  /// **'Notification permission was denied. You can enable it anytime in Settings.'**
-  String get reminderNudgeDenied;
 
   /// No description provided for @packsSectionByDifficulty.
   ///

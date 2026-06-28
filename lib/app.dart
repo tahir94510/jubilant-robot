@@ -49,6 +49,10 @@ class _QuotecrackAppState extends State<QuotecrackApp> {
       statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
       statusBarBrightness: isLight ? Brightness.light : Brightness.dark,
       systemNavigationBarColor: Colors.transparent,
+      // A visible divider line would draw an opaque hairline above the nav bar,
+      // breaking the seamless edge-to-edge look (and is one of the things
+      // Play's edge-to-edge check looks for). Transparent keeps the bar blended.
+      systemNavigationBarDividerColor: Colors.transparent,
       systemNavigationBarIconBrightness: isLight
           ? Brightness.dark
           : Brightness.light,

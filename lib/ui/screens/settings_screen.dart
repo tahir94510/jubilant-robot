@@ -37,35 +37,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
-  /// Offers a one-tap route to the OS notification settings when notifications
-  /// are blocked (permission denied / turned off) — the only recovery on
-  /// Android 13+, where a denial can't be re-prompted in-app.
-  Future<void> _showNotificationsBlocked(
-    BuildContext context,
-    AppLocalizations l10n,
-  ) async {
-    final open = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l10n.notificationsBlockedTitle),
-        content: Text(l10n.notificationsBlockedBody),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: Text(l10n.reminderNudgeNo),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(l10n.openSettings),
-          ),
-        ],
-      ),
-    );
-    if (open == true && context.mounted) {
-      await context.read<NotificationService>().openSystemSettings();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<SettingsController>();
@@ -200,6 +171,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 value: settings.haptics,
                 onChanged: withHaptic(controller.setHaptics),
               ),
+              // Vibration strength: only meaningful while haptics are on. A live
+              // buzz on each drag tick lets the player feel the level they pick.
+              if (settings.haptics)
+                _SliderTile(
+                  icon: Icons.vibration,
+                  label: l10n.vibrationStrength,
+                  value: settings.hapticIntensity,
+                  displayPercent: (settings.hapticIntensity * 100).round(),
+                  onPreview: (v) {
+                    controller.previewHapticIntensity(v);
+                    haptics.tap();
+                  },
+                  onCommit: controller.setHapticIntensity,
+                ),
               SwitchListTile(
                 title: Text(l10n.soundEffectsTitle),
                 subtitle: Text(l10n.soundEffectsSubtitle),
@@ -260,14 +245,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   value: settings.reminderEnabled,
                   onChanged: (enabled) async {
                     haptics.tap();
-                    final ok = await controller.setReminder(enabled: enabled);
-                    // Turning it ON but ending up off means the OS blocked us
-                    // (permission denied / notifications off). On Android 13+ a
-                    // denial can't be re-prompted, so offer a one-tap route to
-                    // system settings instead of a dead-end snackbar.
-                    if (enabled && !ok && context.mounted) {
-                      await _showNotificationsBlocked(context, l10n);
-                    }
+                    // No custom modal: setReminder shows the system prompt the
+                    // first time and, if notifications are already blocked, opens
+                    // the OS settings page itself. The switch just reflects the
+                    // resulting state (a resume re-sync updates it when the user
+                    // returns from settings).
+                    await controller.setReminder(enabled: enabled);
                   },
                 ),
                 // The reminder time is chosen automatically per language (a calm

@@ -95,6 +95,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get hapticsTitle => 'Dokunsal geri bildirim';
 
   @override
+  String get vibrationStrength => 'Titreşim gücü';
+
+  @override
   String get soundEffectsTitle => 'Ses efektleri';
 
   @override
@@ -125,19 +128,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reminderTime => 'Hatırlatma saati';
-
-  @override
-  String get openSettings => 'Ayarları aç';
-
-  @override
-  String get notificationsBlockedTitle => 'Bildirimler kapalı';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.';
-
-  @override
-  String get reminderDenied => 'Bildirim izni sistem ayarlarında reddedildi.';
 
   @override
   String get premiumActive => 'Premium etkin';
@@ -173,6 +163,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get version => 'Sürüm';
+
+  @override
+  String get startupErrorTitle => 'Quotecrack başlatılamadı';
+
+  @override
+  String get startupErrorBody =>
+      'Lütfen uygulamayı tamamen kapatıp yeniden açın. Sorun sürerse, yeniden yüklemek çözecektir.';
 
   @override
   String get homeDailyLabel => 'GÜNLÜK BULMACA';
@@ -364,10 +361,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Şimdi değil';
-
-  @override
-  String get reminderNudgeDenied =>
-      'Bildirim izni reddedildi. İstediğin zaman Ayarlar’dan açabilirsin.';
 
   @override
   String get packsSectionByDifficulty => 'Zorluğa göre';

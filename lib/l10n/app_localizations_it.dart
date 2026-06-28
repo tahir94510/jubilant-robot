@@ -97,6 +97,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get hapticsTitle => 'Feedback aptico';
 
   @override
+  String get vibrationStrength => 'Intensità vibrazione';
+
+  @override
   String get soundEffectsTitle => 'Effetti sonori';
 
   @override
@@ -128,20 +131,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get reminderTime => 'Ora del promemoria';
-
-  @override
-  String get openSettings => 'Apri impostazioni';
-
-  @override
-  String get notificationsBlockedTitle => 'Le notifiche sono disattivate';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack non può mostrare notifiche finché non le attivi nelle impostazioni di sistema.';
-
-  @override
-  String get reminderDenied =>
-      'Autorizzazione alle notifiche negata nelle impostazioni di sistema.';
 
   @override
   String get premiumActive => 'Premium attivo';
@@ -177,6 +166,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get version => 'Versione';
+
+  @override
+  String get startupErrorTitle => 'Quotecrack non è riuscito ad avviarsi';
+
+  @override
+  String get startupErrorBody =>
+      'Chiudi completamente l\'app e riaprila. Se il problema persiste, reinstallarla lo risolverà.';
 
   @override
   String get homeDailyLabel => 'ENIGMA DEL GIORNO';
@@ -367,10 +363,6 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Non ora';
-
-  @override
-  String get reminderNudgeDenied =>
-      'Autorizzazione alle notifiche negata. Puoi attivarla quando vuoi nelle Impostazioni.';
 
   @override
   String get packsSectionByDifficulty => 'Per difficoltà';

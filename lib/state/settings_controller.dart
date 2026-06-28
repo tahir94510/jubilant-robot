@@ -16,15 +16,30 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state != AppLifecycleState.resumed) return;
-    // Re-arm the reminder every time the app returns to the foreground: an
-    // aggressive OEM (battery saver) can drop a scheduled alarm while the app is
-    // backgrounded, so rescheduling here keeps an enabled reminder reliable.
-    // syncReminderWithOsPermission also reflects a notifications-off change the
-    // user may have made from system settings. Both are best-effort and never
-    // throw. (Scheduling is always inexact / Play-safe — the app requests no
-    // exact-alarm permission, so there is nothing to "upgrade" on resume.)
-    unawaited(rescheduleDailyIfEnabled());
-    unawaited(syncReminderWithOsPermission());
+    // On every return to the foreground, reconcile the in-app reminder with the
+    // real OS state — both directions, so the toggle is never out of sync:
+    //   * pending-enable: the user tapped "on" while blocked and we sent them to
+    //     system settings; if they granted there, finish enabling now.
+    //   * re-arm: an aggressive OEM (battery saver) can drop a scheduled alarm.
+    //   * sync-off: the user may have turned notifications off in system settings.
+    // All best-effort and never throw. (Scheduling is always inexact / Play-safe.)
+    unawaited(_reconcileReminderOnResume());
+  }
+
+  /// One-shot resume reconciliation (see [didChangeAppLifecycleState]). Runs the
+  /// pending-enable completion first; only if that doesn't enable does it fall
+  /// through to the re-arm + turn-off sync.
+  Future<void> _reconcileReminderOnResume() async {
+    if (_pendingEnableAfterSettings) {
+      _pendingEnableAfterSettings = false; // one-shot, whatever the outcome
+      if (_notifications.supported && await _notifications.areEnabled()) {
+        await _enableAndSchedule(null);
+        notifyListeners();
+        return; // now on and scheduled — nothing more to reconcile
+      }
+    }
+    await rescheduleDailyIfEnabled();
+    await syncReminderWithOsPermission();
   }
 
   SettingsController({
@@ -40,6 +55,12 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   final NotificationService _notifications;
 
   final AppSettings settings;
+
+  /// Session-only intent: the user tapped "turn on reminders" while the OS had
+  /// notifications blocked, so we routed them to system settings. If they grant
+  /// the permission there, the next resume completes the enable. Not persisted —
+  /// a one-shot tied to that specific round-trip.
+  bool _pendingEnableAfterSettings = false;
 
   Future<void> _save() async {
     await _storage.writeJson(StorageService.settingsKey, settings.toJson());
@@ -149,6 +170,20 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     return _save();
   }
 
+  /// Live haptic-intensity drag: updates the value (and lets the next cue use it)
+  /// every tick without a disk write, so dragging feels responsive. Commit with
+  /// [setHapticIntensity] on release. The service reads [AppSettings.hapticIntensity]
+  /// directly on each buzz, so no service call is needed here.
+  void previewHapticIntensity(double value) {
+    settings.hapticIntensity = value.clamp(0.0, 1.0);
+    notifyListeners();
+  }
+
+  Future<void> setHapticIntensity(double value) {
+    settings.hapticIntensity = value.clamp(0.0, 1.0);
+    return _save();
+  }
+
   Future<void> markOnboardingDone() {
     settings.onboardingDone = true;
     return _save();
@@ -191,52 +226,92 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     return TimeOfDay(hour: lateEvening.contains(code) ? 21 : 20, minute: 0);
   }
 
-  /// Returns false when the OS permission was denied.
+  /// Turns the daily reminder on or off. Returns true when the reminder is on
+  /// and scheduled afterwards; false when it ended up off (explicit denial, a
+  /// scheduling failure, or a redirect to system settings is in progress).
+  ///
+  /// Enable flow (mirrors the user's choice exactly, no custom modal):
+  ///   1. OS already allows notifications  -> just schedule.
+  ///   2. Never asked before               -> show the system permission prompt
+  ///      once. Granted -> schedule. Denied -> stay off (respect the No; no nag,
+  ///      no redirect).
+  ///   3. Asked before but still blocked   -> the system can't re-prompt, so open
+  ///      this app's notification settings directly and remember the intent; the
+  ///      next resume finishes enabling if the user granted it there.
+  /// Disable always cancels every scheduled notification — the in-app switch is
+  /// the true on/off (an app can't revoke its own OS permission on Android).
   Future<bool> setReminder({required bool enabled, TimeOfDay? time}) async {
-    if (enabled) {
-      final granted = await _notifications.requestPermission();
-      if (!granted && _notifications.supported) {
-        settings.reminderEnabled = false;
-        await _save();
-        return false;
-      }
-      settings.reminderEnabled = true;
-      if (time != null) {
-        // The player picked their own time: honor it and stop overriding with
-        // the language default from here on.
-        settings.reminderHour = time.hour;
-        settings.reminderMinute = time.minute;
-        settings.reminderCustomized = true;
-      } else if (!settings.reminderCustomized) {
-        // First enable without a chosen time: pick a sensible evening hour for
-        // the player's language/community instead of a fixed global default.
-        final t = _defaultReminderTime();
-        settings.reminderHour = t.hour;
-        settings.reminderMinute = t.minute;
-      }
-      // Scheduling talks to the OS alarm/timezone plugins, which can throw on
-      // some devices. A failure must NEVER crash the app from the settings
-      // toggle: swallow it, leave the toggle off, and report a soft denial so
-      // the user sees a snackbar instead of the app disappearing.
-      try {
-        final l10n = _activeL10n();
-        await _notifications.scheduleDaily(
-          settings.reminderTime,
-          title: l10n.notificationDailyTitle,
-          body: l10n.notificationDailyBody,
-        );
-      } catch (e) {
-        debugPrint('scheduleDaily failed: $e');
-        settings.reminderEnabled = false;
-        await _save();
-        return false;
-      }
-    } else {
+    if (!enabled) {
       settings.reminderEnabled = false;
+      _pendingEnableAfterSettings = false;
       await _notifications.cancelAll();
+      await _save();
+      return true;
+    }
+
+    // Web/stub has no OS permission concept: just flip it on and schedule.
+    if (!_notifications.supported) return _enableAndSchedule(time);
+
+    if (await _notifications.areEnabled()) return _enableAndSchedule(time);
+
+    if (!settings.reminderPermissionAsked) {
+      // First ever ask: this is the one time Android shows its system prompt.
+      settings.reminderPermissionAsked = true;
+      final granted = await _notifications.requestPermission();
+      if (granted) return _enableAndSchedule(time);
+      // Explicit "No": honor it — leave the toggle off, do not redirect.
+      settings.reminderEnabled = false;
+      await _save();
+      return false;
+    }
+
+    // Asked before and still blocked: the system prompt won't reappear, so the
+    // only way back on is the OS settings page. Route there and remember to
+    // finish enabling on resume if the permission gets granted.
+    _pendingEnableAfterSettings = true;
+    settings.reminderEnabled = false;
+    await _save();
+    await _notifications.openSystemSettings();
+    return false;
+  }
+
+  /// Marks the reminder on, applies the chosen/default time, and schedules it.
+  /// Scheduling talks to the OS alarm/timezone plugins, which can throw on some
+  /// devices; a failure must never crash the app, so it leaves the toggle off
+  /// and reports false instead.
+  Future<bool> _enableAndSchedule(TimeOfDay? time) async {
+    settings.reminderEnabled = true;
+    _applyReminderTime(time);
+    try {
+      final l10n = _activeL10n();
+      await _notifications.scheduleDaily(
+        settings.reminderTime,
+        title: l10n.notificationDailyTitle,
+        body: l10n.notificationDailyBody,
+      );
+    } catch (e) {
+      debugPrint('scheduleDaily failed: $e');
+      settings.reminderEnabled = false;
+      await _save();
+      return false;
     }
     await _save();
     return true;
+  }
+
+  /// Applies the reminder time: the player's explicit pick (and stops overriding
+  /// with the language default from then on), or a sensible per-language evening
+  /// hour on the first enable when no time was chosen.
+  void _applyReminderTime(TimeOfDay? time) {
+    if (time != null) {
+      settings.reminderHour = time.hour;
+      settings.reminderMinute = time.minute;
+      settings.reminderCustomized = true;
+    } else if (!settings.reminderCustomized) {
+      final t = _defaultReminderTime();
+      settings.reminderHour = t.hour;
+      settings.reminderMinute = t.minute;
+    }
   }
 
   /// Re-arms the daily reminder on app startup when it is enabled. The OS boot

@@ -3,7 +3,7 @@ description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram
 publish_to: 'none'
 
 # versionName+versionCode for Android. Bump +N for every Play Store upload.
-version: 2.5.0+43
+version: 2.5.1+44
 
 environment:
   sdk: ^3.12.1
@@ -24,7 +24,11 @@ dependencies:
   in_app_review: ^2.0.10
   url_launcher: ^6.3.2
   intl: ^0.20.2
-  audioplayers: ^6.7.1
+  # SoLoud: low-latency game audio engine. Replaces audioplayers because its
+  # SoundPool/MediaPlayer retrigger path (stop()/seek(0) on a still-ringing
+  # player) produced the persistent click/crackle. SoLoud spawns a fresh voice
+  # per play and fades natively on the audio thread — no discontinuities.
+  flutter_soloud: ^4.0.0
   in_app_update: ^4.2.5
   # Real, amplitude-controlled vibration (Android VibrationEffect). Flutter's
   # built-in HapticFeedback maps to near-imperceptible constants on most phones;

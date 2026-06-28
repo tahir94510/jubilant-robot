@@ -12,6 +12,7 @@ class AppSettings {
     this.errorChecking = true,
     this.showTimer = true,
     this.haptics = true,
+    this.hapticIntensity = 1.0,
     this.soundEffects = true,
     this.soundVolume = 0.85,
     this.music = true,
@@ -20,6 +21,7 @@ class AppSettings {
     this.reminderHour = 20,
     this.reminderMinute = 0,
     this.reminderCustomized = false,
+    this.reminderPermissionAsked = false,
     this.reminderNudgeDone = false,
     this.onboardingDone = false,
     this.seenContentVersion = 1,
@@ -35,6 +37,7 @@ class AppSettings {
     errorChecking: json['errorChecking'] as bool? ?? true,
     showTimer: json['showTimer'] as bool? ?? true,
     haptics: json['haptics'] as bool? ?? true,
+    hapticIntensity: (json['hapticIntensity'] as num?)?.toDouble() ?? 1.0,
     soundEffects: json['soundEffects'] as bool? ?? true,
     soundVolume: (json['soundVolume'] as num?)?.toDouble() ?? 0.85,
     music: json['music'] as bool? ?? true,
@@ -43,6 +46,7 @@ class AppSettings {
     reminderHour: json['reminderHour'] as int? ?? 20,
     reminderMinute: json['reminderMinute'] as int? ?? 0,
     reminderCustomized: json['reminderCustomized'] as bool? ?? false,
+    reminderPermissionAsked: json['reminderPermissionAsked'] as bool? ?? false,
     reminderNudgeDone: json['reminderNudgeDone'] as bool? ?? false,
     onboardingDone: json['onboardingDone'] as bool? ?? false,
     seenContentVersion: json['seenContentVersion'] as int? ?? 1,
@@ -62,6 +66,11 @@ class AppSettings {
   bool errorChecking;
   bool showTimer;
   bool haptics;
+
+  /// 0..1 strength multiplier on every haptic cue's amplitude. Lets a player
+  /// keep haptics but soften (or strengthen) how firmly the phone buzzes,
+  /// independent of the on/off [haptics] switch. 1.0 = the full designed ladder.
+  double hapticIntensity;
   bool soundEffects;
 
   /// 0..1 multiplier on the (already balanced) sound-effect peaks. Lets a
@@ -83,6 +92,13 @@ class AppSettings {
   /// enabling the reminder uses a sensible per-language default hour instead of
   /// a fixed global one.
   bool reminderCustomized;
+
+  /// True once the OS notification permission has been requested at least once.
+  /// Android 13+ only shows its permission prompt the FIRST time; after a denial
+  /// it never prompts again. This flag lets the enable flow tell "first ask"
+  /// (show the system prompt, respect a No) apart from "already asked & blocked"
+  /// (route straight to system settings, since the prompt can't reappear).
+  bool reminderPermissionAsked;
 
   /// The one-time "protect your streak" reminder invitation on the daily
   /// completion screen: shown once, then never again (either answer).
@@ -106,6 +122,7 @@ class AppSettings {
     'errorChecking': errorChecking,
     'showTimer': showTimer,
     'haptics': haptics,
+    'hapticIntensity': hapticIntensity,
     'soundEffects': soundEffects,
     'soundVolume': soundVolume,
     'music': music,
@@ -114,6 +131,7 @@ class AppSettings {
     'reminderHour': reminderHour,
     'reminderMinute': reminderMinute,
     'reminderCustomized': reminderCustomized,
+    'reminderPermissionAsked': reminderPermissionAsked,
     'reminderNudgeDone': reminderNudgeDone,
     'onboardingDone': onboardingDone,
     'seenContentVersion': seenContentVersion,

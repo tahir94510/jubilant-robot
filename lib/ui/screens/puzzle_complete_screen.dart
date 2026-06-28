@@ -500,13 +500,12 @@ class _ReminderNudgeCard extends StatelessWidget {
             width: double.infinity,
             child: FilledButton.icon(
               onPressed: () async {
-                final ok = await controller.setReminder(enabled: true);
+                // Same unified flow as Settings: the system prompt appears the
+                // first time, and if notifications are already blocked the OS
+                // settings page opens directly — no extra in-app dialog. Either
+                // way the one-time nudge is done.
+                await controller.setReminder(enabled: true);
                 await controller.markReminderNudgeDone();
-                if (!ok && context.mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(l10n.reminderNudgeDenied)),
-                  );
-                }
               },
               icon: const Icon(Icons.check_rounded, size: 20),
               label: Text(l10n.remindMeDaily),

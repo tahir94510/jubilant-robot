@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'app.dart';
 import 'engine/quote_repository.dart';
+import 'l10n/app_localizations.dart';
 import 'services/ads/ads_service.dart';
 import 'services/haptics_service.dart';
 import 'services/music_service.dart';
@@ -140,7 +141,10 @@ Future<void> _start() async {
     ads: ads,
   );
   final game = GameController(storage: storage);
-  final haptics = HapticsService(isEnabled: () => settings.settings.haptics);
+  final haptics = HapticsService(
+    isEnabled: () => settings.settings.haptics,
+    intensity: () => settings.settings.hapticIntensity,
+  );
   final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
   await sounds.initialize(); // already internally guarded
   sounds.setUserVolume(settings.settings.soundVolume);
@@ -203,8 +207,32 @@ Future<void> _start() async {
 class _StartupErrorApp extends StatelessWidget {
   const _StartupErrorApp();
 
+  /// Resolves the fatal-error copy in the device language. This screen renders
+  /// BEFORE the app's localization delegates are set up (core data failed to
+  /// load), so it looks the strings up directly via [lookupAppLocalizations] and
+  /// falls back to English if the locale is unsupported or the lookup throws —
+  /// the screen must never itself crash.
+  static ({String title, String body}) _copy() {
+    const fallbackTitle = "Quotecrack couldn't start";
+    const fallbackBody =
+        'Please close the app fully and open it again. If this '
+        'keeps happening, reinstalling will fix it.';
+    try {
+      final supported = AppLocalizations.supportedLocales
+          .map((l) => l.languageCode)
+          .toSet();
+      var code = PlatformDispatcher.instance.locale.languageCode;
+      if (!supported.contains(code)) code = 'en';
+      final l10n = lookupAppLocalizations(Locale(code));
+      return (title: l10n.startupErrorTitle, body: l10n.startupErrorBody);
+    } catch (_) {
+      return (title: fallbackTitle, body: fallbackBody);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final copy = _copy();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -214,24 +242,23 @@ class _StartupErrorApp extends StatelessWidget {
             padding: const EdgeInsets.all(32),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: const [
-                Icon(Icons.refresh, color: Color(0xFFD9B25A), size: 48),
-                SizedBox(height: 16),
+              children: [
+                const Icon(Icons.refresh, color: Color(0xFFD9B25A), size: 48),
+                const SizedBox(height: 16),
                 Text(
-                  "Quotecrack couldn't start",
+                  copy.title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFFF3EEE2),
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  'Please close the app fully and open it again. If this '
-                  'keeps happening, reinstalling will fix it.',
+                  copy.body,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Color(0xFFC3BBA9), height: 1.4),
+                  style: const TextStyle(color: Color(0xFFC3BBA9), height: 1.4),
                 ),
               ],
             ),

@@ -95,6 +95,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hapticsTitle => 'Haptic feedback';
 
   @override
+  String get vibrationStrength => 'Vibration strength';
+
+  @override
   String get soundEffectsTitle => 'Sound effects';
 
   @override
@@ -125,20 +128,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reminderTime => 'Reminder time';
-
-  @override
-  String get openSettings => 'Open settings';
-
-  @override
-  String get notificationsBlockedTitle => 'Notifications are off';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack can\'t show notifications until you turn them on in system settings.';
-
-  @override
-  String get reminderDenied =>
-      'Notification permission was denied in system settings.';
 
   @override
   String get premiumActive => 'Premium active';
@@ -172,6 +161,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get version => 'Version';
+
+  @override
+  String get startupErrorTitle => 'Quotecrack couldn\'t start';
+
+  @override
+  String get startupErrorBody =>
+      'Please close the app fully and open it again. If this keeps happening, reinstalling will fix it.';
 
   @override
   String get homeDailyLabel => 'DAILY PUZZLE';
@@ -361,10 +357,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reminderNudgeNo => 'Not now';
-
-  @override
-  String get reminderNudgeDenied =>
-      'Notification permission was denied. You can enable it anytime in Settings.';
 
   @override
   String get packsSectionByDifficulty => 'By difficulty';

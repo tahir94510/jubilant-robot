@@ -24,7 +24,8 @@ import 'package:vibration/vibration.dart';
 ///
 /// Every cue is gated by the user's Haptics setting and never throws.
 class HapticsService {
-  HapticsService({required this.isEnabled}) {
+  HapticsService({required this.isEnabled, double Function()? intensity})
+    : intensity = intensity ?? _fullIntensity {
     // Probe the vibrator ONCE, asynchronously, and cache the result so each cue
     // stays synchronous and cheap. Fire-and-forget: until it resolves (or if it
     // fails) the service simply uses the framework-haptic fallback.
@@ -32,6 +33,12 @@ class HapticsService {
   }
 
   bool Function() isEnabled;
+
+  /// 0..1 strength multiplier read live on every cue (from
+  /// AppSettings.hapticIntensity). Defaults to full strength when not supplied.
+  double Function() intensity;
+
+  static double _fullIntensity() => 1.0;
 
   /// True only on a platform where we drive the `vibration` plugin directly
   /// (Android). iOS/macOS use the Taptic engine; web/other desktop have no
@@ -64,7 +71,16 @@ class HapticsService {
   /// (iOS Taptic engine, web/desktop). All gated by the user's Haptics setting.
   void _buzz(int ms, int amplitude, void Function() fallback) {
     if (!isEnabled()) return;
+    final scale = intensity().clamp(0.0, 1.0);
+    if (scale <= 0.0) return; // intensity 0 = silent even with haptics on
     if (_usesVibrationPlugin && _hasVibrator) {
+      // Scale the cue's strength by the user's intensity. On amplitude-capable
+      // devices that means the motor amplitude (clamped to a perceptible floor
+      // so a low-but-nonzero setting is still felt); on devices WITHOUT
+      // amplitude control, fold it into the DURATION (0.6..1.0 of the designed
+      // length) so the slider still does something there too.
+      final amp = (amplitude * scale).round().clamp(20, 255);
+      final dur = _hasAmplitude ? ms : (ms * (0.6 + 0.4 * scale)).round();
       // Decouple the motor from any sound effect dispatched in the SAME frame
       // (puzzle input plays a cue and buzzes together). A bare microtask still
       // landed the motor's current spike during the clip's attack/decay, which
@@ -72,10 +88,7 @@ class HapticsService {
       // letter cue. A short fixed delay moves the spike clear of the clip's
       // body so the software-induced part of that crackle is gone. (The residual
       // is pure hardware coupling, which only the Haptics toggle fully removes.)
-      Timer(
-        const Duration(milliseconds: 20),
-        () => _safeVibrate(ms, amplitude),
-      );
+      Timer(const Duration(milliseconds: 24), () => _safeVibrate(dur, amp));
       return;
     }
     fallback();

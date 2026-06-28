@@ -270,12 +270,14 @@ void main() {
     await tester.tap(find.text('Remind me daily'));
     await tester.pumpAndSettle();
 
+    // The first tap shows the system prompt (denied here): the toggle stays off
+    // with NO custom modal, and the explicit "No" is honored — a first denial
+    // does not redirect to system settings (that only happens on a later tap,
+    // once Android can no longer re-prompt).
     expect(h.settings.settings.reminderEnabled, isFalse);
     expect(h.notifications.scheduledAt, isNull);
-    // A denied toggle no longer dead-ends in a snackbar: it offers a route to
-    // the OS notification settings (the only Android 13+ recovery).
-    expect(find.text('Notifications are off'), findsOneWidget);
-    expect(find.text('Open settings'), findsOneWidget);
+    expect(h.notifications.openSettingsCalls, 0);
+    expect(find.text('Notifications are off'), findsNothing);
   });
 
   testWidgets('onboarding walks through and starts the tutorial puzzle', (
