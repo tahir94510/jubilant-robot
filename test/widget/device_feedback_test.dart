@@ -620,6 +620,38 @@ void main() {
     ]);
   });
 
+  testWidgets('vibration-strength slider appears with haptics on, persists a '
+      'change, and hides when haptics are off', (tester) async {
+    final h = await Harness.create();
+    await tester.pumpWidget(h.app(const SettingsScreen()));
+    await tester.pump();
+
+    // The strength slider is identified by its vibration icon (the _SliderTile
+    // renders icon + slider + %, not a text label). Shown while haptics are on.
+    await tester.scrollUntilVisible(find.byIcon(Icons.vibration), 120);
+    await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.vibration), findsOneWidget);
+
+    // Dragging it down commits a value below full strength.
+    final row = find
+        .ancestor(of: find.byIcon(Icons.vibration), matching: find.byType(Row))
+        .first;
+    await tester.drag(
+      find.descendant(of: row, matching: find.byType(Slider)),
+      const Offset(-60, 0),
+    );
+    await tester.pumpAndSettle();
+    expect(h.settings.settings.hapticIntensity, lessThan(1.0));
+
+    // Scroll back up to the Haptics switch and turn it off; the strength slider
+    // is then removed from the list (it is built only `if (settings.haptics)`).
+    await tester.scrollUntilVisible(find.text('Haptic feedback'), -120);
+    await tester.tap(find.text('Haptic feedback'));
+    await tester.pumpAndSettle();
+    expect(h.settings.settings.haptics, isFalse);
+    expect(find.byIcon(Icons.vibration), findsNothing);
+  });
+
   test(
     'colorblind mode swaps the game-state palette to a colorblind-safe set',
     () {
