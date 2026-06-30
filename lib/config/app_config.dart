@@ -51,8 +51,11 @@ abstract final class AppConfig {
       'https://play.google.com/store/apps/details?id=io.github.tahir94510.quotecrack';
   // Kalici adres (Play Console'a da bu girilir). Bu reponun Pages sitesi
   // uzerinde yasar; repo kalici olarak public tutulur (karar: tek repo).
+  // NOT: repo "jubilant-robot" -> "quotecrack" olarak yeniden adlandirildi;
+  // Pages adresi de degisti. Bu derlemeye-gomulu link CI'nin Pages sed'i ile
+  // degismez (yalniz yayinlanan dosyalar degisir), o yuzden burada elle guncel.
   static const String privacyPolicyUrl =
-      'https://tahir94510.github.io/jubilant-robot/privacy.html';
+      'https://tahir94510.github.io/quotecrack/privacy.html';
 
   static const String appName = 'Quotecrack';
 

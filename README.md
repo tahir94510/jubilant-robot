@@ -16,7 +16,7 @@ Play'de yayımlanmaya hazırdır.
 Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
 
 1. **Tarayıcıda oyna (en kolay):**
-   `https://tahir94510.github.io/jubilant-robot/app/`
+   `https://tahir94510.github.io/quotecrack/app/`
 
    > ℹ️ **Kalıcı karar: bu repo public kalır.** Nedeni: (1) Play Console'un
    > zorunlu tuttuğu gizlilik politikası sayfası bu reponun Pages sitesinde
