@@ -142,6 +142,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderBatteryAction => 'Pil ayarları';
 
   @override
+  String get notificationsBlockedTitle => 'Bildirimler kapalı';
+
+  @override
+  String get notificationsBlockedBody =>
+      'Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.';
+
+  @override
+  String get openSettings => 'Ayarları aç';
+
+  @override
   String get premiumActive => 'Premium etkin';
 
   @override

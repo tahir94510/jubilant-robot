@@ -145,6 +145,16 @@ class AppLocalizationsIt extends AppLocalizations {
   String get reminderBatteryAction => 'Impostazioni batteria';
 
   @override
+  String get notificationsBlockedTitle => 'Le notifiche sono disattivate';
+
+  @override
+  String get notificationsBlockedBody =>
+      'Quotecrack non può mostrare notifiche finché non le attivi nelle impostazioni di sistema.';
+
+  @override
+  String get openSettings => 'Apri impostazioni';
+
+  @override
   String get premiumActive => 'Premium attivo';
 
   @override

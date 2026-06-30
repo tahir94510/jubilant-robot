@@ -387,14 +387,21 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   /// the user can confirm delivery actually works on their device the moment
   /// they enable it — instead of waiting until the evening to find out it does
   /// not. Reuses the daily reminder's own copy so what they see is what they'll
-  /// get. No-op on web/stub.
-  Future<void> sendTestNotification() async {
-    if (!_notifications.supported) return;
+  /// get.
+  ///
+  /// Returns whether the post could actually be delivered: `false` when the
+  /// platform has no notifications (web/stub) or the OS currently blocks them,
+  /// so the caller can route to the system-settings recovery instead of
+  /// claiming a notification was sent that never arrives.
+  Future<bool> sendTestNotification() async {
+    if (!_notifications.supported) return false;
+    if (!await _notifications.areEnabled()) return false;
     final l10n = _activeL10n();
     await _notifications.showTestNotification(
       title: l10n.notificationDailyTitle,
       body: l10n.notificationDailyBody,
     );
+    return true;
   }
 
   /// Opens the OS battery-optimization settings so the user can exempt the app —

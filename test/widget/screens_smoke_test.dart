@@ -251,6 +251,21 @@ void main() {
     expect(settings.reminderEnabled, isFalse);
     expect(h.notifications.cancelCalls, greaterThan(0));
 
+    // The test-notification button stays available even with the reminder OFF,
+    // so delivery can be verified any time. With notifications allowed it posts
+    // immediately and shows no recovery dialog.
+    final testsBefore = h.notifications.testNotificationCalls;
+    await tester.scrollUntilVisible(find.text('Send a test notification'), 150);
+    await tester.ensureVisible(find.text('Send a test notification'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Send a test notification'));
+    await tester.pumpAndSettle();
+    expect(h.notifications.testNotificationCalls, greaterThan(testsBefore));
+    expect(find.text('Notifications are off'), findsNothing);
+    // Flush the "test sent" SnackBar timer so no Timer outlives the test.
+    await tester.pump(const Duration(seconds: 4));
+    await tester.pumpAndSettle();
+
     // Restore purchases row delegates to the store service.
     await tester.scrollUntilVisible(find.text('Restore purchases'), 200);
     await tester.ensureVisible(find.text('Restore purchases'));
@@ -284,6 +299,19 @@ void main() {
     expect(h.notifications.scheduledAt, isNull);
     expect(h.notifications.openSettingsCalls, 0);
     expect(find.text('Notifications are off'), findsNothing);
+
+    // The always-available test button surfaces the recovery dialog when
+    // notifications are blocked — instead of a dead-end "nothing happened",
+    // "Open settings" routes the user to the OS to turn them back on.
+    await tester.scrollUntilVisible(find.text('Send a test notification'), 200);
+    await tester.ensureVisible(find.text('Send a test notification'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Send a test notification'));
+    await tester.pumpAndSettle();
+    expect(find.text('Notifications are off'), findsOneWidget);
+    await tester.tap(find.text('Open settings'));
+    await tester.pumpAndSettle();
+    expect(h.notifications.openSettingsCalls, 1);
   });
 
   testWidgets('onboarding walks through and starts the tutorial puzzle', (

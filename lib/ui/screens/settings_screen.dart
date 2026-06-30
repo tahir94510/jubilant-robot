@@ -37,6 +37,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
     });
   }
 
+  /// Offers a one-tap route to the OS notification settings when notifications
+  /// are blocked (permission denied / turned off) — the only recovery on
+  /// Android 13+, where a denial can't be re-prompted in-app. Shown when a
+  /// test post can't be delivered, so the user is never left guessing why
+  /// nothing arrived.
+  Future<void> _showNotificationsBlocked(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
+    final open = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.notificationsBlockedTitle),
+        content: Text(l10n.notificationsBlockedBody),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(l10n.reminderNudgeNo),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(l10n.openSettings),
+          ),
+        ],
+      ),
+    );
+    if (open == true && context.mounted) {
+      await context.read<NotificationService>().openSystemSettings();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = context.watch<SettingsController>();
@@ -276,20 +307,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     }
                   },
                 ),
-                if (settings.reminderEnabled) ...[
+                if (settings.reminderEnabled)
                   // Explicit time control: the smart per-language default is just
                   // the starting value now, so two devices never disagree on the
-                  // hour (the "different time on each phone" report).
+                  // hour (the "different time on each phone" report). The chosen
+                  // hour sits at the trailing edge, emphasized — it IS the value
+                  // this row exists to show.
                   ListTile(
                     leading: const Icon(Icons.schedule_outlined),
                     title: Text(l10n.reminderTime),
-                    subtitle: Text(settings.reminderTime.format(context)),
-                    trailing: const Icon(Icons.chevron_right),
+                    trailing: Text(
+                      settings.reminderTime.format(context),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     onTap: () async {
                       haptics.tap();
                       final picked = await showTimePicker(
                         context: context,
                         initialTime: settings.reminderTime,
+                        // Keyboard entry only: faster for the audience, and it
+                        // sidesteps the M3 dial's overlapping-dot visuals.
+                        initialEntryMode: TimePickerEntryMode.inputOnly,
                       );
                       if (picked != null) {
                         await controller.setReminder(
@@ -299,21 +340,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                   ),
-                  // A manual re-check: fire a test post any time, so the user can
-                  // confirm delivery still works (e.g. after changing OS settings).
-                  ListTile(
-                    leading: const Icon(Icons.notifications_active_outlined),
-                    title: Text(l10n.reminderSendTest),
-                    onTap: () async {
-                      haptics.tap();
-                      await controller.sendTestNotification();
-                      if (!context.mounted) return;
+                // A manual re-check, ALWAYS available (even with the reminder
+                // off): fire a test post any time so the user can confirm
+                // delivery actually works on their device — the quickest way to
+                // diagnose "no reminder ever shows up". When notifications are
+                // blocked the post can't land, so route to the OS-settings
+                // recovery instead of a silent no-op.
+                ListTile(
+                  leading: const Icon(Icons.notifications_active_outlined),
+                  title: Text(l10n.reminderSendTest),
+                  onTap: () async {
+                    haptics.tap();
+                    final ok = await controller.sendTestNotification();
+                    if (!context.mounted) return;
+                    if (ok) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(l10n.reminderTestSent)),
                       );
-                    },
-                  ),
-                ],
+                    } else {
+                      await _showNotificationsBlocked(context, l10n);
+                    }
+                  },
+                ),
               ],
               section(l10n.sectionPremium),
               if (economy.premium)
