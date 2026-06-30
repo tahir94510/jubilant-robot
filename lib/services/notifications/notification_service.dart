@@ -25,12 +25,21 @@ abstract class NotificationService {
   /// notifications from system settings.
   Future<bool> areEnabled();
 
-  /// (Re)schedules the repeating daily reminder with inexact-allow-while-idle
-  /// delivery (Play-safe; no exact-alarm permission). The HIGH-importance
-  /// channel makes it alert. [title]/[body] arrive already localized to the
-  /// user's UI language.
+  /// (Re)schedules the repeating daily reminder with EXACT allow-while-idle
+  /// delivery (`USE_EXACT_ALARM`), so aggressive OEM battery managers
+  /// (Xiaomi/MIUI, Huawei) can't silently batch it away the way inexact alarms
+  /// were being dropped. The HIGH-importance channel makes it alert.
+  /// [title]/[body] arrive already localized to the user's UI language.
   Future<void> scheduleDaily(
     TimeOfDay time, {
+    required String title,
+    required String body,
+  });
+
+  /// Posts a one-off reminder IMMEDIATELY (not scheduled), so the user can
+  /// confirm delivery actually works on their device the moment they enable the
+  /// reminder — decoupled from the daily time. No-op on web/stub.
+  Future<void> showTestNotification({
     required String title,
     required String body,
   });
@@ -40,6 +49,11 @@ abstract class NotificationService {
   /// [requestPermission] return false WITHOUT a prompt, so the only way back is
   /// the system settings page. No-op on web/stub.
   Future<void> openSystemSettings();
+
+  /// Opens the OS battery-optimization settings so the user can exempt the app
+  /// — the real fix for OEMs (MIUI/Huawei) that kill background alarms. Uses the
+  /// general settings list (no Play-restricted permission). No-op on web/stub.
+  Future<void> openBatterySettings();
 
   Future<void> cancelAll();
 }

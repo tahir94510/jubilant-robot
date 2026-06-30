@@ -382,4 +382,23 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
       // Best-effort sync; a failure must never disrupt the app.
     }
   }
+
+  /// Posts an IMMEDIATE test reminder (localized to the active UI language), so
+  /// the user can confirm delivery actually works on their device the moment
+  /// they enable it — instead of waiting until the evening to find out it does
+  /// not. Reuses the daily reminder's own copy so what they see is what they'll
+  /// get. No-op on web/stub.
+  Future<void> sendTestNotification() async {
+    if (!_notifications.supported) return;
+    final l10n = _activeL10n();
+    await _notifications.showTestNotification(
+      title: l10n.notificationDailyTitle,
+      body: l10n.notificationDailyBody,
+    );
+  }
+
+  /// Opens the OS battery-optimization settings so the user can exempt the app —
+  /// the real fix for OEMs (Xiaomi/MIUI, Huawei) that kill background alarms and
+  /// silently drop reminders. Best-effort; never throws.
+  Future<void> openBatterySettings() => _notifications.openBatterySettings();
 }

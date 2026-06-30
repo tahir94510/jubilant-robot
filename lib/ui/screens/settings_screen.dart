@@ -254,12 +254,66 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     // the OS settings page itself. The switch just reflects the
                     // resulting state (a resume re-sync updates it when the user
                     // returns from settings).
-                    await controller.setReminder(enabled: enabled);
+                    final on = await controller.setReminder(enabled: enabled);
+                    // On a fresh enable, prove delivery RIGHT NOW (a test post)
+                    // and surface the OEM battery-exemption path — the real fix
+                    // for "the reminder never arrives" on Xiaomi/Huawei. Only
+                    // when actually turning it on (not on the system-settings
+                    // redirect, where `on` is false).
+                    if (on && enabled && context.mounted) {
+                      await controller.sendTestNotification();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(l10n.reminderBatteryHint),
+                          duration: const Duration(seconds: 8),
+                          action: SnackBarAction(
+                            label: l10n.reminderBatteryAction,
+                            onPressed: () => controller.openBatterySettings(),
+                          ),
+                        ),
+                      );
+                    }
                   },
                 ),
-                // The reminder time is chosen automatically per language (a calm
-                // evening hour) — no in-app time picker to fiddle with. The
-                // subtitle above shows the chosen time when the reminder is on.
+                if (settings.reminderEnabled) ...[
+                  // Explicit time control: the smart per-language default is just
+                  // the starting value now, so two devices never disagree on the
+                  // hour (the "different time on each phone" report).
+                  ListTile(
+                    leading: const Icon(Icons.schedule_outlined),
+                    title: Text(l10n.reminderTime),
+                    subtitle: Text(settings.reminderTime.format(context)),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () async {
+                      haptics.tap();
+                      final picked = await showTimePicker(
+                        context: context,
+                        initialTime: settings.reminderTime,
+                      );
+                      if (picked != null) {
+                        await controller.setReminder(
+                          enabled: true,
+                          time: picked,
+                        );
+                      }
+                    },
+                  ),
+                  // A manual re-check: fire a test post any time, so the user can
+                  // confirm delivery still works (e.g. after changing OS settings).
+                  ListTile(
+                    leading: const Icon(Icons.notifications_active_outlined),
+                    title: Text(l10n.reminderSendTest),
+                    onTap: () async {
+                      haptics.tap();
+                      await controller.sendTestNotification();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(l10n.reminderTestSent)),
+                      );
+                    },
+                  ),
+                ],
               ],
               section(l10n.sectionPremium),
               if (economy.premium)

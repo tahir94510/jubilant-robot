@@ -10,20 +10,21 @@
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin
          (INEXACT alarmlar da reboot'ta dusuyor; boot receiver yeniden kurar). -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- Gunluk hatirlatma INEXACT alarm kullanir (inexactAllowWhileIdle):
-         rahat bir oyun hatirlaticisi tam-zaman gerektirmez. Bu yuzden HER IKI
-         exact-alarm iznini de (eklentinin birlesik manifeste enjekte ettigi
-         dahil) KALDIRIYORUZ:
-         - SCHEDULE_EXACT_ALARM kafa karistiran "Alarmlar ve hatirlaticilar"
-           sistem ekranini aciyordu ve Play bunu "yalniz cekirdek-islev" izni
-           olarak inceler; bir oyun hatirlaticisi bu esigi karsilamaz.
-         - USE_EXACT_ALARM zaten yalniz alarm/takvim uygulamalarina ozel.
-         OS bakim penceresinde birkac dakika sapma "bugun oyna" durtusu icin
-         kabul edilebilir; HIGH onemli kanal yine de sesli/heads-up uyarir. -->
+    <!-- Gunluk hatirlatma artik EXACT alarm kullanir (exactAllowWhileIdle).
+         INEXACT alarmlar agresif OEM pil yoneticilerince (Xiaomi/MIUI, Huawei)
+         sessizce toplanip dusuruluyordu — "hatirlatma hic gelmiyor" sikayeti.
+         USE_EXACT_ALARM, 33+ (Android 13+) icin OTOMATIK verilir (runtime istem
+         yok) ve gunluk hatirlatici bu iznin uygun kategorisidir. 32 ve altinda
+         (Android 12) eklentinin enjekte ettigi SCHEDULE_EXACT_ALARM otomatik
+         verilir; onu maxSdkVersion=32 ile sinirlayip (tools:node=replace) 33+'ta
+         devre disi birakiyoruz ki "Alarmlar ve hatirlaticilar" ekrani / genis
+         izin Play incelemesi tetiklenmesin — 33+ icin USE_EXACT_ALARM devralir.
+         NOT: Play Console'da USE_EXACT_ALARM icin "exact alarm" beyani gerekir
+         (gerekce: gunluk hatirlatici ozelligi). -->
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
-        tools:node="remove"/>
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM"
-        tools:node="remove"/>
+        android:maxSdkVersion="32"
+        tools:node="replace"/>
     <!-- AdMob reklam kimligi (Play Console "Veri guvenligi" formunda beyan edilir) -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 

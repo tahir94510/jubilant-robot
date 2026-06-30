@@ -140,16 +140,24 @@ jobs:
           cache: true
       - run: flutter pub get
       # --pwa-strategy=none: service worker olmasin ki onizleme asla
-      # bayat (eski) surumde takili kalmasin.
+      # bayat (eski) surumde takili kalmasin. base-href repo adindan TURETILIR
+      # (rename-proof): repo "quotecrack"e tasinsa bile flutter_bootstrap.js
+      # dogru yoldan yuklenir; sabit "/jubilant-robot/app/" yeniden adlandirmada
+      # 404 verip "loading"de takiyordu.
       - run: >
           flutter build web --release
-          --base-href "/jubilant-robot/app/"
+          --base-href "/${{ github.event.repository.name }}/app/"
           --pwa-strategy=none
       - name: Assemble Pages site (landing + privacy + app)
+        # Tum sabit "jubilant-robot" URL'lerini (canonical/og/manifest/sitemap/
+        # 404) gercek repo adina cevir: SEO + manifest yollari da rename-proof.
         run: |
           mkdir -p _site/app
           cp -r build/web/* _site/app/
           cp -r pages/* _site/
+          find _site -type f \( -name '*.html' -o -name '*.xml' \
+            -o -name '*.json' -o -name '*.txt' -o -name '*.webmanifest' \) \
+            -exec sed -i "s/jubilant-robot/${{ github.event.repository.name }}/g" {} +
       - id: cfg
         uses: actions/configure-pages@v6
         continue-on-error: true
