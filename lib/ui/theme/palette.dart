@@ -12,6 +12,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     required this.boardCellFilledBg,
     required this.boardCellConfirmedBg,
     required this.boardCellLastMoveBg,
+    required this.boardCellRevealedBg,
     required this.boardUnderline,
     required this.guessText,
     required this.cipherText,
@@ -45,12 +46,21 @@ class GamePalette extends ThemeExtension<GamePalette> {
   /// a calm, on-brand backdrop for the [confirmed] state.
   final Color boardCellConfirmedBg;
 
-  /// "Just locked" fill: the cells of the word a guess just completed, or the
-  /// cells a hint just revealed, until the next letter is placed. Same green
-  /// family as [boardCellConfirmedBg] but a gentle step stronger, so the freshest
-  /// letters read calmly above the older confirmed ones. A fill with NO border,
-  /// so it never mimics the cursor frame or the faint "same-letter" cue.
+  /// "Just locked" fill: the cells of the word a guess just completed, until
+  /// the next letter is placed. Same green family as [boardCellConfirmedBg] but
+  /// a gentle step stronger, so the freshest letters read calmly above the older
+  /// confirmed ones. A fill with NO border, so it never mimics the cursor frame
+  /// or the faint "same-letter" cue. (A just-revealed HINT uses
+  /// [boardCellRevealedBg] instead — see below.)
   final Color boardCellLastMoveBg;
+
+  /// "Just revealed" fill for the cells a HINT just uncovered, until the next
+  /// letter is placed. In the GOLD [revealed] family — NOT the green just-locked
+  /// tint — so a hint's gold letter sits on a matching gold wash instead of the
+  /// jarring gold-on-green clash (the low-contrast pairing players reported).
+  /// A border-less fill, a gentle step under the gold text so the letter stays
+  /// the most prominent thing in the cell.
+  final Color boardCellRevealedBg;
   final Color boardUnderline;
   final Color guessText;
   final Color cipherText;
@@ -112,6 +122,9 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellLastMoveBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
             .withValues(alpha: .20),
+    // Just-revealed HINT wash in the gold [revealed] family (not green), so the
+    // gold hint letter reads on a matching gold tint instead of clashing.
+    boardCellRevealedBg: const Color(0xFF856414).withValues(alpha: .15),
     boardUnderline: const Color(0xFFC9BEA8),
     guessText: const Color(0xFF211E1A),
     cipherText: const Color(0xFF6B614D),
@@ -147,6 +160,8 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellLastMoveBg:
         (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
             .withValues(alpha: .26),
+    // Just-revealed HINT wash in the gold [revealed] family (not teal-green).
+    boardCellRevealedBg: const Color(0xFFD9B25A).withValues(alpha: .24),
     boardUnderline: const Color(0xFF4A453B),
     guessText: const Color(0xFFF2EDE2),
     cipherText: const Color(0xFF968B79),
@@ -179,6 +194,8 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellLastMoveBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
             .withValues(alpha: .20),
+    // Just-revealed HINT wash in the gold [revealed] family (not green).
+    boardCellRevealedBg: const Color(0xFF846423).withValues(alpha: .14),
     boardUnderline: const Color(0xFFC4AE8E),
     guessText: const Color(0xFF3A2E1C),
     cipherText: const Color(0xFF755F3F),
@@ -210,6 +227,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     Color? boardCellFilledBg,
     Color? boardCellConfirmedBg,
     Color? boardCellLastMoveBg,
+    Color? boardCellRevealedBg,
     Color? boardUnderline,
     Color? guessText,
     Color? cipherText,
@@ -234,6 +252,7 @@ class GamePalette extends ThemeExtension<GamePalette> {
     boardCellFilledBg: boardCellFilledBg ?? this.boardCellFilledBg,
     boardCellConfirmedBg: boardCellConfirmedBg ?? this.boardCellConfirmedBg,
     boardCellLastMoveBg: boardCellLastMoveBg ?? this.boardCellLastMoveBg,
+    boardCellRevealedBg: boardCellRevealedBg ?? this.boardCellRevealedBg,
     boardUnderline: boardUnderline ?? this.boardUnderline,
     guessText: guessText ?? this.guessText,
     cipherText: cipherText ?? this.cipherText,
@@ -284,6 +303,11 @@ class GamePalette extends ThemeExtension<GamePalette> {
       boardCellLastMoveBg: Color.lerp(
         boardCellLastMoveBg,
         other.boardCellLastMoveBg,
+        t,
+      )!,
+      boardCellRevealedBg: Color.lerp(
+        boardCellRevealedBg,
+        other.boardCellRevealedBg,
         t,
       )!,
       boardUnderline: Color.lerp(boardUnderline, other.boardUnderline, t)!,

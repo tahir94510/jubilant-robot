@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keeps the notification small-icon drawable if a future build ever turns on
+     resource shrinking. The icon is referenced only BY NAME at runtime (handed
+     to flutter_local_notifications as @drawable/ic_stat_quotecrack), which R8's
+     resource shrinker cannot see — so it would strip the drawable and the daily
+     reminder would fail with `invalid_icon`. minifyEnabled is on but
+     shrinkResources is currently off, so this is belt-and-suspenders that makes
+     the icon survive regardless of how the release build is configured later. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_stat_quotecrack" />

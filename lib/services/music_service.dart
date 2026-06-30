@@ -359,6 +359,10 @@ class MusicService with WidgetsBindingObserver {
   }
 
   void dispose() {
+    // Symmetric with the addObserver in main.dart: drop the lifecycle hook so a
+    // disposed service can never get a didChangeAppLifecycleState callback and
+    // touch already-torn-down voices. No-op if it was never registered.
+    WidgetsBinding.instance.removeObserver(this);
     _crossfadeTimer?.cancel();
     _duckTimer?.cancel();
     _pauseTimer?.cancel();

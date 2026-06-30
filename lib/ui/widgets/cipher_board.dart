@@ -113,10 +113,11 @@ class _CipherBoardState extends State<CipherBoard> {
     final totalLetters = session.cipherText.split('').where(isLetter).length;
 
     // Cell width adapts to screen and quote length so long quotes still fit
-    // comfortably; text scale is applied by MediaQuery at app level. The
-    // longest word then caps the width further so a single 15-letter word
-    // shrinks the whole board evenly instead of overflowing the row
-    // (words render as non-wrapping Rows inside the Wrap below).
+    // comfortably, and scales with the user's Text-size choice (applied to the
+    // geometry below, not as a glyph-only MediaQuery scale). The longest word
+    // then caps the width further so a single 15-letter word shrinks the whole
+    // board evenly instead of overflowing the row (words render as non-wrapping
+    // Rows inside the Wrap below).
     return LayoutBuilder(
       builder: (context, constraints) {
         // Derive ALL cell geometry from the stable layout viewport
@@ -132,7 +133,15 @@ class _CipherBoardState extends State<CipherBoard> {
         final available = constraints.maxWidth.isFinite
             ? constraints.maxWidth
             : MediaQuery.sizeOf(context).width;
-        final preferred = (available / 13.5).clamp(22.0, 34.0);
+        // The board honors the user's Text-size setting through its GEOMETRY:
+        // the cell width (and so every glyph, which is sized from it) scales by
+        // the active text factor. Doing it here — instead of letting the ambient
+        // textScaler enlarge only the glyphs inside fixed-width cells, which
+        // overflowed at large sizes — keeps the whole board crisp. The factor is
+        // already app-clamped (app.dart caps the scaler at 1.6); fitCellWidth
+        // still shrinks the result so a long quote fits however large the choice.
+        final textScale = MediaQuery.textScalerOf(context).scale(1.0);
+        final preferred = (available / 13.5).clamp(22.0, 34.0) * textScale;
         // Snap the rendered cell width to a whole logical pixel. A fractional
         // width put every letter (and the word Row + centered Wrap built on it)
         // at sub-pixel x-offsets, so the glyphs shimmered ("titreme") and the
@@ -218,13 +227,19 @@ class _CipherBoardState extends State<CipherBoard> {
           wordRows.add(Row(mainAxisSize: MainAxisSize.min, children: cells));
         }
 
-        return Wrap(
-          alignment: WrapAlignment.center,
-          runSpacing: 14,
-          // Whole-pixel word gap so the centered Wrap lays every word row out on
-          // the pixel grid — a fractional gap was part of the scroll shimmer.
-          spacing: (cellWidth * 0.45).floorToDouble(),
-          children: wordRows,
+        // The cell geometry above already encodes the user's Text-size choice,
+        // so the glyphs inside must NOT be scaled a second time by the ambient
+        // textScaler — that double-scaling is what overflowed the fixed cells.
+        // Pin the board's text to no extra scaling; glyph size tracks cellWidth.
+        return MediaQuery.withNoTextScaling(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            runSpacing: 14,
+            // Whole-pixel word gap so the centered Wrap lays every word row out
+            // on the pixel grid — a fractional gap was part of the scroll shimmer.
+            spacing: (cellWidth * 0.45).floorToDouble(),
+            children: wordRows,
+          ),
         );
       },
     );
