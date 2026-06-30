@@ -143,6 +143,16 @@ class AppLocalizationsPt extends AppLocalizations {
   String get reminderBatteryAction => 'Definições de bateria';
 
   @override
+  String get notificationsBlockedTitle => 'As notificações estão desativadas';
+
+  @override
+  String get notificationsBlockedBody =>
+      'O Quotecrack não pode mostrar notificações até você ativá-las nas configurações do sistema.';
+
+  @override
+  String get openSettings => 'Abrir configurações';
+
+  @override
   String get premiumActive => 'Premium ativo';
 
   @override
