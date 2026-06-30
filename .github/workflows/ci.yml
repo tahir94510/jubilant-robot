@@ -158,6 +158,14 @@ jobs:
           find _site -type f \( -name '*.html' -o -name '*.xml' \
             -o -name '*.json' -o -name '*.txt' -o -name '*.webmanifest' \) \
             -exec sed -i "s/jubilant-robot/${{ github.event.repository.name }}/g" {} +
+          # Kozmetik: release derlemesi kaynak haritalarini (flutter.js.map vb.)
+          # GONDERMEZ ama JS dosyalari hala `//# sourceMappingURL=...` yorumu
+          # tasir; devtools bu haritayi cekmeye calisip 404 yaziyor (kullanicinin
+          # gordugu "hata"). Sadece bu debug yorumunu sil — islevsel etki YOK,
+          # konsol temizlenir. canvaskit alt klasoru haric (oradaki uyari WebGL
+          # deprecation, kaynak-harita degil).
+          find _site/app -maxdepth 1 -name '*.js' \
+            -exec sed -i '/sourceMappingURL/d' {} +
       - id: cfg
         uses: actions/configure-pages@v6
         continue-on-error: true
