@@ -88,6 +88,13 @@ class LetterCell extends StatelessWidget {
       _ => palette.guessText,
     };
 
+    // The "just locked" wash for a [recent] cell: a completed WORD gets the
+    // green confirmed family; a just-revealed HINT gets the gold revealed family
+    // so its gold letter never sits on a clashing green tint.
+    final recentBg = state == CellState.revealed
+        ? palette.boardCellRevealedBg
+        : palette.boardCellLastMoveBg;
+
     final l10n = AppLocalizations.of(context);
     // A hint-revealed or confirmed-word cell is locked: announce it as
     // non-interactive so a screen reader doesn't invite a tap that does nothing.
@@ -118,13 +125,13 @@ class LetterCell extends StatelessWidget {
             decoration: BoxDecoration(
               color: selected
                   ? palette.boardCellSelectedBg
-                  // The just-locked cells (a hint, or the word you just completed):
-                  // a CALM fill in the same green confirmed family, just a gentle
-                  // step stronger than the older confirmed cells — so the latest
-                  // letters read as "freshly locked" without the old jarring gold
-                  // highlight, and never as the cursor (no frame).
+                  // The just-locked cells: a CALM fill (no frame, so never the
+                  // cursor). A just-completed WORD uses the green confirmed
+                  // family; a just-revealed HINT uses the GOLD revealed family
+                  // (see [recentBg]) so its gold letter sits on a matching gold
+                  // wash instead of the old gold-on-green clash players flagged.
                   : recent
-                  ? palette.boardCellLastMoveBg
+                  ? recentBg
                   // Other letters of a fully-correct word: their own calm
                   // confirmed backdrop.
                   : state == CellState.confirmed

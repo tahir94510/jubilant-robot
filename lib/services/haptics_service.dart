@@ -52,6 +52,16 @@ class HapticsService {
   bool _hasVibrator = false;
   bool _hasAmplitude = false;
 
+  /// Minimum gap before the SAME cue re-buzzes. Mirrors SoundService's per-cue
+  /// throttle: it coalesces a burst of identical cues (fast typing, a held key,
+  /// repeated taps) into a single buzz, so the motor never receives a stream of
+  /// overlapping one-shots that Android cancels as CANCELLED_SUPERSEDED — the
+  /// churn that made cues feel dropped/rough. Per-cue (not global) so distinct
+  /// cues that genuinely layer at one moment (a word-lock under the keystroke)
+  /// still all land.
+  static const int _minGapMs = 50;
+  final Map<String, int> _lastBuzzMs = {};
+
   Future<void> _detectCapabilities() async {
     if (!_usesVibrationPlugin) return; // iOS/web/desktop: HapticFeedback only
     try {
@@ -69,10 +79,17 @@ class HapticsService {
   /// Plays [ms]/[amplitude] as a real vibration when one is available (Android
   /// with a controllable motor), else runs the framework-haptic [fallback]
   /// (iOS Taptic engine, web/desktop). All gated by the user's Haptics setting.
-  void _buzz(int ms, int amplitude, void Function() fallback) {
+  void _buzz(String cue, int ms, int amplitude, void Function() fallback) {
     if (!isEnabled()) return;
     final scale = intensity().clamp(0.0, 1.0);
     if (scale <= 0.0) return; // intensity 0 = silent even with haptics on
+    // Coalesce a rapid burst of the SAME cue so the motor is never handed a
+    // stream of overlapping one-shots (the CANCELLED_SUPERSEDED churn). Keyed
+    // per cue, so distinct cues fired together still each land.
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final last = _lastBuzzMs[cue];
+    if (last != null && now - last < _minGapMs) return;
+    _lastBuzzMs[cue] = now;
     if (_usesVibrationPlugin && _hasVibrator) {
       // Scale the cue's strength by the user's intensity. On amplitude-capable
       // devices that means the motor amplitude (clamped to a perceptible floor
@@ -120,18 +137,18 @@ class HapticsService {
   // survives. iOS maps each step to the matching Taptic impact weight below.)
 
   /// A crisp per-keystroke / navigation tick — light but clearly felt.
-  void tap() => _buzz(18, 130, HapticFeedback.selectionClick);
+  void tap() => _buzz('tap', 18, 130, HapticFeedback.selectionClick);
 
   /// A soft, distinct buzz when a whole word falls into place: more than a key
   /// tap, lighter than a full solve.
-  void wordComplete() => _buzz(30, 180, HapticFeedback.mediumImpact);
+  void wordComplete() => _buzz('word', 30, 180, HapticFeedback.mediumImpact);
 
-  void success() => _buzz(42, 215, HapticFeedback.mediumImpact);
+  void success() => _buzz('success', 42, 215, HapticFeedback.mediumImpact);
 
   /// The full-solve fanfare — the biggest beat in the game, so it lands the
   /// hardest, synced with the success chime, the green board wave and confetti.
-  void celebrate() => _buzz(60, 255, HapticFeedback.heavyImpact);
+  void celebrate() => _buzz('celebrate', 60, 255, HapticFeedback.heavyImpact);
 
   /// A firm error buzz for a conflicting guess (only when error checking is on).
-  void error() => _buzz(48, 235, HapticFeedback.heavyImpact);
+  void error() => _buzz('error', 48, 235, HapticFeedback.heavyImpact);
 }

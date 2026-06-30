@@ -88,6 +88,17 @@ void main() {
         atLeast('conflict/surface', p.conflict, cs.surface, 4.5);
         atLeast('error/surface', p.error, cs.surface, 4.5);
         atLeast('revealed/surface', p.revealed, cs.surface, 4.5);
+        // A JUST-REVEALED hint letter (gold) sits briefly on the translucent
+        // gold [boardCellRevealedBg] wash; composite it over the surface and
+        // confirm the gold letter still clears the large-text floor (the board
+        // glyph is bold). This locks the gold-on-gold fix so a future tweak can
+        // never let the wash darken back toward the low-contrast gold-on-green.
+        atLeast(
+          'revealed/revealedWash',
+          p.revealed,
+          Color.alphaBlend(p.boardCellRevealedBg, cs.surface),
+          3.0,
+        );
         atLeast('confirmed/surface', p.confirmed, cs.surface, 4.5);
         atLeast('success/surface', p.success, cs.surface, 4.5);
         // The streak flame accent renders as an icon + large number on the
