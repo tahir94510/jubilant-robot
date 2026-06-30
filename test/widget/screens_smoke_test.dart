@@ -227,7 +227,8 @@ void main() {
     await tester.pump();
     expect(settings.soundEffects, isFalse);
 
-    // Daily reminder: enabling schedules a notification via the service.
+    // Daily reminder: enabling schedules a notification via the service AND
+    // fires an immediate test post so delivery is verifiable on the device.
     await tester.scrollUntilVisible(find.text('Remind me daily'), 200);
     await tester.ensureVisible(find.text('Remind me daily'));
     await tester.pumpAndSettle();
@@ -235,9 +236,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(settings.reminderEnabled, isTrue);
     expect(h.notifications.scheduledAt, isNotNull);
-    // The reminder is on/off only now — the time is chosen automatically per
-    // language, so there is no in-app "Reminder time" picker row.
-    expect(find.text('Reminder time'), findsNothing);
+    expect(h.notifications.testNotificationCalls, greaterThan(0));
+    // The reminder time is now user-controllable via an in-app picker row
+    // (fixes the per-device default-time discrepancy).
+    expect(find.text('Reminder time'), findsOneWidget);
+    // Let the battery-hint SnackBar's auto-dismiss timer fire so the test never
+    // finishes with a pending Timer.
+    await tester.pump(const Duration(seconds: 8));
+    await tester.pumpAndSettle();
 
     // Disabling cancels it.
     await tester.tap(find.text('Remind me daily'));
