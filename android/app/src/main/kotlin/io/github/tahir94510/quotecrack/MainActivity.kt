@@ -24,6 +24,10 @@ class MainActivity : FlutterActivity() {
                         openNotificationSettings()
                         result.success(true)
                     }
+                    "openBatterySettings" -> {
+                        openBatterySettings()
+                        result.success(true)
+                    }
                     else -> result.notImplemented()
                 }
             }
@@ -35,6 +39,29 @@ class MainActivity : FlutterActivity() {
     private fun openNotificationSettings() {
         val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
             putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            val fallback = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                data = Uri.fromParts("package", packageName, null)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            try {
+                startActivity(fallback)
+            } catch (_: Exception) {
+            }
+        }
+    }
+
+    /// Opens the OS battery-optimization list so the user can exempt the app —
+    /// the real fix for OEMs (Xiaomi/MIUI, Huawei) that kill background alarms
+    /// and silently drop scheduled reminders. Uses the GENERAL list
+    /// (ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS), which needs no special
+    /// (Play-restricted) permission. Falls back to the app details page.
+    private fun openBatterySettings() {
+        val intent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         try {

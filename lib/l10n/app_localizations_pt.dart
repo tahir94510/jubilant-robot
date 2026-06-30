@@ -131,6 +131,18 @@ class AppLocalizationsPt extends AppLocalizations {
   String get reminderTime => 'Horário do lembrete';
 
   @override
+  String get reminderSendTest => 'Enviar uma notificação de teste';
+
+  @override
+  String get reminderTestSent => 'Notificação de teste enviada';
+
+  @override
+  String get reminderBatteryHint => 'Alguns telefones (ex.: Xiaomi, Huawei) param os lembretes em segundo plano para poupar bateria. Permite que o Quotecrack seja executado em segundo plano para nunca perderes o teu lembrete diário.';
+
+  @override
+  String get reminderBatteryAction => 'Definições de bateria';
+
+  @override
   String get premiumActive => 'Premium ativo';
 
   @override

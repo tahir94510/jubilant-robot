@@ -131,6 +131,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get reminderTime => 'Erinnerungszeit';
 
   @override
+  String get reminderSendTest => 'Testbenachrichtigung senden';
+
+  @override
+  String get reminderTestSent => 'Testbenachrichtigung gesendet';
+
+  @override
+  String get reminderBatteryHint => 'Manche Telefone (z. B. Xiaomi, Huawei) stoppen Hintergrund-Erinnerungen, um Akku zu sparen. Erlaube Quotecrack, im Hintergrund zu laufen, damit deine tägliche Erinnerung nie verpasst wird.';
+
+  @override
+  String get reminderBatteryAction => 'Akku-Einstellungen';
+
+  @override
   String get premiumActive => 'Premium aktiv';
 
   @override

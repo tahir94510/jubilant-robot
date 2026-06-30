@@ -336,6 +336,30 @@ abstract class AppLocalizations {
   /// **'Reminder time'**
   String get reminderTime;
 
+  /// No description provided for @reminderSendTest.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test notification'**
+  String get reminderSendTest;
+
+  /// No description provided for @reminderTestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Test notification sent'**
+  String get reminderTestSent;
+
+  /// No description provided for @reminderBatteryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Some phones (e.g. Xiaomi, Huawei) stop background reminders to save battery. Allow Quotecrack to run in the background so your daily reminder is never missed.'**
+  String get reminderBatteryHint;
+
+  /// No description provided for @reminderBatteryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery settings'**
+  String get reminderBatteryAction;
+
   /// No description provided for @premiumActive.
   ///
   /// In en, this message translates to:

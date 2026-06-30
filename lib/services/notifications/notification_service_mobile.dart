@@ -15,6 +15,10 @@ class MobileNotificationService extends NotificationService {
 
   static const int _dailyReminderId = 1001;
 
+  /// A separate id for the immediate "it works" test post, so showing it never
+  /// touches the scheduled daily reminder ([_dailyReminderId]).
+  static const int _testNotificationId = 1002;
+
   /// The notification small-icon drawable (alpha-only status-bar mark). Passed
   /// EXPLICITLY on every post as well as at init, so a notification never falls
   /// back to a missing/launcher icon on stricter OEMs.
@@ -192,14 +196,14 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    // INEXACT delivery only (inexactAllowWhileIdle): a daily habit reminder
-    // does not need exact timing, so we avoid SCHEDULE_EXACT_ALARM entirely —
-    // no confusing system prompt, Play-safe, and scheduling can never throw.
-    // The OS may batch delivery into its maintenance window (a few minutes of
-    // drift, fine for "come play today"); the HIGH-importance channel still
-    // makes it alert. Aggressive OEMs (Xiaomi/MIUI, Huawei) may still delay or
-    // drop it under battery optimization — that is an OS/OEM setting, not an
-    // app permission, and exact alarms would not reliably override it either.
+    // EXACT delivery (exactAllowWhileIdle + USE_EXACT_ALARM): the previous
+    // inexact mode was being silently batched away by aggressive OEM battery
+    // managers (Xiaomi/MIUI, Huawei) — the "reminder never arrives" report.
+    // USE_EXACT_ALARM is auto-granted (no runtime prompt) and is the correct
+    // category for a daily reminder, so the alarm fires at the chosen time even
+    // in Doze. Battery-optimization exemption (openBatterySettings) is still the
+    // companion fix for the most aggressive OEMs. The schedule is wrapped by the
+    // caller so a (rare) exact-alarm failure can never crash the toggle.
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
@@ -208,12 +212,43 @@ class MobileNotificationService extends NotificationService {
       notificationDetails: NotificationDetails(
         android: _androidDetails(title, body),
       ),
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
       // An explicit (non-null) payload keeps the plugin off any null-payload
       // serialization path when the daily reminder is delivered.
       payload: 'daily_reminder',
     );
+  }
+
+  @override
+  Future<void> showTestNotification({
+    required String title,
+    required String body,
+  }) async {
+    // Posted immediately on its own id so it never overwrites or cancels the
+    // scheduled daily reminder. Lets the user SEE that delivery works the moment
+    // they enable it, instead of waiting until the evening to find out it does
+    // not. Best-effort: a failure here must never surface to the toggle.
+    try {
+      await _plugin.show(
+        id: _testNotificationId,
+        title: title,
+        body: body,
+        notificationDetails: NotificationDetails(
+          android: _androidDetails(title, body),
+        ),
+        payload: 'daily_reminder_test',
+      );
+    } catch (_) {}
+  }
+
+  @override
+  Future<void> openBatterySettings() async {
+    // Best-effort: the host Activity opens the OS battery-optimization settings
+    // (general list; no Play-restricted permission). Never throws into the UI.
+    try {
+      await _platform.invokeMethod('openBatterySettings');
+    } catch (_) {}
   }
 
   @override

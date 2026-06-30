@@ -133,6 +133,18 @@ class AppLocalizationsIt extends AppLocalizations {
   String get reminderTime => 'Ora del promemoria';
 
   @override
+  String get reminderSendTest => 'Invia una notifica di prova';
+
+  @override
+  String get reminderTestSent => 'Notifica di prova inviata';
+
+  @override
+  String get reminderBatteryHint => 'Alcuni telefoni (es. Xiaomi, Huawei) bloccano i promemoria in background per risparmiare batteria. Consenti a Quotecrack di funzionare in background per non perdere mai il promemoria giornaliero.';
+
+  @override
+  String get reminderBatteryAction => 'Impostazioni batteria';
+
+  @override
   String get premiumActive => 'Premium attivo';
 
   @override

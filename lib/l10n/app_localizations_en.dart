@@ -130,6 +130,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reminderTime => 'Reminder time';
 
   @override
+  String get reminderSendTest => 'Send a test notification';
+
+  @override
+  String get reminderTestSent => 'Test notification sent';
+
+  @override
+  String get reminderBatteryHint => 'Some phones (e.g. Xiaomi, Huawei) stop background reminders to save battery. Allow Quotecrack to run in the background so your daily reminder is never missed.';
+
+  @override
+  String get reminderBatteryAction => 'Battery settings';
+
+  @override
   String get premiumActive => 'Premium active';
 
   @override
