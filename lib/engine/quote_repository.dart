@@ -34,9 +34,17 @@ class QuoteRepository {
             )
             .toList()
           ..sort(); // stable, platform-independent load order
+    // Read every file CONCURRENTLY, not one-await-at-a-time. On native these are
+    // instant bundled reads, but on web each asset is a separate network
+    // round-trip: a sequential loop over ~84 files stalled the boot splash for
+    // (count x latency) — tens of seconds — before the first frame. Future.wait
+    // fires them together (HTTP/2 multiplexes) and, crucially, RETURNS RESULTS
+    // IN INPUT ORDER, so the deterministic `paths` load order (golden vectors
+    // depend on it) is preserved exactly.
+    final contents = await Future.wait(paths.map(b.loadString));
     final all = <Quote>[];
-    for (final p in paths) {
-      final list = jsonDecode(await b.loadString(p)) as List<dynamic>;
+    for (final raw in contents) {
+      final list = jsonDecode(raw) as List<dynamic>;
       all.addAll(list.map((e) => Quote.fromJson(e as Map<String, dynamic>)));
     }
     return QuoteRepository._(all);
