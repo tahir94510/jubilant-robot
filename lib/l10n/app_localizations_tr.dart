@@ -136,7 +136,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderTestSent => 'Test bildirimi gönderildi';
 
   @override
-  String get reminderBatteryHint => 'Bazı telefonlar (örn. Xiaomi, Huawei) pil tasarrufu için arka plan hatırlatmalarını durdurur. Günlük hatırlatman hiç kaçmasın diye Quotecrack\'in arka planda çalışmasına izin ver.';
+  String get reminderBatteryHint =>
+      'Bazı telefonlar (örn. Xiaomi, Huawei) pil tasarrufu için arka plan hatırlatmalarını durdurur. Günlük hatırlatman hiç kaçmasın diye Quotecrack\'in arka planda çalışmasına izin ver.';
 
   @override
   String get reminderBatteryAction => 'Pil ayarları';
