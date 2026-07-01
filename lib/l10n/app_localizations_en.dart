@@ -130,29 +130,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reminderTime => 'Reminder time';
 
   @override
-  String get reminderSendTest => 'Send a test notification';
-
-  @override
-  String get reminderTestSent => 'Test notification sent';
-
-  @override
-  String get reminderBatteryHint =>
-      'Some phones (e.g. Xiaomi, Huawei) stop background reminders to save battery. Allow Quotecrack to run in the background so your daily reminder is never missed.';
-
-  @override
-  String get reminderBatteryAction => 'Battery settings';
-
-  @override
-  String get notificationsBlockedTitle => 'Notifications are off';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack can\'t show notifications until you turn them on in system settings.';
-
-  @override
-  String get openSettings => 'Open settings';
-
-  @override
   String get premiumActive => 'Premium active';
 
   @override
@@ -683,4 +660,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get badgeNew => 'NEW';
+
+  @override
+  String get updateReadyBody =>
+      'Update downloaded — restart Quotecrack to apply it.';
+
+  @override
+  String get updateRestartAction => 'Restart';
 }

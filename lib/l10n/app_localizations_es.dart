@@ -131,30 +131,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reminderTime => 'Hora del recordatorio';
 
   @override
-  String get reminderSendTest => 'Enviar una notificación de prueba';
-
-  @override
-  String get reminderTestSent => 'Notificación de prueba enviada';
-
-  @override
-  String get reminderBatteryHint =>
-      'Algunos teléfonos (p. ej. Xiaomi, Huawei) detienen los recordatorios en segundo plano para ahorrar batería. Permite que Quotecrack se ejecute en segundo plano para no perder tu recordatorio diario.';
-
-  @override
-  String get reminderBatteryAction => 'Ajustes de batería';
-
-  @override
-  String get notificationsBlockedTitle =>
-      'Las notificaciones están desactivadas';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack no puede mostrar notificaciones hasta que las actives en los ajustes del sistema.';
-
-  @override
-  String get openSettings => 'Abrir ajustes';
-
-  @override
   String get premiumActive => 'Premium activo';
 
   @override
@@ -690,4 +666,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get badgeNew => 'NUEVO';
+
+  @override
+  String get updateReadyBody =>
+      'Actualización descargada: reinicia Quotecrack para aplicarla.';
+
+  @override
+  String get updateRestartAction => 'Reiniciar';
 }

@@ -169,27 +169,6 @@ class FakeNotificationService extends NotificationService {
     openSettingsCalls += 1;
   }
 
-  int testNotificationCalls = 0;
-  String? testTitle;
-  String? testBody;
-
-  @override
-  Future<void> showTestNotification({
-    required String title,
-    required String body,
-  }) async {
-    testNotificationCalls += 1;
-    testTitle = title;
-    testBody = body;
-  }
-
-  int openBatterySettingsCalls = 0;
-
-  @override
-  Future<void> openBatterySettings() async {
-    openBatterySettingsCalls += 1;
-  }
-
   @override
   Future<void> cancelAll() async {
     cancelCalls += 1;

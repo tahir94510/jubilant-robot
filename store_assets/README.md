@@ -19,7 +19,12 @@ between 320–3840 px per side with a max 2:1 ratio, feature graphic exactly
 Languages: `en, tr, es, de, fr, it, pt`. Each screenshot frames the app rendered
 **in that language** under a culturally-adapted headline, in the app's
 "Ink & Gold" brand style (Lora serif headline + gold cipher underline + a
-floating device card). The Premium screen is a dark-theme showcase.
+floating device card), on a consistent light "paper" canvas across all six.
+The app is rendered from a seeded, ENGAGED profile (127 solves, a 23-day
+streak, a lively heatmap, 14/24 achievements, real pack progress and a native
+mid-length quote on the board) — never a hollow first-run screen. Renders are
+captured at 1520×2760 and only ever downscaled onto the canvases, so every
+size stays crisp.
 
 Upload order per screen: `01_home → 02_puzzle → 03_stats → 04_ach → 05_packs →
 06_premium`.

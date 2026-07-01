@@ -133,29 +133,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get reminderTime => 'Ora del promemoria';
 
   @override
-  String get reminderSendTest => 'Invia una notifica di prova';
-
-  @override
-  String get reminderTestSent => 'Notifica di prova inviata';
-
-  @override
-  String get reminderBatteryHint =>
-      'Alcuni telefoni (es. Xiaomi, Huawei) bloccano i promemoria in background per risparmiare batteria. Consenti a Quotecrack di funzionare in background per non perdere mai il promemoria giornaliero.';
-
-  @override
-  String get reminderBatteryAction => 'Impostazioni batteria';
-
-  @override
-  String get notificationsBlockedTitle => 'Le notifiche sono disattivate';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack non può mostrare notifiche finché non le attivi nelle impostazioni di sistema.';
-
-  @override
-  String get openSettings => 'Apri impostazioni';
-
-  @override
   String get premiumActive => 'Premium attivo';
 
   @override
@@ -690,4 +667,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get badgeNew => 'NUOVO';
+
+  @override
+  String get updateReadyBody =>
+      'Aggiornamento scaricato: riavvia Quotecrack per applicarlo.';
+
+  @override
+  String get updateRestartAction => 'Riavvia';
 }

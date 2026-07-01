@@ -52,9 +52,18 @@ class Harness {
   static Future<Harness> create({
     List<Quote>? quotes,
     bool premium = false,
+    Map<String, Map<String, dynamic>>? seedJson,
   }) async {
     SharedPreferences.setMockInitialValues({});
     final storage = await StorageService.init();
+    // Optional pre-seeded persistence (storage key -> JSON blob), written
+    // through the production storage path BEFORE any controller reads it —
+    // lets previews/tests start from an engaged profile instead of first-run.
+    if (seedJson != null) {
+      for (final entry in seedJson.entries) {
+        await storage.writeJson(entry.key, entry.value);
+      }
+    }
     final repo = QuoteRepository.fromQuotes(quotes ?? [shortQuote]);
     final ads = FakeAdsService();
     final purchases = FakePurchaseService(initiallyOwned: premium);

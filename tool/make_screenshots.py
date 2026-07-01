@@ -25,13 +25,15 @@ INK_D = (242, 237, 226)
 GOLD_D = (217, 178, 90)
 
 # One screen render -> (headline key, dark showcase?). Order = store order.
+# All six use the light "paper" canvas: one dark odd-one-out read as a mistake
+# next to five light frames, and the set converts better as a single system.
 SCREENS = [
     ("s_home", "home", False),
     ("s_puzzle", "puzzle", False),
     ("s_stats", "stats", False),
     ("s_ach", "ach", False),
     ("s_packs", "packs", False),
-    ("s_paywall", "premium", True),
+    ("s_paywall", "premium", False),
 ]
 
 # Culturally-adapted marketing headlines (not literal translations).

@@ -38,13 +38,6 @@
   "reminderAt": "Saat {time}",
   "neverMissStreak": "Serini hiç kaçırma",
   "reminderTime": "Hatırlatma saati",
-  "reminderSendTest": "Test bildirimi gönder",
-  "reminderTestSent": "Test bildirimi gönderildi",
-  "reminderBatteryHint": "Bazı telefonlar (örn. Xiaomi, Huawei) pil tasarrufu için arka plan hatırlatmalarını durdurur. Günlük hatırlatman hiç kaçmasın diye Quotecrack'in arka planda çalışmasına izin ver.",
-  "reminderBatteryAction": "Pil ayarları",
-  "notificationsBlockedTitle": "Bildirimler kapalı",
-  "notificationsBlockedBody": "Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.",
-  "openSettings": "Ayarları aç",
   "premiumActive": "Premium etkin",
   "premiumActiveSubtitle": "Quotecrack’i desteklediğin için teşekkürler!",
   "goPremium": "Premium’a geç",
@@ -199,5 +192,7 @@
   "hintRevealLetterCount": "Harf aç ({count})",
   "hintTokensAdded": "+{count} ipucu eklendi",
   "adNoVideo": "Şu anda video yok. Lütfen birazdan tekrar dene.",
-  "badgeNew": "YENİ"
+  "badgeNew": "YENİ",
+  "updateReadyBody": "Güncelleme indirildi — uygulamak için Quotecrack'i yeniden başlat.",
+  "updateRestartAction": "Yeniden başlat"
 }

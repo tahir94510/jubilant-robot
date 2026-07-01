@@ -12,6 +12,12 @@ import 'ui/screens/onboarding_screen.dart';
 import 'ui/theme/app_themes.dart';
 import 'ui/widgets/haptic_route_observer.dart';
 
+/// App-wide messenger so launch-path services can surface a SnackBar without a
+/// screen context — used by the in-app update flow in main.dart to ask before
+/// the app-restarting install step.
+final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+    GlobalKey<ScaffoldMessengerState>();
+
 class QuotecrackApp extends StatefulWidget {
   const QuotecrackApp({super.key});
 
@@ -63,6 +69,7 @@ class _QuotecrackAppState extends State<QuotecrackApp> {
     return MaterialApp(
       title: AppConfig.appName,
       debugShowCheckedModeBanner: false,
+      scaffoldMessengerKey: scaffoldMessengerKey,
       navigatorObservers: [_hapticObserver],
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
