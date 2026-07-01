@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Branded launch screen (pre-Android-12 path): a FLAT brand-cream field with
-     the logo centered. Solid (not a gradient) so it matches the flat splash
+<!-- Branded launch screen (pre-Android-12 path): a FLAT brand field with the
+     BOXLESS logo centered. @color/splash_background and @drawable/splash_icon
+     both carry night variants, so this resolves to a cream field + dark-ink Q
+     in light mode and a dark field + light Q in dark mode — theme-adaptive,
+     never a cream box. Solid (not a gradient) so it matches the flat splash
      window background exactly with no visible seam. Android 12+ ignores this
      and uses the v31 splash attributes instead. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
