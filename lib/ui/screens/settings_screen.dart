@@ -307,7 +307,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     }
                   },
                 ),
-                if (settings.reminderEnabled)
+                if (settings.reminderEnabled) ...[
                   // Explicit time control: the smart per-language default is just
                   // the starting value now, so two devices never disagree on the
                   // hour (the "different time on each phone" report). The chosen
@@ -340,6 +340,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       }
                     },
                   ),
+                  // Persistent battery-exemption affordance: on aggressive OEMs
+                  // (Xiaomi/MIUI, Huawei) the daily reminder can be delayed or
+                  // dropped unless the app is exempt from battery optimization.
+                  // This keeps that fix reachable ANY time (not only via the
+                  // transient SnackBar shown on enable) — the real lever for the
+                  // reminder landing close to the chosen time.
+                  ListTile(
+                    leading: const Icon(Icons.battery_saver_outlined),
+                    title: Text(l10n.reminderBatteryAction),
+                    subtitle: Text(l10n.reminderBatteryHint),
+                    isThreeLine: true,
+                    onTap: () {
+                      haptics.tap();
+                      controller.openBatterySettings();
+                    },
+                  ),
+                ],
                 // A manual re-check, ALWAYS available (even with the reminder
                 // off): fire a test post any time so the user can confirm
                 // delivery actually works on their device — the quickest way to

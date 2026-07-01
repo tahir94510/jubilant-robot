@@ -23,7 +23,14 @@ class PremiumCelebration extends StatelessWidget {
     final motion = !MediaQuery.of(context).disableAnimations;
 
     final card = ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 420),
+      constraints: BoxConstraints(
+        maxWidth: 420,
+        // Cap at the viewport height (minus the 28 outer margins) so a short
+        // screen or large text scale scrolls the card INTERNALLY instead of
+        // overflowing or clipping the "Continue" button. It still sizes to its
+        // content when it fits.
+        maxHeight: MediaQuery.of(context).size.height - 56,
+      ),
       child: Padding(
         padding: const EdgeInsets.all(28),
         child: DecoratedBox(
@@ -44,97 +51,103 @@ class PremiumCelebration extends StatelessWidget {
             borderRadius: BorderRadius.circular(28),
             child: ColoredBox(
               color: scheme.surface,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // Champagne header band: a soft gold wash carrying the VIP
-                  // crown medallion, so the unlock reads as a premium moment the
-                  // instant it appears (instead of a plain dialog with an icon).
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.only(top: 30, bottom: 24),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          scheme.primary.withValues(alpha: .20),
-                          scheme.primary.withValues(alpha: .02),
+              // Scrolls INTERNALLY when the card would exceed its max height, so
+              // it never overflows; because the card stays content-sized (not a
+              // full-screen scroll overlay), taps outside it still reach the
+              // dismiss scrim below.
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Champagne header band: a soft gold wash carrying the VIP
+                    // crown medallion, so the unlock reads as a premium moment the
+                    // instant it appears (instead of a plain dialog with an icon).
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.only(top: 30, bottom: 24),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            scheme.primary.withValues(alpha: .20),
+                            scheme.primary.withValues(alpha: .02),
+                          ],
+                        ),
+                      ),
+                      child: Center(
+                        // The crown medallion is built from the app's REAL brand
+                        // golds (streak flame -> primary), not Material's seed-
+                        // derived `tertiary`, which resolved to an off-brand hue
+                        // and made the badge look out of place.
+                        child: Container(
+                          width: 84,
+                          height: 84,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              colors: [palette.streakFlame, scheme.primary],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: scheme.primary.withValues(alpha: 0.45),
+                                blurRadius: 26,
+                                spreadRadius: 1,
+                              ),
+                            ],
+                          ),
+                          child: Icon(
+                            Icons.workspace_premium,
+                            size: 46,
+                            color: scheme.onPrimary,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 20, 24, 22),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            l10n.premiumUnlockedTitle,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.2,
+                              color: scheme.onSurface,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            l10n.premiumUnlockedBody,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14.5,
+                              height: 1.45,
+                              color: palette.textSecondary,
+                            ),
+                          ),
+                          const SizedBox(height: 22),
+                          _Benefit(l10n.paywallNoAdsTitle),
+                          _Benefit(l10n.paywallHintsTitle),
+                          _Benefit(l10n.paywallPacksTitle),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            width: double.infinity,
+                            child: FilledButton(
+                              onPressed: onDismiss,
+                              child: Text(l10n.premiumContinue),
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    child: Center(
-                      // The crown medallion is built from the app's REAL brand
-                      // golds (streak flame -> primary), not Material's seed-
-                      // derived `tertiary`, which resolved to an off-brand hue
-                      // and made the badge look out of place.
-                      child: Container(
-                        width: 84,
-                        height: 84,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: LinearGradient(
-                            colors: [palette.streakFlame, scheme.primary],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: scheme.primary.withValues(alpha: 0.45),
-                              blurRadius: 26,
-                              spreadRadius: 1,
-                            ),
-                          ],
-                        ),
-                        child: Icon(
-                          Icons.workspace_premium,
-                          size: 46,
-                          color: scheme.onPrimary,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(24, 20, 24, 22),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          l10n.premiumUnlockedTitle,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 0.2,
-                            color: scheme.onSurface,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          l10n.premiumUnlockedBody,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 14.5,
-                            height: 1.45,
-                            color: palette.textSecondary,
-                          ),
-                        ),
-                        const SizedBox(height: 22),
-                        _Benefit(l10n.paywallNoAdsTitle),
-                        _Benefit(l10n.paywallHintsTitle),
-                        _Benefit(l10n.paywallPacksTitle),
-                        const SizedBox(height: 24),
-                        SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            onPressed: onDismiss,
-                            child: Text(l10n.premiumContinue),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -160,17 +173,23 @@ class PremiumCelebration extends StatelessWidget {
         ),
         // Confetti ignores pointers, so taps fall through to the scrim.
         const Positioned.fill(child: ConfettiBurst(particleCount: 150)),
-        Center(
-          child: motion
-              ? TweenAnimationBuilder<double>(
-                  tween: Tween(begin: 0.6, end: 1),
-                  duration: const Duration(milliseconds: 520),
-                  curve: Curves.elasticOut,
-                  builder: (context, scale, child) =>
-                      Transform.scale(scale: scale, child: child),
-                  child: card,
-                )
-              : card,
+        // The card is content-sized and centered (it scrolls INTERNALLY when
+        // tall — see the SingleChildScrollView above), so the empty area around
+        // it stays transparent to taps and they fall through to the dismiss
+        // scrim below. SafeArea keeps the card clear of the status/nav bars.
+        SafeArea(
+          child: Center(
+            child: motion
+                ? TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.6, end: 1),
+                    duration: const Duration(milliseconds: 520),
+                    curve: Curves.elasticOut,
+                    builder: (context, scale, child) =>
+                        Transform.scale(scale: scale, child: child),
+                    child: card,
+                  )
+                : card,
+          ),
         ),
       ],
     );
