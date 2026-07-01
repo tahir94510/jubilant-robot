@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Branded launch screen (the live path on minSdk 24+): a FLAT brand-cream
-     field with the logo centered. Solid (not a gradient) and identical to the
-     base drawable, so the splash never depends on the platform's day/night
-     background and shows no seam. Android 12+ ignores this and uses the v31
-     splash attributes instead. -->
+<!-- Branded launch screen (the live path on minSdk 24+): a FLAT brand field
+     with the BOXLESS logo centered. Identical to the base drawable; because
+     @color/splash_background and @drawable/splash_icon both carry night
+     variants, it resolves to a cream field + dark-ink Q in light mode and a
+     dark field + light Q in dark mode — theme-adaptive, never a cream box.
+     Solid (not a gradient) so it shows no seam. Android 12+ ignores this and
+     uses the v31 splash attributes instead. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@color/splash_background" />
     <item>

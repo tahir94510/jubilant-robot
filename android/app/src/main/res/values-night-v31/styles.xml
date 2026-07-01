@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Android 12+ system splash, dark mode. The splash field is the light
-     "paper" cream (@color/splash_background) in EVERY mode, matching the
-     self-contained cream badge tile so the badge merges into the field (just
-     the dark-ink serif "Q" on paper). windowBackground (post-splash) keeps the
-     dark app surface so the handoff to a dark-themed app does not flash. -->
+<!-- Android 12+ system splash, dark mode. @color/splash_background resolves to
+     the dark app surface (values-night) and @drawable/splash_icon to the LIGHT
+     "paper" Q (drawable-night), so the badge is BOXLESS and theme-adaptive: a
+     light Q on a dark field, never a cream tile. windowBackground (post-splash)
+     keeps the dark app surface so the handoff to a dark-themed app does not
+     flash. -->
 <resources>
     <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowSplashScreenBackground">@color/splash_background</item>
