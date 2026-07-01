@@ -25,11 +25,13 @@ abstract class NotificationService {
   /// notifications from system settings.
   Future<bool> areEnabled();
 
-  /// (Re)schedules the repeating daily reminder with EXACT allow-while-idle
-  /// delivery (`USE_EXACT_ALARM`), so aggressive OEM battery managers
-  /// (Xiaomi/MIUI, Huawei) can't silently batch it away the way inexact alarms
-  /// were being dropped. The HIGH-importance channel makes it alert.
-  /// [title]/[body] arrive already localized to the user's UI language.
+  /// (Re)schedules the repeating daily reminder with INEXACT allow-while-idle
+  /// delivery — the Play-policy-safe mode (the exact-alarm permissions are
+  /// restricted to alarm/calendar apps, which a game is not). It still fires in
+  /// Doze, just coalesced into a window; the companion battery-optimization
+  /// exemption is what keeps it reliable on aggressive OEMs (Xiaomi/MIUI,
+  /// Huawei). The HIGH-importance channel makes it alert. [title]/[body] arrive
+  /// already localized to the user's UI language.
   Future<void> scheduleDaily(
     TimeOfDay time, {
     required String title,

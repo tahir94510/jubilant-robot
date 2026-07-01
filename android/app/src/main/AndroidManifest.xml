@@ -10,18 +10,22 @@
     <!-- Cihaz yeniden basildiginda gunluk hatirlatmayi yeniden kurmak icin
          (INEXACT alarmlar da reboot'ta dusuyor; boot receiver yeniden kurar). -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <!-- Gunluk hatirlatma artik EXACT alarm kullanir (exactAllowWhileIdle).
-         INEXACT alarmlar agresif OEM pil yoneticilerince (Xiaomi/MIUI, Huawei)
-         sessizce toplanip dusuruluyordu — "hatirlatma hic gelmiyor" sikayeti.
-         USE_EXACT_ALARM, 33+ (Android 13+) icin OTOMATIK verilir (runtime istem
-         yok) ve gunluk hatirlatici bu iznin uygun kategorisidir. 32 ve altinda
-         (Android 12) eklentinin enjekte ettigi SCHEDULE_EXACT_ALARM otomatik
-         verilir; onu maxSdkVersion=32 ile sinirlayip (tools:node=replace) 33+'ta
-         devre disi birakiyoruz ki "Alarmlar ve hatirlaticilar" ekrani / genis
-         izin Play incelemesi tetiklenmesin — 33+ icin USE_EXACT_ALARM devralir.
-         NOT: Play Console'da USE_EXACT_ALARM icin "exact alarm" beyani gerekir
-         (gerekce: gunluk hatirlatici ozelligi). -->
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <!-- Gunluk hatirlatma INEXACT alarm kullanir (inexactAllowWhileIdle) —
+         Play-politikasi-guvenli secim. Google, EXACT alarm izinlerini
+         (USE_EXACT_ALARM / SCHEDULE_EXACT_ALARM, Android 13+) CEKIRDEK islevi
+         hassas zamanlama gerektiren uygulamalara (calar saat, kronometre,
+         takvim) kisitlar; bir oyunun istege bagli gunluk hatirlaticisi bu
+         kategoriye GIRMEZ, dolayisiyla USE_EXACT_ALARM Play reddi/kaldirilma
+         riski tasir — bu yuzden HIC beyan etmiyoruz. Bir aliskanlik durtusu
+         zaten dakika-hassasiyeti gerektirmez; `allowWhileIdle` onu Doze'da da
+         teslim eder (bir zaman penceresine toplanarak). OEM'lerde (Xiaomi/MIUI,
+         Huawei) hatirlaticinin kaybolmasinin gercek sebebi pil/otomatik-baslat
+         kisitlamasidir; onu pil-optimizasyonu muafiyeti (openBatterySettings)
+         cozer — guvenilirlik kaldiraci odur, exact alarm degil.
+         flutter_local_notifications kendi manifestine SCHEDULE_EXACT_ALARM
+         enjekte eder; onu maxSdkVersion=32 ile sinirlayip (tools:node=replace)
+         33+'ta KALDIRIYORUZ ki hicbir exact-alarm izni 13+'ta bulunmasin ve
+         "Alarmlar ve hatirlaticilar" ozel-erisim / Play incelemesi tetiklenmesin. -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"
         android:maxSdkVersion="32"
         tools:node="replace"/>

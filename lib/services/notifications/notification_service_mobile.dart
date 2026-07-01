@@ -196,14 +196,18 @@ class MobileNotificationService extends NotificationService {
     );
     if (!next.isAfter(now)) next = next.add(const Duration(days: 1));
 
-    // EXACT delivery (exactAllowWhileIdle + USE_EXACT_ALARM): the previous
-    // inexact mode was being silently batched away by aggressive OEM battery
-    // managers (Xiaomi/MIUI, Huawei) — the "reminder never arrives" report.
-    // USE_EXACT_ALARM is auto-granted (no runtime prompt) and is the correct
-    // category for a daily reminder, so the alarm fires at the chosen time even
-    // in Doze. Battery-optimization exemption (openBatterySettings) is still the
-    // companion fix for the most aggressive OEMs. The schedule is wrapped by the
-    // caller so a (rare) exact-alarm failure can never crash the toggle.
+    // INEXACT delivery (inexactAllowWhileIdle) — the Play-policy-safe choice.
+    // Google restricts the exact-alarm permissions (USE_EXACT_ALARM /
+    // SCHEDULE_EXACT_ALARM on Android 13+) to apps whose CORE function needs
+    // precise timing (alarm clocks, timers, calendars); a game's optional daily
+    // reminder does NOT qualify, so shipping USE_EXACT_ALARM risks a Play
+    // rejection/removal. A habit nudge also doesn't NEED to-the-minute timing —
+    // `allowWhileIdle` still fires it in Doze, just coalesced into a delivery
+    // window. The real reason reminders vanished on aggressive OEMs
+    // (Xiaomi/MIUI, Huawei) is their battery/autostart killing, which the
+    // battery-optimization exemption (openBatterySettings) addresses directly —
+    // that, not exact alarms, is the reliability lever. The schedule is wrapped
+    // by the caller so a scheduling failure can never crash the toggle.
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
@@ -212,7 +216,7 @@ class MobileNotificationService extends NotificationService {
       notificationDetails: NotificationDetails(
         android: _androidDetails(title, body),
       ),
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
       // An explicit (non-null) payload keeps the plugin off any null-payload
       // serialization path when the daily reminder is delivered.
