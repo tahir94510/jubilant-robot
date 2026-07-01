@@ -145,9 +145,12 @@ Future<void> _start() async {
     isEnabled: () => settings.settings.haptics,
     intensity: () => settings.settings.hapticIntensity,
   );
-  final sounds = SoundService(isEnabled: () => settings.settings.soundEffects);
-  await sounds.initialize(); // already internally guarded
-  sounds.setUserVolume(settings.settings.soundVolume);
+  // Setting the volume is just a field write (no engine needed); the actual
+  // audio-engine init is deferred to the post-frame callback below so loading
+  // its assets never delays the first frame. A cue that fires before init
+  // finishes self-heals via SoundService._ensureReady.
+  final sounds = SoundService(isEnabled: () => settings.settings.soundEffects)
+    ..setUserVolume(settings.settings.soundVolume);
   final music = MusicService(isEnabled: () => settings.settings.music)
     ..setUserVolume(settings.settings.musicVolume);
   // Pauses/resumes the ambient bed with the app lifecycle.
@@ -157,6 +160,13 @@ Future<void> _start() async {
   // step is isolated so one plugin failing can't take the others (or the
   // app) down.
   WidgetsBinding.instance.addPostFrameCallback((_) async {
+    // Audio-engine init loads its sound assets; keep it OFF the launch path so
+    // the first frame paints immediately (on web each asset is a network fetch).
+    try {
+      await sounds.initialize();
+    } catch (e) {
+      debugPrint('Sound init failed (continuing): $e');
+    }
     try {
       await music.initialize();
       music.ensureStarted();
