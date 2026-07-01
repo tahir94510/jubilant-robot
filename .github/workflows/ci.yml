@@ -37,7 +37,11 @@ jobs:
       - run: flutter pub get
       - run: dart format --output=none --set-exit-if-changed lib test
       - run: flutter analyze
-      - run: flutter test --reporter expanded
+      # `preview`-tagged tests are local-only asset generators (store
+      # screenshots, design previews) that write golden PNGs; they are not
+      # correctness tests and their goldens are environment-sensitive, so keep
+      # them out of CI. They still pass analyze + format above.
+      - run: flutter test --reporter expanded --exclude-tags preview
 
   check-secrets:
     name: Check signing secrets
