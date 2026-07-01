@@ -165,8 +165,17 @@ jobs:
       # basarisiz olunca uygulama boot-splash'ta ASILI kaliyordu (first-frame hic
       # atesle(n)miyordu) — kullanicinin gordugu "loading'de takili" tam buydu.
       # Self-host ile harici CDN bagimliligi kalkar, her sey ayni-origin yuklenir.
+      # --wasm: 2026'nin onerilen web yolu — cift derleme uretir. WasmGC
+      # destekleyen tarayicilar (Firefox 120+, Chrome, Edge) COK daha hizli
+      # skwasm motorunu alir; digerleri OTOMATIK olarak dart2js+canvaskit'e
+      # duser (kimse icin gerileme yok). Sebep: dart2js+canvaskit yolu
+      # Firefox'ta ana is parcacigini boguyordu ("bu sayfa Firefox'u
+      # yavaslatiyor" + sonsuz splash); ayni build Chromium'da acili(yor)du —
+      # yerel gercek-tarayici reproduksiyonuyla kanitlandi. GitHub Pages
+      # COOP/COEP gondermez -> skwasm tek-is-parcacikli varyanti kullanilir
+      # (Flutter 3.32+ otomatik), ekstra baslik gerekmez.
       - run: >
-          flutter build web --release
+          flutter build web --wasm --release
           --base-href "/${{ github.event.repository.name }}/app/"
           --pwa-strategy=none
           --no-web-resources-cdn
