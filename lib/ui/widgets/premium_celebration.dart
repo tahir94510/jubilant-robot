@@ -160,17 +160,32 @@ class PremiumCelebration extends StatelessWidget {
         ),
         // Confetti ignores pointers, so taps fall through to the scrim.
         const Positioned.fill(child: ConfettiBurst(particleCount: 150)),
-        Center(
-          child: motion
-              ? TweenAnimationBuilder<double>(
-                  tween: Tween(begin: 0.6, end: 1),
-                  duration: const Duration(milliseconds: 520),
-                  curve: Curves.elasticOut,
-                  builder: (context, scale, child) =>
-                      Transform.scale(scale: scale, child: child),
-                  child: card,
-                )
-              : card,
+        // Centered when there's room, but SCROLLS if the card is taller than the
+        // viewport (short/landscape phones, large text scale) — so the VIP card
+        // can never overflow off-screen or clip its "Continue" button. SafeArea
+        // keeps it clear of the status/nav bars.
+        Positioned.fill(
+          child: SafeArea(
+            child: LayoutBuilder(
+              builder: (context, constraints) => SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Center(
+                    child: motion
+                        ? TweenAnimationBuilder<double>(
+                            tween: Tween(begin: 0.6, end: 1),
+                            duration: const Duration(milliseconds: 520),
+                            curve: Curves.elasticOut,
+                            builder: (context, scale, child) =>
+                                Transform.scale(scale: scale, child: child),
+                            child: card,
+                          )
+                        : card,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       ],
     );
