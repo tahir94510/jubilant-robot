@@ -1,5 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quotecrack/l10n/app_localizations.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/widgets/premium_celebration.dart';
 
@@ -98,4 +99,36 @@ void main() {
       );
     },
   );
+
+  testWidgets('premium celebration text renders in the app brand font', (
+    tester,
+  ) async {
+    // The overlay is a bare sibling of the paywall Scaffold, so without an
+    // explicit Material ancestor its Text falls back to the platform default
+    // font (off-brand Roboto) instead of the theme's Inter — a subtle but real
+    // brand break on the app's most celebratory screen. This locks the fix
+    // (a transparent Material wrapper) without a fragile golden image.
+    final h = await Harness.create();
+    await tester.pumpWidget(h.app(PremiumCelebration(onDismiss: () {})));
+    await tester.pump();
+
+    final l10n = AppLocalizations.of(
+      tester.element(find.byType(PremiumCelebration)),
+    );
+    final titleFinder = find.text(l10n.premiumUnlockedTitle);
+    final ctx = tester.element(titleFinder);
+    final brandFont = Theme.of(ctx).textTheme.bodyMedium?.fontFamily;
+    // The effective style the title actually renders with = ambient default
+    // merged with the widget's own style (which sets no family).
+    final effective = DefaultTextStyle.of(
+      ctx,
+    ).style.merge(tester.widget<Text>(titleFinder).style);
+
+    expect(brandFont, 'Inter'); // the theme's UI font
+    expect(
+      effective.fontFamily,
+      brandFont,
+      reason: 'premium title must inherit the brand font, not a fallback',
+    );
+  });
 }

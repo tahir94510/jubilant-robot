@@ -3,7 +3,7 @@
 <head>
   <!--
     The base href placeholder is replaced by the value of the `--base-href`
-    argument provided to `flutter build` (CI uses /jubilant-robot/app/).
+    argument provided to `flutter build` (CI uses /quotecrack/app/).
   -->
   <base href="$FLUTTER_BASE_HREF">
 
@@ -14,20 +14,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Quotecrack: decode famous quotes with daily cryptogram puzzles. Free, offline word puzzles: cryptoquotes, ciphers, streaks, and achievements.">
   <meta name="keywords" content="cryptogram, cryptoquote, cipher puzzle, word puzzle, quote game, daily puzzle">
-  <link rel="canonical" href="https://tahir94510.github.io/jubilant-robot/app/">
+  <link rel="canonical" href="https://tahir94510.github.io/quotecrack/app/">
 
   <!-- Social cards -->
   <meta property="og:title" content="Quotecrack: Cryptogram Puzzles">
   <meta property="og:description" content="Decode famous quotes. One cipher a day.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tahir94510.github.io/jubilant-robot/app/">
-  <meta property="og:image" content="https://tahir94510.github.io/jubilant-robot/og-image.png">
+  <meta property="og:url" content="https://tahir94510.github.io/quotecrack/app/">
+  <meta property="og:image" content="https://tahir94510.github.io/quotecrack/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Quotecrack: Cryptogram Puzzles">
   <meta name="twitter:description" content="Decode famous quotes. One cipher a day.">
-  <meta name="twitter:image" content="https://tahir94510.github.io/jubilant-robot/og-image.png">
+  <meta name="twitter:image" content="https://tahir94510.github.io/quotecrack/og-image.png">
 
   <!-- Browser chrome matches the light "paper" brand splash while loading. -->
   <meta name="theme-color" content="#F7F4EC">
@@ -55,8 +55,8 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Quotecrack",
-    "url": "https://tahir94510.github.io/jubilant-robot/app/",
-    "image": "https://tahir94510.github.io/jubilant-robot/og-image.png",
+    "url": "https://tahir94510.github.io/quotecrack/app/",
+    "image": "https://tahir94510.github.io/quotecrack/og-image.png",
     "description": "Decode famous quotes with daily cryptogram puzzles. Free offline word puzzles: cryptoquotes, ciphers, streaks and achievements.",
     "applicationCategory": "GameApplication",
     "operatingSystem": "Any",
@@ -100,6 +100,15 @@
     }
     #boot-splash .dot:nth-child(2) { animation-delay: .2s; }
     #boot-splash .dot:nth-child(3) { animation-delay: .4s; }
+    /* Shown only by the watchdog if the engine never paints (stale cache /
+       flaky network) — a way out instead of staring at the dots forever. */
+    #boot-splash #boot-hint { margin-top: 20px; font-size: .9rem; opacity: .7; }
+    #boot-splash #boot-reload {
+      margin-top: 12px; padding: 8px 22px; font: inherit; font-size: .95rem;
+      color: #F7F4EC; background: #966E1E; border: none; border-radius: 999px;
+      cursor: pointer;
+    }
+    #boot-splash [hidden] { display: none; }
     @keyframes boot-pulse {
       0%, 80%, 100% { opacity: .25; transform: scale(.8); }
       40% { opacity: 1; transform: scale(1); }
@@ -133,16 +142,46 @@
       <div class="dot" aria-hidden="true"></div>
       <div class="dot" aria-hidden="true"></div>
     </div>
+    <div id="boot-hint" hidden>Taking longer than usual…</div>
+    <button id="boot-reload" type="button" hidden onclick="location.reload()">Reload</button>
   </div>
   <noscript>
     Quotecrack is a free, offline cryptogram puzzle game. It needs
     JavaScript to run in the browser, or get it on Google Play.
   </noscript>
   <script>
+    // Self-heal: a service worker or cache left by an OLD build could keep
+    // serving a stale/broken bundle even after the site is fixed — a classic
+    // cause of "stuck on the loading splash". We ship no service worker
+    // (--pwa-strategy=none), so unregister any a past build registered and drop
+    // its caches. A no-op when there are none, so it is always safe to run.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations()
+        .then(function (rs) { rs.forEach(function (r) { r.unregister(); }); })
+        .catch(function () {});
+    }
+    if (window.caches && caches.keys) {
+      caches.keys()
+        .then(function (ks) { ks.forEach(function (k) { caches.delete(k); }); })
+        .catch(function () {});
+    }
+    // Drop the boot splash the instant Flutter paints its first frame.
+    var _booted = false;
     window.addEventListener('flutter-first-frame', function () {
+      _booted = true;
       var el = document.getElementById('boot-splash');
-      if (el) { el.style.opacity = '0'; setTimeout(function(){ el.remove(); }, 500); }
+      if (el) { el.style.opacity = '0'; setTimeout(function () { el.remove(); }, 500); }
     });
+    // Watchdog: if the engine still hasn't painted after 15s the bundle likely
+    // failed to load. Reveal a manual reload instead of an endless spinner. No
+    // automatic reload — that could loop on a genuinely slow (but working) load.
+    setTimeout(function () {
+      if (_booted) return;
+      var hint = document.getElementById('boot-hint');
+      var btn = document.getElementById('boot-reload');
+      if (hint) hint.hidden = false;
+      if (btn) btn.hidden = false;
+    }, 15000);
   </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>

@@ -236,11 +236,37 @@ def make_splash_icons():
              f"android/app/src/main/res/drawable-night-{density}/splash_icon.png")
 
 
+def notification_glyph(size):
+    """The status-bar / notification silhouette, tuned for tiny sizes.
+
+    Android strips color from small icons and paints the alpha mask white
+    inside its own (accent-tinted, circular) chrome, so this MUST be a clean,
+    bold, frameless silhouette — no tile, no background. Compared with the
+    launcher mark it is drawn HEAVIER (Lora 700) and LARGER so the serif Q
+    fills the 24dp keyline and stays crisp inside the system circle; the "?"
+    is dropped (an illegible speck at this size) and the cipher shelf is made
+    chunky (a deliberate brand bar, not a stray hairline). Supersampled then
+    Lanczos-downscaled like every other raster here."""
+    big = Image.new("RGBA", (SS, SS), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(big)
+    white = (255, 255, 255, 255)
+    # A big, bold serif Q, optically centered a touch high so the shelf below
+    # has room; the tail clears the shelf.
+    draw_glyph_centered(draw, "Q", lora(int(SS * 0.66), weight=700),
+                        (SS * 0.5, SS * 0.44), white)
+    # Short, chunky cipher shelf — thick enough to survive at 24dp.
+    line_h = SS * 0.085
+    draw.rounded_rectangle(
+        [SS * 0.30, SS * 0.855 - line_h / 2,
+         SS * 0.70, SS * 0.855 + line_h / 2],
+        radius=line_h / 2, fill=white)
+    return big.resize((size, size), Image.LANCZOS)
+
+
 def make_notification_icons():
     # Status-bar glyphs are alpha-only: white mark, no ?, no background.
     for density, px in STAT_SIZES.items():
-        save(artwork(px, transparent_bg=True, monochrome=True, scale=0.92,
-                     with_question=False),
+        save(notification_glyph(px),
              f"android/app/src/main/res/drawable-{density}/"
              f"ic_stat_quotecrack.png")
 

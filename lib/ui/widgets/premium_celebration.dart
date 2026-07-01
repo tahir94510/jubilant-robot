@@ -155,43 +155,50 @@ class PremiumCelebration extends StatelessWidget {
       ),
     );
 
-    return Stack(
-      children: [
-        // Tap-anywhere-to-dismiss scrim that dims the paywall behind. Labelled
-        // so a screen reader can discover the dismiss affordance (sighted users
-        // also get the visible "Continue" button below).
-        Positioned.fill(
-          child: Semantics(
-            label: l10n.a11yDismiss,
-            button: true,
-            onTap: onDismiss,
-            child: GestureDetector(
+    // A transparent Material gives this overlay the theme's DefaultTextStyle
+    // (brand Inter) and an ink canvas. Without it the card is a bare sibling of
+    // the paywall Scaffold, so its text fell back to the platform default font
+    // (off-brand Roboto) on the app's most celebratory screen.
+    return Material(
+      type: MaterialType.transparency,
+      child: Stack(
+        children: [
+          // Tap-anywhere-to-dismiss scrim that dims the paywall behind. Labelled
+          // so a screen reader can discover the dismiss affordance (sighted users
+          // also get the visible "Continue" button below).
+          Positioned.fill(
+            child: Semantics(
+              label: l10n.a11yDismiss,
+              button: true,
               onTap: onDismiss,
-              child: ColoredBox(color: Colors.black.withValues(alpha: 0.55)),
+              child: GestureDetector(
+                onTap: onDismiss,
+                child: ColoredBox(color: Colors.black.withValues(alpha: 0.55)),
+              ),
             ),
           ),
-        ),
-        // Confetti ignores pointers, so taps fall through to the scrim.
-        const Positioned.fill(child: ConfettiBurst(particleCount: 150)),
-        // The card is content-sized and centered (it scrolls INTERNALLY when
-        // tall — see the SingleChildScrollView above), so the empty area around
-        // it stays transparent to taps and they fall through to the dismiss
-        // scrim below. SafeArea keeps the card clear of the status/nav bars.
-        SafeArea(
-          child: Center(
-            child: motion
-                ? TweenAnimationBuilder<double>(
-                    tween: Tween(begin: 0.6, end: 1),
-                    duration: const Duration(milliseconds: 520),
-                    curve: Curves.elasticOut,
-                    builder: (context, scale, child) =>
-                        Transform.scale(scale: scale, child: child),
-                    child: card,
-                  )
-                : card,
+          // Confetti ignores pointers, so taps fall through to the scrim.
+          const Positioned.fill(child: ConfettiBurst(particleCount: 150)),
+          // The card is content-sized and centered (it scrolls INTERNALLY when
+          // tall — see the SingleChildScrollView above), so the empty area around
+          // it stays transparent to taps and they fall through to the dismiss
+          // scrim below. SafeArea keeps the card clear of the status/nav bars.
+          SafeArea(
+            child: Center(
+              child: motion
+                  ? TweenAnimationBuilder<double>(
+                      tween: Tween(begin: 0.6, end: 1),
+                      duration: const Duration(milliseconds: 520),
+                      curve: Curves.elasticOut,
+                      builder: (context, scale, child) =>
+                          Transform.scale(scale: scale, child: child),
+                      child: card,
+                    )
+                  : card,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

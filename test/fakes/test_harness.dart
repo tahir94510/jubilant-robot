@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
+import 'package:provider/single_child_widget.dart';
 import 'package:quotecrack/l10n/app_localizations.dart';
 import 'package:quotecrack/engine/quote_repository.dart';
 import 'package:quotecrack/models/quote.dart';
@@ -91,27 +92,31 @@ class Harness {
     );
   }
 
+  /// The full provider tree, exposed so a caller can wrap it around its own
+  /// MaterialApp (e.g. to pick a specific theme for a design preview).
+  List<SingleChildWidget> get providers => [
+    Provider.value(value: storage),
+    Provider.value(value: repo),
+    Provider<AdsService>.value(value: ads),
+    Provider<PurchaseService>.value(value: purchases),
+    Provider<NotificationService>.value(value: notifications),
+    Provider.value(
+      value: HapticsService(isEnabled: () => settings.settings.haptics),
+    ),
+    Provider<SoundService>.value(value: sounds),
+    Provider<MusicService>.value(value: music),
+    ChangeNotifierProvider.value(value: settings),
+    ChangeNotifierProvider.value(value: progress),
+    ChangeNotifierProvider.value(value: economy),
+    ChangeNotifierProvider.value(value: game),
+  ];
+
   /// Wraps [child] in the full provider tree inside a MaterialApp.
   /// [textScale] simulates a device-level large-type setting; [locale] forces
   /// a UI language for localization tests.
   Widget app(Widget child, {double textScale = 1.0, Locale? locale}) {
     return MultiProvider(
-      providers: [
-        Provider.value(value: storage),
-        Provider.value(value: repo),
-        Provider<AdsService>.value(value: ads),
-        Provider<PurchaseService>.value(value: purchases),
-        Provider<NotificationService>.value(value: notifications),
-        Provider.value(
-          value: HapticsService(isEnabled: () => settings.settings.haptics),
-        ),
-        Provider<SoundService>.value(value: sounds),
-        Provider<MusicService>.value(value: music),
-        ChangeNotifierProvider.value(value: settings),
-        ChangeNotifierProvider.value(value: progress),
-        ChangeNotifierProvider.value(value: economy),
-        ChangeNotifierProvider.value(value: game),
-      ],
+      providers: providers,
       child: MaterialApp(
         theme: AppThemes.light(colorblind: false),
         locale: locale,
