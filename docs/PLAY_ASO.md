@@ -89,7 +89,7 @@ mekaniğidir; kriptogramla alakasız, yanlış kitle çeker. Seçme.
 - **Reklam beyanı:** Store settings'te **"Bu uygulama reklam içeriyor: Evet".**
 - **Veri güvenliği (Data safety):** AdMob'un topladığı veriyi beyan et
   (YAYINLAMA_REHBERI.md). Oyun verisi cihazda kalır → hesap/konum yok.
-- **Gizlilik politikası URL'si:** `https://tahir94510.github.io/jubilant-robot/privacy.html`.
+- **Gizlilik politikası URL'si:** `https://tahir94510.github.io/quotecrack/privacy.html`.
 
 ## Kalıcılık (uzun vadeli sıralamanın motoru) - hepsi mevcut
 

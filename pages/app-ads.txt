@@ -1,7 +1,7 @@
 # app-ads.txt — AdMob yetkili satici beyani.
 #
 # ONEMLI: Bu dosyanin gecerli sayilmasi icin ALAN ADININ KOKUNDE durmasi
-# gerekir. GitHub Pages proje sitesi (tahir94510.github.io/jubilant-robot/)
+# gerekir. GitHub Pages proje sitesi (tahir94510.github.io/quotecrack/)
 # alt dizin oldugu icin SPEC GEREGI YETERLI DEGILDIR. Tam cozum icin
 # "tahir94510.github.io" adinda bir KULLANICI sitesi reposu acip bu dosyayi
 # oraya koyun ve Play Console'daki gelistirici web sitesi alanina

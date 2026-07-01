@@ -170,11 +170,13 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.4.3+38` (sondaki sayı her
-yüklemede +1) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
-güncelle → `docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu (EN + 6
-dil, ≤500 krk) ekle → push → CI yeşil → `quotecrack-release-aab` indir →
-B turu → Play Console'a yükle.
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.7.0+48` (kullanıcıya görünen
+`versionName`) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
+güncelle. **versionCode elle bumplanMAZ:** CI onu commit sayısından otomatik
+türetir (`--build-number=$(git rev-list --count HEAD)`), her push'ta artar →
+`docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu (EN + 6 dil, ≤500 krk)
+ekle → push → CI yeşil → `quotecrack-release-aab` indir → B turu → Play
+Console'a yükle.
 
 > **🔒 GÜNCELLEMELERDE VERİ KORUNUR:** SharedPreferences Play güncellemelerinde
 > silinmez (yalnız kaldırma/"veriyi temizle" siler). `stats.v2` migration

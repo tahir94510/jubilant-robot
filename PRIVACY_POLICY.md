@@ -3,7 +3,7 @@
 _Last updated: June 11, 2026_
 
 > The live, linkable version of this policy (use THIS url in Play Console):
-> **https://tahir94510.github.io/jubilant-robot/privacy.html**
+> **https://tahir94510.github.io/quotecrack/privacy.html**
 > (served from this repository's GitHub Pages site; the repository stays
 > public so this link stays alive)
 

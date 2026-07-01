@@ -99,7 +99,7 @@ koruyan bilinçli davranıştır.
 
 Gizlilik politikası için ek bir şey yapmanıza gerek YOK, o, bu reponun
 Pages sitesinde otomatik yayında:
-`https://tahir94510.github.io/jubilant-robot/privacy.html`
+`https://tahir94510.github.io/quotecrack/privacy.html`
 
 `app-ads.txt` ise bazı programatik reklam alıcılarının aradığı bir
 doğrulama dosyasıdır ve spec gereği alan adının KÖKÜNDE durmak zorundadır

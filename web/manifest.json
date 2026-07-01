@@ -1,7 +1,7 @@
 {
   "name": "Quotecrack \u2014 Cryptogram Puzzles",
   "short_name": "Quotecrack",
-  "id": "/jubilant-robot/app/",
+  "id": "/quotecrack/app/",
   "start_url": ".",
   "scope": ".",
   "lang": "en",
