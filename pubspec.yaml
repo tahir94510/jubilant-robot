@@ -2,11 +2,11 @@ name: quotecrack
 description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram puzzle game."
 publish_to: 'none'
 
-# versionName (2.6.0) is the user-facing version shown in Settings. The
+# versionName (2.7.0) is the user-facing version shown in Settings. The
 # versionCode (+N) is now derived automatically in CI from the commit count
 # (see .github/workflows/ci.yml --build-number), so it always increases without
 # a manual bump; the +48 here is only a local-build fallback.
-version: 2.6.0+48
+version: 2.7.0+48
 
 environment:
   sdk: ^3.12.1
