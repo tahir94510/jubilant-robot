@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tahir94510.github.io/jubilant-robot/sitemap.xml
+Sitemap: https://tahir94510.github.io/quotecrack/sitemap.xml

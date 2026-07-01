@@ -153,9 +153,9 @@ jobs:
       - run: flutter pub get
       # --pwa-strategy=none: service worker olmasin ki onizleme asla
       # bayat (eski) surumde takili kalmasin. base-href repo adindan TURETILIR
-      # (rename-proof): repo "quotecrack"e tasinsa bile flutter_bootstrap.js
-      # dogru yoldan yuklenir; sabit "/jubilant-robot/app/" yeniden adlandirmada
-      # 404 verip "loading"de takiyordu.
+      # (rename-proof): repo adi ne olursa olsun flutter_bootstrap.js dogru
+      # yoldan yuklenir; sabit bir yol yeniden adlandirmada 404 verip
+      # "loading"de takiyordu.
       # --no-web-resources-cdn: CanvasKit + fontlari gstatic CDN'inden DEGIL kendi
       # Pages origin'imizden servis et. gstatic'ten canvaskit cekimi takilinca/
       # basarisiz olunca uygulama boot-splash'ta ASILI kaliyordu (first-frame hic
@@ -167,15 +167,15 @@ jobs:
           --pwa-strategy=none
           --no-web-resources-cdn
       - name: Assemble Pages site (landing + privacy + app)
-        # Tum sabit "jubilant-robot" URL'lerini (canonical/og/manifest/sitemap/
-        # 404) gercek repo adina cevir: SEO + manifest yollari da rename-proof.
+        # Landing/SEO URL'leri (canonical/og/manifest/sitemap/404) kaynakta
+        # dogrudan "quotecrack" olarak yazili; uygulamanin YUKLENME yolu
+        # (base-href) yukarida repo adindan turetildigi icin kritik yol zaten
+        # rename-proof. (Repo bir daha yeniden adlandirilirsa landing URL'leri
+        # pages/ + web/ altinda tek find-replace ile guncellenir.)
         run: |
           mkdir -p _site/app
           cp -r build/web/* _site/app/
           cp -r pages/* _site/
-          find _site -type f \( -name '*.html' -o -name '*.xml' \
-            -o -name '*.json' -o -name '*.txt' -o -name '*.webmanifest' \) \
-            -exec sed -i "s/jubilant-robot/${{ github.event.repository.name }}/g" {} +
           # Kozmetik: release derlemesi kaynak haritalarini (flutter.js.map vb.)
           # GONDERMEZ ama JS dosyalari hala `//# sourceMappingURL=...` yorumu
           # tasir; devtools bu haritayi cekmeye calisip 404 yaziyor (kullanicinin

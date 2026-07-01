@@ -83,7 +83,7 @@ metinlerle doldurun (kopyala-yapıştır):
 
 Soldaki **Policy → App content** altında sırayla (hazır cevaplar):
 
-1. **Privacy policy:** `https://tahir94510.github.io/jubilant-robot/privacy.html`
+1. **Privacy policy:** `https://tahir94510.github.io/quotecrack/privacy.html`
    > Bu sayfa, bu reponun GitHub Pages sitesinde otomatik yayınlanır ve
    > repo public + Pages açık olduğu sürece yaşar (karar: repo kalıcı
    > public). Linki forma yapıştırmadan önce tarayıcıda açıldığını
