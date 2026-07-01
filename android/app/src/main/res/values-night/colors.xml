@@ -2,9 +2,12 @@
 <resources>
     <!-- Post-splash window background in dark mode (NormalTheme): matches
          AppThemes.dark surface so the native-splash -> first-Flutter-frame
-         handoff never flashes. NOTE: the SPLASH field itself is now the light
-         "paper" cream in EVERY mode (see @color/splash_background) so the
-         self-contained cream badge merges seamlessly; this dark surface only
-         paints behind the app AFTER the splash dismisses. -->
+         handoff never flashes. -->
     <color name="app_surface">#161512</color>
+    <!-- Splash FIELD in dark mode: the app's dark surface. The splash badge is
+         now BOXLESS + theme-adaptive (transparent; drawable-night/splash_icon
+         is a LIGHT "paper" Q), so on this dark field the Q reads cleanly with
+         NO cream box. Light mode keeps the cream field (values/colors.xml) with
+         the dark-ink Q. Matches app_surface for a seamless splash -> app handoff. -->
+    <color name="splash_background">#161512</color>
 </resources>

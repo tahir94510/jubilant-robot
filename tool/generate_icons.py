@@ -53,6 +53,14 @@ INK = (38, 34, 28)           # #26221C  dark serif glyph + decoded letters
 ACCENT = (170, 124, 34)      # #AA7C22  deepened gold for the ? and accents
 UNDERLINE = (150, 110, 30)   # #966E1E  deepened gold for the cipher underline
 
+# Dark-mode splash variant (matches AppThemes.dark + brand_mark on a dark
+# field): a light "paper" Q with the BRIGHTER dark-theme gold, so the boxless
+# transparent badge reads on the dark splash field instead of a dark-ink Q
+# vanishing into it. Used ONLY for drawable-night/splash_icon.
+INK_DARK = (242, 237, 226)   # #F2EDE2  dark-theme onSurface (light paper ink)
+ACCENT_DARK = (217, 178, 90) # #D9B25A  dark-theme gold (revealed)
+UNDERLINE_DARK = (217, 178, 90)  # #D9B25A
+
 SS = 4096  # supersample size: draw big, downscale Lanczos. 4096 keeps a >=2x
 # supersample even for the 2048px master/web exports, so text edges stay crisp.
 
@@ -114,20 +122,25 @@ def draw_glyph_centered(draw, text, font, center, fill):
               text, font=font, fill=fill)
 
 
-def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
+def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True,
+                  q_col=None, mark_col=None, line_col=None):
     """The brand mark: one dominant serif Q, a coral ? at its shoulder, and
     the shared cryptogram underline beneath. Three bold elements that stay
     legible at 48dp — the old two-tile motif read tiny and cluttered on real
-    launchers."""
+    launchers.
+
+    `q_col`/`mark_col`/`line_col` override the default light-brand colors (used
+    by the dark-mode splash badge); `monochrome` still wins for the themed layer.
+    """
     s = img.size[0]
     draw = ImageDraw.Draw(img)
     a = s * scale
     ox = oy = (s - a) / 2
 
     white = (255, 255, 255, 255)
-    q_color = white if monochrome else INK + (255,)
-    mark_color = white if monochrome else ACCENT + (255,)
-    line_color = white if monochrome else UNDERLINE + (255,)
+    q_color = white if monochrome else (q_col or INK) + (255,)
+    mark_color = white if monochrome else (mark_col or ACCENT) + (255,)
+    line_color = white if monochrome else (line_col or UNDERLINE) + (255,)
 
     # Q lifted and sized down; the underline sits at y 0.80 — a small, even
     # gap below the glyph, close but clear of the serif Q's tail (matches
@@ -147,7 +160,8 @@ def paint_artwork(img, *, monochrome=False, scale=1.0, with_question=True):
 
 
 def artwork(size, *, transparent_bg=False, solid_bg=False, monochrome=False,
-            scale=1.0, with_question=True):
+            scale=1.0, with_question=True, q_col=None, mark_col=None,
+            line_col=None):
     """Renders the mark supersampled, then downscales to `size`."""
     if transparent_bg:
         big = Image.new("RGBA", (SS, SS), (0, 0, 0, 0))
@@ -159,7 +173,8 @@ def artwork(size, *, transparent_bg=False, solid_bg=False, monochrome=False,
     else:
         big = vertical_gradient((SS, SS), BG_TOP, BG_BOTTOM).convert("RGBA")
     paint_artwork(big, monochrome=monochrome, scale=scale,
-                  with_question=with_question)
+                  with_question=with_question, q_col=q_col, mark_col=mark_col,
+                  line_col=line_col)
     return big.resize((size, size), Image.LANCZOS)
 
 
@@ -202,16 +217,23 @@ def make_android_launchers():
 
 
 def make_splash_icons():
-    # SELF-CONTAINED splash badge on a FLAT brand-cream tile (solid_bg, no
-    # gradient). Two guarantees: (1) the dark-ink Q always has its cream backing
-    # so it can never vanish — even on a dimmed/closing window or an OEM that
-    # ignores windowSplashScreenBackground (the original "only ? and bar show"
-    # bug); (2) the flat cream exactly matches the flat splash window background
-    # (#F7F4EC), so there is no visible seam or gradient. Android 12+ masks this
-    # to a clean cream disc + logo; pre-12 centers it on the matching flat field.
+    # BOXLESS, THEME-ADAPTIVE splash badge (transparent bg — NO cream tile). The
+    # splash WINDOW background is the field (cream in light mode, dark in night;
+    # see @color/splash_background + its values-night override), and this badge
+    # sits directly on it:
+    #   drawable-*/splash_icon        -> dark-ink Q  (for the cream light field)
+    #   drawable-night-*/splash_icon  -> light paper Q (for the dark night field)
+    # This removes the old cream "box" that appeared whenever the field was not
+    # cream — an OEM/dark handoff that showed a dark field behind a cream tile
+    # (the user's screenshot). Android auto-selects the -night variant, so the
+    # existing styles/launch_background need no drawable-name change.
     for density, px in SPLASH_SIZES.items():
-        save(artwork(px, solid_bg=True, scale=0.64),
+        save(artwork(px, transparent_bg=True, scale=0.60),
              f"android/app/src/main/res/drawable-{density}/splash_icon.png")
+        save(artwork(px, transparent_bg=True, scale=0.60,
+                     q_col=INK_DARK, mark_col=ACCENT_DARK,
+                     line_col=UNDERLINE_DARK),
+             f"android/app/src/main/res/drawable-night-{density}/splash_icon.png")
 
 
 def make_notification_icons():
