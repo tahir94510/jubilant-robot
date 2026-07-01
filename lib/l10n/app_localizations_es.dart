@@ -137,7 +137,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reminderTestSent => 'Notificación de prueba enviada';
 
   @override
-  String get reminderBatteryHint => 'Algunos teléfonos (p. ej. Xiaomi, Huawei) detienen los recordatorios en segundo plano para ahorrar batería. Permite que Quotecrack se ejecute en segundo plano para no perder tu recordatorio diario.';
+  String get reminderBatteryHint =>
+      'Algunos teléfonos (p. ej. Xiaomi, Huawei) detienen los recordatorios en segundo plano para ahorrar batería. Permite que Quotecrack se ejecute en segundo plano para no perder tu recordatorio diario.';
 
   @override
   String get reminderBatteryAction => 'Ajustes de batería';

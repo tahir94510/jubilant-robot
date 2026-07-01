@@ -100,6 +100,17 @@ void main() {
           3.0,
         );
         atLeast('confirmed/surface', p.confirmed, cs.surface, 4.5);
+        // A JUST-COMPLETED word's letters (green [confirmed]) sit briefly on the
+        // green [boardCellLastMoveBg] "just-locked" wash — the green twin of the
+        // gold-on-gold case above. Composite the wash over the surface and confirm
+        // the green letter still clears the large-text floor, so a future wash
+        // tweak can never darken it back toward an unreadable green-on-green.
+        atLeast(
+          'confirmed/lastMoveWash',
+          p.confirmed,
+          Color.alphaBlend(p.boardCellLastMoveBg, cs.surface),
+          3.0,
+        );
         atLeast('success/surface', p.success, cs.surface, 4.5);
         // The streak flame accent renders as an icon + large number on the
         // surface and on cards (home/stats), so it must clear the large/icon

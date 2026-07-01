@@ -136,7 +136,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get reminderTestSent => 'Notification test envoyée';
 
   @override
-  String get reminderBatteryHint => 'Certains téléphones (p. ex. Xiaomi, Huawei) bloquent les rappels en arrière-plan pour économiser la batterie. Autorisez Quotecrack à fonctionner en arrière-plan pour ne jamais manquer votre rappel quotidien.';
+  String get reminderBatteryHint =>
+      'Certains téléphones (p. ex. Xiaomi, Huawei) bloquent les rappels en arrière-plan pour économiser la batterie. Autorisez Quotecrack à fonctionner en arrière-plan pour ne jamais manquer votre rappel quotidien.';
 
   @override
   String get reminderBatteryAction => 'Paramètres de batterie';
