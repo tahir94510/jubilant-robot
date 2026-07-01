@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/widgets/premium_celebration.dart';
@@ -68,4 +69,33 @@ void main() {
 
     handle.dispose();
   });
+
+  testWidgets(
+    'premium celebration fits a short screen and an outside tap dismisses it',
+    (tester) async {
+      // A very short viewport forces the card's INTERNAL-scroll path. Two
+      // guarantees: (1) it must not overflow; (2) the regression guard — tapping
+      // OUTSIDE the centered card must still fall through to the dismiss scrim
+      // (a full-screen scroll overlay would have swallowed that tap).
+      tester.view.physicalSize = const Size(320, 360);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.reset);
+
+      final h = await Harness.create();
+      var dismissed = 0;
+      await tester.pumpWidget(
+        h.app(PremiumCelebration(onDismiss: () => dismissed++)),
+      );
+      await tester.pump(const Duration(milliseconds: 600)); // settle scale-in
+      expect(tester.takeException(), isNull); // no RenderFlex overflow
+
+      await tester.tapAt(const Offset(6, 6)); // a corner, outside the card
+      await tester.pump();
+      expect(
+        dismissed,
+        1,
+        reason: 'tapping outside the card must dismiss via the scrim',
+      );
+    },
+  );
 }
