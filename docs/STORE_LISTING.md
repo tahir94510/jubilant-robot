@@ -5,6 +5,84 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.8.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.8.0
+• Smoother updates — the app now asks before restarting to finish an update (no more surprise exits)
+• A bolder, crisper notification icon that matches the brand
+• Simpler daily reminder settings with a cleaner turn-on flow
+• The premium celebration now uses the app's own typeface
+• General polish and fixes across all 7 languages
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.8.0 YENİLİKLER
+• Daha pürüzsüz güncelleme — uygulama, güncellemeyi bitirmek için yeniden başlatmadan önce artık soruyor (sürpriz çıkış yok)
+• Markayla uyumlu, daha kalın ve net bildirim ikonu
+• Daha sade günlük hatırlatma ayarları, daha temiz açma akışı
+• Premium kutlaması artık uygulamanın kendi yazı tipinde
+• 7 dilin tamamında genel cila ve düzeltmeler
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.8.0
+• Actualizaciones más fluidas: la app ahora pregunta antes de reiniciarse para terminar una actualización (sin salidas sorpresa)
+• Icono de notificación más nítido y acorde a la marca
+• Ajustes del recordatorio diario más simples
+• La celebración Premium usa ahora la tipografía propia de la app
+• Pulido general y correcciones en los 7 idiomas
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.8.0
+• Sanftere Updates – die App fragt jetzt, bevor sie zum Abschluss eines Updates neu startet (kein überraschendes Beenden mehr)
+• Kräftigeres, schärferes Benachrichtigungssymbol im Marken-Look
+• Einfachere Einstellungen für die tägliche Erinnerung
+• Die Premium-Feier nutzt jetzt die App-eigene Schrift
+• Feinschliff und Korrekturen in allen 7 Sprachen
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.8.0
+• Mises à jour plus fluides : l'appli demande désormais avant de redémarrer pour terminer une mise à jour (plus de sortie surprise)
+• Icône de notification plus nette, fidèle à la marque
+• Réglages du rappel quotidien simplifiés
+• La célébration Premium utilise désormais la police de l'appli
+• Peaufinage général dans les 7 langues
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.8.0
+• Aggiornamenti più fluidi: l'app ora chiede prima di riavviarsi per completare un aggiornamento (niente più uscite a sorpresa)
+• Icona delle notifiche più nitida e in linea con il brand
+• Impostazioni del promemoria giornaliero più semplici
+• La celebrazione Premium usa ora il carattere dell'app
+• Rifiniture generali in tutte e 7 le lingue
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.8.0
+• Atualizações mais suaves — o app agora pergunta antes de reiniciar para concluir uma atualização (sem saídas surpresa)
+• Ícone de notificação mais nítido e alinhado à marca
+• Configurações do lembrete diário mais simples
+• A celebração Premium agora usa a fonte do próprio app
+• Polimento geral e correções nos 7 idiomas
+Boa decifração!
+```
+
 ## Release notes: v2.4.6 (max 500 chars, paste into "What's new")
 
 ```

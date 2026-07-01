@@ -133,10 +133,14 @@ kurup şu listeyi işaretleyin:
         streak" kartı görünüyor; "Remind me daily" bildirimi planlıyor,
         "Not now" sessizce kapatıyor, her iki durumda da kart bir daha
         ASLA görünmüyor (paket çözümlerinde hiç görünmez).
-24. [ ] Hatırlatma dayanıklılığı: hatırlatma açıkken "Test bildirimi gönder"e
-        bas → bildirim ANINDA gelmeli (kanal yüksek önemli, ses+heads-up).
-        Sonra saati 2-3 dk sonraya kur, bildirimin GELDİĞİNİ gör; cihazı
-        yeniden başlat ve ertesi gün yine geldiğini doğrula (boot receiver).
+24. [ ] Hatırlatma dayanıklılığı: hatırlatmayı aç, saati 2-3 dk sonraya kur,
+        bildirimin GELDİĞİNİ gör (kanal yüksek önemli, ses+heads-up; ikon =
+        yeni kalın beyaz "Q" silueti). Cihazı yeniden başlat ve ertesi gün
+        yine geldiğini doğrula (boot receiver); uygulamayı GÜNCELLE ve
+        hatırlatmanın yeni sürümün ikon/metniyle geldiğini doğrula
+        (MY_PACKAGE_REPLACED yeniden kurar — eski sürüm artığı kalmaz).
+        Bildirimler OS'ten kapalıyken toggle'a basınca sistem ayarına
+        yönlendirdiğini ve dönüşte durumu doğru senkronladığını da kontrol et.
         NOT (OEM): Xiaomi/Samsung/Huawei gibi cihazlar arka planı agresif
         kapatabilir → bildirim gelmezse uygulamayı "otomatik başlat"a ekle ve
         pil optimizasyonundan muaf tut. Zamanlama inexactAllowWhileIdle ile
@@ -170,7 +174,7 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.7.0+48` (kullanıcıya görünen
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.8.0+48` (kullanıcıya görünen
 `versionName`) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle. **versionCode elle bumplanMAZ:** CI onu commit sayısından otomatik
 türetir (`--build-number=$(git rev-list --count HEAD)`), her push'ta artar →
