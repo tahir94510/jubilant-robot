@@ -336,48 +336,6 @@ abstract class AppLocalizations {
   /// **'Reminder time'**
   String get reminderTime;
 
-  /// No description provided for @reminderSendTest.
-  ///
-  /// In en, this message translates to:
-  /// **'Send a test notification'**
-  String get reminderSendTest;
-
-  /// No description provided for @reminderTestSent.
-  ///
-  /// In en, this message translates to:
-  /// **'Test notification sent'**
-  String get reminderTestSent;
-
-  /// No description provided for @reminderBatteryHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Some phones (e.g. Xiaomi, Huawei) stop background reminders to save battery. Allow Quotecrack to run in the background so your daily reminder is never missed.'**
-  String get reminderBatteryHint;
-
-  /// No description provided for @reminderBatteryAction.
-  ///
-  /// In en, this message translates to:
-  /// **'Battery settings'**
-  String get reminderBatteryAction;
-
-  /// No description provided for @notificationsBlockedTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications are off'**
-  String get notificationsBlockedTitle;
-
-  /// No description provided for @notificationsBlockedBody.
-  ///
-  /// In en, this message translates to:
-  /// **'Quotecrack can\'t show notifications until you turn them on in system settings.'**
-  String get notificationsBlockedBody;
-
-  /// No description provided for @openSettings.
-  ///
-  /// In en, this message translates to:
-  /// **'Open settings'**
-  String get openSettings;
-
   /// No description provided for @premiumActive.
   ///
   /// In en, this message translates to:
@@ -1307,6 +1265,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'NEW'**
   String get badgeNew;
+
+  /// SnackBar shown when a flexible in-app update has been downloaded and is ready to install (installing restarts the app).
+  ///
+  /// In en, this message translates to:
+  /// **'Update downloaded — restart Quotecrack to apply it.'**
+  String get updateReadyBody;
+
+  /// SnackBar action that installs the downloaded update and restarts the app.
+  ///
+  /// In en, this message translates to:
+  /// **'Restart'**
+  String get updateRestartAction;
 }
 
 class _AppLocalizationsDelegate

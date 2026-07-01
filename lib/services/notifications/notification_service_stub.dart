@@ -28,16 +28,7 @@ class StubNotificationService extends NotificationService {
   }) async {}
 
   @override
-  Future<void> showTestNotification({
-    required String title,
-    required String body,
-  }) async {}
-
-  @override
   Future<void> openSystemSettings() async {}
-
-  @override
-  Future<void> openBatterySettings() async {}
 
   @override
   Future<void> cancelAll() async {}

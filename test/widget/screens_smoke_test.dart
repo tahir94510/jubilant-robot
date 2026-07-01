@@ -227,8 +227,8 @@ void main() {
     await tester.pump();
     expect(settings.soundEffects, isFalse);
 
-    // Daily reminder: enabling schedules a notification via the service AND
-    // fires an immediate test post so delivery is verifiable on the device.
+    // Daily reminder: enabling schedules a notification via the service. The
+    // toggle is deliberately chrome-free — no follow-up SnackBar or test post.
     await tester.scrollUntilVisible(find.text('Remind me daily'), 200);
     await tester.ensureVisible(find.text('Remind me daily'));
     await tester.pumpAndSettle();
@@ -236,35 +236,15 @@ void main() {
     await tester.pumpAndSettle();
     expect(settings.reminderEnabled, isTrue);
     expect(h.notifications.scheduledAt, isNotNull);
-    expect(h.notifications.testNotificationCalls, greaterThan(0));
-    // The reminder time is now user-controllable via an in-app picker row
+    // The reminder time is user-controllable via an in-app picker row
     // (fixes the per-device default-time discrepancy).
     expect(find.text('Reminder time'), findsOneWidget);
-    // Let the battery-hint SnackBar's auto-dismiss timer fire so the test never
-    // finishes with a pending Timer.
-    await tester.pump(const Duration(seconds: 8));
-    await tester.pumpAndSettle();
 
     // Disabling cancels it.
     await tester.tap(find.text('Remind me daily'));
     await tester.pumpAndSettle();
     expect(settings.reminderEnabled, isFalse);
     expect(h.notifications.cancelCalls, greaterThan(0));
-
-    // The test-notification button stays available even with the reminder OFF,
-    // so delivery can be verified any time. With notifications allowed it posts
-    // immediately and shows no recovery dialog.
-    final testsBefore = h.notifications.testNotificationCalls;
-    await tester.scrollUntilVisible(find.text('Send a test notification'), 150);
-    await tester.ensureVisible(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-    expect(h.notifications.testNotificationCalls, greaterThan(testsBefore));
-    expect(find.text('Notifications are off'), findsNothing);
-    // Flush the "test sent" SnackBar timer so no Timer outlives the test.
-    await tester.pump(const Duration(seconds: 4));
-    await tester.pumpAndSettle();
 
     // Restore purchases row delegates to the store service.
     await tester.scrollUntilVisible(find.text('Restore purchases'), 200);
@@ -298,19 +278,13 @@ void main() {
     expect(h.settings.settings.reminderEnabled, isFalse);
     expect(h.notifications.scheduledAt, isNull);
     expect(h.notifications.openSettingsCalls, 0);
-    expect(find.text('Notifications are off'), findsNothing);
 
-    // The always-available test button surfaces the recovery dialog when
-    // notifications are blocked — instead of a dead-end "nothing happened",
-    // "Open settings" routes the user to the OS to turn them back on.
-    await tester.scrollUntilVisible(find.text('Send a test notification'), 200);
-    await tester.ensureVisible(find.text('Send a test notification'));
+    // A SECOND tap can't re-prompt (permanently denied), so the toggle itself
+    // routes to the OS notification settings — the only recovery on
+    // Android 13+ — and stays off until the grant is visible on resume.
+    await tester.tap(find.text('Remind me daily'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Send a test notification'));
-    await tester.pumpAndSettle();
-    expect(find.text('Notifications are off'), findsOneWidget);
-    await tester.tap(find.text('Open settings'));
-    await tester.pumpAndSettle();
+    expect(h.settings.settings.reminderEnabled, isFalse);
     expect(h.notifications.openSettingsCalls, 1);
   });
 

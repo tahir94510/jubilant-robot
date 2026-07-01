@@ -130,29 +130,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderTime => 'Hatırlatma saati';
 
   @override
-  String get reminderSendTest => 'Test bildirimi gönder';
-
-  @override
-  String get reminderTestSent => 'Test bildirimi gönderildi';
-
-  @override
-  String get reminderBatteryHint =>
-      'Bazı telefonlar (örn. Xiaomi, Huawei) pil tasarrufu için arka plan hatırlatmalarını durdurur. Günlük hatırlatman hiç kaçmasın diye Quotecrack\'in arka planda çalışmasına izin ver.';
-
-  @override
-  String get reminderBatteryAction => 'Pil ayarları';
-
-  @override
-  String get notificationsBlockedTitle => 'Bildirimler kapalı';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Sistem ayarlarından açana kadar Quotecrack bildirim gösteremez.';
-
-  @override
-  String get openSettings => 'Ayarları aç';
-
-  @override
   String get premiumActive => 'Premium etkin';
 
   @override
@@ -686,4 +663,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get badgeNew => 'YENİ';
+
+  @override
+  String get updateReadyBody =>
+      'Güncelleme indirildi — uygulamak için Quotecrack\'i yeniden başlat.';
+
+  @override
+  String get updateRestartAction => 'Yeniden başlat';
 }

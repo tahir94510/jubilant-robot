@@ -38,13 +38,6 @@
   "reminderAt": "A las {time}",
   "neverMissStreak": "No pierdas tu racha",
   "reminderTime": "Hora del recordatorio",
-  "reminderSendTest": "Enviar una notificación de prueba",
-  "reminderTestSent": "Notificación de prueba enviada",
-  "reminderBatteryHint": "Algunos teléfonos (p. ej. Xiaomi, Huawei) detienen los recordatorios en segundo plano para ahorrar batería. Permite que Quotecrack se ejecute en segundo plano para no perder tu recordatorio diario.",
-  "reminderBatteryAction": "Ajustes de batería",
-  "notificationsBlockedTitle": "Las notificaciones están desactivadas",
-  "notificationsBlockedBody": "Quotecrack no puede mostrar notificaciones hasta que las actives en los ajustes del sistema.",
-  "openSettings": "Abrir ajustes",
   "premiumActive": "Premium activo",
   "premiumActiveSubtitle": "¡Gracias por apoyar Quotecrack!",
   "goPremium": "Hazte Premium",
@@ -199,5 +192,7 @@
   "hintRevealLetterCount": "Revelar letra ({count})",
   "hintTokensAdded": "+{count} pistas añadidas",
   "adNoVideo": "No hay ningún vídeo disponible ahora. Inténtalo de nuevo en un momento.",
-  "badgeNew": "NUEVO"
+  "badgeNew": "NUEVO",
+  "updateReadyBody": "Actualización descargada: reinicia Quotecrack para aplicarla.",
+  "updateRestartAction": "Reiniciar"
 }

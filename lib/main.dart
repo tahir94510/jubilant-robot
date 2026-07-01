@@ -184,8 +184,27 @@ Future<void> _start() async {
       debugPrint('Ads init failed (continuing): $e');
     }
     // Offer a Play in-app update if one is available (no-op off Play / on web).
+    // The flexible download runs silently in the background; once it is staged
+    // we ASK before the app-restarting install — an unannounced restart threw
+    // players out mid-session and read as a crash.
     try {
-      await UpdateService().maybePromptUpdate();
+      final updater = UpdateService();
+      if (await updater.maybeStartUpdate()) {
+        final ctx = scaffoldMessengerKey.currentContext;
+        if (ctx != null && ctx.mounted) {
+          final l10n = AppLocalizations.of(ctx);
+          scaffoldMessengerKey.currentState?.showSnackBar(
+            SnackBar(
+              content: Text(l10n.updateReadyBody),
+              duration: const Duration(seconds: 12),
+              action: SnackBarAction(
+                label: l10n.updateRestartAction,
+                onPressed: updater.completeUpdate,
+              ),
+            ),
+          );
+        }
+      }
     } catch (e) {
       debugPrint('Update check failed (continuing): $e');
     }

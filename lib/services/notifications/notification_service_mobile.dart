@@ -15,10 +15,6 @@ class MobileNotificationService extends NotificationService {
 
   static const int _dailyReminderId = 1001;
 
-  /// A separate id for the immediate "it works" test post, so showing it never
-  /// touches the scheduled daily reminder ([_dailyReminderId]).
-  static const int _testNotificationId = 1002;
-
   /// The notification small-icon drawable (alpha-only status-bar mark). Passed
   /// EXPLICITLY on every post as well as at init, so a notification never falls
   /// back to a missing/launcher icon on stricter OEMs.
@@ -203,11 +199,10 @@ class MobileNotificationService extends NotificationService {
     // reminder does NOT qualify, so shipping USE_EXACT_ALARM risks a Play
     // rejection/removal. A habit nudge also doesn't NEED to-the-minute timing —
     // `allowWhileIdle` still fires it in Doze, just coalesced into a delivery
-    // window. The real reason reminders vanished on aggressive OEMs
-    // (Xiaomi/MIUI, Huawei) is their battery/autostart killing, which the
-    // battery-optimization exemption (openBatterySettings) addresses directly —
-    // that, not exact alarms, is the reliability lever. The schedule is wrapped
-    // by the caller so a scheduling failure can never crash the toggle.
+    // window. On aggressive OEMs (Xiaomi/MIUI, Huawei) delivery can still be
+    // coalesced by their battery management; the user can exempt the app in the
+    // OS battery settings if they want to-the-minute delivery. The schedule is
+    // wrapped by the caller so a scheduling failure can never crash the toggle.
     await _plugin.zonedSchedule(
       id: _dailyReminderId,
       title: title,
@@ -222,37 +217,6 @@ class MobileNotificationService extends NotificationService {
       // serialization path when the daily reminder is delivered.
       payload: 'daily_reminder',
     );
-  }
-
-  @override
-  Future<void> showTestNotification({
-    required String title,
-    required String body,
-  }) async {
-    // Posted immediately on its own id so it never overwrites or cancels the
-    // scheduled daily reminder. Lets the user SEE that delivery works the moment
-    // they enable it, instead of waiting until the evening to find out it does
-    // not. Best-effort: a failure here must never surface to the toggle.
-    try {
-      await _plugin.show(
-        id: _testNotificationId,
-        title: title,
-        body: body,
-        notificationDetails: NotificationDetails(
-          android: _androidDetails(title, body),
-        ),
-        payload: 'daily_reminder_test',
-      );
-    } catch (_) {}
-  }
-
-  @override
-  Future<void> openBatterySettings() async {
-    // Best-effort: the host Activity opens the OS battery-optimization settings
-    // (general list; no Play-restricted permission). Never throws into the UI.
-    try {
-      await _platform.invokeMethod('openBatterySettings');
-    } catch (_) {}
   }
 
   @override

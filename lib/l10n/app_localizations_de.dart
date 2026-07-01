@@ -131,29 +131,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get reminderTime => 'Erinnerungszeit';
 
   @override
-  String get reminderSendTest => 'Testbenachrichtigung senden';
-
-  @override
-  String get reminderTestSent => 'Testbenachrichtigung gesendet';
-
-  @override
-  String get reminderBatteryHint =>
-      'Manche Telefone (z. B. Xiaomi, Huawei) stoppen Hintergrund-Erinnerungen, um Akku zu sparen. Erlaube Quotecrack, im Hintergrund zu laufen, damit deine tägliche Erinnerung nie verpasst wird.';
-
-  @override
-  String get reminderBatteryAction => 'Akku-Einstellungen';
-
-  @override
-  String get notificationsBlockedTitle => 'Benachrichtigungen sind aus';
-
-  @override
-  String get notificationsBlockedBody =>
-      'Quotecrack kann keine Benachrichtigungen anzeigen, bis du sie in den Systemeinstellungen aktivierst.';
-
-  @override
-  String get openSettings => 'Einstellungen öffnen';
-
-  @override
   String get premiumActive => 'Premium aktiv';
 
   @override
@@ -688,4 +665,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get badgeNew => 'NEU';
+
+  @override
+  String get updateReadyBody =>
+      'Update heruntergeladen – starte Quotecrack neu, um es anzuwenden.';
+
+  @override
+  String get updateRestartAction => 'Neu starten';
 }
