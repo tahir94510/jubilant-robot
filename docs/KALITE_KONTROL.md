@@ -41,8 +41,9 @@ geçmiş demektir:
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
   kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
   tam bir kez açılması ve TÜM başarımların benzersizliği (başlık/açıklama/
-  ikon kopya değil), yeni içerik "NEW" rozetinin görülene dek kalıp sonra
-  temizlenmesi; tahta sığdırma matematiği (15 harfli kelime 360dp
+  ikon kopya değil), yeni içerik "NEW" rozetinin güncelleme sonrası SÜRE
+  bazlı (14 gün) görünüp kendiliğinden normalleşmesi (yeniden başlatma/saat
+  geri alma dahil); tahta sığdırma matematiği (15 harfli kelime 360dp
   ekrana sığar + 510 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
   sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
   çözülmüş bulmacanın temiz başlaması; harf girince imlecin geriye değil

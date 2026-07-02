@@ -20,9 +20,11 @@ class Achievement {
   final IconData icon;
   final bool Function(GameStats stats) isUnlocked;
 
-  /// Content revision this achievement first shipped in. Items newer than the
-  /// revision the player last viewed get a "NEW" badge (see [AppConfig.
-  /// contentVersion] and SettingsController.seenContentVersion).
+  /// Content revision this achievement first shipped in. Items in the latest
+  /// batch wear a "NEW" badge for a fixed discovery window after the update
+  /// first launches, then normalize automatically (see
+  /// [AppConfig.contentVersion], [AppConfig.newBadgeWindow] and
+  /// SettingsController.isContentNew).
   final int addedInVersion;
 
   /// Full catalog, in display order.

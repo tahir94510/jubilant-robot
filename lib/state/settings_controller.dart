@@ -61,14 +61,21 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   SettingsController({
     required StorageService storage,
     required NotificationService notifications,
+    DateTime Function()? now,
   }) : _storage = storage,
        _notifications = notifications,
+       _now = now ?? DateTime.now,
        settings = AppSettings.fromJson(
          storage.readJson(StorageService.settingsKey) ?? const {},
-       );
+       ) {
+    _reconcileNewContent();
+  }
 
   final StorageService _storage;
   final NotificationService _notifications;
+
+  /// Injectable clock so the time-based NEW-badge window is testable.
+  final DateTime Function() _now;
 
   final AppSettings settings;
 
@@ -212,19 +219,38 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     return _save();
   }
 
-  /// True when [item] is newer than the content the player has already seen,
-  /// so it should wear a "NEW" badge.
-  bool isContentNew(int addedInVersion) =>
-      addedInVersion > settings.seenContentVersion;
-
-  /// Clears the "NEW" badges by recording that the player has now seen the
-  /// current content revision. A no-op (no disk write) once already current.
-  Future<void> markContentSeen() {
-    if (settings.seenContentVersion >= AppConfig.contentVersion) {
-      return Future.value();
+  /// Notices a freshly-shipped content batch: on the first launch of a build
+  /// whose [AppConfig.contentVersion] is above the last-noticed revision, the
+  /// window's lower bound and timestamp are stamped so everything newer wears
+  /// a "NEW" badge for [AppConfig.newBadgeWindow] — for EVERY player (fresh
+  /// installs included), with no user action involved. Also self-heals a
+  /// timestamp left in the future by a device-clock rollback, so the window
+  /// can never get stuck open.
+  void _reconcileNewContent() {
+    final nowMs = _now().millisecondsSinceEpoch;
+    var changed = false;
+    if (settings.seenContentVersion < AppConfig.contentVersion) {
+      settings.newContentSinceVersion = settings.seenContentVersion;
+      settings.seenContentVersion = AppConfig.contentVersion;
+      settings.newContentNoticedAtMs = nowMs;
+      changed = true;
+    } else if (settings.newContentNoticedAtMs > nowMs) {
+      settings.newContentNoticedAtMs = nowMs;
+      changed = true;
     }
-    settings.seenContentVersion = AppConfig.contentVersion;
-    return _save();
+    if (changed) unawaited(_save());
+  }
+
+  /// True while [addedInVersion] belongs to the current "new" batch AND the
+  /// time-based discovery window is still open. Purely time-based: badges
+  /// normalize on their own after [AppConfig.newBadgeWindow], whether or not
+  /// the player ever opened the screen.
+  bool isContentNew(int addedInVersion) {
+    if (addedInVersion <= settings.newContentSinceVersion) return false;
+    final noticed = settings.newContentNoticedAtMs;
+    if (noticed <= 0) return false;
+    final age = _now().millisecondsSinceEpoch - noticed;
+    return age >= 0 && age < AppConfig.newBadgeWindow.inMilliseconds;
   }
 
   /// A sensible default reminder time for the active UI language — a relaxed
