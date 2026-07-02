@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
@@ -160,6 +161,17 @@ Future<void> _start() async {
   // step is isolated so one plugin failing can't take the others (or the
   // app) down.
   WidgetsBinding.instance.addPostFrameCallback((_) async {
+    // Unlock high refresh (90/120Hz) where the OEM pins Flutter apps to 60Hz
+    // (MIUI, some Samsung skins): animations, board scrolling and the keyboard
+    // then run at the panel's real rate. Android-only plugin; guarded so it is
+    // a silent no-op on web/tests/other platforms and can never affect launch.
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      try {
+        await FlutterDisplayMode.setHighRefreshRate();
+      } catch (e) {
+        debugPrint('High-refresh request failed (continuing): $e');
+      }
+    }
     // Audio-engine init loads its sound assets; keep it OFF the launch path so
     // the first frame paints immediately (on web each asset is a network fetch).
     try {

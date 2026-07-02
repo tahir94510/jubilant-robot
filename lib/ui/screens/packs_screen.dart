@@ -9,6 +9,7 @@ import '../../state/progress_controller.dart';
 import '../theme/palette.dart';
 import 'pack_detail_screen.dart';
 import 'paywall_screen.dart';
+import '../widgets/entrance.dart';
 import '../widgets/page_body.dart';
 import '../widgets/scale_safe.dart';
 
@@ -37,19 +38,29 @@ class PacksScreen extends StatelessWidget {
       ),
     );
 
-    List<Widget> tiles(PackKind kind) => [
-      for (final pack in Pack.catalog.where((p) => p.kind == kind))
-        if (repo.forPack(pack, activeLocale: locale).isNotEmpty)
-          _PackTile(
-            pack: pack,
-            total: repo.forPack(pack, activeLocale: locale).length,
-            solved: repo
-                .forPack(pack, activeLocale: locale)
-                .where((q) => progress.isSolved(q.id))
-                .length,
-            locked: pack.premiumOnly && !premium,
+    List<Widget> tiles(PackKind kind) {
+      final packs = [
+        for (final pack in Pack.catalog.where((p) => p.kind == kind))
+          if (repo.forPack(pack, activeLocale: locale).isNotEmpty) pack,
+      ];
+      return [
+        // Staggered entrance per section, so the cards settle in like dealt
+        // cards (Entrance renders plain children under reduced motion).
+        for (var i = 0; i < packs.length; i++)
+          Entrance(
+            index: i,
+            child: _PackTile(
+              pack: packs[i],
+              total: repo.forPack(packs[i], activeLocale: locale).length,
+              solved: repo
+                  .forPack(packs[i], activeLocale: locale)
+                  .where((q) => progress.isSolved(q.id))
+                  .length,
+              locked: packs[i].premiumOnly && !premium,
+            ),
           ),
-    ];
+      ];
+    }
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.puzzlePacks)),
