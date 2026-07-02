@@ -14,6 +14,7 @@ between 320–3840 px per side with a max 2:1 ratio, feature graphic exactly
 | **Phone screenshots** | `screenshots/phone/<lang>/01–06_*.png` | 1080×1920 | ✅ 7 languages × 6 |
 | **7″ tablet screenshots** | `screenshots/tablet_7/<lang>/…` | 1200×1920 | ✅ 7 languages × 6 |
 | **10″ tablet screenshots** | `screenshots/tablet_10/<lang>/…` | 1920×2560 | ✅ 7 languages × 6 |
+| **Chromebook screenshots** | `screenshots/chromebook/<lang>/…` | 1920×1080 landscape | ✅ 7 languages × 6 |
 | **Listing text** (title / short / full) | `../docs/STORE_LISTING.md` | ≤30 / ≤80 / ≤4000 chars | ✅ 7 languages |
 
 Languages: `en, tr, es, de, fr, it, pt`. Each screenshot frames the app rendered
@@ -54,10 +55,16 @@ Edit headlines in `tool/make_screenshots.py` (`HEADLINES`).
 - **Promo video** — not produced here (video authoring is out of scope for the
   asset pipeline). A ready shot-list + 30-second script in all 7 languages is in
   [`VIDEO_SCRIPT.md`](VIDEO_SCRIPT.md); record a screen capture and edit to it.
-- **Android XR** — not applicable. Quotecrack is a 2D portrait cryptogram game,
-  not an immersive/XR experience, so XR store assets don't apply.
-- **Google Play Games on PC** — deferred. It is a separate program requiring
-  enrollment and a PC-optimized (landscape, keyboard/mouse) build; the current
+- **Android XR** — leave the Play Console XR slot EMPTY. The app runs on XR
+  devices in 2D compatibility mode automatically (clean manifest: no
+  uses-feature restrictions, no static orientation lock), but the XR asset slot
+  is for dedicated immersive listings and demands 8:5 landscape captures
+  (min 1920×1200) of an XR experience we don't have. Without XR assets the
+  standard listing is used.
+- **Google Play Games on PC** — leave its asset slots EMPTY. Since Google's
+  opt-out model, mobile games are distributed on PC automatically (likely
+  "untested/playable" badge; the AAB already ships x86_64). Dedicated PC
+  listing assets only matter for the "Optimized" badge program; the current
   app is portrait-mobile. The brand icon/feature graphic here would carry over
   if you pursue it later.
 - **Chromebook** — no dedicated assets needed. The same Android app and phone/
