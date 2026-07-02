@@ -18,13 +18,13 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **223 otomatik test** | Aşağıdaki döküm |
+| **296 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**223 testin dökümü (özet):**
-- **Motor (23):** RNG golden vektörleri (günlük bulmaca her cihazda aynı
+**296 testin dökümü (özet — kategori sayıları bilinçli verilmiyor, tek doğrulanabilir sayı koşucunun raporladığı toplamdır):**
+- **Motor:** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
@@ -37,7 +37,7 @@ geçmiş demektir:
   hepsi dolu, her İngilizce zorluk kovasında ≥40 söz, günlük havuz
   İngilizce-only; ses efektlerinin (WAV) RIFF imzalı, müzik parçalarının (OGG)
   mevcut ve toplam boyut bütçesi içinde olması.
-- **Mantık (45):** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
+- **Mantık:** Seri artışı/sıfırlanması/gece yarısı VE yıl sınırı
   (31 Ara → 1 Oca), jeton kazan/harca/taban, premium sınırsızlığı ve
   kalıcılığı, interstisyel kadans+bekleme penceresi, başarımların eşikte
   tam bir kez açılması ve TÜM başarımların benzersizliği (başlık/açıklama/
@@ -48,7 +48,7 @@ geçmiş demektir:
   sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
   çözülmüş bulmacanın temiz başlaması; harf girince imlecin geriye değil
   ileriye (sonraki boş harfe) ilerlemesi.
-- **Ekran ve etkileşim (63):** Uçtan uca çözüm akışı, otomatik doldurma,
+- **Ekran ve etkileşim:** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   17 paketin (zorluk/tema/dil/premium) listelenip açılması, premium kilit→paywall ve premium→içerik
   yönlendirmeleri, istatistik/başarım ekranları, **ayarlardaki her kontrol**
@@ -160,7 +160,7 @@ kurup şu listeyi işaretleyin:
         ve tahtadaki küçük şifre harfi rahat okunuyor, soluk/kaybolmuş
         metin yok (WCAG AA kontrastı sağlandı).
 29. [ ] Bildirim markası: günlük hatırlatma bildiriminde küçük ikon + uygulama
-        adı lacivert tonda; bildirim panelini açınca uzun metin tam görünüyor.
+        adı altın/marka tonunda (0xFF936F1F); bildirim panelini açınca uzun metin tam görünüyor.
 30. [ ] İlk açılış İstatistik: hiç çözüm yokken üstte "start your stats"
         davet kartı çıkıyor (boş ızgara bozuk görünmüyor); ilk çözümden
         sonra kart kayboluyor.
@@ -172,6 +172,13 @@ kurup şu listeyi işaretleyin:
         uygulama AÇILIR ve oyun oynanır, anında kapanma YOK. (Release
         çökmesinin kesin nedeni için Play Console → Android vitals →
         Çökmeler stack trace'i en güvenilir kanıttır.)
+34. [ ] Yüksek tazeleme (90/120Hz panelli cihazda): oyun açıkken ekran
+        gerçek tazeleme hızında akıyor (Geliştirici seçenekleri → "Yenileme
+        hızını göster" ile bak); tahta kaydırma ve tema geçişi 60Hz'e
+        düşmüyor.
+35. [ ] Giriş animasyonları: Paketler ve Başarımlar listeleri açılırken
+        kartlar basamaklı, yumuşak süzülüyor; sistem "animasyonları kapat"
+        açıkken listeler animasyonsuz, anında ve tam görünür.
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
