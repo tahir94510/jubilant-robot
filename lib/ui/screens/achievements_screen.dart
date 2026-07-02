@@ -6,6 +6,7 @@ import '../../models/achievement.dart';
 import '../../state/progress_controller.dart';
 import '../../state/settings_controller.dart';
 import '../widgets/achievement_tile.dart';
+import '../widgets/entrance.dart';
 import '../widgets/page_body.dart';
 import '../widgets/scale_safe.dart';
 
@@ -37,10 +38,15 @@ class AchievementsScreen extends StatelessWidget {
             separatorBuilder: (_, _) => const SizedBox(height: 8),
             itemBuilder: (context, i) {
               final a = Achievement.catalog[i];
-              return AchievementTile(
-                achievement: a,
-                unlocked: unlocked.contains(a.id),
-                isNew: settings.isContentNew(a.addedInVersion),
+              // Staggered entrance (capped, so rows below the fold are simply
+              // there when scrolled to; no-op under reduced motion).
+              return Entrance(
+                index: i,
+                child: AchievementTile(
+                  achievement: a,
+                  unlocked: unlocked.contains(a.id),
+                  isNew: settings.isContentNew(a.addedInVersion),
+                ),
               );
             },
           ),
