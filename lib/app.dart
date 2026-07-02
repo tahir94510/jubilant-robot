@@ -78,6 +78,11 @@ class _QuotecrackAppState extends State<QuotecrackApp> {
           ? null
           : Locale(settings.languageCode!),
       theme: theme,
+      // Light <-> dark <-> sepia cross-fade: slightly longer than the default
+      // 200ms-linear and eased, so switching themes reads as one silky
+      // dissolve on high-refresh panels instead of an abrupt flip.
+      themeAnimationDuration: const Duration(milliseconds: 300),
+      themeAnimationCurve: Curves.easeOutCubic,
       builder: (context, child) {
         // Combine the user's in-app text-size choice with the OS setting,
         // clamped so the board always stays playable.

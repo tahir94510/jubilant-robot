@@ -5,6 +5,77 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.9.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.9.0
+• Buttery-smooth 90/120Hz — the game now runs at your screen's full refresh rate on phones that used to cap it
+• Silky theme transitions — switching between light, dark and sepia is now one smooth dissolve
+• New content now wears its "NEW" badge for two weeks, then tidies itself away
+• General polish and fixes across all 7 languages
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.9.0 YENİLİKLER
+• İpeksi 90/120Hz — oyun artık ekranını 60Hz'e sabitleyen telefonlarda bile panelin gerçek tazeleme hızında akıyor
+• Kaymak gibi tema geçişleri — açık, koyu ve sepya arasında geçiş artık tek yumuşak bir çözülme
+• Yeni içerikler "YENİ" rozetini iki hafta taşıyıp kendiliğinden sadeleşiyor
+• 7 dilin tamamında genel cila ve düzeltmeler
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.9.0
+• Fluidez de 90/120Hz — el juego corre a la tasa de refresco real de tu pantalla, incluso en móviles que la limitaban a 60Hz
+• Transiciones de tema sedosas entre claro, oscuro y sepia
+• El contenido nuevo luce su insignia "NUEVO" dos semanas y luego se ordena solo
+• Pulido general y correcciones en los 7 idiomas
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.9.0
+• Butterweiche 90/120Hz – das Spiel läuft jetzt mit der echten Bildwiederholrate deines Displays, auch auf Geräten, die bisher bei 60Hz gedeckelt haben
+• Seidige Themenwechsel zwischen Hell, Dunkel und Sepia
+• Neue Inhalte tragen ihr „NEU"-Abzeichen zwei Wochen und räumen sich dann selbst auf
+• Feinschliff in allen 7 Sprachen
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.9.0
+• Fluidité 90/120Hz — le jeu tourne désormais à la vraie fréquence de ton écran, même sur les téléphones qui le bridaient à 60Hz
+• Transitions de thème soyeuses entre clair, sombre et sépia
+• Les nouveautés portent leur badge « NOUVEAU » deux semaines puis s'effacent d'elles-mêmes
+• Peaufinage général dans les 7 langues
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.9.0
+• Fluidità a 90/120Hz — il gioco gira alla frequenza reale del tuo schermo, anche sui telefoni che la bloccavano a 60Hz
+• Transizioni di tema setose tra chiaro, scuro e seppia
+• I nuovi contenuti portano il badge "NUOVO" per due settimane e poi si riordinano da soli
+• Rifiniture generali in tutte e 7 le lingue
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.9.0
+• Fluidez de 90/120Hz — o jogo roda na taxa real da sua tela, mesmo em aparelhos que a limitavam a 60Hz
+• Transições de tema sedosas entre claro, escuro e sépia
+• Conteúdos novos exibem o selo "NOVO" por duas semanas e depois se organizam sozinhos
+• Polimento geral nos 7 idiomas
+Boa decifração!
+```
+
 ## Release notes: v2.8.0 (max 500 chars, paste into "What's new")
 
 ```

@@ -175,7 +175,7 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.8.0+48` (kullanıcıya görünen
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.9.0+48` (kullanıcıya görünen
 `versionName`) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle. **versionCode elle bumplanMAZ:** CI onu commit sayısından otomatik
 türetir (`--build-number=$(git rev-list --count HEAD)`), her push'ta artar →
