@@ -63,8 +63,16 @@ abstract final class AppConfig {
   static const String appVersion = '2.8.0';
 
   /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
-  /// achievements ships; items tagged with this number show a "NEW" badge
-  /// until the player opens the screen that lists them. (1 = launch content,
-  /// 2 = the v1.1.5 achievement batch.)
+  /// achievements ships; items tagged above the previously-noticed revision
+  /// wear a "NEW" badge for [newBadgeWindow] after the update is first
+  /// launched, then normalize automatically — time-based for every player,
+  /// independent of which screens they open. (1 = launch content, 2 = the
+  /// v1.1.5 achievement batch.)
   static const int contentVersion = 2;
+
+  /// How long freshly-shipped content wears its "NEW" badge before it
+  /// auto-normalizes. Two weeks matches the store's own "new" discovery
+  /// rhythm: long enough that weekend-only players still catch it, short
+  /// enough that the badge keeps meaning something.
+  static const Duration newBadgeWindow = Duration(days: 14);
 }

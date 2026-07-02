@@ -9,34 +9,17 @@ import '../widgets/achievement_tile.dart';
 import '../widgets/page_body.dart';
 import '../widgets/scale_safe.dart';
 
-class AchievementsScreen extends StatefulWidget {
+class AchievementsScreen extends StatelessWidget {
   const AchievementsScreen({super.key});
-
-  @override
-  State<AchievementsScreen> createState() => _AchievementsScreenState();
-}
-
-class _AchievementsScreenState extends State<AchievementsScreen> {
-  // Snapshot the "seen" revision on entry so the NEW badges stay visible for
-  // the whole visit, then mark the content seen so they are gone next time.
-  late final int _seenSnapshot;
-
-  @override
-  void initState() {
-    super.initState();
-    _seenSnapshot = context
-        .read<SettingsController>()
-        .settings
-        .seenContentVersion;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) context.read<SettingsController>().markContentSeen();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     final progress = context.watch<ProgressController>();
     final unlocked = progress.unlockedAchievementIds;
+    // Time-based NEW badges: the controller keeps them for a fixed discovery
+    // window after an update ships new content, then they normalize on their
+    // own — opening this screen neither reveals nor clears anything.
+    final settings = context.watch<SettingsController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -57,7 +40,7 @@ class _AchievementsScreenState extends State<AchievementsScreen> {
               return AchievementTile(
                 achievement: a,
                 unlocked: unlocked.contains(a.id),
-                isNew: a.addedInVersion > _seenSnapshot,
+                isNew: settings.isContentNew(a.addedInVersion),
               );
             },
           ),

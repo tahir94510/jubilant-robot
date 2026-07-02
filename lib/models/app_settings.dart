@@ -25,7 +25,9 @@ class AppSettings {
     this.reminderNudgeDone = false,
     this.onboardingDone = false,
     this.seenContentVersion = 1,
-  });
+    int? newContentSinceVersion,
+    this.newContentNoticedAtMs = 0,
+  }) : newContentSinceVersion = newContentSinceVersion ?? seenContentVersion;
 
   factory AppSettings.fromJson(Map<String, dynamic> json) => AppSettings(
     themeMode:
@@ -50,6 +52,13 @@ class AppSettings {
     reminderNudgeDone: json['reminderNudgeDone'] as bool? ?? false,
     onboardingDone: json['onboardingDone'] as bool? ?? false,
     seenContentVersion: json['seenContentVersion'] as int? ?? 1,
+    // Absent on older saves: fall back to seenContentVersion, so a player who
+    // had already cleared the current batch under the old view-based system
+    // never sees those badges resurrected by this upgrade.
+    newContentSinceVersion:
+        json['newContentSinceVersion'] as int? ??
+        (json['seenContentVersion'] as int? ?? 1),
+    newContentNoticedAtMs: json['newContentNoticedAtMs'] as int? ?? 0,
   );
 
   AppThemeMode themeMode;
@@ -105,11 +114,23 @@ class AppSettings {
   bool reminderNudgeDone;
   bool onboardingDone;
 
-  /// Highest content revision the player has already seen listed. Achievements
-  /// (and, later, packs) with a higher [Achievement.addedInVersion] show a
-  /// "NEW" badge until the player opens the relevant screen, which advances
-  /// this to [AppConfig.contentVersion].
+  /// Highest content revision this install has NOTICED. Auto-advanced to
+  /// [AppConfig.contentVersion] on the first launch of a build that ships a
+  /// newer batch (see SettingsController._reconcileNewContent) — no user
+  /// action involved. (JSON key kept from the older view-based system.)
   int seenContentVersion;
+
+  /// Lower bound of the "new" batch: items with
+  /// `addedInVersion > newContentSinceVersion` wear the NEW badge while the
+  /// discovery window is open. Set to the previously-noticed revision when
+  /// [seenContentVersion] advances, so skipped revisions (2 -> 4) still badge
+  /// everything the player hasn't had yet.
+  int newContentSinceVersion;
+
+  /// When the current batch was first noticed (epoch ms; 0 = nothing new
+  /// noticed yet). Badges expire [AppConfig.newBadgeWindow] after this moment
+  /// — time-based for every player, independent of what they open.
+  int newContentNoticedAtMs;
 
   TimeOfDay get reminderTime =>
       TimeOfDay(hour: reminderHour, minute: reminderMinute);
@@ -135,5 +156,7 @@ class AppSettings {
     'reminderNudgeDone': reminderNudgeDone,
     'onboardingDone': onboardingDone,
     'seenContentVersion': seenContentVersion,
+    'newContentSinceVersion': newContentSinceVersion,
+    'newContentNoticedAtMs': newContentNoticedAtMs,
   };
 }
