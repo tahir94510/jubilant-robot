@@ -25,6 +25,8 @@
   "colorblindSubtitle": "Kırmızı yerine mavi/turuncu vurgular",
   "highContrastTitle": "Yüksek kontrastlı renkler",
   "highContrastSubtitle": "Daha güçlü metin, kenarlık ve vurgular",
+  "batterySaverTitle": "Pil tasarrufu",
+  "batterySaverSubtitle": "Ekran yenileme hızını sınırlayarak güç tüketimini azaltır",
   "errorCheckingTitle": "Hata denetimi",
   "errorCheckingSubtitle": "Tahta dolduğunda yanlış harfleri işaretle",
   "showTimerTitle": "Süreyi göster",

@@ -25,10 +25,6 @@ class DailyPuzzle {
   final DateTime date;
 }
 
-/// Seed that uniquely identifies a calendar date.
-int dailySeed(DateTime date) =>
-    fmix32(date.year * 10000 + date.month * 100 + date.day);
-
 int puzzleNumberFor(DateTime date) {
   final epoch = AppConfig.puzzleEpoch;
   final d = DateTime(date.year, date.month, date.day);

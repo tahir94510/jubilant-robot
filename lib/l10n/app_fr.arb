@@ -25,6 +25,8 @@
   "colorblindSubtitle": "Surbrillance bleue/orange au lieu de rouge",
   "highContrastTitle": "Couleurs à contraste élevé",
   "highContrastSubtitle": "Texte, bordures et surlignages renforcés",
+  "batterySaverTitle": "Économie de batterie",
+  "batterySaverSubtitle": "Limite le taux de rafraîchissement pour économiser la batterie",
   "errorCheckingTitle": "Vérification des erreurs",
   "errorCheckingSubtitle": "Marquer les lettres fausses une fois la grille remplie",
   "showTimerTitle": "Afficher le chrono",

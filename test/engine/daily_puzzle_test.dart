@@ -76,16 +76,5 @@ void main() {
         1,
       );
     });
-
-    test('dailySeed differs across adjacent days', () {
-      expect(
-        dailySeed(DateTime(2026, 6, 11)),
-        isNot(dailySeed(DateTime(2026, 6, 12))),
-      );
-      expect(
-        dailySeed(DateTime(2026, 12, 31)),
-        isNot(dailySeed(DateTime(2027, 1, 1))),
-      );
-    });
   });
 }

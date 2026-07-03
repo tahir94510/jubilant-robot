@@ -25,6 +25,8 @@
   "colorblindSubtitle": "Destaques azul/laranja em vez de vermelho",
   "highContrastTitle": "Cores de alto contraste",
   "highContrastSubtitle": "Texto, bordas e destaques mais fortes",
+  "batterySaverTitle": "Economia de bateria",
+  "batterySaverSubtitle": "Limita a taxa de atualização para poupar bateria",
   "errorCheckingTitle": "Verificação de erros",
   "errorCheckingSubtitle": "Marcar letras erradas quando o tabuleiro estiver cheio",
   "showTimerTitle": "Mostrar cronômetro",

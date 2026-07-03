@@ -30,8 +30,9 @@ everything shipped lives in the code, its tests, and `docs/KALITE_KONTROL.md`.
 
 ## Open — engineering
 
-1. **Battery-saver mode** — optional frame-rate cap to cut power draw.
-   Needs real-device verification (headless CI can't measure).
+1. ~~**Battery-saver mode**~~ — ✅ shipped: settings toggle caps the refresh
+   rate via DisplayService (persist-then-apply, test-locked). The actual
+   power saving still deserves a real-device sanity check.
 2. **Google Play Games cloud save / cross-device sync** — Snapshots API with
    conflict resolution. Blocked on Play Console OAuth client + game ID
    provisioning (cannot be wired or verified from a sandbox).

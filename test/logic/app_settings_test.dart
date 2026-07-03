@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quotecrack/models/app_settings.dart';
+import 'package:quotecrack/services/display_service.dart';
 import 'package:quotecrack/services/storage_service.dart';
 import 'package:quotecrack/state/settings_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,6 +41,7 @@ void main() {
       textScale: 1.2,
       colorblindMode: true,
       highContrastMode: true,
+      batterySaver: true,
       errorChecking: false,
       showTimer: false,
       haptics: false,
@@ -62,6 +64,39 @@ void main() {
     final r = AppSettings.fromJson({'themeMode': 'dark'});
     expect(r.highContrastMode, isFalse);
   });
+
+  test('legacy settings JSON without batterySaver defaults to OFF', () {
+    // Silkiness first: saving power is the player's explicit choice.
+    final r = AppSettings.fromJson({'themeMode': 'dark'});
+    expect(r.batterySaver, isFalse);
+  });
+
+  test(
+    'setBatterySaver persists the choice, then applies it to the display',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final storage = await StorageService.init();
+      final controller = SettingsController(
+        storage: storage,
+        notifications: FakeNotificationService(),
+      );
+      final display = _RecordingDisplayService();
+
+      await controller.setBatterySaver(true, display);
+      expect(controller.settings.batterySaver, isTrue);
+      expect(display.applied, [true]);
+
+      // The saved value survives a "restart" (fresh controller, same storage).
+      final resumed = SettingsController(
+        storage: storage,
+        notifications: FakeNotificationService(),
+      );
+      expect(resumed.settings.batterySaver, isTrue);
+
+      await controller.setBatterySaver(false, display);
+      expect(display.applied, [true, false]);
+    },
+  );
 
   test('legacy settings JSON without a music key defaults to ON', () {
     // settings.v1 written by 1.0.x has no 'music' entry.
@@ -334,5 +369,16 @@ class _ThrowingNotificationService extends FakeNotificationService {
     required String body,
   }) async {
     throw StateError('simulated plugin failure');
+  }
+}
+
+/// Records every apply() so the test can assert both the values and the
+/// persist-before-apply call order's outcome.
+class _RecordingDisplayService extends DisplayService {
+  final List<bool> applied = [];
+
+  @override
+  Future<void> apply({required bool batterySaver}) async {
+    applied.add(batterySaver);
   }
 }

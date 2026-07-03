@@ -88,6 +88,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get highContrastSubtitle => 'Daha güçlü metin, kenarlık ve vurgular';
 
   @override
+  String get batterySaverTitle => 'Pil tasarrufu';
+
+  @override
+  String get batterySaverSubtitle =>
+      'Ekran yenileme hızını sınırlayarak güç tüketimini azaltır';
+
+  @override
   String get errorCheckingTitle => 'Hata denetimi';
 
   @override

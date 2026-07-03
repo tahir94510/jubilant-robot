@@ -6,6 +6,7 @@ import '../../config/app_config.dart';
 import '../../l10n/app_localizations.dart';
 import '../../models/app_settings.dart';
 import '../../services/ads/ads_service.dart';
+import '../../services/display_service.dart';
 import '../../services/haptics_service.dart';
 import '../../services/music_service.dart';
 import '../../services/notifications/notification_service.dart';
@@ -146,6 +147,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 subtitle: Text(l10n.highContrastSubtitle),
                 value: settings.highContrastMode,
                 onChanged: withHaptic(controller.setHighContrastMode),
+              ),
+              SwitchListTile(
+                title: Text(l10n.batterySaverTitle),
+                subtitle: Text(l10n.batterySaverSubtitle),
+                value: settings.batterySaver,
+                onChanged: withHaptic(
+                  (v) => controller.setBatterySaver(
+                    v,
+                    context.read<DisplayService>(),
+                  ),
+                ),
               ),
               section(l10n.sectionGameplay),
               // A calm way back to the 30-second interactive tutorial for anyone

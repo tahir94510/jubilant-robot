@@ -90,6 +90,13 @@ class AppLocalizationsIt extends AppLocalizations {
       'Testo, bordi ed evidenziazioni più marcati';
 
   @override
+  String get batterySaverTitle => 'Risparmio batteria';
+
+  @override
+  String get batterySaverSubtitle =>
+      'Limita la frequenza di aggiornamento per risparmiare batteria';
+
+  @override
   String get errorCheckingTitle => 'Controllo errori';
 
   @override
