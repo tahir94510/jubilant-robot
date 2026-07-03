@@ -10,6 +10,7 @@ class AppSettings {
     this.textScale = 1.0,
     this.colorblindMode = false,
     this.highContrastMode = false,
+    this.batterySaver = false,
     this.errorChecking = true,
     this.showTimer = true,
     this.haptics = true,
@@ -38,6 +39,7 @@ class AppSettings {
     textScale: (json['textScale'] as num?)?.toDouble() ?? 1.0,
     colorblindMode: json['colorblindMode'] as bool? ?? false,
     highContrastMode: json['highContrastMode'] as bool? ?? false,
+    batterySaver: json['batterySaver'] as bool? ?? false,
     errorChecking: json['errorChecking'] as bool? ?? true,
     showTimer: json['showTimer'] as bool? ?? true,
     haptics: json['haptics'] as bool? ?? true,
@@ -77,6 +79,11 @@ class AppSettings {
   /// stronger borders and selection cues). Independent from [colorblindMode];
   /// the two compose.
   bool highContrastMode;
+
+  /// Caps the display's refresh rate (instead of unlocking 90/120Hz) to cut
+  /// power draw on high-refresh panels. Off by default: silkiness first,
+  /// saving is the player's explicit choice.
+  bool batterySaver;
 
   /// When on, a confirmed-wrong guess is tinted after the puzzle is full.
   bool errorChecking;
@@ -148,6 +155,7 @@ class AppSettings {
     'textScale': textScale,
     'colorblindMode': colorblindMode,
     'highContrastMode': highContrastMode,
+    'batterySaver': batterySaver,
     'errorChecking': errorChecking,
     'showTimer': showTimer,
     'haptics': haptics,

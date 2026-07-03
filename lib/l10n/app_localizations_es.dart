@@ -88,6 +88,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get highContrastSubtitle => 'Texto, bordes y resaltados más marcados';
 
   @override
+  String get batterySaverTitle => 'Ahorro de batería';
+
+  @override
+  String get batterySaverSubtitle =>
+      'Limita la frecuencia de actualización para ahorrar energía';
+
+  @override
   String get errorCheckingTitle => 'Comprobación de errores';
 
   @override

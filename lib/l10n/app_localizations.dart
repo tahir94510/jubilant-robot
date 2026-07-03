@@ -258,6 +258,18 @@ abstract class AppLocalizations {
   /// **'Stronger text, borders and highlights'**
   String get highContrastSubtitle;
 
+  /// No description provided for @batterySaverTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery saver'**
+  String get batterySaverTitle;
+
+  /// No description provided for @batterySaverSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Caps the screen refresh rate to save power'**
+  String get batterySaverSubtitle;
+
   /// No description provided for @errorCheckingTitle.
   ///
   /// In en, this message translates to:

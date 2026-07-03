@@ -25,6 +25,8 @@
   "colorblindSubtitle": "Evidenziazioni blu/arancio invece del rosso",
   "highContrastTitle": "Colori ad alto contrasto",
   "highContrastSubtitle": "Testo, bordi ed evidenziazioni più marcati",
+  "batterySaverTitle": "Risparmio batteria",
+  "batterySaverSubtitle": "Limita la frequenza di aggiornamento per risparmiare batteria",
   "errorCheckingTitle": "Controllo errori",
   "errorCheckingSubtitle": "Segna le lettere sbagliate quando la griglia è piena",
   "showTimerTitle": "Mostra timer",

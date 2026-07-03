@@ -6,6 +6,7 @@ import 'package:quotecrack/l10n/app_localizations.dart';
 import 'package:quotecrack/engine/quote_repository.dart';
 import 'package:quotecrack/models/quote.dart';
 import 'package:quotecrack/services/ads/ads_service.dart';
+import 'package:quotecrack/services/display_service.dart';
 import 'package:quotecrack/services/haptics_service.dart';
 import 'package:quotecrack/services/music_service.dart';
 import 'package:quotecrack/services/notifications/notification_service.dart';
@@ -114,6 +115,10 @@ class Harness {
     ),
     Provider<SoundService>.value(value: sounds),
     Provider<MusicService>.value(value: music),
+    // The real service: off-Android (and with no plugin registered, as in
+    // tests) apply() is a guarded no-op, so widget tests can flip the
+    // battery-saver switch without a fake.
+    Provider<DisplayService>.value(value: DisplayService()),
     ChangeNotifierProvider.value(value: settings),
     ChangeNotifierProvider.value(value: progress),
     ChangeNotifierProvider.value(value: economy),

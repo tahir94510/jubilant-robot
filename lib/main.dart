@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +10,7 @@ import 'app.dart';
 import 'engine/quote_repository.dart';
 import 'l10n/app_localizations.dart';
 import 'services/ads/ads_service.dart';
+import 'services/display_service.dart';
 import 'services/haptics_service.dart';
 import 'services/music_service.dart';
 import 'services/notifications/notification_service.dart';
@@ -154,6 +154,7 @@ Future<void> _start() async {
   // audio-engine init is deferred to the post-frame callback below so loading
   // its assets never delays the first frame. A cue that fires before init
   // finishes self-heals via SoundService._ensureReady.
+  final display = DisplayService();
   final sounds = SoundService(isEnabled: () => settings.settings.soundEffects)
     ..setUserVolume(settings.settings.soundVolume);
   final music = MusicService(isEnabled: () => settings.settings.music)
@@ -166,16 +167,10 @@ Future<void> _start() async {
   // app) down.
   WidgetsBinding.instance.addPostFrameCallback((_) async {
     // Unlock high refresh (90/120Hz) where the OEM pins Flutter apps to 60Hz
-    // (MIUI, some Samsung skins): animations, board scrolling and the keyboard
-    // then run at the panel's real rate. Android-only plugin; guarded so it is
-    // a silent no-op on web/tests/other platforms and can never affect launch.
-    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
-      try {
-        await FlutterDisplayMode.setHighRefreshRate();
-      } catch (e) {
-        debugPrint('High-refresh request failed (continuing): $e');
-      }
-    }
+    // (MIUI, some Samsung skins) — or cap it when the player chose battery
+    // saver. The service is a guarded no-op off Android and never affects
+    // launch.
+    await display.apply(batterySaver: settings.settings.batterySaver);
     // Audio-engine init loads its sound assets; keep it OFF the launch path so
     // the first frame paints immediately (on web each asset is a network fetch).
     try {
@@ -237,6 +232,7 @@ Future<void> _start() async {
         Provider.value(value: haptics),
         Provider.value(value: sounds),
         Provider.value(value: music),
+        Provider.value(value: display),
         ChangeNotifierProvider.value(value: settings),
         ChangeNotifierProvider.value(value: progress),
         ChangeNotifierProvider.value(value: economy),

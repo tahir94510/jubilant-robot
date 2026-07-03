@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../config/app_config.dart';
 import '../l10n/app_localizations.dart';
 import '../models/app_settings.dart';
+import '../services/display_service.dart';
 import '../services/music_service.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/sound_service.dart';
@@ -183,6 +184,15 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
   Future<void> setHighContrastMode(bool value) {
     settings.highContrastMode = value;
     return _save();
+  }
+
+  /// Persists the battery-saver choice, THEN applies it to the display —
+  /// the same persist-before-apply order as [setMusicAndApply], so a crash
+  /// in the gap can never leave the saved setting contradicting the panel.
+  Future<void> setBatterySaver(bool value, DisplayService display) async {
+    settings.batterySaver = value;
+    await _save();
+    await display.apply(batterySaver: value);
   }
 
   Future<void> setErrorChecking(bool value) {

@@ -88,6 +88,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get highContrastSubtitle => 'Stronger text, borders and highlights';
 
   @override
+  String get batterySaverTitle => 'Battery saver';
+
+  @override
+  String get batterySaverSubtitle =>
+      'Caps the screen refresh rate to save power';
+
+  @override
   String get errorCheckingTitle => 'Error checking';
 
   @override

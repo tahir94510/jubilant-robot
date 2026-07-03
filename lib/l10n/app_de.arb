@@ -25,6 +25,8 @@
   "colorblindSubtitle": "Blau/Orange statt Rot",
   "highContrastTitle": "Kontrastreiche Farben",
   "highContrastSubtitle": "Kräftigerer Text, Ränder und Hervorhebungen",
+  "batterySaverTitle": "Akku-Sparmodus",
+  "batterySaverSubtitle": "Begrenzt die Bildwiederholrate, um Strom zu sparen",
   "errorCheckingTitle": "Fehlerprüfung",
   "errorCheckingSubtitle": "Falsche Buchstaben markieren, sobald das Feld voll ist",
   "showTimerTitle": "Timer anzeigen",

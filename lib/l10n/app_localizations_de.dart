@@ -89,6 +89,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Kräftigerer Text, Ränder und Hervorhebungen';
 
   @override
+  String get batterySaverTitle => 'Akku-Sparmodus';
+
+  @override
+  String get batterySaverSubtitle =>
+      'Begrenzt die Bildwiederholrate, um Strom zu sparen';
+
+  @override
   String get errorCheckingTitle => 'Fehlerprüfung';
 
   @override
