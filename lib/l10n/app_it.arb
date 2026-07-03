@@ -23,6 +23,8 @@
   "textSize": "Dimensione del testo",
   "colorblindTitle": "Colori per daltonici",
   "colorblindSubtitle": "Evidenziazioni blu/arancio invece del rosso",
+  "highContrastTitle": "Colori ad alto contrasto",
+  "highContrastSubtitle": "Testo, bordi ed evidenziazioni più marcati",
   "errorCheckingTitle": "Controllo errori",
   "errorCheckingSubtitle": "Segna le lettere sbagliate quando la griglia è piena",
   "showTimerTitle": "Mostra timer",

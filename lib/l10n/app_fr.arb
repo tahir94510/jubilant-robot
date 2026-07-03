@@ -23,6 +23,8 @@
   "textSize": "Taille du texte",
   "colorblindTitle": "Couleurs adaptées au daltonisme",
   "colorblindSubtitle": "Surbrillance bleue/orange au lieu de rouge",
+  "highContrastTitle": "Couleurs à contraste élevé",
+  "highContrastSubtitle": "Texte, bordures et surlignages renforcés",
   "errorCheckingTitle": "Vérification des erreurs",
   "errorCheckingSubtitle": "Marquer les lettres fausses une fois la grille remplie",
   "showTimerTitle": "Afficher le chrono",

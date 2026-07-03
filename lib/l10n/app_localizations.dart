@@ -246,6 +246,18 @@ abstract class AppLocalizations {
   /// **'Blue/orange highlights instead of red'**
   String get colorblindSubtitle;
 
+  /// No description provided for @highContrastTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'High-contrast colors'**
+  String get highContrastTitle;
+
+  /// No description provided for @highContrastSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stronger text, borders and highlights'**
+  String get highContrastSubtitle;
+
   /// No description provided for @errorCheckingTitle.
   ///
   /// In en, this message translates to:

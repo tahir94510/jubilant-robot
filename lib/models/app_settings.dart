@@ -9,6 +9,7 @@ class AppSettings {
     this.languageCode,
     this.textScale = 1.0,
     this.colorblindMode = false,
+    this.highContrastMode = false,
     this.errorChecking = true,
     this.showTimer = true,
     this.haptics = true,
@@ -36,6 +37,7 @@ class AppSettings {
     languageCode: json['languageCode'] as String?,
     textScale: (json['textScale'] as num?)?.toDouble() ?? 1.0,
     colorblindMode: json['colorblindMode'] as bool? ?? false,
+    highContrastMode: json['highContrastMode'] as bool? ?? false,
     errorChecking: json['errorChecking'] as bool? ?? true,
     showTimer: json['showTimer'] as bool? ?? true,
     haptics: json['haptics'] as bool? ?? true,
@@ -70,6 +72,11 @@ class AppSettings {
   /// large-type support is a first-class feature.
   double textScale;
   bool colorblindMode;
+
+  /// WCAG 2.2 high-contrast variant of the active theme (AAA text ratios,
+  /// stronger borders and selection cues). Independent from [colorblindMode];
+  /// the two compose.
+  bool highContrastMode;
 
   /// When on, a confirmed-wrong guess is tinted after the puzzle is full.
   bool errorChecking;
@@ -140,6 +147,7 @@ class AppSettings {
     'languageCode': languageCode,
     'textScale': textScale,
     'colorblindMode': colorblindMode,
+    'highContrastMode': highContrastMode,
     'errorChecking': errorChecking,
     'showTimer': showTimer,
     'haptics': haptics,

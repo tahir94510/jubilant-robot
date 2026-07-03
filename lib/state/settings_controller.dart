@@ -180,6 +180,11 @@ class SettingsController extends ChangeNotifier with WidgetsBindingObserver {
     return _save();
   }
 
+  Future<void> setHighContrastMode(bool value) {
+    settings.highContrastMode = value;
+    return _save();
+  }
+
   Future<void> setErrorChecking(bool value) {
     settings.errorChecking = value;
     return _save();

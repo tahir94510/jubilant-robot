@@ -82,6 +82,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get colorblindSubtitle => 'Blau/Orange statt Rot';
 
   @override
+  String get highContrastTitle => 'Kontrastreiche Farben';
+
+  @override
+  String get highContrastSubtitle =>
+      'Kräftigerer Text, Ränder und Hervorhebungen';
+
+  @override
   String get errorCheckingTitle => 'Fehlerprüfung';
 
   @override

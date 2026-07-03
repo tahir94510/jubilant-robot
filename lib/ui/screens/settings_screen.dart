@@ -141,6 +141,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 value: settings.colorblindMode,
                 onChanged: withHaptic(controller.setColorblindMode),
               ),
+              SwitchListTile(
+                title: Text(l10n.highContrastTitle),
+                subtitle: Text(l10n.highContrastSubtitle),
+                value: settings.highContrastMode,
+                onChanged: withHaptic(controller.setHighContrastMode),
+              ),
               section(l10n.sectionGameplay),
               // A calm way back to the 30-second interactive tutorial for anyone
               // who wants a refresher — never resets progress.

@@ -83,6 +83,13 @@ class AppLocalizationsIt extends AppLocalizations {
       'Evidenziazioni blu/arancio invece del rosso';
 
   @override
+  String get highContrastTitle => 'Colori ad alto contrasto';
+
+  @override
+  String get highContrastSubtitle =>
+      'Testo, bordi ed evidenziazioni più marcati';
+
+  @override
   String get errorCheckingTitle => 'Controllo errori';
 
   @override
