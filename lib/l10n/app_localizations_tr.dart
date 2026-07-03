@@ -25,6 +25,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get a11yDismiss => 'Kapat';
 
   @override
+  String get a11yBackspace => 'Geri sil';
+
+  @override
   String get settingsTitle => 'Ayarlar';
 
   @override

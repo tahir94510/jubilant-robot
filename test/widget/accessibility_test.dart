@@ -37,6 +37,25 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('the backspace key announces itself to screen readers', (
+    tester,
+  ) async {
+    final handle = tester.ensureSemantics();
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    // The keyboard's icon-only action key must carry an explicit label
+    // (English template) — letter keys are announced by their glyphs, but an
+    // unlabeled icon reads as a nameless button under TalkBack/VoiceOver.
+    expect(find.bySemanticsLabel('Backspace'), findsOneWidget);
+
+    handle.dispose();
+    h.game.stopTimer();
+  });
+
   testWidgets('punctuation cells are hidden from screen readers', (
     tester,
   ) async {

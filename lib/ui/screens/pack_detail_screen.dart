@@ -84,9 +84,12 @@ class PackDetailScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w600,
+                                  // textSecondary is the AA-verified token for
+                                  // readable secondary text — never an ad-hoc
+                                  // onSurface alpha the contrast test can't see.
                                   color: inProgress
                                       ? scheme.primary
-                                      : scheme.onSurface.withValues(alpha: .75),
+                                      : palette.textSecondary,
                                 ),
                               ),
                             ),

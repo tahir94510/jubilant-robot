@@ -15,6 +15,7 @@ import '../../services/sound_service.dart';
 import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/settings_controller.dart';
+import '../theme/app_themes.dart';
 import '../theme/palette.dart';
 import '../widgets/cipher_board.dart';
 import '../widgets/board_controls.dart';
@@ -477,7 +478,7 @@ class _PuzzleScreenState extends State<PuzzleScreen>
                               Text(
                                 '— ${session.quote.author}',
                                 style: TextStyle(
-                                  fontFamily: 'Lora',
+                                  fontFamily: AppThemes.quoteFont,
                                   fontStyle: FontStyle.italic,
                                   fontSize: 15,
                                   color: palette.textSecondary,

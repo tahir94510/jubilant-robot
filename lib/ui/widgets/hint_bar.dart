@@ -95,6 +95,11 @@ class _RevealHintButtonState extends State<_RevealHintButton> {
           ? () {
               final now = DateTime.now().millisecondsSinceEpoch;
               if (now < _cooldownUntilMs) return; // brief anti-spam window
+              // The enabled state above comes from the LAST build; re-check at
+              // tap time so a token that hit zero (or a board that filled up)
+              // between that rebuild and this tap can never let revealSelected()
+              // mutate the board with the spend failing right after.
+              if (!(economy.canUseHint && game.canRevealMore)) return;
               // Reveal FIRST, then charge: the token is spent strictly when a
               // cell is actually uncovered (the short-circuit skips the spend on
               // a no-op reveal), making the long-standing "never waste a token"

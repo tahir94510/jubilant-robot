@@ -4,6 +4,7 @@
   "a11yLetterCellEmpty": "{letter} harfi, boş",
   "a11yLetterCellFilled": "{letter} harfi, cevap {guess}",
   "a11yDismiss": "Kapat",
+  "a11yBackspace": "Geri sil",
   "settingsTitle": "Ayarlar",
   "sectionAppearance": "Görünüm",
   "sectionLanguage": "Dil",

@@ -17,6 +17,7 @@ import '../../state/economy_controller.dart';
 import '../../state/game_controller.dart';
 import '../../state/progress_controller.dart';
 import '../../state/settings_controller.dart';
+import '../theme/app_themes.dart';
 import '../theme/palette.dart';
 import '../widgets/achievement_tile.dart';
 import '../widgets/banner_ad_slot.dart';
@@ -207,7 +208,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                   '\u{201C}${quote.text}\u{201D}',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontFamily: 'Lora',
+                                    fontFamily: AppThemes.quoteFont,
                                     fontSize: 22,
                                     height: 1.45,
                                     color: scheme.onSurface,
@@ -224,7 +225,7 @@ class _PuzzleCompleteScreenState extends State<PuzzleCompleteScreen> {
                                       '\u{2014} ${quote.author}',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        fontFamily: 'Lora',
+                                        fontFamily: AppThemes.quoteFont,
                                         fontStyle: FontStyle.italic,
                                         fontSize: 16,
                                         color: palette.textSecondary,
@@ -631,7 +632,8 @@ class _AboutQuoteCard extends StatelessWidget {
           Text(
             note,
             style: TextStyle(
-              fontFamily: 'Lora', // echo the quote's own literary serif voice
+              fontFamily: AppThemes
+                  .quoteFont, // echo the quote's own literary serif voice
               fontSize: 14.5,
               height: 1.5,
               color: scheme.onSurface,

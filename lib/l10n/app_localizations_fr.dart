@@ -25,6 +25,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get a11yDismiss => 'Fermer';
 
   @override
+  String get a11yBackspace => 'Retour arrière';
+
+  @override
   String get settingsTitle => 'Paramètres';
 
   @override

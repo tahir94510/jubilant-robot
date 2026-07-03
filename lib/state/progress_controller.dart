@@ -187,7 +187,7 @@ class ProgressController extends ChangeNotifier {
 
     stats.dailyHistory[today] = true;
 
-    final yesterday = dateKey(now.subtract(const Duration(days: 1)));
+    final yesterday = yesterdayKey(now);
     if (stats.lastDailyDate == yesterday) {
       stats.currentStreak += 1;
     } else if (stats.lastDailyDate != today) {
@@ -207,7 +207,7 @@ class ProgressController extends ChangeNotifier {
     if (last == null) return 0;
     final now = _clock.now();
     final today = dateKey(now);
-    final yesterday = dateKey(now.subtract(const Duration(days: 1)));
+    final yesterday = yesterdayKey(now);
     if (last == today || last == yesterday) return stats.currentStreak;
     return 0;
   }

@@ -4,6 +4,7 @@
   "a11yLetterCellEmpty": "Letra {letter}, vazia",
   "a11yLetterCellFilled": "Letra {letter}, resposta {guess}",
   "a11yDismiss": "Fechar",
+  "a11yBackspace": "Backspace",
   "settingsTitle": "Configurações",
   "sectionAppearance": "Aparência",
   "sectionLanguage": "Idioma",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_themes.dart';
 import '../theme/palette.dart';
 
 /// The Quotecrack logo, drawn with a [CustomPainter] so it is vector-crisp at
@@ -66,7 +67,7 @@ class _BrandPainter extends CustomPainter {
       text: TextSpan(
         text: ch,
         style: TextStyle(
-          fontFamily: 'Lora',
+          fontFamily: AppThemes.quoteFont,
           fontVariations: [FontVariation('wght', weight.toDouble())],
           fontSize: fontSize,
           height: 1,
@@ -125,7 +126,7 @@ class BrandWordmark extends StatelessWidget {
     return Text(
       'Quotecrack',
       style: TextStyle(
-        fontFamily: 'Lora',
+        fontFamily: AppThemes.quoteFont,
         fontVariations: const [FontVariation('wght', 600)],
         fontSize: fontSize,
         letterSpacing: -0.5,

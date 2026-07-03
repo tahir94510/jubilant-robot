@@ -25,7 +25,8 @@ class CipherMap {
   factory CipherMap.fromSeed(int seed, {String alphabet = latinAlphabet}) {
     final n = alphabet.length;
     final rng = DeterministicRng(fmix32(seed));
-    final indices = _sattolo(n, rng);
+    final indices = List<int>.generate(n, (i) => i);
+    sattoloShuffle(indices, rng);
     final plainToCipher = <String, String>{};
     final cipherToPlain = <String, String>{};
     for (var i = 0; i < n; i++) {
@@ -59,20 +60,6 @@ class CipherMap {
     }
     return out.toString();
   }
-}
-
-/// Sattolo's algorithm: like Fisher-Yates but `j` is drawn strictly below
-/// `i`, which yields a uniformly random *cyclic* permutation (single
-/// 26-cycle => derangement).
-List<int> _sattolo(int n, DeterministicRng rng) {
-  final a = List<int>.generate(n, (i) => i);
-  for (var i = n - 1; i > 0; i--) {
-    final j = rng.nextInt(i); // 0..i-1, never i itself
-    final t = a[i];
-    a[i] = a[j];
-    a[j] = t;
-  }
-  return a;
 }
 
 /// Uppercases and folds typographic characters so only plain ASCII remains.

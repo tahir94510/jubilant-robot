@@ -25,6 +25,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get a11yDismiss => 'Fechar';
 
   @override
+  String get a11yBackspace => 'Backspace';
+
+  @override
   String get settingsTitle => 'Configurações';
 
   @override

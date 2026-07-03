@@ -21,6 +21,7 @@
     }
   },
   "a11yDismiss": "Dismiss",
+  "a11yBackspace": "Backspace",
   "settingsTitle": "Settings",
   "sectionAppearance": "Appearance",
   "sectionLanguage": "Language",
