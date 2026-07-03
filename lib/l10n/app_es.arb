@@ -23,6 +23,8 @@
   "textSize": "Tamaño del texto",
   "colorblindTitle": "Colores para daltónicos",
   "colorblindSubtitle": "Resaltado azul/naranja en lugar de rojo",
+  "highContrastTitle": "Colores de alto contraste",
+  "highContrastSubtitle": "Texto, bordes y resaltados más marcados",
   "errorCheckingTitle": "Comprobación de errores",
   "errorCheckingSubtitle": "Marca las letras erróneas cuando el tablero esté lleno",
   "showTimerTitle": "Mostrar cronómetro",

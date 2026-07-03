@@ -40,6 +40,8 @@
   "textSize": "Text size",
   "colorblindTitle": "Colorblind-friendly colors",
   "colorblindSubtitle": "Blue/orange highlights instead of red",
+  "highContrastTitle": "High-contrast colors",
+  "highContrastSubtitle": "Stronger text, borders and highlights",
   "errorCheckingTitle": "Error checking",
   "errorCheckingSubtitle": "Mark wrong letters once the board is full",
   "showTimerTitle": "Show timer",

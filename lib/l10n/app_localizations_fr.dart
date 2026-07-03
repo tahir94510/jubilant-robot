@@ -82,6 +82,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get colorblindSubtitle => 'Surbrillance bleue/orange au lieu de rouge';
 
   @override
+  String get highContrastTitle => 'Couleurs à contraste élevé';
+
+  @override
+  String get highContrastSubtitle => 'Texte, bordures et surlignages renforcés';
+
+  @override
   String get errorCheckingTitle => 'Vérification des erreurs';
 
   @override

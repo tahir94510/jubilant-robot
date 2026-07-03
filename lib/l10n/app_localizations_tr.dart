@@ -82,6 +82,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get colorblindSubtitle => 'Kırmızı yerine mavi/turuncu vurgular';
 
   @override
+  String get highContrastTitle => 'Yüksek kontrastlı renkler';
+
+  @override
+  String get highContrastSubtitle => 'Daha güçlü metin, kenarlık ve vurgular';
+
+  @override
   String get errorCheckingTitle => 'Hata denetimi';
 
   @override

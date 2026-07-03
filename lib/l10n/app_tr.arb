@@ -23,6 +23,8 @@
   "textSize": "Yazı boyutu",
   "colorblindTitle": "Renk körlüğüne uygun renkler",
   "colorblindSubtitle": "Kırmızı yerine mavi/turuncu vurgular",
+  "highContrastTitle": "Yüksek kontrastlı renkler",
+  "highContrastSubtitle": "Daha güçlü metin, kenarlık ve vurgular",
   "errorCheckingTitle": "Hata denetimi",
   "errorCheckingSubtitle": "Tahta dolduğunda yanlış harfleri işaretle",
   "showTimerTitle": "Süreyi göster",

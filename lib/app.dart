@@ -43,6 +43,7 @@ class _QuotecrackAppState extends State<QuotecrackApp> {
     final theme = AppThemes.resolve(
       settings.themeMode,
       colorblind: settings.colorblindMode,
+      highContrast: settings.highContrastMode,
       platformBrightness: platformBrightness,
     );
     // Edge-to-edge: transparent status + navigation bars with icon brightness

@@ -39,6 +39,7 @@ void main() {
       themeMode: AppThemeMode.sepia,
       textScale: 1.2,
       colorblindMode: true,
+      highContrastMode: true,
       errorChecking: false,
       showTimer: false,
       haptics: false,
@@ -54,6 +55,12 @@ void main() {
     expect(r.toJson(), s.toJson());
     expect(r.music, isFalse);
     expect(r.reminderNudgeDone, isTrue);
+    expect(r.highContrastMode, isTrue);
+  });
+
+  test('legacy settings JSON without highContrastMode defaults to OFF', () {
+    final r = AppSettings.fromJson({'themeMode': 'dark'});
+    expect(r.highContrastMode, isFalse);
   });
 
   test('legacy settings JSON without a music key defaults to ON', () {
