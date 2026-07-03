@@ -25,6 +25,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get a11yDismiss => 'Cerrar';
 
   @override
+  String get a11yBackspace => 'Retroceso';
+
+  @override
   String get settingsTitle => 'Ajustes';
 
   @override

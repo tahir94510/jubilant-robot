@@ -25,6 +25,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get a11yDismiss => 'Dismiss';
 
   @override
+  String get a11yBackspace => 'Backspace';
+
+  @override
   String get settingsTitle => 'Settings';
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import '../theme/palette.dart';
 
 /// Custom on-screen A-Z keyboard with large tap targets (the audience skews
@@ -39,6 +40,7 @@ class PuzzleKeyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = Theme.of(context).extension<GamePalette>()!;
+    final l10n = AppLocalizations.of(context);
     final lastRow = rows.length - 1;
 
     return SafeArea(
@@ -120,6 +122,10 @@ class PuzzleKeyboard extends StatelessWidget {
                             Icons.backspace_outlined,
                             size: 22,
                             color: palette.keyText,
+                            // Letter keys are announced by their glyph; this
+                            // icon-only key needs an explicit label or screen
+                            // readers announce an unnamed button.
+                            semanticLabel: l10n.a11yBackspace,
                           ),
                           onTap: onBackspace,
                           widthFactor: _actionFactor,

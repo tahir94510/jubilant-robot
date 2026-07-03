@@ -132,6 +132,12 @@ abstract class AppLocalizations {
   /// **'Dismiss'**
   String get a11yDismiss;
 
+  /// No description provided for @a11yBackspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Backspace'**
+  String get a11yBackspace;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

@@ -4,6 +4,7 @@
   "a11yLetterCellEmpty": "Buchstabe {letter}, leer",
   "a11yLetterCellFilled": "Buchstabe {letter}, Antwort {guess}",
   "a11yDismiss": "Schließen",
+  "a11yBackspace": "Rücktaste",
   "settingsTitle": "Einstellungen",
   "sectionAppearance": "Darstellung",
   "sectionLanguage": "Sprache",
