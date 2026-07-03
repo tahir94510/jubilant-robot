@@ -663,6 +663,14 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get hintRevealWord => 'Kelimeyi aç';
+
+  @override
+  String hintRevealWordCost(int count) {
+    return 'Kelimeyi aç (-$count)';
+  }
+
+  @override
   String hintTokensAdded(int count) {
     return '+$count ipucu eklendi';
   }

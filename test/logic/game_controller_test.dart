@@ -40,6 +40,78 @@ void main() {
     resumed.dispose();
   });
 
+  group('word reveal', () {
+    test('opens exactly the selected word and prices what it opens', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false); // "Less is more."
+      final s = game.session!;
+
+      // Cursor starts on the first cell — the word "LESS" (distinct cipher
+      // letters: L, E, S). The shown price must be those 3 letters.
+      expect(game.selectedIndex, 0);
+      final expected = <String>{
+        s.cipherText[0],
+        s.cipherText[1],
+        s.cipherText[2],
+      };
+      expect(game.wordHintCost, expected.length);
+
+      final revealed = game.revealSelectedWord();
+      expect(revealed, expected.length, reason: 'charge == letters opened');
+      expect(game.hintsUsed, expected.length);
+      expect(s.revealed, expected);
+      for (final c in expected) {
+        expect(s.guesses[c], s.cipher.decryptLetter(c));
+      }
+      // Reveals are permanent: history is gone and the cursor moved on.
+      expect(game.canUndo, isFalse);
+      expect(game.selectedIndex, isNot(0));
+
+      game.stopTimer();
+      game.dispose();
+    });
+
+    test('an already-correct letter is not re-priced or re-charged', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+
+      // Solve one letter of "LESS" by hand; the word hint must now price
+      // only the remaining distinct letters.
+      final first = s.cipherText[0];
+      game.enterGuess(s.cipher.decryptLetter(first));
+      game.selectIndex(1);
+      final remaining = <String>{s.cipherText[1], s.cipherText[2]};
+      expect(game.wordHintCost, remaining.length);
+      expect(game.revealSelectedWord(), remaining.length);
+      expect(game.hintsUsed, remaining.length);
+
+      game.stopTimer();
+      game.dispose();
+    });
+
+    test('a finished board makes the word hint a free no-op', () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+
+      // Solve everything; the word hint must then price at 0 and refuse to
+      // mutate (so a token can never be charged on a completed puzzle).
+      for (var i = 0; i < 50 && game.canRevealMore; i++) {
+        game.revealSelected();
+      }
+      final hintsBefore = game.hintsUsed;
+      expect(game.wordHintCost, 0);
+      expect(game.revealSelectedWord(), 0, reason: 'nothing to charge for');
+      expect(game.hintsUsed, hintsBefore);
+
+      game.stopTimer();
+      game.dispose();
+    });
+  });
+
   test(
     'revealSelected reports success, and a no-op reveal returns false so a '
     'hint token is charged strictly when a cell is actually uncovered',

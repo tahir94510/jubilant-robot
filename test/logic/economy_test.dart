@@ -46,6 +46,25 @@ void main() {
       expect(economy.tokens, 0);
     });
 
+    test('spendHintTokens is all-or-nothing (word-reveal pricing)', () async {
+      final (economy, purchases, _) = await _setup();
+      final start = economy.tokens;
+
+      // Affordable multi-spend decrements exactly the asked amount.
+      expect(economy.spendHintTokens(3), isTrue);
+      expect(economy.tokens, start - 3);
+
+      // Unaffordable spend changes NOTHING — never a partial charge.
+      expect(economy.spendHintTokens(economy.tokens + 1), isFalse);
+      expect(economy.tokens, start - 3);
+
+      // Premium never decrements, whatever the count.
+      purchases.owned.value = true;
+      final before = economy.tokens;
+      expect(economy.spendHintTokens(99), isTrue);
+      expect(economy.tokens, before);
+    });
+
     test('solving earns tokens and advances the counter', () async {
       final (economy, _, _) = await _setup();
       final before = economy.tokens;

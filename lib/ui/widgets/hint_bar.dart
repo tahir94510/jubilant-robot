@@ -47,6 +47,10 @@ class HintBar extends StatelessWidget {
                 child: const _RevealHintButton(),
               ),
             ),
+            ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: constraints.maxWidth),
+              child: const _RevealWordButton(),
+            ),
             // Shown on mobile for non-premium players. The button greys itself
             // out until a rewarded ad is actually loaded (see
             // _RewardedHintButton), so a reward is never granted without
@@ -122,6 +126,68 @@ class _RevealHintButtonState extends State<_RevealHintButton> {
           economy.premium
               ? l10n.hintRevealLetter
               : l10n.hintRevealLetterCount(economy.tokens),
+          maxLines: 1,
+        ),
+      ),
+    );
+  }
+}
+
+/// The whole-word reveal. Costs exactly as many tokens as the selected word
+/// still needs distinct letters (a word reveal = N targeted letter reveals),
+/// so it rides the same economy as the letter hint — no second currency and
+/// the shown price is always the charged price (one shared computation in
+/// GameController). Disables when the word is done, the cursor is off-board,
+/// or the player can't afford it, so a token is never wasted.
+class _RevealWordButton extends StatefulWidget {
+  const _RevealWordButton();
+
+  @override
+  State<_RevealWordButton> createState() => _RevealWordButtonState();
+}
+
+class _RevealWordButtonState extends State<_RevealWordButton> {
+  int _cooldownUntilMs = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final economy = context.watch<EconomyController>();
+    // watch: the price tracks the cursor (each word has its own cost) and the
+    // button must disable the moment the word completes or tokens run short.
+    final game = context.watch<GameController>();
+    final l10n = AppLocalizations.of(context);
+
+    final cost = game.wordHintCost;
+    final canReveal = cost > 0 && (economy.premium || economy.tokens >= cost);
+
+    return OutlinedButton.icon(
+      onPressed: canReveal
+          ? () {
+              final now = DateTime.now().millisecondsSinceEpoch;
+              if (now < _cooldownUntilMs) return; // brief anti-spam window
+              // The enabled state comes from the LAST build; re-price and
+              // re-check at tap time so a cursor move or a spend between that
+              // rebuild and this tap can never mutate the board unpaid.
+              final tapCost = game.wordHintCost;
+              if (tapCost <= 0 ||
+                  !(economy.premium || economy.tokens >= tapCost)) {
+                return;
+              }
+              // Reveal FIRST, then charge exactly what was uncovered — the
+              // same "never waste a token" contract as the letter hint.
+              final revealed = game.revealSelectedWord();
+              if (revealed > 0 && economy.spendHintTokens(revealed)) {
+                context.read<SoundService>().hint();
+                context.read<HapticsService>().wordComplete();
+                _cooldownUntilMs = now + 450;
+              }
+            }
+          : null,
+      icon: const Icon(Icons.auto_fix_high, size: 20),
+      label: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          economy.premium ? l10n.hintRevealWord : l10n.hintRevealWordCost(cost),
           maxLines: 1,
         ),
       ),

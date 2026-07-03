@@ -59,10 +59,16 @@ class EconomyController extends ChangeNotifier {
 
   /// Spends one token for a reveal. Returns false when broke (and not
   /// premium). Premium never decrements.
-  bool spendHintToken() {
+  bool spendHintToken() => spendHintTokens(1);
+
+  /// Spends [count] tokens atomically (a word reveal = N targeted letter
+  /// reveals, priced identically). All-or-nothing: an unaffordable spend
+  /// changes nothing and returns false. Premium never decrements.
+  bool spendHintTokens(int count) {
+    assert(count >= 1);
     if (_premium) return true;
-    if (_tokens <= 0) return false;
-    _tokens -= 1;
+    if (_tokens < count) return false;
+    _tokens -= count;
     _persist();
     notifyListeners();
     return true;

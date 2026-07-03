@@ -193,6 +193,8 @@
   "achTitleDaily100": "Cento Mattine",
   "hintRevealLetter": "Rivela una lettera",
   "hintRevealLetterCount": "Rivela una lettera ({count})",
+  "hintRevealWord": "Rivela la parola",
+  "hintRevealWordCost": "Rivela la parola (-{count})",
   "hintTokensAdded": "+{count} indizi aggiunti",
   "adNoVideo": "Nessun video disponibile al momento. Riprova tra poco.",
   "badgeNew": "NUOVO",

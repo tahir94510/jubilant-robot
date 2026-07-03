@@ -875,6 +875,73 @@ class GameController extends ChangeNotifier {
     return true;
   }
 
+  /// Distinct not-yet-correct cipher letters in the word under the cursor —
+  /// the word hint's token cost. A word reveal is exactly that many targeted
+  /// letter reveals, priced identically, so it lives on the same economy as
+  /// the single-letter hint (no second currency, no surprise). 0 when there
+  /// is no selection, the cursor sits on punctuation, or the word is already
+  /// fully correct — the button disables and a token can never be wasted.
+  int get wordHintCost => _wordRevealTargets()?.length ?? 0;
+
+  /// Reveals and locks every remaining letter of the word under the cursor.
+  /// Returns how many letters were actually uncovered (0 = no-op), so the
+  /// caller can charge exactly that many tokens strictly on success — the
+  /// same reveal-then-charge contract as [revealSelected].
+  int revealSelectedWord() {
+    _lastInputCompletedWord = false; // hints have their own chime
+    final s = _session;
+    final targets = _wordRevealTargets();
+    if (s == null || targets == null || targets.isEmpty) return 0;
+
+    final correctWordsBefore = s.correctWordIndices;
+    final confirmedBefore = s.confirmedLetters;
+    _hintsUsed += targets.length;
+    for (final c in targets) {
+      s.guesses[c] = s.cipher.decryptLetter(c);
+      s.revealed.add(c);
+    }
+    // The same "just locked" cue as a letter hint: every cell of the letters
+    // just revealed, plus the genuinely-new cells of any OTHER word those
+    // letters happened to complete (excluding letters already locked there).
+    final positions = <int>{};
+    for (var p = 0; p < s.cipherText.length; p++) {
+      if (targets.contains(s.cipherText[p])) positions.add(p);
+    }
+    for (final wi in s.correctWordIndices.difference(correctWordsBefore)) {
+      for (final p in s.wordCellPositions(wi)) {
+        if (!confirmedBefore.contains(s.cipherText[p])) positions.add(p);
+      }
+    }
+    _lastLockedPositions = positions;
+    // Advance forward from where the player was (same rule as revealSelected):
+    // next empty editable cell, else next editable, else stay.
+    _selectedIndex =
+        _nextEmptyEditableIndexAfter(_selectedIndex) ??
+        _nextEditableIndexAfter(_selectedIndex) ??
+        _selectedIndex;
+    _undoStack.clear(); // reveals are permanent
+    _afterChange(advance: false);
+    return targets.length;
+  }
+
+  /// The distinct cipher letters a word reveal would open right now, or null
+  /// when there is no revealable word under the cursor. Shared by
+  /// [wordHintCost] and [revealSelectedWord] so the price shown is always the
+  /// price charged.
+  Set<String>? _wordRevealTargets() {
+    final s = _session;
+    final i = _selectedIndex;
+    if (s == null || i == null || _completed || _reviewingSolved) return null;
+    final wi = s.wordIndexAt(i);
+    if (wi == null) return null;
+    final targets = <String>{};
+    for (final p in s.wordCellPositions(wi)) {
+      final c = s.cipherText[p];
+      if (!s.isGuessCorrect(c)) targets.add(c);
+    }
+    return targets;
+  }
+
   void _afterChange({bool advance = true}) {
     // A fresh edit forks history: any redo future is no longer reachable.
     _redoStack.clear();

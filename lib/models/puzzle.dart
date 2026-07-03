@@ -78,6 +78,16 @@ class PuzzleSession {
   /// [correctWordIndices] so a caller can light up exactly that word's cells.
   List<int> wordCellPositions(int wordIndex) => _wordCellPositions[wordIndex];
 
+  /// The word index (into [wordCellPositions]) whose cells include [position],
+  /// or null for punctuation/space/out-of-range positions. Drives the
+  /// word-reveal hint: the word under the cursor is the one it prices/opens.
+  int? wordIndexAt(int position) {
+    for (var i = 0; i < _wordCellPositions.length; i++) {
+      if (_wordCellPositions[i].contains(position)) return i;
+    }
+    return null;
+  }
+
   /// Plain letters already used as guesses (for keyboard dimming).
   Set<String> get usedPlainLetters => guesses.values.toSet();
 

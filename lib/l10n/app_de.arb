@@ -193,6 +193,8 @@
   "achTitleDaily100": "Hundert Morgen",
   "hintRevealLetter": "Buchstabe aufdecken",
   "hintRevealLetterCount": "Buchstabe aufdecken ({count})",
+  "hintRevealWord": "Wort aufdecken",
+  "hintRevealWordCost": "Wort aufdecken (-{count})",
   "hintTokensAdded": "+{count} Hinweise hinzugefügt",
   "adNoVideo": "Gerade ist kein Video verfügbar. Bitte versuche es gleich noch einmal.",
   "badgeNew": "NEU",
