@@ -185,6 +185,44 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets(
+    'a stale-enabled hint tap after tokens hit zero mutates nothing',
+    (tester) async {
+      final h = await Harness.create();
+      // Down to exactly one token so the button builds enabled.
+      while (h.economy.tokens > 1) {
+        h.economy.spendHintToken();
+      }
+      h.game.start(shortQuote, daily: false);
+
+      await tester.pumpWidget(h.app(const PuzzleScreen()));
+      await tester.pump();
+
+      // Give the undo stack something to lose if the guard ever regressed.
+      final target = h.game.selectedCipherLetter!;
+      h.game.enterGuess(h.game.session!.cipher.decryptLetter(target));
+      await tester.pump();
+      expect(h.game.canUndo, isTrue);
+
+      // Drain the last token WITHOUT pumping: the frame on screen still shows
+      // the enabled button whose closure captured the pre-drain state — a
+      // deterministic simulation of the rebuild-to-tap race.
+      h.economy.spendHintToken();
+      expect(h.economy.tokens, 0);
+
+      await tester.tap(find.textContaining('Reveal letter'));
+      await tester.pump();
+
+      // The tap-time re-check must have bailed before any mutation.
+      expect(h.game.hintsUsed, 0);
+      expect(h.game.session!.revealed, isEmpty);
+      expect(h.game.canUndo, isTrue, reason: 'undo history must be preserved');
+      expect(h.economy.tokens, 0, reason: 'tokens must never go negative');
+
+      h.game.stopTimer();
+    },
+  );
+
   testWidgets('rewarded +3 greys out when no ad is available (offline), and '
       'grants nothing when tapped', (tester) async {
     final h = await Harness.create();
