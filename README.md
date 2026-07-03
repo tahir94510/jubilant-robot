@@ -127,7 +127,7 @@ Bu repo her push'ta GitHub Actions ile derlenir. Üç önizleme yolunuz var:
   güvenliği" formu için büyük avantaj).
 - Deterministik motor: gün/şifre seçimi her cihazda ve platformda birebir
   aynıdır (özel 32-bit RNG + FNV-1a; golden-vector testleriyle kilitli).
-- 200+ otomatik test CI'da her push'ta koşar (motor + 7 alfabenin şifre
+- 300+ otomatik test CI'da her push'ta koşar (motor + 7 alfabenin şifre
   matematiği, veri seti + ses varlığı doğrulaması, harf-girişi/undo/süre
   regresyonları, fiziksel klavye, yerelleştirme, streak gün sınırları,
   ekonomi, premium kapılama, müzik/ses ayarları, kutlama animasyonları,

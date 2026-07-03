@@ -18,12 +18,12 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **329 otomatik test** | Aşağıdaki döküm |
+| **330 otomatik test** | Aşağıdaki döküm |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**329 testin dökümü (özet — kategori sayıları bilinçli verilmiyor, tek doğrulanabilir sayı koşucunun raporladığı toplamdır):**
+**330 testin dökümü (özet — kategori sayıları bilinçli verilmiyor, tek doğrulanabilir sayı koşucunun raporladığı toplamdır):**
 - **Motor:** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
