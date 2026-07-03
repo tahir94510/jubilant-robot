@@ -5,6 +5,84 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.10.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.10.0
+• High-contrast mode — a WCAG-AAA option for stronger text, borders and highlights, on every theme
+• Reveal-word hint — stuck on a word? Open the whole word for a fair token price
+• Battery saver — cap the refresh rate to stretch your battery
+• Smoother typing on long quotes
+• Streak & reliability fixes across all 7 languages
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.10.0 YENİLİKLER
+• Yüksek kontrast modu — her temada daha güçlü metin, kenarlık ve vurgular için WCAG-AAA seçeneği
+• Kelime açma ipucu — bir kelimede takıldın mı? Adil bir jeton bedeliyle kelimenin tamamını aç
+• Pil tasarrufu — tazeleme hızını sınırlayıp pili uzat
+• Uzun sözlerde daha akıcı yazma
+• 7 dilde seri ve güvenilirlik düzeltmeleri
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.10.0
+• Modo de alto contraste — opción WCAG-AAA para texto, bordes y resaltados más marcados en todos los temas
+• Pista de revelar palabra — ¿atascado? Abre la palabra entera por un precio justo en fichas
+• Ahorro de batería — limita la frecuencia de refresco para durar más
+• Escritura más fluida en frases largas
+• Correcciones de rachas y estabilidad en los 7 idiomas
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.10.0
+• Kontrastreicher Modus — WCAG-AAA-Option für kräftigeren Text, Ränder und Hervorhebungen in jedem Design
+• Wort-aufdecken-Hinweis — festgefahren? Öffne das ganze Wort zu einem fairen Token-Preis
+• Akku-Sparmodus — Bildrate begrenzen und länger spielen
+• Flüssigeres Tippen bei langen Zitaten
+• Serien- und Stabilitätskorrekturen in allen 7 Sprachen
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.10.0
+• Mode contraste élevé — option WCAG-AAA pour un texte, des bordures et surlignages renforcés, sur tous les thèmes
+• Indice révéler le mot — bloqué ? Ouvre le mot entier pour un prix en jetons équitable
+• Économie de batterie — limite la fréquence pour tenir plus longtemps
+• Saisie plus fluide sur les longues citations
+• Corrections de séries et de fiabilité dans les 7 langues
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.10.0
+• Modalità alto contrasto — opzione WCAG-AAA per testo, bordi ed evidenziazioni più marcati, in ogni tema
+• Suggerimento rivela parola — bloccato? Apri l'intera parola a un giusto prezzo in gettoni
+• Risparmio batteria — limita la frequenza per durare di più
+• Digitazione più fluida sulle frasi lunghe
+• Correzioni di serie e affidabilità in tutte e 7 le lingue
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.10.0
+• Modo de alto contraste — opção WCAG-AAA para texto, bordas e destaques mais fortes, em todos os temas
+• Dica revelar palavra — travou? Abra a palavra inteira por um preço justo em fichas
+• Economia de bateria — limite a taxa de atualização para durar mais
+• Digitação mais fluida em frases longas
+• Correções de sequências e estabilidade nos 7 idiomas
+Boa decifração!
+```
+
 ## Release notes: v2.9.0 (max 500 chars, paste into "What's new")
 
 ```
