@@ -7,7 +7,8 @@
 # oraya koyun ve Play Console'daki gelistirici web sitesi alanina
 # https://tahir94510.github.io yazin. Ayrintilar: docs/MONETIZASYON.md
 #
-# AdMob hesabinizi actiktan sonra asagidaki satirin yorumunu kaldirip
-# pub-XXXXXXXXXXXXXXXX kismini kendi yayinci kimliginizle degistirin:
-#
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# Asagidaki satir AKTIF ve gercek yayinci kimligiyle doludur
+# (lib/config/monetization_config.dart ile ayni hesap); dosya kullanici
+# sitesi reposuna oldugu gibi kopyalanmaya hazirdir:
+
+google.com, pub-6486621084238367, DIRECT, f08c47fec0942fa0
