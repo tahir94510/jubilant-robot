@@ -591,7 +591,7 @@ abstract class AppLocalizations {
   /// No description provided for @paywallHintsBody.
   ///
   /// In en, this message translates to:
-  /// **'Reveal a letter whenever you\'re stuck'**
+  /// **'Reveal a letter or a whole word whenever you\'re stuck'**
   String get paywallHintsBody;
 
   /// No description provided for @paywallPacksTitle.

@@ -270,7 +270,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get paywallHintsTitle => 'Dicas ilimitadas';
 
   @override
-  String get paywallHintsBody => 'Revele uma letra sempre que travar';
+  String get paywallHintsBody =>
+      'Revele uma letra ou uma palavra inteira sempre que travar';
 
   @override
   String get paywallPacksTitle => 'Pacotes bônus exclusivos';

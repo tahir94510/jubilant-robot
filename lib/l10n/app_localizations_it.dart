@@ -273,7 +273,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get paywallHintsTitle => 'Indizi illimitati';
 
   @override
-  String get paywallHintsBody => 'Rivela una lettera ogni volta che ti blocchi';
+  String get paywallHintsBody =>
+      'Rivela una lettera o un\'intera parola ogni volta che ti blocchi';
 
   @override
   String get paywallPacksTitle => 'Pacchetti bonus esclusivi';

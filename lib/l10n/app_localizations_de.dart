@@ -270,7 +270,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get paywallHintsBody =>
-      'Deck einen Buchstaben auf, wann immer du feststeckst';
+      'Deck einen Buchstaben oder ein ganzes Wort auf, wann immer du feststeckst';
 
   @override
   String get paywallPacksTitle => 'Exklusive Bonus-Pakete';

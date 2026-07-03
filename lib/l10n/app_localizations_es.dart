@@ -270,7 +270,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get paywallHintsTitle => 'Pistas ilimitadas';
 
   @override
-  String get paywallHintsBody => 'Revela una letra cuando te atasques';
+  String get paywallHintsBody =>
+      'Revela una letra o una palabra entera cuando te atasques';
 
   @override
   String get paywallPacksTitle => 'Paquetes extra exclusivos';

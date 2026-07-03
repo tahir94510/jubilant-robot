@@ -27,11 +27,12 @@ class HintBar extends StatelessWidget {
     final economy = context.watch<EconomyController>();
     final ads = context.read<AdsService>();
 
-    // Wrap, not Row: on narrow screens / large system text the two buttons
-    // stack instead of overflowing (seen as "overflow by N px" on device).
-    // LayoutBuilder caps the reveal button (whose localized label is the long
-    // one) to the row width, and its label shrinks to fit — so even a long
-    // language at the largest text size can never push it past the edge.
+    // Wrap, not Row: on narrow screens / large system text the hint buttons
+    // (reveal-letter, reveal-word, and the rewarded +N) stack instead of
+    // overflowing (seen as "overflow by N px" on device). LayoutBuilder caps
+    // each reveal button (whose localized label is the long one) to the row
+    // width, and its label shrinks to fit — so even a long language at the
+    // largest text size can never push it past the edge.
     return LayoutBuilder(
       builder: (context, constraints) {
         return Wrap(

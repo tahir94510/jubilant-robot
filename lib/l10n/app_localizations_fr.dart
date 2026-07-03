@@ -270,7 +270,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get paywallHintsTitle => 'Indices illimités';
 
   @override
-  String get paywallHintsBody => 'Révélez une lettre dès que vous bloquez';
+  String get paywallHintsBody =>
+      'Révélez une lettre ou un mot entier dès que vous bloquez';
 
   @override
   String get paywallPacksTitle => 'Packs bonus exclusifs';
