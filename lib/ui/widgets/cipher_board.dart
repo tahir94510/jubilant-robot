@@ -66,11 +66,39 @@ class _CipherBoardState extends State<CipherBoard> {
   /// previous letter into it ("delete & rewrite" ghosting).
   final Map<int, GlobalKey> _cellKeys = {};
 
+  /// Per-position widget memo. The controller notifies on every keystroke and
+  /// this build reconstructs the whole board — but on a typical keystroke only
+  /// the typed letter's copies and the two cursor cells actually change. By
+  /// handing Flutter the IDENTICAL widget instance when a cell's inputs are
+  /// unchanged, Element.updateChild short-circuits and skips that whole
+  /// subtree's rebuild, making per-keystroke work proportional to the changed
+  /// cells instead of the quote length (the main frame cost on long quotes).
+  /// Theme/locale changes still repaint memoized cells — LetterCell depends on
+  /// Theme.of/AppLocalizations, so InheritedWidget notifications bypass the
+  /// identical-widget shortcut by design.
+  final Map<int, LetterCell> _cellCache = {};
+  final Map<int, PunctuationCell> _punctuationCache = {};
+
+  /// Stable per-position tap callbacks: a fresh closure per build would defeat
+  /// the memo. Closures read `widget.onSelect` through the State at TAP time,
+  /// so they always reach the current widget's handler.
+  final Map<int, VoidCallback> _tapCallbacks = {};
+
+  /// The cell width the caches were built for; a resize/text-scale change
+  /// invalidates every cached cell (geometry is baked into the widgets).
+  double? _cachedCellWidth;
+
   @override
   void didUpdateWidget(CipherBoard old) {
     super.didUpdateWidget(old);
-    // A new puzzle: positions no longer mean the same cells, drop stale keys.
-    if (widget.session != old.session) _cellKeys.clear();
+    // A new puzzle: positions no longer mean the same cells, drop stale keys
+    // (and every memoized cell/callback built for the old text).
+    if (widget.session != old.session) {
+      _cellKeys.clear();
+      _cellCache.clear();
+      _punctuationCache.clear();
+      _tapCallbacks.clear();
+    }
     // When the cursor moves (◀ ▶, arrow keys, a tap, or typing auto-advance),
     // keep the focused letter comfortably on screen. The board sits in a scroll
     // viewport ABOVE the controls + keyboard, so centering it there never hides
@@ -154,6 +182,14 @@ class _CipherBoardState extends State<CipherBoard> {
           isLetter: isLetter,
         ).floorToDouble();
 
+        // Geometry change (rotation, text-size slider, split-screen resize):
+        // every cached cell baked the old width, so the memo starts over.
+        if (_cachedCellWidth != cellWidth) {
+          _cachedCellWidth = cellWidth;
+          _cellCache.clear();
+          _punctuationCache.clear();
+        }
+
         var letterIndex = 0;
         // Absolute position in cipherText. words come from split(' '), which
         // drops one space between each pair, so we step over that separator
@@ -195,30 +231,54 @@ class _CipherBoardState extends State<CipherBoard> {
                   widget.lastTyped != null &&
                   ch == widget.lastTyped &&
                   session.guesses.containsKey(ch);
-              // Each cell carries its own stable key so the focused one can be
-              // found for auto-scroll without ever migrating a key between
-              // cells (which would ghost the previous letter on cursor moves).
-              cells.add(
-                LetterCell(
+              // Reuse the previous build's instance when nothing visual about
+              // this cell changed — Flutter then skips the cell's rebuild
+              // entirely (identical-widget short-circuit). cipherLetter is
+              // fixed per position within a session and width invalidates the
+              // whole cache above, so comparing the dynamic props suffices.
+              final guess = session.guesses[ch];
+              final prev = _cellCache[thisPos];
+              if (prev != null &&
+                  prev.guess == guess &&
+                  prev.state == colorState &&
+                  prev.focused == focused &&
+                  prev.related == related &&
+                  prev.recent == recent &&
+                  prev.lastTyped == lastTyped) {
+                cells.add(prev);
+              } else {
+                // Each cell carries its own stable key so the focused one can
+                // be found for auto-scroll without ever migrating a key between
+                // cells (which would ghost the previous letter on cursor moves).
+                final cell = LetterCell(
                   key: _cellKeys.putIfAbsent(thisPos, () => GlobalKey()),
                   cipherLetter: ch,
-                  guess: session.guesses[ch],
+                  guess: guess,
                   width: cellWidth,
                   state: colorState,
                   focused: focused,
                   related: related,
                   recent: recent,
                   lastTyped: lastTyped,
-                  onTap: () => widget.onSelect(thisPos),
-                ),
-              );
+                  onTap: _tapCallbacks.putIfAbsent(
+                    thisPos,
+                    () =>
+                        () => widget.onSelect(thisPos),
+                  ),
+                );
+                _cellCache[thisPos] = cell;
+                cells.add(cell);
+              }
             } else {
               cells.add(
-                PunctuationCell(
-                  char: ch,
-                  // Whole pixels: a fractional punctuation slot shifted the rest
-                  // of the row off the pixel grid (the scroll shimmer/drift).
-                  width: (cellWidth * kPunctuationCellFactor).floorToDouble(),
+                _punctuationCache.putIfAbsent(
+                  thisPos,
+                  () => PunctuationCell(
+                    char: ch,
+                    // Whole pixels: a fractional punctuation slot shifted the
+                    // rest of the row off the pixel grid (scroll shimmer).
+                    width: (cellWidth * kPunctuationCellFactor).floorToDouble(),
+                  ),
                 ),
               );
             }

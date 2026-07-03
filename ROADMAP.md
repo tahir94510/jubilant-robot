@@ -45,8 +45,11 @@ User-selected priorities, each low-to-moderate risk and infra-free:
 1. ~~**High-contrast mode**~~ — ✅ shipped: AAA theme variants for all three
    themes (and their colorblind combinations) + settings toggle.
 2. **120 fps / high-refresh + battery saver** — opt into high refresh where the
-   display supports it, frame-pacing audit, and an optional battery-saver mode
-   that caps the frame rate to reduce power draw. Needs on-device verification.
+   display supports it (✅ shipped in v2.9.0 via flutter_displaymode),
+   frame-pacing audit (✅ board keystroke path memoized: unchanged cells skip
+   rebuild entirely, test-locked), and an optional battery-saver mode that caps
+   the frame rate to reduce power draw. Battery saver needs on-device
+   verification.
 3. **Broader Play 2026 compliance** — AAB size/optimization pass, full 16 KB
    page-size verification of native plugins (SoLoud, ads, etc.), IARC age-rating
    submission (Play Console process), data-safety form review.
