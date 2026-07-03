@@ -665,6 +665,14 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get hintRevealWord => 'Revelar palavra';
+
+  @override
+  String hintRevealWordCost(int count) {
+    return 'Revelar palavra (-$count)';
+  }
+
+  @override
   String hintTokensAdded(int count) {
     return '+$count dicas adicionadas';
   }

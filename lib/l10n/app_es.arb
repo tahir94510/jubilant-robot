@@ -193,6 +193,8 @@
   "achTitleDaily100": "Cien Mañanas",
   "hintRevealLetter": "Revelar letra",
   "hintRevealLetterCount": "Revelar letra ({count})",
+  "hintRevealWord": "Revelar palabra",
+  "hintRevealWordCost": "Revelar palabra (-{count})",
   "hintTokensAdded": "+{count} pistas añadidas",
   "adNoVideo": "No hay ningún vídeo disponible ahora. Inténtalo de nuevo en un momento.",
   "badgeNew": "NUEVO",

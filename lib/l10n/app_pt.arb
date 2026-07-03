@@ -193,6 +193,8 @@
   "achTitleDaily100": "Cem Manhãs",
   "hintRevealLetter": "Revelar letra",
   "hintRevealLetterCount": "Revelar letra ({count})",
+  "hintRevealWord": "Revelar palavra",
+  "hintRevealWordCost": "Revelar palavra (-{count})",
   "hintTokensAdded": "+{count} dicas adicionadas",
   "adNoVideo": "Nenhum vídeo disponível agora. Tente novamente em instantes.",
   "badgeNew": "NOVO",

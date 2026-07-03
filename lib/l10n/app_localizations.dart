@@ -1266,6 +1266,18 @@ abstract class AppLocalizations {
   /// **'Reveal letter ({count})'**
   String hintRevealLetterCount(int count);
 
+  /// No description provided for @hintRevealWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal word'**
+  String get hintRevealWord;
+
+  /// No description provided for @hintRevealWordCost.
+  ///
+  /// In en, this message translates to:
+  /// **'Reveal word (-{count})'**
+  String hintRevealWordCost(int count);
+
   /// No description provided for @hintTokensAdded.
   ///
   /// In en, this message translates to:

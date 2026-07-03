@@ -353,6 +353,15 @@
       }
     }
   },
+  "hintRevealWord": "Reveal word",
+  "hintRevealWordCost": "Reveal word (-{count})",
+  "@hintRevealWordCost": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "hintTokensAdded": "+{count} hints added",
   "@hintTokensAdded": {
     "placeholders": {

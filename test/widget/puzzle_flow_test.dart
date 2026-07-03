@@ -185,6 +185,57 @@ void main() {
     h.game.stopTimer();
   });
 
+  testWidgets('word reveal opens the selected word and charges its price', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    h.game.start(shortQuote, daily: false); // "Less is more."
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    // Cursor on "LESS": 3 distinct letters -> the button shows the price.
+    expect(h.game.wordHintCost, 3);
+    final tokensBefore = h.economy.tokens;
+
+    await tester.tap(find.textContaining('Reveal word'));
+    await tester.pump();
+
+    expect(h.economy.tokens, tokensBefore - 3);
+    expect(h.game.hintsUsed, 3);
+    expect(h.game.session!.revealed, hasLength(3));
+
+    h.game.stopTimer();
+  });
+
+  testWidgets('word reveal disables when the player cannot afford it', (
+    tester,
+  ) async {
+    final h = await Harness.create();
+    // Leave fewer tokens than "LESS" costs (3).
+    while (h.economy.tokens > 2) {
+      h.economy.spendHintToken();
+    }
+    h.game.start(shortQuote, daily: false);
+
+    await tester.pumpWidget(h.app(const PuzzleScreen()));
+    await tester.pump();
+
+    final label = find.textContaining('Reveal word');
+    final button = tester.widget<OutlinedButton>(
+      find.ancestor(of: label, matching: find.byType(OutlinedButton)).first,
+    );
+    expect(button.enabled, isFalse);
+
+    // A dead tap must neither reveal nor charge.
+    await tester.tap(label, warnIfMissed: false);
+    await tester.pump();
+    expect(h.game.hintsUsed, 0);
+    expect(h.economy.tokens, 2);
+
+    h.game.stopTimer();
+  });
+
   testWidgets(
     'a stale-enabled hint tap after tokens hit zero mutates nothing',
     (tester) async {

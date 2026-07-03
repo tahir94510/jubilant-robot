@@ -193,6 +193,8 @@
   "achTitleDaily100": "Cent Matins",
   "hintRevealLetter": "Révéler une lettre",
   "hintRevealLetterCount": "Révéler une lettre ({count})",
+  "hintRevealWord": "Révéler le mot",
+  "hintRevealWordCost": "Révéler le mot (-{count})",
   "hintTokensAdded": "+{count} indices ajoutés",
   "adNoVideo": "Aucune vidéo n’est disponible pour le moment. Réessayez dans un instant.",
   "badgeNew": "NOUVEAU",
