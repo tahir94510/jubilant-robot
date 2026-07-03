@@ -21,7 +21,9 @@ permissions, AAB, no forced ads).
 - **Haptics**: amplitude-based cue ladder + **vibration-strength slider**.
 - **Accessibility**: dynamic text sizing (0.85–1.4×, combined with OS scale),
   colorblind-safe palette (Protanopia/Deuteranopia), screen-reader labels,
-  reduce-motion support, WCAG contrast test.
+  reduce-motion support, WCAG contrast test, **high-contrast mode** (WCAG 2.2
+  AAA text ratios, stronger borders/selection cues, composes with colorblind;
+  12-configuration contrast matrix in CI).
 - **Theming**: true dark, light, and sepia themes; theme-adaptive system bars.
 - **Localization**: 7 languages (en, tr, es, de, fr, it, pt), per-language quote
   datasets, CI key-parity guard.
@@ -40,9 +42,8 @@ permissions, AAB, no forced ads).
 
 User-selected priorities, each low-to-moderate risk and infra-free:
 
-1. **High-contrast mode** — a dedicated WCAG 2.2 AA/AAA high-contrast theme
-   variant + settings toggle, separate from colorblind mode (stronger borders,
-   higher text/background ratios).
+1. ~~**High-contrast mode**~~ — ✅ shipped: AAA theme variants for all three
+   themes (and their colorblind combinations) + settings toggle.
 2. **120 fps / high-refresh + battery saver** — opt into high refresh where the
    display supports it, frame-pacing audit, and an optional battery-saver mode
    that caps the frame rate to reduce power draw. Needs on-device verification.
