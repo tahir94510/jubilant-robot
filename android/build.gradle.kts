@@ -26,11 +26,21 @@ subprojects {
 // plugin still below the app's compileSdk is lifted to it here, so a stale
 // dependency can never take the store pipeline down again.
 subprojects {
-    afterEvaluate {
-        extensions.findByType(com.android.build.gradle.BaseExtension::class.java)?.apply {
+    fun liftCompileSdk(p: Project) {
+        p.extensions.findByType(com.android.build.gradle.BaseExtension::class.java)?.apply {
             val declared = compileSdkVersion?.removePrefix("android-")?.toIntOrNull()
             if (declared != null && declared < 36) compileSdkVersion(36)
         }
+    }
+    // The evaluationDependsOn(":app") block above forces :app to evaluate
+    // while these subprojects blocks are still registering, so :app reaches
+    // here already evaluated — afterEvaluate would throw on it. Run the lift
+    // immediately for anything already evaluated (a no-op for :app, which
+    // declares 36) and defer it for the plugin subprojects.
+    if (state.executed) {
+        liftCompileSdk(project)
+    } else {
+        afterEvaluate { liftCompileSdk(this) }
     }
 }
 
