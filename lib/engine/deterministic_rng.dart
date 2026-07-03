@@ -38,6 +38,23 @@ class DeterministicRng {
   }
 }
 
+/// Sattolo's algorithm, in place: like Fisher-Yates but `j` is drawn strictly
+/// below `i`, which yields a uniformly random *cyclic* permutation (a single
+/// N-cycle => a derangement — no element stays at its own index).
+///
+/// Consumes exactly `items.length - 1` draws in descending order. Both the
+/// cipher mapping and the daily-puzzle pick are golden-locked to this exact
+/// loop; any change to the draw order silently reshuffles every player's
+/// daily puzzle.
+void sattoloShuffle<T>(List<T> items, DeterministicRng rng) {
+  for (var i = items.length - 1; i > 0; i--) {
+    final j = rng.nextInt(i); // 0..i-1, never i itself
+    final t = items[i];
+    items[i] = items[j];
+    items[j] = t;
+  }
+}
+
 /// fmix32 finalizer from MurmurHash3: turns correlated integers (dates,
 /// counters) into well-distributed seeds.
 int fmix32(int h) {

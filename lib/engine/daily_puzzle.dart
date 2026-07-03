@@ -56,12 +56,7 @@ DailyPuzzle selectDaily(List<Quote> pool, DateTime date) {
   final order = List<int>.generate(pool.length, (i) => i);
   final rng = DeterministicRng(fmix32(date.year));
   // Sattolo shuffle of the year's ordering.
-  for (var i = order.length - 1; i > 0; i--) {
-    final j = rng.nextInt(i);
-    final t = order[i];
-    order[i] = order[j];
-    order[j] = t;
-  }
+  sattoloShuffle(order, rng);
   final quote = pool[order[(_dayOfYear(date) - 1) % pool.length]];
   return DailyPuzzle(
     quote: quote,

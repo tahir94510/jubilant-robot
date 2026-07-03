@@ -24,6 +24,15 @@ void main() {
       expect(a.number, b.number);
     });
 
+    test('golden vector: exact daily picks are locked forever', () {
+      // Captured from the shipped implementation. A different pick here means
+      // every player's "same quote for everyone today" contract just broke —
+      // fix the code, NEVER these expectations.
+      expect(selectDaily(pool, DateTime(2026, 6, 11)).quote.id, 'q-266');
+      expect(selectDaily(pool, DateTime(2027, 1, 1)).quote.id, 'q-214');
+      expect(selectDaily(pool, DateTime(2028, 2, 29)).quote.id, 'q-369');
+    });
+
     test('every day of 2026 picks a distinct quote', () {
       final seen = <String>{};
       for (

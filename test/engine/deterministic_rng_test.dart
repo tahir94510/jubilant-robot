@@ -56,6 +56,30 @@ void main() {
     });
   });
 
+  group('sattoloShuffle', () {
+    test('is seed-reproducible and a single cycle with no fixed points', () {
+      final a = List<int>.generate(10, (i) => i);
+      final b = List<int>.generate(10, (i) => i);
+      sattoloShuffle(a, DeterministicRng(7));
+      sattoloShuffle(b, DeterministicRng(7));
+      expect(a, b);
+
+      // No fixed points (a cyclic permutation is a derangement)...
+      for (var i = 0; i < a.length; i++) {
+        expect(a[i], isNot(i), reason: 'index $i maps to itself');
+      }
+      // ...and one single N-cycle: following the permutation from 0 must
+      // visit every element before returning to the start.
+      var seen = 0;
+      var cursor = 0;
+      do {
+        cursor = a[cursor];
+        seen++;
+      } while (cursor != 0 && seen <= a.length);
+      expect(seen, a.length, reason: 'permutation is not a single cycle');
+    });
+  });
+
   group('fmix32 / stableStringHash', () {
     test('fmix32 golden values', () {
       expect(fmix32(0), 0);

@@ -22,6 +22,20 @@ void main() {
       }
     });
 
+    test('golden vector: exact mapping is locked forever', () {
+      // Captured from the shipped implementation. If this test fails, the
+      // change breaks every player's on-device daily/cipher continuity and
+      // the shared-daily contract — fix the code, NEVER this expectation.
+      expect(
+        CipherMap.fromSeed(1).encrypt(latinAlphabet),
+        'DJRIZCNYHFUEWVPGLMOBXTKAQS',
+      );
+      expect(
+        CipherMap.fromSeed(42).encrypt(latinAlphabet),
+        'CYSKBNXDAUPVFQZLTJMWHGROIE',
+      );
+    });
+
     test('same seed twice yields the identical mapping', () {
       final a = CipherMap.fromSeed(99);
       final b = CipherMap.fromSeed(99);
