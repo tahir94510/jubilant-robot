@@ -31,6 +31,34 @@ void main() {
     },
   );
 
+  test('every locale has a native, homogeneous daily pool (streak-integrity '
+      'guard)', () async {
+    final repo = await QuoteRepository.load();
+
+    // Home decides "daily solved today?" by the UI locale, but the solve is
+    // recorded under the QUOTE's locale (puzzle_complete_screen). Those two
+    // agree only while dailyPoolFor(locale) never triggers its English
+    // fallback: if a locale shipped without native dailies, its daily solves
+    // would land in the 'en' profile and that language's streak would
+    // silently never advance. This locks the invariant that makes the pair
+    // of lookups consistent.
+    for (final locale in supportedLocales) {
+      final pool = repo.dailyPoolFor(locale);
+      expect(
+        pool,
+        isNotEmpty,
+        reason: 'locale "$locale" has an empty daily pool',
+      );
+      expect(
+        pool.every((q) => q.locale == locale),
+        isTrue,
+        reason:
+            'locale "$locale" fell back to another language\'s daily pool — '
+            'its daily solves would be recorded into the wrong profile',
+      );
+    }
+  });
+
   test('every language fills every pack — all four difficulty rungs, all four '
       'themes, and the premium Classics pack', () async {
     final repo = await QuoteRepository.load();
