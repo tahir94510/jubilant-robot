@@ -182,13 +182,37 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.9.0+48` (kullanıcıya görünen
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.10.0+48` (kullanıcıya görünen
 `versionName`) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
-güncelle. **versionCode elle bumplanMAZ:** CI onu commit sayısından otomatik
-türetir (`--build-number=$(git rev-list --count HEAD)`), her push'ta artar →
-`docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu (EN + 6 dil, ≤500 krk)
-ekle → push → CI yeşil → `quotecrack-release-aab` indir → B turu → Play
-Console'a yükle.
+güncelle. **İkisi test-kilitli:** `test/data/version_parity_test.dart` ikisi
+ayrışırsa CI'yi kırar (Ayarlar ekranı asla bayat sürüm göstermesin — biri
+bumplanıp diğeri unutulamaz). **versionCode elle bumplanMAZ:** CI onu commit
+sayısından otomatik türetir (`--build-number=$(git rev-list --count HEAD)`), her
+push'ta artar → `docs/STORE_LISTING.md`'ye o sürümün "Yenilikler" notunu
+(EN + 6 dil, ≤500 krk) ekle → push → CI yeşil → `quotecrack-release-aab` indir →
+B turu → Play Console'a yükle.
+
+> **⚠️ "Güncelledim ama bazı telefonlarda hâlâ eski logo/bildirim/özellik
+> görünüyor" — bu bir HATA DEĞİL, cihaz/dağıtım gecikmesidir.** Üç ayrı katman:
+> 1. **Başlatıcı ikon önbelleği (logonun eski kalması).** Samsung One UI, Xiaomi
+>    MIUI gibi OEM başlatıcılar eski ikonu IconCache'te tutar; güncelleme sonrası
+>    bir süre eski logoyu gösterir. **Uygulama bunu koddan zorlayamaz** (bir
+>    launcher'ın önbelleğini boşaltan API yoktur). **Çözüm:** cihazı yeniden
+>    başlat, ya da başlatıcı ayarlarından önbelleği temizle, ya da uygulamayı
+>    kaldırıp yeniden kur. Farklı cihazlarda yeni görünmesi normaldir (onlar
+>    önbelleklerini çoktan tazeledi). İkon kurulumu tam ve doğrudur
+>    (uyarlanabilir + monokrom temalı katman + tüm yoğunluklar + legacy fallback).
+> 2. **Bildirim kanalı değiştirilemezliği.** Android bir bildirim kanalının
+>    önem/ses/titreşim ayarını İLK oluşturmada dondurur; sonraki sürümler bunu
+>    değiştiremez. Bu yüzden kanal ayarı değişince yeni bir kanal ID'sine geçilir
+>    (bu uygulamada `daily_reminder` → `daily_reminder_v2` yapıldı). Görsel
+>    kısımlar (küçük ikon/renk/metin) her bildirimde set edildiği için yeni
+>    bildirim geldiğinde güncel görünür; ekranda duran ESKİ bir bildirim eski
+>    kalır (kendiliğinden düzelir).
+> 3. **Play kademeli dağıtım + istemci önbelleği.** Güncelleme tüm cihazlara
+>    aynı anda ulaşmaz (staged rollout); Play Store istemcisi de listeyi
+>    önbellekler. "Bazı telefonlar yeni, bazıları eski" görüntüsünün en sık
+>    sebebi budur; saatler–günler içinde kendiliğinden yayılır.
 
 > **🔒 GÜNCELLEMELERDE VERİ KORUNUR:** SharedPreferences Play güncellemelerinde
 > silinmez (yalnız kaldırma/"veriyi temizle" siler). `stats.v2` migration
