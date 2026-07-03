@@ -106,74 +106,168 @@ class GamePalette extends ThemeExtension<GamePalette> {
   // the brand consistent everywhere.
 
   /// Standard accents; [colorblind] swaps red/green semantics for
-  /// blue/orange ones.
-  static GamePalette light({bool colorblind = false}) => GamePalette(
+  /// blue/orange ones, [highContrast] switches to the WCAG-AAA-tuned variant.
+  static GamePalette light({
+    bool colorblind = false,
+    bool highContrast = false,
+  }) => highContrast
+      ? _lightHighContrast(colorblind)
+      : GamePalette(
+          boardCellBg: const Color(0x00000000),
+          boardCellSelectedBg: const Color(0xFF936F1F).withValues(alpha: .16),
+          boardCellRelatedBg: const Color(0xFF936F1F).withValues(alpha: .07),
+          boardCellFilledBg: const Color(0xFF211E1A).withValues(alpha: .055),
+          boardCellConfirmedBg:
+              (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
+                  .withValues(alpha: .10),
+          // Just-locked = the SAME confirmed green, a gentle step stronger (.20 vs .10)
+          // so the freshest letters read calmly above the older confirmed ones — no
+          // jarring gold, fully on the confirmed family, distinct from the neutral
+          // last-typed cue.
+          boardCellLastMoveBg:
+              (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
+                  .withValues(alpha: .20),
+          // Just-revealed HINT wash in the gold [revealed] family (not green), so the
+          // gold hint letter reads on a matching gold tint instead of clashing.
+          boardCellRevealedBg: const Color(0xFF856414).withValues(alpha: .15),
+          boardUnderline: const Color(0xFFC9BEA8),
+          guessText: const Color(0xFF211E1A),
+          cipherText: const Color(0xFF6B614D),
+          // Colorblind conflict/error deepened (E69F00 read only 2.05:1 on this cream
+          // surface — below the large-text floor); A84B00 clears AA (5.20:1).
+          conflict: colorblind
+              ? const Color(0xFFA84B00)
+              : const Color(0xFF9E3B34),
+          error: colorblind ? const Color(0xFFA84B00) : const Color(0xFF9E3B34),
+          // Deepened from 936F1F (4.21:1) so the gold hint letters clear AA (4.99:1).
+          revealed: const Color(0xFF856414),
+          confirmed: colorblind
+              ? const Color(0xFF00795C)
+              : const Color(0xFF1B6E60),
+          keyBg: const Color(0xFFFFFDF8),
+          keyUsedBg: const Color(0xFFECE6D9),
+          keyText: const Color(0xFF211E1A),
+          keyUsedText: const Color(0xFF7C7263),
+          keyDisabledText: const Color(0xFF6B6150),
+          keyLockedBg: const Color(0xFFDCD3BF),
+          success: colorblind
+              ? const Color(0xFF0072B2)
+              : const Color(0xFF55714A),
+          streakFlame: const Color(0xFFB8791C),
+          textSecondary: const Color(0xFF5C5849),
+          textFaint: const Color(0xFF74705F),
+        );
+
+  /// High-contrast light: every readable token >= 7:1 (AAA normal text) and
+  /// every large-glyph/icon token >= 4.5:1 on paper AND card, verified by
+  /// contrast_test. Same Ink & Gold families, deepened; selection washes are
+  /// stronger so the cursor and related cells pop for low-vision players.
+  static GamePalette _lightHighContrast(bool colorblind) => GamePalette(
     boardCellBg: const Color(0x00000000),
-    boardCellSelectedBg: const Color(0xFF936F1F).withValues(alpha: .16),
-    boardCellRelatedBg: const Color(0xFF936F1F).withValues(alpha: .07),
-    boardCellFilledBg: const Color(0xFF211E1A).withValues(alpha: .055),
+    boardCellSelectedBg: const Color(0xFF6D5217).withValues(alpha: .24),
+    boardCellRelatedBg: const Color(0xFF6D5217).withValues(alpha: .12),
+    boardCellFilledBg: const Color(0xFF211E1A).withValues(alpha: .10),
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
             .withValues(alpha: .10),
-    // Just-locked = the SAME confirmed green, a gentle step stronger (.20 vs .10)
-    // so the freshest letters read calmly above the older confirmed ones — no
-    // jarring gold, fully on the confirmed family, distinct from the neutral
-    // last-typed cue.
     boardCellLastMoveBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF1F7A6B))
             .withValues(alpha: .20),
-    // Just-revealed HINT wash in the gold [revealed] family (not green), so the
-    // gold hint letter reads on a matching gold tint instead of clashing.
-    boardCellRevealedBg: const Color(0xFF856414).withValues(alpha: .15),
-    boardUnderline: const Color(0xFFC9BEA8),
+    // Wash keyed to the AAA gold so a just-revealed letter stays >= 4.5:1 on
+    // its own tint (5.67 measured).
+    boardCellRevealedBg: const Color(0xFF684E10).withValues(alpha: .15),
+    boardUnderline: const Color(0xFF9F8B64), // >= 3:1 UI-component floor
     guessText: const Color(0xFF211E1A),
-    cipherText: const Color(0xFF6B614D),
-    // Colorblind conflict/error deepened (E69F00 read only 2.05:1 on this cream
-    // surface — below the large-text floor); A84B00 clears AA (5.20:1).
-    conflict: colorblind ? const Color(0xFFA84B00) : const Color(0xFF9E3B34),
-    error: colorblind ? const Color(0xFFA84B00) : const Color(0xFF9E3B34),
-    // Deepened from 936F1F (4.21:1) so the gold hint letters clear AA (4.99:1).
-    revealed: const Color(0xFF856414),
-    confirmed: colorblind ? const Color(0xFF00795C) : const Color(0xFF1B6E60),
+    cipherText: const Color(0xFF5B5241), // small text -> full AAA
+    conflict: colorblind ? const Color(0xFF873C00) : const Color(0xFF8F352F),
+    error: colorblind ? const Color(0xFF873C00) : const Color(0xFF8F352F),
+    revealed: const Color(0xFF684E10),
+    confirmed: colorblind ? const Color(0xFF005D47) : const Color(0xFF165C50),
     keyBg: const Color(0xFFFFFDF8),
     keyUsedBg: const Color(0xFFECE6D9),
     keyText: const Color(0xFF211E1A),
-    keyUsedText: const Color(0xFF7C7263),
-    keyDisabledText: const Color(0xFF6B6150),
+    keyUsedText: const Color(0xFF6F6659),
+    keyDisabledText: const Color(0xFF645A4B),
     keyLockedBg: const Color(0xFFDCD3BF),
-    success: colorblind ? const Color(0xFF0072B2) : const Color(0xFF55714A),
-    streakFlame: const Color(0xFFB8791C),
-    textSecondary: const Color(0xFF5C5849),
+    success: colorblind ? const Color(0xFF005687) : const Color(0xFF42583A),
+    streakFlame: const Color(0xFF996517),
+    textSecondary: const Color(0xFF565344),
     textFaint: const Color(0xFF74705F),
   );
 
-  static GamePalette dark({bool colorblind = false}) => GamePalette(
+  static GamePalette dark({
+    bool colorblind = false,
+    bool highContrast = false,
+  }) => highContrast
+      ? _darkHighContrast(colorblind)
+      : GamePalette(
+          boardCellBg: const Color(0x00000000),
+          boardCellSelectedBg: const Color(0xFFD9B25A).withValues(alpha: .22),
+          boardCellRelatedBg: const Color(0xFFD9B25A).withValues(alpha: .10),
+          boardCellFilledBg: const Color(0xFFF2EDE2).withValues(alpha: .07),
+          boardCellConfirmedBg:
+              (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
+                  .withValues(alpha: .14),
+          // Just-locked = the confirmed teal-green, a gentle step stronger (.26 vs .14)
+          // — calm, on the confirmed family, no jarring gold.
+          boardCellLastMoveBg:
+              (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
+                  .withValues(alpha: .26),
+          // Just-revealed HINT wash in the gold [revealed] family (not teal-green).
+          boardCellRevealedBg: const Color(0xFFD9B25A).withValues(alpha: .24),
+          boardUnderline: const Color(0xFF4A453B),
+          guessText: const Color(0xFFF2EDE2),
+          cipherText: const Color(0xFF968B79),
+          conflict: colorblind
+              ? const Color(0xFFE69F00)
+              : const Color(0xFFD8836E),
+          error: colorblind ? const Color(0xFFE69F00) : const Color(0xFFD8836E),
+          revealed: const Color(0xFFD9B25A),
+          confirmed: colorblind
+              ? const Color(0xFF4FD6B6)
+              : const Color(0xFF6FC8B3),
+          keyBg: const Color(0xFF262219),
+          keyUsedBg: const Color(0xFF1A1712),
+          keyText: const Color(0xFFF2EDE2),
+          keyUsedText: const Color(0xFF807969),
+          keyDisabledText: const Color(0xFF8E8473),
+          keyLockedBg: const Color(0xFF322B1D),
+          success: colorblind
+              ? const Color(0xFF56B4E9)
+              : const Color(0xFF9CB58A),
+          streakFlame: const Color(0xFFE0A84A),
+          textSecondary: const Color(0xFFB0A998),
+          textFaint: const Color(0xFF8F8A7B),
+        );
+
+  /// High-contrast dark. The ink theme already clears AAA for most tokens
+  /// (light-on-near-black is generous), so this variant only lifts the ones
+  /// that sat between AA and AAA — cipher glyphs, used/disabled key text, the
+  /// salmon conflict — and strengthens the underline + selection washes.
+  static GamePalette _darkHighContrast(bool colorblind) => GamePalette(
     boardCellBg: const Color(0x00000000),
-    boardCellSelectedBg: const Color(0xFFD9B25A).withValues(alpha: .22),
-    boardCellRelatedBg: const Color(0xFFD9B25A).withValues(alpha: .10),
-    boardCellFilledBg: const Color(0xFFF2EDE2).withValues(alpha: .07),
+    boardCellSelectedBg: const Color(0xFFD9B25A).withValues(alpha: .30),
+    boardCellRelatedBg: const Color(0xFFD9B25A).withValues(alpha: .14),
+    boardCellFilledBg: const Color(0xFFF2EDE2).withValues(alpha: .10),
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
             .withValues(alpha: .14),
-    // Just-locked = the confirmed teal-green, a gentle step stronger (.26 vs .14)
-    // — calm, on the confirmed family, no jarring gold.
     boardCellLastMoveBg:
         (colorblind ? const Color(0xFF56C0A2) : const Color(0xFF5FC3AE))
             .withValues(alpha: .26),
-    // Just-revealed HINT wash in the gold [revealed] family (not teal-green).
     boardCellRevealedBg: const Color(0xFFD9B25A).withValues(alpha: .24),
-    boardUnderline: const Color(0xFF4A453B),
+    boardUnderline: const Color(0xFF696254), // >= 3:1 UI-component floor
     guessText: const Color(0xFFF2EDE2),
-    cipherText: const Color(0xFF968B79),
-    conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFFD8836E),
-    error: colorblind ? const Color(0xFFE69F00) : const Color(0xFFD8836E),
-    revealed: const Color(0xFFD9B25A),
+    cipherText: const Color(0xFFB1A99B), // small text -> full AAA
+    conflict: colorblind ? const Color(0xFFE69F00) : const Color(0xFFDE9886),
+    error: colorblind ? const Color(0xFFE69F00) : const Color(0xFFDE9886),
+    revealed: const Color(0xFFD9B25A), // 9.1:1 already
     confirmed: colorblind ? const Color(0xFF4FD6B6) : const Color(0xFF6FC8B3),
     keyBg: const Color(0xFF262219),
     keyUsedBg: const Color(0xFF1A1712),
     keyText: const Color(0xFFF2EDE2),
-    keyUsedText: const Color(0xFF807969),
-    keyDisabledText: const Color(0xFF8E8473),
+    keyUsedText: const Color(0xFF87806F),
+    keyDisabledText: const Color(0xFF9B9283),
     keyLockedBg: const Color(0xFF322B1D),
     success: colorblind ? const Color(0xFF56B4E9) : const Color(0xFF9CB58A),
     streakFlame: const Color(0xFFE0A84A),
@@ -181,41 +275,86 @@ class GamePalette extends ThemeExtension<GamePalette> {
     textFaint: const Color(0xFF8F8A7B),
   );
 
-  static GamePalette sepia({bool colorblind = false}) => GamePalette(
+  static GamePalette sepia({
+    bool colorblind = false,
+    bool highContrast = false,
+  }) => highContrast
+      ? _sepiaHighContrast(colorblind)
+      : GamePalette(
+          boardCellBg: const Color(0x00000000),
+          boardCellSelectedBg: const Color(0xFF9C7B33).withValues(alpha: .20),
+          boardCellRelatedBg: const Color(0xFF9C7B33).withValues(alpha: .08),
+          boardCellFilledBg: const Color(0xFF3A2E1C).withValues(alpha: .06),
+          boardCellConfirmedBg:
+              (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
+                  .withValues(alpha: .10),
+          // Just-locked = the confirmed green, a gentle step stronger (.20 vs .10) —
+          // calm, on the confirmed family, no jarring gold.
+          boardCellLastMoveBg:
+              (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
+                  .withValues(alpha: .20),
+          // Just-revealed HINT wash in the gold [revealed] family (not green).
+          boardCellRevealedBg: const Color(0xFF846423).withValues(alpha: .14),
+          boardUnderline: const Color(0xFFC4AE8E),
+          guessText: const Color(0xFF3A2E1C),
+          cipherText: const Color(0xFF755F3F),
+          // Colorblind conflict/error deepened (E69F00 read only 1.91:1 on this paper
+          // surface); A84B00 clears AA (4.84:1).
+          conflict: colorblind
+              ? const Color(0xFFA84B00)
+              : const Color(0xFFA4442F),
+          error: colorblind ? const Color(0xFFA84B00) : const Color(0xFFA4442F),
+          // Deepened from 8A6A2A (3.92:1) so the gold hint letters clear AA (4.64:1).
+          revealed: const Color(0xFF846423),
+          confirmed: colorblind
+              ? const Color(0xFF00795C)
+              : const Color(0xFF276E58),
+          keyBg: const Color(0xFFFBF3E4),
+          keyUsedBg: const Color(0xFFE8D8BC),
+          keyText: const Color(0xFF3A2E1C),
+          keyUsedText: const Color(0xFF7E6A4B),
+          keyDisabledText: const Color(0xFF6F5C3E),
+          keyLockedBg: const Color(0xFFD8C6A3),
+          // Greens deepened so both variants clear AA on sepia (normal 4.85, cb 6.33).
+          success: colorblind
+              ? const Color(0xFF00598C)
+              : const Color(0xFF516E45),
+          streakFlame: const Color(0xFFA9650F),
+          textSecondary: const Color(0xFF5E5036),
+          textFaint: const Color(0xFF756347),
+        );
+
+  /// High-contrast sepia: the reading-lamp paper keeps its warmth while every
+  /// readable token reaches AAA (>= 7:1) and large glyphs/icons >= 4.5:1.
+  static GamePalette _sepiaHighContrast(bool colorblind) => GamePalette(
     boardCellBg: const Color(0x00000000),
-    boardCellSelectedBg: const Color(0xFF9C7B33).withValues(alpha: .20),
-    boardCellRelatedBg: const Color(0xFF9C7B33).withValues(alpha: .08),
-    boardCellFilledBg: const Color(0xFF3A2E1C).withValues(alpha: .06),
+    boardCellSelectedBg: const Color(0xFF6C531F).withValues(alpha: .26),
+    boardCellRelatedBg: const Color(0xFF6C531F).withValues(alpha: .12),
+    boardCellFilledBg: const Color(0xFF3A2E1C).withValues(alpha: .10),
     boardCellConfirmedBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
             .withValues(alpha: .10),
-    // Just-locked = the confirmed green, a gentle step stronger (.20 vs .10) —
-    // calm, on the confirmed family, no jarring gold.
     boardCellLastMoveBg:
         (colorblind ? const Color(0xFF009E73) : const Color(0xFF2F7D63))
             .withValues(alpha: .20),
-    // Just-revealed HINT wash in the gold [revealed] family (not green).
-    boardCellRevealedBg: const Color(0xFF846423).withValues(alpha: .14),
-    boardUnderline: const Color(0xFFC4AE8E),
+    // Wash keyed to the AAA gold (5.71 measured letter-on-wash).
+    boardCellRevealedBg: const Color(0xFF624A1A).withValues(alpha: .14),
+    boardUnderline: const Color(0xFFA28254), // >= 3:1 UI-component floor
     guessText: const Color(0xFF3A2E1C),
-    cipherText: const Color(0xFF755F3F),
-    // Colorblind conflict/error deepened (E69F00 read only 1.91:1 on this paper
-    // surface); A84B00 clears AA (4.84:1).
-    conflict: colorblind ? const Color(0xFFA84B00) : const Color(0xFFA4442F),
-    error: colorblind ? const Color(0xFFA84B00) : const Color(0xFFA4442F),
-    // Deepened from 8A6A2A (3.92:1) so the gold hint letters clear AA (4.64:1).
-    revealed: const Color(0xFF846423),
-    confirmed: colorblind ? const Color(0xFF00795C) : const Color(0xFF276E58),
+    cipherText: const Color(0xFF5C4B32), // small text -> full AAA
+    conflict: colorblind ? const Color(0xFF7F3900) : const Color(0xFF823625),
+    error: colorblind ? const Color(0xFF7F3900) : const Color(0xFF823625),
+    revealed: const Color(0xFF624A1A),
+    confirmed: colorblind ? const Color(0xFF005843) : const Color(0xFF1F5746),
     keyBg: const Color(0xFFFBF3E4),
     keyUsedBg: const Color(0xFFE8D8BC),
     keyText: const Color(0xFF3A2E1C),
-    keyUsedText: const Color(0xFF7E6A4B),
-    keyDisabledText: const Color(0xFF6F5C3E),
+    keyUsedText: const Color(0xFF6E5D41),
+    keyDisabledText: const Color(0xFF625137),
     keyLockedBg: const Color(0xFFD8C6A3),
-    // Greens deepened so both variants clear AA on sepia (normal 4.85, cb 6.33).
-    success: colorblind ? const Color(0xFF00598C) : const Color(0xFF516E45),
-    streakFlame: const Color(0xFFA9650F),
-    textSecondary: const Color(0xFF5E5036),
+    success: colorblind ? const Color(0xFF00517F) : const Color(0xFF3D5334),
+    streakFlame: const Color(0xFF995B0E),
+    textSecondary: const Color(0xFF594C33),
     textFaint: const Color(0xFF756347),
   );
 

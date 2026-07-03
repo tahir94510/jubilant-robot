@@ -11,11 +11,17 @@ abstract final class AppThemes {
   static const String uiFont = 'Inter';
   static const String quoteFont = 'Lora';
 
-  static ThemeData light({required bool colorblind}) {
-    // Warm ivory "paper", deep ink text, antique-gold primary.
+  static ThemeData light({
+    required bool colorblind,
+    bool highContrast = false,
+  }) {
+    // Warm ivory "paper", deep ink text, antique-gold primary. High contrast
+    // deepens the gold so off-white button text clears AAA (7.20:1, was 4.9).
     const surface = Color(0xFFF7F4EC);
     const onSurface = Color(0xFF211E1A);
-    const primary = Color(0xFF936F1F);
+    final primary = highContrast
+        ? const Color(0xFF6D5217)
+        : const Color(0xFF936F1F);
     return _base(
       brightness: Brightness.light,
       surface: surface,
@@ -23,12 +29,17 @@ abstract final class AppThemes {
       primary: primary,
       onPrimary: const Color(0xFFFFFDF8),
       cardColor: const Color(0xFFFFFDF8),
-      palette: GamePalette.light(colorblind: colorblind),
+      highContrast: highContrast,
+      palette: GamePalette.light(
+        colorblind: colorblind,
+        highContrast: highContrast,
+      ),
     );
   }
 
-  static ThemeData dark({required bool colorblind}) {
-    // Deep warm "ink" charcoal, ivory text, champagne-gold primary.
+  static ThemeData dark({required bool colorblind, bool highContrast = false}) {
+    // Deep warm "ink" charcoal, ivory text, champagne-gold primary. The gold
+    // already reads 9.1:1 over the ink onPrimary, so high contrast keeps it.
     const surface = Color(0xFF161512);
     const onSurface = Color(0xFFF2EDE2);
     const primary = Color(0xFFD9B25A);
@@ -39,17 +50,26 @@ abstract final class AppThemes {
       primary: primary,
       onPrimary: const Color(0xFF161512),
       cardColor: const Color(0xFF211F1A),
-      palette: GamePalette.dark(colorblind: colorblind),
+      highContrast: highContrast,
+      palette: GamePalette.dark(
+        colorblind: colorblind,
+        highContrast: highContrast,
+      ),
     );
   }
 
-  static ThemeData sepia({required bool colorblind}) {
+  static ThemeData sepia({
+    required bool colorblind,
+    bool highContrast = false,
+  }) {
     const surface = Color(0xFFF4EBDC);
     const onSurface = Color(0xFF3A2E1C);
     // Deepened from 0xFF9C7B33 so off-white button text on the gold primary
     // clears WCAG AA (4.95:1, was 3.90); also lifts every primary-on-surface
-    // accent's contrast in sepia.
-    const primary = Color(0xFF8A6A28);
+    // accent's contrast in sepia. High contrast deepens further to AAA (7.14).
+    final primary = highContrast
+        ? const Color(0xFF6C531F)
+        : const Color(0xFF8A6A28);
     return _base(
       brightness: Brightness.light,
       surface: surface,
@@ -57,7 +77,11 @@ abstract final class AppThemes {
       primary: primary,
       onPrimary: const Color(0xFFFFFDF8),
       cardColor: const Color(0xFFFBF3E4),
-      palette: GamePalette.sepia(colorblind: colorblind),
+      highContrast: highContrast,
+      palette: GamePalette.sepia(
+        colorblind: colorblind,
+        highContrast: highContrast,
+      ),
     );
   }
 
@@ -69,7 +93,12 @@ abstract final class AppThemes {
     required Color onPrimary,
     required Color cardColor,
     required GamePalette palette,
+    bool highContrast = false,
   }) {
+    // The roadmap's "stronger borders": hairlines that are decorative at .07
+    // become clearly visible structure in high contrast.
+    final outlineAlpha = highContrast ? .30 : .07;
+    final dividerAlpha = highContrast ? .30 : .08;
     final scheme = ColorScheme.fromSeed(
       seedColor: primary,
       brightness: brightness,
@@ -111,7 +140,7 @@ abstract final class AppThemes {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: BorderSide(color: onSurface.withValues(alpha: .07)),
+          side: BorderSide(color: onSurface.withValues(alpha: outlineAlpha)),
         ),
         margin: EdgeInsets.zero,
       ),
@@ -142,7 +171,7 @@ abstract final class AppThemes {
         ),
       ),
       dividerTheme: DividerThemeData(
-        color: onSurface.withValues(alpha: .08),
+        color: onSurface.withValues(alpha: dividerAlpha),
         space: 1,
       ),
       snackBarTheme: SnackBarThemeData(
@@ -165,15 +194,25 @@ abstract final class AppThemes {
     AppThemeMode mode, {
     required bool colorblind,
     required Brightness platformBrightness,
+    bool highContrast = false,
   }) {
     return switch (mode) {
-      AppThemeMode.light => light(colorblind: colorblind),
-      AppThemeMode.dark => dark(colorblind: colorblind),
-      AppThemeMode.sepia => sepia(colorblind: colorblind),
+      AppThemeMode.light => light(
+        colorblind: colorblind,
+        highContrast: highContrast,
+      ),
+      AppThemeMode.dark => dark(
+        colorblind: colorblind,
+        highContrast: highContrast,
+      ),
+      AppThemeMode.sepia => sepia(
+        colorblind: colorblind,
+        highContrast: highContrast,
+      ),
       AppThemeMode.system =>
         platformBrightness == Brightness.dark
-            ? dark(colorblind: colorblind)
-            : light(colorblind: colorblind),
+            ? dark(colorblind: colorblind, highContrast: highContrast)
+            : light(colorblind: colorblind, highContrast: highContrast),
     };
   }
 }
