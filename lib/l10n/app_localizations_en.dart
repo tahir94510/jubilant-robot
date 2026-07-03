@@ -265,7 +265,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get paywallHintsTitle => 'Unlimited hints';
 
   @override
-  String get paywallHintsBody => 'Reveal a letter whenever you\'re stuck';
+  String get paywallHintsBody =>
+      'Reveal a letter or a whole word whenever you\'re stuck';
 
   @override
   String get paywallPacksTitle => 'Exclusive bonus packs';

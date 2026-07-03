@@ -268,7 +268,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get paywallHintsTitle => 'Sınırsız ipucu';
 
   @override
-  String get paywallHintsBody => 'Takıldığında istediğin an bir harf aç';
+  String get paywallHintsBody =>
+      'Takıldığında istediğin an bir harf ya da tüm kelimeyi aç';
 
   @override
   String get paywallPacksTitle => 'Özel bonus paketler';
