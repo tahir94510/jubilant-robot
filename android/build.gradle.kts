@@ -19,6 +19,21 @@ subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Defensive compileSdk floor for plugin subprojects. A plugin that pins an
+// old compileSdk (flutter_displaymode 0.6.0 pinned android-33) silently broke
+// the APK/AAB jobs the day AndroidX transitives started requiring 34+ — with
+// no change in this repo, because CI tracks the stable Flutter channel. Any
+// plugin still below the app's compileSdk is lifted to it here, so a stale
+// dependency can never take the store pipeline down again.
+subprojects {
+    afterEvaluate {
+        extensions.findByType(com.android.build.gradle.BaseExtension::class.java)?.apply {
+            val declared = compileSdkVersion?.removePrefix("android-")?.toIntOrNull()
+            if (declared != null && declared < 36) compileSdkVersion(36)
+        }
+    }
+}
+
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }

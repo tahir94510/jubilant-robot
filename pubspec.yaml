@@ -38,9 +38,11 @@ dependencies:
   # HapticsService falls back to it when no controllable vibrator is present.
   vibration: ^3.0.0
   # Unlocks high refresh (90/120Hz) on OEMs that pin Flutter apps to 60Hz
-  # (MIUI, some Samsung). Android-only, no permissions; a guarded no-op
-  # everywhere else. Called once post-frame in main.dart.
-  flutter_displaymode: ^0.6.0
+  # (MIUI, some Samsung), and caps it for the battery-saver setting.
+  # Android-only, no permissions; a guarded no-op everywhere else.
+  # 0.7.0 raises the plugin's compileSdk past 33 — 0.6.0 broke the APK/AAB
+  # builds when AndroidX transitives started requiring compileSdk >= 34.
+  flutter_displaymode: ^0.7.0
 
 dev_dependencies:
   flutter_test:
