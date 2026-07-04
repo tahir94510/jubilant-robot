@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 
 import 'audio_taper.dart';
@@ -90,6 +91,13 @@ class SoundService {
   }
 
   Future<void> initialize() async {
+    // NO audio engine on web. SoLoud's web backend needs an AudioWorklet +
+    // SharedArrayBuffer, which requires COOP/COEP headers GitHub Pages cannot
+    // send — initialising it there WEDGES the main thread right after the
+    // first frame (reproduced in a real Chromium: first frame at ~14s, then
+    // the renderer blocks forever — the live preview's "stuck on loading").
+    // The web preview is deliberately a silent demo, like ads/purchases.
+    if (kIsWeb) return;
     if (_ready) return;
     try {
       // The SoLoud engine is a process-wide singleton shared with MusicService;
@@ -122,6 +130,7 @@ class SoundService {
   /// source). The voice frees itself when it finishes. Discrete cues are
   /// throttled (see [_minGapMs]); long cues are protected from culling.
   void _play(String key, {bool throttle = true}) {
+    if (kIsWeb) return; // silent web preview; see initialize()
     if (!isEnabled()) return;
     if (!_ready) {
       _ensureReady(); // self-heal for the next cue; this one stays silent
