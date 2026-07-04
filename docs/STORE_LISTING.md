@@ -5,6 +5,77 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.11.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.11.0
+• In-app updates now show a live download indicator — no more silent waiting
+• Fixed sound & music going quiet after returning from the background
+• Feel the vibration strength and hear the volume live while you drag the sliders
+• Polish across all 7 languages
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.11.0 YENİLİKLER
+• Uygulama içi güncellemeler artık canlı indirme göstergesi sunuyor — sessiz bekleyiş bitti
+• Arka plandan dönünce sesin ve müziğin susması düzeltildi
+• Kaydırıcıları sürüklerken titreşim şiddetini hisset, ses seviyesini canlı duy
+• 7 dilin tamamında cila
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.11.0
+• Las actualizaciones dentro de la app ahora muestran un indicador de descarga en vivo
+• Corregido el silencio del sonido y la música al volver del segundo plano
+• Siente la intensidad de la vibración y oye el volumen en vivo al mover los controles
+• Pulido en los 7 idiomas
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.11.0
+• In-App-Updates zeigen jetzt einen Live-Download-Indikator — kein stilles Warten mehr
+• Behoben: Ton und Musik blieben nach der Rückkehr aus dem Hintergrund stumm
+• Spüre die Vibrationsstärke und höre die Lautstärke live beim Ziehen der Regler
+• Feinschliff in allen 7 Sprachen
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.11.0
+• Les mises à jour intégrées affichent désormais un indicateur de téléchargement en direct
+• Corrigé : le son et la musique restaient muets au retour de l'arrière-plan
+• Ressentez l'intensité de la vibration et écoutez le volume en direct en faisant glisser les curseurs
+• Peaufinage dans les 7 langues
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.11.0
+• Gli aggiornamenti in-app ora mostrano un indicatore di download in tempo reale
+• Risolto: suoni e musica restavano muti al ritorno dallo sfondo
+• Senti l'intensità della vibrazione e ascolta il volume dal vivo mentre trascini i cursori
+• Rifiniture in tutte e 7 le lingue
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.11.0
+• As atualizações no app agora mostram um indicador de download ao vivo
+• Corrigido: som e música ficavam mudos ao voltar do segundo plano
+• Sinta a intensidade da vibração e ouça o volume ao vivo ao arrastar os controles
+• Polimento nos 7 idiomas
+Boa decifração!
+```
+
 ## Release notes: v2.10.0 (max 500 chars, paste into "What's new")
 
 ```

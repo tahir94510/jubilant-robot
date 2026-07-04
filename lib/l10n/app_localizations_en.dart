@@ -687,6 +687,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get badgeNew => 'NEW';
 
   @override
+  String get updateDownloadingBody => 'Downloading update in the background…';
+
+  @override
   String get updateReadyBody =>
       'Update downloaded — restart Quotecrack to apply it.';
 

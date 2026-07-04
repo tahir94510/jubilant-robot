@@ -200,6 +200,7 @@
   "hintTokensAdded": "+{count} ipucu eklendi",
   "adNoVideo": "Şu anda video yok. Lütfen birazdan tekrar dene.",
   "badgeNew": "YENİ",
+  "updateDownloadingBody": "Güncelleme arka planda indiriliyor…",
   "updateReadyBody": "Güncelleme indirildi — uygulamak için Quotecrack'i yeniden başlat.",
   "updateRestartAction": "Yeniden başlat"
 }

@@ -61,7 +61,7 @@ abstract final class AppConfig {
   /// Shown in Settings. Kept in lockstep with the versionName in pubspec.yaml
   /// (version_parity_test.dart fails the build if the two ever drift), so the
   /// Settings screen can never advertise a stale version after a release.
-  static const String appVersion = '2.10.0';
+  static const String appVersion = '2.11.0';
 
   /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
   /// achievements ships; items tagged above the previously-noticed revision

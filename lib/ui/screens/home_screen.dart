@@ -217,13 +217,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                           color: scheme.primary,
                                         ),
                                         const SizedBox(width: 6),
-                                        Text(
-                                          l10n.homeDailyLabel,
-                                          style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w700,
-                                            letterSpacing: 1.2,
-                                            color: scheme.primary,
+                                        // Flexible + scaleDown: the long German
+                                        // label at 320dp and 1.6x text would
+                                        // otherwise overflow past the check
+                                        // icon; it shrinks to fit instead
+                                        // (same policy as the date line below).
+                                        Flexible(
+                                          child: FittedBox(
+                                            fit: BoxFit.scaleDown,
+                                            alignment: AlignmentDirectional
+                                                .centerStart,
+                                            child: Text(
+                                              l10n.homeDailyLabel,
+                                              maxLines: 1,
+                                              style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w700,
+                                                letterSpacing: 1.2,
+                                                color: scheme.primary,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                         const Spacer(),

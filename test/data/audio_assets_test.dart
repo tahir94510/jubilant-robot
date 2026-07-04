@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 
@@ -60,6 +61,59 @@ void main() {
         String.fromCharCodes(bytes.take(4)),
         'OggS',
         reason: '$name lacks the OggS magic',
+      );
+    }
+  });
+
+  test('every UI effect is click-free: silent edges, no clipping', () {
+    // A cue that starts/ends at a non-zero sample CLICKS when it (re)triggers,
+    // and a peak at full scale hard-clips when cues overlap — both read as
+    // the "crackle" the SoLoud migration eliminated. The generator applies
+    // raised-cosine edge fades to true zero (tool/generate_sounds.py); this
+    // locks that property so a regenerated asset can never sneak a click back.
+    for (final name in effects) {
+      final bytes = File('assets/audio/$name').readAsBytesSync();
+      final data = bytes.buffer.asByteData();
+      // Walk RIFF chunks to the PCM payload ('data'); 16-bit little-endian.
+      var offset = 12;
+      int dataStart = -1, dataLength = 0;
+      while (offset + 8 <= bytes.length) {
+        final id = String.fromCharCodes(bytes.sublist(offset, offset + 4));
+        final size = data.getUint32(offset + 4, Endian.little);
+        if (id == 'data') {
+          dataStart = offset + 8;
+          dataLength = size;
+          break;
+        }
+        offset += 8 + size + (size.isOdd ? 1 : 0);
+      }
+      expect(dataStart, greaterThan(0), reason: '$name has no data chunk');
+
+      final sampleCount = dataLength ~/ 2;
+      int sampleAt(int i) => data.getInt16(dataStart + i * 2, Endian.little);
+
+      var peak = 0;
+      for (var i = 0; i < sampleCount; i++) {
+        final a = sampleAt(i).abs();
+        if (a > peak) peak = a;
+      }
+      // Headroom: at or past full scale the SUM of overlapping cues clips.
+      expect(
+        peak / 32768,
+        lessThan(0.95),
+        reason: '$name peaks near full scale — overlapping cues will clip',
+      );
+      // Silent edges: first/last samples at (near) zero = click-free
+      // trigger and tail. Threshold 1% of full scale (~-40 dBFS).
+      expect(
+        sampleAt(0).abs() / 32768,
+        lessThan(0.01),
+        reason: '$name starts abruptly (click on trigger)',
+      );
+      expect(
+        sampleAt(sampleCount - 1).abs() / 32768,
+        lessThan(0.01),
+        reason: '$name ends abruptly (click on tail)',
       );
     }
   });

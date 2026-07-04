@@ -1308,6 +1308,12 @@ abstract class AppLocalizations {
   /// **'NEW'**
   String get badgeNew;
 
+  /// No description provided for @updateDownloadingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading update in the background…'**
+  String get updateDownloadingBody;
+
   /// SnackBar shown when a flexible in-app update has been downloaded and is ready to install (installing restarts the app).
   ///
   /// In en, this message translates to:

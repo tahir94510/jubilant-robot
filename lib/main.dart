@@ -9,6 +9,10 @@ import 'package:provider/provider.dart';
 import 'app.dart';
 import 'engine/quote_repository.dart';
 import 'l10n/app_localizations.dart';
+// InstallStatus for the update download indicator; the platform channels are
+// guarded in UpdateService, so the import is compile-safe on every target.
+import 'package:in_app_update/in_app_update.dart' show InstallStatus;
+
 import 'services/ads/ads_service.dart';
 import 'services/display_service.dart';
 import 'services/haptics_service.dart';
@@ -200,7 +204,47 @@ Future<void> _start() async {
     // players out mid-session and read as a crash.
     try {
       final updater = UpdateService();
-      if (await updater.maybeStartUpdate()) {
+      // Live download feedback: without it the flexible download ran silently
+      // in the background and the update flow read as "the button did
+      // nothing". While Play reports `downloading`, a persistent snackbar with
+      // a small spinner shows progress is happening; it is dismissed the
+      // moment the download leaves that state (the "restart" prompt below
+      // takes over on success). Google's flexible-update UX guidance: show
+      // download progress, then request an explicit restart — never restart
+      // the app unannounced under the player.
+      var downloadingShown = false;
+      final statusSub = updater.statusStream().listen((status) {
+        final messenger = scaffoldMessengerKey.currentState;
+        final ctx = scaffoldMessengerKey.currentContext;
+        if (messenger == null || ctx == null || !ctx.mounted) return;
+        if (status == InstallStatus.downloading && !downloadingShown) {
+          downloadingShown = true;
+          messenger.showSnackBar(
+            SnackBar(
+              duration: const Duration(minutes: 10), // until progress resolves
+              content: Row(
+                children: [
+                  const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(AppLocalizations.of(ctx).updateDownloadingBody),
+                  ),
+                ],
+              ),
+            ),
+          );
+        } else if (status != InstallStatus.downloading && downloadingShown) {
+          downloadingShown = false;
+          messenger.hideCurrentSnackBar();
+        }
+      });
+      final staged = await updater.maybeStartUpdate();
+      await statusSub.cancel();
+      if (staged) {
         final ctx = scaffoldMessengerKey.currentContext;
         if (ctx != null && ctx.mounted) {
           final l10n = AppLocalizations.of(ctx);

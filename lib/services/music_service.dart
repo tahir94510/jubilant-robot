@@ -270,8 +270,31 @@ class MusicService with WidgetsBindingObserver {
   void _resumeCurrent() {
     _playing = true;
     _pauseTimer?.cancel();
+    // VALIDATE the handles first: SoLoud silently IGNORES an invalid handle
+    // (setPause on a reclaimed voice does not throw), so the old try/catch
+    // fallback never fired and the bed stayed silent forever after the OS
+    // reclaimed the voices in the background — the reported "no sound after
+    // returning to the app". An explicitly-checked dead voice starts fresh.
+    bool activeValid;
     try {
-      if (_active != null) _soloud.setPause(_active!, false);
+      activeValid = _active != null && _soloud.getIsValidVoiceHandle(_active!);
+      if (_incoming != null && !_soloud.getIsValidVoiceHandle(_incoming!)) {
+        _incoming = null;
+        _incomingIndex = -1;
+      }
+    } catch (_) {
+      activeValid = false;
+    }
+    if (!activeValid) {
+      _started = false;
+      _active = null;
+      _incoming = null;
+      _incomingIndex = -1;
+      ensureStarted();
+      return;
+    }
+    try {
+      _soloud.setPause(_active!, false);
       if (_incoming != null) _soloud.setPause(_incoming!, false);
     } catch (_) {
       // A voice was reclaimed while we were away: start fresh rather than stay
@@ -312,6 +335,21 @@ class MusicService with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (!_ready) return;
     if (state == AppLifecycleState.resumed) {
+      // Aggressive OEMs can tear the whole audio engine down in the
+      // background. A dead engine with _ready still true would leave every
+      // later play() failing silently — re-init from scratch instead (the
+      // retry also restarts the bed once it lands).
+      try {
+        if (!_soloud.isInitialized) {
+          _ready = false;
+          _started = false;
+          _active = null;
+          _incoming = null;
+          _sources.clear();
+          _ensureInit();
+          return;
+        }
+      } catch (_) {}
       if (_started && _playing && isEnabled()) _resumeCurrent();
     } else {
       // Backgrounded / call / full-screen ad: fade out smoothly before pausing
