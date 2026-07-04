@@ -60,4 +60,17 @@ class UpdateService {
       await InAppUpdate.completeFlexibleUpdate();
     } catch (_) {}
   }
+
+  /// Play's install-status broadcast while a flexible download runs — lets the
+  /// UI show a live "downloading…" indicator instead of a silent background
+  /// download (which read as "the update button does nothing"). An empty
+  /// stream where the platform channel is unavailable (tests, web, sideloads),
+  /// so callers can subscribe unconditionally.
+  Stream<InstallStatus> statusStream() {
+    try {
+      return InAppUpdate.installUpdateListener.handleError((_) {});
+    } catch (_) {
+      return const Stream.empty();
+    }
+  }
 }

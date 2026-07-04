@@ -377,6 +377,7 @@
   "@badgeNew": {
     "description": "Tiny badge on freshly added content (e.g. a new achievement) the player hasn't seen yet. Keep it short."
   },
+  "updateDownloadingBody": "Downloading update in the background…",
   "updateReadyBody": "Update downloaded — restart Quotecrack to apply it.",
   "@updateReadyBody": {
     "description": "SnackBar shown when a flexible in-app update has been downloaded and is ready to install (installing restarts the app)."

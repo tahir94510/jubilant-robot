@@ -690,6 +690,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get badgeNew => 'YENİ';
 
   @override
+  String get updateDownloadingBody => 'Güncelleme arka planda indiriliyor…';
+
+  @override
   String get updateReadyBody =>
       'Güncelleme indirildi — uygulamak için Quotecrack\'i yeniden başlat.';
 

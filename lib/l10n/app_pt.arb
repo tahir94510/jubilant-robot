@@ -200,6 +200,7 @@
   "hintTokensAdded": "+{count} dicas adicionadas",
   "adNoVideo": "Nenhum vídeo disponível agora. Tente novamente em instantes.",
   "badgeNew": "NOVO",
+  "updateDownloadingBody": "Baixando a atualização em segundo plano…",
   "updateReadyBody": "Atualização baixada — reinicie o Quotecrack para aplicá-la.",
   "updateRestartAction": "Reiniciar"
 }

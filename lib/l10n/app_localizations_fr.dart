@@ -694,6 +694,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get badgeNew => 'NOUVEAU';
 
   @override
+  String get updateDownloadingBody =>
+      'Téléchargement de la mise à jour en arrière-plan…';
+
+  @override
   String get updateReadyBody =>
       'Mise à jour téléchargée : redémarre Quotecrack pour l\'appliquer.';
 
