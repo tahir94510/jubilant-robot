@@ -5,6 +5,70 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.13.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.13.0
+• True edge-to-edge on every Android version — the game now draws behind the system bars from the very first frame
+• Play-in-browser is fully fixed and loads reliably
+• General polish across all 7 languages
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.13.0 YENİLİKLER
+• Her Android sürümünde gerçek uçtan uca görünüm — oyun artık ilk kareden itibaren sistem çubuklarının arkasına çiziliyor
+• Tarayıcıda oynama tamamen düzeltildi, güvenilir yükleniyor
+• 7 dilin tamamında genel cila
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.13.0
+• Pantalla completa de borde a borde en todas las versiones de Android, desde el primer fotograma
+• Jugar en el navegador quedó totalmente corregido y carga de forma fiable
+• Pulido general en los 7 idiomas
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.13.0
+• Echtes Edge-to-Edge auf jeder Android-Version — das Spiel zeichnet ab dem ersten Frame hinter den Systemleisten
+• Spielen im Browser ist vollständig repariert und lädt zuverlässig
+• Feinschliff in allen 7 Sprachen
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.13.0
+• Affichage bord à bord sur toutes les versions d'Android, dès la première image
+• Jouer dans le navigateur est entièrement corrigé et se charge de façon fiable
+• Peaufinage général dans les 7 langues
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.13.0
+• Vero edge-to-edge su ogni versione di Android — il gioco disegna dietro le barre di sistema fin dal primo frame
+• Giocare nel browser è completamente risolto e si carica in modo affidabile
+• Rifiniture generali in tutte e 7 le lingue
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.13.0
+• Tela de ponta a ponta em todas as versões do Android, desde o primeiro quadro
+• Jogar no navegador foi totalmente corrigido e carrega com confiabilidade
+• Polimento geral nos 7 idiomas
+Boa decifração!
+```
+
 ## Release notes: v2.12.0 (max 500 chars, paste into "What's new")
 
 ```

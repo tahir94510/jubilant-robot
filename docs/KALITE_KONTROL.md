@@ -182,7 +182,7 @@ kurup şu listeyi işaretleyin:
 
 ## C) Sürüm çıkarma rutini + yayın sonrası
 
-**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.12.0+48` (kullanıcıya görünen
+**Sürüm çıkarma:** `pubspec.yaml` → `version: 2.13.0+48` (kullanıcıya görünen
 `versionName`) ve `lib/config/app_config.dart` → `appVersion` aynı isimle
 güncelle. **İkisi test-kilitli:** `test/data/version_parity_test.dart` ikisi
 ayrışırsa CI'yi kırar (Ayarlar ekranı asla bayat sürüm göstermesin — biri
