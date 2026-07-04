@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import androidx.core.view.WindowCompat
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -68,6 +69,17 @@ class MainActivity : FlutterActivity() {
             ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         }
         super.onCreate(savedInstanceState)
+        // Backward-compatible edge-to-edge, straight from Play's pre-launch
+        // recommendation for SDK 35+ targets: Android 15+ forces edge-to-edge
+        // by itself, but OLDER versions only draw behind the system bars when
+        // the app opts in natively. Flutter's SystemUiMode.edgeToEdge does opt
+        // in from Dart, yet only once the engine is up — this native call makes
+        // the very first frame edge-to-edge on every Android version and
+        // clears the Console advisory. (FlutterActivity is not a
+        // ComponentActivity, so androidx.activity's enableEdgeToEdge() is not
+        // available; WindowCompat is its documented equivalent.) The app's
+        // SafeArea/PageBody insets are already in place on every screen.
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         // Paint the post-splash window to match the APP's chosen theme, not the
         // device's. The cream system splash hands off to this window while Flutter
         // initialises; NormalTheme's windowBackground follows the DEVICE theme, so

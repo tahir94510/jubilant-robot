@@ -2,12 +2,12 @@ name: quotecrack
 description: "Quotecrack - decode famous quotes. A beautiful, offline cryptogram puzzle game."
 publish_to: 'none'
 
-# versionName (2.12.0) is the user-facing version shown in Settings. It MUST be
+# versionName (2.13.0) is the user-facing version shown in Settings. It MUST be
 # kept in sync with AppConfig.appVersion — version_parity_test.dart fails the
 # build if they drift. The versionCode (+N) is derived automatically in CI from
 # the commit count (see .github/workflows/ci.yml --build-number), so it always
 # increases without a manual bump; the +48 here is only a local-build fallback.
-version: 2.12.0+48
+version: 2.13.0+48
 
 environment:
   sdk: ^3.12.1

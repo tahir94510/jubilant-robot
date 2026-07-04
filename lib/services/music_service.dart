@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_soloud/flutter_soloud.dart';
 
@@ -100,6 +101,10 @@ class MusicService with WidgetsBindingObserver {
   }
 
   Future<void> initialize() async {
+    // NO audio engine on web — same reason as SoundService.initialize():
+    // SoLoud's web backend needs COOP/COEP isolation Pages can't provide, and
+    // initialising it wedges the main thread right after the first frame.
+    if (kIsWeb) return;
     if (_ready) return;
     try {
       // The SoLoud engine is shared with SoundService; init is a no-op if the
@@ -137,6 +142,7 @@ class MusicService with WidgetsBindingObserver {
   /// often: browsers reject autoplay until the first user gesture, so the app
   /// retries from a global tap listener until one attempt sticks.
   void ensureStarted() {
+    if (kIsWeb) return; // silent web preview; see initialize()
     if (!isEnabled()) return;
     if (!_ready) {
       _ensureInit(); // self-heal a failed/cold init; retry start when it lands
