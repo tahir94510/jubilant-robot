@@ -63,10 +63,21 @@ class UpdateService {
 
   /// Play's install-status broadcast while a flexible download runs — lets the
   /// UI show a live "downloading…" indicator instead of a silent background
-  /// download (which read as "the update button does nothing"). An empty
-  /// stream where the platform channel is unavailable (tests, web, sideloads),
-  /// so callers can subscribe unconditionally.
+  /// download (which read as "the update button does nothing").
+  ///
+  /// GUARDED like [maybeStartUpdate]: off Play-release-Android this returns an
+  /// empty stream WITHOUT ever touching the event channel. Merely listening to
+  /// the channel elsewhere raises MissingPluginException on listen AND cancel
+  /// — errors that surface through FlutterError (not the subscription, so
+  /// handleError can't see them), and on the wasm web build an uncaught error
+  /// like that can take the whole isolate down: the live web preview froze on
+  /// its splash exactly this way.
   Stream<InstallStatus> statusStream() {
+    if (kIsWeb ||
+        !kReleaseMode ||
+        defaultTargetPlatform != TargetPlatform.android) {
+      return const Stream.empty();
+    }
     try {
       return InAppUpdate.installUpdateListener.handleError((_) {});
     } catch (_) {
