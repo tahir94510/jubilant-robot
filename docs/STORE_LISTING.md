@@ -5,6 +5,77 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.12.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.12.0
+• Layout polish for small phones with large text — the daily card now fits every screen
+• Stability hardening around updates and audio
+• Refreshed policy pages (privacy & data deletion)
+• Play in the browser is back and faster to load
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.12.0 YENİLİKLER
+• Büyük yazı kullanan küçük telefonlar için yerleşim cilası — günlük kart artık her ekrana sığıyor
+• Güncelleme ve ses sistemlerinde kararlılık sertleştirmesi
+• Yenilenen politika sayfaları (gizlilik ve veri silme)
+• Tarayıcıda oynama geri döndü, daha hızlı yükleniyor
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.12.0
+• Pulido de diseño para móviles pequeños con texto grande — la tarjeta diaria ahora cabe en cada pantalla
+• Refuerzo de estabilidad en actualizaciones y audio
+• Páginas de políticas renovadas (privacidad y eliminación de datos)
+• Jugar en el navegador vuelve, y carga más rápido
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.12.0
+• Layout-Feinschliff für kleine Telefone mit großer Schrift — die Tageskarte passt jetzt auf jeden Bildschirm
+• Stabilitätshärtung bei Updates und Audio
+• Überarbeitete Richtlinienseiten (Datenschutz & Datenlöschung)
+• Spielen im Browser ist zurück und lädt schneller
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.12.0
+• Peaufinage de la mise en page pour les petits téléphones en grand texte — la carte du jour tient sur chaque écran
+• Renforcement de la stabilité des mises à jour et de l'audio
+• Pages de politiques actualisées (confidentialité et suppression des données)
+• Jouer dans le navigateur est de retour, plus rapide à charger
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.12.0
+• Rifiniture del layout per telefoni piccoli con testo grande — la carta del giorno ora entra in ogni schermo
+• Rafforzata la stabilità di aggiornamenti e audio
+• Pagine delle politiche rinnovate (privacy ed eliminazione dei dati)
+• Giocare nel browser è tornato, e si carica più in fretta
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.12.0
+• Polimento de layout para celulares pequenos com texto grande — o cartão diário agora cabe em toda tela
+• Reforço de estabilidade em atualizações e áudio
+• Páginas de políticas renovadas (privacidade e exclusão de dados)
+• Jogar no navegador está de volta, carregando mais rápido
+Boa decifração!
+```
+
 ## Release notes: v2.11.0 (max 500 chars, paste into "What's new")
 
 ```
