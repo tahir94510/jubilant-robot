@@ -48,9 +48,7 @@ void main() {
     addTearDown(t.view.reset);
     final h = await Harness.create(quotes: [shortQuote, longQuote]);
     setup?.call(h);
-    await t.pumpWidget(
-      h.app(screen, textScale: scale, locale: Locale(locale)),
-    );
+    await t.pumpWidget(h.app(screen, textScale: scale, locale: Locale(locale)));
     await t.pump(const Duration(milliseconds: 400));
     if (setup != null) h.game.stopTimer();
   }
@@ -70,9 +68,7 @@ void main() {
       testWidgets('packs lays out clean on $label (de)', (t) async {
         await pumpAt(t, size.value, scale, 'de', const PacksScreen());
       });
-      testWidgets('long-quote puzzle lays out clean on $label (de)', (
-        t,
-      ) async {
+      testWidgets('long-quote puzzle lays out clean on $label (de)', (t) async {
         await pumpAt(
           t,
           size.value,
