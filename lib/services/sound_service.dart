@@ -127,6 +127,18 @@ class SoundService {
       _ensureReady(); // self-heal for the next cue; this one stays silent
       return;
     }
+    // The OS can tear the shared engine down while backgrounded; _ready would
+    // then lie and every play() would fail silently forever (the reported
+    // "no sound after returning to the app"). Detect the dead engine and
+    // re-init — the next cue sounds again.
+    try {
+      if (!_soloud.isInitialized) {
+        _ready = false;
+        _sources.clear();
+        _ensureReady();
+        return;
+      }
+    } catch (_) {}
     final source = _sources[key];
     if (source == null) return;
     if (throttle) {
