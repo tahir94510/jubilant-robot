@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../l10n/app_localizations.dart';
 import '../theme/palette.dart';
+import 'hold_repeat.dart';
 
 /// Custom on-screen A-Z keyboard with large tap targets (the audience skews
 /// older) and dimming for letters already assigned somewhere on the board.
@@ -67,12 +68,14 @@ class PuzzleKeyboard extends StatelessWidget {
             required VoidCallback? onTap,
             Color? bg,
             double widthFactor = 1,
+            bool holdRepeat = false,
           }) {
             return _KeyButton(
               onTap: onTap,
               bg: bg ?? palette.keyBg,
               width: (keyWidth * widthFactor) - 5,
               height: keyHeight,
+              holdRepeat: holdRepeat,
               child: child,
             );
           }
@@ -129,6 +132,10 @@ class PuzzleKeyboard extends StatelessWidget {
                           ),
                           onTap: onBackspace,
                           widthFactor: _actionFactor,
+                          // Matches BoardControls' undo/redo hold-to-repeat feel:
+                          // a tap deletes one letter, holding walks backward
+                          // with the same accelerating cadence.
+                          holdRepeat: true,
                         ),
                     ],
                   ),
@@ -150,6 +157,7 @@ class _KeyButton extends StatefulWidget {
     required this.bg,
     required this.width,
     required this.height,
+    this.holdRepeat = false,
   });
 
   final Widget child;
@@ -157,6 +165,11 @@ class _KeyButton extends StatefulWidget {
   final Color bg;
   final double width;
   final double height;
+
+  /// When true, holding the key auto-repeats [onTap] with the same
+  /// accelerating cadence as BoardControls' undo/redo (see
+  /// [HoldRepeatDetector]) instead of firing once per tap.
+  final bool holdRepeat;
 
   @override
   State<_KeyButton> createState() => _KeyButtonState();
@@ -180,7 +193,7 @@ class _KeyButtonState extends State<_KeyButton> {
     final border = Theme.of(
       context,
     ).colorScheme.onSurface.withValues(alpha: 0.12);
-    return Padding(
+    Widget button = Padding(
       padding: const EdgeInsets.all(2.5),
       child: AnimatedScale(
         scale: _down ? 0.90 : 1.0,
@@ -195,7 +208,12 @@ class _KeyButtonState extends State<_KeyButton> {
           ),
           child: InkWell(
             borderRadius: BorderRadius.circular(9),
-            onTap: widget.onTap,
+            // Hold-repeat keys fire through the wrapping HoldRepeatDetector
+            // (pointer-down driven, like BoardControls' undo/redo) instead of
+            // InkWell's own tap-up, so a hold doesn't ALSO fire a stray extra
+            // tap on release; onTapDown/onTapUp are kept regardless for the
+            // press-scale feedback.
+            onTap: widget.holdRepeat ? (enabled ? () {} : null) : widget.onTap,
             onTapDown: (_) => set(true),
             onTapUp: (_) => set(false),
             onTapCancel: () => set(false),
@@ -210,5 +228,10 @@ class _KeyButtonState extends State<_KeyButton> {
         ),
       ),
     );
+
+    if (widget.holdRepeat) {
+      button = HoldRepeatDetector(onPressed: widget.onTap, child: button);
+    }
+    return button;
   }
 }
