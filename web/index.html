@@ -29,13 +29,18 @@
   <meta name="twitter:description" content="Decode famous quotes. One cipher a day.">
   <meta name="twitter:image" content="https://tahir94510.github.io/quotecrack/og-image.png">
 
-  <!-- Browser chrome matches the light "paper" brand splash while loading. -->
-  <meta name="theme-color" content="#F7F4EC">
-  <!-- Force a LIGHT page canvas: without this, a dark-mode browser paints the
+  <!-- Browser chrome matches the brand splash while loading; overridden below
+       (before first paint) when the player's saved theme is Dark/Sepia or
+       their browser prefers dark and they haven't overridden it to Light. -->
+  <meta name="theme-color" content="#F7F4EC" id="boot-theme-color">
+  <!-- Base LIGHT page canvas: without this, a dark-mode browser paints the
        page (the area behind/around the Flutter view and during the splash
        fade) BLACK, so first launch flashed a black background behind the logo.
-       The app still renders its own dark theme inside the Flutter canvas. -->
-  <meta name="color-scheme" content="light">
+       The inline script below swaps this to "dark" before first paint when the
+       player's saved theme calls for it, so the boot canvas matches instead of
+       always flashing light. The app still renders its own theme inside the
+       Flutter canvas regardless. -->
+  <meta name="color-scheme" content="light" id="boot-color-scheme">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -66,27 +71,43 @@
   </script>
 
   <style>
-    /* Cream page canvas in every mode: the host page (behind the Flutter view,
+    /* Cream page canvas by default: the host page (behind the Flutter view,
        during the splash fade, and on scroll-bounce) must never be the
        dark-mode browser default (black) — that was the black flash behind the
-       launch logo. color-scheme:light keeps form controls/scrollbars light too;
-       Flutter still paints the user's chosen theme inside its own canvas. */
-    :root { color-scheme: light; }
-    html, body { margin: 0; padding: 0; background-color: #F7F4EC; }
+       launch logo. These are CSS custom properties (not fixed colors) so the
+       inline script below can repaint them, before the first frame, to match
+       the player's SAVED in-app theme (Dark/Sepia) or their browser's dark
+       preference under "System" — otherwise a Dark/Sepia player saw a light
+       flash on every load, which read as "the theme doesn't work". color-
+       scheme stays a plain default here; the script flips it to dark via
+       #boot-color-scheme when needed. Flutter still paints the user's chosen
+       theme inside its own canvas regardless of these fallbacks. */
+    :root {
+      --boot-bg: #F7F4EC;
+      --boot-splash-to: #EAE1CE;
+      --boot-text: #211E1A;
+      --boot-accent: #966E1E;
+      --boot-reload-text: #F7F4EC;
+      color-scheme: light;
+    }
+    html, body { margin: 0; padding: 0; background-color: var(--boot-bg); }
     /* Branded splash while the engine loads: vector logo + serif wordmark,
        all inline (zero extra requests), crisp at any DPI. */
     #boot-splash {
       position: fixed; inset: 0; display: flex; align-items: center;
       justify-content: center; flex-direction: column; gap: 0;
-      background: linear-gradient(135deg, #F7F4EC, #EAE1CE);
-      color: #211E1A; font-family: system-ui, sans-serif;
-      transition: opacity .45s ease; z-index: 10;
+      background: linear-gradient(135deg, var(--boot-bg), var(--boot-splash-to));
+      color: var(--boot-text); font-family: system-ui, sans-serif;
+      transition: opacity .45s ease, background .2s ease, color .2s ease;
+      z-index: 10;
     }
     #boot-splash .brand {
       display: flex; flex-direction: column; align-items: center;
       animation: boot-in .45s ease-out both;
     }
     #boot-splash .brand svg { display: block; }
+    #boot-splash .brand svg .ink { fill: var(--boot-text); }
+    #boot-splash .brand svg .accent { fill: var(--boot-accent); }
     #boot-splash .wordmark {
       margin-top: 18px; font-size: 2rem; font-weight: 700;
       letter-spacing: -.5px;
@@ -95,7 +116,7 @@
     #boot-splash .tagline { margin-top: 6px; opacity: .7; font-size: .95rem; }
     #boot-splash .dots { display: flex; gap: 6px; margin-top: 22px; }
     #boot-splash .dot {
-      width: 8px; height: 8px; border-radius: 50%; background: #966E1E;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--boot-accent);
       animation: boot-pulse 1.2s ease-in-out infinite;
     }
     #boot-splash .dot:nth-child(2) { animation-delay: .2s; }
@@ -105,8 +126,8 @@
     #boot-splash #boot-hint { margin-top: 20px; font-size: .9rem; opacity: .7; }
     #boot-splash #boot-reload {
       margin-top: 12px; padding: 8px 22px; font: inherit; font-size: .95rem;
-      color: #F7F4EC; background: #966E1E; border: none; border-radius: 999px;
-      cursor: pointer;
+      color: var(--boot-reload-text); background: var(--boot-accent); border: none;
+      border-radius: 999px; cursor: pointer;
     }
     #boot-splash [hidden] { display: none; }
     @keyframes boot-pulse {
@@ -122,17 +143,64 @@
       #boot-splash .brand { animation: none; }
     }
   </style>
+  <script>
+    // Repaint the boot canvas to match the player's SAVED theme choice before
+    // the first pixel is ever drawn, so Dark/Sepia players (or "System" +
+    // dark browser) don't get a light flash before Flutter takes over. Reads
+    // the same 'settings.v1' blob StorageService writes (shared_preferences'
+    // web backend stores it in localStorage under a "flutter." prefix, as a
+    // plain JSON string) — never throws, and silently keeps the light default
+    // above if the value is missing, unreadable, or storage is blocked
+    // (private browsing etc).
+    (function () {
+      try {
+        var mode = 'system';
+        var raw = window.localStorage && localStorage.getItem('flutter.settings.v1');
+        if (raw) {
+          var saved = JSON.parse(raw);
+          if (saved && typeof saved.themeMode === 'string') mode = saved.themeMode;
+        }
+        var prefersDark = !!(
+          window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        );
+        var dark = mode === 'dark' || (mode === 'system' && prefersDark);
+        var sepia = mode === 'sepia';
+        if (!dark && !sepia) return; // light (or unrecognized): keep the CSS default
+        var root = document.documentElement.style;
+        if (sepia) {
+          root.setProperty('--boot-bg', '#F4EBDC');
+          root.setProperty('--boot-splash-to', '#EADFC7');
+          root.setProperty('--boot-text', '#3A2E1C');
+          root.setProperty('--boot-accent', '#8A6A28');
+          root.setProperty('--boot-reload-text', '#FFFDF8');
+        } else {
+          root.setProperty('--boot-bg', '#161512');
+          root.setProperty('--boot-splash-to', '#211F1A');
+          root.setProperty('--boot-text', '#F2EDE2');
+          root.setProperty('--boot-accent', '#D9B25A');
+          root.setProperty('--boot-reload-text', '#161512');
+          var colorScheme = document.getElementById('boot-color-scheme');
+          if (colorScheme) colorScheme.setAttribute('content', 'dark');
+          var themeColor = document.getElementById('boot-theme-color');
+          if (themeColor) themeColor.setAttribute('content', '#161512');
+        }
+      } catch (e) {
+        // Corrupt/blocked storage: fall back to the light boot canvas above.
+      }
+    })();
+  </script>
 </head>
 <body>
   <div id="boot-splash">
     <div class="brand">
-      <!-- Transparent mark (no baked tile), matching the in-app BrandMark. The
-           boot canvas is a fixed light "paper" gradient, so the dark-ink Q and
-           gold accents read cleanly straight on it — no card, no shadow. -->
+      <!-- Transparent mark (no baked tile), matching the in-app BrandMark.
+           Ink/accent colors follow --boot-text/--boot-accent (set above) so
+           the logo stays legible against the Dark/Sepia boot canvas too, not
+           just the light default. -->
       <svg width="104" height="104" viewBox="0 0 96 96" role="img" aria-label="Quotecrack logo">
-        <text x="42" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="600" font-size="54" fill="#26221C" text-anchor="middle" dominant-baseline="central">Q</text>
-        <text x="73" y="28" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="23" fill="#AA7C22" text-anchor="middle" dominant-baseline="central">?</text>
-        <rect x="19.2" y="74.4" width="57.6" height="4.8" rx="2.4" fill="#966E1E"/>
+        <text class="ink" x="42" y="40" font-family="Georgia,'Times New Roman',serif" font-weight="600" font-size="54" text-anchor="middle" dominant-baseline="central">Q</text>
+        <text class="accent" x="73" y="28" font-family="Georgia,'Times New Roman',serif" font-weight="700" font-size="23" text-anchor="middle" dominant-baseline="central">?</text>
+        <rect class="accent" x="19.2" y="74.4" width="57.6" height="4.8" rx="2.4"/>
       </svg>
       <div class="wordmark">Quotecrack</div>
       <div class="tagline">Decode famous quotes.</div>
