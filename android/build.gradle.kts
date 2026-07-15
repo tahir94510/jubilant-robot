@@ -2,6 +2,23 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        // Pangle (TikTok) mediation SDK'sinin yayinlandigi tek depo. Adaptorun
+        // com.google.ads.mediation:pangle bagimliligi com.pangle.global:pag-sdk'yi
+        // buradan ceker; google()/mavenCentral()'da YOKTUR. gma_mediation_pangle
+        // eklentisi bu depoyu kendi build.gradle'inda bildirir ama o blok uygulama
+        // projesinin cozumlemesine etki etmiyor (CI kaniti: "Could not find
+        // com.pangle.global:pag-sdk" iki build isini de kirdi) — depo BURADA,
+        // uygulamanin kendi allprojects'inde durmak zorunda.
+        maven {
+            url = uri("https://artifact.bytedance.com/repository/pangle/")
+            // Yalnizca Pangle artefaktlari bu depodan cozulsun: ucuncu taraf bir
+            // deponun baska bir grubun paketini gölgelemesi (dependency confusion)
+            // bastan engellenir.
+            content {
+                includeGroupByRegex("com\\.pangle\\..*")
+                includeGroupByRegex("com\\.bytedance\\..*")
+            }
+        }
     }
 }
 
