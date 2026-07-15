@@ -31,10 +31,23 @@ class StatsScreen extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
 
     // These dense 3-up cards keep a bounded text scale so a large system
-    // font can't overflow or crush them on a narrow phone.
-    const valueStyle = TextStyle(fontSize: 22, fontWeight: FontWeight.w700);
+    // font can't overflow or crush them on a narrow phone. Explicit line
+    // heights so the fixed slots below can be sized exactly.
+    const valueStyle = TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w700,
+      height: 1.2,
+    );
+    const labelFontSize = 12.0;
+    const labelLineHeight = 1.3;
     // [animateTo] != null renders an animated count-up; otherwise [value]
     // (used for the non-numeric fastest-time "m:ss" / "--:--").
+    //
+    // Every element sits in a FIXED-HEIGHT slot (icon, value, a two-line label
+    // area) so all six cards are pixel-identical in height and the numbers sit
+    // on the same baseline across the whole grid — regardless of whether a
+    // language's label wraps to one line or two. Centering the whole column
+    // instead (the old layout) shifted the numbers up and down per card.
     Widget statCard(
       String value,
       String label,
@@ -43,34 +56,57 @@ class StatsScreen extends StatelessWidget {
     }) => Expanded(
       child: Card(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 6),
           child: MediaQuery.withClampedTextScaling(
             maxScaleFactor: 1.1,
-            child: Column(
-              // Centered so the icon/value/label stay balanced when the card is
-              // stretched to its row's tallest sibling (see IntrinsicHeight).
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, size: 22, color: scheme.primary),
-                const SizedBox(height: 8),
-                if (animateTo != null)
-                  CountUpText(value: animateTo, style: valueStyle)
-                else
-                  Text(
-                    value,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: valueStyle,
-                  ),
-                const SizedBox(height: 2),
-                Text(
-                  label,
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 12, color: palette.textSecondary),
-                ),
-              ],
+            child: Builder(
+              builder: (context) {
+                // Slot heights follow the effective (clamped) text scale so
+                // large-font users get taller — but still uniform — cards.
+                final scaler = MediaQuery.textScalerOf(context);
+                final valueSlot = scaler.scale(valueStyle.fontSize!) * 1.2;
+                final labelSlot =
+                    scaler.scale(labelFontSize) * labelLineHeight * 2;
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(icon, size: 22, color: scheme.primary),
+                    const SizedBox(height: 8),
+                    SizedBox(
+                      height: valueSlot,
+                      child: Center(
+                        child: animateTo != null
+                            ? CountUpText(value: animateTo, style: valueStyle)
+                            : FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text(
+                                  value,
+                                  maxLines: 1,
+                                  style: valueStyle,
+                                ),
+                              ),
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    SizedBox(
+                      height: labelSlot,
+                      child: Center(
+                        child: Text(
+                          label,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: labelFontSize,
+                            height: labelLineHeight,
+                            color: palette.textSecondary,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),

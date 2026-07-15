@@ -6,6 +6,7 @@ import 'package:quotecrack/ui/screens/packs_screen.dart';
 import 'package:quotecrack/ui/screens/paywall_screen.dart';
 import 'package:quotecrack/ui/screens/puzzle_screen.dart';
 import 'package:quotecrack/ui/screens/settings_screen.dart';
+import 'package:quotecrack/ui/screens/stats_screen.dart';
 
 import '../fakes/test_harness.dart';
 
@@ -67,6 +68,14 @@ void main() {
       });
       testWidgets('packs lays out clean on $label (de)', (t) async {
         await pumpAt(t, size.value, scale, 'de', const PacksScreen());
+      });
+      // German has the longest stat labels (two-line wraps) — the exact case
+      // the fixed-slot stat cards must absorb without overflow or misalign.
+      testWidgets('stats lays out clean on $label (de)', (t) async {
+        await pumpAt(t, size.value, scale, 'de', const StatsScreen());
+      });
+      testWidgets('stats lays out clean on $label (tr)', (t) async {
+        await pumpAt(t, size.value, scale, 'tr', const StatsScreen());
       });
       testWidgets('long-quote puzzle lays out clean on $label (de)', (t) async {
         await pumpAt(

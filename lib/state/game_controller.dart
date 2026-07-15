@@ -560,7 +560,7 @@ class GameController extends ChangeNotifier {
   }
 
   /// Assigns [plainLetter] to the selected cipher letter, auto-advances to
-  /// the next empty cell, and detects completion.
+  /// the next unlocked cell, and detects completion.
   void enterGuess(String plainLetter) {
     // Any new interaction invalidates the one-shot cue, even when the call
     // turns out to be a no-op (stale flags must never replay a sound).
@@ -575,17 +575,14 @@ class GameController extends ChangeNotifier {
     }
 
     // Re-typing the letter the cell already holds is a no-op edit: don't rewrite
-    // it or push a redundant undo entry — just walk forward to the next empty
-    // cell (the natural "skip" the player expects).
+    // it or push a redundant undo entry — just walk forward to the next
+    // unlocked cell (the natural "skip" the player expects).
     if (s.guesses[target] == plainLetter) {
       // A no-op edit, but the player still deliberately placed this letter HERE:
       // move the quiet "last typed" cue to this (editable) cell so the highlight
-      // follows the cursor's action, then walk forward to the next empty cell.
+      // follows the cursor's action, then walk forward to the next unlocked cell.
       _lastTypedCipherLetter = target;
-      _selectedIndex =
-          _nextEmptyEditableIndexAfter(_selectedIndex) ??
-          _nextEditableIndexAfter(_selectedIndex) ??
-          _selectedIndex;
+      _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
       notifyListeners();
       return;
     }
@@ -676,10 +673,10 @@ class GameController extends ChangeNotifier {
   }
 
   /// The next editable cell strictly AFTER [from] in reading order, wrapping to
-  /// the first editable cell. Unlike [_nextEmptyIndexAfter] this stops on the
-  /// next editable letter whether it is filled or empty (only hint-revealed and
-  /// confirmed-correct cells are skipped) — so typing walks cell by cell and a
-  /// filled-but-unconfirmed letter can be revised in place.
+  /// the first editable cell. Stops on the next editable letter whether it is
+  /// filled or empty (only hint-revealed and confirmed-correct cells are
+  /// skipped) — so typing walks cell by cell and a filled-but-unconfirmed
+  /// letter can be revised in place.
   int? _nextEditableIndexAfter(int? from) {
     final s = _session;
     if (s == null) return null;
@@ -690,26 +687,6 @@ class GameController extends ChangeNotifier {
     }
     for (var i = 0; i < t.length; i++) {
       if (_isEditableIndex(s, i)) return i;
-    }
-    return null;
-  }
-
-  /// The next EMPTY editable cell strictly AFTER [from], wrapping to the first.
-  /// Skips cells whose cipher letter already holds a guess, so after typing a
-  /// letter (which auto-fills all its copies) the cursor jumps straight to the
-  /// next blank instead of pausing on a just-filled copy — the "smart cursor".
-  /// Returns null when every editable cell is already filled.
-  int? _nextEmptyEditableIndexAfter(int? from) {
-    final s = _session;
-    if (s == null) return null;
-    final t = s.cipherText;
-    bool empty(int i) => _isEditableIndex(s, i) && !s.guesses.containsKey(t[i]);
-    final start = from == null ? 0 : from + 1;
-    for (var i = start; i < t.length; i++) {
-      if (empty(i)) return i;
-    }
-    for (var i = 0; i < t.length; i++) {
-      if (empty(i)) return i;
     }
     return null;
   }
@@ -866,10 +843,7 @@ class GameController extends ChangeNotifier {
     // flung the cursor backward to an earlier copy. Fall back to the revealed
     // letter's position only when there is no current selection.
     final revealFrom = _selectedIndex ?? _indexOfLetter(target);
-    _selectedIndex =
-        _nextEmptyEditableIndexAfter(revealFrom) ??
-        _nextEditableIndexAfter(revealFrom) ??
-        _selectedIndex;
+    _selectedIndex = _nextEditableIndexAfter(revealFrom) ?? _selectedIndex;
     _undoStack.clear(); // reveals are permanent
     _afterChange(advance: false);
     return true;
@@ -914,11 +888,8 @@ class GameController extends ChangeNotifier {
     }
     _lastLockedPositions = positions;
     // Advance forward from where the player was (same rule as revealSelected):
-    // next empty editable cell, else next editable, else stay.
-    _selectedIndex =
-        _nextEmptyEditableIndexAfter(_selectedIndex) ??
-        _nextEditableIndexAfter(_selectedIndex) ??
-        _selectedIndex;
+    // next unlocked cell, else stay.
+    _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
     _undoStack.clear(); // reveals are permanent
     _afterChange(advance: false);
     return targets.length;
@@ -955,13 +926,12 @@ class GameController extends ChangeNotifier {
       _persistSolved();
     } else {
       if (advance) {
-        // Smart cursor: skip filled cells (including the copies just
-        // auto-filled) and land on the next empty one, falling back to the next
-        // editable cell only when every blank is gone (a full, unconfirmed board).
-        _selectedIndex =
-            _nextEmptyEditableIndexAfter(_selectedIndex) ??
-            _nextEditableIndexAfter(_selectedIndex) ??
-            _selectedIndex;
+        // Walk to the NEXT UNLOCKED cell — filled or empty. Only hint-revealed
+        // and confirmed-correct cells are skipped, so a filled-but-unconfirmed
+        // guess can be revised in place as the cursor sweeps the board. (The
+        // old "smart cursor" that hopped over every filled cell made revising
+        // a wrong guess needlessly fiddly.)
+        _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
       }
       _lastTypedCipherLetter = _recomputeLastTyped();
       _persistState();

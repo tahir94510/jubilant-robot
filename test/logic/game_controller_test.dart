@@ -377,7 +377,7 @@ void main() {
 
     game.selectIndex(0);
     final c0 = game.selectedCipherLetter!;
-    game.enterGuess('X'); // fills c0, auto-advances to the next empty cell
+    game.enterGuess('X'); // fills c0, auto-advances to the next unlocked cell
     expect(s.guesses[c0], 'X');
     expect(game.selectedCipherLetter, isNot(c0));
 
@@ -462,7 +462,8 @@ void main() {
   });
 
   test(
-    'smart cursor: typing skips already-filled cells onto the next EMPTY one',
+    'typing advances onto the next UNLOCKED cell even when it already holds a '
+    'guess (filled-but-unconfirmed letters are revised in place, never skipped)',
     () async {
       final store = await storage();
       final game = GameController(storage: store);
@@ -472,17 +473,52 @@ void main() {
       expect(s.cipherText[0], isNot(s.cipherText[1]));
       expect(s.cipherText[1], isNot(s.cipherText[2]));
 
-      // Pre-fill cell 1 (E) so there is a filled cell for the cursor to skip.
+      // Pre-fill cell 1 (E) with a tentative guess — it stays UNLOCKED.
       game.selectIndex(1);
       game.enterGuess('Q');
 
-      // Type into cell 0 (L): the cursor must SKIP the now-filled cell 1 and
-      // land on the next EMPTY cell (2, an S) — never pause on a filled copy.
+      // Type into cell 0 (L): the cursor must stop ON the filled-but-unlocked
+      // cell 1 so the guess there can be revised in place — the old "smart
+      // cursor" hopped over it to the next empty cell, which made fixing a
+      // wrong letter needlessly fiddly.
+      game.selectIndex(0);
+      game.enterGuess('W');
+
+      expect(game.selectedIndex, 1);
+      expect(game.selectedCipherLetter, s.cipherText[1]);
+
+      game.stopTimer();
+      game.dispose();
+    },
+  );
+
+  test(
+    'typing skips LOCKED cells and lands on the next unlocked one, filled or '
+    'not (locked = hint-revealed or confirmed-correct)',
+    () async {
+      final store = await storage();
+      final game = GameController(storage: store);
+      game.start(shortQuote, daily: false);
+      final s = game.session!;
+      final t = s.cipherText; // "XXXX XX XXXX." shape of "less is more."
+
+      // Lock cell 1 (E) via a hint reveal: E becomes uneditable everywhere.
+      game.selectIndex(1);
+      game.revealSelected();
+      expect(s.revealed.contains(t[1]), isTrue);
+
+      // Fill the S cells (2,3) with a tentative guess — filled but unlocked.
+      game.selectIndex(2);
+      game.enterGuess('Q');
+
+      // Type into cell 0 (L): the cursor must hop over the LOCKED cell 1 and
+      // stop on cell 2 — filled but unlocked — never fly past it to the next
+      // empty cell (the reported bug).
       game.selectIndex(0);
       game.enterGuess('W');
 
       expect(game.selectedIndex, 2);
-      expect(game.selectedCipherLetter, s.cipherText[2]);
+      expect(s.revealed.contains(t[game.selectedIndex!]), isFalse);
 
       game.stopTimer();
       game.dispose();
@@ -604,7 +640,7 @@ void main() {
     game.selectCipherLetter(cipherM);
     game.enterGuess('M');
 
-    // The cursor steps to the next empty letter AFTER M ("more" -> O), not
+    // The cursor steps to the next unlocked letter AFTER M ("more" -> O), not
     // all the way back to the first empty letter (L) at the very start.
     expect(game.selectedCipherLetter, cipherO);
     expect(game.selectedCipherLetter, isNot(cipherL));
