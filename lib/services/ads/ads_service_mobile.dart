@@ -17,6 +17,18 @@ AdsService createAdsService() => MobileAdsService();
 /// appears where legally required) -> canRequestAds? -> MobileAds.initialize.
 /// A UMP failure must never brick ads forever: we still check canRequestAds
 /// (true outside consent geographies) and simply retry on next launch.
+///
+/// MEDIATION (bidding): the gma_mediation_{applovin,unity,pangle} adapters in
+/// pubspec ride along automatically — MobileAds.initialize() initializes every
+/// registered adapter, and each AdRequest below runs the bidding auction once
+/// the ad sources are configured in the AdMob console. No per-network code is
+/// needed here, and DELIBERATELY none is called for consent either: the UMP
+/// GDPR message is an IAB TCF v2 CMP, so AppLovin/Unity/Pangle read the TCF
+/// consent string directly from SharedPreferences themselves. Calling their
+/// boolean consent setters (setHasUserConsent etc.) on top of TCF would
+/// OVERRIDE the user's real per-vendor choices with a blanket value — worse
+/// for compliance, not better. Verify adapter status via Ad Inspector
+/// ([openAdInspector], debug settings tile).
 class MobileAdsService extends AdsService {
   MobileAdsService() : super.base();
 
@@ -238,6 +250,19 @@ class MobileAdsService extends AdsService {
   Future<void> showPrivacyOptionsForm() async {
     final done = Completer<void>();
     ConsentForm.showPrivacyOptionsForm((FormError? error) {
+      if (!done.isCompleted) done.complete();
+    });
+    await done.future;
+  }
+
+  @override
+  Future<void> openAdInspector() async {
+    // Debug-only diagnostics: lists every mediation adapter's init status and
+    // per-ad-unit fill. Guarded here too (not just at the UI entry point) so a
+    // future caller can never surface it in a release build by accident.
+    if (!kDebugMode) return;
+    final done = Completer<void>();
+    MobileAds.instance.openAdInspector((error) {
       if (!done.isCompleted) done.complete();
     });
     await done.future;

@@ -52,6 +52,11 @@ abstract class AdsService {
 
   Future<void> showPrivacyOptionsForm();
 
+  /// Opens Google's Ad Inspector overlay (debug builds only) — the on-device
+  /// tool that shows, per ad unit, which mediation adapters initialized and
+  /// which bidders filled. No-op on web/stub and in release builds.
+  Future<void> openAdInspector();
+
   /// Tears ads down permanently (premium purchased).
   Future<void> disable();
 }

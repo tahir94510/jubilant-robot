@@ -1,7 +1,11 @@
 # R8/ProGuard keep rules for the RELEASE build.
 #
-# Flutter enables R8 code shrinking for `--release` automatically
-# (FlutterPlugin sets isMinifyEnabled = true) and auto-applies THIS file.
+# R8 shrinking/optimization is enabled explicitly in build.gradle.kts
+# (isMinifyEnabled + isShrinkResources on the release build type, applying THIS
+# file) — the modern Flutter Gradle plugin does NOT turn minify on by itself, so
+# it must be opted into. This clears Play Console's "improve memory and
+# performance with R8" advisory and trims the APK/AAB.
+#
 # Several dependencies load classes by reflection or (de)serialize models,
 # so R8 must be told not to strip them — otherwise the app crashes at
 # startup in release while working fine in debug (which never shrinks).
@@ -29,6 +33,22 @@
 -keep class com.google.android.gms.ads.** { *; }
 -keep class com.google.android.gms.internal.ads.** { *; }
 -dontwarn com.google.android.gms.**
+
+# ---- AdMob mediation adapters (AppLovin / Unity Ads / Pangle) ----
+# Each adapter AAR ships its own consumer ProGuard rules that AGP applies
+# automatically, but the network SDKs load classes reflectively; these keeps +
+# dontwarns are a belt-and-suspenders guard so R8 never strips a bidder's entry
+# points or warns on an optional transitive it can't resolve.
+-keep class com.applovin.** { *; }
+-keep class com.google.ads.mediation.applovin.** { *; }
+-keep class com.unity3d.ads.** { *; }
+-keep class com.unity3d.services.** { *; }
+-keep class com.google.ads.mediation.unity.** { *; }
+-keep class com.bytedance.sdk.** { *; }
+-keep class com.google.ads.mediation.pangle.** { *; }
+-dontwarn com.applovin.**
+-dontwarn com.unity3d.**
+-dontwarn com.bytedance.sdk.**
 
 # ---- Play Billing (in_app_purchase) ----
 -keep class com.android.billingclient.** { *; }

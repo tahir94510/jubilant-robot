@@ -18,17 +18,18 @@ geçmiş demektir:
 |---|---|
 | `dart format` | Kod stili sapması yok |
 | `flutter analyze` | Sıfır hata, sıfır uyarı |
-| **356 otomatik test** | Aşağıdaki döküm |
+| **300+ otomatik test** | Aşağıdaki döküm (kesin sayı koşucunun raporudur; her partide büyür) |
 | `flutter build apk --debug` | Android derlemesi kanıtı |
 | `flutter build appbundle/apk --release` | İmzalı mağaza paketleri kanıtı |
 | `flutter build web` | Reklamsız stub yolunun derlendiği kanıtı |
 
-**356 testin dökümü (özet — kategori sayıları bilinçli verilmiyor, tek doğrulanabilir sayı koşucunun raporladığı toplamdır):**
+**Testlerin dökümü (özet — kategori sayıları bilinçli verilmiyor, tek doğrulanabilir sayı koşucunun raporladığı toplamdır):**
 - **Motor:** RNG golden vektörleri (günlük bulmaca her cihazda aynı
   kalır, değişirse test kırılır), 1000 tohumda derangement/bijeksiyon,
   şifre determinizmi, 2026+2028'in her günü için tekrarsız günlük seçim,
   zorluk monotonlukları.
-- **Veri seti:** yedi dilin her biri 510 özgün söz (içerik paritesi)
+- **Veri seti:** yedi dilin her birinde taban sayının (içerik paritesi
+  testindeki `minPerLocale`) üzerinde özgün söz
   (EN + TR/ES/DE/FR/IT/PT). Benzersiz kimlik, dil içinde kopya metin yok,
   İngilizce ASCII, her sözün **kendi alfabesinde** 20-180 harf, atıf alanları
   dolu ve "Unknown" yasak (halk malı sözler "Anonymous"/"Atasözü" vb.).
@@ -44,10 +45,10 @@ geçmiş demektir:
   ikon kopya değil), yeni içerik "NEW" rozetinin güncelleme sonrası SÜRE
   bazlı (14 gün) görünüp kendiliğinden normalleşmesi (yeniden başlatma/saat
   geri alma dahil); tahta sığdırma matematiği (15 harfli kelime 360dp
-  ekrana sığar + 510 sözün TAMAMI 320dp tahtaya sığar garantisi); ipucu
-  sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
+  ekrana sığar + veri setindeki TÜM sözlerin 320dp tahtaya sığar garantisi);
+  ipucu sayacının reveal başına +1 artıp uygulama yeniden açılınca korunması,
   çözülmüş bulmacanın temiz başlaması; harf girince imlecin geriye değil
-  ileriye (sonraki boş harfe) ilerlemesi.
+  ileriye (kilitli olmayan sonraki harfe) ilerlemesi.
 - **Ekran ve etkileşim:** Uçtan uca çözüm akışı, otomatik doldurma,
   çakışma vurgusu, klavye soluklaştırma, geri alma; ana ekran menüleri,
   17 paketin (zorluk/tema/dil/premium) listelenip açılması, premium kilit→paywall ve premium→içerik
@@ -85,6 +86,10 @@ kurup şu listeyi işaretleyin:
 6. [ ] Banner yalnız ana ekran + tamamlama ekranında; **çözüm ekranında
        asla reklam yok**; 3 çözümde bir geçiş reklamı geliyor (120 sn
        arayla).
+6b. [ ] (Mediation kurulduysa) Debug APK → Ayarlar → **Ad Inspector**:
+        AppLovin/Unity/Pangle adaptörleri "initialized" görünüyor; hiçbir
+        adaptör hatası yok. Kurulu DEĞİLSE bu maddeyi atlayın — adaptörler
+        pasifken uygulama tek başına AdMob'la aynen çalışır.
 7. [ ] Premium (license tester hesabıyla, ücretsiz): satın al → reklamlar
        anında kayboluyor, ipuçları sınırsız, Klasikler paketi açılıyor;
        uygulamayı silip kur → **Restore purchases** premium'u geri

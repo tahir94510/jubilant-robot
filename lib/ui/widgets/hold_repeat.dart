@@ -86,6 +86,13 @@ class _HoldRepeatDetectorState extends State<HoldRepeatDetector> {
   @override
   Widget build(BuildContext context) {
     return Listener(
+      // Opaque so the detector receives pointer events across its ENTIRE
+      // bounds, not only where the child happens to paint. With the default
+      // deferToChild, a child that paints nothing in some state (an empty or
+      // fully transparent region) would swallow the press and the control
+      // would silently miss taps — a real hold-to-repeat control must respond
+      // anywhere inside its footprint.
+      behavior: HitTestBehavior.opaque,
       onPointerDown: (_) => _onTapDown(),
       onPointerUp: (_) => _stop(),
       onPointerCancel: (_) => _stop(),

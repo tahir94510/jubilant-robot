@@ -1,6 +1,6 @@
 # Privacy Policy — Quotecrack
 
-_Last updated: June 11, 2026_
+_Last updated: July 15, 2026_
 
 > The live, linkable version of this policy (use THIS url in Play Console):
 > **https://tahir94510.github.io/quotecrack/privacy.html**
@@ -18,7 +18,7 @@ Your puzzle progress, statistics, streaks, settings, and hint balance are
 stored locally on your device. They are never transmitted to us and are
 deleted when you uninstall the app.
 
-## Advertising (Google AdMob)
+## Advertising (Google AdMob and mediation partners)
 
 The free version shows ads served by Google AdMob. AdMob may collect and
 process data described in [Google's partner sites
@@ -27,8 +27,16 @@ your device's **Advertising ID**, IP address, coarse location derived from
 IP, and ad-interaction data (for ad delivery, frequency capping, fraud
 prevention, and — where you consent — personalization).
 
+To improve ad quality, ads may also be served through AdMob mediation by
+these partner networks, each processing similar data under its own policy:
+
+- **AppLovin** — [privacy policy](https://legal.applovin.com/privacy/)
+- **Unity Ads** — [privacy policy](https://unity.com/legal/privacy-policy)
+- **Pangle** — [privacy policy](https://www.pangleglobal.com/privacy/enduser-en)
+
 In the European Economic Area, the United Kingdom, and Switzerland the app
-shows a consent dialog (Google UMP) before any ad is loaded. You can change
+shows a consent dialog (Google UMP, IAB TCF v2) before any ad is loaded;
+your choices there apply to the mediation partners as well. You can change
 your choice at any time via _Settings → Privacy options_ in the app. You
 can also reset your device Advertising ID or opt out of personalization in
 Android settings.

@@ -70,14 +70,36 @@ class SoundService {
   /// cue; with the per-cue throttle below the real count stays well under this.
   static const int _maxVoices = 24;
 
-  /// Long cues that must ring out fully — PROTECTED from voice-culling so a
-  /// later tap/cue can never cut the fanfare off mid-play ("yarıda kesilme").
-  static const Set<String> _longCues = {'success.wav', 'achievement.wav'};
+  /// Every discrete cue is PROTECTED from voice-culling so pressure on the
+  /// voice pool (typing bursts, music crossfades) can never cut a still-ringing
+  /// bell off mid-play ("yarıda kesilme"). Previously only the two fanfares
+  /// were protected and the word/hint/conflict bells could be culled exactly
+  /// when the player was most active. Only the per-keystroke tap stays
+  /// unprotected — it is 55 ms long and the correct victim under pressure.
+  @visibleForTesting
+  static const Set<String> protectedCues = {
+    'success.wav',
+    'achievement.wav',
+    'word.wav',
+    'hint.wav',
+    'conflict.wav',
+  };
+
+  /// The keystroke tap is the one cue allowed to pile up (one per key press),
+  /// so it gets its own small concurrency cap: beyond this many live tap
+  /// voices the OLDEST tap is stopped — a 55 ms thock is never missed, and tap
+  /// floods (hold-to-repeat, ghost touches) can never pressure the voice pool
+  /// toward culling territory.
+  @visibleForTesting
+  static const int maxConcurrentTaps = 8;
+  final List<SoundHandle> _tapHandles = [];
 
   /// Minimum gap before the SAME discrete cue retriggers. A wrong-letter spam or
   /// a repeated letter would otherwise spawn a dozen overlapping voices that both
   /// flood the mix (clipping) and hit the voice cap (culling). Distinct cues are
-  /// unaffected; the per-keystroke tap is exempt so it tracks every key.
+  /// unaffected. Exempt: the per-keystroke tap (tracks every key) and the
+  /// word-complete bell — completing two words with two fast keystrokes is two
+  /// real achievements, and dropping the second bell read as a broken cue.
   static const int _minGapMs = 60;
   final Map<String, int> _lastPlayedMs = {};
 
@@ -158,10 +180,32 @@ class SoundService {
     }
     try {
       final handle = _soloud.play(source, volume: _volume);
-      // Keep the long fanfares alive against a later burst of cues.
-      if (_longCues.contains(key)) _soloud.setProtectVoice(handle, true);
+      // Keep every meaningful cue alive against a later burst of voices —
+      // only the disposable keystroke tap may ever be culled.
+      if (protectedCues.contains(key)) {
+        _soloud.setProtectVoice(handle, true);
+      } else if (key == 'tap.wav') {
+        _capTapVoices(handle);
+      }
     } catch (_) {
       // A single failed cue must never surface to the player.
+    }
+  }
+
+  /// Tracks live tap voices and stops the OLDEST once more than
+  /// [maxConcurrentTaps] ring at once. Finished handles are pruned first, so
+  /// normal typing never triggers a stop — only a genuine flood does.
+  void _capTapVoices(SoundHandle handle) {
+    _tapHandles.add(handle);
+    try {
+      _tapHandles.removeWhere((h) => !_soloud.getIsValidVoiceHandle(h));
+      while (_tapHandles.length > maxConcurrentTaps) {
+        final oldest = _tapHandles.removeAt(0);
+        _soloud.stop(oldest);
+      }
+    } catch (_) {
+      // Bookkeeping only — a failure here must never mute the tap itself.
+      if (_tapHandles.length > maxConcurrentTaps * 4) _tapHandles.clear();
     }
   }
 
@@ -173,8 +217,10 @@ class SoundService {
 
   void conflict() => _play('conflict.wav');
 
-  /// A single soft bell when a typed guess finishes a whole word.
-  void wordComplete() => _play('word.wav');
+  /// A single soft bell when a typed guess finishes a whole word. Exempt from
+  /// the same-cue throttle: two words finished by two fast keystrokes are two
+  /// real events, and swallowing the second bell read as a broken cue.
+  void wordComplete() => _play('word.wav', throttle: false);
 
   void success() => _play('success.wav');
 
@@ -187,6 +233,7 @@ class SoundService {
       unawaited(_soloud.disposeSource(source).catchError((_) {}));
     }
     _sources.clear();
+    _tapHandles.clear();
     _ready = false;
   }
 }

@@ -61,15 +61,16 @@ abstract final class AppConfig {
   /// Shown in Settings. Kept in lockstep with the versionName in pubspec.yaml
   /// (version_parity_test.dart fails the build if the two ever drift), so the
   /// Settings screen can never advertise a stale version after a release.
-  static const String appVersion = '2.14.0';
+  static const String appVersion = '2.15.0';
 
   /// Monotonic content revision. Bump by 1 whenever a batch of new packs or
   /// achievements ships; items tagged above the previously-noticed revision
   /// wear a "NEW" badge for [newBadgeWindow] after the update is first
   /// launched, then normalize automatically — time-based for every player,
   /// independent of which screens they open. (1 = launch content, 2 = the
-  /// v1.1.5 achievement batch.)
-  static const int contentVersion = 2;
+  /// v1.1.5 achievement batch, 3 = the v2.15.0 quote batch — ~375 new
+  /// public-domain quotes across all 7 languages, the `expanded2.json` files.)
+  static const int contentVersion = 3;
 
   /// How long freshly-shipped content wears its "NEW" badge before it
   /// auto-normalizes. Two weeks matches the store's own "new" discovery

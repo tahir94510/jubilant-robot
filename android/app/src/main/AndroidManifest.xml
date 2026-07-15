@@ -53,6 +53,16 @@
             android:name="com.google.android.gms.ads.flag.OPTIMIZE_AD_LOADING"
             android:value="true"/>
 
+        <!-- AppLovin mediation (bidding) SDK anahtari; degeri
+             android/app/build.gradle.kts icindeki
+             manifestPlaceholders["applovinSdkKey"] satirindan gelir. BOS
+             birakildiginda AppLovin adaptoru init'te sessizce basarisiz olur ve
+             AdMob diger bidder'larla devam eder — yani anahtar girilene kadar
+             zararsizca pasiftir. Anahtar: AppLovin paneli > Account > Keys. -->
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="${applovinSdkKey}"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"

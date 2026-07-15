@@ -60,6 +60,9 @@ class FakeAdsService extends AdsService {
   Future<void> showPrivacyOptionsForm() async {}
 
   @override
+  Future<void> openAdInspector() async {}
+
+  @override
   Future<void> disable() async {
     disabled = true;
     canRequest.value = false;
