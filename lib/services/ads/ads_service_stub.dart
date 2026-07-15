@@ -45,5 +45,8 @@ class StubAdsService extends AdsService {
   Future<void> showPrivacyOptionsForm() async {}
 
   @override
+  Future<void> openAdInspector() async {}
+
+  @override
   Future<void> disable() async {}
 }

@@ -32,8 +32,16 @@ kullanıcıya asla ulaşamaz.
      `prv2-` gibi (sıralama kararlılığı için).
    - `text` ASCII, 20 ile 180 harf arası, başka bir sözün kopyası değil
      (normalize edilmiş metin birebir karşılaştırılarak denetlenir).
-   - Telif: yalnız kamu malı (1929 öncesi yayın/ölüm). Emin değilseniz
-     yaşayan kişilerden veya modern eserlerden alıntı EKLEMEYİN.
+   - **Telif (kesin kural):** yalnız kamu malı. Ölçüt, CI'daki
+     `content_parity_test.dart` engel listesinin uyguladığı kuralın aynısı:
+     **yazarın ölümü + 70 yıl geçmiş olmalı** (2026 itibarıyla: ölüm yılı
+     ≤ 1955) — ya da söz halk malı (atasözü/anonim). 1929 öncesi YAYIN da
+     (ABD kuralı) ek bir güvence katmanıdır ama tek başına yetmez: yazar
+     1955'ten sonra öldüyse eklemeyin. Modern yazarlar (Camus, Neruda,
+     Chaplin, Russell...) testteki engel listesindedir ve CI'yı kırar.
+     Emin değilseniz yaşayan kişilerden veya modern eserlerden alıntı
+     EKLEMEYİN; çeviri de türev eserdir — yerelleştirilmiş sözlerde çevirinin
+     kendisinin de eski/anonim olduğundan emin olun.
    - `author` "Unknown" olamaz; halk malı için "Anonymous" veya "Proverb".
    - `category` dosya adıyla aynı (kategori alanı belirleyicidir; depo dosya
      adına değil bu alana bakar).
@@ -51,6 +59,58 @@ kullanıcıya asla ulaşamaz.
 3. Sürümü artırın (aşağıdaki "Sürüm ve içerik revizyonu" bölümü).
 4. Push edin. CI testleri içeriği denetler; yeşilse `quotecrack-release-aab`
    hazırdır. KALITE_KONTROL B turundan 2-3 madde, sonra Play Console.
+
+## Düzenli içerik partisi döngüsü (tekrarlanabilir tarif)
+
+Ara ara "yeni parti" eklerken her seferinde aynı, test-korumalı döngü izlenir.
+Bu bölüm o döngünün kalıcı tarifidir — kim eklerse eklesin sonuç aynı kalite
+kapılarından geçer.
+
+**1. Hacim ve dağılım kararı.** Parti başına dil başına 50-150 söz idealdir
+(kalite denetimi yönetilebilir kalır). Kategori dağılımını mevcut paketlerin
+İNCE kalanlarına yönlendirin: her dilde `classics ≥ 30`, `literature ≥ 35`,
+`inspire ≥ 30` tabanları (parity testi) ve her İngilizce zorluk kovasında
+≥ 40 söz kuralı vardır.
+
+**2. Dosya ve kimlik düzeni.** Parti başına dil başına TEK dosya:
+ilk parti `expanded.json` idi; sonrakiler `expanded2.json`, `expanded3.json`…
+(İngilizce kökte, diğerleri kendi alt klasöründe; yeni dosya adını
+`pubspec.yaml`'a eklemek GEREKMEZ — klasörler zaten kayıtlı.) Kimlik öneki
+parti numarasını taşır: 2. parti `en-x2NNN`, `tr-x2NNN`… (ör. `tr-x2001`).
+
+**3. Kültürel yerlilik ilkeleri.** Her dilin partisi o dilin KENDİ
+kültüründen beslenir — İngilizce listenin çevirisi değil:
+- TR: atasözleri, Mevlana/Yunus Emre/Hacı Bektaş geleneği, Namık Kemal,
+  Ömer Hayyam çevirileri (eski/anonim çeviri şartıyla).
+- ES: refranes, Cervantes, Quevedo, Gracián, Unamuno (ö. 1936) ✓.
+- DE: Sprichwörter, Goethe, Schiller, Kant, Nietzsche, Heine.
+- FR: proverbes, La Rochefoucauld, Montaigne, Voltaire, Hugo.
+- IT: proverbi, Dante, Leonardo, Machiavelli, Leopardi.
+- PT: provérbios, Camões, Eça de Queirós, Machado de Assis, Pessoa (ö. 1935) ✓.
+- EN: Shakespeare, Franklin, Twain, Emerson, Austen, Dickinson...
+Anlamı zayıf, bağlamsız, kendini tekrar eden "motivasyon duvarı" sözlerinden
+kaçının; her söz tek başına çözmeye değer olmalı.
+
+**4. Kalite kapıları (otomatik).** Ekledikten sonra sırasıyla:
+
+```bash
+flutter analyze
+flutter test test/data/          # şema, kopya, alfabe, telif, taban sayılar
+flutter test                     # tam paket
+```
+
+Kırmızı görürseniz mesaj hangi kuralın kırıldığını söyler (kopya metin,
+alfabe dışı karakter, engel listesindeki yazar, 20-180 harf sınırı...).
+
+**5. Zorluk dengesi kontrolü.** Büyük partiden sonra
+`quotes_validation_test`'teki kova tabanları hâlâ yeşilse eşikler yerindedir;
+kırılırsa `app_config.dart` eşiklerini yeni çeyrekliklere göre güncelleyin
+(aşağıdaki "Zorluk eşikleri" bölümü).
+
+**6. Sürüm/rozet.** `contentVersion`'ı +1 artırın (aşağıda), yeni başarım
+eklediyseniz `addedInVersion` verin, `STORE_LISTING.md`'ye "Yenilikler" notu
+yazın (7 dil), sürümü artırıp push edin. CI yeşil → B turundan 2-3 madde →
+Play'e yükleyin.
 
 ## Adım adım: yeni başarım (achievement) ekleme
 

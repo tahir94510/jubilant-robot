@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -369,6 +370,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 title: Text(l10n.version),
                 subtitle: const Text(AppConfig.appVersion),
               ),
+              // Developer-only mediation diagnostics: debug builds get Google's
+              // Ad Inspector to verify each adapter's init + bidding fill.
+              // Deliberately untranslated — it can never appear in a release
+              // build, so it is tooling, not user-facing copy.
+              if (kDebugMode && context.read<AdsService>().supported)
+                ListTile(
+                  leading: const Icon(Icons.bug_report_outlined),
+                  title: const Text('Ad Inspector (debug)'),
+                  subtitle: const Text('Mediation adapter status & test fills'),
+                  onTap: () => context.read<AdsService>().openAdInspector(),
+                ),
             ],
           ),
         ),

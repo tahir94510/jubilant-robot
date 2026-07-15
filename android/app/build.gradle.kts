@@ -38,6 +38,12 @@ android {
         // Reklam birimi kimlikleri: lib/config/monetization_config.dart
         // Not: debug derlemeler her zaman Google TEST reklami gosterir.
         manifestPlaceholders["admobAppId"] = "ca-app-pub-6486621084238367~2935153669"
+
+        // AppLovin mediation SDK anahtari (AppLovin paneli > Account > Keys).
+        // BOS oldugu surece AppLovin adaptoru pasif kalir ve AdMob tek basina
+        // (+ diger bidder'lar) calisir; hesap acilinca TEK yapilacak sey bu
+        // degeri doldurmak. Ayrintili kurulum: docs/MONETIZASYON.md (Mediation).
+        manifestPlaceholders["applovinSdkKey"] = ""
     }
 
     signingConfigs {

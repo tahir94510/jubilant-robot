@@ -269,14 +269,38 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gma_mediation_applovin:
+    dependency: "direct main"
+    description:
+      name: gma_mediation_applovin
+      sha256: d3606209caddf2461dc008291ced7353b31a3ef93dcc5f6dcf1ace6b8c34c3b4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.6.1"
+  gma_mediation_pangle:
+    dependency: "direct main"
+    description:
+      name: gma_mediation_pangle
+      sha256: ea8112f5419c1606bc13d7fcdc75a716cf0bf27cb7d368c385543c0c5d41f9d6
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.6.0"
+  gma_mediation_unity:
+    dependency: "direct main"
+    description:
+      name: gma_mediation_unity
+      sha256: "42d039d2b7fb6c2a7702cbe64bbe4465e6d5b29e83e4fd67936366da6f3597e1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.1"
   google_mobile_ads:
     dependency: "direct main"
     description:
       name: google_mobile_ads
-      sha256: "6029f6c48bc9b6b47767ddbb4847683048a2f006d418c871bd93c5eb6a8e5c3c"
+      sha256: "50549f6c945d7a445d53c04f34d025b1a1723fbd02719de9e67de432e2597f40"
       url: "https://pub.dev"
     source: hosted
-    version: "9.0.0"
+    version: "8.0.0"
   hooks:
     dependency: transitive
     description:

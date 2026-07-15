@@ -12,3 +12,16 @@
 # sitesi reposuna oldugu gibi kopyalanmaya hazirdir:
 
 google.com, pub-6486621084238367, DIRECT, f08c47fec0942fa0
+
+# --- Mediation ortaklari (AppLovin / Unity Ads / Pangle) ---
+# Asagidaki satirlar SABLONDUR: her agda yayinci hesabinizi actiktan sonra
+# agin panelindeki "app-ads.txt" sayfasi size KENDI hesabiniza ozgu kesin
+# satirlari verir — YAYINCI_ID yer tutucularini oradan kopyaladiginiz
+# degerlerle degistirin (satir formati/etki alani da paneldekiyle birebir
+# ayni olmali; aglar zaman zaman ek reseller satirlari da ister).
+# Yer tutucular doldurulmadan bu üç satiri YAYINLAMAYIN; yorum olarak
+# kalabilirler. AdMob'un kendi satiri (yukarida) her zaman aktif kalir.
+#
+# applovin.com, YAYINCI_ID, DIRECT, cbe27ef6f4ad2b31
+# unity3d.com, YAYINCI_ID, DIRECT, 96cabb5fbdde37a7
+# pangleglobal.com, YAYINCI_ID, DIRECT

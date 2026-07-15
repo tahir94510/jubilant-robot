@@ -123,6 +123,82 @@ sonra 5 dakikalık iyileştirme olarak yapın:
    `https://tahir94510.github.io` yazın.
 4. 1+ gün sonra AdMob → Apps → app-ads.txt durumunu kontrol edin.
 
+## A2) Mediation: AdMob'a ek reklam ağları (bidding) — kod HAZIR
+
+Uygulama, AdMob'un **bidding mediation**'ı için üç ek ağın resmî Flutter
+adaptörleriyle gelir (pubspec: `gma_mediation_applovin`, `gma_mediation_unity`,
+`gma_mediation_pangle`). Bidding = her gösterim için ağlar gerçek zamanlı
+açık artırmada yarışır; şelale (waterfall) sıralaması ve elle eCPM yönetimi
+YOKTUR. Google'ın 2026 tavsiyesi de budur.
+
+**Neden bu üçü?** Bireysel geliştirici hesabıyla sürtünmesiz açılırlar ve
+oyun kitlesinde en güçlü talebe sahiptirler:
+
+| Ağ | Güçlü olduğu yer | Hesap |
+|---|---|---|
+| AppLovin | Geçiş + ödüllü (oyun demandı lideri) | applovin.com |
+| Unity Ads | Ödüllü + geçiş (oyun reklamcılığı merkezi) | cloud.unity.com |
+| Pangle (TikTok) | Ödüllü + geçiş, TR dahil global | pangleglobal.com |
+
+(Meta Audience Network banner/geçişte çok güçlüdür ama **işletme doğrulaması**
+ister; ileride doğrulamayı tamamlarsanız `gma_mediation_meta` paketi tek
+satırla eklenir + aşağıdaki aynı konsol adımları uygulanır.)
+
+**Formata bağlama:** ÜÇ formata da (banner/geçiş/ödüllü) üç ağın hepsini
+bidder olarak ekleyin. Açık artırma, hangi ağın hangi formatta güçlü olduğunu
+gösterim başına kendisi çözer — elle format ayrımı yapmayın.
+
+Adaptörler siz konsol kurulumunu yapana kadar **zararsızca pasiftir**:
+uygulama bugünkü gibi yalnız AdMob'la çalışır. Kurulum bittiği anda (yeni
+sürüm gerekmeden*) açık artırma devreye girer. (*AppLovin hariç: SDK anahtarı
+derlemeye girdiği için bir sürüm güncellemesi gerekir — aşağıda.)
+
+### Konsol kurulumu, sırasıyla (~20 dk/ağ)
+
+1. **Ağ hesapları:** üç ağda da yayıncı hesabı açın (yukarıdaki tablo).
+   Her birinde uygulamayı kaydedin — paket adı: `io.github.tahir94510.quotecrack`.
+   - AppLovin: kayıt sonrası **Account → Keys → SDK Key**'i kopyalayın.
+   - Unity: bir "Project" oluşturun → **Game ID** (Android) not edin.
+   - Pangle: uygulama ekleyin → **App ID** not edin; her format için bir
+     "Ad Placement" oluşturun (tip: Banner/Interstitial/Rewarded, bidding).
+2. **AppLovin SDK anahtarını koda girin** (tek satır):
+   `android/app/build.gradle.kts` → `manifestPlaceholders["applovinSdkKey"] = "ANAHTARINIZ"`.
+   Boş kaldığı sürece AppLovin adaptörü pasiftir, diğer her şey çalışır.
+3. **AdMob → Mediation → Create mediation group** — üç grup açın:
+   - `android_banner` (format: Banner, platform: Android) → ad unit: `home_banner`
+   - `android_interstitial` (Interstitial) → ad unit: `between_puzzles`
+   - `android_rewarded` (Rewarded) → ad unit: `hint_reward`
+   Her grupta **Add bidding ad source** → AppLovin / Unity Ads / Pangle'ı
+   ekleyin → her ağ için çıkan **ortaklık sözleşmesini** onaylayın →
+   istenen kimlikleri eşleyin (Unity: Game ID; Pangle: App ID + Placement;
+   AppLovin: hesap bağlantısı yeterli).
+4. **GDPR ortak listesi:** AdMob → Privacy & messaging → GDPR mesajınız →
+   **Review your ad partners** → AppLovin, Unity Ads ve Pangle'ı işaretleyin →
+   mesajı yeniden **Publish** edin. (Uygulamadaki UMP/TCF akışı hazır; ek kod
+   gerekmez — SDK'lar TCF onay dizesini kendileri okur.)
+5. **Play Console → App content → Data safety:** üç ağın topladığı veriyi
+   beyana ekleyin. Hazır beyan tabloları:
+   - AppLovin: https://developers.applovin.com/en/max/android/overview/data-and-user-privacy/
+   - Unity: https://docs.unity.com/ads/en-us/manual/GoogleDataSafety
+   - Pangle: https://www.pangleglobal.com/help/doc/google-play-data-safety
+   (Genelde: cihaz/reklam kimliği, kaba konum (IP), etkileşim verisi —
+   "Advertising or marketing" amacıyla, üçüncü tarafla paylaşılan.)
+6. **app-ads.txt satırları:** `pages/app-ads.txt` içindeki şablon satırların
+   yer tutucularını her ağın panelinde gösterilen KENDİ yayıncı kimliğinizle
+   doldurun ve dosyayı `tahir94510.github.io` kullanıcı-sitesi reposuna
+   kopyalayın (kurulum §app-ads.txt'de anlatıldı).
+7. **Doğrulama:** debug APK → Ayarlar → **Ad Inspector (debug)** → her
+   adaptörün "initialized" göründüğünü ve test isteklerinde bidder'ların
+   yarıştığını kontrol edin. (Adaptör durumu release'te de loglanır ama
+   Ad Inspector en net araçtır.)
+
+> Notlar: (1) Yeni eklenen ağların doldurma oranı ilk günlerde düşük olur —
+> ağlar uygulamayı incelerken normaldir. (2) AdMob raporlarında mediation
+> geliri "Bidding" satırlarında ayrışır. (3) Adaptörler ~3-4 MB APK boyutu
+> ekler; bidding'in gelir artışı bunun karşılığıdır. (4) `google_mobile_ads`
+> ^8'e sabitli — gerekçe pubspec'te; Unity adaptörü ^9 çıkınca birlikte
+> yükseltilir.
+
 ## B) Premium IAP kurulumu (~10 dakika)
 
 Play Console → uygulamanız → **Monetize → Products → In-app products**:
