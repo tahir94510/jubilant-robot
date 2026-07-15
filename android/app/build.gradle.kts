@@ -64,6 +64,21 @@ android {
             } else {
                 signingConfigs.getByName("debug")
             }
+            // R8 tam mod: olu kodu/kaynagi ayiklar, kalani optimize/kucuklestirir.
+            // Play Console'un "R8 ile bellek ve performansi artirin" uyarisini
+            // kaldirir; APK/AAB boyutunu ve soguk baslangic bellegini dusurur.
+            // Guvenlik: Flutter'in kendi kurallari + her eklentinin AAR consumer
+            // ProGuard kurallari (google_mobile_ads ve mediation adaptorleri,
+            // in_app_purchase, vb. kendi keep'lerini tasir) OTOMATIK uygulanir;
+            // proguard-rules.pro yalnizca reflection'a dayanan ve consumer kurali
+            // tasimayan parcalari (flutter_local_notifications'in Gson modelleri)
+            // korur. shrinkResources yalnizca minify ile birlikte gecerlidir.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 }

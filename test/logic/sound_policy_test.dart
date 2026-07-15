@@ -19,8 +19,7 @@ void main() {
     'word.wav',
   };
 
-  test('every cue except the keystroke tap is protected from voice-culling',
-      () {
+  test('every cue except the keystroke tap is protected from voice-culling', () {
     expect(
       SoundService.protectedCues,
       allCues.difference({'tap.wav'}),

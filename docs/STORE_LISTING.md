@@ -5,6 +5,91 @@ Character limits are respected; do not exceed them when editing.
 
 ---
 
+## Release notes: v2.15.0 (max 500 chars, paste into "What's new")
+
+```
+NEW in 2.15.0
+• 375+ new hand-picked public-domain quotes across all 7 languages
+• Colorblind mode is now genuinely distinct on the board and keyboard
+• Sound effects never cut off mid-play, even while typing fast
+• The letter cursor now stops on any editable cell so you can fix a guess in place
+• Cleaner, perfectly aligned statistics cards in every language
+• Smaller, faster build (R8 optimization)
+Happy decoding!
+```
+
+**Türkçe**
+```
+2.15.0 YENİLİKLER
+• 7 dilin tamamına 375+ özenle seçilmiş, telifsiz yeni söz
+• Renk körü modu artık tahtada ve klavyede gerçekten ayırt edilebilir
+• Ses efektleri hızlı yazarken bile artık yarıda kesilmiyor
+• Harf imleci artık düzenlenebilir her hücrede durup tahmini yerinde düzeltmene izin veriyor
+• Her dilde daha temiz, kusursuz hizalanmış istatistik kartları
+• Daha küçük ve hızlı yapı (R8 optimizasyonu)
+İyi çözmeler!
+```
+
+**Español**
+```
+NOVEDADES 2.15.0
+• Más de 375 nuevas citas de dominio público seleccionadas a mano en los 7 idiomas
+• El modo para daltónicos ahora se distingue de verdad en el tablero y el teclado
+• Los efectos de sonido ya no se cortan a mitad, ni al escribir rápido
+• El cursor de letras ahora se detiene en cualquier celda editable para corregir en el sitio
+• Tarjetas de estadísticas más limpias y perfectamente alineadas en cada idioma
+• Compilación más pequeña y rápida (optimización R8)
+¡Feliz descifrado!
+```
+
+**Deutsch**
+```
+NEU in 2.15.0
+• Über 375 neue, handverlesene gemeinfreie Zitate in allen 7 Sprachen
+• Der Farbenblind-Modus ist auf Brett und Tastatur jetzt wirklich unterscheidbar
+• Soundeffekte brechen nicht mehr mitten im Spiel ab, auch bei schnellem Tippen
+• Der Buchstabencursor hält jetzt auf jeder editierbaren Zelle, um eine Eingabe direkt zu korrigieren
+• Sauberere, perfekt ausgerichtete Statistikkarten in jeder Sprache
+• Kleinerer, schnellerer Build (R8-Optimierung)
+Viel Spaß beim Entschlüsseln!
+```
+
+**Français**
+```
+NOUVEAU dans la 2.15.0
+• Plus de 375 nouvelles citations du domaine public choisies à la main dans les 7 langues
+• Le mode daltonien se distingue enfin vraiment sur le plateau et le clavier
+• Les effets sonores ne se coupent plus en plein jeu, même en tapant vite
+• Le curseur de lettres s'arrête désormais sur toute case modifiable pour corriger sur place
+• Cartes de statistiques plus nettes et parfaitement alignées dans chaque langue
+• Build plus petit et plus rapide (optimisation R8)
+Bon déchiffrage !
+```
+
+**Italiano**
+```
+NOVITÀ nella 2.15.0
+• Oltre 375 nuove citazioni di pubblico dominio selezionate a mano in tutte e 7 le lingue
+• La modalità daltonici ora si distingue davvero su tabellone e tastiera
+• Gli effetti sonori non si interrompono più a metà, nemmeno digitando in fretta
+• Il cursore delle lettere ora si ferma su ogni cella modificabile per correggere sul posto
+• Schede statistiche più pulite e perfettamente allineate in ogni lingua
+• Build più piccola e veloce (ottimizzazione R8)
+Buona decifrazione!
+```
+
+**Português**
+```
+NOVIDADES na 2.15.0
+• Mais de 375 novas citações de domínio público selecionadas a dedo nos 7 idiomas
+• O modo para daltônicos agora se distingue de verdade no tabuleiro e no teclado
+• Os efeitos sonoros não são mais cortados no meio, mesmo digitando rápido
+• O cursor de letras agora para em qualquer célula editável para corrigir no lugar
+• Cartões de estatísticas mais limpos e perfeitamente alinhados em cada idioma
+• Build menor e mais rápido (otimização R8)
+Boa decifração!
+```
+
 ## Release notes: v2.13.0 (max 500 chars, paste into "What's new")
 
 ```

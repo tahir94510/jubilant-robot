@@ -582,7 +582,8 @@ class GameController extends ChangeNotifier {
       // move the quiet "last typed" cue to this (editable) cell so the highlight
       // follows the cursor's action, then walk forward to the next unlocked cell.
       _lastTypedCipherLetter = target;
-      _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
+      _selectedIndex =
+          _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
       notifyListeners();
       return;
     }
@@ -931,7 +932,8 @@ class GameController extends ChangeNotifier {
         // guess can be revised in place as the cursor sweeps the board. (The
         // old "smart cursor" that hopped over every filled cell made revising
         // a wrong guess needlessly fiddly.)
-        _selectedIndex = _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
+        _selectedIndex =
+            _nextEditableIndexAfter(_selectedIndex) ?? _selectedIndex;
       }
       _lastTypedCipherLetter = _recomputeLastTyped();
       _persistState();
